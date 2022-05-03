@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cee0b0e62b52684ca742b8091848404, type: 3}
+  m_Name: 02.ShieldUpgradeCard
+  m_EditorClassIdentifier: 
+  id: 2
+  specialCardName: "\uBC29\uD328 \uAC15\uD654"
+  price: 5
+  tooltip: "\uBC29\uD328\uC758 \uBC29\uC5B4\uB825\uC744 2 \uB298\uB824\uC900\uB2E4"
+  sprite: {fileID: -5535381785550601910, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
+  applyTiming: 1
+  targetTypeList: 02000000
+  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
+  swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}
+  shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}
+  playerValueChangeEvent: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}

@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: d05531aaf8b2afb4faf9497eacf697a1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - swordSprite: {instanceID: 0}
+  - sheildSprite: {instanceID: 0}
+  - potionSprite: {instanceID: 0}
+  - monsterSprite: {instanceID: 0}
+  - coinSprite: {instanceID: 0}
+  - anvilSprite: {instanceID: 0}
+  - cacrifasSprite: {instanceID: 0}
+  - healsamSprite: {instanceID: 0}
+  - scoreText: {instanceID: 0}
+  - cardPrefab: {instanceID: 0}
+  - deckSeePanel: {instanceID: 0}
+  - deckSeePanelTrm: {instanceID: 0}
+  - hpIntText: {instanceID: 0}
+  - mobIntText: {instanceID: 0}
+  - player: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
