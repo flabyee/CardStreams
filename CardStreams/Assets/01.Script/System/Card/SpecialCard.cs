@@ -3,33 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [HideInInspector] public SpecialCardSO specialCardSO;
-
     [HideInInspector] public ApplyTiming applyTiming;
     [HideInInspector] public List<CardType> targetTypeList;
 
     [HideInInspector] public string specialCardName;
+    [HideInInspector] public string tooltip;
+    [HideInInspector] public Sprite sprite;
+
     [HideInInspector] public Image cardImage;
+
+    public Action<Player, Field> OnAccessSpecialCard;
 
     public void Init(SpecialCardSO so)
     {
-        specialCardSO = so;
-
         applyTiming = so.applyTiming;
         targetTypeList = so.targetTypeList;
 
         specialCardName = so.specialCardName;
-        cardImage.sprite = specialCardSO.sprite;
+        tooltip = so.tooltip;
+        sprite = so.sprite;
+
+        cardImage.sprite = so.sprite;
+
+        OnAccessSpecialCard = so.AccessSpecialCard;
     }
 
 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CardTooltip.Instance.Show(specialCardSO.specialCardName, specialCardSO.tooltip, specialCardSO.sprite, transform.position);
+        CardTooltip.Instance.Show(specialCardName, tooltip, sprite, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

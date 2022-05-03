@@ -42,6 +42,17 @@ public class DragManager : MonoBehaviour
                 field.dropArea = mapDropAreaList[i];
             }
         }
+
+        // rect의 위치를 가져와서 dropArea 위치 설정
+        //foreach(DropArea dropArea in DropArea.dropAreas)
+        //{
+        //    RectTransform dropRect = dropArea.GetComponent<RectTransform>();
+
+        //    Debug.Log(dropArea.rectTrm.gameObject.name + " : " + dropArea.rectTrm.rect.width + " " + dropArea.rectTrm.rect.height);
+
+        //    dropRect.sizeDelta = dropArea.rectTrm.sizeDelta;
+        //    dropRect.transform.position = dropArea.rectTrm.transform.position;
+        //}
     }
 
     private void Start()
@@ -143,13 +154,13 @@ public class DragManager : MonoBehaviour
                         switch (specialCard.applyTiming)
                         {
                             case ApplyTiming.Now:
-                                specialCard.specialCardSO.AccessSpecialCard(GameManager.Instance.player, area.feild);
+                                specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.feild);
                                 break;
                             case ApplyTiming.MoveStart:
                                 //area.feild.accessBuildToCardAfterMoveStart += specialCard.AccessSpecialCard;
                                 break;
                             case ApplyTiming.OnFeild:
-                                area.feild.accessBeforeOnField += specialCard.specialCardSO.AccessSpecialCard;
+                                //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
                                 break;
                         }
 

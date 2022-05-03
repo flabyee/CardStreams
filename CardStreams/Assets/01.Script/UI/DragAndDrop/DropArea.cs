@@ -52,16 +52,16 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         //onLifted += ObjectLifted;
         ////onDropped += ObjectDropped;
-        //onHoverEnter += ObjectHoveredEnter;
-        //onHoverExit += ObjectHoveredExit;
+        onHoverEnter += ObjectHoveredEnter;
+        onHoverExit += ObjectHoveredExit;
     }
 
     public void OnDisable()
     {
         //onLifted -= ObjectLifted;
         //onDropped -= ObjectDropped;
-        //onHoverEnter -= ObjectHoveredEnter;
-        //onHoverExit -= ObjectHoveredExit;
+        onHoverEnter -= ObjectHoveredEnter;
+        onHoverExit -= ObjectHoveredExit;
     }
 
     //public void ObjectLifted(DropArea area, GameObject gameObject)
@@ -72,14 +72,14 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //{
     //    Debug.Log(this.gameObject.name + " Object Dropped : " + gameObject.name);
     //}
-    //public void ObjectHoveredEnter(DropArea area, GameObject gameObject)
-    //{
-    //    Debug.Log(this.gameObject.name + " Object Hovered Enter : " + gameObject.name);
-    //}
-    //public void ObjectHoveredExit(DropArea area, GameObject gameObject)
-    //{
-    //    Debug.Log(this.gameObject.name + " Object Hovered Exit : " + gameObject.name);
-    //}
+    public void ObjectHoveredEnter(DropArea area, GameObject gameObject)
+    {
+        //Debug.Log(this.gameObject.name + " Object Hovered Enter : " + gameObject.name);
+    }
+    public void ObjectHoveredExit(DropArea area, GameObject gameObject)
+    {
+        //Debug.Log(this.gameObject.name + " Object Hovered Exit : " + gameObject.name);
+    }
 
     public void TriggerOnLift(DragbleCard item)
     {

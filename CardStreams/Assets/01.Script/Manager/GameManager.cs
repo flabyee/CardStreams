@@ -206,13 +206,14 @@ public class GameManager : MonoBehaviour
                     DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
 
                     dragbleCard.SetData_Feild(CardType.Monster, value);
+                    dragbleCard.canDragAndDrop = false;
 
                     // 이걸 해주는 이유는 drop할때 able || randomMob 인지 체크하기 때문이다
                     fieldList[i].fieldType = FieldType.randomMob;  
 
                     fieldList[i].dropArea.TriggerOnDrop(dragbleCard);
 
-                    EffectManager.Instance.GetSpawnMobEffect(fieldList[i].transform.position);
+                    //EffectManager.Instance.GetSpawnMobEffect(fieldList[i].transform.position);
                 }
             }
 
