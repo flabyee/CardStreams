@@ -7,9 +7,6 @@ public class DragManager : MonoBehaviour
 {
     public static DragManager Instance;
 
-    public List<DropArea> mapDropAreaList;
-    public List<RectTransform> mapRectList;
-
     private List<DropArea> feildDropAreaList = new List<DropArea>();
     private List<DropArea> buildDropAreaList = new List<DropArea>();
 
@@ -28,20 +25,13 @@ public class DragManager : MonoBehaviour
     public DropArea hoverDropArea;
     public RectTransform hoverTrm;
 
+
+
     private void Awake()
     {
         Instance = this;
 
-        for (int i = 0; i < mapDropAreaList.Count; i++)
-        {
-            mapDropAreaList[i].rectTrm = mapRectList[i];
-            Field field = mapRectList[i].GetComponent<Field>();
-            if(field != null)
-            {
-                mapDropAreaList[i].feild = field;
-                field.dropArea = mapDropAreaList[i];
-            }
-        }
+        
 
         // rect의 위치를 가져와서 dropArea 위치 설정
         //foreach(DropArea dropArea in DropArea.dropAreas)
@@ -103,10 +93,10 @@ public class DragManager : MonoBehaviour
     {
         obj.transform.SetParent(hoverTrm, true);
 
-        area.feild.ResetData();
+        area.field.ResetData();
 
         // fieldType 설정
-        area.feild.fieldType = FieldType.able;
+        area.field.fieldType = FieldType.able;
     }
     private void ObjectDroppedToFeild(DropArea area, GameObject obj)
     {
@@ -121,7 +111,7 @@ public class DragManager : MonoBehaviour
 
         if(cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
         {
-            if (area.feild.cardType == CardType.NULL && (area.feild.fieldType == FieldType.able || area.feild.fieldType == FieldType.randomMob))
+            if (area.field.cardType == CardType.NULL && (area.field.fieldType == FieldType.able || area.field.fieldType == FieldType.randomMob))
             {
                 // 부모 설정
                 obj.transform.SetParent(area.rectTrm, true);
@@ -130,11 +120,11 @@ public class DragManager : MonoBehaviour
                 //dragbleCard.canDragAndDrop = false;
 
                 // 정보 설정
-                area.feild.cardPower = cardPower;
-                area.feild.SetData(area.feild.cardPower);
+                area.field.cardPower = cardPower;
+                area.field.SetData(area.field.cardPower);
 
                 // fieldType 설정
-                area.feild.fieldType = FieldType.not;
+                area.field.fieldType = FieldType.not;
             }
             else
             {
@@ -149,12 +139,12 @@ public class DragManager : MonoBehaviour
 
                 foreach(CardType targetType in specialCard.targetTypeList)
                 {
-                    if(area.feild.cardType == targetType)
+                    if(area.field.cardType == targetType)
                     {
                         switch (specialCard.applyTiming)
                         {
                             case ApplyTiming.Now:
-                                specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.feild);
+                                specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
                                 break;
                             case ApplyTiming.MoveStart:
                                 //area.feild.accessBuildToCardAfterMoveStart += specialCard.AccessSpecialCard;

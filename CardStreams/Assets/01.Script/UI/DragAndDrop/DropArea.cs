@@ -31,7 +31,7 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public delegate void ObjectHoverExitEvent(DropArea area, GameObject gameObject);
     public event ObjectHoverExitEvent onHoverExit;
 
-    public Field feild;
+    public Field field;
     public RectTransform rectTrm;
     public DropAreaType dropAreaType;
 
@@ -145,9 +145,9 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             else if (area.dropAreaType == dropAreaType)
             {
                 // feild라면 feildType이 able인지
-                if(area.feild != null)
+                if(area.field != null)
                 {
-                    if(area.feild.fieldType == FieldType.able && area.feild.transform.childCount == 0)
+                    if(area.field.fieldType == FieldType.able && area.field.transform.childCount == 0)
                     {
                         area.image.color = new Color(1, 1, 1, 1);
                     }
