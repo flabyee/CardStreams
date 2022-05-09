@@ -17,8 +17,16 @@ MonoBehaviour:
   price: 15
   tooltip: "\uB9E4\uD134 \uB9C8\uB2E4 \uBAAC\uC2A4\uD130 \uCD9C\uD604\uBE48\uB3C4\uB97C
     1 \uC904\uC778\uB2E4."
-  sprite: {fileID: 0}
-  areaList: 
+  sprite: {fileID: -2175433389777405958, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
+  accessPointList:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: -1, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
   hpValue: {fileID: 0}
   swordValue: {fileID: 0}
   shieldValue: {fileID: 0}
