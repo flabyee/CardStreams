@@ -219,7 +219,7 @@ public class DragManager : MonoBehaviour
 
             // 건물 효과 적용
             Build build = obj.GetComponent<Build>();
-            build.BuildDrop();
+            build.BuildDrop(area.point);
 
         }
         // 뭐가 있거나 건물카드가 아니라면

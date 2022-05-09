@@ -63,6 +63,9 @@ public class MapManager : MonoBehaviour
                     // dropArea - field 연결
                     DropArea dropArea = dropAreaObj.GetComponent<DropArea>();
                     dropArea.rectTrm = rectTrm;
+
+
+                    dropArea.point = new Vector2(x, y);
                 }
                 // 필드(플레이어가 움직이는 곳)라면
                 else
@@ -79,6 +82,8 @@ public class MapManager : MonoBehaviour
                     dropArea.field = field;
                     dropArea.rectTrm = rectTrm;
 
+
+                    dropArea.point = new Vector2(x, y);
 
                     // 필드 정렬하기 위해서
                     int num = int.Parse(mapStrArr[y * 10 + x]);

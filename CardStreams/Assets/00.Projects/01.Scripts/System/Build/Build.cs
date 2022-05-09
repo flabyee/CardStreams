@@ -47,49 +47,35 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         foreach (Vector2 point in buildSO.accessPointList)
         {
-
+            // To Do :여기서 area 켜주는건데 어케하지
+            //buildAreaTooltip.transform.GetChild(point.x + point.y * 5);
         }
     }
 
-    public void BuildDrop()
+    public void BuildDrop(Vector2 point)
     {
+        myPoint = point;
         // 주변 검사해서 효과 적용
-        //StartCoroutine(NearbyFieldSearchCor());
+
+        foreach (Vector2 accessPoint in buildSO.accessPointList)
+        {
+
+            Field field = MapManager.Instance.mapRectArr[
+                Mathf.RoundToInt(accessPoint.y + myPoint.y),
+                Mathf.RoundToInt(accessPoint.x + myPoint.x)].GetComponent<Field>();
+            if(field != null)
+            {
+                field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;
+                field.accessBuildToCardAfterMoveStart += buildSO.AccessCard;
+
+                Debug.Log(field.dropArea.point);
+            }
+        }
 
         // 턴 엔드 효과 실행 리스트에 추가 (예시 : 돈버는 건물)
         BuildManager.Instance.OnBuildWhenTurnEnd += buildSO.AccessTurnEnd;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Field field = collision.GetComponent<Field>();
-        if (field != null)
-        {
-            Debug.Log("access");
-            field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;
-            field.accessBuildToCardAfterMoveStart += buildSO.AccessCard;
-        }
-    }
-
-    //IEnumerator NearbyFieldSearchCor()
-    //{
-    //    int index = 0;
-    //    for (int y = 1; y >= -1; y--)
-    //    {
-    //        for (int x = -1; x <= 1; x++)
-    //        {
-    //            if (buildSO.areaList.Contains(index))
-    //            {
-    //                boxCollider.offset = new Vector2(width * x, height * y);
-    //                boxCollider.enabled = true;
-    //                yield return new WaitForSeconds(0.1f);
-    //            }
-    //            boxCollider.enabled = false;
-    //            index++;
-
-    //        }
-    //    }
-    //}
 
     public void ShowArea()
     {
