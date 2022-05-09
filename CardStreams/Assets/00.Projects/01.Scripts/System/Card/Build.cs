@@ -9,6 +9,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BuildSO buildSO;
 
+    public GameObject areaTooltipPrefab;
+
     private Image buildImage;
     private GameObject buildAreaTooltip;
     private List<Image> buildAreaImageList = new List<Image>();
@@ -47,8 +49,15 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         foreach (Vector2 point in buildSO.accessPointList)
         {
-            // To Do :여기서 area 켜주는건데 어케하지
-            //buildAreaTooltip.transform.GetChild(point.x + point.y * 5);
+            
+        }
+
+        for(int y = 2; y >= -2; y--)
+        {
+            for (int x = 2; x >= -2; x--)
+            {
+                Instantiate(areaTooltipPrefab, buildAreaTooltip.transform);
+            }
         }
     }
 
@@ -90,7 +99,7 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CardTooltip.Instance.Show(buildSO.buildName, buildSO.tooltip, buildSO.sprite, transform.position);
+        CardTooltip.Instance.Show(buildSO.buildName, null, buildSO.tooltip, buildSO.sprite, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

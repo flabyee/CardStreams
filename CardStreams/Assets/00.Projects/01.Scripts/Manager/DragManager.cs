@@ -114,7 +114,7 @@ public class DragManager : MonoBehaviour
         {
             // 1. 설치가능한곳 인지 3, To Do : area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
             // 하는 이유 : 처음에 모든 필드의 상태가 not 이기 때문에
-            if (area.field.fieldType == FieldType.able || area.field.fieldType == FieldType.randomMob)
+            if (area.field.fieldType == FieldType.able)
             {
                 // 2.이미 뭐가 배치되어있는지 확인, 
                 if (area.field.cardPower == null || area.field.cardPower.cardType == CardType.NULL)
@@ -130,14 +130,19 @@ public class DragManager : MonoBehaviour
                 }
                 else
                 {
-                    return;
-
                     // 놓으려고 한곳의 있던 카드의 드랍에이어 얻기
-                    DropArea myDropArea = dragbleCard.droppedArea;  // 내가 있던 dropArea
+                    DropArea myDropArea = dragbleCard.prevDropArea;  // 내가 있던 dropArea
                     DropArea changeDropArea = area;                 // 드랍한 곳의 dropArea
                     DragbleCard otherDragbleCard = changeDropArea.rectTrm.GetChild(0).GetComponent<DragbleCard>();
+
+                    if(otherDragbleCard == null)
+                    {
+                        Debug.Log("is null");
+                    }
+
                     // 그거 lift
                     changeDropArea.TriggerOnLift(otherDragbleCard);
+
                     // drop drop
                     myDropArea.TriggerOnDrop(otherDragbleCard);
                     changeDropArea.TriggerOnDrop(dragbleCard);

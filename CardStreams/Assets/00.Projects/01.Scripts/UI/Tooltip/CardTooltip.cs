@@ -9,6 +9,7 @@ public class CardTooltip : MonoBehaviour
     public static CardTooltip Instance { get; private set; }
 
     public TextMeshProUGUI nameText;
+    public TextMeshProUGUI targetText;
     public TextMeshProUGUI infoText;
     public Image backgroundImage;
 
@@ -34,12 +35,36 @@ public class CardTooltip : MonoBehaviour
         }
     }
 
-    public void Show(string nameStr, string tooltipStr, Sprite sprite, Vector3 pos, TooltipTimer tooltipTimer = null)
+    public void Show(string nameStr, List<CardType> targetTypeList, string tooltipStr, Sprite sprite, Vector3 pos, TooltipTimer tooltipTimer = null)
     {
         // 타이머 세팅
         this.tooltipTimer = tooltipTimer;
 
         nameText.text = nameStr;
+
+        string str = string.Empty;
+        if(targetTypeList != null)
+        {
+            int index = 0;
+
+            foreach (CardType targetType in targetTypeList)
+            {
+                if(index != 0)
+                {
+                    str += ", ";
+                }
+                str += targetType.ToString();
+
+                index++;
+            }
+            targetText.text = str;
+        }
+        else
+        {
+            targetText.text = "";
+        }
+
+
         infoText.text = tooltipStr;
         backgroundImage.sprite = sprite;
 

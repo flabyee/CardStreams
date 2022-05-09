@@ -87,7 +87,7 @@ public class MapManager : MonoBehaviour
 
                     // 필드 정렬하기 위해서
                     int num = int.Parse(mapStrArr[y * 10 + x]);
-                    Debug.Log("int : " + num);
+                    //Debug.Log("int : " + num);
                     sortFieldRectList.Add(new FieldData(num, rectTrm));
                 }
 

@@ -35,6 +35,7 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public Vector2 point;
 
+
     [Header("Debug")]
     public Field field;
     public RectTransform rectTrm;

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1237876089419477815}
   - component: {fileID: 1237876089419477960}
   - component: {fileID: 1237876089419477814}
-  - component: {fileID: 1237876089419477812}
   - component: {fileID: -328982677939506462}
   m_Layer: 5
   m_Name: FieldRect
@@ -56,8 +55,8 @@ MonoBehaviour:
   image: {fileID: 0}
   text: {fileID: 0}
   fieldType: 0
-  cardType: 0
-  value: 0
+  cardPower: {fileID: 0}
+  dropArea: {fileID: 0}
 --- !u!222 &1237876089419477815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -120,32 +119,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!61 &1237876089419477812
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237876089419477962}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &-328982677939506462
 MonoBehaviour:
   m_ObjectHideFlags: 0

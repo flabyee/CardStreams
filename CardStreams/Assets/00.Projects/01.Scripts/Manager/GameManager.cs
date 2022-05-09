@@ -207,10 +207,13 @@ public class GameManager : MonoBehaviour
                     dragbleCard.SetData_Feild(CardType.Monster, value);
                     dragbleCard.canDragAndDrop = false;
 
-                    // To Do : 이거 왜햐냐?, 이걸 해주는 이유는 drop할때 able || randomMob 인지 체크하기 때문이다 <- ???
-                    MapManager.Instance.fieldList[i].fieldType = FieldType.randomMob;  
+                    MapManager.Instance.fieldList[i].cardPower = dragbleCard.GetComponent<CardPower>();
 
-                    MapManager.Instance.fieldList[i].dropArea.TriggerOnDrop(dragbleCard);
+                    MapManager.Instance.fieldList[i].fieldType = FieldType.not;
+
+                    // able이 아니라서 드랍이 안된다
+                    //MapManager.Instance.fieldList[i].dropArea.TriggerOnDrop(dragbleCard);
+
 
                     //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldRectList[i].transform.position);
                 }

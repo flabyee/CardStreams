@@ -36,7 +36,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CardTooltip.Instance.Show(specialCardName, tooltip, sprite, transform.position);
+        CardTooltip.Instance.Show(specialCardName, targetTypeList, tooltip, sprite, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -60,11 +60,11 @@ public class ShopManager : MonoBehaviour
             // dic에 있으면 dic[id], 없으면 0 (갯수)
             if(haveSpecialDic.ContainsKey(itemID))
             {
-                info.Init(itemSO.specialCardName, itemSO.tooltip, itemSO.sprite, haveSpecialDic[itemID], itemSO.price);
+                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, haveSpecialDic[itemID], itemSO.price);
             }
             else
             {
-                info.Init(itemSO.specialCardName, itemSO.tooltip, itemSO.sprite, 0, itemSO.price);
+                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, 0, itemSO.price);
             }
 
             info.button.onClick.AddListener(() =>
@@ -88,11 +88,11 @@ public class ShopManager : MonoBehaviour
             // dic에 있으면 dic[id], 없으면 0 (갯수)
             if(haveBuildDic.ContainsKey(itemID))
             {
-                info.Init(itemSO.buildName, itemSO.tooltip, itemSO.sprite, haveBuildDic[itemID], itemSO.price);
+                info.Init(itemSO.buildName, null, itemSO.tooltip, itemSO.sprite, haveBuildDic[itemID], itemSO.price);
             }
             else
             {
-                info.Init(itemSO.buildName, itemSO.tooltip, itemSO.sprite, 0, itemSO.price);
+                info.Init(itemSO.buildName, null, itemSO.tooltip, itemSO.sprite, 0, itemSO.price);
             }
 
             info.button.onClick.AddListener(() =>
