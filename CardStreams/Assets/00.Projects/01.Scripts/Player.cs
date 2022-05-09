@@ -92,6 +92,6 @@ public class Player : MonoBehaviour
 
     public void SetPos(GameObject firstFieldObj)
     {
-        //rectTrm.anchoredPosition = firstFieldObj.transform.position;
+       
     }
 }

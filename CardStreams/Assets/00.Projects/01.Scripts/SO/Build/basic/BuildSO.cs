@@ -12,7 +12,7 @@ public class BuildSO : ScriptableObject
     public string tooltip;
     public Sprite sprite;
 
-    public List<int> areaList;
+    public List<Vector2> accessPointList;
 
     // 상속해서 여기를 채운다
     public virtual void AccessCard(Field field)

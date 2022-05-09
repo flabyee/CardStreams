@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edfb0f36c83de04bbc78940175a2efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceImage: {fileID: 0}
+  faceImage: {fileID: 1017501598721244011}
   valueText: {fileID: 0}
   dropAreaType: 0
   cardType: 0

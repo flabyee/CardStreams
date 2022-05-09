@@ -117,14 +117,13 @@ public class DragManager : MonoBehaviour
             if (area.field.fieldType == FieldType.able || area.field.fieldType == FieldType.randomMob)
             {
                 // 2.이미 뭐가 배치되어있는지 확인, 
-                if (area.field.cardPower.cardType == CardType.NULL)
+                if (area.field.cardPower == null || area.field.cardPower.cardType == CardType.NULL)
                 {
                     // 부모 설정
                     obj.transform.SetParent(area.rectTrm, true);
 
                     // 정보 설정
                     area.field.cardPower = cardPower;
-                    area.field.SetData(area.field.cardPower);
 
                     // fieldType 설정
                     //area.field.fieldType = FieldType.not;
@@ -158,6 +157,13 @@ public class DragManager : MonoBehaviour
             if (cardPower.cardType == CardType.Special)
             {
                 SpecialCard specialCard = obj.GetComponent<SpecialCard>();
+
+                // field에 아무것도 없으면 리턴
+                if(area.field.cardPower == null)
+                {
+                    ObjectToOrigin(area, obj);
+                    return;
+                }
 
                 // targetType 맞는거 있는지 확인
                 foreach(CardType targetType in specialCard.targetTypeList)
@@ -202,7 +208,7 @@ public class DragManager : MonoBehaviour
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
 
-        // 아무것도없고 건물카드라면
+        // 아무것도없고 건물카드라면 (buildDropArea는 field가 없어서 자식의 갯수로 체크
         if (area.rectTrm.childCount == 0 && cardPower.dropAreaType == DropAreaType.build)
         {
             // 부모 설정(위치 설정)
