@@ -7,13 +7,14 @@ using TMPro;
 
 public class CardPower : MonoBehaviour
 {
-    [HideInInspector] public Image faceImage;
-    [HideInInspector] public TextMeshProUGUI valueText;
+    public Image faceImage;
+    public TextMeshProUGUI valueText;
 
-    [HideInInspector]public DropAreaType dropAreaType;
-    [HideInInspector] public CardType cardType;
-    [HideInInspector] public int value;
-    [HideInInspector] public int originValue;
+    [Header("Debug")]
+    public DropAreaType dropAreaType;
+    public CardType cardType;
+    public int value;
+    public int originValue;
 
 
     public void SetData_Feild(CardType cardType, int value)

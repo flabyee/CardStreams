@@ -20,11 +20,11 @@ public class EventSO : ScriptableObject
     }
 
     // ¹ß»ý
-    public void Occurred()
+    public void Occurred(GameObject obj = null)
     {
         for (int i = 0; i < eventListenerList.Count; i++)
         {
-            eventListenerList[i].OnEventOccurs();
+            eventListenerList[i].OnEventOccurs(obj);
         }
     }
 }

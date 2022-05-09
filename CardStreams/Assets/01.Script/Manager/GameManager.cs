@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
                     dragbleCard.SetData_Feild(CardType.Monster, value);
                     dragbleCard.canDragAndDrop = false;
 
-                    // 이걸 해주는 이유는 drop할때 able || randomMob 인지 체크하기 때문이다
+                    // To Do : 이거 왜햐냐?, 이걸 해주는 이유는 drop할때 able || randomMob 인지 체크하기 때문이다 <- ???
                     MapManager.Instance.fieldList[i].fieldType = FieldType.randomMob;  
 
                     MapManager.Instance.fieldList[i].dropArea.TriggerOnDrop(dragbleCard);

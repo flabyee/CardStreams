@@ -6,45 +6,34 @@ public class MapManager : MonoBehaviour
 {
     public static MapManager Instance;
 
-    /*0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,1,2,3,0,0,0,0,
-0,0,0,8,0,4,0,0,0,0,
-0,0,0,7,6,5,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0*/
-
-
+    [Header("ParentRect")]
     public RectTransform mapRectParent;
     public RectTransform mapDropParent;
 
+    [Header("Prefabs")]
     public GameObject buildRectPrefab;
     public GameObject buildDropPrefab;
     public GameObject fieldRectPrefab;
     public GameObject fieldDropPrefab;
 
 
-    public RectTransform[,] mapRectArr;         // 전체 맵 배열
-    public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
-    public List<FieldData> sortFieldRectList = new List<FieldData>();   // 필드(플레이어가 가는 길)리스트
+    [HideInInspector] public RectTransform[,] mapRectArr;         // 전체 맵 배열
+    [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
+    [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
-
-    private List<DropArea> mapDropAreaList = new List<DropArea>();
-    private List<RectTransform> mapRectList = new List<RectTransform>();
+    [Header("Event")]
+    public EventSO afterMapCreateEvent;
 
     private void Awake()
     {
         Instance = this;
 
-        CreateMap("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
     }
 
     void Start()
     {
-        
+        CreateMap("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
+
     }
 
     void Update()
@@ -69,7 +58,11 @@ public class MapManager : MonoBehaviour
                 {
                     rectTrm = Instantiate(buildRectPrefab, mapRectParent).GetComponent<RectTransform>();
 
-                    Instantiate(buildDropPrefab, mapDropParent);
+                    GameObject dropAreaObj = Instantiate(buildDropPrefab, mapDropParent);
+
+                    // dropArea - field 연결
+                    DropArea dropArea = dropAreaObj.GetComponent<DropArea>();
+                    dropArea.rectTrm = rectTrm;
                 }
                 // 필드(플레이어가 움직이는 곳)라면
                 else
@@ -103,6 +96,8 @@ public class MapManager : MonoBehaviour
         {
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
+
+        afterMapCreateEvent.Occurred(fieldList[0].gameObject);
     }
 }
 

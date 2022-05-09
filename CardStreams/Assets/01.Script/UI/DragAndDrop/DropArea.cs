@@ -31,11 +31,13 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public delegate void ObjectHoverExitEvent(DropArea area, GameObject gameObject);
     public event ObjectHoverExitEvent onHoverExit;
 
+    private Image image;
+
+    [Header("Debug")]
     public Field field;
     public RectTransform rectTrm;
     public DropAreaType dropAreaType;
 
-    private Image image;
 
 
 

@@ -103,40 +103,60 @@ public class DragManager : MonoBehaviour
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
 
-        //  && area.dropAreaType == DropAreaType.feild는 해줄 필요가 없다. 왜냐하면 애초에 onDropped += 을 다르게 해줬기 때문에
+        // field에 놓는게 아니라면(예시 : 건물) 다시 원위치
         if (cardPower.dropAreaType != DropAreaType.feild)  
         {
             ObjectToOrigin(area, obj);
         }
 
+        // 카드가 일반 카드라면
         if(cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
         {
-            if (area.field.cardType == CardType.NULL && (area.field.fieldType == FieldType.able || area.field.fieldType == FieldType.randomMob))
+            // 1. 설치가능한곳 인지 3, To Do : area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
+            if (area.field.fieldType == FieldType.able || area.field.fieldType == FieldType.randomMob)
             {
-                // 부모 설정
-                obj.transform.SetParent(area.rectTrm, true);
+                // 2.이미 뭐가 배치되어있는지 확인, 
+                if (area.field.cardType == CardType.NULL)
+                {
+                    // 부모 설정
+                    obj.transform.SetParent(area.rectTrm, true);
 
-                // 더이상 못움직이게 설정
-                //dragbleCard.canDragAndDrop = false;
+                    // 정보 설정
+                    area.field.cardPower = cardPower;
+                    area.field.SetData(area.field.cardPower);
 
-                // 정보 설정
-                area.field.cardPower = cardPower;
-                area.field.SetData(area.field.cardPower);
-
-                // fieldType 설정
-                area.field.fieldType = FieldType.not;
+                    // fieldType 설정
+                    area.field.fieldType = FieldType.not;
+                }
+                else
+                {
+                    // 놓으려고 한곳의 있던 카드의 드랍에이어 얻기
+                    DropArea myDropArea = dragbleCard.droppedArea;  // 내가 있던 dropArea
+                    DropArea changeDropArea = area;                 // 드랍한 곳의 dropArea
+                    DragbleCard otherDragbleCard = changeDropArea.transform.GetChild(0).GetComponent<DragbleCard>();
+                    // 그거 lift
+                    changeDropArea.TriggerOnLift(otherDragbleCard);
+                    // drop drop
+                    myDropArea.TriggerOnDrop(otherDragbleCard);
+                    changeDropArea.TriggerOnDrop(dragbleCard);
+                }
             }
+            // 뭐가 배치되있거나 설치 안되는 곳이면
             else
             {
+                // 재자리로
                 ObjectToOrigin(area, obj);
             }
         }
+        // 스페셜 카드라면? 
         else
         {
+            // 일단 한번더 확인, 왜냐하면 다른 카드도 추가될수있어서?
             if (cardPower.cardType == CardType.Special)
             {
                 SpecialCard specialCard = obj.GetComponent<SpecialCard>();
 
+                // targetType 맞는거 있는지 확인
                 foreach(CardType targetType in specialCard.targetTypeList)
                 {
                     if(area.field.cardType == targetType)
@@ -154,12 +174,15 @@ public class DragManager : MonoBehaviour
                                 break;
                         }
 
+                        // 맞는게 있다면 효과적용하고 스페셜 카드 삭제
+
                         dragbleCard.isDestory = true;
 
                         return;
                     }
                 }
 
+                // 맞는게 없으면 다시 재자리로
                 ObjectToOrigin(area, obj);
             }
         }
@@ -176,18 +199,24 @@ public class DragManager : MonoBehaviour
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
 
+        // 아무것도없고 건물카드라면
         if (area.rectTrm.childCount == 0 && cardPower.dropAreaType == DropAreaType.build)
         {
+            // 부모 설정(위치 설정)
             obj.transform.SetParent(area.rectTrm, true);
 
+            // 못움직이게 설정
             dragbleCard.canDragAndDrop = false;
 
+            // 건물 효과 적용
             Build build = obj.GetComponent<Build>();
             build.BuildDrop();
 
         }
+        // 뭐가 있거나 건물카드가 아니라면
         else
         {
+            // 재자리로
             ObjectToOrigin(area, obj);
         }
     }

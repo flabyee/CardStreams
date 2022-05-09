@@ -7,6 +7,8 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
+    private RectTransform rectTrm;
+
     public EventSO playerValueChangeEvent;
     public IntValue hpValue;
     public IntValue swordValue;
@@ -14,7 +16,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-       
+        rectTrm = GetComponent<RectTransform>();
+
+        if(rectTrm == null)
+        {
+            Debug.LogError("player rectTrm is null");
+        }
     }
 
     void Start()
@@ -81,5 +88,10 @@ public class Player : MonoBehaviour
     {
         pos.z = 0;
         transform.DOMove(pos, duration);
+    }
+
+    public void SetPos(GameObject firstFieldObj)
+    {
+        //transform.position = Camera.main.ScreenToWorldPoint(firstFieldObj.transform.position);
     }
 }

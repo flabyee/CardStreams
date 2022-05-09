@@ -33,7 +33,8 @@ public class Field : MonoBehaviour
     public Action<Player, Field> accessBeforeOnField;
     public Action<Field> accessBuildToCardAfterMoveStart;
 
-    [HideInInspector] public DropArea dropArea;
+    [Header("Debug")]
+    public DropArea dropArea;
 
     private void Start()
     {
