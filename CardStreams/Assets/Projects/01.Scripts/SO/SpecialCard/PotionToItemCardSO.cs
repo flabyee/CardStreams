@@ -9,12 +9,7 @@ public class PotionToItemCardSO : SpecialCardSO
     {
         // cardPower
         field.cardPower.cardType = Random.Range(0, 2) == 0 ? CardType.Sword : CardType.Sheild;
-        field.cardPower.value = (Mathf.RoundToInt(field.cardPower.value / 3f)) * 2;
-
-        field.cardPower.ApplyUI();
-
-        // apply field
-        field.SetData(field.cardPower);
+        field.cardPower.SetValue(Mathf.RoundToInt(field.cardPower.value / 3f) * 2);
 
         Debug.Log("potion to item");
 

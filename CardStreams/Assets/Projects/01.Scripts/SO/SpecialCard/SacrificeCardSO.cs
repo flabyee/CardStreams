@@ -8,12 +8,9 @@ public class SacrificeCardSO : SpecialCardSO
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower
-        field.cardPower.value = Mathf.Clamp(field.cardPower.value - Mathf.Abs(hpValue.RuntimeValue - hpValue.RuntimeMaxValue), 0, 99);
+        int sacrificeDamage = hpValue.RuntimeMaxValue - hpValue.RuntimeValue;
 
-        field.cardPower.ApplyUI();
-
-        // field Apply
-        field.SetData(field.cardPower);
+        field.cardPower.SetValue(field.cardPower.value - sacrificeDamage);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }

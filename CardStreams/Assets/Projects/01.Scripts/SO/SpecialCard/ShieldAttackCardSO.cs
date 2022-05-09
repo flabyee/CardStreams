@@ -8,12 +8,7 @@ public class ShieldAttackCardSO : SpecialCardSO
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower
-        field.cardPower.value = field.cardPower.value -= shieldValue.RuntimeValue;
-
-        field.cardPower.ApplyUI();
-
-        // field Apply
-        field.SetData(field.cardPower);
+        field.cardPower.AddValue(-shieldValue.RuntimeValue);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }

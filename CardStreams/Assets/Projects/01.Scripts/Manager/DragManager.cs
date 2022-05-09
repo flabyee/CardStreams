@@ -124,7 +124,8 @@ public class DragManager : MonoBehaviour
 
                     // 정보 설정
                     area.field.cardPower = cardPower;
-                    area.field.SetData(area.field.cardPower);
+                    Debug.Log("여기에 있던 SetData 없앰");
+                    // area.field.SetData(area.field.cardPower);
 
                     // fieldType 설정
                     //area.field.fieldType = FieldType.not;

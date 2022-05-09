@@ -12,11 +12,7 @@ public class BleedSwordCardSO : SpecialCardSO
         playerValueChangeEvent.Occurred();
 
         // cardPower
-        field.cardPower.value += 5;
-        field.cardPower.ApplyUI();
-
-        // apply filed
-        field.SetData(field.cardPower);
+        field.cardPower.AddValue(5);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     } 

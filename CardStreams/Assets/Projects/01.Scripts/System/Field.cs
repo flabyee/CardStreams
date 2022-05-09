@@ -38,11 +38,7 @@ public class Field : MonoBehaviour
     {
     }
 
-    public void SetData(CardPower cardPower)
-    {
-        //image.sprite = sprite;
-        //text.text = value.ToString();
-    }
+
     public void ResetData()
     {
         cardPower = null;

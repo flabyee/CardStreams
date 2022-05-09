@@ -94,7 +94,17 @@ public class CardPower : MonoBehaviour
         }
     }
 
+    public void AddValue(int value)
+    {
+        this.value += value;
+        ApplyUI();
+    }
 
+    public void SetValue(int value)
+    {
+        this.value = value;
+        ApplyUI();
+    }
 
 
 }
