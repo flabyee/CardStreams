@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     [Header("System")]
     public Player player;
-    private bool isMoving;
+    private bool isMoving;  // move중일때 또 next를 누르지 못하게
     [SerializeField] float duration;
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
@@ -84,10 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            MoveToNextFeild();
-        }
+        
     }
 
 
@@ -237,84 +234,51 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnClickMove()
+    public void TurnEnd()
     {
-        if(isMoving == false)
-        {
-            for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
-            {
-                // 전부 다 배치안했으면 move 안됨
-                if(MapManager.Instance.fieldList[i].dropArea.dropAreaType == DropAreaType.NULL)
-                {
-                    return;
-                }
-            }
+        moveIndex = 0;
+        moveCount = 0;
+        isMoving = false;
 
-            MoveToNextFeild();
+        // NextTurnEvent에서 TurnStart를 해준다
+
+    }
+
+    public void MoveStart()
+    {
+        // To Do : 카드에 건물 효과 적용
+        for (int i = moveIndex; i < moveIndex + 4; i++)
+        {
+            MapManager.Instance.fieldList[i].OnAccessCard();
+        }
+
+        isMoving = true;
+    }
+
+    public void MoveEnd()
+    {
+        moveCount = 0;
+        isMoving = false;
+
+        // 사용하지않은 카드 제거
+
+        // 이전 필드(fieldType = not)
+        for (int i = 0; i < moveIndex; i++)
+        {
+            MapManager.Instance.fieldList[i].fieldType = FieldType.not;
+        }
+        // 다음 필드(fieldType 변경)
+        for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
+        {
+            if (MapManager.Instance.fieldList[i].fieldType == FieldType.yet)
+            {
+                MapManager.Instance.fieldList[i].fieldType = FieldType.able;
+            }
         }
     }
 
-    public void MoveToNextFeild()
+    public void Move()
     {
-        // TurnEnd
-        if (moveIndex == MapManager.Instance.fieldList.Count)
-        {
-            moveIndex = 0;
-            moveCount = 0;
-            isMoving = false;
-
-            // NextTurnEvent에서 TurnStart를 해준다
-
-            TurnEndEvent.Occurred();
-
-            return;
-        }
-
-
-        // move start
-        if (moveCount == 0)
-        {
-            MoveStartEvent.Occurred();
-
-            // To Do : 카드에 건물 효과 적용
-            for(int i = moveIndex; i < moveIndex + 4; i++)
-            {
-                MapManager.Instance.fieldList[i].OnAccessCard();
-            }
-
-            isMoving = true;
-        }
-
-
-        // move end
-        if (moveCount == maxMoveCount)
-        {
-            moveCount = 0;
-            isMoving = false;
-
-            // 사용하지않은 카드 제거
-
-            // 이전 필드(fieldType = not)
-            for (int i = 0; i < moveIndex; i++)
-            {
-                MapManager.Instance.fieldList[i].fieldType = FieldType.not;
-            }
-            // 다음 필드(fieldType 변경)
-            for(int i = moveIndex; i < moveIndex + maxMoveCount; i++)
-            {
-                if(MapManager.Instance.fieldList[i].fieldType == FieldType.yet)
-                {
-                    MapManager.Instance.fieldList[i].fieldType = FieldType.able;
-                }
-            }
-
-            // To Do : 카드 뽑기
-            MoveEndEvent.Occurred();
-
-            return;
-        }
-
-
         // 움직이기
         Sequence sequence = DOTween.Sequence();
 
@@ -348,14 +312,67 @@ public class GameManager : MonoBehaviour
         // 플레이어한테 건물효과 적용
         sequence.AppendCallback(() => {
             MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
-            Debug.Log("player apply build");
+            //Debug.Log("player apply build");
         });
         sequence.AppendInterval(duration);
 
         sequence.AppendCallback(() => {
             moveIndex++;
             moveCount++;
-            MoveToNextFeild();
+            NextAction();
         });
+    }
+
+    public void OnClickMove()
+    {
+        // move중일때 또 next를 누르지 못하게
+        if (isMoving == false)
+        {
+            for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
+            {
+                // 전부 다 배치안했으면 move 안됨
+                if(MapManager.Instance.fieldList[i].cardPower == null)
+                {
+                    return;
+                }
+            }
+
+            NextAction();
+        }
+    }
+
+    public void NextAction()
+    {
+        // TurnEnd
+        if (moveIndex == MapManager.Instance.fieldList.Count)
+        {
+            TurnEnd();
+
+            TurnEndEvent.Occurred();
+
+            return;
+        }
+
+        // move start
+        if (moveCount == 0)
+        {
+            MoveStartEvent.Occurred();
+
+            MoveStart();
+        }
+
+        // move end
+        if (moveCount == maxMoveCount)
+        {
+            MoveEnd();
+
+            // To Do : 카드 뽑기
+            MoveEndEvent.Occurred();
+
+            return;
+        }
+
+
+        Move();
     }
 }
