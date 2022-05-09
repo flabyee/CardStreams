@@ -240,7 +240,8 @@ public class GameManager : MonoBehaviour
         {
             for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
             {
-                if(MapManager.Instance.fieldList[i].fieldType != FieldType.not)
+                // 전부 다 배치안했으면 move 안됨
+                if(MapManager.Instance.fieldList[i].dropArea.dropAreaType == DropAreaType.NULL)
                 {
                     return;
                 }
@@ -325,7 +326,7 @@ public class GameManager : MonoBehaviour
 
         // 스페셜카드 효과 발동
         sequence.AppendCallback(() => {
-            if (MapManager.Instance.fieldList[moveIndex].cardType != CardType.NULL)
+            if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
             {
                 MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
             }
@@ -334,7 +335,7 @@ public class GameManager : MonoBehaviour
 
         // 플레이어한테 필드 효과 적용ㅇ
         sequence.AppendCallback(() => {
-            if (MapManager.Instance.fieldList[moveIndex].cardType != CardType.NULL)
+            if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
             {
                 player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
             }

@@ -24,8 +24,6 @@ public class Field : MonoBehaviour
 
     public FieldType fieldType = FieldType.NULL;
 
-    public CardType cardType = CardType.NULL;
-    public int value;
 
     public CardPower cardPower;
 
@@ -42,17 +40,12 @@ public class Field : MonoBehaviour
 
     public void SetData(CardPower cardPower)
     {
-        cardType = cardPower.cardType;
-        value = cardPower.value;
-
         //image.sprite = sprite;
         //text.text = value.ToString();
     }
     public void ResetData()
     {
         cardPower = null;
-        cardType = CardType.NULL;
-        value = 0;
     }
     public void OnAccessCard()
     {

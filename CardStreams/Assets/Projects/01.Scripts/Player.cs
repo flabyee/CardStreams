@@ -31,21 +31,21 @@ public class Player : MonoBehaviour
 
     public void OnFeild(Field field)
     {
-        switch (field.cardType)
+        switch (field.cardPower.cardType)
         {
             case CardType.Potion:
-                hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.value, 0, hpValue.RuntimeMaxValue);
+                hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
                 break;
             case CardType.Sword:
-                swordValue.RuntimeValue = Mathf.Clamp(field.value, 0, swordValue.RuntimeMaxValue);
+                swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
                 break;
             case CardType.Sheild:
-                shieldValue.RuntimeValue = Mathf.Clamp(field.value, 0, shieldValue.RuntimeMaxValue);
+                shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
                 break;
             case CardType.Monster:
                 GameManager.Instance.AddScore(4);
 
-                int damage = field.value;
+                int damage = field.cardPower.value;
                 damage -= swordValue.RuntimeValue;
                 swordValue.RuntimeValue = 0;
 
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
         playerValueChangeEvent.Occurred();
 
-        OnFieldTooltip.Instance.ShowCard(transform.position, field.cardType);
+        OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower.cardType);
 
     }
 
@@ -92,6 +92,6 @@ public class Player : MonoBehaviour
 
     public void SetPos(GameObject firstFieldObj)
     {
-        rectTrm.anchoredPosition = firstFieldObj.transform.position;
+        //rectTrm.anchoredPosition = firstFieldObj.transform.position;
     }
 }

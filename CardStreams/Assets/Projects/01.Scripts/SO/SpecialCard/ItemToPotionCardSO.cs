@@ -9,7 +9,7 @@ public class ItemToPotionCardSO : SpecialCardSO
     {
         // cardPower
         field.cardPower.cardType = CardType.Potion;
-        field.cardPower.value = (Mathf.RoundToInt(field.value / 3f)) * 2;
+        field.cardPower.value = (Mathf.RoundToInt(field.cardPower.value / 3f)) * 2;
 
         field.cardPower.ApplyUI();
 

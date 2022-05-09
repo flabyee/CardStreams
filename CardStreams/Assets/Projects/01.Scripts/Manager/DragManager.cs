@@ -96,7 +96,7 @@ public class DragManager : MonoBehaviour
         area.field.ResetData();
 
         // fieldType 설정
-        area.field.fieldType = FieldType.able;
+        //area.field.fieldType = FieldType.able;
     }
     private void ObjectDroppedToFeild(DropArea area, GameObject obj)
     {
@@ -113,10 +113,11 @@ public class DragManager : MonoBehaviour
         if(cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
         {
             // 1. 설치가능한곳 인지 3, To Do : area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
+            // 하는 이유 : 처음에 모든 필드의 상태가 not 이기 때문에
             if (area.field.fieldType == FieldType.able || area.field.fieldType == FieldType.randomMob)
             {
                 // 2.이미 뭐가 배치되어있는지 확인, 
-                if (area.field.cardType == CardType.NULL)
+                if (area.field.cardPower.cardType == CardType.NULL)
                 {
                     // 부모 설정
                     obj.transform.SetParent(area.rectTrm, true);
@@ -126,14 +127,16 @@ public class DragManager : MonoBehaviour
                     area.field.SetData(area.field.cardPower);
 
                     // fieldType 설정
-                    area.field.fieldType = FieldType.not;
+                    //area.field.fieldType = FieldType.not;
                 }
                 else
                 {
+                    return;
+
                     // 놓으려고 한곳의 있던 카드의 드랍에이어 얻기
                     DropArea myDropArea = dragbleCard.droppedArea;  // 내가 있던 dropArea
                     DropArea changeDropArea = area;                 // 드랍한 곳의 dropArea
-                    DragbleCard otherDragbleCard = changeDropArea.transform.GetChild(0).GetComponent<DragbleCard>();
+                    DragbleCard otherDragbleCard = changeDropArea.rectTrm.GetChild(0).GetComponent<DragbleCard>();
                     // 그거 lift
                     changeDropArea.TriggerOnLift(otherDragbleCard);
                     // drop drop
@@ -159,7 +162,7 @@ public class DragManager : MonoBehaviour
                 // targetType 맞는거 있는지 확인
                 foreach(CardType targetType in specialCard.targetTypeList)
                 {
-                    if(area.field.cardType == targetType)
+                    if(area.field.cardPower.cardType == targetType)
                     {
                         switch (specialCard.applyTiming)
                         {

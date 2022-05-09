@@ -9,12 +9,12 @@ public class CrossBuildSO : BuildSO
 {
     public override void AccessCard(Field field)
     {
-        if (field.cardType == CardType.Monster)
+        if (field.cardPower.cardType == CardType.Monster)
         {
-            field.value -= 1;
+            field.cardPower.value -= 1;
 
             TextMeshProUGUI text = field.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-            text.text = field.value.ToString();
+            text.text = field.cardPower.value.ToString();
             text.color = Color.red;
 
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
