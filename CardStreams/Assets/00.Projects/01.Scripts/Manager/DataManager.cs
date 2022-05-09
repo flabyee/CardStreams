@@ -18,6 +18,8 @@ public class DataManager : MonoBehaviour
     // 엑셀로 부터 가져올 정보
     private List<StageData> stageDataList = new List<StageData>();
 
+    public IntValue stageNumValue;
+
     private void Awake()
     {
         Instance = this;
@@ -34,6 +36,22 @@ public class DataManager : MonoBehaviour
             deck = new List<CardData>()
             {
                 new CardData(CardType.Sword, 3, DropAreaType.feild)
+            },
+        }); 
+        stageDataList.Add(new StageData()
+        {
+            mapStr = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+            deck = new List<CardData>()
+            {
+                new CardData(CardType.Sheild, 3, DropAreaType.feild)
+            },
+        }); 
+        stageDataList.Add(new StageData()
+        {
+            mapStr = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+            deck = new List<CardData>()
+            {
+                new CardData(CardType.Potion, 3, DropAreaType.feild)
             },
         }); 
     }
@@ -164,9 +182,9 @@ public class DataManager : MonoBehaviour
 
 
     // stage 관련
-    public void GetStageData(int index)
+    public StageData GetNowStageData()
     {
-
+        return stageDataList[stageNumValue.RuntimeValue];
     }
 }
 

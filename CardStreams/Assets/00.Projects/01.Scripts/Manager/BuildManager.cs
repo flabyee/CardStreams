@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// 어떠한 시점(예시 : TurnEnd)때 Access되는 건물을 사용하려고?
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager Instance;

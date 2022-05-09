@@ -310,7 +310,7 @@ public class DragManager : MonoBehaviour
     }
     private void ObjectDroppedToHover(DropArea area, GameObject obj)
     {
-        Debug.Log("hover drop");
+        //Debug.Log("hover drop");
         ObjectToOrigin(area, obj);
     }
 
@@ -318,7 +318,7 @@ public class DragManager : MonoBehaviour
     private void ObjectToOrigin(DropArea area, GameObject obj)
     {
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
-        Debug.Log(dragbleCard.cardPower.cardType);
+        //Debug.Log(dragbleCard.cardPower.cardType);
 
         obj.transform.SetParent(dragbleCard.originDropArea.rectTrm, true);
         dragbleCard.SetDroppedArea(dragbleCard.originDropArea);

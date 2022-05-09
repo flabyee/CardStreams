@@ -70,8 +70,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
 
             Field field = MapManager.Instance.mapRectArr[
-                Mathf.RoundToInt(accessPoint.y + myPoint.y),
-                Mathf.RoundToInt(accessPoint.x + myPoint.x)].GetComponent<Field>();
+                Mathf.Clamp(Mathf.RoundToInt(accessPoint.y + myPoint.y), 0, 10),
+                Mathf.Clamp(Mathf.RoundToInt(accessPoint.x + myPoint.x), 0, 10)].GetComponent<Field>();
             if(field != null)
             {
                 field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;

@@ -32,8 +32,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        CreateMap("0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0");
-
+        CreateMap(DataManager.Instance.GetNowStageData().mapStr);
     }
 
     void Update()
