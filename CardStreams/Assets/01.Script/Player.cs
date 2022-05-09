@@ -92,6 +92,6 @@ public class Player : MonoBehaviour
 
     public void SetPos(GameObject firstFieldObj)
     {
-        //transform.position = Camera.main.ScreenToWorldPoint(firstFieldObj.transform.position);
+        rectTrm.anchoredPosition = firstFieldObj.transform.position;
     }
 }
