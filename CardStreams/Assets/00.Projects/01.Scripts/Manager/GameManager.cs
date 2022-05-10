@@ -105,12 +105,6 @@ public class GameManager : MonoBehaviour
         rerollCount++;
     }
 
-    public void OnClickReset()
-    {
-        DropArea.dropAreas.Clear();
-        SceneManager.LoadScene("SampleScene");
-    }
-
     public void OnClickDeckSee()
     {
         isDeckSee = !isDeckSee;
@@ -154,6 +148,8 @@ public class GameManager : MonoBehaviour
             mobIntText.text = $"mob : {monsterInt}";
         }
     }
+
+
 
     public void TurnStart()
     {

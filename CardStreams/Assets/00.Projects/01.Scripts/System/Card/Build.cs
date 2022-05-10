@@ -56,7 +56,14 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             for (int x = 2; x >= -2; x--)
             {
-                Instantiate(areaTooltipPrefab, buildAreaTooltip.transform);
+                GameObject obj = Instantiate(areaTooltipPrefab, buildAreaTooltip.transform);
+
+                // point에 해당되는 구역이아니라면 Alpha = 0
+                if(!buildSO.accessPointList.Contains(new Vector2(x, y)))
+                {
+                    Image image = obj.GetComponent<Image>();
+                    image.color = new Color(0, 0, 0, 0);
+                }
             }
         }
     }
@@ -70,8 +77,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
 
             Field field = MapManager.Instance.mapRectArr[
-                Mathf.Clamp(Mathf.RoundToInt(accessPoint.y + myPoint.y), 0, 10),
-                Mathf.Clamp(Mathf.RoundToInt(accessPoint.x + myPoint.x), 0, 10)].GetComponent<Field>();
+                Mathf.Clamp(Mathf.RoundToInt(accessPoint.y + myPoint.y), 0, 9),
+                Mathf.Clamp(Mathf.RoundToInt(accessPoint.x + myPoint.x), 0, 9)].GetComponent<Field>();
             if(field != null)
             {
                 field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;

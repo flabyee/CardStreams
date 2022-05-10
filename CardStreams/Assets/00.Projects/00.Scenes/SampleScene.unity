@@ -14831,7 +14831,6 @@ GameObject:
   - component: {fileID: 981051409}
   - component: {fileID: 981051408}
   - component: {fileID: 981051407}
-  - component: {fileID: 981051410}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -14912,34 +14911,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981051405}
   m_CullTransparentMesh: 1
---- !u!114 &981051410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981051405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: 142ccbfbc769d294698c460142ed95da, type: 2}
-  responseObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 981051407}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: SetPos
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &995001191
 GameObject:
   m_ObjectHideFlags: 0

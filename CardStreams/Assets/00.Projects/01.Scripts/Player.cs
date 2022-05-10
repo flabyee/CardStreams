@@ -83,15 +83,4 @@ public class Player : MonoBehaviour
         OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower.cardType);
 
     }
-
-    public void Move(Vector3 pos, float duration)
-    {
-        pos.z = 0;
-        transform.DOMove(pos, duration);
-    }
-
-    public void SetPos(GameObject firstFieldObj)
-    {
-       
-    }
 }
