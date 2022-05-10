@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
                 }
                 break;
             case CardType.Monster:
-                GameManager.Instance.AddScore(4);
+                GameManager.Instance.AddScore(field.cardPower.value * 2);
 
                 int damage = field.cardPower.value;
                 damage -= swordValue.RuntimeValue;

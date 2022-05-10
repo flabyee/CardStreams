@@ -32,8 +32,10 @@ public class GameManager : MonoBehaviour
     private int maxMoveCount = 3;  // n
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
-    private int mobIncreaseAmount;
-    private int mobAttack;
+    private int mobSpawnAmount;
+    private int mobSpawnIncreaseAmount;  // 몹 생성수 증가량
+    private int mobAttackAmount;          // 몹 공격력
+    private int mobAttackIncreaseAmount;    // 몹 공격력 증가량
 
 
     [HideInInspector]public int rerollCount;
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
     [Header("IntValue")]
     public IntValue goldValue;
     public IntValue turnCountValue;
+    
 
     [Header("Event")]
     public EventSO GameStartEvent;
@@ -66,13 +69,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        maxMoveCount = DataManager.Instance.GetNowStageData().moveCount;
+        StageDataSO stageData = DataManager.Instance.GetNowStageData();
+        maxMoveCount = stageData.moveCount;
 
-        turnCountValue.RuntimeValue = DataManager.Instance.GetNowStageData().randomMobCount;
+        mobSpawnAmount = stageData.mobSpawnAmount;
 
-        mobIncreaseAmount = DataManager.Instance.GetNowStageData().mobIncreaseAmount;
+        mobSpawnIncreaseAmount = stageData.mobIncreaseAmount;
 
-        mobAttack = DataManager.Instance.GetNowStageData().mobValue;
+        mobAttackAmount = stageData.mobAttackAmount;
+
+        mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
 
         GameStartEvent.Occurred();
 
@@ -159,7 +165,8 @@ public class GameManager : MonoBehaviour
     {
         if (moveIndex == 0)
         {
-            turnCountValue.RuntimeValue += mobIncreaseAmount;
+            // 턴 증가
+            turnCountValue.RuntimeValue++;
 
             // 모든 필드의 필드타입 yet으로
             foreach (Field field in MapManager.Instance.fieldList)
@@ -171,7 +178,7 @@ public class GameManager : MonoBehaviour
             bool[] isMonster = new bool[30];
             for (int i = 1; i < MapManager.Instance.fieldList.Count - 1; i++)
             {
-                if (i < turnCountValue.RuntimeValue + 1)
+                if (i < mobSpawnAmount + 1)
                     isMonster[i] = true;
                 else
                     isMonster[i] = false;
@@ -187,7 +194,7 @@ public class GameManager : MonoBehaviour
             {
                 if (isMonster[i] == true)
                 {
-                    int value = mobAttack; // 생성되는 몬스터의 값
+                    int value = mobAttackAmount; // 생성되는 몬스터의 값
 
                     // 새로운 카드 생성
                     GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[i].transform);
@@ -222,9 +229,12 @@ public class GameManager : MonoBehaviour
             // change mode 활성화
             //isChange = true;
 
+            // 수치 증가
+            mobSpawnAmount += mobSpawnIncreaseAmount;
+            mobAttackAmount += mobAttackIncreaseAmount;
+
             // 카드 뽑기
             TurnStartEvent.Occurred();
-
         }
     }
 

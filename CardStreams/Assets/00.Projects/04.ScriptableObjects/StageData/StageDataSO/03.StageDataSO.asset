@@ -71,6 +71,7 @@ MonoBehaviour:
     dropAreaType: 1
   moveCount: 4
   isDeckShuffle: 1
-  randomMobCount: -2
+  mobSpawnAmount: 5
   mobIncreaseAmount: 5
-  mobValue: 3
+  mobAttackAmount: 3
+  mobAttackIncreaseAmount: 1
