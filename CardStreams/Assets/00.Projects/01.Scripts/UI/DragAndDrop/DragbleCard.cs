@@ -123,6 +123,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             GetComponent<Build>().ShowArea();
         }
+
+        rectTransform.sizeDelta = new Vector2(75, 75);
     }
 
     public void OnDrag(PointerEventData eventData)

@@ -71,13 +71,9 @@ public class GameManager : MonoBehaviour
     {
         StageDataSO stageData = DataManager.Instance.GetNowStageData();
         maxMoveCount = stageData.moveCount;
-
         mobSpawnAmount = stageData.mobSpawnAmount;
-
         mobSpawnIncreaseAmount = stageData.mobIncreaseAmount;
-
         mobAttackAmount = stageData.mobAttackAmount;
-
         mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
 
         GameStartEvent.Occurred();
@@ -211,6 +207,9 @@ public class GameManager : MonoBehaviour
                     MapManager.Instance.fieldList[i].cardPower = cardPower;
                     MapManager.Instance.fieldList[i].dragbleCard = dragbleCard;
                     MapManager.Instance.fieldList[i].fieldType = FieldType.not;
+
+                    // 배경색 변경
+                    cardPower.backImage.color = Color.magenta;
 
                     // craete effect
                     //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldRectList[i].transform.position);

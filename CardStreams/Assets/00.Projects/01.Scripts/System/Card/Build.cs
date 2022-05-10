@@ -11,8 +11,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public GameObject areaTooltipPrefab;
 
-    private Image buildImage;
-    private GameObject buildAreaTooltip;
+    public Image buildImage;
+    public GameObject buildAreaTooltip;
     private List<Image> buildAreaImageList = new List<Image>();
     private float width;
     private float height;
@@ -21,8 +21,6 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     protected virtual void Awake()
     {
-        buildImage = transform.Find("BuildImage").GetComponent<Image>();
-        buildAreaTooltip = transform.Find("BuildAreaTooltip").gameObject;
 
         HideArea();
     }
