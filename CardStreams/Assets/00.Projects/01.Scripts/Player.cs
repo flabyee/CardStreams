@@ -41,10 +41,16 @@ public class Player : MonoBehaviour
                 hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
                 break;
             case CardType.Sword:
-                swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
+                if(field.cardPower.value > 0)
+                {
+                    swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
+                }
                 break;
             case CardType.Sheild:
-                shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
+                if (field.cardPower.value > 0)
+                {
+                    shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
+                }
                 break;
             case CardType.Monster:
                 GameManager.Instance.AddScore(4);

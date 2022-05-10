@@ -102,6 +102,7 @@ public class DragManager : MonoBehaviour
 
                     // 정보 설정
                     area.field.cardPower = cardPower;
+                    area.field.dragbleCard = dragbleCard;
 
                     // fieldType 설정
                     //area.field.fieldType = FieldType.not;

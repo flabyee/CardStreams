@@ -24,7 +24,7 @@ public class Field : MonoBehaviour
 
     public FieldType fieldType = FieldType.NULL;
 
-
+    public DragbleCard dragbleCard;
     public CardPower cardPower;
 
     public Action<Player> accessBuildToPlayerAfterOnField;
@@ -42,6 +42,7 @@ public class Field : MonoBehaviour
     public void ResetData()
     {
         cardPower = null;
+        dragbleCard = null;
     }
     public void OnAccessCard()
     {

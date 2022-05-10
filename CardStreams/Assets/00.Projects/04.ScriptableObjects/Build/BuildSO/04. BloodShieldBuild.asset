@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e488a88397dc8c45aa46e50414b7320, type: 3}
-  m_Name: 05. BloodShieldBuild
+  m_Name: 04. BloodShieldBuild
   m_EditorClassIdentifier: 
-  id: 5
+  id: 4
   buildName: "\uD54F\uBE5B \uBC29\uD328"
-  price: 10
-  tooltip: "\uD53C\uAC00 2\uB2EC\uACE0 \uBC29\uD328+3"
+  price: 25
+  tooltip: "\uD53C\uAC00 3\uB2EC\uACE0 \uBC29\uD328+4"
   sprite: {fileID: 21300000, guid: 4a8dc661cacccc345829beccb2b4900b, type: 3}
   accessPointList:
-  - {x: 0, y: 1}
-  - {x: -1, y: 0}
   - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: 0, y: 1}
   - {x: 0, y: -1}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   swordValue: {fileID: 0}
@@ -28,3 +28,5 @@ MonoBehaviour:
   goldValue: {fileID: 0}
   playerValueChangeEvnet: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
   goldChangeEvnet: {fileID: 0}
+  hpAmount: 3
+  shieldAmount: 4

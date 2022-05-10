@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
     private int mobIncreaseAmount;
+    private int mobAttack;
 
 
     [HideInInspector]public int rerollCount;
@@ -70,6 +71,8 @@ public class GameManager : MonoBehaviour
         turnCountValue.RuntimeValue = DataManager.Instance.GetNowStageData().randomMobCount;
 
         mobIncreaseAmount = DataManager.Instance.GetNowStageData().mobIncreaseAmount;
+
+        mobAttack = DataManager.Instance.GetNowStageData().mobValue;
 
         GameStartEvent.Occurred();
 
@@ -184,11 +187,12 @@ public class GameManager : MonoBehaviour
             {
                 if (isMonster[i] == true)
                 {
-                    int value = 5; // 생성되는 몬스터의 값
+                    int value = mobAttack; // 생성되는 몬스터의 값
 
                     // 새로운 카드 생성
                     GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[i].transform);
                     DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+                    CardPower cardPower = cardObj.GetComponent<CardPower>();
 
                     // cardPower에 정보 넣기
                     dragbleCard.SetData_Feild(CardType.Monster, value);
@@ -197,7 +201,8 @@ public class GameManager : MonoBehaviour
                     dragbleCard.canDragAndDrop = false;
 
                     // 필드에 적용 + not으로
-                    MapManager.Instance.fieldList[i].cardPower = dragbleCard.GetComponent<CardPower>();
+                    MapManager.Instance.fieldList[i].cardPower = cardPower;
+                    MapManager.Instance.fieldList[i].dragbleCard = dragbleCard;
                     MapManager.Instance.fieldList[i].fieldType = FieldType.not;
 
                     // craete effect
@@ -251,10 +256,14 @@ public class GameManager : MonoBehaviour
 
         // 사용하지않은 카드 제거
 
-        // 이전 필드(fieldType = not)
-        for (int i = 0; i < moveIndex; i++)
+        // 이전 4개의 필드
+        for (int i = moveIndex - 4; i < moveIndex; i++)
         {
+            // (fieldType = not)
             MapManager.Instance.fieldList[i].fieldType = FieldType.not;
+
+            // drag and drop 못하게
+            MapManager.Instance.fieldList[i].dragbleCard.canDragAndDrop = false;
         }
         // 다음 필드(fieldType 변경)
         for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)

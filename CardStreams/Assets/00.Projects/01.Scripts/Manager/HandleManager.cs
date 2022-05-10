@@ -38,8 +38,6 @@ public class HandleManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(DataManager.Instance.GetNowStageData().deck.Count);
-
         originDeck = DataManager.Instance.GetNowStageData().deck;
 
         handleCount = DataManager.Instance.GetNowStageData().moveCount;
@@ -189,6 +187,8 @@ public class HandleManager : MonoBehaviour
 
     private void DrawSpecialCard()
     {
+        List<int> removeIdList = new List<int>();
+
         Dictionary<int, int> haveSpecialDic = DataManager.Instance.GetHaveSpecialCardDic();
         foreach (int id in haveSpecialDic.Keys)
         {
@@ -206,10 +206,16 @@ public class HandleManager : MonoBehaviour
                 dragbleCard.originDropArea = buildHandleDropArea;
 
                 dragbleCard.SetData_SpecialCard();
+
+                removeIdList.Add(id);
             }
         }
 
-        
+        while (removeIdList.Count != 0)
+        {
+            DataManager.Instance.RemoveSpecialCard(removeIdList[0]);
+            removeIdList.RemoveAt(0);
+        }
     }
 
     private void UseCard()
@@ -253,19 +259,19 @@ public class HandleManager : MonoBehaviour
 
     public void DrawBuildAndSpecialWhenTurnStart()
     {
-        Stack<DragbleCard> sellCardStack = new Stack<DragbleCard>();
-        // 뽑기전에 남아있는 카드가 있다면 제거
-        for (int i = 0; i < buildHandleTrm.childCount; i++)
-        {
-            GameObject card = buildHandleTrm.GetChild(i).gameObject;
-            card.SetActive(false);
-            sellCardStack.Push(card.GetComponent<DragbleCard>());
-        }
+        //Stack<DragbleCard> sellCardStack = new Stack<DragbleCard>();
+        //// 뽑기전에 남아있는 카드가 있다면 제거
+        //for (int i = 0; i < buildHandleTrm.childCount; i++)
+        //{
+        //    GameObject card = buildHandleTrm.GetChild(i).gameObject;
+        //    card.SetActive(false);
+        //    sellCardStack.Push(card.GetComponent<DragbleCard>());
+        //}
 
-        while (sellCardStack.Count != 0)
-        {
-            Destroy(sellCardStack.Pop().gameObject);
-        }
+        //while (sellCardStack.Count != 0)
+        //{
+        //    Destroy(sellCardStack.Pop().gameObject);
+        //}
 
         DrawBuild();
         DrawSpecialCard();

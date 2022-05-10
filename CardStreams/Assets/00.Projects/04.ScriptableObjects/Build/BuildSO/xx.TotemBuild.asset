@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4903fba72ca39e343a01a623e9557550, type: 3}
-  m_Name: 04.TotemBuild
+  m_Name: xx.TotemBuild
   m_EditorClassIdentifier: 
   id: 4
   buildName: "\uC815\uD654 \uD1A0\uD15C"

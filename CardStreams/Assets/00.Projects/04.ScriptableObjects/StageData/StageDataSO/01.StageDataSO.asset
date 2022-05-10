@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4960fc24ed10b0c40a6b28db20d42b6b, type: 3}
-  m_Name: 00.StageDataSO
+  m_Name: 01.StageDataSO
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1
   mapStr: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   deck:
-  - cardType: 1
+  - cardType: 2
     value: 3
     dropAreaType: 1
   - cardType: 4
     value: 3
     dropAreaType: 1
-  - cardType: 1
+  - cardType: 2
     value: 3
     dropAreaType: 1
   - cardType: 4
     value: 3
     dropAreaType: 1
-  - cardType: 1
+  - cardType: 2
     value: 5
     dropAreaType: 1
   - cardType: 4
     value: 3
     dropAreaType: 1
-  - cardType: 1
+  - cardType: 2
     value: 5
     dropAreaType: 1
   - cardType: 4
