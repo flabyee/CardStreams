@@ -10,13 +10,12 @@ public class DataManager : MonoBehaviour
     List<BuildSO> buildList;
     List<SpecialCardSO> specialCardList;
 
+    List<StageDataSO> stageDataList;
+
     // 저장할 데이타
     private Dictionary<int, int> haveBuildDic = new Dictionary<int, int>();
     private Dictionary<int, int> haveSpecialDic = new Dictionary<int, int>();
 
-
-    // 엑셀로 부터 가져올 정보
-    private List<StageData> stageDataList = new List<StageData>();
 
     public IntValue stageNumValue;
 
@@ -37,40 +36,10 @@ public class DataManager : MonoBehaviour
         SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
         specialCardList = specialListSO.specialCardListSO;
 
-        stageDataList.Add(new StageData()
-        {
-            mapStr = 
-            "0,0,0,0,0,0,0,0,0,0," +
-            "0,0,0,0,0,0,0,0,0,0," +
-            "0,0,0,0,0,0,0,0,0,0," +
-            "0,0,0,1,2,3,0,0,0,0," +
-            "0,0,0,8,0,4,0,0,0,0," +
-            "0,0,0,7,6,5,0,0,0,0," +
-            "0,0,0,0,0,0,0,0,0,0," +
-            "0,0,0,0,0,0,0,0,0,0," +
-            "0,0,0,0,0,0,0,0,0,0," +
-            "0,0,0,0,0,0,0,0,0,0",
-            deck = new List<CardData>()
-            {
-                new CardData(CardType.Sword, 3, DropAreaType.feild)
-            },
-        }); 
-        stageDataList.Add(new StageData()
-        {
-            mapStr = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-            deck = new List<CardData>()
-            {
-                new CardData(CardType.Sheild, 3, DropAreaType.feild)
-            },
-        }); 
-        stageDataList.Add(new StageData()
-        {
-            mapStr = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-            deck = new List<CardData>()
-            {
-                new CardData(CardType.Potion, 3, DropAreaType.feild)
-            },
-        }); 
+        StageDataListSO stageDataListSO = Resources.Load<StageDataListSO>(typeof(StageDataListSO).Name);
+        stageDataList = stageDataListSO.stageDataList;
+
+
     }
 
 
@@ -199,19 +168,8 @@ public class DataManager : MonoBehaviour
 
 
     // stage 관련
-    public StageData GetNowStageData()
+    public StageDataSO GetNowStageData()
     {
         return stageDataList[stageNumValue.RuntimeValue];
     }
-}
-
-
-// 각 스테이지에 대한 정보를 가지고 있는 클래스
-// 정보 : 맵, 덱, 난이도?를 가지고 있는다
-public class StageData
-{
-    public string mapStr;
-    public List<CardData> deck;
-    
-    // 나중에 난이도 추가
 }

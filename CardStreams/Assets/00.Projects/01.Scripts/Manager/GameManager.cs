@@ -23,46 +23,32 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("UI")]
-    public IntValue goldValue;
-    public EventSO goldChangeEvent;
-
-    public GameObject deckSeePanel;
-    public RectTransform deckSeePanelTrm;
-    public GameObject seeCardPrefab;
-    public GameObject cardPrefab;
-    private bool isDeckSee;
-    private int monsterInt;
-    private int hpInt;
-    public Text hpIntText;
-    public Text mobIntText;
-
-    public GameObject turnEndPanel;
-    
-
 
     [Header("System")]
     public Player player;
+    public GameObject cardPrefab;
     private bool isMoving;  // move중일때 또 next를 누르지 못하게
     [SerializeField] float duration;
+    private int maxMoveCount = 3;  // n
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
-    
-    [SerializeField] int maxMoveCount = 3;  // n
+    private int mobIncreaseAmount;
 
-
-    public IntValue turnCountValue;
 
     [HideInInspector]public int rerollCount;
 
+    [Header("IntValue")]
+    public IntValue goldValue;
+    public IntValue turnCountValue;
 
-    // Actions
-
+    [Header("Event")]
     public EventSO GameStartEvent;
     public EventSO TurnStartEvent;
     public EventSO TurnEndEvent;
     public EventSO MoveStartEvent;
     public EventSO MoveEndEvent;
+
+    public EventSO goldChangeEvent;
 
 
     private void Awake()
@@ -75,12 +61,16 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        isDeckSee = false;
     }
 
     private void Start()
     {
+        maxMoveCount = DataManager.Instance.GetNowStageData().moveCount;
+
+        turnCountValue.RuntimeValue = DataManager.Instance.GetNowStageData().randomMobCount;
+
+        mobIncreaseAmount = DataManager.Instance.GetNowStageData().mobIncreaseAmount;
+
         GameStartEvent.Occurred();
 
         goldValue.RuntimeValue += 20;
@@ -166,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         if (moveIndex == 0)
         {
-            turnCountValue.RuntimeValue += turnCountValue.RuntimeValue + 1;
+            turnCountValue.RuntimeValue += mobIncreaseAmount;
 
             // 모든 필드의 필드타입 yet으로
             foreach (Field field in MapManager.Instance.fieldList)
