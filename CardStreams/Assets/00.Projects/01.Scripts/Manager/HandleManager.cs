@@ -5,8 +5,6 @@ using System;
 
 public class HandleManager : MonoBehaviour
 {
-    public static HandleManager Instance;
-
     [HideInInspector] public List<CardData> originDeck = new List<CardData>();
     [HideInInspector] public List<CardData> deck = new List<CardData>();
     [HideInInspector] public List<CardData> usedDeck = new List<CardData>();    // ¹¦Áö
@@ -20,8 +18,6 @@ public class HandleManager : MonoBehaviour
     public DropArea shopDropArea;
 
     public GameObject cardPrefab;
-    public int haveCardCount;
-    public int drawCount;
 
     [Header("Build")]
     public GameObject buildPrefab;
@@ -38,16 +34,7 @@ public class HandleManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-
-        haveCardCount = 0;
-
         DeckMake();
-
-        
     }
 
     private void Start()
@@ -73,9 +60,11 @@ public class HandleManager : MonoBehaviour
         DeckShuffle(deck);
     }
 
-    public void CardRerollAdd(CardType cardType, int value, DropAreaType dropAreaType)
+    public void CardRerollAdd(GameObject dragbleCardObj)
     {
-        deck.Add(new CardData(cardType, value, dropAreaType));
+        CardPower cardPower = dragbleCardObj.GetComponent<CardPower>();
+
+        deck.Add(new CardData(cardPower.cardType, cardPower.value, cardPower.dropAreaType));
 
         DeckShuffle(deck, false);
     }
@@ -123,7 +112,7 @@ public class HandleManager : MonoBehaviour
         }
     }
 
-    public void DrawCard(bool isReroll = false)
+    public void DrawCard()
     {
         CardData cardData = GetCardData();
 
@@ -138,12 +127,6 @@ public class HandleManager : MonoBehaviour
             dragbleCard.originDropArea = handleDropArea;
 
             dragbleCard.SetData_Feild(cardData.cardType, cardData.value);
-
-            if(isReroll == false)
-            {
-                haveCardCount++;
-                drawCount++;
-            }
         }
         else
         {
@@ -245,8 +228,6 @@ public class HandleManager : MonoBehaviour
             Destroy(sellCardStack.Pop().gameObject);
         }
 
-        drawCount = 0;
-        haveCardCount = 0;
         for (int i = 0; i < handleCount; i++)
         {
             DrawCard();

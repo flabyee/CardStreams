@@ -67,7 +67,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         isDeckSee = false;
     }
@@ -105,50 +112,54 @@ public class GameManager : MonoBehaviour
         rerollCount++;
     }
 
-    public void OnClickDeckSee()
-    {
-        isDeckSee = !isDeckSee;
-        deckSeePanel.gameObject.SetActive(isDeckSee);
-        player.gameObject.SetActive(!isDeckSee);
+    //public void OnClickDeckSee()
+    //{
+    //    isDeckSee = !isDeckSee;
+    //    deckSeePanel.gameObject.SetActive(isDeckSee);
+    //    player.gameObject.SetActive(!isDeckSee);
 
-        if (isDeckSee == true)
-        {
-            foreach (RectTransform item in deckSeePanelTrm)
-            {
-                Destroy(item.gameObject);
-            }
+    //    if (isDeckSee == true)
+    //    {
+    //        foreach (RectTransform item in deckSeePanelTrm)
+    //        {
+    //            Destroy(item.gameObject);
+    //        }
 
-            monsterInt = 0;
-            hpInt = 0;
+    //        monsterInt = 0;
+    //        hpInt = 0;
 
-            foreach (var item in HandleManager.Instance.deck)
-            {
-                Instantiate(seeCardPrefab, deckSeePanelTrm);
-                CardPower cardPower = seeCardPrefab.GetComponent<CardPower>();
-                cardPower.cardType = item.cardType;
-                cardPower.value = item.value;
-                cardPower.ApplyUI();
+    //        foreach (var item in HandleManager.Instance.deck)
+    //        {
+    //            Instantiate(seeCardPrefab, deckSeePanelTrm);
+    //            CardPower cardPower = seeCardPrefab.GetComponent<CardPower>();
+    //            cardPower.cardType = item.cardType;
+    //            cardPower.value = item.value;
+    //            cardPower.ApplyUI();
 
                 
 
-                if (item.cardType == CardType.Monster)
-                {
-                    monsterInt += item.value;
-                }
+    //            if (item.cardType == CardType.Monster)
+    //            {
+    //                monsterInt += item.value;
+    //            }
 
-                if (item.cardType == CardType.Potion 
-                    || item.cardType == CardType.Sheild 
-                    || item.cardType == CardType.Sword)
-                {
-                    hpInt += item.value;
-                }
-            }
+    //            if (item.cardType == CardType.Potion 
+    //                || item.cardType == CardType.Sheild 
+    //                || item.cardType == CardType.Sword)
+    //            {
+    //                hpInt += item.value;
+    //            }
+    //        }
 
-            hpIntText.text = $"hp : {hpInt}";
-            mobIntText.text = $"mob : {monsterInt}";
-        }
+    //        hpIntText.text = $"hp : {hpInt}";
+    //        mobIntText.text = $"mob : {monsterInt}";
+    //    }
+    //}
+
+    public void SetPlayerPos()
+    {
+        
     }
-
 
 
     public void TurnStart()
@@ -183,31 +194,23 @@ public class GameManager : MonoBehaviour
             {
                 if (isMonster[i] == true)
                 {
-                    //MapManager.Instance.fieldRectList[i].fieldType = FieldType.not;
-                    //MapManager.Instance.fieldRectList[i].cardType = CardType.Monster;
+                    int value = 5; // 생성되는 몬스터의 값
 
-                    int value = 5;  //UnityEngine.Random.Range(1, 6)
-                    //MapManager.Instance.fieldRectList[i].value = value;
-
-                    //GameObject seeObj = Instantiate(seeCardPrefab, MapManager.Instance.fieldRectList[i].transform);
-                    //seeObj.GetComponentInChildren<TextMeshProUGUI>().text = value.ToString();
-                    //seeObj.transform.Find("face").GetComponent<Image>().sprite = ConstManager.Instance.monsterSprite;
-                    //MapManager.Instance.fieldRectList[i].cardPower = seeObj.GetComponent<CardPower>();
-
+                    // 새로운 카드 생성
                     GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[i].transform);
                     DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
 
+                    // cardPower에 정보 넣기
                     dragbleCard.SetData_Feild(CardType.Monster, value);
+
+                    // 못 움직이게
                     dragbleCard.canDragAndDrop = false;
 
+                    // 필드에 적용 + not으로
                     MapManager.Instance.fieldList[i].cardPower = dragbleCard.GetComponent<CardPower>();
-
                     MapManager.Instance.fieldList[i].fieldType = FieldType.not;
 
-                    // able이 아니라서 드랍이 안된다
-                    //MapManager.Instance.fieldList[i].dropArea.TriggerOnDrop(dragbleCard);
-
-
+                    // craete effect
                     //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldRectList[i].transform.position);
                 }
             }
@@ -280,7 +283,6 @@ public class GameManager : MonoBehaviour
 
         sequence.AppendCallback(() => {
             Vector3 movePos = MapManager.Instance.fieldList[moveIndex].transform.position;
-            movePos.z = 0;
             player.transform.DOMove(movePos, 0.25f);
             //player.Move(MapManager.Instance.fieldRectList[moveIndex].transform.position, 0.25f);
 

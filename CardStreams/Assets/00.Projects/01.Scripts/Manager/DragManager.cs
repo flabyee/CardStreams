@@ -5,8 +5,6 @@ using System;
 
 public class DragManager : MonoBehaviour
 {
-    public static DragManager Instance;
-
     private List<DropArea> feildDropAreaList = new List<DropArea>();
     private List<DropArea> buildDropAreaList = new List<DropArea>();
 
@@ -25,30 +23,10 @@ public class DragManager : MonoBehaviour
     public DropArea hoverDropArea;
     public RectTransform hoverTrm;
 
-
-
-    private void Awake()
-    {
-        Instance = this;
-
-        
-
-        // rect의 위치를 가져와서 dropArea 위치 설정
-        //foreach(DropArea dropArea in DropArea.dropAreas)
-        //{
-        //    RectTransform dropRect = dropArea.GetComponent<RectTransform>();
-
-        //    Debug.Log(dropArea.rectTrm.gameObject.name + " : " + dropArea.rectTrm.rect.width + " " + dropArea.rectTrm.rect.height);
-
-        //    dropRect.sizeDelta = dropArea.rectTrm.sizeDelta;
-        //    dropRect.transform.position = dropArea.rectTrm.transform.position;
-        //}
-    }
+    public EventSO rerollEvent;
 
     private void Start()
     {
-        
-
         foreach(DropArea dropArea in DropArea.dropAreas)
         {
             if(dropArea.dropAreaType == DropAreaType.feild)
@@ -291,10 +269,9 @@ public class DragManager : MonoBehaviour
         CardPower cardPower = obj.GetComponent<CardPower>();
         if(cardPower.dropAreaType == DropAreaType.feild)
         {
-            HandleManager.Instance.CardRerollAdd(cardPower.cardType, cardPower.value, cardPower.dropAreaType);
+            rerollEvent.Occurred(obj);
             dragbleCard.isDestory = true;
 
-            HandleManager.Instance.DrawCard(true);
             GameManager.Instance.RerollScore();
         }
         else

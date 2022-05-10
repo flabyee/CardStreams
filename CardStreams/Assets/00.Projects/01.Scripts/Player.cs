@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
+        swordValue.RuntimeValue = 0;
+        shieldValue.RuntimeValue = 0;
+
         playerValueChangeEvent.Occurred();
     }
 

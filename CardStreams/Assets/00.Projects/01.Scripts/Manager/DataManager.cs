@@ -22,7 +22,14 @@ public class DataManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
         buildList = buildListSO.buildList;

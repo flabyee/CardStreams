@@ -26,8 +26,14 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Start()
@@ -101,7 +107,7 @@ public class MapManager : MonoBehaviour
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
 
-        afterMapCreateEvent.Occurred(fieldList[0].gameObject);
+        afterMapCreateEvent.Occurred();
     }
 }
 

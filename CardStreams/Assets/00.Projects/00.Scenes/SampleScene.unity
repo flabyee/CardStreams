@@ -11267,6 +11267,7 @@ GameObject:
   - component: {fileID: 745525164}
   - component: {fileID: 745525166}
   - component: {fileID: 745525165}
+  - component: {fileID: 745525167}
   m_Layer: 0
   m_Name: HandleManager
   m_TagString: Untagged
@@ -11306,8 +11307,6 @@ MonoBehaviour:
   buildHandleTrm: {fileID: 678937476}
   shopDropArea: {fileID: 475797421}
   cardPrefab: {fileID: 1017501599584371627, guid: 4695023d590cb2045a72ead561adb369, type: 3}
-  haveCardCount: 0
-  drawCount: 0
   buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
   specialCardPrefab: {fileID: 1017501599584371627, guid: 5a679d2278c2d4a46aadd5bfc5d6906d, type: 3}
   nextBtnTrm: {fileID: 0}
@@ -11371,6 +11370,46 @@ MonoBehaviour:
       - m_Target: {fileID: 745525164}
         m_TargetAssemblyTypeName: HandleManager, Assembly-CSharp
         m_MethodName: DrawBuildAndSpecialWhenTurnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &745525167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745525162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 2535d175b75e79445b48d744b35d2a95, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 745525164}
+        m_TargetAssemblyTypeName: HandleManager, Assembly-CSharp
+        m_MethodName: CardRerollAdd
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 745525164}
+        m_TargetAssemblyTypeName: HandleManager, Assembly-CSharp
+        m_MethodName: DrawCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24443,6 +24482,7 @@ MonoBehaviour:
   rerollTrm: {fileID: 1935075776}
   hoverDropArea: {fileID: 699806433}
   hoverTrm: {fileID: 844448239}
+  rerollEvent: {fileID: 11400000, guid: 2535d175b75e79445b48d744b35d2a95, type: 2}
 --- !u!1001 &1588982329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25513,6 +25553,7 @@ GameObject:
   - component: {fileID: 1637668232}
   - component: {fileID: 1637668231}
   - component: {fileID: 1637668233}
+  - component: {fileID: 1637668234}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -25584,6 +25625,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1637668231}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: TurnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1637668234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637668230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 142ccbfbc769d294698c460142ed95da, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1637668231}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetPlayerPos
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
-
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject[] tutorialArr;
     private int tutorialIndex;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     private void Start()
     {
