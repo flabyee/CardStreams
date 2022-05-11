@@ -29,19 +29,19 @@ public class CardPower : MonoBehaviour
         switch (cardType)
         {
             case CardType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite;
+                faceImage.sprite = ConstManager.Instance.potionSprite[value];
                 break;
             case CardType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite;
+                faceImage.sprite = ConstManager.Instance.swordSprite[value];
                 break;
             case CardType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite;
+                faceImage.sprite = ConstManager.Instance.sheildSprite[value];
                 break;
             case CardType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite;
+                faceImage.sprite = ConstManager.Instance.monsterSprite[value];
                 break;
             case CardType.Coin:
-                faceImage.sprite = ConstManager.Instance.coinSprite;
+                faceImage.sprite = ConstManager.Instance.coinSprite[value];
                 break;
         }
         valueText.text = value.ToString();
@@ -69,19 +69,19 @@ public class CardPower : MonoBehaviour
         switch (cardType)
         {
             case CardType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite;
+                faceImage.sprite = ConstManager.Instance.potionSprite[value];
                 break;
             case CardType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite;
+                faceImage.sprite = ConstManager.Instance.swordSprite[value];
                 break;
             case CardType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite;
+                faceImage.sprite = ConstManager.Instance.sheildSprite[value];
                 break;
             case CardType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite;
+                faceImage.sprite = ConstManager.Instance.monsterSprite[value];
                 break;
             case CardType.Coin:
-                faceImage.sprite = ConstManager.Instance.coinSprite;
+                faceImage.sprite = ConstManager.Instance.coinSprite[value];
                 break;
         }
 
