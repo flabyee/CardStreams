@@ -11,7 +11,7 @@ public enum FieldType
     yet,    // 아직 설치안한 -> able
     able,   // 현재 설치가능한 -> 설치하면 not
     not,    // 설치 불가능한, 시작하자마자 설정 될때도 있다
-    randomMob,  // 랜덤하게 몹을 생성하겠다
+    randomMob,  // 랜덤하게 몹을 생성하겠다 <- 지금은 안쓰는듯?
 }
 
 // 1. 모두 yet 2. not 생성, 3. 차례차례 able 
@@ -19,10 +19,10 @@ public enum FieldType
 
 public class Field : MonoBehaviour
 {
-    [SerializeField] Image image;
-    [SerializeField] TextMeshProUGUI text;
+    public Image image;
 
     public FieldType fieldType = FieldType.NULL;
+
 
     public DragbleCard dragbleCard;
     public CardPower cardPower;
@@ -57,4 +57,5 @@ public class Field : MonoBehaviour
 
         ResetData();
     }
+
 }

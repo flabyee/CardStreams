@@ -19,9 +19,12 @@ public class ConstManager : MonoBehaviour
     }
 
     [Header("sprite")]
-    public Sprite swordSprite;
-    public Sprite sheildSprite;
-    public Sprite potionSprite;
-    public Sprite monsterSprite;
-    public Sprite coinSprite;
+    public Sprite[] swordSprite;
+    public Sprite[] sheildSprite;
+    public Sprite[] potionSprite;
+    public Sprite[] monsterSprite;
+    public Sprite[] coinSprite;
+
+    public Sprite originFieldSprite;
+    public Sprite nowFieldSprite;
 }

@@ -28,19 +28,19 @@ public class OnFieldTooltip : MonoBehaviour
         switch(cardType)
         {
             case CardType.Potion:
-                image.sprite = ConstManager.Instance.potionSprite;
+                image.sprite = ConstManager.Instance.potionSprite[0];
                 break;
             case CardType.Coin:
-                image.sprite = ConstManager.Instance.coinSprite;
+                image.sprite = ConstManager.Instance.coinSprite[0];
                 break;
             case CardType.Monster:
-                image.sprite = ConstManager.Instance.monsterSprite;
+                image.sprite = ConstManager.Instance.monsterSprite[0];
                 break;
             case CardType.Sword:
-                image.sprite = ConstManager.Instance.swordSprite;
+                image.sprite = ConstManager.Instance.swordSprite[0];
                 break;
             case CardType.Sheild:
-                image.sprite = ConstManager.Instance.sheildSprite;
+                image.sprite = ConstManager.Instance.sheildSprite[0];
                 break;
         }
 

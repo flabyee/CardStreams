@@ -222,6 +222,8 @@ public class GameManager : MonoBehaviour
                 if(MapManager.Instance.fieldList[i].fieldType == FieldType.yet)
                 {
                     MapManager.Instance.fieldList[i].fieldType = FieldType.able;
+
+                    MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.nowFieldSprite;
                 }
             }
 
@@ -273,7 +275,10 @@ public class GameManager : MonoBehaviour
 
             // drag and drop 못하게
             MapManager.Instance.fieldList[i].dragbleCard.canDragAndDrop = false;
+
+            MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.originFieldSprite;
         }
+
         // 다음 필드(fieldType 변경)
         for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
         {
@@ -281,6 +286,8 @@ public class GameManager : MonoBehaviour
             {
                 MapManager.Instance.fieldList[i].fieldType = FieldType.able;
             }
+
+            MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.nowFieldSprite;
         }
     }
 
