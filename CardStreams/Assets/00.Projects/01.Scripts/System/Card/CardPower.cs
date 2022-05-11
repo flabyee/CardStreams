@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using System;
 
 public class CardPower : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class CardPower : MonoBehaviour
     public int value;
     public int originValue;
 
+    public List<BuffSO> buffList = new List<BuffSO>();
 
     public void SetData_Feild(CardType cardType, int value)
     {
@@ -56,6 +57,11 @@ public class CardPower : MonoBehaviour
     {
         this.dropAreaType = DropAreaType.build;
         this.cardType = CardType.Build;
+    }
+
+    public void AddBuffSO(BuffSO so)
+    {
+        buffList.Add(so);
     }
 
     public void ApplyUI()

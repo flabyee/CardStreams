@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class Player : MonoBehaviour
     public IntValue hpValue;
     public IntValue swordValue;
     public IntValue shieldValue;
+
+    public Func<int, int> OnSword;  // 남은 몬스터의 피 | 계산 후 데미지(return)
+    public Func<bool> IsDeleteSwordBuff; // 공격 후 버프를 남겨둘까요?
+
+    public Func<int, int> OnShield; // 남은 몬스터의 피 | 계산 후 데미지(return)
+    public Func<bool> IsDeleteShieldBuff; // 방어 후 버프를 남겨둘까요?
 
     private void Awake()
     {
@@ -44,39 +51,92 @@ public class Player : MonoBehaviour
                 if(field.cardPower.value > 0)
                 {
                     swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
+                    foreach (BuffSO buff in field.cardPower.buffList)
+                    {
+                        OnSword += buff.BuffOn;
+                        IsDeleteSwordBuff += buff.BuffOff;
+                    }
                 }
+
                 break;
             case CardType.Sheild:
                 if (field.cardPower.value > 0)
                 {
                     shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
+                    foreach (BuffSO buff in field.cardPower.buffList)
+                    {
+                        OnShield += buff.BuffOn;
+                        IsDeleteShieldBuff += buff.BuffOff;
+                    }
                 }
                 break;
             case CardType.Monster:
                 GameManager.Instance.AddScore(field.cardPower.value * 2);
 
-                int damage = field.cardPower.value;
-                damage -= swordValue.RuntimeValue;
-                swordValue.RuntimeValue = 0;
+                int swordAttackDamage = 0;
+                int shieldDefenseDamage = 0;
 
-                if (damage > 0)
+                if(OnSword == null)
                 {
-                    int diff = shieldValue.RuntimeValue - damage;
+                    Debug.Log("없음");
+                    swordAttackDamage = field.cardPower.value - swordValue.RuntimeValue; // 평범한 칼
+                    swordValue.RuntimeValue = 0;
+                }
+                else
+                {
+                    swordAttackDamage = (OnSword?.Invoke(field.cardPower.value)).Value; // 데미지 = 칼 함수실행(플레이어, 몬스터 피)
+                }
 
-                    if (diff > 0)
+                if(IsDeleteSwordBuff != null) // 버프 한번쓰고 지울거면
+                {
+                    OnSword = null; // 검에 발린 버프를 싹 지움
+                }
+
+                //damage -= swordValue.RuntimeValue;
+                //swordValue.RuntimeValue = 0;
+
+                if (swordAttackDamage > 0) // 칼이 못막아서 데미지가 0보다크면 방패계산
+                {
+                    shieldDefenseDamage = swordAttackDamage - shieldValue.RuntimeValue; // 방패계산데미지 = 검으로까인데미지 - 방패수치
+
+                    if(OnShield == null)
                     {
-                        shieldValue.RuntimeValue -= damage;
-                        damage = 0;
+                        if (shieldDefenseDamage < 0) // 방패로막은 데미지가 0보다 작으면 방패가 버팀
+                        {
+                            shieldValue.RuntimeValue -= swordAttackDamage; // 방패 까고
+                            shieldDefenseDamage = 0; // 데미지 0
+                        }
+                        else // 방패로막은 데미지가 0보다 크면 방패가 사라짐
+                        {
+                            shieldDefenseDamage -= shieldValue.RuntimeValue; // 데미지 까고
+                            shieldValue.RuntimeValue = 0; // 방패 0
+                        }
                     }
                     else
                     {
-                        damage -= shieldValue.RuntimeValue;
-                        shieldValue.RuntimeValue = 0;
+                        shieldDefenseDamage = (OnShield?.Invoke(swordAttackDamage)).Value; // 최종데미지 = 방패 함수실행(플레이어, 칼맞은 몬스터피)
                     }
+
+                    if (IsDeleteShieldBuff != null) // 버프 한번쓰고 지울거면
+                    {
+                        OnShield = null; // 방패에 발린 버프를 싹 지움
+                    }
+
+                    //if (shieldDefenseDamage <= 0) // 최종 데미지가 0보다 작으면
+                    //{
+                    //    shieldValue.RuntimeValue -= shieldDefenseDamage;
+                    //    damage = 0;
+                    //}
+                    //else
+                    //{
+                    //    // damage -= shieldValue.RuntimeValue;
+                    //    damage = shieldDefenseDamage; // 최종데미지 = 방패로막고남은데미지
+                    //    shieldValue.RuntimeValue = 0;
+                    //}
                 }
 
-                damage = Mathf.Clamp(damage, 0, hpValue.RuntimeMaxValue);
-                hpValue.RuntimeValue -= damage;
+                shieldDefenseDamage = Mathf.Clamp(shieldDefenseDamage, 0, hpValue.RuntimeMaxValue);
+                hpValue.RuntimeValue -= shieldDefenseDamage;
 
                 break;
             case CardType.Coin:

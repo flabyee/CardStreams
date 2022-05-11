@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffSO : MonoBehaviour
+public class Buff : MonoBehaviour
 {
     void Start()
     {
@@ -12,5 +12,10 @@ public class BuffSO : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Init(BuffSO so)
+    {
+
     }
 }
