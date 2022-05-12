@@ -153,7 +153,16 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayerPos()
     {
-        
+        StartCoroutine(TempPlayerPosSetCor());
+    }
+
+    private IEnumerator TempPlayerPosSetCor()
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        Vector3 movePos = MapManager.Instance.fieldList[MapManager.Instance.fieldList.Count - 1].transform.position;
+        Debug.Log(movePos);
+        player.transform.DOMove(movePos, 0.25f);
     }
 
 
@@ -241,6 +250,18 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnd()
     {
+        // 이전 4개의 필드
+        for (int i = moveIndex - 4; i < moveIndex; i++)
+        {
+            // (fieldType = not)
+            MapManager.Instance.fieldList[i].fieldType = FieldType.not;
+
+            // drag and drop 못하게
+            MapManager.Instance.fieldList[i].dragbleCard.canDragAndDrop = false;
+
+            MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.originFieldSprite;
+        }
+
         moveIndex = 0;
         moveCount = 0;
         isMoving = false;
@@ -296,7 +317,8 @@ public class GameManager : MonoBehaviour
         // 움직이기
         Sequence sequence = DOTween.Sequence();
 
-        sequence.AppendCallback(() => {
+        sequence.AppendCallback(() =>
+        {
             Vector3 movePos = MapManager.Instance.fieldList[moveIndex].transform.position;
             player.transform.DOMove(movePos, 0.25f);
             //player.Move(MapManager.Instance.fieldRectList[moveIndex].transform.position, 0.25f);
@@ -305,7 +327,8 @@ public class GameManager : MonoBehaviour
         sequence.AppendInterval(0.25f);
 
         // 스페셜카드 효과 발동
-        sequence.AppendCallback(() => {
+        sequence.AppendCallback(() =>
+        {
             if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
             {
                 MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
@@ -314,7 +337,8 @@ public class GameManager : MonoBehaviour
         sequence.AppendInterval(duration);
 
         // 플레이어한테 필드 효과 적용ㅇ
-        sequence.AppendCallback(() => {
+        sequence.AppendCallback(() =>
+        {
             if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
             {
                 player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
@@ -323,7 +347,8 @@ public class GameManager : MonoBehaviour
         sequence.AppendInterval(duration);
 
         // 플레이어한테 건물효과 적용
-        sequence.AppendCallback(() => {
+        sequence.AppendCallback(() =>
+        {
             MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
             //Debug.Log("player apply build");
         });
@@ -332,6 +357,7 @@ public class GameManager : MonoBehaviour
         sequence.AppendCallback(() => {
             moveIndex++;
             moveCount++;
+
             NextAction();
         });
     }
@@ -346,7 +372,7 @@ public class GameManager : MonoBehaviour
                 // 전부 다 배치안했으면 move 안됨
                 if(MapManager.Instance.fieldList[i].cardPower == null)
                 {
-                    return;
+                    //return;
                 }
             }
 
@@ -359,6 +385,7 @@ public class GameManager : MonoBehaviour
         // TurnEnd
         if (moveIndex == MapManager.Instance.fieldList.Count)
         {
+            Debug.Log("Loop End");
             TurnEnd();
 
             TurnEndEvent.Occurred();

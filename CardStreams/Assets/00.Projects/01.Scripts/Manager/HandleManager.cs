@@ -151,70 +151,65 @@ public class HandleManager : MonoBehaviour
 
     private void DrawBuild()
     {
-        List<int> removeIdList = new List<int>();
+        SaveData saveData = DataManager.Instance.saveData;
 
-        Dictionary<int, int> haveBuildDic = DataManager.Instance.GetHaveBuildDic();
-        foreach(int id in haveBuildDic.Keys)
+        foreach(BuildData buildData in saveData.buildDataList)
         {
-            for(int i = 0; i < haveBuildDic[id]; i++)
+            if(buildData.isUnlock == true)
             {
-                GameObject buildObj = Instantiate(buildPrefab, buildHandleTrm);
+                int count = buildData.haveAmount;
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject buildObj = Instantiate(buildPrefab, buildHandleTrm);
 
-                // build 관련 초기화
+                    // build 관련 초기화
 
-                Build build = buildObj.GetComponent<Build>();
-                build.Init(DataManager.Instance.GetBuildSO(id));
+                    Build build = buildObj.GetComponent<Build>();
+                    build.Init(DataManager.Instance.GetBuildSO(buildData.id));
 
 
-                // dragble 관련 초기화
-                DragbleCard dragbleCard = buildObj.GetComponent<DragbleCard>();
+                    // dragble 관련 초기화
+                    DragbleCard dragbleCard = buildObj.GetComponent<DragbleCard>();
 
-                dragbleCard.SetDroppedArea(buildHandleDropArea);
-                dragbleCard.originDropArea = buildHandleDropArea;
+                    dragbleCard.SetDroppedArea(buildHandleDropArea);
+                    dragbleCard.originDropArea = buildHandleDropArea;
 
-                dragbleCard.SetData_Build();
+                    dragbleCard.SetData_Build();
 
-                removeIdList.Add(id);
+                    buildData.haveAmount--;
+                }
             }
-        }
-
-        while(removeIdList.Count != 0)
-        {
-            DataManager.Instance.RemoveBuild(removeIdList[0]);
-            removeIdList.RemoveAt(0);
         }
     }
 
     private void DrawSpecialCard()
     {
-        List<int> removeIdList = new List<int>();
+        SaveData saveData = DataManager.Instance.saveData;
 
-        Dictionary<int, int> haveSpecialDic = DataManager.Instance.GetHaveSpecialCardDic();
-        foreach (int id in haveSpecialDic.Keys)
+        foreach (SpecialCardData specialCardData in saveData.speicialCardDataList)
         {
-            for (int i = 0; i < haveSpecialDic[id]; i++)
+            if(specialCardData.isUnlock == true)
             {
-                GameObject specialCardObj = Instantiate(specialCardPrefab, buildHandleTrm);
-                DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
+                int count = specialCardData.haveAmount;
 
-                // specialCard 관련 초기화
-                SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
-                specialCard.Init(DataManager.Instance.GetSpecialCardSO(id));
+                for (int i = 0; i < count; i++)
+                {
+                    GameObject specialCardObj = Instantiate(specialCardPrefab, buildHandleTrm);
+                    DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
 
-                // dragble 관련 초기화
-                dragbleCard.SetDroppedArea(buildHandleDropArea);
-                dragbleCard.originDropArea = buildHandleDropArea;
+                    // specialCard 관련 초기화
+                    SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
+                    specialCard.Init(DataManager.Instance.GetSpecialCardSO(specialCardData.id));
 
-                dragbleCard.SetData_SpecialCard();
+                    // dragble 관련 초기화
+                    dragbleCard.SetDroppedArea(buildHandleDropArea);
+                    dragbleCard.originDropArea = buildHandleDropArea;
 
-                removeIdList.Add(id);
+                    dragbleCard.SetData_SpecialCard();
+
+                    specialCardData.haveAmount--;
+                }
             }
-        }
-
-        while (removeIdList.Count != 0)
-        {
-            DataManager.Instance.RemoveSpecialCard(removeIdList[0]);
-            removeIdList.RemoveAt(0);
         }
     }
 

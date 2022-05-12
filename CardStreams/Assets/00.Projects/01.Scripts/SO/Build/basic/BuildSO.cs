@@ -46,12 +46,12 @@ public class BuildSO : ScriptableObject
         
     }
 
-    public IntValue hpValue;
-    public IntValue swordValue;
-    public IntValue shieldValue;
+    //public IntValue hpValue;
+    //public IntValue swordValue;
+    //public IntValue shieldValue;
 
-    public IntValue goldValue;
+    //public IntValue goldValue;
 
-    public EventSO playerValueChangeEvnet;
-    public EventSO goldChangeEvnet;
+    //public EventSO playerValueChangeEvnet;
+    //public EventSO goldChangeEvnet;
 }

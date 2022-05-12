@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CardTooltip : MonoBehaviour
+public class SpecialCardTooltip : MonoBehaviour
 {
-    public static CardTooltip Instance { get; private set; }
+    public static SpecialCardTooltip Instance { get; private set; }
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI targetText;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 자식의 갯수가 4 미만이면 4개로 취급하는
 public class FlexibleGridLayout_4 : LayoutGroup
 {
     public enum FitType
@@ -33,13 +34,19 @@ public class FlexibleGridLayout_4 : LayoutGroup
     {
         base.CalculateLayoutInputHorizontal();
 
+        int childCount;
+        if (transform.childCount > 3)
+            childCount = transform.childCount;
+        else
+            childCount = 4;
+
         // 기본일때는 rows랑 columns 자동 설정
         if (fitType == FitType.Width || fitType == FitType.Height || fitType == FitType.Uniform)
         {
             fitX = true;
             fitY = true;
 
-            float sqrRt = Mathf.Sqrt(transform.childCount);
+            float sqrRt = Mathf.Sqrt(childCount);
             rows = Mathf.CeilToInt(sqrRt);
             columns = Mathf.CeilToInt(sqrRt);
         }
@@ -48,30 +55,17 @@ public class FlexibleGridLayout_4 : LayoutGroup
         // 나머지는 하나는 직접 설정한 값으로 나눠서 결정
         if (fitType == FitType.Width || fitType == FitType.FixedColumns)
         {
-            rows = Mathf.CeilToInt(transform.childCount / (float)columns);
+            rows = Mathf.CeilToInt(childCount / (float)columns);
         }
         if (fitType == FitType.Height || fitType == FitType.FixedRows)
         {
-            columns = Mathf.CeilToInt(transform.childCount / (float)rows);
+            columns = Mathf.CeilToInt(childCount / (float)rows);
         }
 
         // FixedRowsAndColumns라면 둘다 직접 설정해준다
         if (fitType == FitType.FixedRowsAndColumns)
         {
             // rows와 columns 둘다 인스팩터에서 설정
-        }
-
-        int childCount;
-        if (rectChildren.Count < 4 && rectChildren.Count != 0)
-        {
-            childCount = 4;
-
-            rows = 2;
-            columns = 2;
-        }
-        else
-        {
-            childCount = rectChildren.Count;
         }
 
         float parenWidth = rectTransform.rect.width;
@@ -86,21 +80,21 @@ public class FlexibleGridLayout_4 : LayoutGroup
         int columnCount = 0;
         int rowCount = 0;
 
-
-        
-
         for (int i = 0; i < childCount; i++)
         {
-            rowCount = i / columns;
-            columnCount = i % columns;
+            if(i < rectChildren.Count)
+            {
+                rowCount = i / columns;
+                columnCount = i % columns;
 
-            var item = rectChildren[i];
+                var item = rectChildren[i];
 
-            var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
-            var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
+                var xPos = (cellSize.x * columnCount) + (spacing.x * columnCount) + padding.left;
+                var yPos = (cellSize.y * rowCount) + (spacing.y * rowCount) + padding.top;
 
-            SetChildAlongAxis(item, 0, xPos, cellSize.x);
-            SetChildAlongAxis(item, 1, yPos, cellSize.y);
+                SetChildAlongAxis(item, 0, xPos, cellSize.x);
+                SetChildAlongAxis(item, 1, yPos, cellSize.y);
+            }
         }
     }
 

@@ -5,6 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AnvilBuild", menuName = "ScriptableObject/Build/AnvilBuild")]
 public class AnvilBuildSO : BuildSO
 {
+    [Header("SO")]
+    public IntValue swordValue;
+    public IntValue shieldValue;
+
+    public EventSO playerValueChangeEvnet;
+
+    [Header("Amount")]
+    public int dontHaveAmount;
+    public int haveAmount;
+
     public override void AccessCard(Field field)
     {
     }
@@ -13,19 +23,19 @@ public class AnvilBuildSO : BuildSO
     {
         if (swordValue.RuntimeValue == 0)
         {
-            swordValue.RuntimeValue = 2;
+            swordValue.RuntimeValue = dontHaveAmount;
         }
         else
         {
-            swordValue.RuntimeValue += 1;
+            swordValue.RuntimeValue += haveAmount;
         }
         if (shieldValue.RuntimeValue == 0)
         {
-            shieldValue.RuntimeValue = 2;
+            shieldValue.RuntimeValue = dontHaveAmount;
         }
         else
         {
-            shieldValue.RuntimeValue += 1;
+            shieldValue.RuntimeValue += haveAmount;
         }
 
         playerValueChangeEvnet.Occurred();

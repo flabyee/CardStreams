@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EarnGoldBuild", menuName = "ScriptableObject/Build/EarnGoldBuild")]
 public class EarnGoldBuildSO : BuildSO
 {
+    [Header("SO")]
+    public IntValue goldValue;
+
+    public EventSO goldChangeEvnet;
+
     [Header("Amount")]
     public int earnAmount;
 

@@ -13,6 +13,7 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public Image buildImage;
     public GameObject buildAreaTooltip;
+    private List<Vector2> accessPointList;
     private List<Image> buildAreaImageList = new List<Image>();
     private float width;
     private float height;
@@ -45,12 +46,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         //        buildAreaTooltip.transform.GetChild(i).gameObject.GetComponent<Image>().DOFade(0, 0);
         //}
 
-        foreach (Vector2 point in buildSO.accessPointList)
-        {
-            
-        }
-
-        for(int y = 2; y >= -2; y--)
+        accessPointList = buildSO.accessPointList;
+        for (int y = 2; y >= -2; y--)
         {
             for (int x = 2; x >= -2; x--)
             {
@@ -104,11 +101,11 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CardTooltip.Instance.Show(buildSO.buildName, null, buildSO.tooltip, buildSO.sprite, transform.position);
+        BuildTooltip.Instance.Show(buildSO.buildName, accessPointList, buildSO.tooltip, buildSO.sprite, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        CardTooltip.Instance.Hide();
+        BuildTooltip.Instance.Hide();
     }
 }

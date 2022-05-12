@@ -7,11 +7,14 @@ using TMPro;
 [CreateAssetMenu(fileName = "CrossBuild", menuName = "ScriptableObject/Build/CrossBuild")]
 public class CrossBuildSO : BuildSO
 {
+    [Header("Amount")]
+    public int minusMonsterAmount;
+
     public override void AccessCard(Field field)
     {
         if (field.cardPower.cardType == CardType.Monster)
         {
-            field.cardPower.value -= 1;
+            field.cardPower.value -= minusMonsterAmount;
 
             TextMeshProUGUI text = field.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
             text.text = field.cardPower.value.ToString();

@@ -15,9 +15,20 @@ public class ShopManager : MonoBehaviour
     public IntValue goldValue;
     public EventSO goldChangeEvnet;
 
+    public List<RectTransform> specialCardStandList;    // 판매할 아이템 올려두는 공간
+    public List<RectTransform> buildStandList;    // 판매할 아이템 올려두는 공간
+
+    public int sellItemCount;
+
+
     private void Awake()
     {
         Hide();
+
+        if(specialCardStandList.Count != sellItemCount)
+        {
+            //Debug.LogError("상점 아이템 판매 갯수와 판매대 갯수가 다릅니다");
+        }
     }
 
     private void Start()
@@ -39,68 +50,123 @@ public class ShopManager : MonoBehaviour
 
     private void OnShop()
     {
-        foreach(Transform item in specialCardShopTrm)
-        {
-            Destroy(item.gameObject);
-        }
-        foreach(Transform item in buildShopTrm)
+
+
+
+        OnSpecialCardShop();
+        OnBuildShop();
+    }
+
+    private void OnSpecialCardShop()
+    {
+        // 기존에 있던 상품 목록 제거
+        foreach (Transform item in specialCardShopTrm)
         {
             Destroy(item.gameObject);
         }
 
         // 특수카드 상점
-        Dictionary<int, int> haveSpecialDic = DataManager.Instance.GetHaveSpecialCardDic();
-        List<SpecialCardSO> allSpecialCardSOList = DataManager.Instance.GetSpecialSOList();
-        foreach (SpecialCardSO itemSO in allSpecialCardSOList)
-        {
-            int itemID = itemSO.id;
-            GameObject shopItem = Instantiate(shopPrefab, specialCardShopTrm);
-            ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
+        SaveData saveData = DataManager.Instance.saveData;
 
-            // dic에 있으면 dic[id], 없으면 0 (갯수)
-            if(haveSpecialDic.ContainsKey(itemID))
+        // unlock 된 id list 뽑기
+        List<SpecialCardData> unlockSpecialCardList = new List<SpecialCardData>();
+
+        foreach (SpecialCardData itemData in saveData.speicialCardDataList)
+        {
+            if (itemData.isUnlock == true)
+                unlockSpecialCardList.Add(itemData);
+        }
+
+        // 거기서 랜덤으로 4개? 뽑기
+        for (int i = 0; i < unlockSpecialCardList.Count; i++)
+        {
+            int randomIndex = Random.Range(0, unlockSpecialCardList.Count);
+
+            SpecialCardData temp = unlockSpecialCardList[i];
+            unlockSpecialCardList[i] = unlockSpecialCardList[randomIndex];
+            unlockSpecialCardList[randomIndex] = temp;
+        }
+
+        // 그거 생성
+        for (int i = 0; i < sellItemCount; i++)
+        {
+            SpecialCardSO itemSO = DataManager.Instance.GetSpecialCardSO(unlockSpecialCardList[i].id);
+
+            if(itemSO != null)
             {
-                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, haveSpecialDic[itemID], itemSO.price);
+                GameObject shopItem = Instantiate(shopPrefab, specialCardShopTrm);
+                ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
+
+                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, unlockSpecialCardList[i].haveAmount, itemSO.price);
+
+                info.button.onClick.AddListener(() =>
+                {
+                    BuySpecial(itemSO);
+
+                    //OnSpecialCardShop();
+                });
             }
             else
             {
-                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, 0, itemSO.price);
+                Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
             }
+        }
+    }
 
-            info.button.onClick.AddListener(() =>
-            {
-                BuySpecial(itemSO);
-
-                OnShop();
-            });
-
+    private void OnBuildShop()
+    {
+        // 기존에 있던 상품 목록 제거
+        foreach (Transform item in buildShopTrm)
+        {
+            Destroy(item.gameObject);
         }
 
         // 건물 상점
-        Dictionary<int, int> haveBuildDic = DataManager.Instance.GetHaveBuildDic();
-        List<BuildSO> allBuildSOList = DataManager.Instance.GetBuildSOList();
-        foreach (BuildSO itemSO in allBuildSOList)
-        {
-            int itemID = itemSO.id;
-            GameObject shopItem = Instantiate(shopPrefab, buildShopTrm);
-            ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
+        SaveData saveData = DataManager.Instance.saveData;
 
-            // dic에 있으면 dic[id], 없으면 0 (갯수)
-            if(haveBuildDic.ContainsKey(itemID))
+        // unlock 된 id list 뽑기
+        List<BuildData> unlockBuildList = new List<BuildData>();
+
+        foreach (BuildData itemData in saveData.buildDataList)
+        {
+            if (itemData.isUnlock == true)
+                unlockBuildList.Add(itemData);
+        }
+
+        // 거기서 랜덤으로 4개? 뽑기
+        for (int i = 0; i < unlockBuildList.Count; i++)
+        {
+            int randomIndex = Random.Range(0, unlockBuildList.Count);
+
+            BuildData temp = unlockBuildList[i];
+            unlockBuildList[i] = unlockBuildList[randomIndex];
+            unlockBuildList[randomIndex] = temp;
+        }
+
+        // 그거 생성
+        for (int i = 0; i < sellItemCount; i++)
+        {
+            // 저장데이터에는 있는 id가 SO에 없을까봐
+            BuildSO itemSO = DataManager.Instance.GetBuildSO(unlockBuildList[i].id);
+
+            if(itemSO != null)
             {
-                info.Init(itemSO.buildName, null, itemSO.tooltip, itemSO.sprite, haveBuildDic[itemID], itemSO.price);
+                GameObject shopItem = Instantiate(shopPrefab, buildShopTrm);
+                ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
+
+                info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, unlockBuildList[i].haveAmount, itemSO.price);
+
+                info.button.onClick.AddListener(() =>
+                {
+                    BuyBuild(itemSO);
+
+                    //OnShop();
+                });
             }
             else
             {
-                info.Init(itemSO.buildName, null, itemSO.tooltip, itemSO.sprite, 0, itemSO.price);
+                Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
             }
-
-            info.button.onClick.AddListener(() =>
-            {
-                BuyBuild(itemSO);
-
-                OnShop();
-            });
         }
     }
 
@@ -111,7 +177,8 @@ public class ShopManager : MonoBehaviour
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
 
-            DataManager.Instance.AddSpecialCard(specialCardSO.id);
+            SaveData saveData = DataManager.Instance.saveData;
+            saveData.speicialCardDataList[specialCardSO.id].haveAmount++;
 
             //DataManager.Instance.Save();
         }
@@ -124,7 +191,8 @@ public class ShopManager : MonoBehaviour
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
 
-            DataManager.Instance.AddBuild(buildSO.id);
+            SaveData saveData = DataManager.Instance.saveData;
+            saveData.buildDataList[buildSO.id].haveAmount++;
 
             //DataManager.Instance.Save();
         }

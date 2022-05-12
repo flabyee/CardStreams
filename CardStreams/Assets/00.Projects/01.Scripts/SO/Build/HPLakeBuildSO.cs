@@ -5,6 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HPLakeBuild", menuName = "ScriptableObject/Build/HPLakeBuild")]
 public class HPLakeBuildSO : BuildSO
 {
+    [Header("SO")]
+    public IntValue hpValue;
+
+    public EventSO playerValueChangeEvnet;
+
+    [Header("Amount")]
+    public int healAmount;
+
     public override void AccessCard(Field field)
     {
 
@@ -14,11 +22,10 @@ public class HPLakeBuildSO : BuildSO
     {
         if (hpValue.RuntimeValue <= 6)
         {
-            hpValue.RuntimeValue += 1;
+            hpValue.RuntimeValue += healAmount;
 
             playerValueChangeEvnet.Occurred();
             OnFieldTooltip.Instance.ShowBuild(player.transform.position, sprite);
         }
-
     }
 }
