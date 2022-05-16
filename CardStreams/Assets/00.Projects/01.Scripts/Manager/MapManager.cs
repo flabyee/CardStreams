@@ -107,7 +107,6 @@ public class MapManager : MonoBehaviour
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
 
-        Debug.Log(fieldList.Count);
 
         afterMapCreateEvent.Occurred();
     }

@@ -548,6 +548,7 @@ MonoBehaviour:
   cardType: 0
   value: 0
   originValue: 0
+  buffList: []
 --- !u!114 &-3816892781402171327
 MonoBehaviour:
   m_ObjectHideFlags: 0
