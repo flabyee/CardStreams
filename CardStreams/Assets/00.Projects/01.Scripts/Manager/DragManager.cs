@@ -90,7 +90,7 @@ public class DragManager : MonoBehaviour
         // 카드가 일반 카드라면
         if(cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
         {
-            // 1. 설치가능한곳 인지 3, To Do : area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
+            // 1. 설치가능한곳 인지 3,  area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
             // 하는 이유 : 처음에 모든 필드의 상태가 not 이기 때문에
             if (area.field.fieldType == FieldType.able)
             {

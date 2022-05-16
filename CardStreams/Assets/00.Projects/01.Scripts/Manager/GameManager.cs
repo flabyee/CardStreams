@@ -71,9 +71,9 @@ public class GameManager : MonoBehaviour
     {
         StageDataSO stageData = DataManager.Instance.GetNowStageData();
         maxMoveCount = stageData.moveCount;
-        mobSpawnAmount = stageData.mobSpawnAmount;
+        mobSpawnAmount = stageData.firstMobSpawnAmount;
         mobSpawnIncreaseAmount = stageData.mobIncreaseAmount;
-        mobAttackAmount = stageData.mobAttackAmount;
+        mobAttackAmount = stageData.firstMobAttackAmount;
         mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
 
         GameStartEvent.Occurred();
@@ -161,7 +161,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         Vector3 movePos = MapManager.Instance.fieldList[MapManager.Instance.fieldList.Count - 1].transform.position;
-        Debug.Log(movePos);
         player.transform.DOMove(movePos, 0.25f);
     }
 
@@ -272,7 +271,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveStart()
     {
-        // To Do : 카드에 건물 효과 적용
+        // 카드에 건물 효과 적용
         for (int i = moveIndex; i < moveIndex + 4; i++)
         {
             MapManager.Instance.fieldList[i].OnAccessCard();
@@ -406,7 +405,7 @@ public class GameManager : MonoBehaviour
         {
             MoveEnd();
 
-            // To Do : 카드 뽑기
+            // 카드 뽑기
             MoveEndEvent.Occurred();
 
             return;

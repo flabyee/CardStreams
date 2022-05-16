@@ -14,64 +14,84 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   mapStr: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,1,2,3,0,0,0,0,0,0,27,0,0,4,0,0,0,23,24,25,26,0,0,5,0,0,0,22,0,0,0,0,0,6,7,0,0,21,20,0,0,0,0,0,8,0,0,0,19,18,0,0,0,0,9,0,0,0,0,17,16,0,0,11,10,0,0,0,0,0,15,14,13,12,0,0,0,0,0,0,0,0,0,0,0,0
+  moveCount: 4
+  isDeckShuffle: 1
   deck:
+  - cardType: 1
+    value: 4
+    dropAreaType: 1
+  - cardType: 1
+    value: 3
+    dropAreaType: 1
+  - cardType: 2
+    value: 2
+    dropAreaType: 1
+  - cardType: 2
+    value: 2
+    dropAreaType: 1
+  - cardType: 3
+    value: 1
+    dropAreaType: 1
+  - cardType: 3
+    value: 2
+    dropAreaType: 1
+  - cardType: 3
+    value: 1
+    dropAreaType: 1
+  - cardType: 4
+    value: 2
+    dropAreaType: 1
+  - cardType: 4
+    value: 2
+    dropAreaType: 1
+  - cardType: 4
+    value: 2
+    dropAreaType: 1
+  - cardType: 4
+    value: 5
+    dropAreaType: 1
+  - cardType: 4
+    value: 4
+    dropAreaType: 1
   - cardType: 1
     value: 2
     dropAreaType: 1
   - cardType: 1
-    value: 3
-    dropAreaType: 1
-  - cardType: 1
     value: 4
     dropAreaType: 1
   - cardType: 2
     value: 3
     dropAreaType: 1
   - cardType: 2
+    value: 1
+    dropAreaType: 1
+  - cardType: 3
+    value: 2
+    dropAreaType: 1
+  - cardType: 3
     value: 4
     dropAreaType: 1
-  - cardType: 2
+  - cardType: 3
+    value: 1
+    dropAreaType: 1
+  - cardType: 4
+    value: 2
+    dropAreaType: 1
+  - cardType: 4
     value: 5
     dropAreaType: 1
   - cardType: 4
     value: 3
     dropAreaType: 1
   - cardType: 4
-    value: 3
-    dropAreaType: 1
-  - cardType: 4
-    value: 3
+    value: 4
     dropAreaType: 1
   - cardType: 4
     value: 3
     dropAreaType: 1
-  - cardType: 4
-    value: 4
-    dropAreaType: 1
-  - cardType: 4
-    value: 4
-    dropAreaType: 1
-  - cardType: 4
-    value: 4
-    dropAreaType: 1
-  - cardType: 3
-    value: 2
-    dropAreaType: 1
-  - cardType: 3
-    value: 3
-    dropAreaType: 1
-  - cardType: 3
-    value: 3
-    dropAreaType: 1
-  - cardType: 3
-    value: 4
-    dropAreaType: 1
-  - cardType: 3
-    value: 4
-    dropAreaType: 1
-  moveCount: 4
-  isDeckShuffle: 1
-  mobSpawnAmount: 5
-  mobIncreaseAmount: 5
-  mobAttackAmount: 3
-  mobAttackIncreaseAmount: 1
+  firstDeckValueAmount: 0
+  deckValueIncreaseAmount: 10
+  firstMobSpawnAmount: 0
+  mobIncreaseAmount: 2
+  firstMobAttackAmount: 0
+  mobAttackIncreaseAmount: 2

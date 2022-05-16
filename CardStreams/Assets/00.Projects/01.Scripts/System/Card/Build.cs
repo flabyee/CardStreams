@@ -71,9 +71,10 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         foreach (Vector2 accessPoint in buildSO.accessPointList)
         {
 
+            // mapRectArr이 x는 왼쪽에서 오른쪽이지만, y는 위에서 아래라서 + 대신 -를 했다
             Field field = MapManager.Instance.mapRectArr[
-                Mathf.Clamp(Mathf.RoundToInt(accessPoint.y + myPoint.y), 0, 9),
-                Mathf.Clamp(Mathf.RoundToInt(accessPoint.x + myPoint.x), 0, 9)].GetComponent<Field>();
+                Mathf.Clamp(Mathf.RoundToInt(myPoint.y - accessPoint.y), 0, 9),
+                Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
             if(field != null)
             {
                 field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;
