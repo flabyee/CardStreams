@@ -9,7 +9,7 @@ public class PotionToItemCardSO : SpecialCardSO
     {
         // cardPower
         field.cardPower.cardType = Random.Range(0, 2) == 0 ? CardType.Sword : CardType.Sheild;
-        field.cardPower.SetValue(Random.Range(0, field.cardPower.value * 2));
+        field.cardPower.SetValue(Random.Range(1, field.cardPower.value * 2));
 
         Debug.Log("potion to item");
 

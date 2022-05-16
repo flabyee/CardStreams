@@ -9,7 +9,7 @@ public class ItemToPotionCardSO : SpecialCardSO
     {
         // cardPower
         field.cardPower.cardType = CardType.Potion;
-        field.cardPower.SetValue(Random.Range(0, field.cardPower.value * 2));
+        field.cardPower.SetValue(Random.Range(1, field.cardPower.value * 2));
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }
 }

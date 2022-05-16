@@ -8,7 +8,7 @@ public class RandomCardSO : SpecialCardSO
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower
-        field.cardPower.SetValue(Random.Range(1, 7));
+        field.cardPower.SetValue(Random.Range(1, field.cardPower.value + 2));
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }
