@@ -504,10 +504,13 @@ public class HandleManager : MonoBehaviour
 
     public void TurnEnd()
     {
+        
         deck.Clear();
 
         deckValueAmount -= deckValueIncreaseAmount;
         maxValue = Mathf.RoundToInt((float)maxValue * deckValueIncreaseMultipication);
+
+        Debug.Log(maxValue);
 
         deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
 

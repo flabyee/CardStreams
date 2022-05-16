@@ -8,6 +8,7 @@ public static class SaveSystem
 {
     private static int buildCount = 5;
     private static int specialCardCount = 9;
+
     /*
      * [SerializeField] private 하나를 인스펙터에 띄우고 저장가능으로 만듬
      * [HideInInspector] 인스펙터에 띄운걸 지움
@@ -69,6 +70,14 @@ public static class SaveSystem
             sr.Close();
         }
 
+        buildCount = Resources.Load<BuildListSO>(typeof(BuildListSO).Name).buildList.Count;
+        specialCardCount = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name).specialCardList.Count;
+        // 갯수가 다르면
+        if (saveData.buildDataList.Count != buildCount || saveData.speicialCardDataList.Count != specialCardCount)
+        {
+            return FirstSave();
+        }
+
         // 테스트용 Debug.Log 띄우기
         // #TODO : 아직없음 만들어야할지도?
         return saveData;
@@ -77,6 +86,9 @@ public static class SaveSystem
     public static SaveData FirstSave()
     {
         SaveData saveData = new SaveData();
+
+        buildCount = Resources.Load<BuildListSO>(typeof(BuildListSO).Name).buildList.Count;
+        specialCardCount = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name).specialCardList.Count;
 
         saveData.buildDataList = new List<BuildData>();
         saveData.speicialCardDataList = new List<SpecialCardData>();
