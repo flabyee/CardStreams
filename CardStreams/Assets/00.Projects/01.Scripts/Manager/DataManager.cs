@@ -33,7 +33,7 @@ public class DataManager : MonoBehaviour
         buildList = buildListSO.buildList;
 
         SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
-        specialCardList = specialListSO.specialCardListSO;
+        specialCardList = specialListSO.specialCardList;
 
         StageDataListSO stageDataListSO = Resources.Load<StageDataListSO>(typeof(StageDataListSO).Name);
         stageDataList = stageDataListSO.stageDataList;

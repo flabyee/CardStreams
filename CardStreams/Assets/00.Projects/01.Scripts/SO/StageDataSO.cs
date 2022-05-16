@@ -12,7 +12,6 @@ public class StageDataSO : ScriptableObject
 
     [Header("덱 관련 정보")]
     public bool isDeckShuffle;  // 덱을 섞을지, 튜토리얼에서는 안섞게 하고싶어서
-    public List<CardData> deck;
     public int firstDeckValueAmount;  // 초기 가중치 합
     public int deckValueIncreaseAmount; // 가중치 줄어드는 양
     public float deckValueIncreaseMultipication;  // 가중치 줄어드는 양의 배율
