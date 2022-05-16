@@ -5,17 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LifeStealBuffSO", menuName = "ScriptableObject/Buff/LifeStealBuffSO")]
 public class LifeStealBuffSO : BuffSO
 {
-    public override int BuffOn(int totalDamage)
+    public IntValue hpValue;
+    public IntValue swordValue;
+
+
+
+    public override void UseBuff(int prevDamage)
     {
-        // 공격
-        totalDamage -= swordValue.RuntimeValue;
-
-        // 회복
+        // 칼 공격력만큼 회복
         hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + swordValue.RuntimeValue, 0, hpValue.RuntimeMaxValue);
-
-        // 검은 사라짐
-        swordValue.RuntimeValue = 0;
-
-        return totalDamage;
     }
 }

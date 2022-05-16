@@ -17,7 +17,8 @@ public class CardPower : MonoBehaviour
     public int value;
     public int originValue;
 
-    public List<BuffSO> buffList = new List<BuffSO>();
+    // public List<BuffSO> buffList = new List<BuffSO>();
+    public List<Buff> buffList = new List<Buff>();
 
     public void SetData_Feild(CardType cardType, int value)
     {
@@ -59,9 +60,12 @@ public class CardPower : MonoBehaviour
         this.cardType = CardType.Build;
     }
 
-    public void AddBuffSO(BuffSO so)
+    public void AddBuff(Buff buff)
     {
-        buffList.Add(so);
+        if (buffList.Contains(buff)) return; // 대충 중복체크해서 없으면넣기
+        // 나중엔 중복되는버프 들어가게해줘야함
+
+        buffList.Add(buff);
     }
 
     public void ApplyUI()

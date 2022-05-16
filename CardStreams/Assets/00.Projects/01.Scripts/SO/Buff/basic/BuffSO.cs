@@ -5,21 +5,25 @@ using UnityEngine;
 public abstract class BuffSO : ScriptableObject
 {
     public int id;
+    public UseTiming timing; // 쓰는타이밍
+    public int remainTime; // 지속시간
     public string buffName;
     public Sprite buffIcon;
 
-    public bool isOneWork; // 한번쓰면 사라지는 버프?
+    // 원래는 쓰는자식한테만 대충 넣어놔야함
 
-    public IntValue hpValue;
-    public IntValue swordValue;
-    public IntValue shieldValue;
+    // public abstract int BuffOn(int prevDamage); //  버프 들어갈때 추가, 카드 사용될때 호출
 
-    public abstract int BuffOn(int prevDamage); //  버프 들어갈때 추가, 카드 사용될때 호출
-
-    public bool BuffOff() // 버프 이대로 꺼지나? 꺼지면 true
+    public void Init(Buff buff)
     {
-        // 여러번쓰는건 나중에여기다가 true/false 처리
+        buff.id = id;
+        buff.timing = timing;
+        buff.buffName = buffName;
+        buff.buffIcon = buffIcon;
+        buff.remainTime = remainTime;
 
-        return isOneWork;
+        buff.OnBuff += UseBuff; // 액션
     }
+
+    public abstract void UseBuff(int prevDamage); // 버프 특수기능들
 }
