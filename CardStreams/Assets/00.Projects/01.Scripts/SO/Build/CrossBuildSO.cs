@@ -14,7 +14,7 @@ public class CrossBuildSO : BuildSO
     {
         if (field.cardPower.cardType == CardType.Monster)
         {
-            field.cardPower.value -= minusMonsterAmount;
+            field.cardPower.SetValue(field.cardPower.value - minusMonsterAmount);
 
             TextMeshProUGUI text = field.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
             text.text = field.cardPower.value.ToString();

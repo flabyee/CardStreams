@@ -14,8 +14,8 @@ public class CardPower : MonoBehaviour
     [Header("Debug")]
     public DropAreaType dropAreaType;
     public CardType cardType;
-    public int value;
-    public int originValue;
+    public int value { get; private set; }
+    private int originValue;
 
     // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();

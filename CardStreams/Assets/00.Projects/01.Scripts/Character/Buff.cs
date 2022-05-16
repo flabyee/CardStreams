@@ -24,8 +24,6 @@ public class Buff
 
     public Action<int> OnBuff; // 인자 : 이전 데미지
 
-    public BuffSO useBuffSO; // 등록된(쓰는) 버프 SO
-
     public void BuffStart()
     {
         // 버프를 켜줍니다
@@ -54,6 +52,5 @@ public class Buff
     public void UseBuff(int prevDamage)
     {
         OnBuff(prevDamage);
-        // useBuffSO.UseBuff(); // SO에 있는 함수를 실행시켜줌
     }
 }

@@ -248,7 +248,7 @@ public class DragManager : MonoBehaviour
             GameManager.Instance.AddScore(2);
             //dragbleCard.isDestory = true;
 
-            cardPower.value = 0;
+            cardPower.SetValue(0);
             cardPower.ApplyUI();
 
             ObjectToOrigin(area, obj);

@@ -24,17 +24,16 @@ public static class SaveSystem
     {
         // 저장할 클래스를 Json으로 바꿔주기
         string saveJson = JsonUtility.ToJson(saveData, true);
-        Debug.Log("json : \n" + saveJson);
 
-        // Json 암호화해주기
-        string encryptJson = System.Convert.ToBase64String(Encoding.UTF8.GetBytes(saveJson));
+        // Json 암호화해주기 : ## 지금은 뺌
+        // string encryptJson = System.Convert.ToBase64String(Encoding.UTF8.GetBytes(saveJson));
 
         // using으로 Stream 조절(Dispose)
         using (StreamWriter sw = new StreamWriter(SaveFilePath, false, Encoding.UTF8)) // 경로 | 덮어쓰기 | UTF-8
         {
             // 암호화된 Json을 파일에 작성해주기 (StreamWriter ctor 옵션으로 Append/덮어씌우기 됨)
-            sw.WriteLine(encryptJson);
-            Debug.Log($"base64 인코딩 완료 : {encryptJson}");
+            sw.WriteLine(saveJson);
+            Debug.Log($"저장 완료 : {saveJson}");
 
             // Stream 닫기
             sw.Close();
@@ -57,13 +56,14 @@ public static class SaveSystem
         // using으로 Stream 조절(Dispose)
         using (StreamReader sr = new StreamReader(SaveFilePath, Encoding.UTF8)) // 경로 | UTF-8
         {
-            // Json 로드하기
+            // Json 로드하기  : ## 디코딩 지금은 뺌
             string loadJson = sr.ReadToEnd();
-            string decodeJson = Encoding.UTF8.GetString(System.Convert.FromBase64String(loadJson));
+            // string decodeJson = Encoding.UTF8.GetString(System.Convert.FromBase64String(loadJson));
             //Debug.Log($"base64 디코딩 완료 : {loadJson}");
 
             // 빈 클래스에 Json을 클래스로 덮어씌우기 #여기서 문제생길수있음
-            JsonUtility.FromJsonOverwrite(decodeJson, saveData);
+            JsonUtility.FromJsonOverwrite(loadJson, saveData);
+            Debug.Log("로드 완료 : " + loadJson);
 
             // Stream 닫기
             sr.Close();
@@ -93,17 +93,16 @@ public static class SaveSystem
 
         // 저장할 클래스를 Json으로 바꿔주기
         string saveJson = JsonUtility.ToJson(saveData, true);
-        Debug.Log("json : \n" + saveJson);
 
-        // Json 암호화해주기
-        string encryptJson = System.Convert.ToBase64String(Encoding.UTF8.GetBytes(saveJson));
+        // Json 암호화해주기 : ## 지금은 뺌
+        // string encryptJson = System.Convert.ToBase64String(Encoding.UTF8.GetBytes(saveJson));
 
         // using으로 Stream 조절(Dispose)
         using (StreamWriter sw = new StreamWriter(SaveFilePath, false, Encoding.UTF8)) // 경로 | 덮어쓰기 | UTF-8
         {
-            // 암호화된 Json을 파일에 작성해주기 (StreamWriter ctor 옵션으로 Append/덮어씌우기 됨)
-            sw.WriteLine(encryptJson);
-            Debug.Log($"base64 인코딩 완료 : {encryptJson}");
+            // Json을 파일에 작성해주기 (StreamWriter ctor 옵션으로 Append/덮어씌우기 됨)
+            sw.WriteLine(saveJson);
+            Debug.Log($"첫 저장 완료 : {saveJson}");
 
             // Stream 닫기
             sw.Close();

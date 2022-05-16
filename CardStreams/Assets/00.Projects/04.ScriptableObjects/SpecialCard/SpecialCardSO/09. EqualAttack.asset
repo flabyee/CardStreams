@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28233197e54281d41a489993acaca0c6, type: 3}
-  m_Name: 04.ItemToPotionCard
+  m_Script: {fileID: 11500000, guid: 0fcf6949e8dce1846b0c2a7e36f28885, type: 3}
+  m_Name: 09. EqualAttack
   m_EditorClassIdentifier: 
-  id: 4
-  specialCardName: "\uD3EC\uC154\uB098\uC774\uC988"
-  price: 2
-  tooltip: "\uCE7C\uC774\uB098 \uBC29\uD328\uB97C \uD3EC\uC158\uC73C\uB85C \uBC14\uAFB8\uACE0\n\uAC00\uCE58\uAC00
-    0~\uAE30\uC874*2\uB85C \uB79C\uB364\uD558\uAC8C \uBCC0\uD55C\uB2E4"
-  sprite: {fileID: 2383970454257503764, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
+  id: 9
+  specialCardName: "\uD3C9\uADE0\uD68C\uADC0"
+  price: 4
+  tooltip: "\uB0B4 \uCCB4\uB825\uACFC \uBC29\uC5B4\uAC00 \uAC19\uC744 \uACBD\uC6B0
+    \uBAAC\uC2A4\uD130 \uAC00\uCE58 0"
+  sprite: {fileID: 21300000, guid: e7e42f67a32c23642ac1497d885d2041, type: 3}
   applyTiming: 1
-  targetTypeList: 0100000002000000
+  targetTypeList: 04000000
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}
   shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}
