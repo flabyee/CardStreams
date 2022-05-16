@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
                     cardPower.backImage.color = Color.magenta;
 
                     // craete effect
-                    //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldRectList[i].transform.position);
+                    EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[i].transform.position);
                 }
             }
 
@@ -249,6 +249,7 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnd()
     {
+        Debug.Log(moveIndex);
         // 이전 4개의 필드
         for (int i = moveIndex - 4; i < moveIndex; i++)
         {
@@ -371,7 +372,7 @@ public class GameManager : MonoBehaviour
                 // 전부 다 배치안했으면 move 안됨
                 if(MapManager.Instance.fieldList[i].cardPower == null)
                 {
-                    //return;
+                    return;
                 }
             }
 

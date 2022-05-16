@@ -68,7 +68,7 @@ public class SpecialCardTooltip : MonoBehaviour
         infoText.text = tooltipStr;
         backgroundImage.sprite = sprite;
 
-        pos.x += 30;
+        //pos.x += 50;
         transform.position = pos;
 
         gameObject.SetActive(true);

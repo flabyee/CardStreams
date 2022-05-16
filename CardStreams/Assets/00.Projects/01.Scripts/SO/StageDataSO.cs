@@ -15,6 +15,7 @@ public class StageDataSO : ScriptableObject
     public List<CardData> deck;
     public int firstDeckValueAmount;  // 초기 가중치 합
     public int deckValueIncreaseAmount; // 가중치 줄어드는 양
+    public float deckValueIncreaseMultipication;  // 가중치 줄어드는 양의 배율
 
 
     [Header("랜덤 몹 관련 정보")]

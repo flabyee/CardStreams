@@ -32,6 +32,8 @@ public class HandleManager : MonoBehaviour
 
     private int deckValueAmount;        
     private int deckValueIncreaseAmount;
+    private float deckValueIncreaseMultipication;
+
     private int maxValue;
 
     private void Awake()
@@ -48,6 +50,7 @@ public class HandleManager : MonoBehaviour
 
         deckValueAmount = stageData.firstDeckValueAmount;
         deckValueIncreaseAmount = stageData.deckValueIncreaseAmount;
+        deckValueIncreaseMultipication = stageData.deckValueIncreaseMultipication;
         maxValue = 5;
 
         DeckMake();
@@ -324,19 +327,18 @@ public class HandleManager : MonoBehaviour
                 {
                     return DrawCardM();
                 }
-                else
-                {
-                    DeckShuffle(originDeck);
-                    foreach (CardData item in originDeck)
-                    {
-                        deck.Add(item);
-                    }
-
-                    DeckShuffle(deck);
-
-                    return DrawCardM();
-                }
             }
+
+            // 하나도 없으면 덱 추가하고 다시 뽑기
+            DeckShuffle(originDeck);
+            foreach (CardData item in originDeck)
+            {
+                deck.Add(item);
+            }
+
+            DeckShuffle(deck);
+
+            return DrawCardM();
         }
         else
         {
@@ -505,7 +507,9 @@ public class HandleManager : MonoBehaviour
         deck.Clear();
 
         deckValueAmount -= deckValueIncreaseAmount;
-        maxValue++;
+        maxValue = Mathf.RoundToInt((float)maxValue * deckValueIncreaseMultipication);
+
+        deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
 
         DeckMake();
     }
