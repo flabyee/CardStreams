@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 
     public void OnFeild(Field field)
     {
+        buffCon.UseBuffs(UseTiming.MoveEnd, 0);
+
         switch (field.cardPower.cardType)
         {
             case CardType.Potion:
@@ -57,12 +59,14 @@ public class Player : MonoBehaviour
                 OnMonster(field);
                 break;
 
+            
             default:
                 Debug.Log("카드 타입이 null");
                 break;
         }
 
         playerValueChangeEvent.Occurred();
+        
 
         OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower.cardType);
 

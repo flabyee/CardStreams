@@ -48,7 +48,7 @@ public class ShopManager : MonoBehaviour
         shopPanel.SetActive(false);
     }
 
-    private void OnShop()
+    public void OnShop()
     {
 
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b42562f22a78b04e95e1e01c034af5c, type: 3}
   m_Name: SpecialCardListSO
   m_EditorClassIdentifier: 
-  specialCardListSO:
+  specialCardList:
   - {fileID: 11400000, guid: 0e2df49ce96f91747886d61f37cf6aaa, type: 2}
   - {fileID: 11400000, guid: bcbc64c9ed8445440817f5ba7e1b791f, type: 2}
   - {fileID: 11400000, guid: 97b98956fbbdfdb4783075930fc62ec1, type: 2}
@@ -25,3 +25,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e0f9ffc0c1afb042b29afe2f2e21702, type: 2}
   - {fileID: 11400000, guid: 39f77de889858db488b59bfa16e3a29d, type: 2}
   - {fileID: 11400000, guid: 56ac3124a8289394cafdb27dadf0c2d5, type: 2}
+  - {fileID: 11400000, guid: 692251430e6a15847b536fca067c7615, type: 2}
