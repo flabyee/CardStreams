@@ -25,11 +25,23 @@ public class GameManager : MonoBehaviour
 
 
     [Header("System")]
-    public Player player;
-    public GameObject cardPrefab;
     private bool isMoving;  // move중일때 또 next를 누르지 못하게
     [SerializeField] float moveDuration;
     [SerializeField] float lastDuration;
+
+    [HideInInspector]public int rerollCount;
+
+    public bool canStartTurn;
+
+    [Header("UI")]
+    public Player player;
+    public GameObject cardPrefab;
+    public GameObject coinPrefab;
+    private List<GameObject> coinObjList = new List<GameObject>();
+    public GameObject coinObjParent;
+    public GameObject goldTextObj;
+
+    // stageData
     private int maxMoveCount = 3;  // n
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
@@ -39,7 +51,6 @@ public class GameManager : MonoBehaviour
     private int mobAttackIncreaseAmount;    // 몹 공격력 증가량
 
 
-    [HideInInspector]public int rerollCount;
 
     [Header("IntValue")]
     public IntValue goldValue;
@@ -280,29 +291,76 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
         {
-            CardPower cardPower = MapManager.Instance.fieldList[i].cardPower;
+            Field nowField = MapManager.Instance.fieldList[i];
+
+            CardPower cardPower = nowField.cardPower;
             if (cardPower.cardType == CardType.Monster)
             {
-                AddScore(cardPower.value * 2);
-
                 // 제거
                 MapManager.Instance.fieldList[i].FieldReset();
-                Debug.Log(i);
 
                 // effect
-                EffectManager.Instance.GetJungSanEffect(MapManager.Instance.fieldList[i].transform.position);
+                EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
+
+                // coin 생성
+                for (int j = 0; j < cardPower.value * 2; j++)
+                {
+                    float angle = (360f / (cardPower.value * 2)) * j;
+                    GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
+
+                    if (coinObj == null)
+                    {
+                        coinObj = Instantiate(coinPrefab, coinObjParent.transform);
+                        coinObjList.Add(coinObj);
+                    }
+
+                    coinObj.SetActive(true);
+
+
+                    coinObj.transform.DOMove(nowField.transform.position, 0);
+
+                    Vector3 pos = nowField.transform.position;
+
+                    float R = 0.5f;
+                    pos.x = Mathf.Cos(angle * Mathf.Deg2Rad) * R + pos.x;
+                    pos.y = Mathf.Sin(angle * Mathf.Deg2Rad) * R + pos.y;
+                    coinObj.transform.DOMove(pos, 0.25f);
+                }
+
+                yield return new WaitForSeconds(0.25f);
             }
             else
             {
                 // 제거
-                MapManager.Instance.fieldList[i].FieldReset();
-                Debug.Log(i);
+                nowField.FieldReset();
             }
 
             yield return new WaitForSeconds(lastDuration);
         }
 
+        // 돈 들어오는 연출
+        foreach(GameObject coinObj in coinObjList)
+        {
+            if(coinObj.activeSelf == true)
+            {
+                StartCoroutine(CoinMoveCor(coinObj));
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
         FieldResetAfter.Occurred();
+    }
+
+    private IEnumerator CoinMoveCor(GameObject coinObj)
+    {
+        coinObj.transform.DOMove(goldTextObj.transform.position, 0.5f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        AddScore(1);
+
+        coinObj.SetActive(false);
     }
 
     public void MoveStart()
