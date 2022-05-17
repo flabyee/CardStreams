@@ -41,7 +41,7 @@ public class BuildSO : ScriptableObject
 
     }
 
-    public virtual void AccessTurnEnd()
+    public virtual void AccessTurnEnd(Vector3 buildPos)
     {
         
     }

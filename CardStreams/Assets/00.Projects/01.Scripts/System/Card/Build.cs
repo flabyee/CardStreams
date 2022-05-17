@@ -79,13 +79,13 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;
                 field.accessBuildToCardAfterMoveStart += buildSO.AccessCard;
-
-                Debug.Log(field.dropArea.point);
             }
         }
 
+
         // 턴 엔드 효과 실행 리스트에 추가 (예시 : 돈버는 건물)
-        BuildManager.Instance.OnBuildWhenTurnEnd += buildSO.AccessTurnEnd;
+        //BuildManager.Instance.OnBuildWhenTurnEnd += buildSO.AccessTurnEnd;
+        BuildManager.Instance.OnBuildWhenTurnEndList.Add(new ActionPosData(buildSO.AccessTurnEnd, gameObject));
     }
 
 

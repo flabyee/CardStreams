@@ -7,12 +7,15 @@ public class GoldAnimManager : MonoBehaviour
 {
     public static GoldAnimManager Instance;
 
-    private List<GoldAnimData> goldAnimDataList;
-
     public GameObject coinPrefab;
     private List<GameObject> coinObjList = new List<GameObject>();
     public GameObject coinObjParent;
     public GameObject goldTextObj;
+
+    [Header("System")]
+    public float coinCreateDelay;
+    [SerializeField] private int earnSystemCount;
+    private int count;  // 리스트에 추가할때마다 이걸 더하고 이게 2면 골드 생성
 
     public IntValue goldValue;
     public EventSO FieldResetAfterEvnet;
@@ -27,17 +30,12 @@ public class GoldAnimManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddGoldAnim(GoldAnimData data)
-    {
-        goldAnimDataList.Add(data);
-    }
-
-    public IEnumerator JungSanCor(int amount, Vector3 pos)
+    public void CreateCoin(int amount, Vector3 centerPos)
     {
         // coin 생성
         for (int j = 0; j < amount; j++)
         {
-            float angle = (360f / amount) * j;
+            float theta = (360f / amount) * j;
             GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
 
             if (coinObj == null)
@@ -46,16 +44,30 @@ public class GoldAnimManager : MonoBehaviour
                 coinObjList.Add(coinObj);
             }
 
+            coinObj.transform.position = centerPos;
+
             coinObj.SetActive(true);
 
-
-            coinObj.transform.DOMove(pos, 0);
-
-            pos.x = Mathf.Cos(angle * Mathf.Deg2Rad) * R + pos.x;
-            pos.y = Mathf.Sin(angle * Mathf.Deg2Rad) * R + pos.y;
-            coinObj.transform.DOMove(pos, 0.25f);
+            Vector3 movePos = Vector3.zero;
+            movePos.x = Mathf.Cos(theta * Mathf.Deg2Rad) * R + centerPos.x;
+            movePos.y = Mathf.Sin(theta * Mathf.Deg2Rad) * R + centerPos.y;
+            coinObj.transform.DOMove(movePos, 0.25f);
         }
+    }
 
+    public void GetAllCoin()
+    {
+        count++;
+        if(count == earnSystemCount)
+        {
+            count = 0;
+
+            StartCoroutine(GetCoinCor());
+        }
+    }
+
+    private IEnumerator GetCoinCor()
+    {
         // 돈 들어오는 연출
         foreach (GameObject coinObj in coinObjList)
         {
@@ -85,17 +97,5 @@ public class GoldAnimManager : MonoBehaviour
     {
         goldValue.RuntimeValue += amount;
         GoldChangeEvent.Occurred();
-    }
-}
-
-public class GoldAnimData
-{
-    public int amount;
-    public Vector3 pos;
-
-    public GoldAnimData(int amount, Vector3 pos)
-    {
-        this.amount = amount;
-        this.pos = pos;
     }
 }

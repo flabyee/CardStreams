@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
         switch (field.cardPower.cardType)
         {
             case CardType.Potion:
-                Debug.Log("OnPotion Entry");
                 OnPotion(field);
                 break;
 
@@ -62,7 +61,7 @@ public class Player : MonoBehaviour
 
             
             default:
-                Debug.Log("카드 타입이 null");
+                Debug.LogError("카드 타입이 null");
                 break;
         }
 

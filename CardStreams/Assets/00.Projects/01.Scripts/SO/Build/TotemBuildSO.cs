@@ -7,8 +7,8 @@ public class TotemBuildSO : BuildSO
 {
     public IntValue turnCountValue;
 
-    public override void AccessTurnEnd()
-    {
-        turnCountValue.RuntimeValue -= 1;    
-    }
+    //public override void AccessTurnEnd()
+    //{
+    //    turnCountValue.RuntimeValue -= 1;    
+    //}
 }

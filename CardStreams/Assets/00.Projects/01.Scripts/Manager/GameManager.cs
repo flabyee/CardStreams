@@ -36,10 +36,6 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public Player player;
     public GameObject cardPrefab;
-    public GameObject coinPrefab;
-    private List<GameObject> coinObjList = new List<GameObject>();
-    public GameObject coinObjParent;
-    public GameObject goldTextObj;
 
     // stageData
     private int maxMoveCount = 3;  // n
@@ -282,8 +278,6 @@ public class GameManager : MonoBehaviour
         // 정산
         StartCoroutine(JungSanCor());
 
-        
-
         // NextTurnEvent에서 TurnStart를 해준다
     }
 
@@ -296,71 +290,27 @@ public class GameManager : MonoBehaviour
             CardPower cardPower = nowField.cardPower;
             if (cardPower.cardType == CardType.Monster)
             {
-                // 제거
+                // 필드 리셋
                 MapManager.Instance.fieldList[i].FieldReset();
 
                 // effect
                 EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
 
                 // coin 생성
-                for (int j = 0; j < cardPower.value * 2; j++)
-                {
-                    float angle = (360f / (cardPower.value * 2)) * j;
-                    GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
-
-                    if (coinObj == null)
-                    {
-                        coinObj = Instantiate(coinPrefab, coinObjParent.transform);
-                        coinObjList.Add(coinObj);
-                    }
-
-                    coinObj.SetActive(true);
-
-
-                    coinObj.transform.DOMove(nowField.transform.position, 0);
-
-                    Vector3 pos = nowField.transform.position;
-
-                    float R = 0.5f;
-                    pos.x = Mathf.Cos(angle * Mathf.Deg2Rad) * R + pos.x;
-                    pos.y = Mathf.Sin(angle * Mathf.Deg2Rad) * R + pos.y;
-                    coinObj.transform.DOMove(pos, 0.25f);
-                }
+                GoldAnimManager.Instance.CreateCoin(cardPower.value * 2, nowField.transform.position);
 
                 yield return new WaitForSeconds(0.25f);
             }
             else
             {
-                // 제거
+                // 필드 리셋
                 nowField.FieldReset();
-            }
-
-            yield return new WaitForSeconds(lastDuration);
-        }
-
-        // 돈 들어오는 연출
-        foreach(GameObject coinObj in coinObjList)
-        {
-            if(coinObj.activeSelf == true)
-            {
-                StartCoroutine(CoinMoveCor(coinObj));
             }
         }
 
         yield return new WaitForSeconds(1f);
 
-        FieldResetAfter.Occurred();
-    }
-
-    private IEnumerator CoinMoveCor(GameObject coinObj)
-    {
-        coinObj.transform.DOMove(goldTextObj.transform.position, 0.5f);
-
-        yield return new WaitForSeconds(0.5f);
-
-        AddScore(1);
-
-        coinObj.SetActive(false);
+        GoldAnimManager.Instance.GetAllCoin();
     }
 
     public void MoveStart()
@@ -508,4 +458,4 @@ public class GameManager : MonoBehaviour
 
         Move();
     }
-}
+}    

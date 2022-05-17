@@ -13,11 +13,13 @@ public class EarnGoldBuildSO : BuildSO
     [Header("Amount")]
     public int earnAmount;
 
-    public override void AccessTurnEnd()
+    public override void AccessTurnEnd(Vector3 buildPos)
     {
-        goldValue.RuntimeValue += earnAmount;
+        //goldValue.RuntimeValue += earnAmount;
 
-        goldChangeEvnet.Occurred();
+        //goldChangeEvnet.Occurred();
+
+        GoldAnimManager.Instance.CreateCoin(earnAmount, buildPos);
     }
 
 }

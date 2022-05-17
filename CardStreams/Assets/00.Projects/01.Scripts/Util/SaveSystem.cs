@@ -64,7 +64,7 @@ public static class SaveSystem
 
             // 빈 클래스에 Json을 클래스로 덮어씌우기 #여기서 문제생길수있음
             JsonUtility.FromJsonOverwrite(loadJson, saveData);
-            Debug.Log("로드 완료 : " + loadJson);
+            //Debug.Log("로드 완료 : " + loadJson);
 
             // Stream 닫기
             sr.Close();

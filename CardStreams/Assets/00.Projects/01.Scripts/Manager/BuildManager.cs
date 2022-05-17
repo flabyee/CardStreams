@@ -13,6 +13,8 @@ public class BuildManager : MonoBehaviour
     public Action OnBuildWhenMoveStart;
     public Action OnBuildWhenMoveEnd;
 
+    public List<ActionPosData> OnBuildWhenTurnEndList = new List<ActionPosData>();
+
     private void Awake()
     {
         if(Instance == null)
@@ -32,7 +34,13 @@ public class BuildManager : MonoBehaviour
 
     public void TurnEnd()
     {
-        OnBuildWhenTurnEnd?.Invoke();
+        //OnBuildWhenTurnEnd?.Invoke();
+        foreach(ActionPosData data in OnBuildWhenTurnEndList)
+        {
+            data.action(data.obj.transform.position);
+        }
+
+        GoldAnimManager.Instance.GetAllCoin();
     }
 
     public void MoveStart()
@@ -43,5 +51,17 @@ public class BuildManager : MonoBehaviour
     public void MoveEnd()
     {
         OnBuildWhenMoveEnd?.Invoke();
+    }
+}
+
+public class ActionPosData
+{
+    public Action<Vector3> action;
+    public GameObject obj;
+
+    public ActionPosData(Action<Vector3> action, GameObject obj)
+    {
+        this.action = action;
+        this.obj = obj;
     }
 }
