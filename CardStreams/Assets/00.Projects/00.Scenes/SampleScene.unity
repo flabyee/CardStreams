@@ -11493,7 +11493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDuration: 0.25
-  lastDuration: 0.15
+  lastDuration: 0.1
   rerollCount: 0
   canStartTurn: 0
   player: {fileID: 981051407}

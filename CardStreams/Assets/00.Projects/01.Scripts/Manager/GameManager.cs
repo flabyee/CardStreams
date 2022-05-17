@@ -187,51 +187,9 @@ public class GameManager : MonoBehaviour
                 field.fieldType = FieldType.yet;
             }
 
-            // 턴시작시 몬스터? 설치불가타일? 생성
-            bool[] isMonster = new bool[30];
-            for (int i = 1; i < MapManager.Instance.fieldList.Count - 1; i++)
-            {
-                if (i < mobSpawnAmount + 1)
-                    isMonster[i] = true;
-                else
-                    isMonster[i] = false;
-            }
-            for (int i = 1; i < MapManager.Instance.fieldList.Count; i++)
-            {
-                int j = UnityEngine.Random.Range(1, MapManager.Instance.fieldList.Count - 1);
-                bool temp = isMonster[i];
-                isMonster[i] = isMonster[j];
-                isMonster[j] = temp;
-            }
-            for (int i = 1; i < MapManager.Instance.fieldList.Count - 1; i++)
-            {
-                if (isMonster[i] == true)
-                {
-                    int value = mobAttackAmount; // 생성되는 몬스터의 값
 
-                    // 새로운 카드 생성
-                    GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[i].transform);
-                    DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-                    CardPower cardPower = cardObj.GetComponent<CardPower>();
-
-                    // cardPower에 정보 넣기
-                    dragbleCard.SetData_Feild(CardType.Monster, value);
-
-                    // 못 움직이게
-                    dragbleCard.canDragAndDrop = false;
-
-                    // 필드에 적용 + not으로
-                    MapManager.Instance.fieldList[i].cardPower = cardPower;
-                    MapManager.Instance.fieldList[i].dragbleCard = dragbleCard;
-                    MapManager.Instance.fieldList[i].fieldType = FieldType.not;
-
-                    // 배경색 변경
-                    cardPower.backImage.color = Color.magenta;
-
-                    // craete effect
-                    EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[i].transform.position);
-                }
-            }
+            // 랜덤 몹 생성
+            CreateRandomMob();
 
             // 앞에 3칸 활성화
             for (int i = 0; i < maxMoveCount; i++) 
@@ -253,6 +211,55 @@ public class GameManager : MonoBehaviour
 
             // 카드 뽑기
             TurnStartEvent.Occurred();
+        }
+    }
+
+    private void CreateRandomMob()
+    {
+        // 턴시작시 몬스터? 설치불가타일? 생성
+        bool[] isMonster = new bool[30];
+        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
+        {
+            if (i < mobSpawnAmount)
+                isMonster[i] = true;
+            else
+                isMonster[i] = false;
+        }
+        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
+        {
+            int j = UnityEngine.Random.Range(0, MapManager.Instance.fieldList.Count);
+            bool temp = isMonster[i];
+            isMonster[i] = isMonster[j];
+            isMonster[j] = temp;
+        }
+        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
+        {
+            if (isMonster[i] == true)
+            {
+                int value = mobAttackAmount; // 생성되는 몬스터의 값
+
+                // 새로운 카드 생성
+                GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[i].transform);
+                DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+                CardPower cardPower = cardObj.GetComponent<CardPower>();
+
+                // cardPower에 정보 넣기
+                dragbleCard.SetData_Feild(CardType.Monster, value);
+
+                // 못 움직이게
+                dragbleCard.canDragAndDrop = false;
+
+                // 필드에 적용 + not으로
+                MapManager.Instance.fieldList[i].cardPower = cardPower;
+                MapManager.Instance.fieldList[i].dragbleCard = dragbleCard;
+                MapManager.Instance.fieldList[i].fieldType = FieldType.not;
+
+                // 배경색 변경
+                cardPower.backImage.color = Color.magenta;
+
+                // craete effect
+                EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[i].transform.position);
+            }
         }
     }
 
@@ -297,7 +304,7 @@ public class GameManager : MonoBehaviour
                 EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
 
                 // coin 생성
-                GoldAnimManager.Instance.CreateCoin(cardPower.value * 2, nowField.transform.position);
+                GoldAnimManager.Instance.CreateCoin(cardPower.value, nowField.transform.position);
 
                 yield return new WaitForSeconds(0.25f);
             }
