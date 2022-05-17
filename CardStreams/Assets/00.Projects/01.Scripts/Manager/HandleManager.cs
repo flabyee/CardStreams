@@ -510,8 +510,6 @@ public class HandleManager : MonoBehaviour
         deckValueAmount -= deckValueIncreaseAmount;
         maxValue = Mathf.RoundToInt((float)maxValue * deckValueIncreaseMultipication);
 
-        Debug.Log(maxValue);
-
         deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
 
         DeckMake();

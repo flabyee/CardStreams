@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3a93a6091e2094a9cc71bf2576ba92, type: 3}
-  m_Name: StageNum
+  m_Script: {fileID: 11500000, guid: e0e0fb043a9fab947b2a861e5fc8091d, type: 3}
+  m_Name: FieldResetEnd
   m_EditorClassIdentifier: 
-  InitialValue: 4
-  InitialMaxValue: 0

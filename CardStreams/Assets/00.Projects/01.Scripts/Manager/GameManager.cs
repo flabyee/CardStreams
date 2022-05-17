@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject cardPrefab;
     private bool isMoving;  // move중일때 또 next를 누르지 못하게
-    [SerializeField] float duration;
+    [SerializeField] float moveDuration;
+    [SerializeField] float lastDuration;
     private int maxMoveCount = 3;  // n
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     public EventSO GameStartEvent;
     public EventSO TurnStartEvent;
     public EventSO TurnEndEvent;
+    public EventSO FieldResetAfter;
     public EventSO MoveStartEvent;
     public EventSO MoveEndEvent;
 
@@ -231,7 +233,7 @@ public class GameManager : MonoBehaviour
                 {
                     MapManager.Instance.fieldList[i].fieldType = FieldType.able;
 
-                    MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.nowFieldSprite;
+                    MapManager.Instance.fieldList[i].background.sprite = ConstManager.Instance.nowFieldSprite;
                 }
             }
 
@@ -249,7 +251,6 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnd()
     {
-        Debug.Log(moveIndex);
         // 이전 4개의 필드
         for (int i = moveIndex - 4; i < moveIndex; i++)
         {
@@ -259,15 +260,49 @@ public class GameManager : MonoBehaviour
             // drag and drop 못하게
             MapManager.Instance.fieldList[i].dragbleCard.canDragAndDrop = false;
 
-            MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.originFieldSprite;
+            MapManager.Instance.fieldList[i].background.sprite = ConstManager.Instance.originFieldSprite;
         }
 
         moveIndex = 0;
         moveCount = 0;
         isMoving = false;
 
-        // NextTurnEvent에서 TurnStart를 해준다
 
+        // 정산
+        StartCoroutine(JungSanCor());
+
+        
+
+        // NextTurnEvent에서 TurnStart를 해준다
+    }
+
+    public IEnumerator JungSanCor()
+    {
+        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
+        {
+            CardPower cardPower = MapManager.Instance.fieldList[i].cardPower;
+            if (cardPower.cardType == CardType.Monster)
+            {
+                AddScore(cardPower.value * 2);
+
+                // 제거
+                MapManager.Instance.fieldList[i].FieldReset();
+                Debug.Log(i);
+
+                // effect
+                EffectManager.Instance.GetJungSanEffect(MapManager.Instance.fieldList[i].transform.position);
+            }
+            else
+            {
+                // 제거
+                MapManager.Instance.fieldList[i].FieldReset();
+                Debug.Log(i);
+            }
+
+            yield return new WaitForSeconds(lastDuration);
+        }
+
+        FieldResetAfter.Occurred();
     }
 
     public void MoveStart()
@@ -297,7 +332,7 @@ public class GameManager : MonoBehaviour
             // drag and drop 못하게
             MapManager.Instance.fieldList[i].dragbleCard.canDragAndDrop = false;
 
-            MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.originFieldSprite;
+            MapManager.Instance.fieldList[i].background.sprite = ConstManager.Instance.originFieldSprite;
         }
 
         // 다음 필드(fieldType 변경)
@@ -308,7 +343,7 @@ public class GameManager : MonoBehaviour
                 MapManager.Instance.fieldList[i].fieldType = FieldType.able;
             }
 
-            MapManager.Instance.fieldList[i].image.sprite = ConstManager.Instance.nowFieldSprite;
+            MapManager.Instance.fieldList[i].background.sprite = ConstManager.Instance.nowFieldSprite;
         }
     }
 
@@ -334,7 +369,7 @@ public class GameManager : MonoBehaviour
                 MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
             }
         });
-        sequence.AppendInterval(duration);
+        sequence.AppendInterval(moveDuration);
 
         // 플레이어한테 필드 효과 적용ㅇ
         sequence.AppendCallback(() =>
@@ -344,7 +379,7 @@ public class GameManager : MonoBehaviour
                 player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
             }
         });
-        sequence.AppendInterval(duration);
+        sequence.AppendInterval(moveDuration);
 
         // 플레이어한테 건물효과 적용
         sequence.AppendCallback(() =>
@@ -352,7 +387,7 @@ public class GameManager : MonoBehaviour
             MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
             //Debug.Log("player apply build");
         });
-        sequence.AppendInterval(duration);
+        sequence.AppendInterval(moveDuration);
 
         sequence.AppendCallback(() => {
             moveIndex++;

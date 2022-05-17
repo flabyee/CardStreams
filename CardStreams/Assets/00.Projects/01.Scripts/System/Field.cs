@@ -19,7 +19,7 @@ public enum FieldType
 
 public class Field : MonoBehaviour
 {
-    public Image image;
+    public Image background;
 
     public FieldType fieldType = FieldType.NULL;
 
@@ -48,11 +48,12 @@ public class Field : MonoBehaviour
     {
         accessBuildToCardAfterMoveStart?.Invoke(this);
     }
-    public void OnfieldReset()
+
+    public void FieldReset()
     {
-        if(transform.childCount > 0)
+        if(dragbleCard != null)
         {
-            Destroy(transform.GetChild(0).gameObject);
+            Destroy(dragbleCard.gameObject);
         }
 
         ResetData();

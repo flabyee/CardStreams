@@ -100,9 +100,6 @@ public class Player : MonoBehaviour
 
     private void OnMonster(Field field)
     {
-        GameManager.Instance.AddScore(field.cardPower.value * 2);
-
-
         buffCon.UseBuffs(UseTiming.BeforeSword, -1); // 0은 아무의미도없음 int? 나중에
 
         int currentMonsterValue = field.cardPower.value - swordValue.RuntimeValue;
