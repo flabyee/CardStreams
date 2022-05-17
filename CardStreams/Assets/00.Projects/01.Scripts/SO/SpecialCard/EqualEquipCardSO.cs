@@ -15,6 +15,8 @@ public class EqualEquipCardSO : SpecialCardSO
             shieldValue.RuntimeValue = sum / 2;
         }
 
-        OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
+        // 플레이어한테 쓰는거라 field 아닌 player 위치
+        OnFieldTooltip.Instance.ShowBuild(player.transform.position, sprite);
+        playerValueChangeEvent.Occurred();
     }
 }

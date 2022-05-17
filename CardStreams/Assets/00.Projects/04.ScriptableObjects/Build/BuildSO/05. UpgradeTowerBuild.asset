@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   buildName: "\uC9C4\uD654\uC7A5"
-  price: 20
+  price: 10
   tooltip: "\uBC94\uC704 \uC548\uC758 \uBAA8\uB4E0 \uCE74\uB4DC +2"
   sprite: {fileID: -3241013192994710432, guid: d2646cfba3bd9a64996697158b10f8b9, type: 3}
   accessPointList:

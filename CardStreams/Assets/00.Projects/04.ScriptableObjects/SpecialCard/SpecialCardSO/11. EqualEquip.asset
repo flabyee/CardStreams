@@ -17,8 +17,8 @@ MonoBehaviour:
   price: 3
   tooltip: "\uCE7C\uACFC \uBC29\uD328\uC758 \uC218\uCE58\uB97C \uAC19\uAC8C \uD55C\uB2E4"
   sprite: {fileID: -2175433389777405958, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
-  applyTiming: 1
-  targetTypeList: 0100000002000000
+  applyTiming: 4
+  targetTypeList: 
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}
   shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}

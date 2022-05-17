@@ -20,6 +20,9 @@ public class DragManager : MonoBehaviour
     public DropArea rerollDropArea;
     public RectTransform rerollTrm;
 
+    public DropArea useDropArea;
+    public RectTransform useTrm;
+
     public DropArea hoverDropArea;
     public RectTransform hoverTrm;
 
@@ -27,13 +30,13 @@ public class DragManager : MonoBehaviour
 
     private void Start()
     {
-        foreach(DropArea dropArea in DropArea.dropAreas)
+        foreach (DropArea dropArea in DropArea.dropAreas)
         {
-            if(dropArea.dropAreaType == DropAreaType.feild)
+            if (dropArea.dropAreaType == DropAreaType.feild)
             {
                 feildDropAreaList.Add(dropArea);
             }
-            else if(dropArea.dropAreaType == DropAreaType.build)
+            else if (dropArea.dropAreaType == DropAreaType.build)
             {
                 buildDropAreaList.Add(dropArea);
             }
@@ -63,6 +66,9 @@ public class DragManager : MonoBehaviour
         rerollDropArea.onLifted += ObjectLiftedFromReroll;
         rerollDropArea.onDropped += ObjectDroppedToReroll;
 
+        useDropArea.onLifted += ObjectLiftedFromUse;
+        useDropArea.onDropped += ObjectDroppedToUse;
+
         hoverDropArea.onLifted += ObjectLiftedFromHover;
         hoverDropArea.onDropped += ObjectDroppedToHover;
     }
@@ -82,13 +88,13 @@ public class DragManager : MonoBehaviour
         CardPower cardPower = obj.GetComponent<CardPower>();
 
         // field에 놓는게 아니라면(예시 : 건물) 다시 원위치
-        if (cardPower.dropAreaType != DropAreaType.feild)  
+        if (cardPower.dropAreaType != DropAreaType.feild)
         {
             ObjectToOrigin(area, obj);
         }
 
         // 카드가 일반 카드라면
-        if(cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
+        if (cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
         {
             // 1. 설치가능한곳 인지 3,  area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
             // 하는 이유 : 처음에 모든 필드의 상태가 not 이기 때문에
@@ -114,7 +120,7 @@ public class DragManager : MonoBehaviour
                     DropArea changeDropArea = area;                 // 드랍한 곳의 dropArea
                     DragbleCard otherDragbleCard = changeDropArea.rectTrm.GetChild(0).GetComponent<DragbleCard>();
 
-                    if(otherDragbleCard == null)
+                    if (otherDragbleCard == null)
                     {
                         Debug.Log("is null");
                     }
@@ -142,36 +148,35 @@ public class DragManager : MonoBehaviour
             {
                 SpecialCard specialCard = obj.GetComponent<SpecialCard>();
 
-                // field에 아무것도 없으면 리턴
-                if(area.field.cardPower == null)
-                {
-                    ObjectToOrigin(area, obj);
-                    return;
-                }
+
 
                 // targetType 맞는거 있는지 확인
-                foreach(CardType targetType in specialCard.targetTypeList)
+                foreach (CardType targetType in specialCard.targetTypeList)
                 {
-                    if(area.field.cardPower.cardType == targetType)
+                    if (area.field.cardPower.cardType == targetType)
                     {
                         switch (specialCard.applyTiming)
                         {
+
                             case ApplyTiming.Now:
                                 specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
-                                break;
+
+                                dragbleCard.isDestory = true;
+
+                                return;
                             case ApplyTiming.MoveStart:
                                 //area.feild.accessBuildToCardAfterMoveStart += specialCard.AccessSpecialCard;
                                 break;
                             case ApplyTiming.OnFeild:
                                 //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
                                 break;
+                            case ApplyTiming.OnPlayer:
+                                break;
                         }
 
                         // 맞는게 있다면 효과적용하고 스페셜 카드 삭제
 
-                        dragbleCard.isDestory = true;
 
-                        return;
                     }
                 }
 
@@ -179,7 +184,6 @@ public class DragManager : MonoBehaviour
                 ObjectToOrigin(area, obj);
             }
         }
-        
     }
 
 
@@ -213,7 +217,7 @@ public class DragManager : MonoBehaviour
             ObjectToOrigin(area, obj);
         }
     }
-    
+
 
     private void ObjectLiftedFromHandle(DropArea area, GameObject obj)
     {
@@ -223,7 +227,7 @@ public class DragManager : MonoBehaviour
     {
         ObjectToOrigin(area, obj);
     }
-    
+
 
     private void ObjectLiftedFromBuildHandle(DropArea area, GameObject obj)
     {
@@ -237,13 +241,13 @@ public class DragManager : MonoBehaviour
 
     private void ObjectLiftedFromShop(DropArea area, GameObject obj)
     {
-        
+
     }
     private void ObjectDroppedToShop(DropArea area, GameObject obj)
     {
-        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>(); 
+        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
-        if(cardPower.cardType != CardType.Monster && cardPower.cardType != CardType.Coin)
+        if (cardPower.cardType != CardType.Monster && cardPower.cardType != CardType.Coin)
         {
             GameManager.Instance.AddScore(2);
             //dragbleCard.isDestory = true;
@@ -262,13 +266,13 @@ public class DragManager : MonoBehaviour
 
     private void ObjectLiftedFromReroll(DropArea area, GameObject obj)
     {
-        
+
     }
     private void ObjectDroppedToReroll(DropArea area, GameObject obj)
     {
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
-        if(cardPower.dropAreaType == DropAreaType.feild)
+        if (cardPower.dropAreaType == DropAreaType.feild)
         {
             rerollEvent.Occurred(obj);
             dragbleCard.isDestory = true;
@@ -281,6 +285,50 @@ public class DragManager : MonoBehaviour
         }
     }
 
+    private void ObjectLiftedFromUse(DropArea area, GameObject obj)
+    {
+
+    }
+
+    private void ObjectDroppedToUse(DropArea area, GameObject obj)
+    {
+        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
+        CardPower cardPower = obj.GetComponent<CardPower>();
+
+        if (cardPower.cardType != CardType.Special)
+        {
+            ObjectToOrigin(area, obj);
+            return;
+        }
+
+        SpecialCard specialCard = obj.GetComponent<SpecialCard>();
+
+        switch (specialCard.applyTiming)
+        {
+            case ApplyTiming.NULL:
+                break;
+
+            case ApplyTiming.OnPlayer:
+                specialCard.OnAccessSpecialCard(GameManager.Instance.player, null);
+                dragbleCard.isDestory = true;
+                return;
+
+            case ApplyTiming.Now:
+                break;
+
+            case ApplyTiming.MoveStart:
+                break;
+
+            case ApplyTiming.OnFeild:
+
+                break;
+
+            default:
+                break;
+        }
+
+        ObjectToOrigin(area, obj);
+    }
 
     private void ObjectLiftedFromHover(DropArea area, GameObject obj)
     {

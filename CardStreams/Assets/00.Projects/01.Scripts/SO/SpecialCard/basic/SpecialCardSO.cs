@@ -8,6 +8,7 @@ public enum ApplyTiming
     Now,
     MoveStart,
     OnFeild,
+    OnPlayer,
 }
 
 public abstract class SpecialCardSO : ScriptableObject
