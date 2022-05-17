@@ -200,8 +200,11 @@ public class ShopManager : MonoBehaviour
 
     public void NextTurn()
     {
-        Hide();
+        if(GameManager.Instance.canStartTurn == true)
+        {
+            Hide();
 
-        nextTurnEvent.Occurred();
+            nextTurnEvent.Occurred();
+        }
     }
 }

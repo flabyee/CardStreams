@@ -36,6 +36,8 @@ public class HandleManager : MonoBehaviour
 
     private int maxValue;
 
+    public bool canStartTurn;
+
     private void Awake()
     {
         
@@ -61,6 +63,8 @@ public class HandleManager : MonoBehaviour
     // 0,1   2,3   4,5,6,   7,8,9,10,11
     private void DeckMake()
     {
+        GameManager.Instance.canStartTurn = false;
+
         deck.Clear();
         originDeck.Clear();
 
@@ -163,6 +167,8 @@ public class HandleManager : MonoBehaviour
             deck.Add(cardData);
         }
         DeckShuffle(deck);
+
+        GameManager.Instance.canStartTurn = true;
     }
 
     public void CardRerollAdd(GameObject dragbleCardObj)
