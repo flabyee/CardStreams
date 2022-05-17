@@ -12,7 +12,7 @@ public class RecoveryBuffSO : BuffSO
 
 
 
-    public override void UseBuff(int prevDamage)
+    public override void UseBuff(int fieldValue)
     {
         // 2만큼 회복
         hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + recoveryAmount, 0, hpValue.RuntimeMaxValue);

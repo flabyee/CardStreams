@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         switch (field.cardPower.cardType)
         {
             case CardType.Potion:
+                Debug.Log("OnPotion Entry");
                 OnPotion(field);
                 break;
 
@@ -80,27 +81,44 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnPotion(Field field)
+    private void OnPotion(Field field) // 체력증가포션
     {
-        hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
         AddFieldBuff(field.cardPower.buffList);
+
+        buffCon.UseBuffs(UseTiming.GetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+
+        hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
+
+        buffCon.UseBuffs(UseTiming.AfterGetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
     }
 
     private void OnSword(Field field)
     {
-        swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
         AddFieldBuff(field.cardPower.buffList);
+
+        buffCon.UseBuffs(UseTiming.GetSword, field.cardPower.value);
+
+        swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
+
+        buffCon.UseBuffs(UseTiming.AfterGetSword, field.cardPower.value);
     }
 
     private void OnShield(Field field)
     {
-        shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
         AddFieldBuff(field.cardPower.buffList);
+
+        buffCon.UseBuffs(UseTiming.GetShield, field.cardPower.value);
+
+        int addShieldValue = field.cardPower.value + shieldValue.RuntimeValue;
+
+        shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
+
+        buffCon.UseBuffs(UseTiming.AfterGetShield, addShieldValue);
     }
 
     private void OnMonster(Field field)
     {
-        buffCon.UseBuffs(UseTiming.BeforeSword, -1); // 0은 아무의미도없음 int? 나중에
+        buffCon.UseBuffs(UseTiming.BeforeSword, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
 
         int currentMonsterValue = field.cardPower.value - swordValue.RuntimeValue;
 

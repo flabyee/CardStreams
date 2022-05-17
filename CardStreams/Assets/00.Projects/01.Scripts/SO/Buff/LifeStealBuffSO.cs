@@ -10,7 +10,7 @@ public class LifeStealBuffSO : BuffSO
 
 
 
-    public override void UseBuff(int prevDamage)
+    public override void UseBuff(int fieldValue)
     {
         // 칼 공격력만큼 회복
         hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + swordValue.RuntimeValue, 0, hpValue.RuntimeMaxValue);

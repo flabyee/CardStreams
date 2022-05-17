@@ -27,5 +27,5 @@ public abstract class BuffSO : ScriptableObject
         buff.OnBuff += UseBuff; // 액션
     }
 
-    public abstract void UseBuff(int prevDamage); // 버프 특수기능들
+    public abstract void UseBuff(int fieldValue); // 버프 특수기능들
 }

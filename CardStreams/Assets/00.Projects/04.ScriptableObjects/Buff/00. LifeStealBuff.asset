@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0892d97d64976a74b984b7db51764ca2, type: 3}
-  m_Name: RecoveryBuff
+  m_Script: {fileID: 11500000, guid: 9e4f1ff5c684e0f41bea38a3e21789a2, type: 3}
+  m_Name: 00. LifeStealBuff
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
   timing: 6
-  remainTime: 4
-  buffName: "\uC7AC\uC0DD"
-  buffIcon: {fileID: 21300000, guid: c4c082e2326b1a742b0ff76bdcc3e5be, type: 3}
+  remainTime: 1
+  buffName: "\uD761\uD608"
+  buffIcon: {fileID: 21300000, guid: d2aa374c46f63e1468c0f4420b0f0a9b, type: 3}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
-  recoveryAmount: 1
+  swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}

@@ -70,22 +70,25 @@ public class CardPower : MonoBehaviour
 
     public void ApplyUI()
     {
+        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length);
+
+
         switch (cardType)
         {
             case CardType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite[value];
+                faceImage.sprite = ConstManager.Instance.potionSprite[tempValue];
                 break;
             case CardType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite[value];
+                faceImage.sprite = ConstManager.Instance.swordSprite[tempValue];
                 break;
             case CardType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite[value];
+                faceImage.sprite = ConstManager.Instance.sheildSprite[tempValue];
                 break;
             case CardType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite[value];
+                faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 break;
             case CardType.Coin:
-                faceImage.sprite = ConstManager.Instance.coinSprite[value];
+                faceImage.sprite = ConstManager.Instance.coinSprite[tempValue];
                 break;
         }
 

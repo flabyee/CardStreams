@@ -5,13 +5,17 @@ using UnityEngine;
 
 public enum UseTiming
 {
-    BeforePotion,
-    AfterPotion,
+    GetPotion,
+    AfterGetPotion,
+    GetSword,
+    AfterGetSword,
+    GetShield,
+    AfterGetShield,
     BeforeSword,
     AfterSword,
     BeforeShield,
     AfterShield,
-    MoveEnd
+    MoveEnd,
 }
 
 public class Buff
