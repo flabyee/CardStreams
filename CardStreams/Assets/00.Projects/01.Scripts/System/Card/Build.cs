@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
@@ -12,6 +13,7 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject areaTooltipPrefab;
 
     public Image buildImage;
+    public TextMeshProUGUI greadeText;
     public GameObject buildAreaTooltip;
     private List<Vector2> accessPointList;
     private List<Image> buildAreaImageList = new List<Image>();
@@ -36,6 +38,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.buildSO = buildSO;
 
         buildImage.sprite = this.buildSO.sprite;
+        greadeText.text = this.buildSO.grade.ToString();
+        greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade];
 
         width = GetComponent<RectTransform>().rect.width;
         height = width;

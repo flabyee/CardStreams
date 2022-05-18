@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TotemBuild", menuName = "ScriptableObject/Build/TotemBuild")]
 public class TotemBuildSO : BuildSO
 {
-    public IntValue turnCountValue;
+    //public IntValue turnCountValue;
 
     //public override void AccessTurnEnd()
     //{

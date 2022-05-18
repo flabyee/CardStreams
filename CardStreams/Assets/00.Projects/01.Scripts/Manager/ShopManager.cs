@@ -88,7 +88,7 @@ public class ShopManager : MonoBehaviour
         }
 
         // 그거 생성
-        for (int i = 0; i < sellItemCount; i++)
+        for (int i = 0; i < sellItemCount * 2; i++)
         {
             SpecialCardSO itemSO = DataManager.Instance.GetSpecialCardSO(unlockSpecialCardList[i].id);
 
@@ -97,7 +97,7 @@ public class ShopManager : MonoBehaviour
                 GameObject shopItem = Instantiate(shopPrefab, specialCardShopTrm);
                 ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
-                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, unlockSpecialCardList[i].haveAmount, itemSO.price);
+                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
 
                 info.button.onClick.AddListener(() =>
                 {
@@ -154,7 +154,7 @@ public class ShopManager : MonoBehaviour
                 GameObject shopItem = Instantiate(shopPrefab, buildShopTrm);
                 ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
-                info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, unlockBuildList[i].haveAmount, itemSO.price);
+                info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
 
                 info.button.onClick.AddListener(() =>
                 {

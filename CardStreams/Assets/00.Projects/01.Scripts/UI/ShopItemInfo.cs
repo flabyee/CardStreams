@@ -14,12 +14,12 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public List<Vector2> accessPointList;
     public string tooltip;
     public Image itemImage;
-    public TextMeshProUGUI countText;
+    public TextMeshProUGUI gradeText;
     public TextMeshProUGUI priceText;
 
     public Button button;
 
-    public void Init(string itemName, List<CardType> targetTypeList, string tooltip, Sprite sprite, int count, int price)
+    public void Init(string itemName, List<CardType> targetTypeList, string tooltip, Sprite sprite, CardGrade grade, int price)
     {
         cardType = CardType.Special;
 
@@ -27,11 +27,12 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.targetTypeList = targetTypeList;
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
-        countText.text = count.ToString();
+        gradeText.text = grade.ToString();
+        gradeText.color = ConstManager.Instance.gradeColorDict[grade];
         priceText.text = price.ToString();
     }
 
-    public void Init(string itemName, List<Vector2> accessPointList, string tooltip, Sprite sprite, int count, int price)
+    public void Init(string itemName, List<Vector2> accessPointList, string tooltip, Sprite sprite, CardGrade grade, int price)
     {
         cardType = CardType.Build;
 
@@ -39,7 +40,8 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.accessPointList = accessPointList;
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
-        countText.text = count.ToString();
+        gradeText.text = grade.ToString();
+        gradeText.color = ConstManager.Instance.gradeColorDict[grade];
         priceText.text = price.ToString();
     }
 

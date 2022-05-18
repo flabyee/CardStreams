@@ -18,11 +18,21 @@ using UnityEngine;
 //    }
 //}
 
+public enum CardGrade
+{
+    Common,
+    Rare,
+    Epic,
+    Unique,
+    Legendary,
+}
+
 public class BuildSO : ScriptableObject
 {
     public int id;
     public string buildName;
     public int price;
+    public CardGrade grade;
     [TextArea]
     public string tooltip;
     public Sprite sprite;

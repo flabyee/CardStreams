@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 8
   specialCardName: "\uD761\uD608\uCE7C"
-  price: 5
+  price: 3
+  grade: 0
   tooltip: "\uB54C\uB9B0\uB9CC\uD07C \uD68C\uBCF5"
   sprite: {fileID: 4797087879180664911, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
   applyTiming: 1

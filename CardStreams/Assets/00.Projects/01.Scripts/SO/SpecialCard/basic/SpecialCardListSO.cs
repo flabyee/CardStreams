@@ -6,4 +6,10 @@ using UnityEngine;
 public class SpecialCardListSO : ScriptableObject
 {
     public List<SpecialCardSO> specialCardList;
+
+    //public List<BuildSO> commonList;
+    //public List<BuildSO> rareList;
+    //public List<BuildSO> epicList;
+    //public List<BuildSO> uniqueList;
+    //public List<BuildSO> legendarayList;
 }

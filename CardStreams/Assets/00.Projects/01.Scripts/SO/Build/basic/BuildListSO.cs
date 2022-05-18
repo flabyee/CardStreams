@@ -6,4 +6,10 @@ using UnityEngine;
 public class BuildListSO : ScriptableObject
 {
     public List<BuildSO> buildList;
+
+    //public List<BuildSO> commonList;
+    //public List<BuildSO> rareList;
+    //public List<BuildSO> epicList;
+    //public List<BuildSO> uniqueList;
+    //public List<BuildSO> legendarayList;
 }

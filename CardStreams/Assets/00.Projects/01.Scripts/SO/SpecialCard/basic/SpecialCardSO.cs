@@ -16,6 +16,7 @@ public abstract class SpecialCardSO : ScriptableObject
     public int id;
     public string specialCardName;
     public int price;
+    public CardGrade grade;
     [TextArea]
     public string tooltip;
     public Sprite sprite;
