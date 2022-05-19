@@ -1798,7 +1798,7 @@ RectTransform:
   - {fileID: 858579908}
   - {fileID: 1188630980}
   m_Father: {fileID: 1755125823}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1953,7 +1953,7 @@ RectTransform:
   - {fileID: 481635361}
   - {fileID: 1146633997}
   m_Father: {fileID: 1755125823}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6395,7 +6395,7 @@ RectTransform:
   m_Children:
   - {fileID: 1954231166}
   m_Father: {fileID: 1755125823}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8665,7 +8665,7 @@ RectTransform:
   m_Children:
   - {fileID: 1838101720}
   m_Father: {fileID: 1755125823}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12257,10 +12257,10 @@ RectTransform:
   m_Children:
   - {fileID: 981051406}
   - {fileID: 301002052}
-  - {fileID: 286388865}
   - {fileID: 1268897473}
   - {fileID: 970446720}
   - {fileID: 277858216}
+  - {fileID: 286388865}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12358,8 +12358,8 @@ MonoBehaviour:
   specialCardStandList: []
   buildStandList: []
   sellItemCount: 5
-  chanceFirstAmountList: 64000000000000000cfeffffb4fbffff94f8ffff
-  chanceIncreaseAmountList: 00000000c80000002c01000090010000f4010000
+  chanceFirstAmountList: 64000000000000000cfeffff1efbffff3cf6ffff
+  chanceIncreaseAmountList: 00000000c80000002c010000c20100008a020000
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 0}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
