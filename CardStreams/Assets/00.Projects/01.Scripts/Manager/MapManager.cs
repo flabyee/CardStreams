@@ -110,6 +110,14 @@ public class MapManager : MonoBehaviour
 
         afterMapCreateEvent.Occurred();
     }
+
+    public RectTransform RandomMapIndex()
+    {
+        int randX = Random.Range(0, mapRectArr.Length);
+        int randY = Random.Range(0, mapRectArr.Length);
+
+        return mapRectArr[randY, randX];
+    }
 }
 
 // 맵 생성할 때 정렬하기 위해서 존재하는 클래스
