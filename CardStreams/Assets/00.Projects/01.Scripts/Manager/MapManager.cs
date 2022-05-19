@@ -25,8 +25,6 @@ public class MapManager : MonoBehaviour
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
-    private List<Vector2> notBuildTiles = new List<Vector2>();
-
     [Header("Event")]
     public EventSO afterMapCreateEvent;
 
@@ -49,7 +47,7 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void CreateMap(string mapStr)
@@ -57,9 +55,9 @@ public class MapManager : MonoBehaviour
         mapRectArr = new RectTransform[10, 10];
         string[] mapStrArr = mapStr.Split(',');
 
-        for(int y = 0; y < 10; y++)
+        for (int y = 0; y < 10; y++)
         {
-            for(int x = 0; x < 10; x++)
+            for (int x = 0; x < 10; x++)
             {
                 //Debug.Log(y * 10 + x + " : " + mapStrArr[y * 10 + x]);
                 RectTransform rectTrm = null;
@@ -77,7 +75,7 @@ public class MapManager : MonoBehaviour
 
 
                     dropArea.point = new Vector2(x, y);
-                    
+
                 }
                 // 필드(플레이어가 움직이는 곳)라면
                 else
@@ -112,7 +110,7 @@ public class MapManager : MonoBehaviour
 
         sortFieldRectList.Sort((x, y) => x.num.CompareTo(y.num));
 
-        foreach(FieldData fieldData in sortFieldRectList)
+        foreach (FieldData fieldData in sortFieldRectList)
         {
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
@@ -131,7 +129,7 @@ public class MapManager : MonoBehaviour
                 for (int count = 0; count < 8; count++)
                 {
                     // 검사하던중 도로가 있다? count for문 break
-                    if (fieldvectorList.Contains( new Vector2(x + nearPoints[count].x, y + nearPoints[count].y) )) // 도로 리스트에 좌표가 들어가있으면
+                    if (fieldvectorList.Contains(new Vector2(x + nearPoints[count].x, y + nearPoints[count].y))) // 도로 리스트에 좌표가 들어가있으면
                     {
                         Debug.Log("들어가요");
 
@@ -143,19 +141,43 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        notBuildTiles = nearRoadPointList.Where(point => mapRectArr[(int)point.y, (int)point.x].childCount == 0).ToList();
+        int randomIndex = 0;
+
+        for (int i = 0; i < nearRoadPointList.Count; i++)
+        {
+            randomIndex = Random.Range(0, nearRoadPointList.Count); // 랜덤인덱스 뽑아서
+
+            Vector2 temp = nearRoadPointList[i]; // i랑 랜덤인덱스랑 스왑
+            nearRoadPointList[i] = nearRoadPointList[randomIndex];
+            nearRoadPointList[randomIndex] = temp;
+        }
 
         afterMapCreateEvent.Occurred();
     }
 
     public Vector2 RandomMapIndex()
     {
-        int rand = random.Next(0, notBuildTiles.Count);
-        Vector2 randomPoint = notBuildTiles[rand];
+        int rand = Random.Range(0, nearRoadPointList.Count);
 
-        notBuildTiles.Remove(randomPoint);
+        bool b = true;
+        Vector2 point;
+        while (b == true)
+        {
+            point = nearRoadPointList[0];
+            if (mapRectArr[(int)point.y, (int)point.x].childCount == 0)
+            {
+                b = false;
+                nearRoadPointList.RemoveAt(0);
 
-        return randomPoint;
+                return point;
+            }
+            else
+            {
+                nearRoadPointList.RemoveAt(0);
+            }
+        }
+
+        return Vector2.zero;
     }
 }
 
