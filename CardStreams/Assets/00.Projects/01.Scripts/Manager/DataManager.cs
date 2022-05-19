@@ -7,8 +7,6 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
 
-    public SaveData saveData;
-
     List<BuildSO> buildList;
     List<SpecialCardSO> specialCardList;
 
@@ -37,8 +35,6 @@ public class DataManager : MonoBehaviour
 
         StageDataListSO stageDataListSO = Resources.Load<StageDataListSO>(typeof(StageDataListSO).Name);
         stageDataList = stageDataListSO.stageDataList;
-
-        Load();
     }
 
 
@@ -60,7 +56,12 @@ public class DataManager : MonoBehaviour
     }
     public BuildSO GetBuildSO(int index)
     {
-        return buildList.Find((x) => x.id == index);
+        BuildSO buildSO = buildList.Find((x) => x.id == index);
+        if(buildSO == null)
+        {
+            Debug.LogError($"{index}buildSO is null");
+        }
+        return buildSO;
     }
 
 
@@ -73,20 +74,5 @@ public class DataManager : MonoBehaviour
     public StageDataSO GetNowStageData()
     {
         return stageDataList[stageNumValue.RuntimeValue];
-    }
-
-
-
-
-
-
-    // 임시 코드
-    public void Save()
-    {
-        SaveSystem.Save(saveData);
-    }
-    public void Load()
-    {
-        saveData = SaveSystem.Load();
     }
 }

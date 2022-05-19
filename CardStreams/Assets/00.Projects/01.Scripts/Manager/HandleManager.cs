@@ -362,7 +362,7 @@ public class HandleManager : MonoBehaviour
 
     private void DrawBuild()
     {
-        SaveData saveData = DataManager.Instance.saveData;
+        SaveData saveData = SaveSystem.Load();
 
         foreach(BuildData buildData in saveData.buildDataList)
         {
@@ -391,11 +391,13 @@ public class HandleManager : MonoBehaviour
                 }
             }
         }
+
+        SaveSystem.Save(saveData);
     }
 
     private void DrawSpecialCard()
     {
-        SaveData saveData = DataManager.Instance.saveData;
+        SaveData saveData = SaveSystem.Load();
 
         foreach (SpecialCardData specialCardData in saveData.speicialCardDataList)
         {
@@ -422,6 +424,8 @@ public class HandleManager : MonoBehaviour
                 }
             }
         }
+
+        SaveSystem.Save(saveData);
     }
 
     private void UseCard()

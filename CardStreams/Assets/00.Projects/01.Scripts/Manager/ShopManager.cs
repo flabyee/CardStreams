@@ -6,37 +6,46 @@ public class ShopManager : MonoBehaviour
 {
     public GameObject shopPrefab;
 
+    // ui
     public GameObject shopPanel;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
 
-    public EventSO nextTurnEvent;
-
-    public IntValue goldValue;
-    public IntValue turnCountValue;
-    public EventSO goldChangeEvnet;
-
     public List<RectTransform> specialCardStandList;    // 판매할 아이템 올려두는 공간
     public List<RectTransform> buildStandList;    // 판매할 아이템 올려두는 공간
 
+
+    // system
     public int sellItemCount;
+
+    // dict
+    private List<BuildSO> buildList;
+    private List<SpecialCardSO> specialList;
 
     private Dictionary<CardGrade, List<BuildData>> buildDict = new Dictionary<CardGrade, List<BuildData>>();
     private Dictionary<CardGrade, List<SpecialCardData>> specialDict = new Dictionary<CardGrade, List<SpecialCardData>>();
-
     private Dictionary<CardGrade, int> gradeToChance = new Dictionary<CardGrade, int>();
+
+
+    // so
+    public IntValue goldValue;
+    public IntValue turnCountValue;
+    public EventSO goldChangeEvnet;
+    public EventSO nextTurnEvent;
 
     private void Awake()
     {
-        Hide();
-
-        if(specialCardStandList.Count != sellItemCount)
+        if (specialCardStandList.Count != sellItemCount)
         {
             //Debug.LogError("상점 아이템 판매 갯수와 판매대 갯수가 다릅니다");
         }
 
-        SaveData saveData = DataManager.Instance.saveData;
+        SaveData saveData = SaveSystem.Load();
 
+        BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
+        buildList = buildListSO.buildList;
+        SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
+        specialList = specialListSO.specialCardList;
 
         // unlock 된 id list 등급별로 나누기
         buildDict[CardGrade.Common] = new List<BuildData>();
@@ -56,7 +65,7 @@ public class ShopManager : MonoBehaviour
         {
             if (itemData.isUnlock == true)
             {
-                BuildSO buildSO = DataManager.Instance.GetBuildSO(itemData.id);
+                BuildSO buildSO = buildList.Find((x) => x.id == itemData.id);
 
                 buildDict[buildSO.grade].Add(itemData);
             }
@@ -66,12 +75,20 @@ public class ShopManager : MonoBehaviour
         {
             if (itemData.isUnlock == true)
             {
-                SpecialCardSO specialSO = DataManager.Instance.GetSpecialCardSO(itemData.id);
+                SpecialCardSO specialSO = specialList.Find((x) => x.id == itemData.id);
 
                 specialDict[specialSO.grade].Add(itemData);
             }
         }
+
+        gradeToChance[CardGrade.Common] = 80;
+        gradeToChance[CardGrade.Rare] = 20;
+        gradeToChance[CardGrade.Epic] = 0;
+        gradeToChance[CardGrade.Unique] = 0;
+        gradeToChance[CardGrade.Legendary] = 0;
     }
+
+
 
     public void Show()
     {
@@ -89,7 +106,6 @@ public class ShopManager : MonoBehaviour
     {
 
 
-
         OnSpecialCardShop();
         OnBuildShop();
     }
@@ -103,7 +119,7 @@ public class ShopManager : MonoBehaviour
         }
 
         // 특수카드 상점
-        SaveData saveData = DataManager.Instance.saveData;
+        SaveData saveData = SaveSystem.Load();
 
         // unlock 된 id list 뽑기
         List<SpecialCardData> unlockSpecialCardList = new List<SpecialCardData>();
@@ -127,7 +143,7 @@ public class ShopManager : MonoBehaviour
         // 그거 생성
         for (int i = 0; i < sellItemCount * 2; i++)
         {
-            SpecialCardSO itemSO = DataManager.Instance.GetSpecialCardSO(unlockSpecialCardList[i].id);
+            SpecialCardSO itemSO = specialList.Find((x) => x.id == unlockSpecialCardList[i].id);
 
             if(itemSO != null)
             {
@@ -158,61 +174,115 @@ public class ShopManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        
-        // 랜덤 등급 얻기
+        Shuffle(CardType.Build);
 
 
-        // 전체 리스트 섞기
-        foreach(var list in buildDict.Values)
+        Dictionary<CardGrade, int> countDict = new Dictionary<CardGrade, int>();
+        countDict[CardGrade.Common] = 0;
+        countDict[CardGrade.Rare] = 0;
+        countDict[CardGrade.Epic] = 0;
+        countDict[CardGrade.Unique] = 0;
+        countDict[CardGrade.Legendary] = 0;
+
+        for (int i = 0; i < 5; i++)
         {
-            for (int i = 0; i < list.Count; i++)
-            {
-                int randomIndex = Random.Range(0, list.Count);
+            int[] chance = new int[5];
+            chance[0] = gradeToChance[CardGrade.Common];
+            chance[1] = chance[0] + gradeToChance[CardGrade.Rare];
+            chance[2] = chance[1] + gradeToChance[CardGrade.Epic];
+            chance[3] = chance[2] + gradeToChance[CardGrade.Unique];
+            chance[4] = chance[3] + gradeToChance[CardGrade.Legendary];
 
-                BuildData temp = list[i];
-                list[i] = list[randomIndex];
-                list[randomIndex] = temp;
+            int randomChance = Random.Range(0, GetAllChance());
+            if (randomChance < chance[0])
+            {
+                CreateBuildItem(CardGrade.Common, countDict[CardGrade.Common]++);
+            }
+            else if(randomChance < chance[1])
+            {
+                CreateBuildItem(CardGrade.Rare, countDict[CardGrade.Rare]++);
+            }
+            else if(randomChance < chance[2])
+            {
+                CreateBuildItem(CardGrade.Epic, countDict[CardGrade.Epic]++);
+            }
+            else if(randomChance < chance[3])
+            {
+                CreateBuildItem(CardGrade.Unique, countDict[CardGrade.Unique]++);
+            }
+            else if(randomChance < chance[4])
+            {
+                CreateBuildItem(CardGrade.Legendary, countDict[CardGrade.Legendary]++);
+            }
+            else
+            {
+                Debug.LogError("chance 설정이 잘못 됨");
             }
         }
-
-        
-        
-        //// 그거 생성
-        //for (int i = 0; i < sellItemCount; i++)
-        //{
-        //    // 저장데이터에는 있는 id가 SO에 없을까봐
-        //    BuildSO itemSO = DataManager.Instance.GetBuildSO(unlockBuildList[i].id);
-
-        //    if(itemSO != null)
-        //    {
-        //        GameObject shopItem = Instantiate(shopPrefab, buildShopTrm);
-        //        ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
-
-        //        info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
-
-        //        info.button.onClick.AddListener(() =>
-        //        {
-        //            BuyBuild(itemSO);
-
-        //            //OnShop();
-        //        });
-        //    }
-        //    else
-        //    {
-        //        Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
-        //    }
-        //}
     }
 
-    private List<int> GetGradeList()
+    private void Shuffle(CardType cardType)
     {
-        return null;
-        //List<int>
-        //switch(turnCountValue.RuntimeValue)
-        //{
-        //    case 0:
+        if (cardType == CardType.Special)
+        {
 
-        //}
+        }
+        if(cardType == CardType.Build)
+        {
+            foreach (var list in buildDict.Values)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    int randomIndex = Random.Range(0, list.Count);
+
+                    BuildData temp = list[i];
+                    list[i] = list[randomIndex];
+                    list[randomIndex] = temp;
+                }
+            }
+        }
+    }
+
+    private int GetAllChance()
+    {
+        int allChance = 0;
+        foreach (int chance in gradeToChance.Values)
+        {
+            allChance += chance;
+        }
+
+        return allChance;
+    }
+
+    private void CreateBuildItem(CardGrade grade, int i)
+    {
+        if(buildDict[grade].Count - 1 < i)
+        {
+            Debug.LogError($"{grade}해당 등급의 건물의 갯수가 부족해서 생성 불가능");
+            return;
+        }
+
+        BuildSO itemSO = buildList.Find((x) => x.id == buildDict[grade][i].id);
+
+
+        if (itemSO != null)
+        {
+            GameObject shopItem = Instantiate(shopPrefab, buildShopTrm);
+            ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
+
+            info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
+
+            info.button.onClick.AddListener(() =>
+            {
+                BuyBuild(itemSO);
+
+                //OnShop();
+            });
+        }
+        else
+        {
+            Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
+        }
     }
 
     private void BuySpecial(SpecialCardSO specialCardSO)
@@ -222,10 +292,9 @@ public class ShopManager : MonoBehaviour
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
 
-            SaveData saveData = DataManager.Instance.saveData;
+            SaveData saveData = SaveSystem.Load();
             saveData.speicialCardDataList[specialCardSO.id].haveAmount++;
-
-            //DataManager.Instance.Save();
+            SaveSystem.Save(saveData);
         }
     }
 
@@ -236,14 +305,17 @@ public class ShopManager : MonoBehaviour
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
 
-            SaveData saveData = DataManager.Instance.saveData;
+            SaveData saveData = SaveSystem.Load();
             saveData.buildDataList[buildSO.id].haveAmount++;
-
-            //DataManager.Instance.Save();
+            SaveSystem.Save(saveData);
         }
     }
 
-    public void NextTurn()
+
+
+
+
+    public void CloseShop()
     {
         if(GameManager.Instance.canStartTurn == true)
         {

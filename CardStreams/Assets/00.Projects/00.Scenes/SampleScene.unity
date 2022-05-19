@@ -2511,10 +2511,10 @@ RectTransform:
   m_Father: {fileID: 2103145516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -300}
+  m_SizeDelta: {x: 525, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388509370
 MonoBehaviour:
@@ -2727,10 +2727,10 @@ RectTransform:
   m_Father: {fileID: 1407015936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -50}
+  m_SizeDelta: {x: 525, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &399086108
 MonoBehaviour:
@@ -6884,7 +6884,7 @@ GameObject:
   - component: {fileID: 1031556270}
   - component: {fileID: 1031556269}
   m_Layer: 5
-  m_Name: NextBtn
+  m_Name: CloseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6956,7 +6956,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1775131615}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: NextTurn
+        m_MethodName: CloseShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8125,7 +8125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1188630980
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9280,10 +9280,10 @@ RectTransform:
   m_Father: {fileID: 388509369}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -50}
+  m_SizeDelta: {x: 525, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304593227
 MonoBehaviour:
@@ -9660,10 +9660,10 @@ RectTransform:
   m_Father: {fileID: 388509369}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -375}
+  m_SizeDelta: {x: 525, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390609343
 MonoBehaviour:
@@ -10047,10 +10047,10 @@ RectTransform:
   m_Father: {fileID: 2103145516}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 837.5, y: -300}
+  m_SizeDelta: {x: 525, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407015937
 MonoBehaviour:
@@ -10996,10 +10996,10 @@ RectTransform:
   m_Father: {fileID: 1407015936}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -375}
+  m_SizeDelta: {x: 525, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1588248143
 MonoBehaviour:
@@ -12311,13 +12311,13 @@ MonoBehaviour:
   shopPanel: {fileID: 1188630979}
   specialCardShopTrm: {fileID: 1390609342}
   buildShopTrm: {fileID: 1588248142}
-  nextTurnEvent: {fileID: 11400000, guid: 54a64b073e2443b4da6f32531da52964, type: 2}
-  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
-  turnCountValue: {fileID: 0}
-  goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
   specialCardStandList: []
   buildStandList: []
   sellItemCount: 5
+  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
+  turnCountValue: {fileID: 0}
+  goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  nextTurnEvent: {fileID: 11400000, guid: 54a64b073e2443b4da6f32531da52964, type: 2}
 --- !u!114 &1775131616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13606,17 +13606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ddd10e85fcc08a4fa4e95b800980f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData:
-    speicialCardDataList:
-    - id: 0
-      isUnlock: 0
-      upgradeAmount: 0
-      haveAmount: 0
-    - id: 0
-      isUnlock: 0
-      upgradeAmount: 0
-      haveAmount: 0
-    buildDataList: []
   stageNumValue: {fileID: 11400000, guid: 30def1b82f847a3498ae3bf278035357, type: 2}
 --- !u!1 &1995177962
 GameObject:
