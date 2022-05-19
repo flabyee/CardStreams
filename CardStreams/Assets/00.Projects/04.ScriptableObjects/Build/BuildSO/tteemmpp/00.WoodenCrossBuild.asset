@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ec07a2ac5bdb143bac1f409826f7e9, type: 3}
+  m_Name: 00.WoodenCrossBuild
+  m_EditorClassIdentifier: 
+  id: 0
+  buildName: "\uB098\uBB34 \uC2ED\uC790\uAC00"
+  price: 5
+  grade: 0
+  tooltip: "\uBAAC\uC2A4\uD130 - 1(\uC785\uB2C8\uB2E4)"
+  sprite: {fileID: 1475767685386808120, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
+  accessPointList:
+  - {x: -1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  minusMonsterAmount: 1

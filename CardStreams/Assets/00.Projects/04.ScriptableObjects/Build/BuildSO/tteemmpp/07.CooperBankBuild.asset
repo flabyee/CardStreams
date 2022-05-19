@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d68eab63d57514bb9289f86e28e187, type: 3}
+  m_Name: 07.CooperBankBuild
+  m_EditorClassIdentifier: 
+  id: 7
+  buildName: "\uAD6C\uB9AC \uC740\uD589"
+  price: 10
+  grade: 1
+  tooltip: "\uD134 \uC885\uB8CC\uC2DC \uB3C8 + 12"
+  sprite: {fileID: 1487264520755003514, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
+  accessPointList: []
+  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
+  goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  earnAmount: 12
