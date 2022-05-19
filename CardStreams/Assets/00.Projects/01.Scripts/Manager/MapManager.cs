@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -17,8 +18,9 @@ public class MapManager : MonoBehaviour
     public GameObject fieldDropPrefab;
 
 
+    [HideInInspector] public List<Vector2> fieldvectorList = new List<Vector2>();
     [HideInInspector] public RectTransform[,] mapRectArr;         // 전체 맵 배열
-    [HideInInspector] public List<Field> nearRoadFieldList = new List<Field>();
+    [HideInInspector] public List<Vector2> nearRoadPointList = new List<Vector2>();
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
@@ -72,6 +74,7 @@ public class MapManager : MonoBehaviour
 
 
                     dropArea.point = new Vector2(x, y);
+                    
                 }
                 // 필드(플레이어가 움직이는 곳)라면
                 else
@@ -87,6 +90,7 @@ public class MapManager : MonoBehaviour
                     field.dropArea = dropArea;
                     dropArea.field = field;
                     dropArea.rectTrm = rectTrm;
+                    fieldvectorList.Add(field.dropArea.point); // 도로 벡터리스트에추가
 
 
                     dropArea.point = new Vector2(x, y);
@@ -112,33 +116,35 @@ public class MapManager : MonoBehaviour
         new Vector2Int(-1,1), new Vector2Int(0,  1), new Vector2Int(1, 1), new Vector2Int(-1, 0),
         new Vector2Int(1, 0), new Vector2Int(-1,-1), new Vector2Int(0,-1), new Vector2Int(1, -1)};
 
-        //// 다시 쫙 훑으면서 도로와 인접한 타일을 특별 List에 추가
-        //for (int y = 0; y < 10; y++)
-        //{
-        //    for (int x = 0; x < 10; x++)
-        //    {
-        //        for (int count = 0; count < 8; count++)
-        //        {
-        //            // 검사하던중 도로가 있다? count for문 break
-        //            if(mapRectArr[y + nearPoints[count].y,x + nearPoints[count].x])
-        //        }
-        //    }
-        //}
+        // 다시 쫙 훑으면서 도로와 인접한 타일을 특별 List에 추가
+        for (int y = 0; y < 10; y++)
+        {
+            for (int x = 0; x < 10; x++)
+            {
+                for (int count = 0; count < 8; count++)
+                {
+                    // 검사하던중 도로가 있다? count for문 break
+                    if (fieldvectorList.Contains( new Vector2(y + nearPoints[count].y, x + nearPoints[count].x) )) // 도로 리스트에 좌표가 들어가있으면
+                    {
+                        // 현재 x y 좌표 근처 8칸에 도로가 있음!
+                        nearRoadPointList.Add(new Vector2(x + nearPoints[count].x, y + nearPoints[count].y));
+                        break;
+                    }
+                }
+            }
+        }
 
         afterMapCreateEvent.Occurred();
     }
 
-    public RectTransform RandomMapIndex()
+    public Vector2 RandomMapIndex()
     {
-        //do
-        //{
-        //    int randX = Random.Range(0, mapRectArr.Length);
-        //    int randY = Random.Range(0, mapRectArr.Length);
+        var notBuildTiles = nearRoadPointList.Where(point => mapRectArr[(int)point.y, (int)point.x].childCount == 0).ToList(); // 자식의 수가 0인(건물안세워진) 타일들만 갖고옴
+        int rand = Random.Range(0, notBuildTiles.Count);
 
-        //    for // point 돌려서 8칸근처에 도로가있는지 true면 나가고 대충뭐이렇게하면?
-        //}
-        //return mapRectArr[randY, randX];
-        return null;
+        Vector2 selectedTile = nearRoadPointList[rand];
+
+        return selectedTile;
     }
 }
 
