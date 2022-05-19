@@ -27,26 +27,10 @@ public class CardPower : MonoBehaviour
         this.value = value;
         this.originValue = value;
 
-        switch (cardType)
-        {
-            case CardType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite[value];
-                break;
-            case CardType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite[value];
-                break;
-            case CardType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite[value];
-                break;
-            case CardType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite[value];
-                break;
-            case CardType.Coin:
-                faceImage.sprite = ConstManager.Instance.coinSprite[value];
-                break;
-        }
-        valueText.text = value.ToString();
+        ApplyUI();
     }
+
+    
 
     public void SetData_SpecialCard()
     {
@@ -70,7 +54,7 @@ public class CardPower : MonoBehaviour
 
     public void ApplyUI()
     {
-        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length);
+        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length - 1);
 
 
         switch (cardType)

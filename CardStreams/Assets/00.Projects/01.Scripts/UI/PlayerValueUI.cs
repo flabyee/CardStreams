@@ -14,8 +14,14 @@ public class PlayerValueUI : MonoBehaviour
     public IntValue swordValue;
     public IntValue shieldValue;
 
+    //public StatPanel hpStatPanel;
+    //public StatPanel swordStatPanel;
+    //public StatPanel shieldStatPanel;
+
     public void ApplyValueToText()
     {
+        // hpStatPanel.A(hpValue.RuntimeValue);
+
         hpText.text = $"<sprite=2>{hpValue.RuntimeValue}";
         swordValueText.text = $"<sprite=0>{swordValue.RuntimeValue}";
         sheildValueText.text = $"<sprite=1>{shieldValue.RuntimeValue}";

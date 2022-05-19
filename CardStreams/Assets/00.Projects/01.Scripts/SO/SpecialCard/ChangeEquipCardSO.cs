@@ -18,8 +18,7 @@ public class ChangeEquipCardSO : SpecialCardSO
             shieldValue.RuntimeValue += 2;
         }
 
-        
-
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
+        playerValueChangeEvent.Occurred();
     }
 }

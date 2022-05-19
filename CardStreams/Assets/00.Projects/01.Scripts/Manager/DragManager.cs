@@ -153,7 +153,7 @@ public class DragManager : MonoBehaviour
                 // targetType 맞는거 있는지 확인
                 foreach (CardType targetType in specialCard.targetTypeList)
                 {
-                    if (area.field.cardPower.cardType == targetType)
+                    if (area.field.cardPower != null && area.field.cardPower.cardType == targetType)
                     {
                         switch (specialCard.applyTiming)
                         {
