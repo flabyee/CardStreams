@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 1
   buildName: "\uBAA8\uB8E8"
   price: 30
+  grade: 2
   tooltip: "\uCE7C, \uBC29\uD328\uAC00 \uC5C6\uC73C\uBA74 \uAC01\uAC01 +4, \uC788\uC73C\uBA74
     \uAC01\uAC01 +2"
   sprite: {fileID: 21300000, guid: 296d03f82a9623d4bb8f535bd03815da, type: 3}

@@ -16,10 +16,6 @@ public class CrossBuildSO : BuildSO
         {
             field.cardPower.SetValue(field.cardPower.value - minusMonsterAmount);
 
-            TextMeshProUGUI text = field.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-            text.text = field.cardPower.value.ToString();
-            text.color = Color.red;
-
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
 
         }
