@@ -53,7 +53,7 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         accessPointList = buildSO.accessPointList;
         for (int y = 2; y >= -2; y--)
         {
-            for (int x = 2; x >= -2; x--)
+            for (int x = -2; x <= 2; x++)
             {
                 GameObject obj = Instantiate(areaTooltipPrefab, buildAreaTooltip.transform);
 

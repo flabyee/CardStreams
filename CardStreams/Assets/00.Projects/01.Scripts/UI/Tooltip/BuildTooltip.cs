@@ -26,7 +26,7 @@ public class BuildTooltip : MonoBehaviour
 
         for (int y = 2; y >= -2; y--)
         {
-            for (int x = 2; x >= -2; x--)
+            for (int x = -2; x <= 2; x++)
             {
                 GameObject obj = Instantiate(areaTooltipPrefab, areaParentTrm);
 
@@ -61,7 +61,7 @@ public class BuildTooltip : MonoBehaviour
 
         for (int y = 2; y >= -2; y--)
         {
-            for (int x = 2; x >= -2; x--)
+            for (int x = -2; x <= 2; x++)
             {
                 // point에 해당되는 구역이아니라면 Alpha = 0
                 if (!accessPointList.Contains(new Vector2(x, y)))

@@ -17,6 +17,8 @@ public class ShopManager : MonoBehaviour
 
     // system
     public int sellItemCount;
+    public List<int> chanceFirstAmountList;
+    public List<int> chanceIncreaseAmountList;
 
     // dict
     private List<BuildSO> buildList;
@@ -81,11 +83,10 @@ public class ShopManager : MonoBehaviour
             }
         }
 
-        gradeToChance[CardGrade.Common] = 80;
-        gradeToChance[CardGrade.Rare] = 20;
-        gradeToChance[CardGrade.Epic] = 0;
-        gradeToChance[CardGrade.Unique] = 0;
-        gradeToChance[CardGrade.Legendary] = 0;
+        for(int i = 0; i < 5; i++)
+        {
+            gradeToChance[(CardGrade)i] = chanceFirstAmountList[i];
+        }
     }
 
 
@@ -104,7 +105,7 @@ public class ShopManager : MonoBehaviour
 
     public void OnShop()
     {
-
+        SetChance();
 
         OnSpecialCardShop();
         OnBuildShop();
@@ -184,15 +185,16 @@ public class ShopManager : MonoBehaviour
         countDict[CardGrade.Unique] = 0;
         countDict[CardGrade.Legendary] = 0;
 
+        int[] chance = new int[5];
+        chance[0] = gradeToChance[CardGrade.Common] > 0 ? gradeToChance[CardGrade.Common] : 0;
+        chance[1] = chance[0] + (gradeToChance[CardGrade.Rare] > 0 ? gradeToChance[CardGrade.Rare] : 0);
+        chance[2] = chance[1] + (gradeToChance[CardGrade.Epic] > 0 ? gradeToChance[CardGrade.Epic] : 0);
+        chance[3] = chance[2] + (gradeToChance[CardGrade.Unique] > 0 ? gradeToChance[CardGrade.Unique] : 0);
+        chance[4] = chance[3] + (gradeToChance[CardGrade.Legendary] > 0 ? gradeToChance[CardGrade.Legendary] : 0);
+        
         for (int i = 0; i < 5; i++)
         {
-            int[] chance = new int[5];
-            chance[0] = gradeToChance[CardGrade.Common];
-            chance[1] = chance[0] + gradeToChance[CardGrade.Rare];
-            chance[2] = chance[1] + gradeToChance[CardGrade.Epic];
-            chance[3] = chance[2] + gradeToChance[CardGrade.Unique];
-            chance[4] = chance[3] + gradeToChance[CardGrade.Legendary];
-
+            
             int randomChance = Random.Range(0, GetAllChance());
             if (randomChance < chance[0])
             {
@@ -248,7 +250,7 @@ public class ShopManager : MonoBehaviour
         int allChance = 0;
         foreach (int chance in gradeToChance.Values)
         {
-            allChance += chance;
+            allChance += chance > 0 ? chance : 0;
         }
 
         return allChance;
@@ -258,7 +260,6 @@ public class ShopManager : MonoBehaviour
     {
         if(buildDict[grade].Count - 1 < i)
         {
-            Debug.LogError($"{grade}해당 등급의 건물의 갯수가 부족해서 생성 불가능");
             return;
         }
 
@@ -311,10 +312,6 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-
-
-
-
     public void CloseShop()
     {
         if(GameManager.Instance.canStartTurn == true)
@@ -322,6 +319,15 @@ public class ShopManager : MonoBehaviour
             Hide();
 
             nextTurnEvent.Occurred();
+        }
+    }
+
+    private void SetChance()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            gradeToChance[(CardGrade)i] += chanceIncreaseAmountList[i];
+            Debug.Log((CardGrade)i + " : " + gradeToChance[(CardGrade)i]);
         }
     }
 }

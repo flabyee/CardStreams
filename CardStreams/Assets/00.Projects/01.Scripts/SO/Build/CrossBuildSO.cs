@@ -14,7 +14,7 @@ public class CrossBuildSO : BuildSO
     {
         if (field.cardPower.cardType == CardType.Monster)
         {
-            field.cardPower.SetValue(field.cardPower.value - minusMonsterAmount);
+            field.cardPower.AddValue(-minusMonsterAmount);
 
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
 

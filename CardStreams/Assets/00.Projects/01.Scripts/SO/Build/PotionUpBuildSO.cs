@@ -12,7 +12,7 @@ public class PotionUpBuildSO : BuildSO
     {
         if (field.cardPower.cardType == CardType.Potion)
         {
-            field.cardPower.SetValue(field.cardPower.value - plusPotionAmount);
+            field.cardPower.AddValue(plusPotionAmount);
 
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
         }
