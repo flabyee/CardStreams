@@ -13,6 +13,7 @@ public class ShopManager : MonoBehaviour
     public EventSO nextTurnEvent;
 
     public IntValue goldValue;
+    public IntValue turnCountValue;
     public EventSO goldChangeEvnet;
 
     public List<RectTransform> specialCardStandList;    // 판매할 아이템 올려두는 공간
@@ -160,6 +161,7 @@ public class ShopManager : MonoBehaviour
         
         // 랜덤 등급 얻기
 
+
         // 전체 리스트 섞기
         foreach(var list in buildDict.Values)
         {
@@ -199,6 +201,17 @@ public class ShopManager : MonoBehaviour
         //    {
         //        Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
         //    }
+        //}
+    }
+
+    private List<int> GetGradeList()
+    {
+        return null;
+        //List<int>
+        //switch(turnCountValue.RuntimeValue)
+        //{
+        //    case 0:
+
         //}
     }
 
