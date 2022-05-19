@@ -17,12 +17,15 @@ public class MapManager : MonoBehaviour
     public GameObject fieldRectPrefab;
     public GameObject fieldDropPrefab;
 
+    private System.Random random = new System.Random();
 
-    [HideInInspector] public List<Vector2> fieldvectorList = new List<Vector2>();
+    public List<Vector2> fieldvectorList = new List<Vector2>();
     [HideInInspector] public RectTransform[,] mapRectArr;         // 전체 맵 배열
-    [HideInInspector] public List<Vector2> nearRoadPointList = new List<Vector2>();
+    public List<Vector2> nearRoadPointList = new List<Vector2>();
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
+
+    private List<Vector2> notBuildTiles = new List<Vector2>();
 
     [Header("Event")]
     public EventSO afterMapCreateEvent;
@@ -90,10 +93,10 @@ public class MapManager : MonoBehaviour
                     field.dropArea = dropArea;
                     dropArea.field = field;
                     dropArea.rectTrm = rectTrm;
+                    dropArea.point = new Vector2(x, y);
                     fieldvectorList.Add(field.dropArea.point); // 도로 벡터리스트에추가
 
 
-                    dropArea.point = new Vector2(x, y);
 
                     // 필드 정렬하기 위해서
                     int num = int.Parse(mapStrArr[y * 10 + x]);
@@ -104,6 +107,8 @@ public class MapManager : MonoBehaviour
                 mapRectArr[y, x] = rectTrm;
             }
         }
+
+        Debug.Log(fieldvectorList.Count);
 
         sortFieldRectList.Sort((x, y) => x.num.CompareTo(y.num));
 
@@ -121,30 +126,36 @@ public class MapManager : MonoBehaviour
         {
             for (int x = 0; x < 10; x++)
             {
+                if (fieldvectorList.Contains(new Vector2(x, y))) continue;
+
                 for (int count = 0; count < 8; count++)
                 {
                     // 검사하던중 도로가 있다? count for문 break
-                    if (fieldvectorList.Contains( new Vector2(y + nearPoints[count].y, x + nearPoints[count].x) )) // 도로 리스트에 좌표가 들어가있으면
+                    if (fieldvectorList.Contains( new Vector2(x + nearPoints[count].x, y + nearPoints[count].y) )) // 도로 리스트에 좌표가 들어가있으면
                     {
+                        Debug.Log("들어가요");
+
                         // 현재 x y 좌표 근처 8칸에 도로가 있음!
-                        nearRoadPointList.Add(new Vector2(x + nearPoints[count].x, y + nearPoints[count].y));
+                        nearRoadPointList.Add(new Vector2(x, y));
                         break;
                     }
                 }
             }
         }
 
+        notBuildTiles = nearRoadPointList.Where(point => mapRectArr[(int)point.y, (int)point.x].childCount == 0).ToList();
+
         afterMapCreateEvent.Occurred();
     }
 
     public Vector2 RandomMapIndex()
     {
-        var notBuildTiles = nearRoadPointList.Where(point => mapRectArr[(int)point.y, (int)point.x].childCount == 0).ToList(); // 자식의 수가 0인(건물안세워진) 타일들만 갖고옴
-        int rand = Random.Range(0, notBuildTiles.Count);
+        int rand = random.Next(0, notBuildTiles.Count);
+        Vector2 randomPoint = notBuildTiles[rand];
 
-        Vector2 selectedTile = nearRoadPointList[rand];
+        notBuildTiles.Remove(randomPoint);
 
-        return selectedTile;
+        return randomPoint;
     }
 }
 

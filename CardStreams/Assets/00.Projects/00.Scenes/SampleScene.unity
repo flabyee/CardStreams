@@ -6091,7 +6091,8 @@ MonoBehaviour:
   buildDropPrefab: {fileID: 5156988510951363020, guid: 7fe4f89f4090a474babb2ba584522f31, type: 3}
   fieldRectPrefab: {fileID: 1237876089419477962, guid: 6aea6aea7fee59b499cb3808632223ff, type: 3}
   fieldDropPrefab: {fileID: 7273653326528121735, guid: e4fa61463b6e06d478ba15bea753344d, type: 3}
-  nearRoadFieldList: []
+  fieldvectorList: []
+  nearRoadPointList: []
   fieldList: []
   afterMapCreateEvent: {fileID: 11400000, guid: 142ccbfbc769d294698c460142ed95da, type: 2}
 --- !u!1 &905695223
@@ -11853,8 +11854,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664593177}
-  - component: {fileID: 1664593179}
   - component: {fileID: 1664593178}
+  - component: {fileID: 1664593179}
   m_Layer: 0
   m_Name: EnemyInstallManager
   m_TagString: Untagged
@@ -11888,6 +11889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2760d436f42dd2a4ca62442450c4320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
 --- !u!114 &1664593179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12324,7 +12326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1775131614
 Transform:
   m_ObjectHideFlags: 0
@@ -12382,7 +12384,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1775131615}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: Show
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

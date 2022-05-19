@@ -331,7 +331,7 @@ public class ShopManager : MonoBehaviour
 
         for(int i = 0; i < 5; i++)
         {
-            Debug.Log((CardGrade)i + " : " + (float)gradeToChance[(CardGrade)i] / GetAllChance() * 100f);
+            // Debug.Log((CardGrade)i + " : " + (float)gradeToChance[(CardGrade)i] / GetAllChance() * 100f);
         }
     }
 }
