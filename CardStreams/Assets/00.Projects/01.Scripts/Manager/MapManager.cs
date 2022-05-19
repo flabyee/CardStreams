@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour
 
 
     [HideInInspector] public RectTransform[,] mapRectArr;         // 전체 맵 배열
+    [HideInInspector] public List<Field> nearRoadFieldList = new List<Field>();
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
@@ -107,16 +108,37 @@ public class MapManager : MonoBehaviour
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
 
+        Vector2Int[] nearPoints = new Vector2Int[] {
+        new Vector2Int(-1,1), new Vector2Int(0,  1), new Vector2Int(1, 1), new Vector2Int(-1, 0),
+        new Vector2Int(1, 0), new Vector2Int(-1,-1), new Vector2Int(0,-1), new Vector2Int(1, -1)};
+
+        //// 다시 쫙 훑으면서 도로와 인접한 타일을 특별 List에 추가
+        //for (int y = 0; y < 10; y++)
+        //{
+        //    for (int x = 0; x < 10; x++)
+        //    {
+        //        for (int count = 0; count < 8; count++)
+        //        {
+        //            // 검사하던중 도로가 있다? count for문 break
+        //            if(mapRectArr[y + nearPoints[count].y,x + nearPoints[count].x])
+        //        }
+        //    }
+        //}
 
         afterMapCreateEvent.Occurred();
     }
 
     public RectTransform RandomMapIndex()
     {
-        int randX = Random.Range(0, mapRectArr.Length);
-        int randY = Random.Range(0, mapRectArr.Length);
+        //do
+        //{
+        //    int randX = Random.Range(0, mapRectArr.Length);
+        //    int randY = Random.Range(0, mapRectArr.Length);
 
-        return mapRectArr[randY, randX];
+        //    for // point 돌려서 8칸근처에 도로가있는지 true면 나가고 대충뭐이렇게하면?
+        //}
+        //return mapRectArr[randY, randX];
+        return null;
     }
 }
 

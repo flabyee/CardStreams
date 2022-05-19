@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1f76cfa2ea43047a1557807ccb7026, type: 3}
+  m_Name: EnemyBuildListSO
+  m_EditorClassIdentifier: 
+  buildList:
+  - {fileID: 11400000, guid: 1f3dfcacc2137bd47ab574d2f130323e, type: 2}
+  - {fileID: 11400000, guid: fbcda95c1ca86af4683ac2b891369465, type: 2}

@@ -4309,6 +4309,7 @@ Transform:
   - {fileID: 1060559202}
   - {fileID: 886143584}
   - {fileID: 1844351539}
+  - {fileID: 1664593177}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6090,6 +6091,7 @@ MonoBehaviour:
   buildDropPrefab: {fileID: 5156988510951363020, guid: 7fe4f89f4090a474babb2ba584522f31, type: 3}
   fieldRectPrefab: {fileID: 1237876089419477962, guid: 6aea6aea7fee59b499cb3808632223ff, type: 3}
   fieldDropPrefab: {fileID: 7273653326528121735, guid: e4fa61463b6e06d478ba15bea753344d, type: 3}
+  nearRoadFieldList: []
   fieldList: []
   afterMapCreateEvent: {fileID: 11400000, guid: 142ccbfbc769d294698c460142ed95da, type: 2}
 --- !u!1 &905695223
@@ -11851,8 +11853,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1664593177}
+  - component: {fileID: 1664593179}
+  - component: {fileID: 1664593178}
   m_Layer: 0
-  m_Name: BossInstall
+  m_Name: EnemyInstallManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11866,12 +11870,52 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664593176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 878.46094, y: 551.7167, z: -6.6134477}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 651397511}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664593178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664593176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2760d436f42dd2a4ca62442450c4320c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1664593179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664593176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 86bae96343fd5af44bf2845a4a12e4f9, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1664593178}
+        m_TargetAssemblyTypeName: EnemyInstallManager, Assembly-CSharp
+        m_MethodName: RandomEnemyBuild
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1676859763
 GameObject:
   m_ObjectHideFlags: 0
