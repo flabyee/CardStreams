@@ -3263,7 +3263,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 88, y: 88}
+  cellSize: {x: 82.11556, y: 82.11556}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -3320,7 +3320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -600.99994, y: -54}
+  m_AnchoredPosition: {x: -600.9999, y: -54}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &481635362
@@ -7796,7 +7796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -600.99994, y: -475}
+  m_AnchoredPosition: {x: -600.9999, y: -475}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1146633998
@@ -12360,8 +12360,8 @@ MonoBehaviour:
   specialCardStandList: []
   buildStandList: []
   sellItemCount: 5
-  chanceFirstAmountList: 64000000000000000cfeffff1efbffff3cf6ffff
-  chanceIncreaseAmountList: 00000000c80000002c010000c20100008a020000
+  chanceFirstAmountList: c80000009cffffff70feffff1efbffff88faffff
+  chanceIncreaseAmountList: 00000000c80000002c010000c20100002c010000
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 0}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
@@ -13069,7 +13069,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 88, y: 88}
+  cellSize: {x: 82.11556, y: 82.11556}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1

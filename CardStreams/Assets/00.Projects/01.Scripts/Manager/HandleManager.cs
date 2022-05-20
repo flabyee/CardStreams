@@ -514,7 +514,6 @@ public class HandleManager : MonoBehaviour
 
     public void TurnEnd()
     {
-        
         deck.Clear();
 
         deckValueAmount -= deckValueIncreaseAmount;

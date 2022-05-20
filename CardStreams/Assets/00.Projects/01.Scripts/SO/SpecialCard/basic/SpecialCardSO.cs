@@ -5,10 +5,10 @@ using UnityEngine;
 public enum ApplyTiming
 {
     NULL,
-    Now,
+    NowField,
     MoveStart,
     OnFeild,
-    OnPlayer,
+    ToPlayer,
 }
 
 public abstract class SpecialCardSO : ScriptableObject

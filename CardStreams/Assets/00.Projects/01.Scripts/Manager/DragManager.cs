@@ -158,19 +158,16 @@ public class DragManager : MonoBehaviour
                         switch (specialCard.applyTiming)
                         {
 
-                            case ApplyTiming.Now:
+                            case ApplyTiming.NowField:
                                 specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
 
                                 dragbleCard.isDestory = true;
 
                                 return;
-                            case ApplyTiming.MoveStart:
-                                //area.feild.accessBuildToCardAfterMoveStart += specialCard.AccessSpecialCard;
-                                break;
                             case ApplyTiming.OnFeild:
                                 //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
                                 break;
-                            case ApplyTiming.OnPlayer:
+                            case ApplyTiming.ToPlayer:
                                 break;
                         }
 
@@ -308,15 +305,12 @@ public class DragManager : MonoBehaviour
             case ApplyTiming.NULL:
                 break;
 
-            case ApplyTiming.OnPlayer:
+            case ApplyTiming.ToPlayer:
                 specialCard.OnAccessSpecialCard(GameManager.Instance.player, null);
                 dragbleCard.isDestory = true;
                 return;
 
-            case ApplyTiming.Now:
-                break;
-
-            case ApplyTiming.MoveStart:
+            case ApplyTiming.NowField:
                 break;
 
             case ApplyTiming.OnFeild:
