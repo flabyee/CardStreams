@@ -6,20 +6,7 @@ public class EnemyInstallManager : MonoBehaviour
 {
     private List<BuildSO> enemyBuildList;
     [SerializeField] GameObject buildPrefab;
-
-    public void RandomEnemyBuild()
-    {
-        Vector2 point = MapManager.Instance.RandomMapIndex(); // 깔고자 하는 타일 위치
-
-        int randomIndex = Random.Range(0, enemyBuildList.Count);
-        EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO;
-
-        // Field가 생겼고 EnemyBuildSO(건물 정보)가 생겼다. 그럼 이제 뭐해야하나
-        Build building = Instantiate(buildPrefab, MapManager.Instance.mapRectArr[(int)point.y, (int)point.x]).GetComponent<Build>();
-        building.Init(buildSO);
-
-        building.BuildDrop(point);
-    }
+    [SerializeField] GameObject enemyBuildEffect;
 
     private void Awake()
     {
@@ -28,13 +15,24 @@ public class EnemyInstallManager : MonoBehaviour
         enemyBuildList = buildListSO.buildList;
     }
 
-    void Start()
+    public void RandomEnemyBuild()
     {
+        // 설치할 위치
+        Vector2 randomPoint = MapManager.Instance.RandomMapIndex(); // 랜덤 위치 획득
+        RectTransform buildPoint = MapManager.Instance.GetMapRectTrm((int)randomPoint.y, (int)randomPoint.x); // 랜덤값으로 설치할 위치 퍼오기
+
+        // 설치할 건물
+        int randomIndex = Random.Range(0, enemyBuildList.Count); // 랜덤 건물 획득
+        EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
+
+        // 건물설치
+        Build building = Instantiate(buildPrefab, buildPoint).GetComponent<Build>();
+        GameObject clone = Instantiate(enemyBuildEffect, buildPoint.transform.position, Quaternion.identity); // rectTransform ???
+        Destroy(clone, 1f);
         
+        building.Init(buildSO);
+
+        building.BuildDrop(randomPoint);
     }
 
-    void Update()
-    {
-        
-    }
 }

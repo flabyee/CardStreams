@@ -12830,6 +12830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
+  enemyBuildEffect: {fileID: 1612221337289516, guid: e9cbfc752d3e7244f8ad6cda4559e3bf, type: 3}
 --- !u!114 &1664593179
 MonoBehaviour:
   m_ObjectHideFlags: 0

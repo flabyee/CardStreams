@@ -45,11 +45,6 @@ public class MapManager : MonoBehaviour
         CreateMap(DataManager.Instance.GetNowStageData().mapStr);
     }
 
-    void Update()
-    {
-
-    }
-
     public void CreateMap(string mapStr)
     {
         mapRectArr = new RectTransform[10, 10];
@@ -153,6 +148,11 @@ public class MapManager : MonoBehaviour
         }
 
         afterMapCreateEvent.Occurred();
+    }
+
+    public RectTransform GetMapRectTrm(int y, int x)
+    {
+        return mapRectArr[y,x];
     }
 
     public Vector2 RandomMapIndex()
