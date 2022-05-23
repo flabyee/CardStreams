@@ -101,8 +101,6 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        Debug.Log(fieldvectorList.Count);
-
         sortFieldRectList.Sort((x, y) => x.num.CompareTo(y.num));
 
         foreach (FieldData fieldData in sortFieldRectList)
@@ -126,8 +124,6 @@ public class MapManager : MonoBehaviour
                     // 검사하던중 도로가 있다? count for문 break
                     if (fieldvectorList.Contains(new Vector2(x + nearPoints[count].x, y + nearPoints[count].y))) // 도로 리스트에 좌표가 들어가있으면
                     {
-                        Debug.Log("들어가요");
-
                         // 현재 x y 좌표 근처 8칸에 도로가 있음!
                         nearRoadPointList.Add(new Vector2(x, y));
                         break;
