@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   specialCardName: "\uCE7C \uAC15\uD654"
-  price: 2
+  price: 3
   grade: 0
   tooltip: "\uCE7C\uC758 \uACF5\uACA9\uB825\uC744 2 \uB298\uB824\uC900\uB2E4"
   sprite: {fileID: -5686095433416818717, guid: 2d3559d395f316b439798ed160129fe0, type: 3}

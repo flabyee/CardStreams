@@ -15,6 +15,7 @@ public class CardPower : MonoBehaviour
     public DropAreaType dropAreaType;
     public CardType cardType;
     public int value { get; private set; }
+    public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
     private int originValue;
 
     // public List<BuffSO> buffList = new List<BuffSO>();
@@ -26,6 +27,7 @@ public class CardPower : MonoBehaviour
         this.cardType = cardType;
         this.value = value;
         this.originValue = value;
+        this.goldP = 1;
 
         ApplyUI();
     }
