@@ -7,6 +7,8 @@ public class RecoveryBuffSO : BuffSO
 {
     public IntValue hpValue;
 
+    public EventSO playerValueChangeEvent;
+
     [Header("회복량")]
     public int recoveryAmount = 2;
 
@@ -16,5 +18,7 @@ public class RecoveryBuffSO : BuffSO
     {
         // 2만큼 회복
         hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + recoveryAmount, 0, hpValue.RuntimeMaxValue);
+
+        playerValueChangeEvent.Occurred();
     }
 }

@@ -82,52 +82,67 @@ public class Player : MonoBehaviour
 
     private void OnPotion(Field field) // 체력증가포션
     {
-        AddFieldBuff(field.cardPower.buffList);
+        if(field.cardPower.value > 0)
+        {
+            AddFieldBuff(field.cardPower.buffList);
 
-        buffCon.UseBuffs(UseTiming.GetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.GetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
 
-        hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
+            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
 
-        buffCon.UseBuffs(UseTiming.AfterGetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.AfterGetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+        }
     }
 
     private void OnSword(Field field)
     {
-        AddFieldBuff(field.cardPower.buffList);
+        if(field.cardPower.value > 0)
+        {
+            AddFieldBuff(field.cardPower.buffList);
 
-        buffCon.UseBuffs(UseTiming.GetSword, field.cardPower.value);
+            buffCon.UseBuffs(UseTiming.GetSword, field.cardPower.value);
 
-        swordValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, swordValue.RuntimeMaxValue);
+            swordValue.RuntimeValue = field.cardPower.value;
 
-        buffCon.UseBuffs(UseTiming.AfterGetSword, field.cardPower.value);
+            buffCon.UseBuffs(UseTiming.AfterGetSword, field.cardPower.value);
+        }
     }
 
     private void OnShield(Field field)
     {
-        AddFieldBuff(field.cardPower.buffList);
+        if(field.cardPower.value > 0)
+        {
+            AddFieldBuff(field.cardPower.buffList);
 
-        buffCon.UseBuffs(UseTiming.GetShield, field.cardPower.value);
+            buffCon.UseBuffs(UseTiming.GetShield, field.cardPower.value);
 
-        int addShieldValue = field.cardPower.value + shieldValue.RuntimeValue;
+            int addShieldValue = field.cardPower.value + shieldValue.RuntimeValue;
 
-        shieldValue.RuntimeValue = Mathf.Clamp(field.cardPower.value, 0, shieldValue.RuntimeMaxValue);
+            shieldValue.RuntimeValue = field.cardPower.value;
 
-        buffCon.UseBuffs(UseTiming.AfterGetShield, addShieldValue);
+            buffCon.UseBuffs(UseTiming.AfterGetShield, addShieldValue);
+        }
     }
 
     private void OnMonster(Field field)
     {
-        buffCon.UseBuffs(UseTiming.BeforeSword, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+        int currentMonsterValue = field.cardPower.value;
 
-        int currentMonsterValue = field.cardPower.value - swordValue.RuntimeValue;
+        if(currentMonsterValue > 0 && swordValue.RuntimeValue > 0) // 몬스터 공격력이 0 이상이고 칼이 있으면
+        {
+            buffCon.UseBuffs(UseTiming.BeforeSword, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
 
-        buffCon.UseBuffs(UseTiming.AfterSword, currentMonsterValue);
+            currentMonsterValue -= swordValue.RuntimeValue;
+
+            buffCon.UseBuffs(UseTiming.AfterSword, currentMonsterValue);
+        }
+
 
         // 방패 쓰는지 검사
 
         int leftShieldValue = shieldValue.RuntimeValue;
 
-        if (currentMonsterValue > 0) // 0 이하면 방패필요없음
+        if (currentMonsterValue > 0 && shieldValue.RuntimeValue > 0) // 남은 몬스터 공격력이 0 이상이고 방패가 있으면
         {
             buffCon.UseBuffs(UseTiming.BeforeShield, currentMonsterValue);
 
@@ -155,7 +170,7 @@ public class Player : MonoBehaviour
         shieldValue.RuntimeValue = leftShieldValue;
 
         // 실제데미지 적용
-        currentMonsterValue = Mathf.Clamp(currentMonsterValue, 0, hpValue.RuntimeMaxValue);
+        currentMonsterValue = Mathf.Clamp(currentMonsterValue, 0, 99);
         hpValue.RuntimeValue -= currentMonsterValue;
         playerValueChangeEvent.Occurred();
     }

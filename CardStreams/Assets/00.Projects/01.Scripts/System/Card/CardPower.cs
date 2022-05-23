@@ -16,7 +16,7 @@ public class CardPower : MonoBehaviour
     public CardType cardType;
     public int value { get; private set; }
     public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
-    private int originValue;
+    public int originValue;
 
     // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();
