@@ -7956,7 +7956,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 15
   m_Viewport: {fileID: 397877563}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 275002470}
@@ -13650,8 +13650,8 @@ MonoBehaviour:
   specialCardStandList: []
   buildStandList: []
   sellItemCount: 5
-  chanceFirstAmountList: c80000009cffffff70feffff1efbffff88faffff
-  chanceIncreaseAmountList: 00000000c80000002c010000c20100002c010000
+  chanceFirstAmountList: 320000000000000070feffff1efbffff88faffff
+  chanceIncreaseAmountList: 000000001900000090010000c20100002c010000
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 0}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
