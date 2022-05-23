@@ -22,6 +22,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private Vector2 myPoint;    // 맵에서의 내 위치
 
+    private ActionPosData actionPosData;
+
     protected virtual void Awake()
     {
 
@@ -89,7 +91,30 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // 턴 엔드 효과 실행 리스트에 추가 (예시 : 돈버는 건물)
         //BuildManager.Instance.OnBuildWhenTurnEnd += buildSO.AccessTurnEnd;
-        BuildManager.Instance.OnBuildWhenTurnEndList.Add(new ActionPosData(buildSO.AccessTurnEnd, gameObject));
+        actionPosData = new ActionPosData(buildSO.AccessTurnEnd, gameObject);
+        BuildManager.Instance.OnBuildWhenTurnEndList.Add(actionPosData);
+    }
+
+    public void BuildUp(Vector2 point)
+    {
+        myPoint = point;
+        // 주변 검사해서 효과 적용
+
+        foreach (Vector2 accessPoint in buildSO.accessPointList)
+        {
+
+            // mapRectArr이 x는 왼쪽에서 오른쪽이지만, y는 위에서 아래라서 + 대신 -를 했다
+            Field field = MapManager.Instance.mapRectArr[
+                Mathf.Clamp(Mathf.RoundToInt(myPoint.y - accessPoint.y), 0, 9),
+                Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
+            if (field != null)
+            {
+                field.accessBuildToPlayerAfterOnField -= buildSO.AccessPlayer;
+                field.accessBuildToCardAfterMoveStart -= buildSO.AccessCard;
+            }
+        }
+
+        BuildManager.Instance.OnBuildWhenTurnEndList.Remove(actionPosData);
     }
 
 

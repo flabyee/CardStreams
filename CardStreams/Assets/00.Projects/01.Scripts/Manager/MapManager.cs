@@ -157,7 +157,7 @@ public class MapManager : MonoBehaviour
 
         bool b = true;
         Vector2 point;
-        while (b == true)
+        while (b == true && nearRoadPointList.Count > 0)
         {
             point = nearRoadPointList[0];
             if (mapRectArr[(int)point.y, (int)point.x].childCount == 0)

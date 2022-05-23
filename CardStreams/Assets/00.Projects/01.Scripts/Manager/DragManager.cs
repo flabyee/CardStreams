@@ -207,7 +207,21 @@ public class DragManager : MonoBehaviour
             build.BuildDrop(area.point);
 
         }
-        // 뭐가 있거나 건물카드가 아니라면
+        // To Do : 나중에 개선 무조건 해라!!
+        else if(cardPower.cardType == CardType.Special)
+        {
+            SpecialCard specialCard = obj.GetComponent<SpecialCard>();
+
+            if(specialCard.targetTypeList[0] == CardType.Build)
+            {
+                dragbleCard.isDestory = true;
+
+                Build build = area.rectTrm.GetChild(0).GetComponent<Build>();
+                build.BuildUp(area.point);
+
+                Destroy(build.gameObject);
+            }
+        }
         else
         {
             // 재자리로
