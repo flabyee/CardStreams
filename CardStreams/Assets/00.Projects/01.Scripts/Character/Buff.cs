@@ -15,7 +15,7 @@ public enum UseTiming
     AfterSword,
     BeforeShield,
     AfterShield,
-    MoveEnd,
+    AfterMove,
 }
 
 public class Buff

@@ -3263,7 +3263,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 82.11556, y: 82.11556}
+  cellSize: {x: 88, y: 88}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -3320,7 +3320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -600.9999, y: -54}
+  m_AnchoredPosition: {x: -600.99994, y: -54}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &481635362
@@ -7796,7 +7796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -600.9999, y: -475}
+  m_AnchoredPosition: {x: -600.99994, y: -475}
   m_SizeDelta: {x: 400, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1146633998
@@ -12378,7 +12378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: cdd0a4bc5ce8a204b8d90a501c0fcfb8, type: 2}
+  gEvent: {fileID: 0}
   responseObj:
     m_PersistentCalls:
       m_Calls:
@@ -13069,7 +13069,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 82.11556, y: 82.11556}
+  cellSize: {x: 88, y: 88}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1

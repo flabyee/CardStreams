@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 
     public void OnFeild(Field field)
     {
-        buffCon.UseBuffs(UseTiming.MoveEnd, 0);
+        buffCon.UseBuffs(UseTiming.AfterMove, 0);
 
         switch (field.cardPower.cardType)
         {
