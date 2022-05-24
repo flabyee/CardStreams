@@ -12,6 +12,7 @@ public class HPLakeBuildSO : BuildSO
 
     [Header("Amount")]
     public int healAmount;
+    public int maxUpAmount;
     public int hpLimit;
 
     public override void AccessCard(Field field)
@@ -23,6 +24,7 @@ public class HPLakeBuildSO : BuildSO
     {
         if (hpValue.RuntimeValue <= hpLimit)
         {
+            hpValue.RuntimeMaxValue += maxUpAmount;
             hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + healAmount, 0, hpValue.RuntimeMaxValue);
 
             playerValueChangeEvnet.Occurred();

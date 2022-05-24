@@ -8,6 +8,7 @@ public class ShopManager : MonoBehaviour
 
     // ui
     public GameObject shopPanel;
+    public GameObject reducePanel;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
 
@@ -19,6 +20,8 @@ public class ShopManager : MonoBehaviour
     public int sellItemCount;
     public List<int> chanceFirstAmountList;
     public List<int> chanceIncreaseAmountList;
+
+    private bool isReduce;
 
     // dict
     private List<BuildSO> buildList;
@@ -94,6 +97,8 @@ public class ShopManager : MonoBehaviour
     public void Show()
     {
         shopPanel.SetActive(true);
+        reducePanel.SetActive(true);
+        isReduce = false;
 
         OnShop();
     }
@@ -101,6 +106,12 @@ public class ShopManager : MonoBehaviour
     public void Hide()
     {
         shopPanel.SetActive(false);
+    }
+
+    public void Reduce()
+    {
+        reducePanel.SetActive(isReduce);
+        isReduce = !isReduce;
     }
 
     public void OnShop()

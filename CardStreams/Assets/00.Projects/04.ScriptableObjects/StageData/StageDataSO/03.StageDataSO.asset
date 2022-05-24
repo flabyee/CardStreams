@@ -18,7 +18,7 @@ MonoBehaviour:
   isDeckShuffle: 1
   firstDeckValueAmount: 10
   deckValueIncreaseAmount: 5
-  deckValueIncreaseMultipication: 1.25
+  deckValueIncreaseMultipication: 1
   firstMobSpawnAmount: 0
   mobIncreaseAmount: 2
   firstMobAttackAmount: 0
