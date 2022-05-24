@@ -51,12 +51,11 @@ public abstract class Menu<T> : Menu where T : Menu<T>
 public abstract class Menu : MonoBehaviour
 {
     public Action onBackPressed;
-    protected int isReceiveID = -1; // 메뉴를 열때(OpenMenu) id를 보내주었는가? 아니라면 -1
 
     public virtual void OnOpen()
     {
-    }
 
+    }
 
     public virtual void OnBackPressed()
     {

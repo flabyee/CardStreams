@@ -10,12 +10,12 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
     // 필요한 메뉴 프리팹들을 변수로 선언
-    public MainMenu mainMenuPrefab;
-    public InformationMenu informationMenuPrefab;
-    public ReinforcementMenu reinforcementMenu;
-    public RevivalMenu revivalMenu;
-    public DungeonJoinMenu dungeonJoinMenu;
-    public ShopMenu shopMenu;
+    //public MainMenu mainMenuPrefab;
+    //public InformationMenu informationMenuPrefab;
+    //public ReinforcementMenu reinforcementMenu;
+    //public RevivalMenu revivalMenu;
+    //public DungeonJoinMenu dungeonJoinMenu;
+    //public ShopMenu shopMenu;
     //public Menu2 menu2Prefab;
 
 
@@ -59,7 +59,6 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        LoadGold();
         Instance.spendGT.FirstInit(0, false, GoldTextClass.GoldType.reinforceGold);
     }
 
@@ -108,14 +107,14 @@ public class MenuManager : MonoBehaviour
                 Menu menuInstance = Instantiate(prefab, _menuParent);
 
                 // 첫 오픈하는 메뉴는 메인메뉴로 하겠다
-                if (prefab != mainMenuPrefab)
-                {
-                    menuInstance.gameObject.SetActive(false);
-                }
-                else
-                {
-                    OpenMenu(menuInstance);
-                }
+                //if (prefab != mainMenuPrefab)
+                //{
+                //    menuInstance.gameObject.SetActive(false);
+                //}
+                //else
+                //{
+                //    OpenMenu(menuInstance);
+                //}
             }
         }
     }
@@ -162,9 +161,6 @@ public class MenuManager : MonoBehaviour
         menuInstance.gameObject.SetActive(true);
         menuInstance.OnOpen();
 
-        // menu를 열때 id 전달할수있게
-        menuInstance.SendID(index);
-
         _menuStack.Push(menuInstance);
     }
 
@@ -200,11 +196,6 @@ public class MenuManager : MonoBehaviour
         moneyObj.SetActive(b);
     }
 
-    public void LoadGold()
-    {
-        shopGT.FirstInit(DataManager.Instance.shopGold, true, GoldTextClass.GoldType.shopGold);
-        reinforceGT.FirstInit(DataManager.Instance.reinforceGold, true, GoldTextClass.GoldType.reinforceGold);
-    }
     public void SetSpendText(TextMeshProUGUI spendText)
     {
         spendGT.setText = spendText;
