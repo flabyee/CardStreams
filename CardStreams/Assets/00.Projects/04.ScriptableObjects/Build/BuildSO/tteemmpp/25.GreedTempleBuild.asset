@@ -16,7 +16,7 @@ MonoBehaviour:
   buildName: "\uD0D0\uC695\uC758 \uC2E0\uC804"
   price: 65
   grade: 3
-  tooltip: "\uBAAC\uC2A4\uD130 goldP = goldP * 3"
+  tooltip: "\uBAAC\uC2A4\uD130 goldP = goldP * 5"
   sprite: {fileID: 21300000, guid: db55897591ac1c34c8c603a41570cc94, type: 3}
   accessPointList:
   - {x: -2, y: -1}
@@ -25,4 +25,4 @@ MonoBehaviour:
   - {x: 1, y: -2}
   - {x: -2, y: -2}
   - {x: 2, y: -2}
-  goldPAmount: 3
+  goldPAmount: 5
