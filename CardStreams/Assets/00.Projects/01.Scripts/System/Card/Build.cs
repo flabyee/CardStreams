@@ -10,15 +10,11 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BuildSO buildSO;
 
-    public GameObject areaTooltipPrefab;
-
     public Image buildImage;
     public TextMeshProUGUI greadeText;
-    public GameObject buildAreaTooltip;
     private List<Vector2> accessPointList;
-    private List<Image> buildAreaImageList = new List<Image>();
-    private float width;
-    private float height;
+
+    public bool isDrop;
 
     private Vector2 myPoint;    // 맵에서의 내 위치
 
@@ -26,8 +22,6 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     protected virtual void Awake()
     {
-
-        HideArea();
     }
 
     private void Start()
@@ -41,36 +35,17 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         buildImage.sprite = this.buildSO.sprite;
         greadeText.text = this.buildSO.grade.ToString();
+        accessPointList = this.buildSO.accessPointList;
+        
         greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade];
 
-        width = GetComponent<RectTransform>().rect.width;
-        height = width;
-
-        //for (int i = 0; i < 9; i++)
-        //{
-        //    if (!(buildSO.areaList.Contains(i)))
-        //        buildAreaTooltip.transform.GetChild(i).gameObject.GetComponent<Image>().DOFade(0, 0);
-        //}
-
-        accessPointList = buildSO.accessPointList;
-        for (int y = 2; y >= -2; y--)
-        {
-            for (int x = -2; x <= 2; x++)
-            {
-                GameObject obj = Instantiate(areaTooltipPrefab, buildAreaTooltip.transform);
-
-                // point에 해당되는 구역이아니라면 Alpha = 0
-                if(!buildSO.accessPointList.Contains(new Vector2(x, y)))
-                {
-                    Image image = obj.GetComponent<Image>();
-                    image.color = new Color(0, 0, 0, 0);
-                }
-            }
-        }
+        isDrop = false;
     }
 
     public void BuildDrop(Vector2 point)
     {
+        isDrop = true;
+
         myPoint = point;
         // 주변 검사해서 효과 적용
 
@@ -97,6 +72,8 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void BuildUp(Vector2 point)
     {
+        isDrop = false;
+
         myPoint = point;
         // 주변 검사해서 효과 적용
 
@@ -117,25 +94,27 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         BuildManager.Instance.OnBuildWhenTurnEndList.Remove(actionPosData);
     }
 
-
-    public void ShowArea()
-    {
-        buildAreaTooltip.SetActive(true);
-    }
-
-    public void HideArea()
-    {
-        buildAreaTooltip.SetActive(false);
-    }
-
-
     public void OnPointerEnter(PointerEventData eventData)
     {
-        BuildTooltip.Instance.Show(buildSO.buildName, accessPointList, buildSO.tooltip, buildSO.sprite, transform.position);
+        if(isDrop == true)
+        {
+            BuildAreaTooltip.Instance.Show(transform.position, accessPointList);
+        }
+        else
+        {
+            BuildTooltip.Instance.Show(buildSO.buildName, accessPointList, buildSO.tooltip, buildSO.sprite, transform.position);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        BuildTooltip.Instance.Hide();
+        if(isDrop == true)
+        {
+            BuildAreaTooltip.Instance.Hide();
+        }
+        else
+        {
+            BuildTooltip.Instance.Hide();
+        }
     }
 }

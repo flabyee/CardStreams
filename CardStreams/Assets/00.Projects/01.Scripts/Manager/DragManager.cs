@@ -258,7 +258,8 @@ public class DragManager : MonoBehaviour
     {
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
-        if (cardPower.cardType != CardType.Monster && cardPower.cardType != CardType.Coin)
+
+        if (cardPower.cardType == CardType.Sword || cardPower.cardType == CardType.Sheild || cardPower.cardType == CardType.Potion)
         {
             GameManager.Instance.AddScore(2);
             //dragbleCard.isDestory = true;

@@ -63,6 +63,10 @@ public class BuildTooltip : MonoBehaviour
         {
             for (int x = -2; x <= 2; x++)
             {
+                if(accessPointList == null)
+                {
+                    Debug.LogError("adsfasfadsf");
+                }
                 // point에 해당되는 구역이아니라면 Alpha = 0
                 if (!accessPointList.Contains(new Vector2(x, y)))
                 {

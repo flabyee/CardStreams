@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8634731456361044875}
   - component: {fileID: 2564041583975317089}
   m_Layer: 5
-  m_Name: BuildAreaTooltip
+  m_Name: BuildAreaImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

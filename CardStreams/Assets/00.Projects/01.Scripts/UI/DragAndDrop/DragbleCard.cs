@@ -121,7 +121,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if(cardPower.dropAreaType == DropAreaType.build)
         {
-            GetComponent<Build>().ShowArea();
+            
         }
 
         rectTransform.sizeDelta = new Vector2(75, 75);
@@ -182,7 +182,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if (cardPower.dropAreaType == DropAreaType.build)
         {
-            GetComponent<Build>().HideArea();
+            
         }
     }
 
