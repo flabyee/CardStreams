@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ef1453c5ef5ae47b796021f65f4417, type: 3}
   m_Name: 26.IronPot
   m_EditorClassIdentifier: 
-  id: 0
-  buildName: 
-  price: 0
-  grade: 0
-  tooltip: 
-  sprite: {fileID: 0}
-  accessPointList: []
-  amount: 0
+  id: 26
+  buildName: "\uAC00\uB9C8\uC1A5"
+  price: 60
+  grade: 3
+  tooltip: "\uBAAC\uC2A4\uD130\uB97C \uD3EC\uC158\uC73C\uB85C \uBC14\uAFB8\uACE0
+    \uAC12 / 2"
+  sprite: {fileID: 21300000, guid: 826fc47ba6d506d4c8888de6d08de99b, type: 3}
+  accessPointList:
+  - {x: 0, y: 1}
+  amount: 2

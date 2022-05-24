@@ -14542,6 +14542,10 @@ MonoBehaviour:
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   FieldResetAfterEvnet: {fileID: 11400000, guid: cdd0a4bc5ce8a204b8d90a501c0fcfb8, type: 2}
   GoldChangeEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  coinSprites:
+  - {fileID: 21300000, guid: 832d927948475b84485125fc74716be1, type: 3}
+  - {fileID: 21300000, guid: b9a75b71e2089364bbdc20c0a6188d1d, type: 3}
+  - {fileID: 21300000, guid: 1885e1e313d83014b933b1ed9721f9ca, type: 3}
   R: 0.5
 --- !u!1 &1847185129
 GameObject:
