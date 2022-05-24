@@ -8,9 +8,9 @@ public class BasicCardTooltip : MonoBehaviour
 {
     public static BasicCardTooltip Instance;
 
-    public TextMeshProUGUI nameText;
     public TextMeshProUGUI typeText;
     public TextMeshProUGUI valueText;
+    public TextMeshProUGUI originValueText;
 
     public Image cardImage;
 
@@ -27,6 +27,20 @@ public class BasicCardTooltip : MonoBehaviour
 
         typeText.text = cardPower.cardType.ToString();
         valueText.text = cardPower.value.ToString();
+        originValueText.text = cardPower.originValue.ToString();
+
+        if (cardPower.value == cardPower.originValue)
+        {
+            valueText.color = Color.white;
+        }
+        else if (cardPower.value > cardPower.originValue)
+        {
+            valueText.color = Color.blue;
+        }
+        else if (cardPower.value < cardPower.originValue)
+        {
+            valueText.color = Color.red;
+        }
 
         cardImage.sprite = cardPower.faceImage.sprite;
 
