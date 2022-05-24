@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SelectCardPanel : MonoBehaviour
 {
+    [SerializeField] RewardCard[] rewardCards;
     private CanvasGroup _cg;
+    
 
     private void Awake()
     {
         _cg = GetComponent<CanvasGroup>();
 
-        // Hide();
+        Hide();
     }
 
     public void Show()
@@ -25,6 +27,13 @@ public class SelectCardPanel : MonoBehaviour
         _cg.alpha = 0;
         _cg.blocksRaycasts = false;
         _cg.interactable = false;
+    }
+
+    public void GetSpecialCard(SpecialCardSO so)
+    {
+        SaveData saveData = SaveSystem.Load();
+        saveData.speicialCardDataList[so.id].haveAmount++;
+        SaveSystem.Save(saveData);
     }
 
     public void InitReward()

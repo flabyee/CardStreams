@@ -297,6 +297,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    
+
     private void BuySpecial(SpecialCardSO specialCardSO)
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8350fc8e7515d1b4ea1110c2c5efa750, type: 3}
+  m_Name: Loop2C
+  m_EditorClassIdentifier: 
+  rewardSprite: {fileID: 983452434578553698, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
+  rewardName: "\uC131\uC218"
+  rewardDescription: "\uCCB4\uB825 \uBAA8\uB450 \uD68C\uBCF5\n\uC7AC\uC0DD \uBB3C\uC57D
+    x1"
+  moneyReward: 0
+  allHealReward: 1
+  cardReward:
+  - {fileID: 11400000, guid: 692251430e6a15847b536fca067c7615, type: 2}
