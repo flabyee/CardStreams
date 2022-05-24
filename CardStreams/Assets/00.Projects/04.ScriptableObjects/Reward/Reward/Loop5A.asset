@@ -16,7 +16,7 @@ MonoBehaviour:
   rewardName: "\uC720\uBB3C"
   rewardDescription: "\uAC74\uBB3C \uBD80\uC218\uAE30 x2\n\uD76C\uC0DD x2\n\uBC29\uD328
     \uBC00\uCCD0\uB0B4\uAE30 x2"
-  moneyReward: 0
+  goldReward: 0
   allHealReward: 0
   cardReward:
   - {fileID: 11400000, guid: 6b359bc841635f2478c3945dc03e9f33, type: 2}
