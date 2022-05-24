@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RewardListSO", menuName = "ScriptableObject/Reward/RewardList")]
 public class RewardListSO : ScriptableObject
 {
-    public RewardSO[] rewardList;
+    public List<RewardSO> rewardList;
 }

@@ -301,6 +301,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3c47d8a02dbd44ca40436701afcabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewardImage: {fileID: 6657992545851895518}
+  rewardNameText: {fileID: 6657992544769352914}
+  rewardDescriptionText: {fileID: 3655665570817037843}
+  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
+  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
 --- !u!114 &-5772165051596317692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +352,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3236011092737408099}
         m_TargetAssemblyTypeName: RewardCard, Assembly-CSharp
-        m_MethodName: AA
+        m_MethodName: SelectReward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

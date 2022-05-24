@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d91afe080fdd834abb8a7c6541041c0, type: 3}
+  m_Name: Loop4
+  m_EditorClassIdentifier: 
+  rewardList:
+  - {fileID: 11400000, guid: baf16a312abfa3b46a65b5da8c39e35c, type: 2}
+  - {fileID: 11400000, guid: 295251f2410b6304cb38b4a05d3c9661, type: 2}
+  - {fileID: 11400000, guid: ac1ac9d5600db5d4d867ab24fd8e6f4f, type: 2}

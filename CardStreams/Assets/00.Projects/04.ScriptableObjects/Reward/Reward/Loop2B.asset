@@ -15,7 +15,7 @@ MonoBehaviour:
   rewardSprite: {fileID: 1487264520755003514, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   rewardName: "\uBCF4\uBB3C"
   rewardDescription: "\uB3C8 x20\n\uC8FC\uC0AC\uC704 x2"
-  moneyReward: 20
+  goldReward: 20
   allHealReward: 0
   cardReward:
   - {fileID: 11400000, guid: 20f776e71282aa24dae25a6a3801c84c, type: 2}

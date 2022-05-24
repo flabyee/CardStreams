@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardSprite: {fileID: 1475767685386808120, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   rewardName: "\uC131\uC218"
-  rewardDescription: "\uCCB4\uB825 \uBAA8\uB450 \uD68C\uBCF5"
+  rewardDescription: "\uCCB4\uB825 \uBAA8\uB450 \uD68C\uBCF5\n\uCD08\uC7AC\uC0DD\uBB3C\uC57D
+    x1\n\uD3EC\uC154\uB098\uC774\uC988 x1"
   moneyReward: 0
   allHealReward: 1
-  cardReward: []
+  cardReward:
+  - {fileID: 11400000, guid: df409f65e15ea51448ce40fe409ae5d5, type: 2}
+  - {fileID: 11400000, guid: e00c49ec030444040821c28a225989e1, type: 2}

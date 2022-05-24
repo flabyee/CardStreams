@@ -8,7 +8,7 @@ public class RewardSO : ScriptableObject
     public Sprite rewardSprite;
     public string rewardName;
     [TextArea] public string rewardDescription;
-    public int moneyReward;
+    public int goldReward;
     public bool allHealReward;
     public SpecialCardSO[] cardReward;
 }

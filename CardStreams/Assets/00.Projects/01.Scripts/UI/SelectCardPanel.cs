@@ -6,13 +6,17 @@ public class SelectCardPanel : MonoBehaviour
 {
     [SerializeField] RewardCard[] rewardCards;
     private CanvasGroup _cg;
-    
+
+    private List<RewardListSO> loopRewardList;
+    private int loopCount = 0; // 알아서 돌아감, 나중에 동기화 필?요
 
     private void Awake()
     {
         _cg = GetComponent<CanvasGroup>();
 
         Hide();
+
+        loopRewardList = Resources.Load<LoopRewardListSO>("LoopRewardList").loopList;
     }
 
     public void Show()
@@ -38,6 +42,18 @@ public class SelectCardPanel : MonoBehaviour
 
     public void InitReward()
     {
+        for (int i = 0; i < rewardCards.Length; i++)
+        {
+            rewardCards[i].gameObject.SetActive(false);
+        }
 
+        int rewardCount = loopRewardList[loopCount].rewardList.Count;
+
+        foreach (var item in collection)
+        {
+
+        }
+
+        loopCount++;
     }
 }
