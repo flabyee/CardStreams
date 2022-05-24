@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c1f76cfa2ea43047a1557807ccb7026, type: 3}
-  m_Name: EnemyBuildListSO
+  m_Script: {fileID: 11500000, guid: e2ef1453c5ef5ae47b796021f65f4417, type: 3}
+  m_Name: 26.IronPot
   m_EditorClassIdentifier: 
-  buildList:
-  - {fileID: 11400000, guid: 1f3dfcacc2137bd47ab574d2f130323e, type: 2}
-  - {fileID: 11400000, guid: e76fd9bc4f78d1e4586b46a59e72647c, type: 2}
+  id: 0
+  buildName: 
+  price: 0
+  grade: 0
+  tooltip: 
+  sprite: {fileID: 0}
+  accessPointList: []
+  amount: 0

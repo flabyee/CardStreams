@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 1017501598721244011}
-  backImage: {fileID: 0}
+  backImage: {fileID: 6555687024791524721}
   valueText: {fileID: 0}
   dropAreaType: 0
   cardType: 0

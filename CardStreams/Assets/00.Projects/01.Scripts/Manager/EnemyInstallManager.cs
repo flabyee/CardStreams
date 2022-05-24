@@ -33,6 +33,10 @@ public class EnemyInstallManager : MonoBehaviour
         building.Init(buildSO);
 
         building.BuildDrop(randomPoint);
+
+        // »ö º¯°æ
+        CardPower cardPower = building.GetComponent<CardPower>();
+        cardPower.backImage.color = Color.magenta;
     }
 
 }

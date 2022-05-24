@@ -19,7 +19,7 @@ MonoBehaviour:
   tooltip: "\uD50C\uB808\uC774\uC5B4\uAC00 \uB4E4\uACE0\uC788\uB294 \uCE7C\uACFC
     \uBC29\uD328 \uAC00\uCE58\uB97C \uBC14\uAFC8, \uC11C\uB85C \uAC19\uC73C\uBA74
     \uB458\uB2E4 +2"
-  sprite: {fileID: 21300000, guid: 81c952ecd5087534e95c8d529371a14e, type: 3}
+  sprite: {fileID: 6338068570567419226, guid: 07c4b3a315249bf43b6a5e8241d7ad32, type: 3}
   applyTiming: 1
   targetTypeList: 0100000002000000
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}

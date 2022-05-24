@@ -8,7 +8,7 @@ public class MonsterUpgradeCardSO : SpecialCardSO
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower
-        field.cardPower.SetValue(field.cardPower.value * 2);
+        field.cardPower.SetValue(Mathf.RoundToInt(field.cardPower.value * 1.5f));
         field.cardPower.goldP = 3;
         
 
