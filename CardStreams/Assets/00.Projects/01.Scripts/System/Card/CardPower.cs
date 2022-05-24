@@ -126,7 +126,7 @@ public class CardPower : MonoBehaviour, IPointerClickHandler
                 }
                 else
                 {
-                    BasicCardTooltip.Instance.Show(this);
+                    BasicCardTooltip.Instance.Show(this, transform.position);
                 }
                 isShowTooltip = !isShowTooltip;
             }
