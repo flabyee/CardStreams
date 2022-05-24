@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8350fc8e7515d1b4ea1110c2c5efa750, type: 3}
   m_Name: Loop3C
   m_EditorClassIdentifier: 
-  rewardSprite: {fileID: 1475767685386808120, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
+  rewardSprite: {fileID: 6827463662955999092, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   rewardName: "\uC131\uC218"
   rewardDescription: "\uCCB4\uB825 \uBAA8\uB450 \uD68C\uBCF5\n\uCD08\uC7AC\uC0DD\uBB3C\uC57D
     x1\n\uD3EC\uC154\uB098\uC774\uC988 x1"
-  moneyReward: 0
+  goldReward: 0
   allHealReward: 1
   cardReward:
   - {fileID: 11400000, guid: df409f65e15ea51448ce40fe409ae5d5, type: 2}
