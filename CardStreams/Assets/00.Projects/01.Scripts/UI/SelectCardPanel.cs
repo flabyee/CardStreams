@@ -17,43 +17,58 @@ public class SelectCardPanel : MonoBehaviour
         Hide();
 
         loopRewardList = Resources.Load<LoopRewardListSO>("LoopRewardList").loopList;
+
+        for (int i = 0; i < rewardCards.Length; i++)
+        {
+            rewardCards[i].selectPanel = this;
+        }
     }
 
     public void Show()
     {
+        Debug.Log("show selectCardPanel");
+
         _cg.alpha = 1;
         _cg.blocksRaycasts = true;
         _cg.interactable = true;
+
+        InitReward();
     }
 
     public void Hide()
     {
+        Debug.Log("hide selectCardPanel");
+
         _cg.alpha = 0;
         _cg.blocksRaycasts = false;
         _cg.interactable = false;
-    }
 
-    public void GetSpecialCard(SpecialCardSO so)
-    {
-        SaveData saveData = SaveSystem.Load();
-        saveData.speicialCardDataList[so.id].haveAmount++;
-        SaveSystem.Save(saveData);
+        ResetReward();
     }
 
     public void InitReward()
     {
+        List<RewardSO> rewardList = loopRewardList[loopCount].rewardList;
+
         for (int i = 0; i < rewardCards.Length; i++)
         {
-            rewardCards[i].gameObject.SetActive(false);
-        }
+            if(i >= rewardList.Count) // 보상선택카드 개수 > 보상개수 == 보상 없음, ex) 카드3개 > 보상2개면 3개째는 끄기
+            {
+                rewardCards[i].gameObject.SetActive(false);
+                continue;
+            }
 
-        int rewardCount = loopRewardList[loopCount].rewardList.Count;
-
-        foreach (var item in collection)
-        {
-
+            rewardCards[i].SetReward(rewardList[i]);
         }
 
         loopCount++;
+    }
+
+    public void ResetReward()
+    {
+        for (int i = 0; i < rewardCards.Length; i++)
+        {
+            rewardCards[i].ResetReward();
+        }
     }
 }

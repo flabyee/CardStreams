@@ -306,6 +306,9 @@ MonoBehaviour:
   rewardDescriptionText: {fileID: 3655665570817037843}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
+  playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
+  goldValueChanged: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  selectPanel: {fileID: 0}
 --- !u!114 &-5772165051596317692
 MonoBehaviour:
   m_ObjectHideFlags: 0
