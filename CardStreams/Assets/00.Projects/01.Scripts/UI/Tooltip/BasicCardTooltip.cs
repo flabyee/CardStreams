@@ -21,8 +21,10 @@ public class BasicCardTooltip : MonoBehaviour
         Instance = this;    
     }
 
-    public void Show(CardPower cardPower)
+    public void Show(CardPower cardPower, Vector3 pos)
     {
+        transform.position = pos;
+
         typeText.text = cardPower.cardType.ToString();
         valueText.text = cardPower.value.ToString();
 
