@@ -33,6 +33,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     [HideInInspector]public CardPower cardPower;
 
+    private bool isDraging;
+
     public void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -102,6 +104,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             return;
         }
 
+        isDraging = true;
+
         if (onMoveStart != null) onMoveStart(this);
 
         if (droppedArea != null) droppedArea.TriggerOnLift(this);
@@ -135,14 +139,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left)
-        {
+        if (isDraging == false)
             return;
-        }
-        if (canDragAndDrop == false)
-        {
-            return;
-        }
 
         // 드래그 시작할 때 설정한 값을 이용해서 이동
         Vector3 worldPointerPosition;
@@ -163,14 +161,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left)
-        {
+        if (isDraging == false)
             return;
-        }
-        if (canDragAndDrop == false)
-        {
-            return;
-        }
+
+        isDraging = false;
 
         DropArea.SetDropArea(false, cardPower.dropAreaType);
         if (onMoveEnd != null) onMoveEnd(this);

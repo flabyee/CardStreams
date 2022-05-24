@@ -99,6 +99,7 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if(isDrop == true)
         {
             BuildAreaTooltip.Instance.Show(transform.position, accessPointList);
+            BuildExplain.Instance.Show(buildSO);
         }
         else
         {
@@ -111,6 +112,7 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if(isDrop == true)
         {
             BuildAreaTooltip.Instance.Hide();
+            BuildExplain.Instance.Hide();
         }
         else
         {
