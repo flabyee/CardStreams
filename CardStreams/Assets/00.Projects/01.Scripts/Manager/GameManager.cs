@@ -304,8 +304,8 @@ public class GameManager : MonoBehaviour
                 EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
 
                 // coin »ý¼º
+                // GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
                 GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
-
                 yield return new WaitForSeconds(0.25f);
             }
             else

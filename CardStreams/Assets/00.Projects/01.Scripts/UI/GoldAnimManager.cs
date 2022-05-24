@@ -31,7 +31,8 @@ public class GoldAnimManager : MonoBehaviour
     public EventSO FieldResetAfterEvnet;
     public EventSO GoldChangeEvent;
 
-
+    [SerializeField] Sprite[] coinSprites; // 1 10 100 코인 Sprite
+    private int allCoinAmount;
 
     [SerializeField] private float R = 0.5f;
 
@@ -45,9 +46,31 @@ public class GoldAnimManager : MonoBehaviour
     public void CreateCoin(int amount, Vector3 centerPos)
     {
         // coin 생성
-        for (int j = 0; j < amount; j++)
+        allCoinAmount += amount;
+
+        int coinSum = amount;
+        List<Sprite> coinCreateList = new List<Sprite>();
+
+        for (int coinCount = coinSprites.Length - 1; coinCount >= 0; coinCount--)
         {
-            float theta = (360f / amount) * j;
+            int pow = Mathf.RoundToInt(Mathf.Pow(10, coinCount)); // 10^n 을 int로
+
+            if (coinSum >= pow)
+            {
+                int divideResult = coinSum / pow;
+
+                for (int i = 0; i < divideResult; i++) // 나눈거만큼 반복(3000/1000 = 3 나오면 3번 반복)
+                {
+                    coinCreateList.Add(coinSprites[coinCount]);
+                }
+
+                coinSum -= divideResult * pow;
+            }
+        }
+
+        for (int j = 0; j < coinCreateList.Count; j++)
+        {
+            float theta = (360f / coinCreateList.Count) * j;
             GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
 
             if (coinObj == null)
@@ -57,6 +80,7 @@ public class GoldAnimManager : MonoBehaviour
             }
 
             coinObj.transform.position = centerPos;
+            coinObj.GetComponent<Image>().sprite = coinCreateList[j];
 
             coinObj.SetActive(true);
 
@@ -65,6 +89,27 @@ public class GoldAnimManager : MonoBehaviour
             movePos.y = Mathf.Sin(theta * Mathf.Deg2Rad) * R + centerPos.y;
             coinObj.transform.DOMove(movePos, 0.25f);
         }
+
+        //for (int j = 0; j < amount; j++)
+        //{
+        //    float theta = (360f / amount) * j;
+        //    GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
+
+        //    if (coinObj == null)
+        //    {
+        //        coinObj = Instantiate(coinPrefab, coinObjParent.transform);
+        //        coinObjList.Add(coinObj);
+        //    }
+
+        //    coinObj.transform.position = centerPos;
+
+        //    coinObj.SetActive(true);
+
+        //    Vector3 movePos = Vector3.zero;
+        //    movePos.x = Mathf.Cos(theta * Mathf.Deg2Rad) * R + centerPos.x;
+        //    movePos.y = Mathf.Sin(theta * Mathf.Deg2Rad) * R + centerPos.y;
+        //    coinObj.transform.DOMove(movePos, 0.25f);
+        //}
     }
 
     public void GetAllCoin()
@@ -87,24 +132,25 @@ public class GoldAnimManager : MonoBehaviour
         {
             if (coinObj.activeSelf == true)
             {
-                StartCoroutine(CoinMoveCor(coinObj));
+                CoinMove(coinObj);
             }
         }
 
         yield return new WaitForSeconds(1f);
 
+        AddScore(allCoinAmount);
+        allCoinAmount = 0;
+
         ShowResult();
     }
 
-    private IEnumerator CoinMoveCor(GameObject coinObj)
+    private void CoinMove(GameObject coinObj)
     {
-        coinObj.transform.DOMove(goldTextObj.transform.position, 0.5f);
-
-        yield return new WaitForSeconds(0.5f);
-
-        AddScore(1);
-
-        coinObj.SetActive(false);
+        coinObj.transform.DOMove(goldTextObj.transform.position, 0.5f).OnComplete( () =>
+        {
+        
+            coinObj.SetActive(false);
+        });
     }
 
     private void AddScore(int amount)
