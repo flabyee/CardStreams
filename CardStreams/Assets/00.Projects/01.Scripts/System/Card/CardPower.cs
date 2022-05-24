@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
-public class CardPower : MonoBehaviour
+public class CardPower : MonoBehaviour, IPointerClickHandler
 {
     public Image faceImage;
     public Image backImage;
@@ -21,6 +22,9 @@ public class CardPower : MonoBehaviour
     // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();
 
+
+    private bool isShowTooltip;
+
     public void SetData_Feild(CardType cardType, int value)
     {
         this.dropAreaType = DropAreaType.feild;
@@ -28,6 +32,8 @@ public class CardPower : MonoBehaviour
         this.value = value;
         this.originValue = value;
         this.goldP = 1;
+
+        isShowTooltip = false;
 
         ApplyUI();
     }
@@ -106,5 +112,25 @@ public class CardPower : MonoBehaviour
         ApplyUI();
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // 우클릭
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            // 일반카드라면 // 건물과 특수카드는 각각 Build와 SpecialCard에서 OnPointerEnter와 Exit으로 Tooltip을 띄운다
+            if (cardType != CardType.Special && cardType != CardType.Build)
+            {
+                if(isShowTooltip == true)
+                {
+                    BasicCardTooltip.Instance.Hide();
+                }
+                else
+                {
+                    BasicCardTooltip.Instance.Show(this);
+                }
+                isShowTooltip = !isShowTooltip;
+            }
+        }
 
+    }
 }

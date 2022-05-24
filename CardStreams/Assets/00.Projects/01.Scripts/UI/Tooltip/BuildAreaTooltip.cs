@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 설치되어있거나 드래그 드랍하는 건물의 범위를 표시할 떼 사용
 public class BuildAreaTooltip : MonoBehaviour
 {
     public static BuildAreaTooltip Instance;
 
     public GameObject areaTooltipPrefab;
+
     private Image[,] areaImageArr = new Image[5, 5];
+    private Transform followTrm;
+    private bool isFollow;
+
     private void Awake()
     {
         Hide();
@@ -24,6 +29,14 @@ public class BuildAreaTooltip : MonoBehaviour
 
                 areaImageArr[y + 2, x + 2] = image;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if(isFollow && followTrm != null)
+        {
+            transform.position = followTrm.position;
         }
     }
 
@@ -55,8 +68,24 @@ public class BuildAreaTooltip : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void ShowFollow(Transform followTrm, List<Vector2> accessPointList)
+    {
+        Show(transform.position, accessPointList);
+
+        this.isFollow = true;
+        this.followTrm = followTrm;
+    }
+
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public void HideFollow()
+    {
+        Hide();
+
+        this.isFollow = false;
+        this.followTrm = null;
     }
 }

@@ -117,4 +117,9 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             BuildTooltip.Instance.Hide();
         }
     }
+
+    public List<Vector2> GetAccessPointList()
+    {
+        return accessPointList;
+    }
 }

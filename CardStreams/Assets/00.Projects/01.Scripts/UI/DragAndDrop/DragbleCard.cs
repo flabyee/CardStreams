@@ -93,6 +93,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if(eventData.button != PointerEventData.InputButton.Left)
+        {
+            return;
+        }
         if(canDragAndDrop == false)
         {
             return;
@@ -121,7 +125,9 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if(cardPower.dropAreaType == DropAreaType.build)
         {
-            
+            Build build = GetComponent<Build>();
+
+            BuildAreaTooltip.Instance.ShowFollow(transform, build.GetAccessPointList());
         }
 
         rectTransform.sizeDelta = new Vector2(75, 75);
@@ -129,6 +135,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+        {
+            return;
+        }
         if (canDragAndDrop == false)
         {
             return;
@@ -153,6 +163,15 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.button != PointerEventData.InputButton.Left)
+        {
+            return;
+        }
+        if (canDragAndDrop == false)
+        {
+            return;
+        }
+
         DropArea.SetDropArea(false, cardPower.dropAreaType);
         if (onMoveEnd != null) onMoveEnd(this);
 
@@ -182,7 +201,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if (cardPower.dropAreaType == DropAreaType.build)
         {
-            
+            BuildAreaTooltip.Instance.HideFollow();
         }
     }
 

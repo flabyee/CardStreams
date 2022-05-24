@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// 상점과 아직 설치이전인 건물에 마우스를 올렸을 때 나오는 툴팁
 public class BuildTooltip : MonoBehaviour
 {
     public static BuildTooltip Instance { get; private set; }
