@@ -24,7 +24,10 @@ public class HPLakeBuildSO : BuildSO
     {
         if (hpValue.RuntimeValue <= hpLimit)
         {
-            hpValue.RuntimeMaxValue += maxUpAmount;
+            if(hpValue.RuntimeValue + healAmount > hpValue.RuntimeMaxValue)
+            {
+                hpValue.RuntimeMaxValue += maxUpAmount;
+            }
             hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + healAmount, 0, hpValue.RuntimeMaxValue);
 
             playerValueChangeEvnet.Occurred();

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 15
   buildName: "\uAE08 \uC740\uD589"
-  price: 30
+  price: 55
   grade: 3
-  tooltip: "\uD134 \uC885\uB8CC\uC2DC \uB3C8 + 45"
+  tooltip: "\uD134 \uC885\uB8CC\uC2DC \uB3C8 + 55"
   sprite: {fileID: 4097447715800045837, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   accessPointList: []
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
-  earnAmount: 45
+  earnAmount: 55
