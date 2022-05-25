@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, 
+    IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Action<DragbleCard> onMoveStart;
     public Action<DragbleCard> onMoveEnd;
@@ -87,10 +88,30 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // 건물과 특수카드는 각각 Build와 SpecialCard에서
+
+        switch (cardPower.cardType)
+        {
+            case CardType.Sword:
+            case CardType.Sheild:
+            case CardType.Potion:
+            case CardType.Monster:
+                BasicCardTooltip.Instance.Show(cardPower, transform.position);
+                break;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        switch (cardPower.cardType)
+        {
+            case CardType.Sword:
+            case CardType.Sheild:
+            case CardType.Potion:
+            case CardType.Monster:
+                BasicCardTooltip.Instance.Hide();
+                break;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -199,6 +220,14 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            GameManager.Instance.DropByRightClick(this);
+        }
+    }
+
     public void IsHandle()
     {
         isHandle = true;
@@ -210,4 +239,6 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         isHandle = false;
         isField = true;
     }
+
+
 }

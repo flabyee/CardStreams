@@ -6,7 +6,7 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 
-public class CardPower : MonoBehaviour, IPointerClickHandler
+public class CardPower : MonoBehaviour
 {
     public Image faceImage;
     public Image backImage;
@@ -122,11 +122,10 @@ public class CardPower : MonoBehaviour, IPointerClickHandler
             {
                 if(isShowTooltip == true)
                 {
-                    BasicCardTooltip.Instance.Hide();
                 }
                 else
                 {
-                    BasicCardTooltip.Instance.Show(this, transform.position);
+                    
                 }
                 isShowTooltip = !isShowTooltip;
             }
