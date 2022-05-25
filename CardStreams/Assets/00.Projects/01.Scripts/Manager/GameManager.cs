@@ -23,11 +23,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public bool isDebuging;
 
     [Header("System")]
-    private bool isMoving;  // move중일때 또 next를 누르지 못하게
     [SerializeField] float moveDuration;
-    [SerializeField] float lastDuration;
+    [SerializeField] float fieldResetDelay;
+    private bool isMoving;  // move중일때 또 next를 누르지 못하게
 
     [HideInInspector]public int rerollCount;
 
@@ -57,7 +58,6 @@ public class GameManager : MonoBehaviour
     public EventSO GameStartEvent;
     public EventSO TurnStartEvent;
     public EventSO TurnEndEvent;
-    public EventSO FieldResetAfter;
     public EventSO MoveStartEvent;
     public EventSO MoveEndEvent;
 
@@ -73,6 +73,11 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+        }
+
+        if(isDebuging == true)
+        {
+            moveDuration = 0.05f;
         }
     }
 
@@ -306,7 +311,7 @@ public class GameManager : MonoBehaviour
                 // coin 생성
                 // GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
                 GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(fieldResetDelay);
             }
             else
             {
@@ -464,5 +469,10 @@ public class GameManager : MonoBehaviour
 
 
         Move();
+    }
+
+    public void OnClickSpeedAdd(float amount)
+    {
+        moveDuration = Mathf.Clamp(moveDuration + amount, 0.01f, 1f);
     }
 }    

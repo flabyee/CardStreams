@@ -21,7 +21,6 @@ public class GoldAnimManager : MonoBehaviour
     public GameObject resultPanel;
 
     [Header("System")]
-    public float coinCreateDelay;
     [SerializeField] private int earnSystemCount;
     private int count;  // 리스트에 추가할때마다 이걸 더하고 이게 2면 골드 생성
 
