@@ -52,19 +52,11 @@ public class ShopManager : MonoBehaviour
         SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
         specialList = specialListSO.specialCardList;
 
-        // unlock 된 id list 등급별로 나누기
-        buildDict[CardGrade.Common] = new List<BuildData>();
-        buildDict[CardGrade.Rare] = new List<BuildData>();
-        buildDict[CardGrade.Epic] = new List<BuildData>();
-        buildDict[CardGrade.Unique] = new List<BuildData>();
-        buildDict[CardGrade.Legendary] = new List<BuildData>();
-
-        specialDict[CardGrade.Common] = new List<SpecialCardData>();
-        specialDict[CardGrade.Rare] = new List<SpecialCardData>();
-        specialDict[CardGrade.Epic] = new List<SpecialCardData>();
-        specialDict[CardGrade.Unique] = new List<SpecialCardData>();
-        specialDict[CardGrade.Legendary] = new List<SpecialCardData>();
-
+        for (int i = 0; i < 5; i++)
+        {
+            buildDict[(CardGrade)i] = new List<BuildData>();
+            specialDict[(CardGrade)i] = new List<SpecialCardData>();
+        }
 
         foreach (BuildData itemData in saveData.buildDataList)
         {
@@ -130,50 +122,50 @@ public class ShopManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        // 특수카드 상점
-        SaveData saveData = SaveSystem.Load();
+        Shuffle(CardType.Special);
 
-        // unlock 된 id list 뽑기
-        List<SpecialCardData> unlockSpecialCardList = new List<SpecialCardData>();
 
-        foreach (SpecialCardData itemData in saveData.speicialCardDataList)
+        Dictionary<CardGrade, int> countDict = new Dictionary<CardGrade, int>();
+        countDict[CardGrade.Common] = 0;
+        countDict[CardGrade.Rare] = 0;
+        countDict[CardGrade.Epic] = 0;
+        countDict[CardGrade.Unique] = 0;
+        countDict[CardGrade.Legendary] = 0;
+
+        int[] chance = new int[5];
+        chance[0] = gradeToChance[CardGrade.Common] > 0 ? gradeToChance[CardGrade.Common] : 0;
+        chance[1] = chance[0] + (gradeToChance[CardGrade.Rare] > 0 ? gradeToChance[CardGrade.Rare] : 0);
+        chance[2] = chance[1] + (gradeToChance[CardGrade.Epic] > 0 ? gradeToChance[CardGrade.Epic] : 0);
+        chance[3] = chance[2] + (gradeToChance[CardGrade.Unique] > 0 ? gradeToChance[CardGrade.Unique] : 0);
+        chance[4] = chance[3] + (gradeToChance[CardGrade.Legendary] > 0 ? gradeToChance[CardGrade.Legendary] : 0);
+
+        for (int i = 0; i < 10; i++)
         {
-            if (itemData.isUnlock == true)
-                unlockSpecialCardList.Add(itemData);
-        }
 
-        // 거기서 랜덤으로 4개? 뽑기
-        for (int i = 0; i < unlockSpecialCardList.Count; i++)
-        {
-            int randomIndex = Random.Range(0, unlockSpecialCardList.Count);
-
-            SpecialCardData temp = unlockSpecialCardList[i];
-            unlockSpecialCardList[i] = unlockSpecialCardList[randomIndex];
-            unlockSpecialCardList[randomIndex] = temp;
-        }
-
-        // 그거 생성
-        for (int i = 0; i < sellItemCount * 2; i++)
-        {
-            SpecialCardSO itemSO = specialList.Find((x) => x.id == unlockSpecialCardList[i].id);
-
-            if(itemSO != null)
+            int randomChance = Random.Range(0, GetAllChance());
+            if (randomChance < chance[0])
             {
-                GameObject shopItem = Instantiate(shopPrefab, specialCardShopTrm);
-                ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
-
-                info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
-
-                info.button.onClick.AddListener(() =>
-                {
-                    BuySpecial(itemSO);
-
-                    //OnSpecialCardShop();
-                });
+                CreateSpecialCardItem(CardGrade.Common, countDict[CardGrade.Common]++);
+            }
+            else if (randomChance < chance[1])
+            {
+                CreateSpecialCardItem(CardGrade.Rare, countDict[CardGrade.Rare]++);
+            }
+            else if (randomChance < chance[2])
+            {
+                CreateSpecialCardItem(CardGrade.Epic, countDict[CardGrade.Epic]++);
+            }
+            else if (randomChance < chance[3])
+            {
+                CreateSpecialCardItem(CardGrade.Unique, countDict[CardGrade.Unique]++);
+            }
+            else if (randomChance < chance[4])
+            {
+                CreateSpecialCardItem(CardGrade.Legendary, countDict[CardGrade.Legendary]++);
             }
             else
             {
-                Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
+                Debug.LogError("chance 설정이 잘못 됨");
             }
         }
     }
@@ -238,7 +230,17 @@ public class ShopManager : MonoBehaviour
     {
         if (cardType == CardType.Special)
         {
+            foreach (var list in specialDict.Values)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    int randomIndex = Random.Range(0, list.Count);
 
+                    SpecialCardData temp = list[i];
+                    list[i] = list[randomIndex];
+                    list[randomIndex] = temp;
+                }
+            }
         }
         if(cardType == CardType.Build)
         {
@@ -297,7 +299,35 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    
+    private void CreateSpecialCardItem(CardGrade grade, int i)
+    {
+        if (specialDict[grade].Count - 1 < i)
+        {
+            return;
+        }
+
+        SpecialCardSO itemSO = specialList.Find((x) => x.id == specialDict[grade][i].id);
+
+
+        if (itemSO != null)
+        {
+            GameObject shopItem = Instantiate(shopPrefab, specialCardShopTrm);
+            ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
+
+            info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
+
+            info.button.onClick.AddListener(() =>
+            {
+                BuySpecial(itemSO);
+
+                //OnShop();
+            });
+        }
+        else
+        {
+            Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
+        }
+    }
 
     private void BuySpecial(SpecialCardSO specialCardSO)
     {

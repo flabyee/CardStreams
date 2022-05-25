@@ -465,24 +465,6 @@ public class GameManager : MonoBehaviour
         });
     }
 
-    public void OnClickMove()
-    {
-        // move중일때 또 next를 누르지 못하게
-        if (isMoving == false)
-        {
-            for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
-            {
-                // 전부 다 배치안했으면 move 안됨
-                if(MapManager.Instance.fieldList[i].cardPower == null)
-                {
-                    return;
-                }
-            }
-
-            NextAction();
-        }
-    }
-
     public void NextAction()
     {
         // TurnEnd
@@ -517,6 +499,54 @@ public class GameManager : MonoBehaviour
 
 
         Move();
+    }
+
+    public void DropByRightClick(DragbleCard dragbleCard)
+    {
+        int tempIndex = -1; // 4칸중 비어있는 필드의 인덱스를 담을 곳
+        for (int i = 0; i < 4; i++)
+        {
+            if (MapManager.Instance.fieldList[moveIndex + i].dragbleCard == null)
+            {
+                tempIndex = moveIndex + i;
+                break;
+            }
+        }
+
+        // 비어있는 곳 없으면 리턴
+        if (tempIndex == -1)
+        {
+            return;
+        }
+
+        // 부모 설정
+        DropArea tempDropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
+
+        dragbleCard.transform.SetParent(tempDropArea.rectTrm, true);
+
+        // 정보 설정
+        CardPower cardPower = dragbleCard.GetComponent<CardPower>();
+
+        tempDropArea.field.cardPower = cardPower;
+        tempDropArea.field.dragbleCard = dragbleCard;
+    }
+
+    public void OnClickMove()
+    {
+        // move중일때 또 next를 누르지 못하게
+        if (isMoving == false)
+        {
+            for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
+            {
+                // 전부 다 배치안했으면 move 안됨
+                if (MapManager.Instance.fieldList[i].cardPower == null)
+                {
+                    return;
+                }
+            }
+
+            NextAction();
+        }
     }
 
     public void OnClickSpeedAdd(float amount)
