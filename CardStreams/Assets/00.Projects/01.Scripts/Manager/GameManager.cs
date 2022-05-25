@@ -221,51 +221,99 @@ public class GameManager : MonoBehaviour
 
     private void CreateRandomMob()
     {
-        // 턴시작시 몬스터? 설치불가타일? 생성
-        bool[] isMonster = new bool[30];
+        List<int> canSpawnList = new List<int>();
+        List<int> deleteFieldList = new List<int>();
+
         for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
         {
-            if (i < mobSpawnAmount)
-                isMonster[i] = true;
-            else
-                isMonster[i] = false;
-        }
-        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
-        {
-            int j = UnityEngine.Random.Range(0, MapManager.Instance.fieldList.Count);
-            bool temp = isMonster[i];
-            isMonster[i] = isMonster[j];
-            isMonster[j] = temp;
-        }
-        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
-        {
-            if (isMonster[i] == true)
+            if (i == 0) // 0번째칸 억까 방지
             {
-                int value = mobAttackAmount; // 생성되는 몬스터의 값
-
-                // 새로운 카드 생성
-                GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[i].transform);
-                DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-                CardPower cardPower = cardObj.GetComponent<CardPower>();
-
-                // cardPower에 정보 넣기
-                dragbleCard.SetData_Feild(CardType.Monster, value);
-
-                // 못 움직이게
-                dragbleCard.canDragAndDrop = false;
-
-                // 필드에 적용 + not으로
-                MapManager.Instance.fieldList[i].cardPower = cardPower;
-                MapManager.Instance.fieldList[i].dragbleCard = dragbleCard;
-                MapManager.Instance.fieldList[i].fieldType = FieldType.not;
-
-                // 배경색 변경
-                cardPower.backImage.color = Color.magenta;
-
-                // craete effect
-                EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[i].transform.position);
+                deleteFieldList.Add(0);
+                continue;
             }
+
+            canSpawnList.Add(i);
         }
+
+        for (int i = 0; i < mobSpawnAmount; i++)
+        {
+            // 범위에 못들어가서 안뽑힌 애들을 넣어주기
+            if(canSpawnList.Count <= 0)
+            {
+
+                // 랜덤하게 셔플
+                for (int j = 0; j < deleteFieldList.Count; j++)
+                {
+                    int randomIndex = UnityEngine.Random.Range(0, deleteFieldList.Count);
+                    int temp = deleteFieldList[j];
+                    deleteFieldList[j] = deleteFieldList[randomIndex];
+                    deleteFieldList[randomIndex] = temp;
+                }
+
+                // 몬스터 생성
+                for(int j = i; j < mobSpawnAmount; j++)
+                {
+                    // mobSpawnAmount >= 타일개수면 더이상못깔음, ex) 20개일때 20>=20이면 리스트[20] null
+
+                    if (j >= MapManager.Instance.fieldList.Count)
+                    {
+                        return;
+                    }
+                    CreateEnemy(deleteFieldList[j - i]);
+                }
+
+                break;
+            }
+
+            // 10
+            int randIndex = canSpawnList[UnityEngine.Random.Range(0, canSpawnList.Count)];
+
+            // 선택된리스트에 추가
+            CreateEnemy(randIndex);
+
+            // 뽑은거 + 뽑은거근처 제거
+            canSpawnList.Remove(randIndex);
+            if (canSpawnList.Contains(randIndex + 1))
+            {
+
+                deleteFieldList.Add(randIndex + 1);
+                canSpawnList.Remove(randIndex + 1);
+            }
+            if (canSpawnList.Contains(randIndex - 1))
+            {
+
+                deleteFieldList.Add(randIndex - 1);
+                canSpawnList.Remove(randIndex - 1);
+            }
+
+        }
+    }
+
+    /// <summary> 맵의 특정 칸에 몬스터를 생성합니다. </summary>
+    /// <param name="fieldIndex">생성할 칸</param>
+    public void CreateEnemy(int fieldIndex)
+    {
+        int value = mobAttackAmount; // 생성되는 몬스터의 값
+
+        // 새로운 카드 생성
+        GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[fieldIndex].transform);
+        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+        CardPower cardPower = cardObj.GetComponent<CardPower>();
+
+        // cardPower에 정보 넣기
+        dragbleCard.SetData_Feild(CardType.Monster, value);
+
+        // 못 움직이게
+        dragbleCard.canDragAndDrop = false;
+
+        // 필드에 적용 + not으로
+        MapManager.Instance.fieldList[fieldIndex].Init(cardPower, dragbleCard, FieldType.not);
+
+        // 배경색 변경
+        cardPower.backImage.color = Color.magenta;
+
+        // craete effect
+        EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
     }
 
     public void TurnEnd()

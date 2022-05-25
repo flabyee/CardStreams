@@ -34,10 +34,12 @@ public class Field : MonoBehaviour
     [Header("Debug")]
     public DropArea dropArea;
 
-    private void Start()
+    public void Init(CardPower power, DragbleCard dragCard, FieldType type)
     {
+        cardPower = power;
+        dragbleCard = dragCard;
+        fieldType = type;
     }
-
 
     public void ResetData()
     {
