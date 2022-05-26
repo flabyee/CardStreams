@@ -22,9 +22,6 @@ public class CardPower : MonoBehaviour
     // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();
 
-
-    private bool isShowTooltip;
-
     public void SetData_Feild(CardType cardType, int value)
     {
         this.dropAreaType = DropAreaType.feild;
@@ -33,12 +30,8 @@ public class CardPower : MonoBehaviour
         this.originValue = value;
         this.goldP = 1;
 
-        isShowTooltip = false;
-
         ApplyUI();
     }
-
-    
 
     public void SetData_SpecialCard()
     {

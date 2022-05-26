@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 26
   specialCardName: "\uBC29\uD328 \uD655\uC7A5"
-  price: 0
+  price: 7
   grade: 2
   tooltip: "\uC5BB\uC740 \uBC29\uD328\uB97C \uAE30\uC874 \uBC29\uD328\uC5D0 \uBD80\uCC29\uD558\uC5EC
     \uBC29\uC5B4\uB3C4\uB97C \uB298\uB9BD\uB2C8\uB2E4"

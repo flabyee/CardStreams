@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10
   specialCardName: "\uD53C\uB85C \uBB3C\uB4E0 \uAC80"
-  price: 0
+  price: 5
   grade: 1
-  tooltip: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825 - n, \uCE7C + m"
-  sprite: {fileID: 0}
-  addValue: 0
+  tooltip: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825 - 1, \uCE7C + 3"
+  sprite: {fileID: -4209723624490933604, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 01000000
-  upSwordAmount: 0
-  lessHpAmount: 0
+  upSwordAmount: 3
+  lessHpAmount: 1

@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 25
   specialCardName: "\uC601\uC57D"
-  price: 0
+  price: 20
   grade: 3
-  tooltip: "\uCD5C\uB300 \uCCB4\uB825 \uB6AB\uAE30"
-  sprite: {fileID: 0}
+  tooltip: "\uD574\uB2F9 \uD3EC\uC158\uC744 \uBA39\uC744 \uB54C \uD68C\uBCF5\uB7C9\uC774
+    \uCD5C\uB300\uCCB4\uB825\uBCF4\uB2E4 \uB192\uB2E4\uBA74 \uADF8\uB9CC\uD07C \uCD5C\uB300
+    \uCCB4\uB825 \uC601\uAD6C \uC0C1\uC2B9"
+  sprite: {fileID: 21300000, guid: c39af6a0b2aacda4ea9e500e0adde7e3, type: 3}
   applyTiming: 1
   targetTypeList: 03000000
   overHealso: {fileID: 11400000, guid: 198eac4111cd752459793b6a7924bc1c, type: 2}

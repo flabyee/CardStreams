@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 20
   specialCardName: "\uD761\uD608 \uCE7C"
-  price: 0
+  price: 10
   grade: 1
   tooltip: "\uD574\uB2F9 \uCE7C\uC744 \uC0AC\uC6A9\uD560 \uB54C \uADF8 \uCE7C\uC758
     \uACF5\uACA9\uB825\uB9CC\uD07C \uD68C\uBCF5"
-  sprite: {fileID: 0}
+  sprite: {fileID: -4209723624490933604, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 01000000
   lifeStealso: {fileID: 11400000, guid: 048019701249d374e9271b531b035b4b, type: 2}

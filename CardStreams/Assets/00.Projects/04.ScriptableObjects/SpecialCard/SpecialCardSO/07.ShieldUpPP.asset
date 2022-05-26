@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 7
   specialCardName: "\uBC29\uD328 \uB367\uB300\uAE30++"
-  price: 0
+  price: 15
   grade: 2
-  tooltip: "\uBC29\uD328 + n"
-  sprite: {fileID: 0}
-  addValue: 0
+  tooltip: "\uBC29\uD328 + 7"
+  sprite: {fileID: -5535381785550601910, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 02000000
+  addAmount: 7

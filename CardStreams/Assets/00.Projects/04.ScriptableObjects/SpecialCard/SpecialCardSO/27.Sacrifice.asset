@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 27
   specialCardName: "\uBCF5\uC218"
-  price: 0
+  price: 10
   grade: 1
   tooltip: "\uBAAC\uC2A4\uD130 - \uC783\uC740 \uCCB4\uB825(\uCD5C\uB300 7)"
-  sprite: {fileID: 0}
+  sprite: {fileID: -4209723624490933604, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 04000000
   limitDamage: 7

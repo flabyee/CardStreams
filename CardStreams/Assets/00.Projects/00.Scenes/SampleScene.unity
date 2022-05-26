@@ -11899,9 +11899,6 @@ MonoBehaviour:
   reducePanel: {fileID: 1119057600}
   specialCardShopTrm: {fileID: 1390609342}
   buildShopTrm: {fileID: 1588248142}
-  specialCardStandList: []
-  buildStandList: []
-  sellItemCount: 5
   chanceFirstAmountList: 32000000b5ffffff70feffff1efbffff88faffff
   chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
@@ -13882,11 +13879,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 10
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 100, y: 100}
