@@ -152,7 +152,7 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 // feild라면 feildType이 able인지
                 if(area.field != null)
                 {
-                    if(area.field.fieldType == FieldType.able && area.field.transform.childCount == 0)
+                    if(area.field.fieldState == FieldState.able && area.field.transform.childCount == 0)
                     {
                         area.image.color = new Color(1, 1, 1, 1);
                     }

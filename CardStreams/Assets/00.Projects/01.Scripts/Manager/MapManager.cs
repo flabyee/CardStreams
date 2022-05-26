@@ -45,6 +45,8 @@ public class MapManager : MonoBehaviour
         CreateMap(DataManager.Instance.GetNowStageData().mapStr);
     }
 
+
+    // 맵 생성 관련
     public void CreateMap(string mapStr)
     {
         mapRectArr = new RectTransform[10, 10];
@@ -174,6 +176,31 @@ public class MapManager : MonoBehaviour
         }
 
         return Vector2.zero;
+    }
+
+
+    // fieldList 사용 관련
+    public void SetFieldState(int index, FieldState fieldState)
+    {
+        fieldList[index].fieldState = fieldState;
+
+        switch (fieldState)
+        {
+            case FieldState.yet:
+                break;
+            case FieldState.able:
+                fieldList[index].background.sprite = ConstManager.Instance.nowFieldSprite;
+                break;
+            case FieldState.not:
+                fieldList[index].background.sprite = ConstManager.Instance.originFieldSprite;
+                fieldList[index].dragbleCard.canDragAndDrop = false;
+                break;
+        }
+    }
+
+    public void BuildAccess(int index)
+    {
+        fieldList[index].OnBuildAccess();
     }
 }
 

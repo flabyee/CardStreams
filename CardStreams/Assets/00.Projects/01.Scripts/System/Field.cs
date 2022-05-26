@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public enum FieldType
+public enum FieldState
 {
     NULL,
     yet,    // 아직 설치안한 -> able
@@ -21,7 +21,7 @@ public class Field : MonoBehaviour
 {
     public Image background;
 
-    public FieldType fieldType = FieldType.NULL;
+    public FieldState fieldState = FieldState.NULL;
 
 
     public DragbleCard dragbleCard;
@@ -34,11 +34,11 @@ public class Field : MonoBehaviour
     [Header("Debug")]
     public DropArea dropArea;
 
-    public void Init(CardPower power, DragbleCard dragCard, FieldType type)
+    public void Init(CardPower power, DragbleCard dragCard, FieldState type)
     {
         cardPower = power;
         dragbleCard = dragCard;
-        fieldType = type;
+        fieldState = type;
     }
 
     public void ResetData()
@@ -46,7 +46,7 @@ public class Field : MonoBehaviour
         cardPower = null;
         dragbleCard = null;
     }
-    public void OnAccessCard()
+    public void OnBuildAccess()
     {
         accessBuildToCardAfterMoveStart?.Invoke(this);
     }

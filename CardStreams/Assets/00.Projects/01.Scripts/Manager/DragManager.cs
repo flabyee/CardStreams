@@ -98,7 +98,7 @@ public class DragManager : MonoBehaviour
         {
             // 1. 설치가능한곳 인지 3,  area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
             // 하는 이유 : 처음에 모든 필드의 상태가 not 이기 때문에
-            if (area.field.fieldType == FieldType.able)
+            if (area.field.fieldState == FieldState.able)
             {
                 // 2.이미 뭐가 배치되어있는지 확인, 
                 if (area.field.cardPower == null || area.field.cardPower.cardType == CardType.NULL)
@@ -261,7 +261,7 @@ public class DragManager : MonoBehaviour
 
         if (cardPower.cardType == CardType.Sword || cardPower.cardType == CardType.Sheild || cardPower.cardType == CardType.Potion)
         {
-            GameManager.Instance.AddScore(2);
+            GameManager.Instance.AddGold(2);
             //dragbleCard.isDestory = true;
 
             cardPower.SetValue(0);
