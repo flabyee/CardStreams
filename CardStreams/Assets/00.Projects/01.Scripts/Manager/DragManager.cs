@@ -110,6 +110,8 @@ public class DragManager : MonoBehaviour
                     area.field.cardPower = cardPower;
                     area.field.dragbleCard = dragbleCard;
 
+                    dragbleCard.IsField();
+
                     // fieldType 설정
                     //area.field.fieldType = FieldType.not;
                 }
@@ -207,7 +209,7 @@ public class DragManager : MonoBehaviour
             build.BuildDrop(area.point);
 
         }
-        // To Do : 나중에 개선 무조건 해라!!
+        // To Do : 건물부시기 나중에 개선 무조건 해라!!
         else if(cardPower.cardType == CardType.Special)
         {
             SpecialCard specialCard = obj.GetComponent<SpecialCard>();
@@ -357,5 +359,7 @@ public class DragManager : MonoBehaviour
 
         obj.transform.SetParent(dragbleCard.originDropArea.rectTrm, true);
         dragbleCard.SetDroppedArea(dragbleCard.originDropArea);
+
+        dragbleCard.IsHandle();
     }
 }

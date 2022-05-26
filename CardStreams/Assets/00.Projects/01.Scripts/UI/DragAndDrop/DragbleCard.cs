@@ -222,9 +222,17 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right)
+        if(eventData.button == PointerEventData.InputButton.Right && isHandle == true)
         {
-            GameManager.Instance.DropByRightClick(this);
+            switch(cardPower.cardType)
+            {
+                case CardType.Sword:
+                case CardType.Sheild:
+                case CardType.Potion:
+                case CardType.Monster:
+                    GameManager.Instance.DropByRightClick(this);
+                    break;
+            }
         }
     }
 

@@ -180,6 +180,11 @@ public class MapManager : MonoBehaviour
 
 
     // fieldList 사용 관련
+    public int GetFieldCount()
+    {
+        return fieldList.Count;
+    }
+
     public void SetFieldState(int index, FieldState fieldState)
     {
         fieldList[index].fieldState = fieldState;

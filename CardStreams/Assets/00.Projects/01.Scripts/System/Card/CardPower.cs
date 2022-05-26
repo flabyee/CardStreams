@@ -111,25 +111,4 @@ public class CardPower : MonoBehaviour
         this.value = value;
         ApplyUI();
     }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // 우클릭
-        if(eventData.button == PointerEventData.InputButton.Right)
-        {
-            // 일반카드라면 // 건물과 특수카드는 각각 Build와 SpecialCard에서 OnPointerEnter와 Exit으로 Tooltip을 띄운다
-            if (cardType != CardType.Special && cardType != CardType.Build)
-            {
-                if(isShowTooltip == true)
-                {
-                }
-                else
-                {
-                    
-                }
-                isShowTooltip = !isShowTooltip;
-            }
-        }
-
-    }
 }

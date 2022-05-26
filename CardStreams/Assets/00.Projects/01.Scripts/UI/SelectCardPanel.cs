@@ -26,8 +26,6 @@ public class SelectCardPanel : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log("show selectCardPanel");
-
         _cg.alpha = 1;
         _cg.blocksRaycasts = true;
         _cg.interactable = true;
@@ -37,8 +35,6 @@ public class SelectCardPanel : MonoBehaviour
 
     public void Hide()
     {
-        Debug.Log("hide selectCardPanel");
-
         _cg.alpha = 0;
         _cg.blocksRaycasts = false;
         _cg.interactable = false;

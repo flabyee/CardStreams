@@ -317,16 +317,20 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // 부모 설정
-        DropArea tempDropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
 
-        dragbleCard.transform.SetParent(tempDropArea.rectTrm, true);
+        DropArea dropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
+
+        // drop area 설정
+        dragbleCard.SetDroppedArea(dropArea);
+
+        // 부모 설정
+        dragbleCard.transform.SetParent(dropArea.rectTrm, true);
 
         // 정보 설정
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();
 
-        tempDropArea.field.cardPower = cardPower;
-        tempDropArea.field.dragbleCard = dragbleCard;
+        dropArea.field.cardPower = cardPower;
+        dropArea.field.dragbleCard = dragbleCard;
     }
 
     public void OnClickMove()
