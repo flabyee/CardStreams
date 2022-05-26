@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectCardPanel : MonoBehaviour
+public class SelectRewardManager : MonoBehaviour
 {
     [SerializeField] RewardCard[] rewardCards;
     private CanvasGroup _cg;
@@ -10,9 +10,11 @@ public class SelectCardPanel : MonoBehaviour
     private List<RewardListSO> loopRewardList;
     private int loopCount = 0; // 알아서 돌아감, 나중에 동기화 필?요
 
+    [SerializeField] GameObject _cgObject;
+
     private void Awake()
     {
-        _cg = GetComponent<CanvasGroup>();
+        _cg = _cgObject.GetComponent<CanvasGroup>();
 
         Hide();
 

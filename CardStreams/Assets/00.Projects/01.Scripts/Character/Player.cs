@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public IntValue swordValue;
     public IntValue shieldValue;
 
+    public bool isAlive { get; private set; }
+
     private BuffController buffCon;
 
     private void Awake()
@@ -35,6 +37,13 @@ public class Player : MonoBehaviour
         shieldValue.RuntimeValue = 0;
 
         playerValueChangeEvent.Occurred();
+
+        isAlive = true;
+    }
+
+    public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
+    {
+        isAlive = (hpValue.RuntimeValue > 0) ? true : false;
     }
 
     public void OnFeild(Field field)

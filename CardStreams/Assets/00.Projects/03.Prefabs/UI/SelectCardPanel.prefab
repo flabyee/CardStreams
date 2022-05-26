@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5300197430539101166}
   - component: {fileID: 5300197430539101164}
   - component: {fileID: 5300197430539101167}
-  - component: {fileID: 5300197430539101165}
   - component: {fileID: 5300197430539101162}
   - component: {fileID: 3145041068239978681}
   m_Layer: 5
@@ -80,22 +79,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5300197430539101165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5300197430539101153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01fa3866bfa25134d854fa431bde215b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rewardCards:
-  - {fileID: 7538976167462674406}
-  - {fileID: 9067960030595957733}
-  - {fileID: 7606326957329959744}
 --- !u!225 &5300197430539101162
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -124,7 +107,7 @@ MonoBehaviour:
   responseObj:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5300197430539101165}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SelectCardPanel, Assembly-CSharp
         m_MethodName: Show
         m_Mode: 1
@@ -449,17 +432,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6657992546060203486, guid: 5f284948c0460ef4c8be4e99681a3444, type: 3}
   m_PrefabInstance: {fileID: 4933495548820431749}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7538976167462674406 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3236011092737408099, guid: 5f284948c0460ef4c8be4e99681a3444, type: 3}
-  m_PrefabInstance: {fileID: 4933495548820431749}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3c47d8a02dbd44ca40436701afcabf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5001112012163872547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -574,17 +546,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6657992546060203486, guid: 5f284948c0460ef4c8be4e99681a3444, type: 3}
   m_PrefabInstance: {fileID: 5001112012163872547}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7606326957329959744 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3236011092737408099, guid: 5f284948c0460ef4c8be4e99681a3444, type: 3}
-  m_PrefabInstance: {fileID: 5001112012163872547}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3c47d8a02dbd44ca40436701afcabf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5854472167895007110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -695,14 +656,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6657992546060203486, guid: 5f284948c0460ef4c8be4e99681a3444, type: 3}
   m_PrefabInstance: {fileID: 5854472167895007110}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9067960030595957733 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3236011092737408099, guid: 5f284948c0460ef4c8be4e99681a3444, type: 3}
-  m_PrefabInstance: {fileID: 5854472167895007110}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3c47d8a02dbd44ca40436701afcabf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

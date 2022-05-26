@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     public EventSO MoveEndEvent;
 
     public EventSO goldChangeEvent;
+    public EventSO playerDieEvent;
 
 
     private void Awake()
@@ -259,6 +260,14 @@ public class GameManager : MonoBehaviour
             moveIndex++;
             moveCount++;
 
+            // 플레이어 죽었으면 끝
+            if (player.isAlive == false)
+            {
+                Debug.Log("플레이어 디짐");
+                playerDieEvent.Occurred();
+                return;
+            }
+
             NextAction();
         });
     }
@@ -266,6 +275,8 @@ public class GameManager : MonoBehaviour
     public void NextAction()
     {
         // TurnEnd
+
+
         if (moveIndex == MapManager.Instance.fieldList.Count)
         {
             Debug.Log("Loop End");
@@ -294,7 +305,6 @@ public class GameManager : MonoBehaviour
 
             return;
         }
-
 
         Move();
     }
@@ -355,4 +365,6 @@ public class GameManager : MonoBehaviour
     {
         moveDuration = Mathf.Clamp(moveDuration + amount, 0.01f, 1f);
     }
+
+    
 }    

@@ -16,7 +16,7 @@ public class RewardCard : MonoBehaviour
     [SerializeField] EventSO playerValueChanged;
     [SerializeField] EventSO goldValueChanged;
 
-    [HideInInspector] public SelectCardPanel selectPanel;
+    [HideInInspector] public SelectRewardManager selectPanel;
 
     public void SelectReward() // called by Button onclick, 버튼누를때 작동함
     {
