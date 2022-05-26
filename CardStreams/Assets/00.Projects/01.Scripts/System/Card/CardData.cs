@@ -6,13 +6,11 @@ using System;
 [Serializable]
 public class CardData
 {
-    public CardData(CardType cardType, int value, DropAreaType dropAreaType)
+    public CardData(CardType cardType, int value)
     {
         this.cardType = cardType;
         this.value = value;
-        this.dropAreaType = dropAreaType;
     }
     public CardType cardType;
     public int value;
-    public DropAreaType dropAreaType;
 }

@@ -88,7 +88,7 @@ public class DragManager : MonoBehaviour
         CardPower cardPower = obj.GetComponent<CardPower>();
 
         // field에 놓는게 아니라면(예시 : 건물) 다시 원위치
-        if (cardPower.dropAreaType != DropAreaType.feild)
+        if (cardPower.cardType == CardType.Build || cardPower.cardType == CardType.Special)
         {
             ObjectToOrigin(area, obj);
         }
@@ -196,7 +196,7 @@ public class DragManager : MonoBehaviour
         CardPower cardPower = obj.GetComponent<CardPower>();
 
         // 아무것도없고 건물카드라면 (buildDropArea는 field가 없어서 자식의 갯수로 체크
-        if (area.rectTrm.childCount == 0 && cardPower.dropAreaType == DropAreaType.build)
+        if (cardPower.cardType == CardType.Build && area.rectTrm.childCount == 0)
         {
             // 부모 설정(위치 설정)
             obj.transform.SetParent(area.rectTrm, true);
@@ -284,19 +284,19 @@ public class DragManager : MonoBehaviour
     }
     private void ObjectDroppedToReroll(DropArea area, GameObject obj)
     {
-        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
-        CardPower cardPower = obj.GetComponent<CardPower>();
-        if (cardPower.dropAreaType == DropAreaType.feild)
-        {
-            rerollEvent.Occurred(obj);
-            dragbleCard.isDestory = true;
+        //DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
+        //CardPower cardPower = obj.GetComponent<CardPower>();
+        //if (cardPower.dropAreaType == DropAreaType.feild)
+        //{
+        //    rerollEvent.Occurred(obj);
+        //    dragbleCard.isDestory = true;
 
-            GameManager.Instance.RerollScore();
-        }
-        else
-        {
-            ObjectToOrigin(area, obj);
-        }
+        //    GameManager.Instance.RerollScore();
+        //}
+        //else
+        //{
+        //    ObjectToOrigin(area, obj);
+        //}
     }
 
     private void ObjectLiftedFromUse(DropArea area, GameObject obj)

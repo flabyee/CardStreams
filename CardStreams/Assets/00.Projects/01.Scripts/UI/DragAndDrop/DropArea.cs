@@ -10,9 +10,6 @@ public enum DropAreaType
     NULL,
     feild,
     build,
-    start,
-    shop,
-    handle,
 }
 
 public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler
@@ -137,8 +134,26 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         TriggerOnDrop(draggable);
     }
 
-    public static void SetDropArea(bool enable, DropAreaType dropAreaType)
+    public static void SetDropArea(bool enable, CardType dragCardType)
     {
+        DropAreaType dropAreaType = DropAreaType.NULL;
+
+        switch (dragCardType)
+        {
+            case CardType.Sword:
+            case CardType.Sheild:
+            case CardType.Potion:
+            case CardType.Monster:
+                dropAreaType = DropAreaType.feild;
+                break;
+            case CardType.Special:
+                // To Do : target 따라서 다르게 처리하기
+                break;
+            case CardType.Build:
+                dropAreaType = DropAreaType.build;
+                break;
+        }
+
         foreach (var area in dropAreas)
         {
             area.gameObject.SetActive(enable);
@@ -161,9 +176,17 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                         area.image.color = new Color(1, 1, 1, 0);
                     }
                 }
+                // build라면 이미 설치된게있는지
                 else
                 {
-                    area.image.color = new Color(1, 1, 1, 1);
+                    if(area.rectTrm.childCount == 0)
+                    {
+                        area.image.color = new Color(1, 1, 1, 1);
+                    }
+                    else
+                    {
+                        area.image.color = new Color(1, 1, 1, 0);
+                    }
                 }
             }
             else

@@ -133,7 +133,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         prevDropArea = droppedArea;
         droppedArea = null;
 
-        DropArea.SetDropArea(true, cardPower.dropAreaType);
+        DropArea.SetDropArea(true, cardPower.cardType);
 
         // 드래그 시작할 때 설정?
         Rect clamp = new Rect(Vector2.zero, clampRectTransform.rect.size);
@@ -148,7 +148,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //Debug.Log(minWorldPosition + "/" + maxWorldPosition);
 
 
-        if(cardPower.dropAreaType == DropAreaType.build)
+        if(cardPower.cardType == CardType.Build)
         {
             Build build = GetComponent<Build>();
 
@@ -187,7 +187,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         isDraging = false;
 
-        DropArea.SetDropArea(false, cardPower.dropAreaType);
+        DropArea.SetDropArea(false, cardPower.cardType);
         if (onMoveEnd != null) onMoveEnd(this);
 
         bool noEvent = true;
@@ -214,7 +214,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             Destroy(this.gameObject);
         }
 
-        if (cardPower.dropAreaType == DropAreaType.build)
+        if (cardPower.cardType == CardType.Build)
         {
             BuildAreaTooltip.Instance.HideFollow();
         }

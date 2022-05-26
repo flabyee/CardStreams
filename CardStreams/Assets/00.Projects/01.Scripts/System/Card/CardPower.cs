@@ -13,7 +13,6 @@ public class CardPower : MonoBehaviour
     public TextMeshProUGUI valueText;
 
     [Header("Debug")]
-    public DropAreaType dropAreaType;
     public CardType cardType;
     public int value { get; private set; }
     public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
@@ -24,7 +23,6 @@ public class CardPower : MonoBehaviour
 
     public void SetData_Feild(CardType cardType, int value)
     {
-        this.dropAreaType = DropAreaType.feild;
         this.cardType = cardType;
         this.value = value;
         this.originValue = value;
@@ -35,13 +33,11 @@ public class CardPower : MonoBehaviour
 
     public void SetData_SpecialCard()
     {
-        this.dropAreaType = DropAreaType.feild;
         this.cardType = CardType.Special;
     }
 
     public void SetData_Build()
     {
-        this.dropAreaType = DropAreaType.build;
         this.cardType = CardType.Build;
     }
 

@@ -76,23 +76,23 @@ public class HandleManager : MonoBehaviour
             {
                 case 0:
                 case 1:
-                    originDeck.Add(new CardData(CardType.Sword, UnityEngine.Random.Range(2, maxValue), DropAreaType.feild));
+                    originDeck.Add(new CardData(CardType.Sword, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 2:
                 case 3:
-                    originDeck.Add(new CardData(CardType.Sheild, UnityEngine.Random.Range(2, maxValue), DropAreaType.feild));
+                    originDeck.Add(new CardData(CardType.Sheild, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    originDeck.Add(new CardData(CardType.Potion, UnityEngine.Random.Range(2, maxValue), DropAreaType.feild));
+                    originDeck.Add(new CardData(CardType.Potion, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 7:
                 case 8:
                 case 9:
                 case 10:
                 case 11:
-                    originDeck.Add(new CardData(CardType.Monster, UnityEngine.Random.Range(2, 5), DropAreaType.feild));
+                    originDeck.Add(new CardData(CardType.Monster, UnityEngine.Random.Range(2, 5)));
                     break;
             }
         }
@@ -175,7 +175,7 @@ public class HandleManager : MonoBehaviour
     {
         CardPower cardPower = dragbleCardObj.GetComponent<CardPower>();
 
-        deck.Add(new CardData(cardPower.cardType, cardPower.value, cardPower.dropAreaType));
+        deck.Add(new CardData(cardPower.cardType, cardPower.value));
 
         DeckShuffle(deck, true);
     }
