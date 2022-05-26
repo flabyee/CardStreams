@@ -8,7 +8,7 @@ public class EqualAttackCardSO : SpecialCardSO
 
     public override void AccessSpecialCard(Player player, Field field)
     {
-        if(hpValue.RuntimeValue == shieldValue.RuntimeValue)
+        if(player.hpValue.RuntimeValue == player.shieldValue.RuntimeValue)
         {
             field.cardPower.SetValue(0);
         }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac84af27e587a34a9f560b54fc1aac7, type: 3}
+  m_Name: 11.BleedSwordP
+  m_EditorClassIdentifier: 
+  id: 11
+  specialCardName: "\uD53C\uC5D0 \uC801\uC2E0 \uAC80"
+  price: 0
+  grade: 3
+  tooltip: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825 - n, \uCE7C + m"
+  sprite: {fileID: 0}
+  addValue: 0
+  applyTiming: 1
+  targetTypeList: 01000000
+  upSwordAmount: 0
+  lessHpAmount: 0

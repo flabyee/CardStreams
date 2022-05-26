@@ -11,6 +11,7 @@ public enum ApplyTiming
     ToPlayer,
 }
 
+
 public abstract class SpecialCardSO : ScriptableObject
 {
     public int id;
@@ -26,9 +27,5 @@ public abstract class SpecialCardSO : ScriptableObject
 
     public abstract void AccessSpecialCard(Player player, Field field);
 
-    public IntValue hpValue;
-    public IntValue swordValue;
-    public IntValue shieldValue;
 
-    public EventSO playerValueChangeEvent;
 }

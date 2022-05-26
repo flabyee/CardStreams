@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b118eafefe28bed44b8f75e8b93b7453, type: 3}
+  m_Name: 16.ThrowShield
+  m_EditorClassIdentifier: 
+  id: 16
+  specialCardName: "\uBC29\uD328 \uB358\uC9C0\uAE30"
+  price: 0
+  grade: 1
+  tooltip: "\uBAAC\uC2A4\uD130 - \uD604\uC7AC \uBC29\uD328 \uC218\uCE58, \uBC29\uD328
+    = 0"
+  sprite: {fileID: 0}
+  applyTiming: 1
+  targetTypeList: 04000000

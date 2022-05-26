@@ -5,11 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemToPotionCard", menuName = "ScriptableObject/SpecialCard/ItemToPotionCard")]
 public class ItemToPotionCardSO : SpecialCardSO
 {
+    [Header("amounts")]
+    public int upAmount;
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower
         field.cardPower.cardType = CardType.Potion;
-        field.cardPower.SetValue(Random.Range(1, field.cardPower.value * 2));
+
+        field.cardPower.AddValue(upAmount);
+
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }
 }

@@ -8,17 +8,17 @@ public class ChangeEquipCardSO : SpecialCardSO
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower
-        int temp = swordValue.RuntimeValue; // 값 교환
-        swordValue.RuntimeValue = shieldValue.RuntimeValue;
-        shieldValue.RuntimeValue = temp;
+        int temp = player.swordValue.RuntimeValue; // 값 교환
+        player.swordValue.RuntimeValue = player.shieldValue.RuntimeValue;
+        player.shieldValue.RuntimeValue = temp;
 
-        if(swordValue.RuntimeValue == shieldValue.RuntimeValue) // 같으면 둘다 +2
+        if(player.swordValue.RuntimeValue == player.shieldValue.RuntimeValue) // 같으면 둘다 +2
         {
-            swordValue.RuntimeValue += 2;
-            shieldValue.RuntimeValue += 2;
+            player.swordValue.RuntimeValue += 2;
+            player.shieldValue.RuntimeValue += 2;
         }
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
-        playerValueChangeEvent.Occurred();
+        player.playerValueChangeEvent.Occurred();
     }
 }

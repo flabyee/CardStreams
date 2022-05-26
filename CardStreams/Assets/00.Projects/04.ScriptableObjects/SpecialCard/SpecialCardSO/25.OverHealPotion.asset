@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b50c42cd4b723478fbc26cbca4d5c0, type: 3}
+  m_Name: 25.OverHealPotion
+  m_EditorClassIdentifier: 
+  id: 25
+  specialCardName: "\uC601\uC57D"
+  price: 0
+  grade: 3
+  tooltip: "\uCD5C\uB300 \uCCB4\uB825 \uB6AB\uAE30"
+  sprite: {fileID: 0}
+  applyTiming: 1
+  targetTypeList: 03000000
+  overHealso: {fileID: 11400000, guid: 198eac4111cd752459793b6a7924bc1c, type: 2}

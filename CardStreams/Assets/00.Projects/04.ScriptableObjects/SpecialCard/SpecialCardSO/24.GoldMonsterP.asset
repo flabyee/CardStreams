@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa23de03c720c2745b74d6980800c042, type: 3}
+  m_Name: 24.GoldMonsterP
+  m_EditorClassIdentifier: 
+  id: 24
+  specialCardName: "\uB2E4\uC774\uC544\uACE0\uBE14\uB9B0"
+  price: 0
+  grade: 2
+  tooltip: "\uBAAC\uC2A4\uD130 \uAC00\uCE58 * n, \uB3C8 \uBC84\uB294 \uC591 = m"
+  sprite: {fileID: 0}
+  applyTiming: 1
+  targetTypeList: 04000000
+  mulAmount: 0
+  goldPAmount: 0

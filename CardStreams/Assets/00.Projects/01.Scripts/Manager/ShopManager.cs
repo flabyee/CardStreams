@@ -12,12 +12,8 @@ public class ShopManager : MonoBehaviour
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
 
-    public List<RectTransform> specialCardStandList;    // 판매할 아이템 올려두는 공간
-    public List<RectTransform> buildStandList;    // 판매할 아이템 올려두는 공간
-
 
     // system
-    public int sellItemCount;
     public List<int> chanceFirstAmountList;
     public List<int> chanceIncreaseAmountList;
 
@@ -40,11 +36,6 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        if (specialCardStandList.Count != sellItemCount)
-        {
-            //Debug.LogError("상점 아이템 판매 갯수와 판매대 갯수가 다릅니다");
-        }
-
         SaveData saveData = SaveSystem.Load();
 
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
@@ -195,9 +186,8 @@ public class ShopManager : MonoBehaviour
         chance[3] = chance[2] + (gradeToChance[CardGrade.Unique] > 0 ? gradeToChance[CardGrade.Unique] : 0);
         chance[4] = chance[3] + (gradeToChance[CardGrade.Legendary] > 0 ? gradeToChance[CardGrade.Legendary] : 0);
         
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
-            
             int randomChance = Random.Range(0, GetAllChance());
             if (randomChance < chance[0])
             {
