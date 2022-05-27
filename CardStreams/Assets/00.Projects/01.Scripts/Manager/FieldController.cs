@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class FieldController
 {
-    // stageData
     private int maxMoveCount;
 
-    private void Start()
+    public FieldController(int maxMoveCount)
     {
-        LoadStageData();
-    }
-
-    public void LoadStageData()
-    {
-        StageDataSO stageData = DataManager.Instance.GetNowStageData();
-        maxMoveCount = stageData.moveCount;
+        this.maxMoveCount = maxMoveCount;
     }
 
     public void SetAllFieldYet()

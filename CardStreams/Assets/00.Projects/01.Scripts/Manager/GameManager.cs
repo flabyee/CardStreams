@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     private int mobAttackIncreaseAmount;
 
     [Header("Controller")]
-    private FieldController fieldController = new FieldController();
+    private FieldController fieldController;
 
 
     [Header("IntValue")]
@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadStageData();
+
+        fieldController = new FieldController(maxMoveCount);
 
         goldValue.RuntimeValue += 20;
         goldChangeEvent.Occurred();
@@ -340,6 +342,8 @@ public class GameManager : MonoBehaviour
 
         // 부모 설정
         dragbleCard.transform.SetParent(dropArea.rectTrm, true);
+
+        dragbleCard.IsField();
 
         // 정보 설정
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();
