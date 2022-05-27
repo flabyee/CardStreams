@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DontTouchPanel : MonoBehaviour
+public class DontTouchController : MonoBehaviour
 {
     public GameObject raycastTarget;
 

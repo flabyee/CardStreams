@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class DragManager : MonoBehaviour
+public class DropController : MonoBehaviour
 {
     private List<DropArea> feildDropAreaList = new List<DropArea>();
     private List<DropArea> buildDropAreaList = new List<DropArea>();

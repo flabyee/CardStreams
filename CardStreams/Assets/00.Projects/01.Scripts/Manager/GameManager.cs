@@ -33,13 +33,20 @@ public class GameManager : MonoBehaviour
     public Player player;
 
     [Header("System")]
-    public FieldManager fieldManager;
     [SerializeField] float moveDuration;
     [SerializeField] float fieldResetDelay;
     private int maxMoveCount = 3;  // n
     private int moveIndex = 0;
     private int moveCount = 0;  // n번씩 움직일거다
 
+    [Header("StageData")]
+    private int mobSpawnAmount;
+    private int mobSpawnIncreaseAmount;
+    private int mobAttackAmount;
+    private int mobAttackIncreaseAmount;
+
+    [Header("Controller")]
+    private FieldController fieldController = new FieldController();
 
 
     [Header("IntValue")]
@@ -84,6 +91,7 @@ public class GameManager : MonoBehaviour
     {
         StageDataSO stageData = DataManager.Instance.GetNowStageData();
         maxMoveCount = stageData.moveCount;
+        
     }
 
     public void AddGold(int amount)
@@ -125,13 +133,13 @@ public class GameManager : MonoBehaviour
             turnCountValue.RuntimeValue++;
 
             // 모든 필드의 필드타입 yet으로
-            fieldManager.SetAllFieldYet();
+            fieldController.SetAllFieldYet();
 
             // 랜덤 몹 생성
 
 
             // 앞에 n칸 활성화
-            fieldManager.SetNextFieldAble(moveIndex);
+            fieldController.SetNextFieldAble(moveIndex);
 
             // change mode 활성화
             //isChange = true;
@@ -145,7 +153,7 @@ public class GameManager : MonoBehaviour
     public void TurnEnd()
     {
         // 이전 4개의 필드
-        fieldManager.SetBeforeFieldNot(moveIndex);
+        fieldController.SetBeforeFieldNot(moveIndex);
 
         moveIndex = 0;
         moveCount = 0;
@@ -192,7 +200,7 @@ public class GameManager : MonoBehaviour
     public void MoveStart()
     {
         // 카드에 건물 효과 적용
-        fieldManager.BuildAccessNextField(moveIndex);
+        fieldController.BuildAccessNextField(moveIndex);
 
         isMoving = true;
     }
@@ -205,10 +213,10 @@ public class GameManager : MonoBehaviour
         // 사용하지않은 카드 제거
 
         // 이전 4개의 필드
-        fieldManager.SetBeforeFieldNot(moveIndex);
+        fieldController.SetBeforeFieldNot(moveIndex);
 
         // 다음 필드(fieldType 변경)
-        fieldManager.SetNextFieldAble(moveIndex);
+        fieldController.SetNextFieldAble(moveIndex);
     }
 
     public void Move()
@@ -362,6 +370,4 @@ public class GameManager : MonoBehaviour
     {
         moveDuration = Mathf.Clamp(moveDuration + amount, 0.01f, 1f);
     }
-
-    
 }    

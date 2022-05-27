@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class HandleManager : MonoBehaviour
+public class Handle : MonoBehaviour
 {
     [HideInInspector] public List<CardData> originDeck = new List<CardData>();
     [HideInInspector] public List<CardData> deck = new List<CardData>();

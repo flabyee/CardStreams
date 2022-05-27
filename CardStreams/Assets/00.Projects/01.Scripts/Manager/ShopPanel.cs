@@ -352,6 +352,7 @@ public class ShopPanel : MonoBehaviour
 
     public void CloseShop()
     {
+        Debug.Log("adsf");
         if(GameManager.Instance.canStartTurn == true)
         {
             Hide();
