@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
     
 
     [Header("Event")]
-    public EventSO GameStartEvent;
     public EventSO TurnStartEvent;
     public EventSO TurnEndEvent;
     public EventSO MoveStartEvent;
@@ -74,8 +73,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         LoadStageData();
-
-        GameStartEvent.Occurred();
 
         goldValue.RuntimeValue += 20;
         goldChangeEvent.Occurred();

@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopManager : MonoBehaviour
+public class ShopPanel : MonoBehaviour
 {
     public GameObject shopPrefab;
 
     // ui
-    public GameObject shopPanel;
     public GameObject reducePanel;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
@@ -75,11 +74,17 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Debug.Log("Start");
+        Show();
+    }
+
 
 
     public void Show()
     {
-        shopPanel.SetActive(true);
+        gameObject.SetActive(true);
         reducePanel.SetActive(true);
         isReduce = false;
 
@@ -88,7 +93,7 @@ public class ShopManager : MonoBehaviour
 
     public void Hide()
     {
-        shopPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void Reduce()

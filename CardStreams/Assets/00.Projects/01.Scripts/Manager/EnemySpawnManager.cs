@@ -51,7 +51,7 @@ public class EnemySpawnManager : MonoBehaviour
                 // ·£´ýÇÏ°Ô ¼ÅÇÃ
                 for (int j = 0; j < deleteFieldList.Count; j++)
                 {
-                    int randomIndex = UnityEngine.Random.Range(0, deleteFieldList.Count);
+                    int randomIndex = Random.Range(0, deleteFieldList.Count);
                     int temp = deleteFieldList[j];
                     deleteFieldList[j] = deleteFieldList[randomIndex];
                     deleteFieldList[randomIndex] = temp;
