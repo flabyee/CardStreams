@@ -26,6 +26,20 @@ public class StatPanel : MonoBehaviour
         runtimeValueText.text = statIntValue.RuntimeValue.ToString();
         if (isRuntimeMaxValueExist) runtimeMaxValueText.text = statIntValue.RuntimeMaxValue.ToString();
 
+        // 지금은 수동으로하는데 나중에 함수빼서 처리해야 /100 /10 /1 에바참치
+
+        int divide100 = statAmount / 100;
+
+        for (int i = 0; i < divide100; i++)
+        {
+            runtimeStatImages[i].DOFade(1, 0.2f);
+            runtimeStatImages[i].sprite = statUnitSprites[2]; // 10 이미지로 교체
+
+            count++;
+        } // count 1
+
+        statAmount -= divide100 * 100; // 3
+
         int divide10 = statAmount / 10;
         for (int i = 0; i < divide10; i++)
         {
