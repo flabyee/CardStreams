@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class ShopPanel : MonoBehaviour
 {
-    public GameObject shopPrefab;
+    // Seri
+    [SerializeField] GameObject shopItemPrefab;
+    [SerializeField] List<int> chanceFirstAmountList;
+    [SerializeField] List<int> chanceIncreaseAmountList;
+
+    // public
+
+    // private
+
+    private CanvasGroup _cg;
 
     // ui
-    public GameObject reducePanel;
+    public CanvasGroup _reduceCG;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
 
 
     // system
-    public List<int> chanceFirstAmountList;
-    public List<int> chanceIncreaseAmountList;
 
-    private bool isReduce;
+    private bool isMinimize;
 
     // dict
     private List<BuildSO> buildList;
@@ -35,6 +42,8 @@ public class ShopPanel : MonoBehaviour
 
     private void Awake()
     {
+        _cg = GetComponent<CanvasGroup>();
+
         SaveData saveData = SaveSystem.Load();
 
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
@@ -76,34 +85,39 @@ public class ShopPanel : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Start");
         Show();
     }
 
-
-
     public void Show()
     {
-        gameObject.SetActive(true);
-        reducePanel.SetActive(true);
-        isReduce = false;
+        _cg.alpha = 1;
+        _cg.blocksRaycasts = true;
+        _cg.interactable = true;
+
+        // 이전에 최소화했어도 다시 키기위해서
+        isMinimize = false;
+        _reduceCG.alpha = 1;
 
         OnShop();
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        _cg.alpha = 0;
+        _cg.blocksRaycasts = false;
+        _cg.interactable = false;
     }
 
-    public void Reduce()
+    public void Minimize() // called by Button
     {
-        reducePanel.SetActive(isReduce);
-        isReduce = !isReduce;
+        isMinimize = !isMinimize;
+
+        _reduceCG.alpha = isMinimize ? 0 : 1;
     }
 
     public void OnShop()
     {
+        Debug.Log("OnShop");
         SetChance();
 
         OnSpecialCardShop();
@@ -276,7 +290,7 @@ public class ShopPanel : MonoBehaviour
 
         if (itemSO != null)
         {
-            GameObject shopItem = Instantiate(shopPrefab, buildShopTrm);
+            GameObject shopItem = Instantiate(shopItemPrefab, buildShopTrm);
             ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
             info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
@@ -306,7 +320,7 @@ public class ShopPanel : MonoBehaviour
 
         if (itemSO != null)
         {
-            GameObject shopItem = Instantiate(shopPrefab, specialCardShopTrm);
+            GameObject shopItem = Instantiate(shopItemPrefab, specialCardShopTrm);
             ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
             info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
