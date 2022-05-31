@@ -21,6 +21,12 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         LoadStageData();
+
+        for(int i = 0; i < 100; i++)
+        {
+            Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+        }
     }
 
     private void LoadStageData()

@@ -96,7 +96,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             case CardType.Sheild:
             case CardType.Potion:
             case CardType.Monster:
-                BasicCardTooltip.Instance.Show(cardPower, transform.position);
+                //BasicCardTooltip.Instance.Show(cardPower, transform.position);
                 break;
         }
     }
@@ -109,7 +109,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             case CardType.Sheild:
             case CardType.Potion:
             case CardType.Monster:
-                BasicCardTooltip.Instance.Hide();
+                //BasicCardTooltip.Instance.Hide();
                 break;
         }
     }

@@ -543,7 +543,6 @@ MonoBehaviour:
   faceImage: {fileID: 1017501598721244011}
   backImage: {fileID: 6555687024791524721}
   valueText: {fileID: 0}
-  dropAreaType: 0
   cardType: 0
   goldP: 0
   originValue: 0
@@ -560,10 +559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildSO: {fileID: 11400000, guid: 488bf5d16c3e7944c9ed1f31b477603d, type: 2}
-  areaTooltipPrefab: {fileID: 2274497991002972003, guid: 77fe83d96780ff4428a983be396980c5, type: 3}
   buildImage: {fileID: 1017501598721244011}
   greadeText: {fileID: 4038546894875006015}
-  buildAreaTooltip: {fileID: 0}
   isDrop: 0
 --- !u!114 &1017501599584371605
 MonoBehaviour:
