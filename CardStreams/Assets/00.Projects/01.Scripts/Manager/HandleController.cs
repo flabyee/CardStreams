@@ -68,8 +68,7 @@ public class HandleController : MonoBehaviour
         deck.Clear();
         originDeck.Clear();
 
-
-        //// originDeck 만들고
+        // originDeck 만들고
         for (int i = 0; i < 24; i++)
         {
             switch (i % 12)
@@ -171,6 +170,116 @@ public class HandleController : MonoBehaviour
         GameManager.Instance.canStartTurn = true;
     }
 
+    private void DeckAdd()
+    {
+        GameManager.Instance.canStartTurn = false;
+
+        originDeck.Clear();
+
+        // originDeck 만들고
+        for (int i = 0; i < 24; i++)
+        {
+            switch (i % 12)
+            {
+                case 0:
+                case 1:
+                    originDeck.Add(new CardData(CardType.Sword, UnityEngine.Random.Range(2, maxValue)));
+                    break;
+                case 2:
+                case 3:
+                    originDeck.Add(new CardData(CardType.Sheild, UnityEngine.Random.Range(2, maxValue)));
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    originDeck.Add(new CardData(CardType.Potion, UnityEngine.Random.Range(2, maxValue)));
+                    break;
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    originDeck.Add(new CardData(CardType.Monster, UnityEngine.Random.Range(2, 5)));
+                    break;
+            }
+        }
+
+        int pValue = 0;
+        int mValue = 0;
+
+        foreach (CardData cardData in originDeck)
+        {
+            if (cardData.cardType != CardType.Monster)
+                pValue += cardData.value;
+            else
+                mValue += cardData.value;
+        }
+
+
+
+        int deckValue = pValue - mValue;
+        int randomIndex = 0;
+
+        while (deckValue != deckValueAmount)
+        {
+            randomIndex = UnityEngine.Random.Range(0, 24);
+            // pValue가 더 크다면
+            if (deckValue > deckValueAmount)
+            {
+                // 플레이어 카드를 줄이거나 몹 카드를 늘린다
+                if (originDeck[randomIndex].cardType != CardType.Monster)
+                {
+                    if (originDeck[randomIndex].value > 1)
+                        originDeck[randomIndex].value--;
+                    else
+                        deckValue++;
+                }
+                else
+                {
+                    if (originDeck[randomIndex].value < maxValue)
+                        originDeck[randomIndex].value++;
+                    else
+                        deckValue++;
+                }
+
+                deckValue--;
+            }
+            // mValue가 더 크다면
+            else
+            {
+                // 플레이어 카드를 늘리거나 몹 카드를 줄인다
+                if (originDeck[randomIndex].cardType != CardType.Monster)
+                {
+                    if (originDeck[randomIndex].value < maxValue)
+                        originDeck[randomIndex].value++;
+                    else
+                        deckValue--;
+                }
+                else
+                {
+                    if (originDeck[randomIndex].value > 1)
+                        originDeck[randomIndex].value--;
+                    else
+                        deckValue--;
+                }
+
+
+                deckValue++;
+            }
+        }
+
+        DeckShuffle(originDeck);
+
+        // deck에 추가하고 셔플
+        foreach (CardData cardData in originDeck)
+        {
+            deck.Add(cardData);
+        }
+        DeckShuffle(deck);
+
+        GameManager.Instance.canStartTurn = true;
+    }
+
     public void CardRerollAdd(GameObject dragbleCardObj)
     {
         CardPower cardPower = dragbleCardObj.GetComponent<CardPower>();
@@ -222,12 +331,7 @@ public class HandleController : MonoBehaviour
         }
         else
         {
-            foreach (CardData cardData in originDeck)
-            {
-                deck.Add(cardData);
-            }
-
-            DeckShuffle(deck);
+            DeckAdd();
 
             return GetCardData();
         }
@@ -272,32 +376,28 @@ public class HandleController : MonoBehaviour
         if (cardData == null)
             Debug.LogError("GetCardData is null");
 
-        // 몬스터라면 다시 뽑기
+
+        bool isHavePlayer = false;
+        foreach (CardData deckCardData in deck)
+        {
+            if (deckCardData.cardType != CardType.Monster)
+            {
+                isHavePlayer = true;
+            }
+        }
+
+        // 하나도 없으면 덱 추가하기
+        if (isHavePlayer == false)
+        {
+            DeckAdd();
+        }
+
+        // 몬스터 카드라면 다시 뽑기
         if (cardData.cardType == CardType.Monster)
         {
             CardAdd(cardData);
 
-            foreach(CardData deckCardData in deck)
-            {
-                // 플레이어 카드가 하나라도 있다면
-                if(deckCardData.cardType != CardType.Monster)
-                {
-                    return DrawCardP();
-                }
-                else
-                {
-                    DeckShuffle(originDeck);
-                    foreach(CardData item in originDeck)
-                    {
-                        deck.Add(item);
-                    }
-
-                    DeckShuffle(deck);
-
-                    return DrawCardP();
-                }
-            }
-
+            return DrawCardP();
         }
         else
         {
@@ -321,28 +421,26 @@ public class HandleController : MonoBehaviour
         if (cardData == null)
             Debug.LogError("GetCardData is null");
 
+
+        bool isHaveMonster = false;
+        foreach (CardData deckCardData in deck)
+        {
+            if (deckCardData.cardType == CardType.Monster)
+            {
+                isHaveMonster = true;
+            }
+        }
+
+        // 하나도 없으면 덱 추가하기
+        if (isHaveMonster == false)
+        {
+            DeckAdd();
+        }
+
         // 플레이어 카드라면 다시 뽑기
-        if(cardData.cardType != CardType.Monster)
+        if (cardData.cardType != CardType.Monster)
         {
             CardAdd(cardData);
-
-            foreach (CardData deckCardData in deck)
-            {
-                // 몬스터가 하나라도 있다면
-                if (deckCardData.cardType == CardType.Monster)
-                {
-                    return DrawCardM();
-                }
-            }
-
-            // 하나도 없으면 덱 추가하고 다시 뽑기
-            DeckShuffle(originDeck);
-            foreach (CardData item in originDeck)
-            {
-                deck.Add(item);
-            }
-
-            DeckShuffle(deck);
 
             return DrawCardM();
         }
@@ -478,18 +576,21 @@ public class HandleController : MonoBehaviour
             }
         }
 
-        if(pCount == handleCount - 1)
-        {
-            DrawCardM();
-        }
-        else if(mCount == handleCount - 1)
-        {
-            DrawCardP();
-        }
-        else
-        {
-            DrawCard();
-        }
+        //if (pCount == handleCount - 1)
+        //{
+        //    DrawCardM();
+        //}
+        //else if (mCount == handleCount - 1)
+        //{
+        //    Debug.Log("mob 3");
+        //    DrawCardP();
+        //}
+        //else
+        //{
+        //    DrawCard();
+        //}
+
+        DrawCard();
     }
 
     public void DrawBuildAndSpecialWhenTurnStart()
