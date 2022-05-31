@@ -269,7 +269,13 @@ public class DropController : MonoBehaviour
             cardPower.SetValue(0);
             cardPower.ApplyUI();
 
-            ObjectToOrigin(area, obj);
+            //ObjectToOrigin(area, obj);
+
+            bool b = GameManager.Instance.DropByRightClick(dragbleCard);
+            if(b == false)
+            {
+                ObjectToOrigin(area, obj);
+            }
         }
         else
         {

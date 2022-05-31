@@ -17,6 +17,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject buildPrefab;
     [SerializeField] GameObject enemyBuildEffect;
 
+    private void Awake()
+    {
+        enemyBuildList = Resources.Load<BuildListSO>("EnemyBuildListSO").buildList;
+
+    }
+
 
     private void Start()
     {
@@ -37,7 +43,6 @@ public class EnemyController : MonoBehaviour
         mobAttackAmount = stageData.firstMobAttackAmount;
         mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
 
-        enemyBuildList = DataManager.Instance.GetBuildSOList();
     }
 
     /// <summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Handle : MonoBehaviour
+public class HandleController : MonoBehaviour
 {
     [HideInInspector] public List<CardData> originDeck = new List<CardData>();
     [HideInInspector] public List<CardData> deck = new List<CardData>();
@@ -69,10 +69,10 @@ public class Handle : MonoBehaviour
         originDeck.Clear();
 
 
-        // originDeck 만들고
-        for(int i = 0; i < 24; i++)
+        //// originDeck 만들고
+        for (int i = 0; i < 24; i++)
         {
-            switch(i % 12)
+            switch (i % 12)
             {
                 case 0:
                 case 1:

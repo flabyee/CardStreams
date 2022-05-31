@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
         Move();
     }
 
-    public void DropByRightClick(DragbleCard dragbleCard)
+    public bool DropByRightClick(DragbleCard dragbleCard)
     {
         int tempIndex = -1; // 4칸중 비어있는 필드의 인덱스를 담을 곳
         for (int i = 0; i < 4; i++)
@@ -332,7 +332,7 @@ public class GameManager : MonoBehaviour
         // 비어있는 곳 없으면 리턴
         if (tempIndex == -1)
         {
-            return;
+            return false;
         }
 
 
@@ -351,6 +351,8 @@ public class GameManager : MonoBehaviour
 
         dropArea.field.cardPower = cardPower;
         dropArea.field.dragbleCard = dragbleCard;
+
+        return true;
     }
 
     public void OnClickMove()
