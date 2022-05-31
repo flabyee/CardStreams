@@ -18,5 +18,5 @@ MonoBehaviour:
   goldReward: 20
   allHealReward: 0
   cardReward:
-  - {fileID: 11400000, guid: 20f776e71282aa24dae25a6a3801c84c, type: 2}
-  - {fileID: 11400000, guid: 20f776e71282aa24dae25a6a3801c84c, type: 2}
+  - {fileID: 11400000, guid: 4e5dc329f6b1f8247a9049a668072b0b, type: 2}
+  - {fileID: 11400000, guid: 4e5dc329f6b1f8247a9049a668072b0b, type: 2}

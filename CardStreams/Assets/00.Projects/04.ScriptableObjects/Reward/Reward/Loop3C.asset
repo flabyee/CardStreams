@@ -15,9 +15,9 @@ MonoBehaviour:
   rewardSprite: {fileID: 6827463662955999092, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   rewardName: "\uC131\uC218"
   rewardDescription: "\uCCB4\uB825 \uBAA8\uB450 \uD68C\uBCF5\n\uCD08\uC7AC\uC0DD\uBB3C\uC57D
-    x1\n\uD3EC\uC154\uB098\uC774\uC988 x1"
+    x1\n\uD3EC\uC154\uB098\uC774\uC988 II x1"
   goldReward: 0
   allHealReward: 1
   cardReward:
-  - {fileID: 11400000, guid: df409f65e15ea51448ce40fe409ae5d5, type: 2}
-  - {fileID: 11400000, guid: e00c49ec030444040821c28a225989e1, type: 2}
+  - {fileID: 11400000, guid: 87636e8dcf574aa44b48c3a1fd5bef13, type: 2}
+  - {fileID: 11400000, guid: b1b6e824fd1f3da4590e417517ad63d0, type: 2}

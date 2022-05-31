@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardSprite: {fileID: 4097447715800045837, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   rewardName: "\uBCF4\uBB3C"
-  rewardDescription: "\uB3C8 x40\n\uBCF4\uBB3C \uACE0\uBE14\uB9B0 x2\n\uD3C9\uADE0\uD68C\uADC0
-    x2"
+  rewardDescription: "\uB3C8 x40\n\uB2E4\uC774\uC544\uACE0\uBE14\uB9B0 x2\n\uD3EC\uC154\uB098\uC774\uC988
+    II x1 + \uC544\uC774\uD15C\uB098\uC774\uC988 II x1\n"
   goldReward: 40
   allHealReward: 0
   cardReward:
-  - {fileID: 11400000, guid: f55c998cb75c22245b05408de3023264, type: 2}
-  - {fileID: 11400000, guid: f55c998cb75c22245b05408de3023264, type: 2}
-  - {fileID: 11400000, guid: 2e0f9ffc0c1afb042b29afe2f2e21702, type: 2}
-  - {fileID: 11400000, guid: 2e0f9ffc0c1afb042b29afe2f2e21702, type: 2}
+  - {fileID: 11400000, guid: 4a3cd2a85b59b2f4c9ec8837f2cec432, type: 2}
+  - {fileID: 11400000, guid: 4a3cd2a85b59b2f4c9ec8837f2cec432, type: 2}
+  - {fileID: 11400000, guid: ac6c736354c6ae746bfff51ad30cfe4e, type: 2}
+  - {fileID: 11400000, guid: b1b6e824fd1f3da4590e417517ad63d0, type: 2}
