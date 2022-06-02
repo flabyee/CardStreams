@@ -9,6 +9,9 @@ public class EffectManager : MonoBehaviour
     public GameObject spawnMobEffect;
 
     public GameObject jungSanEffect;
+
+    [SerializeField] Transform handleTrm;
+    [SerializeField] GameObject getCardPrefab;
     
     private void Awake()
     {
