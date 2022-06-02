@@ -132,7 +132,6 @@ public class GameManager : MonoBehaviour
         // 앞에 n칸 활성화
         fieldController.SetNextFieldAble(moveIndex);
 
-        enemyController.CreateRandomMob();
         enemyController.RandomEnemyBuild();
 
         handleController.DrawBuildAndSpecialWhenTurnStart();
@@ -301,6 +300,8 @@ public class GameManager : MonoBehaviour
     {
         shopController.Show();
         selectRewardManager.Show();
+
+        enemyController.CreateRandomMob();
 
         curState = GameState.TurnStart;
     }
