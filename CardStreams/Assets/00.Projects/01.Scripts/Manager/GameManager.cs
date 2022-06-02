@@ -305,10 +305,7 @@ public class GameManager : MonoBehaviour
 
         curState = GameState.TurnStart;
     }
-    private void OffModify()
-    {
-        shopController.Hide();
-    }
+
 
     public void Action()
     {
