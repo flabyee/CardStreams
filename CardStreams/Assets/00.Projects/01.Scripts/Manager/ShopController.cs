@@ -124,7 +124,7 @@ public class ShopController : MonoBehaviour
         // 기존에 있던 상품 목록 제거
         foreach (Transform item in specialCardShopTrm)
         {
-            Destroy(item.gameObject);
+            item.gameObject.SetActive(false);
         }
 
         Shuffle(CardType.Special);

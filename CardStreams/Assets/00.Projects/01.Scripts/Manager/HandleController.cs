@@ -331,7 +331,7 @@ public class HandleController : MonoBehaviour
     }
 
     // 뽑은 카드의 정보를 반환한다
-    public CardData DrawCard()
+    public void DrawCard()
     {
         CardData cardData = GetCardData();
 
@@ -350,15 +350,15 @@ public class HandleController : MonoBehaviour
             Debug.LogError("카드를 뽑을수 없다?");
         }
 
-        if(cardData != null)
-        {
-            return cardData;
+        //if(cardData != null)
+        //{
+        //    return cardData;
 
-        }
-        else
-        {
-            return null;
-        }
+        //}
+        //else
+        //{
+        //    return null;
+        //}
     }
 
     private void DrawBuild()
@@ -438,12 +438,7 @@ public class HandleController : MonoBehaviour
         {
             GameObject card = handleTrm.GetChild(i).gameObject;
             card.SetActive(false);
-            sellCardStack.Push(card.GetComponent<DragbleCard>());
-        }
-
-        while(sellCardStack.Count != 0)
-        {
-            Destroy(sellCardStack.Pop().gameObject);
+            card.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < handleCount; i++)
