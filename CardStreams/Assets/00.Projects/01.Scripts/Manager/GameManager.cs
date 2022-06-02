@@ -14,6 +14,7 @@ public enum GameState
     TurnEnd,
     Move,
     Modify,
+    Equip,
 }
 
 public class GameManager : MonoBehaviour
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        curState = GameState.TurnStart;
+        curState = GameState.Modify;
     }
 
     private void Start()
@@ -134,11 +135,10 @@ public class GameManager : MonoBehaviour
 
         enemyController.RandomEnemyBuild();
 
-        handleController.DrawBuildAndSpecialWhenTurnStart();
         handleController.DrawCardWhenBeforeMove();
+        handleController.ShowBuildHandle(false);
 
-        shopController.Hide();
-        selectRewardManager.Hide();
+
 
         TurnStartEvent.Occurred();
 
@@ -303,9 +303,21 @@ public class GameManager : MonoBehaviour
 
         enemyController.CreateRandomMob();
 
-        curState = GameState.TurnStart;
+        handleController.ShowBuildHandle(true);
+
+        curState = GameState.Equip;
     }
 
+    private void OnEquip()
+    {
+        handleController.ShowBuildHandle(true);
+        handleController.DrawBuildAndSpecialWhenTurnStart();
+
+        shopController.Hide();
+        selectRewardManager.Hide();
+
+        curState = GameState.TurnStart;
+    }
 
     public void Action()
     {
@@ -322,6 +334,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Modify:
                 OnModify();
+                break;
+            case GameState.Equip:
+                OnEquip();
                 break;
             default:
                 Debug.LogError("ereoroeroeoroeorooeoroeoroeor");
@@ -407,6 +422,9 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.Modify:
+                Action();
+                break;
+            case GameState.Equip:
                 Action();
                 break;
             default:

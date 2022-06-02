@@ -483,4 +483,9 @@ public class HandleController : MonoBehaviour
 
         DeckMake();
     }
+
+    public void ShowBuildHandle(bool b)
+    {
+        buildHandleTrm.gameObject.SetActive(b);
+    }
 }

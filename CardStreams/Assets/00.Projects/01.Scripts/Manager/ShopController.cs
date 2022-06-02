@@ -82,10 +82,6 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Show();
-    }
 
     public void Show()
     {
