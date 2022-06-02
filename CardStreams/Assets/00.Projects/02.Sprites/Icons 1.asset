@@ -161,8 +161,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 160
       m_Height: 160
-      m_HorizontalBearingX: -80
-      m_HorizontalBearingY: 80
+      m_HorizontalBearingX: -40
+      m_HorizontalBearingY: 130
       m_HorizontalAdvance: 160
     m_GlyphRect:
       m_X: 160
@@ -191,8 +191,8 @@ MonoBehaviour:
     m_Metrics:
       m_Width: 160
       m_Height: 160
-      m_HorizontalBearingX: -80
-      m_HorizontalBearingY: 80
+      m_HorizontalBearingX: -40
+      m_HorizontalBearingY: 130
       m_HorizontalAdvance: 160
     m_GlyphRect:
       m_X: 160

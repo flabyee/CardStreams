@@ -51,9 +51,27 @@ public class SpecialCardTooltip : MonoBehaviour
             {
                 if(index != 0)
                 {
-                    str += ", ";
+                    str += " ";
                 }
-                str += targetType.ToString();
+
+                switch (targetType)
+                {
+                    case CardType.Sword:
+                        str += "<sprite=0>";
+                        break;
+                    case CardType.Sheild:
+                        str += "<sprite=1>";
+                        break;
+                    case CardType.Potion:
+                        str += "<sprite=5>";
+                        break;
+                    case CardType.Monster:
+                        str += "<sprite=3>";
+                        break;
+                    default:
+                        str += "<sprite=2>";
+                        break;
+                }
 
                 index++;
             }

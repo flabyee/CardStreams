@@ -110,6 +110,7 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         var gameObject = eventData.pointerDrag;
         if (gameObject == null) return;
 
+        image.color = Color.green;
 
         TriggerOnHoverEnter(gameObject);
     }
