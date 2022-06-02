@@ -25,6 +25,8 @@ public class MapManager : MonoBehaviour
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
+    public int fieldCount => fieldList.Count;
+
     [Header("Event")]
     public EventSO afterMapCreateEvent;
 
@@ -180,11 +182,6 @@ public class MapManager : MonoBehaviour
 
 
     // fieldList 사용 관련
-    public int GetFieldCount()
-    {
-        return fieldList.Count;
-    }
-
     public void SetFieldState(int index, FieldState fieldState)
     {
         fieldList[index].fieldState = fieldState;

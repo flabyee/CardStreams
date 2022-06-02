@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class DropController : MonoBehaviour
+public class DropManager : MonoBehaviour
 {
     private List<DropArea> feildDropAreaList = new List<DropArea>();
     private List<DropArea> buildDropAreaList = new List<DropArea>();

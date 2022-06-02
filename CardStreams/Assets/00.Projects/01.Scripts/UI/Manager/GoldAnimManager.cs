@@ -113,13 +113,7 @@ public class GoldAnimManager : MonoBehaviour
 
     public void GetAllCoin()
     {
-        count++;
-        if(count == earnSystemCount)
-        {
-            count = 0;
-
-            StartCoroutine(GetCoinCor());
-        }
+        StartCoroutine(GetCoinCor());
     }
 
     private IEnumerator GetCoinCor()

@@ -280,6 +280,7 @@ public class HandleController : MonoBehaviour
         GameManager.Instance.canStartTurn = true;
     }
 
+    // 리롤은 현재 사용하지않는다
     public void CardRerollAdd(GameObject dragbleCardObj)
     {
         CardPower cardPower = dragbleCardObj.GetComponent<CardPower>();

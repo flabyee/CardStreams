@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum CardType
+{
+    NULL,
+    Sword,
+    Sheild,
+    Potion,
+    Monster,
+    Coin,
+    Special,
+    Build,
+}
+
 [Serializable]
 public class CardData
 {

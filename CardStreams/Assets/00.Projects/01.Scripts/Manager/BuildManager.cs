@@ -39,8 +39,6 @@ public class BuildManager : MonoBehaviour
         {
             data.action(data.obj.transform.position);
         }
-
-        GoldAnimManager.Instance.GetAllCoin();
     }
 
     public void MoveStart()

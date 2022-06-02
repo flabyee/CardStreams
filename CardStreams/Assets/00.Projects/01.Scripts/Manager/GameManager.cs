@@ -7,16 +7,12 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System;
 
-public enum CardType
+public enum GameState
 {
-    NULL,
-    Sword,
-    Sheild,
-    Potion,
-    Monster,
-    Coin,
-    Special,
-    Build,
+    TurnStart,
+    TurnEnd,
+    Move,
+    Modify,
 }
 
 public class GameManager : MonoBehaviour
@@ -37,7 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fieldResetDelay;
     private int maxMoveCount = 3;  // n
     private int moveIndex = 0;
-    private int moveCount = 0;  // n번씩 움직일거다
+    private GameState curState;
 
     [Header("StageData")]
     private int mobSpawnAmount;
@@ -47,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Controller")]
     private FieldController fieldController;
+    public EnemyController enemyController;
+    public HandleController handleController;
 
 
     [Header("IntValue")]
@@ -75,7 +73,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        
+        curState = GameState.TurnStart;
     }
 
     private void Start()
@@ -123,54 +121,52 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
 
-        Vector3 movePos = MapManager.Instance.fieldList[MapManager.Instance.fieldList.Count - 1].transform.position;
+        Vector3 movePos = MapManager.Instance.fieldList[MapManager.Instance.fieldCount - 1].transform.position;
         player.transform.DOMove(movePos, 0.25f);
     }
 
 
     public void TurnStart()
     {
-        if (moveIndex == 0)
-        {
-            // 턴 증가
-            turnCountValue.RuntimeValue++;
+        // 턴 증가
+        turnCountValue.RuntimeValue++;
 
-            // 모든 필드의 필드타입 yet으로
-            fieldController.SetAllFieldYet();
+        // 모든 필드의 필드타입 yet으로
+        fieldController.SetAllFieldYet();
+        // 앞에 n칸 활성화
+        fieldController.SetNextFieldAble(moveIndex);
 
-            // 랜덤 몹 생성
+        enemyController.CreateRandomMob();
+        enemyController.RandomEnemyBuild();
 
+        handleController.DrawBuildAndSpecialWhenTurnStart();
+        handleController.DrawCardWhenBeforeMove();
 
-            // 앞에 n칸 활성화
-            fieldController.SetNextFieldAble(moveIndex);
+        TurnStartEvent.Occurred();
 
-            // change mode 활성화
-            //isChange = true;
-
-            // 수치 증가
-
-            TurnStartEvent.Occurred();
-        }
+        curState = GameState.Move;
     }
 
     public void TurnEnd()
     {
-        // 이전 4개의 필드
-        fieldController.SetBeforeFieldNot(moveIndex);
+        handleController.TurnEnd();
 
         moveIndex = 0;
-        moveCount = 0;
         isMoving = false;
 
         // 정산
         StartCoroutine(JungSanCor());
 
         // NextTurnEvent에서 TurnStart를 해준다
+
+        TurnEndEvent.Occurred();
+
+        curState = GameState.Modify;
     }
 
     public IEnumerator JungSanCor()
     {
-        for (int i = 0; i < MapManager.Instance.fieldList.Count; i++)
+        for (int i = 0; i < MapManager.Instance.fieldCount; i++)
         {
             Field nowField = MapManager.Instance.fieldList[i];
 
@@ -206,11 +202,12 @@ public class GameManager : MonoBehaviour
         fieldController.BuildAccessNextField(moveIndex);
 
         isMoving = true;
+
+        TurnStartEvent.Occurred();
     }
 
     public void MoveEnd()
     {
-        moveCount = 0;
         isMoving = false;
 
         // 사용하지않은 카드 제거
@@ -218,103 +215,110 @@ public class GameManager : MonoBehaviour
         // 이전 4개의 필드
         fieldController.SetBeforeFieldNot(moveIndex);
 
-        // 다음 필드(fieldType 변경)
-        fieldController.SetNextFieldAble(moveIndex);
+        // 마지막이 아니라면 혹은 다음 칸이 있다면
+        if(moveIndex != MapManager.Instance.fieldCount)
+        {
+            // 다음 필드(fieldType 변경)
+            fieldController.SetNextFieldAble(moveIndex);
+            // draw
+            handleController.DrawCardWhenBeforeMove();
+        }
+
+        MoveEndEvent.Occurred();
     }
 
     public void Move()
     {
-        // 움직이기
         Sequence sequence = DOTween.Sequence();
 
-        sequence.AppendCallback(() =>
-        {
-            Vector3 movePos = MapManager.Instance.fieldList[moveIndex].transform.position;
-            player.transform.DOMove(movePos, 0.25f);
-            //player.Move(MapManager.Instance.fieldRectList[moveIndex].transform.position, 0.25f);
+        sequence.AppendCallback(() => MoveStart());
 
-        });
-        sequence.AppendInterval(0.25f);
-
-        // 스페셜카드 효과 발동
-        sequence.AppendCallback(() =>
+        for(int i = 0; i < maxMoveCount; i++)
         {
-            if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
+            // player 위치 이동
+            sequence.AppendCallback(() =>
             {
-                MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
-            }
-        });
-        sequence.AppendInterval(moveDuration);
+                Vector3 movePos = MapManager.Instance.fieldList[moveIndex].transform.position;
+                player.transform.DOMove(movePos, 0.25f);
+                //player.Move(MapManager.Instance.fieldRectList[moveIndex].transform.position, 0.25f);
 
-        // 플레이어한테 필드 효과 적용ㅇ
+            });
+            sequence.AppendInterval(0.25f);
+
+            // 스페셜카드 효과 발동
+            sequence.AppendCallback(() =>
+            {
+                if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
+                {
+                    MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
+                }
+            });
+            sequence.AppendInterval(moveDuration);
+
+            // 플레이어한테 필드 효과 적용
+            sequence.AppendCallback(() =>
+            {
+                if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
+                {
+                    player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
+                }
+            });
+            sequence.AppendInterval(moveDuration);
+
+            // 플레이어한테 건물효과 적용
+            sequence.AppendCallback(() =>
+            {
+                MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
+                //Debug.Log("player apply build");
+            });
+            sequence.AppendInterval(moveDuration);
+
+            sequence.AppendCallback(() => {
+                moveIndex++;
+
+                // 플레이어 죽었으면 끝
+                if (player.isAlive == false)
+                {
+                    Debug.Log("플레이어 디짐");
+                    playerDieEvent.Occurred();
+                    return;
+                }
+            });
+            sequence.AppendInterval(moveDuration);
+        }
+
+        sequence.AppendCallback(() => MoveEnd());
+
         sequence.AppendCallback(() =>
         {
-            if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
+            if (moveIndex == MapManager.Instance.fieldCount)
             {
-                player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
+                curState = GameState.TurnEnd;
+
+                NextAction();
             }
-        });
-        sequence.AppendInterval(moveDuration);
-
-        // 플레이어한테 건물효과 적용
-        sequence.AppendCallback(() =>
-        {
-            MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
-            //Debug.Log("player apply build");
-        });
-        sequence.AppendInterval(moveDuration);
-
-        sequence.AppendCallback(() => {
-            moveIndex++;
-            moveCount++;
-
-            // 플레이어 죽었으면 끝
-            if (player.isAlive == false)
-            {
-                Debug.Log("플레이어 디짐");
-                playerDieEvent.Occurred();
-                return;
-            }
-
-            NextAction();
         });
     }
 
     public void NextAction()
     {
-        // TurnEnd
-
-
-        if (moveIndex == MapManager.Instance.fieldList.Count)
+        switch (curState)
         {
-            Debug.Log("Loop End");
-            TurnEnd();
+            case GameState.TurnStart:
+                TurnStart();
+                break;
+            case GameState.TurnEnd:
+                TurnEnd();
+                break;
+            case GameState.Move:
+                Move();
+                break;
+            case GameState.Modify:
 
-            TurnEndEvent.Occurred();
-
-            return;
+                break;
+            default:
+                break;
         }
-
-        // move start
-        if (moveCount == 0)
-        {
-            MoveStartEvent.Occurred();
-
-            MoveStart();
-        }
-
-        // move end
-        if (moveCount == maxMoveCount)
-        {
-            MoveEnd();
-
-            // 카드 뽑기
-            MoveEndEvent.Occurred();
-
-            return;
-        }
-
-        Move();
     }
 
     public bool DropByRightClick(DragbleCard dragbleCard)
@@ -357,18 +361,28 @@ public class GameManager : MonoBehaviour
 
     public void OnClickMove()
     {
+        bool canNextAction = true;
+
         // move중일때 또 next를 누르지 못하게
-        if (isMoving == false)
+        if (curState == GameState.Move && isMoving == false)
         {
             for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
             {
                 // 전부 다 배치안했으면 move 안됨
                 if (MapManager.Instance.fieldList[i].cardPower == null)
                 {
-                    return;
+                    canNextAction = false;
                 }
             }
+        }
 
+        if(curState == GameState.Modify)
+        {
+            curState = GameState.TurnStart;
+        }
+
+        if(canNextAction == true)
+        {
             NextAction();
         }
     }

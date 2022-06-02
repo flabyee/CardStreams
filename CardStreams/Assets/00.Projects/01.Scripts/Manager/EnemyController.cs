@@ -27,12 +27,6 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         LoadStageData();
-
-        for(int i = 0; i < 100; i++)
-        {
-            Instantiate(cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-
-        }
     }
 
     private void LoadStageData()
@@ -50,12 +44,10 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void CreateRandomMob()
     {
-        Debug.Log("create random mob");
-
         List<int> canSpawnList = new List<int>();
         List<int> deleteFieldList = new List<int>();
 
-        for (int i = 0; i < MapManager.Instance.GetFieldCount(); i++)
+        for (int i = 0; i < MapManager.Instance.fieldCount; i++)
         {
             if (i == 0) // 0번째칸 억까 방지
             {
@@ -83,7 +75,7 @@ public class EnemyController : MonoBehaviour
                 // 몬스터 생성
                 for (int j = i; j < mobSpawnAmount; j++)
                 {
-                    if (j >= MapManager.Instance.fieldList.Count)
+                    if (j >= MapManager.Instance.fieldCount)
                     {
                         return;
                     }
