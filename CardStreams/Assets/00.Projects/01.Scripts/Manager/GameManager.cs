@@ -277,6 +277,7 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("플레이어 디짐");
                     playerDieEvent.Occurred();
+                    sequence.Kill();
                     return;
                 }
             });

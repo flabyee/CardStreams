@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public IntValue hpValue;
     public IntValue swordValue;
     public IntValue shieldValue;
+    public IntValue goldValue;
+   
 
     public bool isAlive { get; private set; }
 
@@ -28,13 +30,17 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("player rectTrm is null");
         }
-    }
 
-    void Start()
-    {
+        // IntValue Init
         hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
+        goldValue.RuntimeValue = 0;
+    }
+
+
+    void Start()
+    {
 
         playerValueChangeEvent.Occurred();
 
