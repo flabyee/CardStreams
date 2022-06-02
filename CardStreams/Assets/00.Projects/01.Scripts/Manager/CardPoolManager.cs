@@ -28,7 +28,7 @@ public class CardPoolManager : MonoBehaviour
         obj = basicCardList.Find((x) => !x.activeSelf);
         if(obj == null)
         {
-            obj = Instantiate(basicCardPrefab);
+            obj = Instantiate(basicCardPrefab, trm);
             basicCardList.Add(obj);
         }
         obj.transform.SetParent(trm);
@@ -43,7 +43,7 @@ public class CardPoolManager : MonoBehaviour
         obj = specialCardList.Find((x) => !x.activeSelf);
         if (obj == null)
         {
-            obj = Instantiate(specialCardPrefab);
+            obj = Instantiate(specialCardPrefab, trm);
             specialCardList.Add(obj);
         }
         obj.transform.SetParent(trm);

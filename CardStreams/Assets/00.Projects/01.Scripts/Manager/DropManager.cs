@@ -5,23 +5,17 @@ using System;
 
 public class DropManager : MonoBehaviour
 {
-    private List<DropArea> feildDropAreaList = new List<DropArea>();
-    private List<DropArea> buildDropAreaList = new List<DropArea>();
-
     public DropArea handleDropArea;
-    public RectTransform handleTrm;
 
     public DropArea buildHandleDropArea;
-    public RectTransform buildHandleTrm;
+
+    public DropArea[] quickSlotDropAreaArr;
 
     public DropArea shopDropArea;
-    public RectTransform shopTrm;
 
     public DropArea rerollDropArea;
-    public RectTransform rerollTrm;
 
     public DropArea useDropArea;
-    public RectTransform useTrm;
 
     public DropArea hoverDropArea;
     public RectTransform hoverTrm;
@@ -32,33 +26,31 @@ public class DropManager : MonoBehaviour
     {
         foreach (DropArea dropArea in DropArea.dropAreas)
         {
-            if (dropArea.dropAreaType == DropAreaType.feild)
+            switch (dropArea.dropAreaType)
             {
-                feildDropAreaList.Add(dropArea);
-            }
-            else if (dropArea.dropAreaType == DropAreaType.build)
-            {
-                buildDropAreaList.Add(dropArea);
+                case DropAreaType.feild:
+                    dropArea.onLifted += ObjectLiftedFromFeild;
+                    dropArea.onDropped += ObjectDroppedToFeild;
+                    break;
+                case DropAreaType.build:
+                    dropArea.onLifted += ObjectLiftedFromBuild;
+                    dropArea.onDropped += ObjectDroppedToBuild;
+                    break;
             }
         }
 
-        foreach (var item in feildDropAreaList)
-        {
-            item.onLifted += ObjectLiftedFromFeild;
-            item.onDropped += ObjectDroppedToFeild;
-        }
-
-        foreach (var item in buildDropAreaList)
-        {
-            item.onLifted += ObjectLiftedFromBuild;
-            item.onDropped += ObjectDroppedToBuild;
-        }
 
         handleDropArea.onLifted += ObjectLiftedFromHandle;
         handleDropArea.onDropped += ObjectDroppedToHandle;
 
         buildHandleDropArea.onLifted += ObjectLiftedFromBuildHandle;
         buildHandleDropArea.onDropped += ObjectDroppedToBuildHandle;
+
+        foreach(DropArea dropArea in quickSlotDropAreaArr)
+        {
+            dropArea.onLifted += ObjectLiftedFromQuickSlot;
+            dropArea.onDropped += ObjectDroppedToQuickSlot;
+        }
 
         shopDropArea.onLifted += ObjectLiftedFromShop;
         shopDropArea.onDropped += ObjectDroppedToShop;
@@ -231,6 +223,27 @@ public class DropManager : MonoBehaviour
         }
     }
 
+    private void ObjectLiftedFromQuickSlot(DropArea area, GameObject obj)
+    {
+        obj.transform.SetParent(hoverTrm, true);
+    }
+    private void ObjectDroppedToQuickSlot(DropArea area, GameObject obj)
+    {
+        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
+        CardPower cardPower = obj.GetComponent<CardPower>();
+
+        // 아무것도없고 특수카드라면 (buildDropArea는 field가 없어서 자식의 갯수로 체크
+        if (cardPower.cardType == CardType.Special && area.rectTrm.childCount == 0)
+        {
+            // 부모 설정(위치 설정)
+            obj.transform.SetParent(area.rectTrm, true);
+        }
+        else
+        {
+            // 재자리로
+            ObjectToOrigin(area, obj);
+        }
+    }
 
     private void ObjectLiftedFromHandle(DropArea area, GameObject obj)
     {

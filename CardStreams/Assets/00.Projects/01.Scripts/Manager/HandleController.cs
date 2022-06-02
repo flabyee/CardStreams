@@ -361,96 +361,6 @@ public class HandleController : MonoBehaviour
         }
     }
 
-    // 플레이어 카드를 뽑는다
-    public CardData DrawCardP()
-    {
-        CardData cardData = GetCardData();
-
-        if (cardData == null)
-            Debug.LogError("GetCardData is null");
-
-
-        bool isHavePlayer = false;
-        foreach (CardData deckCardData in deck)
-        {
-            if (deckCardData.cardType != CardType.Monster)
-            {
-                isHavePlayer = true;
-            }
-        }
-
-        // 하나도 없으면 덱 추가하기
-        if (isHavePlayer == false)
-        {
-            DeckAdd();
-        }
-
-        // 몬스터 카드라면 다시 뽑기
-        if (cardData.cardType == CardType.Monster)
-        {
-            CardAdd(cardData);
-
-            return DrawCardP();
-        }
-        else
-        {
-            GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
-            DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-
-            dragbleCard.SetDroppedArea(handleDropArea);
-            dragbleCard.originDropArea = handleDropArea;
-
-            dragbleCard.SetData_Feild(cardData.cardType, cardData.value);
-        }
-
-        return cardData;
-    }
-
-    // 몬스터를 뽑는다
-    public CardData DrawCardM()
-    {
-        CardData cardData = GetCardData();
-
-        if (cardData == null)
-            Debug.LogError("GetCardData is null");
-
-
-        bool isHaveMonster = false;
-        foreach (CardData deckCardData in deck)
-        {
-            if (deckCardData.cardType == CardType.Monster)
-            {
-                isHaveMonster = true;
-            }
-        }
-
-        // 하나도 없으면 덱 추가하기
-        if (isHaveMonster == false)
-        {
-            DeckAdd();
-        }
-
-        // 플레이어 카드라면 다시 뽑기
-        if (cardData.cardType != CardType.Monster)
-        {
-            CardAdd(cardData);
-
-            return DrawCardM();
-        }
-        else
-        {
-            GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
-            DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-
-            dragbleCard.SetDroppedArea(handleDropArea);
-            dragbleCard.originDropArea = handleDropArea;
-
-            dragbleCard.SetData_Feild(cardData.cardType, cardData.value);
-        }
-
-        return cardData;
-    }
-
     private void DrawBuild()
     {
         SaveData saveData = SaveSystem.Load();
@@ -519,23 +429,7 @@ public class HandleController : MonoBehaviour
         SaveSystem.Save(saveData);
     }
 
-    private void UseCard()
-    {
-        //Debug.Log("use card");
-        //haveCardCount--;
-        //useCount++;
-        //if (drawCount == 17)
-        //{
-        //    Debug.Log("모든 카드 뽑음 버튼을 눌러 다음 턴으로 가세요");
-        //}
-        //else
-        //{
-        //    DrawCard();
-        //}
-    }
-
     // turnStart or moveEnd 마다 하는 draw
-
     public void DrawCardWhenBeforeMove()
     {
         Stack<DragbleCard> sellCardStack = new Stack<DragbleCard>();
@@ -552,38 +446,10 @@ public class HandleController : MonoBehaviour
             Destroy(sellCardStack.Pop().gameObject);
         }
 
-        int pCount = 0;
-        int mCount = 0;
-        for (int i = 0; i < handleCount - 1; i++)
+        for (int i = 0; i < handleCount; i++)
         {
-            CardData cardData = DrawCard();
-
-            switch(cardData.cardType)
-            {
-                case CardType.Sword:
-                case CardType.Sheild:
-                case CardType.Potion:
-                    pCount++;  break;
-                case CardType.Monster:
-                    mCount++; break;
-            }
+            DrawCard();
         }
-
-        //if (pCount == handleCount - 1)
-        //{
-        //    DrawCardM();
-        //}
-        //else if (mCount == handleCount - 1)
-        //{
-        //    Debug.Log("mob 3");
-        //    DrawCardP();
-        //}
-        //else
-        //{
-        //    DrawCard();
-        //}
-
-        DrawCard();
     }
 
     public void DrawBuildAndSpecialWhenTurnStart()
