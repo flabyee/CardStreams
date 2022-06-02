@@ -914,7 +914,6 @@ RectTransform:
   m_Children:
   - {fileID: 1807141141}
   - {fileID: 500367130}
-  - {fileID: 1941386226}
   m_Father: {fileID: 1755125823}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9483,6 +9482,7 @@ RectTransform:
   - {fileID: 277858216}
   - {fileID: 286388865}
   - {fileID: 1838101720}
+  - {fileID: 1941386226}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10739,7 +10739,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941386226}
   m_Layer: 5
-  m_Name: CoinObjParent
+  m_Name: HoverHover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10756,8 +10756,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 193939803}
-  m_RootOrder: 2
+  m_Father: {fileID: 1755125823}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11467,10 +11467,14 @@ MonoBehaviour:
   shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
   chanceFirstAmountList: 32000000b5ffffff70feffff1efbffff88faffff
   chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
+  specialCardPrefab: {fileID: 1017501599584371627, guid: 5a679d2278c2d4a46aadd5bfc5d6906d, type: 3}
+  buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
   _cg: {fileID: 1675048946}
   _reduceCG: {fileID: 1814481313}
   specialCardShopTrm: {fileID: 1814481312}
   buildShopTrm: {fileID: 1814481311}
+  handleTrm: {fileID: 393445010288987042}
+  hoverTrm: {fileID: 1941386226}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}

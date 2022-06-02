@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ShopController : MonoBehaviour
 {
@@ -10,9 +11,10 @@ public class ShopController : MonoBehaviour
     [SerializeField] List<int> chanceIncreaseAmountList;
 
     // public
+    public GameObject specialCardPrefab;
+    public GameObject buildPrefab;
 
     // private
-
 
     // ui
     public CanvasGroup _cg;
@@ -20,9 +22,10 @@ public class ShopController : MonoBehaviour
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
 
+    public RectTransform handleTrm;
+    public RectTransform hoverTrm;
 
     // system
-
     private bool isMinimize;
 
     // dict
@@ -295,7 +298,7 @@ public class ShopController : MonoBehaviour
 
             info.button.onClick.AddListener(() =>
             {
-                BuyBuild(itemSO);
+                BuyBuild(itemSO, shopItem.transform.position);
 
                 //OnShop();
             });
@@ -325,7 +328,7 @@ public class ShopController : MonoBehaviour
 
             info.button.onClick.AddListener(() =>
             {
-                BuySpecial(itemSO);
+                BuySpecial(itemSO, shopItem.transform.position);
 
                 //OnShop();
             });
@@ -336,7 +339,7 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    private void BuySpecial(SpecialCardSO specialCardSO)
+    private void BuySpecial(SpecialCardSO specialCardSO, Vector3 pos)
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
@@ -346,10 +349,12 @@ public class ShopController : MonoBehaviour
             SaveData saveData = SaveSystem.Load();
             saveData.speicialCardDataList[specialCardSO.id].haveAmount++;
             SaveSystem.Save(saveData);
+
+            BuyEffect(specialCardSO, pos);
         }
     }
 
-    private void BuyBuild(BuildSO buildSO)
+    private void BuyBuild(BuildSO buildSO, Vector3 pos)
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
@@ -359,7 +364,31 @@ public class ShopController : MonoBehaviour
             SaveData saveData = SaveSystem.Load();
             saveData.buildDataList[buildSO.id].haveAmount++;
             SaveSystem.Save(saveData);
+
+            BuyEffect(buildSO, pos);
         }
+    }
+
+    private void BuyEffect(SpecialCardSO so, Vector3 pos)
+    {
+        GameObject specialObj = Instantiate(specialCardPrefab, hoverTrm);
+        specialObj.transform.position = pos;
+
+        SpecialCard special = specialObj.GetComponent<SpecialCard>();
+        special.Init(so);
+
+        specialObj.transform.DOMove(handleTrm.position, 1f);
+    }
+    private void BuyEffect(BuildSO so, Vector3 pos)
+    {
+        GameObject buildObj = Instantiate(buildPrefab, hoverTrm);
+        buildObj.transform.position = pos;
+        // build 관련 초기화
+
+        Build build = buildObj.GetComponent<Build>();
+        build.Init(so);
+
+        buildObj.transform.DOMove(handleTrm.position, 1f);
     }
 
     public void CloseShop()
