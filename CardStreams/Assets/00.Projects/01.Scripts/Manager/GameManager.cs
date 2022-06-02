@@ -9,6 +9,7 @@ using System;
 
 public enum GameState
 {
+    NULL,
     TurnStart,
     TurnEnd,
     Move,
@@ -19,32 +20,30 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private bool isMoving;  // move중일때 또 next를 누르지 못하게
 
     [HideInInspector]public int rerollCount;
 
-    public bool canStartTurn;
 
-    [Header("UI")]
+    [Header("Player")]
     public Player player;
 
     [Header("System")]
-    [SerializeField] float moveDuration;
-    [SerializeField] float fieldResetDelay;
-    private int maxMoveCount = 3;  // n
-    private int moveIndex = 0;
-    private GameState curState;
+    [SerializeField] float moveDuration;    // Move에 걸리는 시간
+    [SerializeField] float fieldResetDelay; // 정산이후 대기 시간
+    public bool canStartTurn;   // deck을 다 만든 후에 게임을 진행하기 위해서
+    private bool canMove;      // move중일때 또 next를 누르지 못하게
+    private int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
+    private GameState curState; // 현재 게임의 상태
 
     [Header("StageData")]
-    private int mobSpawnAmount;
-    private int mobSpawnIncreaseAmount;
-    private int mobAttackAmount;
-    private int mobAttackIncreaseAmount;
+    private int maxMoveCount;
 
     [Header("Controller")]
     private FieldController fieldController;
     public EnemyController enemyController;
     public HandleController handleController;
+    public ShopController shopController;
+    public SelectRewardManager selectRewardManager;
 
 
     [Header("IntValue")]
@@ -84,15 +83,12 @@ public class GameManager : MonoBehaviour
 
         goldValue.RuntimeValue += 20;
         goldChangeEvent.Occurred();
-
-        //TurnStart();
     }
 
     public void LoadStageData()
     {
         StageDataSO stageData = DataManager.Instance.GetNowStageData();
         maxMoveCount = stageData.moveCount;
-        
     }
 
     public void AddGold(int amount)
@@ -142,7 +138,12 @@ public class GameManager : MonoBehaviour
         handleController.DrawBuildAndSpecialWhenTurnStart();
         handleController.DrawCardWhenBeforeMove();
 
+        shopController.Hide();
+        selectRewardManager.Hide();
+
         TurnStartEvent.Occurred();
+
+        canMove = true;
 
         curState = GameState.Move;
     }
@@ -152,12 +153,9 @@ public class GameManager : MonoBehaviour
         handleController.TurnEnd();
 
         moveIndex = 0;
-        isMoving = false;
 
         // 정산
         StartCoroutine(JungSanCor());
-
-        // NextTurnEvent에서 TurnStart를 해준다
 
         TurnEndEvent.Occurred();
 
@@ -201,16 +199,14 @@ public class GameManager : MonoBehaviour
         // 카드에 건물 효과 적용
         fieldController.BuildAccessNextField(moveIndex);
 
-        isMoving = true;
+        canMove = false;
 
         TurnStartEvent.Occurred();
     }
 
     public void MoveEnd()
     {
-        isMoving = false;
-
-        // 사용하지않은 카드 제거
+        canMove = true;
 
         // 이전 4개의 필드
         fieldController.SetBeforeFieldNot(moveIndex);
@@ -229,9 +225,9 @@ public class GameManager : MonoBehaviour
 
     public void Move()
     {
-        Sequence sequence = DOTween.Sequence();
+        MoveStart();
 
-        sequence.AppendCallback(() => MoveStart());
+        Sequence sequence = DOTween.Sequence();
 
         for(int i = 0; i < maxMoveCount; i++)
         {
@@ -295,12 +291,24 @@ public class GameManager : MonoBehaviour
             {
                 curState = GameState.TurnEnd;
 
-                NextAction();
+                Action();
             }
         });
     }
 
-    public void NextAction()
+    private void OnModify()
+    {
+        shopController.Show();
+        selectRewardManager.Show();
+
+        curState = GameState.TurnStart;
+    }
+    private void OffModify()
+    {
+        shopController.Hide();
+    }
+
+    public void Action()
     {
         switch (curState)
         {
@@ -314,9 +322,10 @@ public class GameManager : MonoBehaviour
                 Move();
                 break;
             case GameState.Modify:
-
+                OnModify();
                 break;
             default:
+                Debug.LogError("ereoroeroeoroeorooeoroeoroeor");
                 break;
         }
     }
@@ -339,7 +348,6 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-
         DropArea dropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
 
         // drop area 설정
@@ -359,31 +367,51 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void OnClickMove()
+    public void OnClickAction()
     {
-        bool canNextAction = true;
-
-        // move중일때 또 next를 누르지 못하게
-        if (curState == GameState.Move && isMoving == false)
+        switch (curState)
         {
-            for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
-            {
-                // 전부 다 배치안했으면 move 안됨
-                if (MapManager.Instance.fieldList[i].cardPower == null)
+            case GameState.TurnStart:
+                Action();
+                break;
+
+
+            case GameState.TurnEnd:
+                Action();
+                break;
+
+
+            case GameState.Move:
+                bool isBreak = false;
+
+                if (canMove == true)
                 {
-                    canNextAction = false;
+                    for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
+                    {
+                        // 전부 다 배치안했으면 move 안됨
+                        if (MapManager.Instance.fieldList[i].cardPower == null)
+                        {
+                            isBreak = true;
+                        }
+                    }
                 }
-            }
-        }
+                else
+                {
+                    isBreak = true;
+                }
 
-        if(curState == GameState.Modify)
-        {
-            curState = GameState.TurnStart;
-        }
+                if (isBreak)
+                    break;
 
-        if(canNextAction == true)
-        {
-            NextAction();
+                Action();
+                break;
+
+
+            case GameState.Modify:
+                Action();
+                break;
+            default:
+                break;
         }
     }
 
@@ -391,4 +419,4 @@ public class GameManager : MonoBehaviour
     {
         moveDuration = Mathf.Clamp(moveDuration + amount, 0.01f, 1f);
     }
-}    
+} 

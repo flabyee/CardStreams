@@ -55,7 +55,7 @@ public class BuildAreaTooltip : MonoBehaviour
                 }
                 else
                 {
-                    areaImageArr[y + 2, x + 2].color = Color.green;
+                    areaImageArr[y + 2, x + 2].color = new Color(0, 1, 0, 0.5f);
                 }
 
                 if (y == 0 && x == 0)

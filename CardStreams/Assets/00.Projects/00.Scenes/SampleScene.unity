@@ -862,7 +862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &177453715
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 479714974}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.049999993
+  m_Size: 0.05
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 87.999985, y: 87.999985}
+  cellSize: {x: 88, y: 88}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -4263,10 +4263,10 @@ RectTransform:
   m_Father: {fileID: 926805809}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -252.49998}
-  m_SizeDelta: {x: 300, y: 94.99999}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &799665809
 MonoBehaviour:
@@ -5741,9 +5741,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1003183669}
   - component: {fileID: 1003183670}
-  - component: {fileID: 1003183671}
   m_Layer: 0
-  m_Name: SelectRewardManager
+  m_Name: SelectRewardController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5756,12 +5755,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003183668}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1562801202}
-  m_RootOrder: 4
+  m_Father: {fileID: 1637668232}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1003183670
 MonoBehaviour:
@@ -5780,34 +5779,6 @@ MonoBehaviour:
   - {fileID: 1242648268}
   - {fileID: 1242648267}
   _cgObject: {fileID: 1242648270}
---- !u!114 &1003183671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003183668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: cdd0a4bc5ce8a204b8d90a501c0fcfb8, type: 2}
-  responseObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1003183670}
-        m_TargetAssemblyTypeName: SelectRewardManager, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1034315495
 GameObject:
   m_ObjectHideFlags: 0
@@ -6489,10 +6460,10 @@ RectTransform:
   m_Father: {fileID: 926805809}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -142.49998}
-  m_SizeDelta: {x: 300, y: 94.99999}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179062319
 MonoBehaviour:
@@ -7718,7 +7689,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1637668231}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnClickMove
+        m_MethodName: OnClickAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8134,10 +8105,10 @@ RectTransform:
   m_Father: {fileID: 926805809}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -197.49998}
-  m_SizeDelta: {x: 300, y: 15}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469520325
 MonoBehaviour:
@@ -8355,7 +8326,6 @@ Transform:
   - {fileID: 886143584}
   - {fileID: 1060559202}
   - {fileID: 1588369185}
-  - {fileID: 1003183669}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8880,12 +8850,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rerollCount: 0
-  canStartTurn: 0
   player: {fileID: 981051407}
   moveDuration: 0.15
   fieldResetDelay: 0.1
+  canStartTurn: 0
   enemyController: {fileID: 1664593178}
   handleController: {fileID: 745525164}
+  shopController: {fileID: 2051422256}
+  selectRewardManager: {fileID: 1003183670}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   TurnStartEvent: {fileID: 11400000, guid: f14c813a5c4ecf04488c45373c6d14c2, type: 2}
@@ -8907,6 +8879,8 @@ Transform:
   m_Children:
   - {fileID: 745525163}
   - {fileID: 1664593177}
+  - {fileID: 2051422255}
+  - {fileID: 1003183669}
   m_Father: {fileID: 1562801202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9145,6 +9119,11 @@ MonoBehaviour:
   cardPrefab: {fileID: 1017501599584371627, guid: 4695023d590cb2045a72ead561adb369, type: 3}
   buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
   enemyBuildEffect: {fileID: 1612221337289516, guid: e9cbfc752d3e7244f8ad6cda4559e3bf, type: 3}
+--- !u!225 &1675048946 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 660032161651460041, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1676859763
 GameObject:
   m_ObjectHideFlags: 0
@@ -9812,6 +9791,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277858216}
     m_Modifications:
+    - target: {fileID: 660032161651460041, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8401097449403832155, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9860,9 +9843,9 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8401097449505549335, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 8401097449505549333, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8401097450334799788, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10052,11 +10035,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8401097450920186493, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
 --- !u!224 &1814481310 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8401097450740705318, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1814481311 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8401097450334799788, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1814481312 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8401097450540825180, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1814481313 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 7651343551736947231, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
   m_PrefabInstance: {fileID: 1814481309}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1817029109
@@ -10093,10 +10095,10 @@ RectTransform:
   m_Father: {fileID: 926805809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -47.499996}
-  m_SizeDelta: {x: 300, y: 94.99999}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1817029111
 MonoBehaviour:
@@ -10477,7 +10479,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 87.999985, y: 87.999985}
+  cellSize: {x: 88, y: 88}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -11324,7 +11326,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1844351540}
         m_TargetAssemblyTypeName: GoldAnimManager, Assembly-CSharp
-        m_MethodName: OnClickFieldResetEnd
+        m_MethodName: OnClickCloseResultPanle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11452,6 +11454,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039047098}
   m_CullTransparentMesh: 1
+--- !u!1 &2051422254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051422255}
+  - component: {fileID: 2051422256}
+  m_Layer: 0
+  m_Name: ShopController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2051422255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051422254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1637668232}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2051422256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051422254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2f785ffc239c84ab52d13dd57716f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
+  chanceFirstAmountList: 32000000b5ffffff70feffff1efbffff88faffff
+  chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
+  _cg: {fileID: 1675048946}
+  _reduceCG: {fileID: 1814481313}
+  specialCardShopTrm: {fileID: 1814481312}
+  buildShopTrm: {fileID: 1814481311}
+  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
+  turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
+  goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  nextTurnEvent: {fileID: 11400000, guid: 54a64b073e2443b4da6f32531da52964, type: 2}
 --- !u!1 &2059843746
 GameObject:
   m_ObjectHideFlags: 0

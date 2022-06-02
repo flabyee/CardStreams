@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopPanel : MonoBehaviour
+public class ShopController : MonoBehaviour
 {
     // Seri
     [SerializeField] GameObject shopItemPrefab;
@@ -13,9 +13,9 @@ public class ShopPanel : MonoBehaviour
 
     // private
 
-    private CanvasGroup _cg;
 
     // ui
+    public CanvasGroup _cg;
     public CanvasGroup _reduceCG;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
@@ -42,8 +42,6 @@ public class ShopPanel : MonoBehaviour
 
     private void Awake()
     {
-        _cg = GetComponent<CanvasGroup>();
-
         SaveData saveData = SaveSystem.Load();
 
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);

@@ -33,10 +33,10 @@ RectTransform:
   m_Father: {fileID: 8401097450849603022}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -300}
+  m_SizeDelta: {x: 525, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8401097449403832152
 MonoBehaviour:
@@ -98,10 +98,10 @@ RectTransform:
   m_Father: {fileID: 8401097450555876834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -50}
+  m_SizeDelta: {x: 525, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8401097449414224892
 CanvasRenderer:
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8401097450740705316}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
         m_MethodName: Minimize
         m_Mode: 1
@@ -462,10 +462,10 @@ RectTransform:
   m_Father: {fileID: 8401097450555876834}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -375}
+  m_SizeDelta: {x: 525, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8401097450334799792
 CanvasRenderer:
@@ -659,10 +659,10 @@ RectTransform:
   m_Father: {fileID: 8401097449403832155}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -375}
+  m_SizeDelta: {x: 525, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8401097450540825123
 CanvasRenderer:
@@ -780,10 +780,10 @@ RectTransform:
   m_Father: {fileID: 8401097450849603022}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 837.5, y: -300}
+  m_SizeDelta: {x: 525, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8401097450555876835
 MonoBehaviour:
@@ -979,10 +979,10 @@ RectTransform:
   m_Father: {fileID: 8401097449403832155}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 262.5, y: -50}
+  m_SizeDelta: {x: 525, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8401097450589092527
 CanvasRenderer:
@@ -1130,8 +1130,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8401097450740705318}
-  - component: {fileID: 8401097450740705316}
-  - component: {fileID: 8401097450740705319}
   - component: {fileID: 660032161651460041}
   m_Layer: 5
   m_Name: ShopPanel
@@ -1139,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8401097450740705318
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1161,56 +1159,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1300, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8401097450740705316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8401097450740705313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2f785ffc239c84ab52d13dd57716f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
-  chanceFirstAmountList: 32000000b5ffffff70feffff1efbffff88faffff
-  chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
-  _reduceCG: {fileID: 7651343551736947231}
-  specialCardShopTrm: {fileID: 8401097450540825180}
-  buildShopTrm: {fileID: 8401097450334799788}
-  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
-  turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
-  goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
-  nextTurnEvent: {fileID: 11400000, guid: 54a64b073e2443b4da6f32531da52964, type: 2}
---- !u!114 &8401097450740705319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8401097450740705313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: cdd0a4bc5ce8a204b8d90a501c0fcfb8, type: 2}
-  responseObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8401097450740705316}
-        m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
-        m_MethodName: Show
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!225 &660032161651460041
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1538,7 +1486,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8401097450740705316}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShopPanel, Assembly-CSharp
         m_MethodName: OnShop
         m_Mode: 1

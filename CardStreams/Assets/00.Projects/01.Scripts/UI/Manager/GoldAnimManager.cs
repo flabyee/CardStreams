@@ -152,11 +152,9 @@ public class GoldAnimManager : MonoBehaviour
         GoldChangeEvent.Occurred();
     }
 
-    public void OnClickFieldResetEnd()
+    public void OnClickCloseResultPanle()
     {
         HideResult();
-
-        FieldResetAfterEvnet.Occurred();
     }
 
     public void ShowResult()
