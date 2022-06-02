@@ -26,6 +26,6 @@ public abstract class SpecialCardSO : ScriptableObject
     public List<CardType> targetTypeList;
 
     public abstract void AccessSpecialCard(Player player, Field field);
-
+    public abstract void AccessBuildCard(Build build);
 
 }

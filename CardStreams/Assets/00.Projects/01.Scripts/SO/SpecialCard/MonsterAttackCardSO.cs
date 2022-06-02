@@ -7,6 +7,11 @@ public class MonsterAttackCardSO : SpecialCardSO
 {
     [Header("amounts")]
     int attackAmount;
+
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

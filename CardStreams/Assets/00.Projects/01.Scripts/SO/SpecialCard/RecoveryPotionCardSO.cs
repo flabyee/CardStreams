@@ -8,6 +8,10 @@ public class RecoveryPotionCardSO : SpecialCardSO
     [Header("น๖วม SO")]
     public RecoveryBuffSO recoverySO;
 
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

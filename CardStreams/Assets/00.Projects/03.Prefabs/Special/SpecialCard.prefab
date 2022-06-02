@@ -255,8 +255,6 @@ GameObject:
   - component: {fileID: 8824498086586159459}
   - component: {fileID: 1017501599584371605}
   - component: {fileID: -4286347746058970656}
-  - component: {fileID: -1419210055050381566}
-  - component: {fileID: -1281801532979522615}
   m_Layer: 5
   m_Name: SpecialCard
   m_TagString: Untagged
@@ -327,10 +325,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 0}
+  backImage: {fileID: 0}
   valueText: {fileID: 0}
-  dropAreaType: 0
   cardType: 0
-  value: 0
+  goldP: 0
   originValue: 0
 --- !u!114 &8824498086586159459
 MonoBehaviour:
@@ -421,53 +419,6 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1017501599584371605}
---- !u!61 &-1419210055050381566
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017501599584371627}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 125, y: 375}
-  m_EdgeRadius: 0
---- !u!50 &-1281801532979522615
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017501599584371627}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1929831496609583167
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [HideInInspector] public Image cardImage;
 
     public Action<Player, Field> OnAccessSpecialCard;
+    public Action<Build> OnAccessBuildCard;
 
     public void Init(SpecialCardSO so)
     {
@@ -30,6 +31,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         cardImage.sprite = so.sprite;
 
         OnAccessSpecialCard = so.AccessSpecialCard;
+        OnAccessBuildCard = so.AccessBuildCard;
     }
 
 

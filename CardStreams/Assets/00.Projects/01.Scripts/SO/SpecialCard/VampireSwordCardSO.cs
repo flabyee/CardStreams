@@ -8,6 +8,10 @@ public class VampireSwordCardSO : SpecialCardSO
     [Header("น๖วม SO")]
     public LifeStealBuffSO lifeStealso;
 
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         Debug.Log("AddBuffToField");

@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ChangeEquip", menuName = "ScriptableObject/SpecialCard/ChangeEquip")]
 public class ChangeEquipCardSO : SpecialCardSO
 {
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

@@ -25,6 +25,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     [HideInInspector] public DropArea droppedArea;
     [HideInInspector]public DropArea prevDropArea;
     [HideInInspector]public DropArea originDropArea; // 처음 드랍에리어
+    [HideInInspector]public DropArea originOriginDropArea; // 나중에 수정
 
     [HideInInspector] public bool isHandle;
     [HideInInspector] public bool isField;
@@ -230,7 +231,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 case CardType.Sheild:
                 case CardType.Potion:
                 case CardType.Monster:
-                    GameManager.Instance.DropByRightClick(this);
+                    GameManager.Instance.DropField(this);
+                    break;
+                case CardType.Special:
+                    GameManager.Instance.DropField(this);
                     break;
             }
         }

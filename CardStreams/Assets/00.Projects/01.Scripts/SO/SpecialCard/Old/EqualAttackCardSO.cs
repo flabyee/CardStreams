@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EqualAttack", menuName = "ScriptableObject/SpecialCard/EqualAttack")]
 public class EqualAttackCardSO : SpecialCardSO
 {
+    public override void AccessBuildCard(Build build)
+    {
+    }
 
     public override void AccessSpecialCard(Player player, Field field)
     {

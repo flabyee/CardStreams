@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public bool canStartTurn;   // deck을 다 만든 후에 게임을 진행하기 위해서
     private bool canMove;      // move중일때 또 next를 누르지 못하게
     private int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
-    private GameState curState; // 현재 게임의 상태
+    public GameState curState; // 현재 게임의 상태
 
     [Header("StageData")]
     private int maxMoveCount;
@@ -344,7 +344,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool DropByRightClick(DragbleCard dragbleCard)
+    public bool DropField(DragbleCard dragbleCard)
     {
         int tempIndex = -1; // 4칸중 비어있는 필드의 인덱스를 담을 곳
         for (int i = 0; i < 4; i++)
@@ -380,7 +380,10 @@ public class GameManager : MonoBehaviour
 
         return true;
     }
-
+    public bool DropQuickSlot(DragbleCard dragbleCard)
+    {
+        return false;
+    }
     public void OnClickAction()
     {
         switch (curState)

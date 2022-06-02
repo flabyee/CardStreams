@@ -8,6 +8,10 @@ public class ItemToPotionCardSO : SpecialCardSO
     [Header("amounts")]
     public int upAmount;
 
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

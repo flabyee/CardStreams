@@ -70,13 +70,11 @@ public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         BuildManager.Instance.OnBuildWhenTurnEndList.Add(actionPosData);
     }
 
-    public void BuildUp(Vector2 point)
+    public void BuildUp()
     {
         isDrop = false;
 
-        myPoint = point;
-        // 주변 검사해서 효과 적용
-
+        // 주변 검사해서 효과 빼기
         foreach (Vector2 accessPoint in buildSO.accessPointList)
         {
 

@@ -8,6 +8,11 @@ public class BleedSwordCardSO : SpecialCardSO
     [Header("amounts")]
     public int upSwordAmount;
     public int lessHpAmount;
+
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // player

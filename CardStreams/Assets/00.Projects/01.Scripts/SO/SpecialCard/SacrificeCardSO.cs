@@ -8,6 +8,10 @@ public class SacrificeCardSO : SpecialCardSO
     [Header("amounts")]
     public int limitDamage;
 
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

@@ -9,6 +9,10 @@ public class GoldMonsterCardSO : SpecialCardSO
     public float mulAmount;
     public int goldPAmount;
 
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

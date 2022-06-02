@@ -8,6 +8,10 @@ public class RandomCardSO : SpecialCardSO
     [Header("amounts")]
     public int mulAmount;
 
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

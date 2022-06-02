@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ThrowShield", menuName = "ScriptableObject/SpecialCard/ThrowShield")]
 public class ThrowShieldCardSO : SpecialCardSO
 {
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

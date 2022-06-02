@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ShieldAttackCardSO", menuName = "ScriptableObject/SpecialCard/ShieldAttackCardSO")]
 public class ShieldAttackCardSO : SpecialCardSO
 {
+    public override void AccessBuildCard(Build build)
+    {
+    }
+
     public override void AccessSpecialCard(Player player, Field field)
     {
         // cardPower

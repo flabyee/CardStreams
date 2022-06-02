@@ -211,9 +211,12 @@ public class DropManager : MonoBehaviour
                 dragbleCard.isDestory = true;
 
                 Build build = area.rectTrm.GetChild(0).GetComponent<Build>();
-                build.BuildUp(area.point);
-
-                Destroy(build.gameObject);
+                specialCard.OnAccessBuildCard(build);
+            }
+            else
+            {
+                // 재자리로
+                ObjectToOrigin(area, obj);
             }
         }
         else
@@ -225,7 +228,14 @@ public class DropManager : MonoBehaviour
 
     private void ObjectLiftedFromQuickSlot(DropArea area, GameObject obj)
     {
+        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
+
         obj.transform.SetParent(hoverTrm, true);
+
+        if(GameManager.Instance.curState == GameState.Equip)
+        {
+            dragbleCard.originDropArea = dragbleCard.originOriginDropArea;
+        }
     }
     private void ObjectDroppedToQuickSlot(DropArea area, GameObject obj)
     {
@@ -237,6 +247,13 @@ public class DropManager : MonoBehaviour
         {
             // 부모 설정(위치 설정)
             obj.transform.SetParent(area.rectTrm, true);
+
+            Debug.Log(dragbleCard.originDropArea);
+
+            dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
+            dragbleCard.originDropArea = area;
+
+            Debug.Log(dragbleCard.originDropArea);
         }
         else
         {
@@ -284,7 +301,7 @@ public class DropManager : MonoBehaviour
 
             //ObjectToOrigin(area, obj);
 
-            bool b = GameManager.Instance.DropByRightClick(dragbleCard);
+            bool b = GameManager.Instance.DropField(dragbleCard);
             if(b == false)
             {
                 ObjectToOrigin(area, obj);
