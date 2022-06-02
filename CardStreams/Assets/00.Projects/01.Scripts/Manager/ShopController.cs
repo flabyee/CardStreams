@@ -11,8 +11,6 @@ public class ShopController : MonoBehaviour
     [SerializeField] List<int> chanceIncreaseAmountList;
 
     // public
-    public GameObject specialCardPrefab;
-    public GameObject buildPrefab;
 
     // private
 
@@ -349,8 +347,6 @@ public class ShopController : MonoBehaviour
             SaveData saveData = SaveSystem.Load();
             saveData.speicialCardDataList[specialCardSO.id].haveAmount++;
             SaveSystem.Save(saveData);
-
-            BuyEffect(specialCardSO, pos);
         }
     }
 
@@ -364,31 +360,14 @@ public class ShopController : MonoBehaviour
             SaveData saveData = SaveSystem.Load();
             saveData.buildDataList[buildSO.id].haveAmount++;
             SaveSystem.Save(saveData);
-
-            BuyEffect(buildSO, pos);
         }
     }
 
-    private void BuyEffect(SpecialCardSO so, Vector3 pos)
+    private IEnumerator ActiveFalseCor(GameObject obj, float t)
     {
-        GameObject specialObj = Instantiate(specialCardPrefab, hoverTrm);
-        specialObj.transform.position = pos;
+        yield return new WaitForSeconds(t);
 
-        SpecialCard special = specialObj.GetComponent<SpecialCard>();
-        special.Init(so);
-
-        specialObj.transform.DOMove(handleTrm.position, 1f);
-    }
-    private void BuyEffect(BuildSO so, Vector3 pos)
-    {
-        GameObject buildObj = Instantiate(buildPrefab, hoverTrm);
-        buildObj.transform.position = pos;
-        // build 관련 초기화
-
-        Build build = buildObj.GetComponent<Build>();
-        build.Init(so);
-
-        buildObj.transform.DOMove(handleTrm.position, 1f);
+        obj.SetActive(false);
     }
 
     public void CloseShop()

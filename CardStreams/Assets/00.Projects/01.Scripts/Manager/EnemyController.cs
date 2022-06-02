@@ -5,8 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // 적 생성
-    public GameObject cardPrefab;
-
     private int mobSpawnAmount;
     private int mobSpawnIncreaseAmount;
     private int mobAttackAmount;
@@ -14,7 +12,6 @@ public class EnemyController : MonoBehaviour
 
     // 적 건물 생성
     private List<BuildSO> enemyBuildList;
-    [SerializeField] GameObject buildPrefab;
     [SerializeField] GameObject enemyBuildEffect;
 
     private void Awake()
@@ -111,7 +108,7 @@ public class EnemyController : MonoBehaviour
         int value = mobAttackAmount; // 생성되는 몬스터의 값
 
         // 새로운 카드 생성
-        GameObject cardObj = Instantiate(cardPrefab, MapManager.Instance.fieldList[fieldIndex].transform);
+        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(MapManager.Instance.fieldList[fieldIndex].transform);
         DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
         CardPower cardPower = cardObj.GetComponent<CardPower>();
 
@@ -147,7 +144,7 @@ public class EnemyController : MonoBehaviour
         EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
 
         // 건물설치
-        Build building = Instantiate(buildPrefab, buildPoint).GetComponent<Build>();
+        Build building = CardPoolManager.Instance.GetBuildCard(buildPoint).GetComponent<Build>();
         GameObject clone = Instantiate(enemyBuildEffect, buildPoint.transform.position, Quaternion.identity); // rectTransform ???
         Destroy(clone, 1f);
         

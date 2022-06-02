@@ -211,7 +211,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if(isDestory == true)
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
 
         if (cardPower.cardType == CardType.Build)

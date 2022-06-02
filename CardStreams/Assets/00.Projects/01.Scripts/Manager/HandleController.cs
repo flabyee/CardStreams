@@ -17,14 +17,6 @@ public class HandleController : MonoBehaviour
 
     public DropArea shopDropArea;
 
-    [Header("Card")]
-    public GameObject cardPrefab;
-
-    [Header("Build")]
-    public GameObject buildPrefab;
-
-    [Header("SpecialCard")]
-    public GameObject specialCardPrefab;
 
     [Header("System")]
     private int handleCount = 3;    // 손에 들고있을 카드 최대수
@@ -345,7 +337,7 @@ public class HandleController : MonoBehaviour
 
         if(cardData != null)
         {
-            GameObject cardObj = Instantiate(cardPrefab, handleTrm);
+            GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
             DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
 
             dragbleCard.SetDroppedArea(handleDropArea);
@@ -402,7 +394,7 @@ public class HandleController : MonoBehaviour
         }
         else
         {
-            GameObject cardObj = Instantiate(cardPrefab, handleTrm);
+            GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
             DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
 
             dragbleCard.SetDroppedArea(handleDropArea);
@@ -447,7 +439,7 @@ public class HandleController : MonoBehaviour
         }
         else
         {
-            GameObject cardObj = Instantiate(cardPrefab, handleTrm);
+            GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
             DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
 
             dragbleCard.SetDroppedArea(handleDropArea);
@@ -470,7 +462,7 @@ public class HandleController : MonoBehaviour
                 int count = buildData.haveAmount;
                 for (int i = 0; i < count; i++)
                 {
-                    GameObject buildObj = Instantiate(buildPrefab, buildHandleTrm);
+                    GameObject buildObj = CardPoolManager.Instance.GetBuildCard(buildHandleTrm);
 
                     // build 관련 초기화
 
@@ -506,7 +498,7 @@ public class HandleController : MonoBehaviour
 
                 for (int i = 0; i < count; i++)
                 {
-                    GameObject specialCardObj = Instantiate(specialCardPrefab, buildHandleTrm);
+                    GameObject specialCardObj = CardPoolManager.Instance.GetSpecialCard(buildHandleTrm);
                     DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
 
                     // specialCard 관련 초기화

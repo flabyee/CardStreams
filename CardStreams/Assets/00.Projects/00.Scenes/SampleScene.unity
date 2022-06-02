@@ -3913,9 +3913,6 @@ MonoBehaviour:
   buildHandleDropArea: {fileID: 2094405881}
   buildHandleTrm: {fileID: 393445010288987042}
   shopDropArea: {fileID: 475797421}
-  cardPrefab: {fileID: 1017501599584371627, guid: 4695023d590cb2045a72ead561adb369, type: 3}
-  buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
-  specialCardPrefab: {fileID: 1017501599584371627, guid: 5a679d2278c2d4a46aadd5bfc5d6906d, type: 3}
   canStartTurn: 0
 --- !u!1 &754234689
 GameObject:
@@ -6693,6 +6690,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277858216}
     m_Modifications:
+    - target: {fileID: 962278948360096344, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962278948360096344, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962278948360096344, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 962278948360096344, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734656484961441371, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734656484961441371, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734656484961441371, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734656484961441371, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802130418203001597, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802130418203001597, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802130418203001597, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802130418203001597, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5300197430539101153, guid: c515cf214e3465e49beb83f6a80d53f3, type: 3}
       propertyPath: m_Name
       value: SelectCardPanel
@@ -8118,6 +8163,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1469520323}
   m_CullTransparentMesh: 1
+--- !u!1 &1508771684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1508771685}
+  - component: {fileID: 1508771686}
+  m_Layer: 0
+  m_Name: CardPoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1508771685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508771684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1562801202}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1508771686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508771684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d60b7e89e173a0a43a543ec7220482f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicCardPrefab: {fileID: 1017501599584371627, guid: 4695023d590cb2045a72ead561adb369, type: 3}
+  specialCardPrefab: {fileID: 1017501599584371627, guid: 5a679d2278c2d4a46aadd5bfc5d6906d, type: 3}
+  buildCardPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
 --- !u!1 &1547637895
 GameObject:
   m_ObjectHideFlags: 0
@@ -8276,6 +8367,7 @@ Transform:
   - {fileID: 886143584}
   - {fileID: 1060559202}
   - {fileID: 1588369185}
+  - {fileID: 1508771685}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9066,8 +9158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2760d436f42dd2a4ca62442450c4320c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 1017501599584371627, guid: 4695023d590cb2045a72ead561adb369, type: 3}
-  buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
   enemyBuildEffect: {fileID: 1612221337289516, guid: e9cbfc752d3e7244f8ad6cda4559e3bf, type: 3}
 --- !u!225 &1675048946 stripped
 CanvasGroup:
@@ -11467,8 +11557,6 @@ MonoBehaviour:
   shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
   chanceFirstAmountList: 32000000b5ffffff70feffff1efbffff88faffff
   chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
-  specialCardPrefab: {fileID: 1017501599584371627, guid: 5a679d2278c2d4a46aadd5bfc5d6906d, type: 3}
-  buildPrefab: {fileID: 1017501599584371627, guid: 3d96a8788667e0e47b4102dc939c0c28, type: 3}
   _cg: {fileID: 1675048946}
   _reduceCG: {fileID: 1814481313}
   specialCardShopTrm: {fileID: 1814481312}
