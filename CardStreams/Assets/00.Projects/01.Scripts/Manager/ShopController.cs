@@ -112,7 +112,6 @@ public class ShopController : MonoBehaviour
 
     public void OnShop()
     {
-        Debug.Log("OnShop");
         SetChance();
 
         OnSpecialCardShop();

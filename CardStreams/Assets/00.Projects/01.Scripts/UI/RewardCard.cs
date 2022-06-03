@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class RewardCard : MonoBehaviour
 {
     [SerializeField] Image rewardImage;
     [SerializeField] TextMeshProUGUI rewardNameText;
-    [SerializeField] TextMeshProUGUI rewardDescriptionText;
 
-    private RewardSO rewardSO;
     [SerializeField] IntValue goldValue;
     [SerializeField] IntValue hpValue;
     [SerializeField] EventSO playerValueChanged;
     [SerializeField] EventSO goldValueChanged;
 
     [HideInInspector] public SelectRewardManager selectPanel;
+    private RewardSO rewardSO;
+    private GameObject _createGetCardPrefab;
+    private GameObject getTargetObj;
+
+    
 
     public void SelectReward() // called by Button onclick, 버튼누를때 작동함
     {
@@ -42,6 +46,19 @@ public class RewardCard : MonoBehaviour
 
         foreach (var cardSO in rewardSO.cardReward)
         {
+            RectTransform getCard = Instantiate(_createGetCardPrefab, Vector2.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("MainCanvas").transform).GetComponent<RectTransform>();
+
+            Debug.Log(getCard.transform.position.z);
+            getCard.transform.position = new Vector3(getCard.transform.position.x, getCard.transform.position.y, 0);
+
+            BezierCurve bezier = getCard.GetComponent<BezierCurve>();
+            GetRewardCard getRewardCard = getCard.GetComponent<GetRewardCard>();
+
+            getRewardCard.Init(rewardImage.sprite, rewardNameText.text);
+            bezier.StartBezier(getTargetObj); // 베지어 돌려요
+            getCard.DORotate(new Vector3(0, 0, 180), 2f);
+            getCard.DOScale(0.3f, 2f).OnComplete(() => Destroy(getCard.gameObject));
+
             saveData.speicialCardDataList[cardSO.id].haveAmount++;
         }
 
@@ -50,13 +67,16 @@ public class RewardCard : MonoBehaviour
         selectPanel.Hide(); // 버튼을 눌러 보상을 받았으니 부모 패널을 꺼요
     }
 
-    public void SetReward(RewardSO so)
+    public void SetReward(RewardSO so, GameObject cardPrefab, GameObject getTarget)
     {
         this.rewardSO = so;
 
+        _createGetCardPrefab = cardPrefab;
+
+        getTargetObj = getTarget;
+
         rewardImage.sprite = so.rewardSprite;
         rewardNameText.text = so.rewardName;
-        rewardDescriptionText.text = so.rewardDescription;
     }
 
     public void ResetReward()
@@ -65,6 +85,5 @@ public class RewardCard : MonoBehaviour
 
         rewardImage.sprite = null;
         rewardNameText.text = null;
-        rewardDescriptionText.text = null;
     }
 }

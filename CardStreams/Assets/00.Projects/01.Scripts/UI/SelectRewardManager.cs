@@ -11,6 +11,9 @@ public class SelectRewardManager : MonoBehaviour
     private int loopCount = 0; // 알아서 돌아감, 나중에 동기화 필?요
 
     [SerializeField] GameObject _cgObject;
+    [SerializeField] GameObject _getRewardCardPrefab;
+
+    [SerializeField] GameObject handleObj;
 
     private void Awake()
     {
@@ -56,7 +59,7 @@ public class SelectRewardManager : MonoBehaviour
                 continue;
             }
 
-            rewardCards[i].SetReward(rewardList[i]);
+            rewardCards[i].SetReward(rewardList[i], _getRewardCardPrefab, handleObj);
         }
 
         loopCount++;

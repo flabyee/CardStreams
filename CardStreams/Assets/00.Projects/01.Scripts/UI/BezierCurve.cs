@@ -49,12 +49,9 @@ public class BezierCurve : MonoBehaviour
         direction = dir;
         objectPos = transform.position + direction;
 
-        Debug.Log(transform.position.x);
         point.Add(transform.position);
         point.Add(SetRandomBezierPointP2(transform.position));
-        Debug.Log(SetRandomBezierPointP2(transform.position).x);
         point.Add(objectPos);
-        Debug.Log(objectPos.x);
         initComplete = true;
     }
 
