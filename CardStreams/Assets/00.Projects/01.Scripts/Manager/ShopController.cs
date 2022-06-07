@@ -292,7 +292,6 @@ public class ShopController : MonoBehaviour
             info.button.onClick.AddListener(() =>
             {
                 BuyBuild(itemSO, shopItem.transform.position);
-                EffectManager.Instance.GetBezierCardEffect(itemSO.sprite, itemSO.buildName);
 
                 //OnShop();
             });
@@ -323,7 +322,7 @@ public class ShopController : MonoBehaviour
             info.button.onClick.AddListener(() =>
             {
                 BuySpecial(itemSO, shopItem.transform.position);
-                EffectManager.Instance.GetBezierCardEffect(itemSO.sprite, itemSO.specialCardName);
+               
                 //OnShop();
             });
         }
@@ -337,6 +336,8 @@ public class ShopController : MonoBehaviour
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
+            EffectManager.Instance.GetBezierCardEffect(specialCardSO.sprite, specialCardSO.specialCardName);
+
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
 
@@ -350,6 +351,8 @@ public class ShopController : MonoBehaviour
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
+            EffectManager.Instance.GetBezierCardEffect(buildSO.sprite, buildSO.buildName);
+
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
 
