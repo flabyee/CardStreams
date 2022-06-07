@@ -20,5 +20,6 @@ MonoBehaviour:
     * 2\uB85C \uBC14\uAFBC\uB2E4"
   sprite: {fileID: 627625725489826318, guid: 07c4b3a315249bf43b6a5e8241d7ad32, type: 3}
   applyTiming: 1
-  targetTypeList: 01000000020000000300000004000000
+  targetTypeList: 01000000
+  targetBasicList: 01000000020000000300000004000000
   mulAmount: 2

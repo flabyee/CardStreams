@@ -20,5 +20,6 @@ MonoBehaviour:
     + 1"
   sprite: {fileID: 21300000, guid: b88ba3f002125b3419db52061ca085f6, type: 3}
   applyTiming: 1
-  targetTypeList: 03000000
+  targetTypeList: 01000000
+  targetBasicList: 03000000
   recoverySO: {fileID: 11400000, guid: 8ed3515f0d183d44e93de45c1fc76db5, type: 2}

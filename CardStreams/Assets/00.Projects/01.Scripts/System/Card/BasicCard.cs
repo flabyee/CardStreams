@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public enum BasicType
 {
+    NULL,
     Sword,
     Sheild,
     Potion,

@@ -19,5 +19,6 @@ MonoBehaviour:
   tooltip: "\uBC29\uD328 + 4"
   sprite: {fileID: -5535381785550601910, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
-  targetTypeList: 02000000
+  targetTypeList: 01000000
+  targetBasicList: 02000000
   addAmount: 4

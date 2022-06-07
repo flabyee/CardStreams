@@ -12,6 +12,8 @@ public enum ApplyTiming
 }
 
 
+
+
 public abstract class SpecialCardSO : ScriptableObject
 {
     public int id;
@@ -24,6 +26,7 @@ public abstract class SpecialCardSO : ScriptableObject
 
     public ApplyTiming applyTiming;
     public List<CardType> targetTypeList;
+    public List<BasicType> targetBasicList;
 
     public abstract void AccessSpecialCard(Player player, Field field);
     public abstract void AccessBuildCard(BuildCard build);

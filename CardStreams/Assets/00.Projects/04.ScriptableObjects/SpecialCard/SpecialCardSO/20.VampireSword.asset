@@ -21,4 +21,5 @@ MonoBehaviour:
   sprite: {fileID: -4209723624490933604, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 01000000
+  targetBasicList: 01000000
   lifeStealso: {fileID: 11400000, guid: 048019701249d374e9271b531b035b4b, type: 2}

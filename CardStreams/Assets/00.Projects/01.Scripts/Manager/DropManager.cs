@@ -149,25 +149,49 @@ public class DropManager : MonoBehaviour
                 {
                     if (area.field.cardPower != null && area.field.cardPower.cardType == targetType)
                     {
-                        switch (specialCard.applyTiming)
+                        if(targetType == CardType.Basic)
                         {
+                            foreach(BasicType targetBasic in specialCard.targetBasicList)
+                            {
+                                BasicCard basicPower = area.field.cardPower as BasicCard;
 
-                            case ApplyTiming.NowField:
-                                specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
+                                if(targetBasic == basicPower.basicType)
+                                {
+                                    switch (specialCard.applyTiming)
+                                    {
+                                        case ApplyTiming.NowField:
+                                            specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
 
-                                dragbleCard.isDestory = true;
+                                            dragbleCard.isDestory = true;
 
-                                return;
-                            case ApplyTiming.OnFeild:
-                                //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
-                                break;
-                            case ApplyTiming.ToPlayer:
-                                break;
+                                            return;
+                                        case ApplyTiming.OnFeild:
+                                            //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
+                                            break;
+                                        case ApplyTiming.ToPlayer:
+                                            break;
+                                    }
+                                }
+                            }
                         }
+                        else
+                        {
+                            switch (specialCard.applyTiming)
+                            {
+                                case ApplyTiming.NowField:
+                                    specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
 
+                                    dragbleCard.isDestory = true;
+
+                                    return;
+                                case ApplyTiming.OnFeild:
+                                    //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
+                                    break;
+                                case ApplyTiming.ToPlayer:
+                                    break;
+                            }
+                        }
                         // 맞는게 있다면 효과적용하고 스페셜 카드 삭제
-
-
                     }
                 }
 

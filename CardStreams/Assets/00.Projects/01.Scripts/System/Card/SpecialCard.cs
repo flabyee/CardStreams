@@ -9,6 +9,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     [HideInInspector] public ApplyTiming applyTiming;
     [HideInInspector] public List<CardType> targetTypeList;
+    [HideInInspector] public List<BasicType> targetBasicList;
 
     [HideInInspector] public string specialCardName;
     [HideInInspector] public string tooltip;
@@ -23,6 +24,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         applyTiming = so.applyTiming;
         targetTypeList = so.targetTypeList;
+        targetBasicList = so.targetBasicList;
 
         specialCardName = so.specialCardName;
         tooltip = so.tooltip;
