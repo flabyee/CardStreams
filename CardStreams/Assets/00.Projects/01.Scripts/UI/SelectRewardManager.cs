@@ -59,7 +59,7 @@ public class SelectRewardManager : MonoBehaviour
                 continue;
             }
 
-            rewardCards[i].SetReward(rewardList[i], _getRewardCardPrefab, handleObj);
+            rewardCards[i].SetReward(rewardList[i], handleObj);
         }
 
         loopCount++;

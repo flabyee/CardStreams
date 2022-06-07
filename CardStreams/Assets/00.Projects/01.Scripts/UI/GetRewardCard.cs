@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class GetRewardCard : MonoBehaviour
 {
-    [SerializeField] Image cardIconImage;
-    [SerializeField] TextMeshProUGUI cardNameText;
+    //[SerializeField] Image cardIconImage;
+    //[SerializeField] TextMeshProUGUI cardNameText;
     // [SerializeField] TextMeshProUGUI cardDescriptionText; 나중에
 
     /// <summary> 던질카드 Init </summary>
@@ -15,8 +15,8 @@ public class GetRewardCard : MonoBehaviour
     /// <param name="description">카드 설명</param>
     public void Init(Sprite icon, string cardName)
     {
-        cardIconImage.sprite = icon;
-        cardNameText.text = cardName;
+        //cardIconImage.sprite = icon;
+        //cardNameText.text = cardName;
         // cardDescriptionText.text = description;
     }
 }

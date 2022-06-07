@@ -17,8 +17,7 @@ public class RewardCard : MonoBehaviour
 
     [HideInInspector] public SelectRewardManager selectPanel;
     private RewardSO rewardSO;
-    private GameObject _createGetCardPrefab;
-    private GameObject destination;
+    private Transform targetTrm;
 
     
 
@@ -46,17 +45,7 @@ public class RewardCard : MonoBehaviour
 
         foreach (var cardSO in rewardSO.cardReward)
         {
-            RectTransform getCard = Instantiate(_createGetCardPrefab, Vector2.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("MainCanvas").transform).GetComponent<RectTransform>();
-
-            getCard.transform.position = new Vector3(getCard.transform.position.x, getCard.transform.position.y, 0);
-
-            BezierCurve bezier = getCard.GetComponent<BezierCurve>();
-            GetRewardCard getRewardCard = getCard.GetComponent<GetRewardCard>();
-
-            getRewardCard.Init(rewardImage.sprite, rewardNameText.text);
-            bezier.StartBezier(destination); // 베지어 돌려요
-            getCard.DORotate(new Vector3(0, 0, 180), 1f);
-            getCard.DOScale(0.3f, 1f).OnComplete(() => Destroy(getCard.gameObject));
+            EffectManager.Instance.GetBezierCardEffect(targetTrm, rewardImage.sprite, rewardNameText.text);
 
             saveData.speicialCardDataList[cardSO.id].haveAmount++;
         }
@@ -66,13 +55,11 @@ public class RewardCard : MonoBehaviour
         selectPanel.Hide(); // 버튼을 눌러 보상을 받았으니 부모 패널을 꺼요
     }
 
-    public void SetReward(RewardSO so, GameObject cardPrefab, GameObject getTarget)
+    public void SetReward(RewardSO so, GameObject getTarget)
     {
         this.rewardSO = so;
 
-        _createGetCardPrefab = cardPrefab;
-
-        destination = getTarget;
+        targetTrm = getTarget.transform;
 
         rewardImage.sprite = so.rewardSprite;
         rewardNameText.text = so.rewardName;

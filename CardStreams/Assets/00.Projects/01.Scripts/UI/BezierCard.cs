@@ -1,27 +1,32 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BezierCurve : MonoBehaviour
+public class BezierCard : MonoBehaviour
 {
-    [Header("테스트용")]
-    [SerializeField] bool isTest; // 대상 테스트할거면 이거 true로 바꾸면대요
-    [SerializeField] GameObject testTarget;
-    
-    [Header("베지어와 연관된것")]
+    [Header("베지어그래프 설정")]
     [SerializeField] [Range(0, 1)] float time = 0;
     [SerializeField] float speed = 1f;
     [SerializeField] float radiusA = 0.55f;
     [SerializeField] float radiusB = 0.45f;
 
+    [Header("카드 설정")]
+    [SerializeField] Image cardIconImage;
+    [SerializeField] TextMeshProUGUI cardNameText;
+
+
+    private RectTransform _rectTrm;
     private List<Vector2> point = new List<Vector2>(); // 곡선을 이루는 점들
     private Vector3 objectPos; // 도달할곳
     private bool initComplete = false;
     private Vector3 direction = Vector3.zero; // 목표가 있는 방향
 
-    private void Start()
+    private void Awake()
     {
-        if (isTest) StartBezier(testTarget);
+        _rectTrm = GetComponent<RectTransform>();
     }
 
     void Update() // 곡선 형식대로 물체를 움직여요
@@ -37,9 +42,26 @@ public class BezierCurve : MonoBehaviour
         }
     }
 
-    public void StartBezier(GameObject target)
+    public void StartBezier(Transform targetTrm)
     {
-        ThreeBezierInit(target.transform.position - transform.position); // 베지어 시작
+        ThreeBezierInit(targetTrm.position - transform.position); // 2차 베지어 시작
+    }
+
+    /// <summary> 던질카드 Init </summary>
+    /// <param name="targetTrm">카드가 날라갈 목적지</param>
+    /// <param name="icon">카드 아이콘</param>
+    /// <param name="cardName">카드 이름</param>
+    public void Init(Transform targetTrm, Sprite icon, string cardName)
+    {
+        cardIconImage.sprite = icon;
+        cardNameText.text = cardName;
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(_rectTrm.DORotate(new Vector3(0, 0, 180f), 1f));
+        seq.Join(_rectTrm.DOScale(0.1f, 1f).OnComplete(() => Destroy(gameObject)));
+
+        StartBezier(targetTrm);
     }
 
     #region 2차 베지어 곡선
