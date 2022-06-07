@@ -11,6 +11,7 @@ public class EffectManager : MonoBehaviour
     public GameObject jungSanEffect;
 
     public GameObject bezierCardEffect;
+    [SerializeField] Transform targetTrm;
 
     private Canvas _mainCanvas; // 태그로 찾아요 나중엔싱글톤으로 찾아야할듯?
 
@@ -47,13 +48,10 @@ public class EffectManager : MonoBehaviour
     /// <param name="targetTrm">어디로 날아가나</param>
     /// <param name="icon">카드의 아이콘</param>
     /// <param name="text">카드의 이름</param>
-    public void GetBezierCardEffect(Transform targetTrm, Sprite icon, string text)
+    public void GetBezierCardEffect(Sprite icon, string text)
     {
         BezierCard effect = Instantiate(bezierCardEffect, Vector3.zero, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
 
-        Debug.Log(targetTrm);
-        Debug.Log(icon);
-        Debug.Log(text);
         effect.Init(targetTrm, icon, text);
 
         Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요

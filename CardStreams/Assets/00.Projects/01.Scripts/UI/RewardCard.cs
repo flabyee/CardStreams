@@ -17,7 +17,6 @@ public class RewardCard : MonoBehaviour
 
     [HideInInspector] public SelectRewardManager selectPanel;
     private RewardSO rewardSO;
-    private Transform targetTrm;
 
     
 
@@ -45,7 +44,7 @@ public class RewardCard : MonoBehaviour
 
         foreach (var cardSO in rewardSO.cardReward)
         {
-            EffectManager.Instance.GetBezierCardEffect(targetTrm, rewardImage.sprite, rewardNameText.text);
+            EffectManager.Instance.GetBezierCardEffect(rewardImage.sprite, rewardNameText.text);
 
             saveData.speicialCardDataList[cardSO.id].haveAmount++;
         }
@@ -55,11 +54,9 @@ public class RewardCard : MonoBehaviour
         selectPanel.Hide(); // 버튼을 눌러 보상을 받았으니 부모 패널을 꺼요
     }
 
-    public void SetReward(RewardSO so, GameObject getTarget)
+    public void SetReward(RewardSO so)
     {
         this.rewardSO = so;
-
-        targetTrm = getTarget.transform;
 
         rewardImage.sprite = so.rewardSprite;
         rewardNameText.text = so.rewardName;

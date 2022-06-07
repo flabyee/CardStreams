@@ -13,7 +13,7 @@ public class SelectRewardManager : MonoBehaviour
     [SerializeField] GameObject _cgObject;
     [SerializeField] GameObject _getRewardCardPrefab;
 
-    [SerializeField] GameObject handleObj;
+    
 
     private void Awake()
     {
@@ -59,7 +59,7 @@ public class SelectRewardManager : MonoBehaviour
                 continue;
             }
 
-            rewardCards[i].SetReward(rewardList[i], handleObj);
+            rewardCards[i].SetReward(rewardList[i]);
         }
 
         loopCount++;

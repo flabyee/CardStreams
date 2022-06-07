@@ -292,6 +292,7 @@ public class ShopController : MonoBehaviour
             info.button.onClick.AddListener(() =>
             {
                 BuyBuild(itemSO, shopItem.transform.position);
+                EffectManager.Instance.GetBezierCardEffect(itemSO.sprite, itemSO.buildName);
 
                 //OnShop();
             });
@@ -322,7 +323,7 @@ public class ShopController : MonoBehaviour
             info.button.onClick.AddListener(() =>
             {
                 BuySpecial(itemSO, shopItem.transform.position);
-
+                EffectManager.Instance.GetBezierCardEffect(itemSO.sprite, itemSO.specialCardName);
                 //OnShop();
             });
         }

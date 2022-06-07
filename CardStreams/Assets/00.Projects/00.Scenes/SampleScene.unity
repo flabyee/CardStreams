@@ -3179,7 +3179,6 @@ RectTransform:
   - {fileID: 1102615507}
   - {fileID: 2059843747}
   - {fileID: 390754497}
-  - {fileID: 549972538}
   - {fileID: 1069635407}
   m_Father: {fileID: 740867261}
   m_RootOrder: 0
@@ -3747,81 +3746,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547791022}
-  m_CullTransparentMesh: 1
---- !u!1 &549972537
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 549972538}
-  - component: {fileID: 549972540}
-  - component: {fileID: 549972539}
-  m_Layer: 5
-  m_Name: GetRewardCardHandle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &549972538
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549972537}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 483483595}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.999939, y: 338.99997}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &549972539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549972537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &549972540
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549972537}
   m_CullTransparentMesh: 1
 --- !u!1 &589954714
 GameObject:
@@ -6403,7 +6327,6 @@ MonoBehaviour:
   - {fileID: 1242648267}
   _cgObject: {fileID: 1242648270}
   _getRewardCardPrefab: {fileID: 4617811631078992324, guid: 9fa5ad7b0ba1e5b409ed42c8e79650d8, type: 3}
-  handleObj: {fileID: 549972537}
 --- !u!1 &1034315495
 GameObject:
   m_ObjectHideFlags: 0
@@ -6704,7 +6627,7 @@ RectTransform:
   - {fileID: 397877563}
   - {fileID: 275002469}
   m_Father: {fileID: 483483595}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -11812,6 +11735,7 @@ MonoBehaviour:
   spawnMobEffect: {fileID: 1612221337289516, guid: 2959bb36081fd4e428e35494de1860e4, type: 3}
   jungSanEffect: {fileID: 1612221337289516, guid: b9f6a5ecfd8cb174ca67a8ee8308321b, type: 3}
   bezierCardEffect: {fileID: 4617811631078992324, guid: 9fa5ad7b0ba1e5b409ed42c8e79650d8, type: 3}
+  targetTrm: {fileID: 1069635407}
 --- !u!1 &1941386225
 GameObject:
   m_ObjectHideFlags: 0
