@@ -55,7 +55,8 @@ public class Field : MonoBehaviour
     {
         if(dragbleCard != null)
         {
-            dragbleCard.gameObject.SetActive(false);
+            Debug.Log("reset");
+            dragbleCard.ActiveFalse();
         }
 
         ResetData();

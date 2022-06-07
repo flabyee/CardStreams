@@ -446,7 +446,6 @@ public class HandleController : MonoBehaviour
 
         for (int i = 0; i < handleCount; i++)
         {
-            Debug.Log("asdf");
             DrawCard();
         }
     }

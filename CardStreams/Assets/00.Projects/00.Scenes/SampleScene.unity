@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c71a71f393cfb54f85bea3bb51d34d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempTrm: {fileID: 844448239}
   swordSprite:
   - {fileID: 1618703092976352100, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
   - {fileID: 1618703092976352100, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
@@ -3951,6 +3952,8 @@ MonoBehaviour:
   handleTrm: {fileID: 2059843747}
   buildHandleDropArea: {fileID: 2094405881}
   buildHandleTrm: {fileID: 393445010288987042}
+  quicSlotDropAreaList: []
+  quicSlotTrmList: []
   shopDropArea: {fileID: 475797421}
   canStartTurn: 0
 --- !u!1 &754234689
