@@ -9,7 +9,7 @@ public class BreakBuildCardSO : SpecialCardSO
     {
         build.BuildUp();
 
-        build.gameObject.SetActive(false);
+        build.GetComponent<DragbleCard>().ActiveFalse();
 
         OnFieldTooltip.Instance.ShowBuild(build.transform.position, sprite);
     }

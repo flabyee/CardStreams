@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89858401e0d36e4d88ec5fc82ad3cf3, type: 3}
+  m_Name: 29.BreakBuildCard
+  m_EditorClassIdentifier: 
+  id: 29
+  specialCardName: "\uAC74\uBB3C\uBD80\uC218\uAE30"
+  price: 15
+  grade: 2
+  tooltip: "\uAC74\uBB3C\uC744 \uBD80\uC21C\uB2E4"
+  sprite: {fileID: -2175433389777405958, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
+  applyTiming: 1
+  targetTypeList: 03000000
+  targetBasicList: 

@@ -256,7 +256,7 @@ public class DropManager : MonoBehaviour
 
         obj.transform.SetParent(hoverTrm, true);
 
-        if(GameManager.Instance.curState == GameState.Equip)
+        if(GameManager.Instance.curState == GameState.TurnStart)
         {
             dragbleCard.originDropArea = dragbleCard.originOriginDropArea;
         }
