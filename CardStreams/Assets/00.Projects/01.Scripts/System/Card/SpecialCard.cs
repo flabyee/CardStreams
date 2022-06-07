@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
     [HideInInspector] public ApplyTiming applyTiming;
     [HideInInspector] public List<CardType> targetTypeList;
@@ -14,8 +14,6 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [HideInInspector] public string specialCardName;
     [HideInInspector] public string tooltip;
     [HideInInspector] public Sprite sprite;
-
-    [HideInInspector] public Image cardImage;
 
     public Action<Player, Field> OnAccessSpecialCard;
     public Action<BuildCard> OnAccessBuildCard;
@@ -30,7 +28,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         tooltip = so.tooltip;
         sprite = so.sprite;
 
-        cardImage.sprite = so.sprite;
+        faceImage.sprite = so.sprite;
 
         OnAccessSpecialCard = so.AccessSpecialCard;
         OnAccessBuildCard = so.AccessBuildCard;

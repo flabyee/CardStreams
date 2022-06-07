@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public enum BasicType
@@ -15,6 +17,8 @@ public enum BasicType
 public class BasicCard : CardPower, IPointerClickHandler
 {
     public BasicType basicType;
+
+    public TextMeshProUGUI valueText;
     public int value { get; private set; }
     public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
     public int originValue;

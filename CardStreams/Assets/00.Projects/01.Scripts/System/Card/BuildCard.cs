@@ -6,12 +6,11 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-public class BuildCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
-    public BuildSO buildSO;
-
-    public Image buildImage;
     public TextMeshProUGUI greadeText;
+
+    public BuildSO buildSO;
     private List<Vector2> accessPointList;
 
     public bool isDrop;
@@ -33,7 +32,7 @@ public class BuildCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         this.buildSO = buildSO;
 
-        buildImage.sprite = this.buildSO.sprite;
+        faceImage.sprite = this.buildSO.sprite;
         greadeText.text = this.buildSO.grade.ToString();
         accessPointList = this.buildSO.accessPointList;
         

@@ -10,7 +10,6 @@ public class CardPower : MonoBehaviour
 {
     public Image faceImage;
     public Image backImage;
-    public TextMeshProUGUI valueText;
 
     [Header("Debug")]
     public CardType cardType;

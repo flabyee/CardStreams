@@ -251,7 +251,6 @@ GameObject:
   - component: {fileID: 1017501599584371626}
   - component: {fileID: 1017501599584371604}
   - component: {fileID: 1017501599584371607}
-  - component: {fileID: 5394116712375624061}
   - component: {fileID: 8824498086586159459}
   - component: {fileID: 1017501599584371605}
   - component: {fileID: -4286347746058970656}
@@ -307,29 +306,12 @@ MonoBehaviour:
   droppedArea: {fileID: 0}
   prevDropArea: {fileID: 0}
   originDropArea: {fileID: 0}
+  originOriginDropArea: {fileID: 0}
   isHandle: 0
   isField: 0
   canDragAndDrop: 0
   isDestory: 0
   cardPower: {fileID: 0}
---- !u!114 &5394116712375624061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017501599584371627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0edfb0f36c83de04bbc78940175a2efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faceImage: {fileID: 0}
-  backImage: {fileID: 0}
-  valueText: {fileID: 0}
-  cardType: 0
-  goldP: 0
-  originValue: 0
 --- !u!114 &8824498086586159459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,12 +324,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3149b6ce03dc3e947b407bd20a95db8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faceImage: {fileID: 1017501598721244011}
+  backImage: {fileID: 5097071954072161377}
+  cardType: 0
   applyTiming: 0
   targetTypeList: 
+  targetBasicList: 
   specialCardName: 
   tooltip: 
   sprite: {fileID: 0}
-  cardImage: {fileID: 1017501598721244011}
 --- !u!114 &1017501599584371605
 MonoBehaviour:
   m_ObjectHideFlags: 0

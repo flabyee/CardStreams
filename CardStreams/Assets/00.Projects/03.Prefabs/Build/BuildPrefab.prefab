@@ -467,7 +467,6 @@ GameObject:
   - component: {fileID: 1017501599584371626}
   - component: {fileID: 1017501599584371604}
   - component: {fileID: 2324287201009122807}
-  - component: {fileID: 7344152242860587722}
   - component: {fileID: -3816892781402171327}
   - component: {fileID: 1017501599584371605}
   - component: {fileID: -4286347746058970656}
@@ -529,22 +528,6 @@ MonoBehaviour:
   canDragAndDrop: 0
   isDestory: 0
   cardPower: {fileID: 0}
---- !u!114 &7344152242860587722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017501599584371627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0edfb0f36c83de04bbc78940175a2efe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faceImage: {fileID: 1017501598721244011}
-  backImage: {fileID: 6555687024791524721}
-  valueText: {fileID: 0}
-  cardType: 0
 --- !u!114 &-3816892781402171327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,9 +540,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ac078acb38c1a47a36b175fab3cda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildSO: {fileID: 0}
-  buildImage: {fileID: 1017501598721244011}
+  faceImage: {fileID: 1017501598721244011}
+  backImage: {fileID: 6555687024791524721}
+  cardType: 0
   greadeText: {fileID: 4038546894875006015}
+  buildSO: {fileID: 0}
   isDrop: 0
 --- !u!114 &1017501599584371605
 MonoBehaviour:
