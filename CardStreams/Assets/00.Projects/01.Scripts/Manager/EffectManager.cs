@@ -47,12 +47,12 @@ public class EffectManager : MonoBehaviour
     /// <summary> 카드 생성해서 돌면서 작아지게하는마법 </summary>
     /// <param name="targetTrm">어디로 날아가나</param>
     /// <param name="icon">카드의 아이콘</param>
-    /// <param name="text">카드의 이름</param>
-    public void GetBezierCardEffect(Sprite icon, string text)
+    public void GetBezierCardEffect(Vector3 startPos, Sprite icon)
     {
-        BezierCard effect = Instantiate(bezierCardEffect, Vector3.zero, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
+        startPos.z = 0; // canvas UI라서 z 문제생길수있음 그래서 0
+        BezierCard effect = Instantiate(bezierCardEffect, startPos, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
 
-        effect.Init(targetTrm, icon, text);
+        effect.Init(targetTrm, icon);
 
         Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요
     }

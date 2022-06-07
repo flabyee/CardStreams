@@ -44,7 +44,7 @@ public class RewardCard : MonoBehaviour
 
         foreach (var cardSO in rewardSO.cardReward)
         {
-            EffectManager.Instance.GetBezierCardEffect(rewardImage.sprite, rewardNameText.text);
+            EffectManager.Instance.GetBezierCardEffect(transform.position, rewardImage.sprite);
 
             saveData.speicialCardDataList[cardSO.id].haveAmount++;
         }

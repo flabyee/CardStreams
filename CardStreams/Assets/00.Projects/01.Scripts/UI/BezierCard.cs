@@ -9,16 +9,16 @@ public class BezierCard : MonoBehaviour
 {
     [Header("베지어그래프 설정")]
     [SerializeField] [Range(0, 1)] float time = 0;
-    [SerializeField] float speed = 1f;
+    [SerializeField] float speed = 1.5f;
     [SerializeField] float radiusA = 0.55f;
     [SerializeField] float radiusB = 0.45f;
 
     [Header("카드 설정")]
     [SerializeField] Image cardIconImage;
-    [SerializeField] TextMeshProUGUI cardNameText;
 
 
     private RectTransform _rectTrm;
+    private CanvasGroup _cg;
     private List<Vector2> point = new List<Vector2>(); // 곡선을 이루는 점들
     private Vector3 objectPos; // 도달할곳
     private bool initComplete = false;
@@ -27,6 +27,7 @@ public class BezierCard : MonoBehaviour
     private void Awake()
     {
         _rectTrm = GetComponent<RectTransform>();
+        _cg = GetComponent<CanvasGroup>();
     }
 
     void Update() // 곡선 형식대로 물체를 움직여요
@@ -50,16 +51,15 @@ public class BezierCard : MonoBehaviour
     /// <summary> 던질카드 Init </summary>
     /// <param name="targetTrm">카드가 날라갈 목적지</param>
     /// <param name="icon">카드 아이콘</param>
-    /// <param name="cardName">카드 이름</param>
-    public void Init(Transform targetTrm, Sprite icon, string cardName)
+    public void Init(Transform targetTrm, Sprite icon)
     {
         cardIconImage.sprite = icon;
-        cardNameText.text = cardName;
 
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(_rectTrm.DORotate(new Vector3(0, 0, 180f), 1f));
-        seq.Join(_rectTrm.DOScale(0.1f, 1f).OnComplete(() => Destroy(gameObject)));
+        seq.Append(_rectTrm.DORotate(new Vector3(0, 0, 135f), 1f / speed));
+        seq.Join(_rectTrm.DOScale(0.15f, 1f / speed).OnComplete(() => _cg.alpha = 0)); // 도착하면 일단 끄고
+        seq.AppendInterval(0.2f).OnComplete(() => Destroy(gameObject)); // 잠시 기다렸다가 삭제(가 아닌 풀매니저로해야함, 기다리는이유 = trail 자연스럽게)
 
         StartBezier(targetTrm);
     }

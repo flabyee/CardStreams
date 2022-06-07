@@ -336,7 +336,7 @@ public class ShopController : MonoBehaviour
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(specialCardSO.sprite, specialCardSO.specialCardName);
+            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite);
 
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
@@ -351,7 +351,7 @@ public class ShopController : MonoBehaviour
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(buildSO.sprite, buildSO.buildName);
+            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite);
 
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
