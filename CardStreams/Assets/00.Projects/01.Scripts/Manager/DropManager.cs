@@ -256,7 +256,7 @@ public class DropManager : MonoBehaviour
 
         obj.transform.SetParent(hoverTrm, true);
 
-        if(GameManager.Instance.curState == GameState.TurnStart)
+        if(GameManager.Instance.curState == GameState.Equip)
         {
             dragbleCard.originDropArea = dragbleCard.originOriginDropArea;
         }
@@ -272,7 +272,7 @@ public class DropManager : MonoBehaviour
             // 부모 설정(위치 설정)
             obj.transform.SetParent(area.rectTrm, true);
 
-            if (GameManager.Instance.curState == GameState.TurnStart)
+            if (GameManager.Instance.curState == GameState.Equip)
             {
                 dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
                 dragbleCard.originDropArea = area;
