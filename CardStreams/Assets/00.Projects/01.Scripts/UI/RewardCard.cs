@@ -48,7 +48,6 @@ public class RewardCard : MonoBehaviour
         {
             RectTransform getCard = Instantiate(_createGetCardPrefab, Vector2.zero, Quaternion.identity, GameObject.FindGameObjectWithTag("MainCanvas").transform).GetComponent<RectTransform>();
 
-            Debug.Log(getCard.transform.position.z);
             getCard.transform.position = new Vector3(getCard.transform.position.x, getCard.transform.position.y, 0);
 
             BezierCurve bezier = getCard.GetComponent<BezierCurve>();
