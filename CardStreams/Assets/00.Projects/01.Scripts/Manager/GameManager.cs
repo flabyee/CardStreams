@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
 
-
     private void Awake()
     {
         if (Instance == null)
@@ -382,7 +381,23 @@ public class GameManager : MonoBehaviour
     }
     public bool DropQuickSlot(DragbleCard dragbleCard)
     {
-        return false;
+        DropArea dropArea = handleController.GetTempQuicSlot();
+        // 비어있는 곳 없으면 리턴
+        if (dropArea == null)
+        {
+            return false;
+        }
+
+        // drop area 설정
+        dragbleCard.SetDroppedArea(dropArea);
+
+        // 부모 설정
+        dragbleCard.transform.SetParent(dropArea.rectTrm, true);
+
+        dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
+        dragbleCard.originDropArea = dropArea;
+
+        return true;
     }
 
     public void OnClickAction()

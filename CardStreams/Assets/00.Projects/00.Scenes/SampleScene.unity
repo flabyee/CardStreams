@@ -3952,8 +3952,17 @@ MonoBehaviour:
   handleTrm: {fileID: 2059843747}
   buildHandleDropArea: {fileID: 2094405881}
   buildHandleTrm: {fileID: 393445010288987042}
-  quicSlotDropAreaList: []
-  quicSlotTrmList: []
+  quicSlotDropAreaList:
+  - {fileID: 1715979130}
+  - {fileID: 1985934259}
+  - {fileID: 1899044114}
+  - {fileID: 1816865277}
+  - {fileID: 771539852}
+  - {fileID: 1840419980}
+  - {fileID: 1986359826}
+  - {fileID: 1675215667}
+  - {fileID: 1206491000}
+  - {fileID: 1547914716}
   shopDropArea: {fileID: 475797421}
   canStartTurn: 0
 --- !u!1 &754234689

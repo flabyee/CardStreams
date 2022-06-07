@@ -234,5 +234,5 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         transform.SetParent(ConstManager.Instance.tempTrm, true);
 
         gameObject.SetActive(false);
-    }
+    } 
 }

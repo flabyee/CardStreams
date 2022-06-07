@@ -16,7 +16,6 @@ public class HandleController : MonoBehaviour
     public RectTransform buildHandleTrm;
 
     public List<DropArea> quicSlotDropAreaList;
-    public List<RectTransform> quicSlotTrmList;
 
     public DropArea shopDropArea;
 
@@ -331,6 +330,19 @@ public class HandleController : MonoBehaviour
 
             return GetCardData();
         }
+    }
+
+    public DropArea GetTempQuicSlot()
+    {
+        for(int i = 0; i < quicSlotDropAreaList.Count; i++)
+        {
+            if(quicSlotDropAreaList[i].rectTrm.childCount == 0)
+            {
+                return quicSlotDropAreaList[i];
+            }
+        }
+
+        return null;
     }
 
     // 뽑은 카드의 정보를 반환한다

@@ -55,7 +55,6 @@ public class Field : MonoBehaviour
     {
         if(dragbleCard != null)
         {
-            Debug.Log("reset");
             dragbleCard.ActiveFalse();
         }
 
