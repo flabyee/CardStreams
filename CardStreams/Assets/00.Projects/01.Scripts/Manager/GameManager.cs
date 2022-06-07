@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public HandleController handleController;
     public ShopController shopController;
     public SelectRewardManager selectRewardManager;
+    public DontTouchController dontTouchController;
 
 
     [Header("IntValue")]
@@ -201,6 +202,8 @@ public class GameManager : MonoBehaviour
         canMove = false;
 
         TurnStartEvent.Occurred();
+
+        dontTouchController.Show();
     }
 
     public void MoveEnd()
@@ -220,6 +223,8 @@ public class GameManager : MonoBehaviour
         }
 
         MoveEndEvent.Occurred();
+
+        dontTouchController.Hide();
     }
 
     public void Move()
@@ -298,14 +303,25 @@ public class GameManager : MonoBehaviour
 
     private void OnModify()
     {
-        shopController.Show();
-        selectRewardManager.Show();
+        StartCoroutine(Delay(() =>
+        {
+            shopController.Show();
+            selectRewardManager.Show();
+        }, 1.5f));
+
 
         enemyController.CreateRandomMob();
 
         handleController.ShowBuildHandle(true);
 
         curState = GameState.Equip;
+    }
+
+    private IEnumerator Delay(Action action, float t)
+    {
+        yield return new WaitForSeconds(t);
+
+        action?.Invoke();
     }
 
     private void OnEquip()
