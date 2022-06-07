@@ -11,6 +11,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public string itemName;
     public List<CardType> targetTypeList;
+    public List<BasicType> targetBasicList;
     public List<Vector2> accessPointList;
     public string tooltip;
     public Image itemImage;
@@ -19,12 +20,13 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public Button button;
 
-    public void Init(string itemName, List<CardType> targetTypeList, string tooltip, Sprite sprite, CardGrade grade, int price)
+    public void Init(string itemName, List<CardType> targetTypeList, List<BasicType> targetBasicList, string tooltip, Sprite sprite, CardGrade grade, int price)
     {
         cardType = CardType.Special;
 
         this.itemName = itemName;
         this.targetTypeList = targetTypeList;
+        this.targetBasicList = targetBasicList;
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
         gradeText.text = grade.ToString();
@@ -50,7 +52,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         switch(cardType)
         {
             case CardType.Special:
-                SpecialCardTooltip.Instance.Show(itemName, targetTypeList, tooltip, itemImage.sprite, transform.position);
+                SpecialCardTooltip.Instance.Show(itemName, targetTypeList, targetBasicList, tooltip, itemImage.sprite, transform.position);
 
                 break;
             case CardType.Build:

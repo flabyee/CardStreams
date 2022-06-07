@@ -35,7 +35,7 @@ public class SpecialCardTooltip : MonoBehaviour
         }
     }
 
-    public void Show(string nameStr, List<CardType> targetTypeList, string tooltipStr, Sprite sprite, Vector3 pos, TooltipTimer tooltipTimer = null)
+    public void Show(string nameStr, List<CardType> targetTypeList, List<BasicType> targetBasicList, string tooltipStr, Sprite sprite, Vector3 pos, TooltipTimer tooltipTimer = null)
     {
         // 타이머 세팅
         this.tooltipTimer = tooltipTimer;
@@ -47,34 +47,49 @@ public class SpecialCardTooltip : MonoBehaviour
         {
             int index = 0;
 
-            //foreach (CardType targetType in targetTypeList)
-            //{
-            //    if(index != 0)
-            //    {
-            //        str += " ";
-            //    }
+            foreach (CardType targetType in targetTypeList)
+            {
+                if (index++ != 0)
+                    str += " ";
 
-            //    switch (targetType)
-            //    {
-            //        case CardType.Sword:
-            //            str += "<sprite=0>";
-            //            break;
-            //        case CardType.Sheild:
-            //            str += "<sprite=1>";
-            //            break;
-            //        case CardType.Potion:
-            //            str += "<sprite=5>";
-            //            break;
-            //        case CardType.Monster:
-            //            str += "<sprite=3>";
-            //            break;
-            //        default:
-            //            str += "<sprite=2>";
-            //            break;
-            //    }
+                switch (targetType)
+                {
+                    // NUll은 player에게 사용하는 것만 존재한다고 가정
+                    case CardType.NULL:
+                        str += "<sprite=2>";
+                        break;
+                    case CardType.Basic:
+                        foreach (BasicType basicType in targetBasicList)
+                        {
+                            if (index++ != 0)
+                                str += " ";
 
-            //    index++;
-            //}
+                            switch (basicType)
+                            {
+                                case BasicType.Sword:
+                                    str += "<sprite=0>";
+                                    break;
+                                case BasicType.Sheild:
+                                    str += "<sprite=1>";
+                                    break;
+                                case BasicType.Potion:
+                                    str += "<sprite=5>";
+                                    break;
+                                case BasicType.Monster:
+                                    str += "<sprite=3>";
+                                    break;
+                            }
+                        }
+                        break;
+                    case CardType.Build:
+                        str += "<sprite=4>";
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
             targetText.text = str;
         }
         else

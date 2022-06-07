@@ -318,7 +318,7 @@ public class ShopController : MonoBehaviour
             GameObject shopItem = Instantiate(shopItemPrefab, specialCardShopTrm);
             ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
-            info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
+            info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.targetBasicList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
 
             info.button.onClick.AddListener(() =>
             {
