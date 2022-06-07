@@ -28,11 +28,11 @@ public class DropManager : MonoBehaviour
         {
             switch (dropArea.dropAreaType)
             {
-                case DropAreaType.feild:
+                case DropAreaType.Feild:
                     dropArea.onLifted += ObjectLiftedFromFeild;
                     dropArea.onDropped += ObjectDroppedToFeild;
                     break;
-                case DropAreaType.build:
+                case DropAreaType.Build:
                     dropArea.onLifted += ObjectLiftedFromBuild;
                     dropArea.onDropped += ObjectDroppedToBuild;
                     break;
@@ -102,7 +102,7 @@ public class DropManager : MonoBehaviour
                     area.field.cardPower = cardPower;
                     area.field.dragbleCard = dragbleCard;
 
-                    dragbleCard.SetField();
+                    cardPower.SetField();
 
                     // fieldType ¼³Á¤
                     //area.field.fieldType = FieldType.not;
@@ -274,6 +274,8 @@ public class DropManager : MonoBehaviour
 
             dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
             dragbleCard.originDropArea = area;
+
+            cardPower.SetField();
         }
         else
         {
@@ -416,6 +418,6 @@ public class DropManager : MonoBehaviour
         obj.transform.SetParent(dragbleCard.originDropArea.rectTrm, true);
         dragbleCard.SetDroppedArea(dragbleCard.originDropArea);
 
-        dragbleCard.SetHandle();
+        dragbleCard.cardPower.SetHandle();
     }
 }

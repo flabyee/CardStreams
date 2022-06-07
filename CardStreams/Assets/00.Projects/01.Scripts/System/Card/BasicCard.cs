@@ -97,7 +97,7 @@ public class BasicCard : CardPower, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(GetComponent<DragbleCard>().isHandle)
+        if(isHandle)
         {
             GameManager.Instance.DropField(GetComponent<DragbleCard>());
         }

@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     private bool canMove;      // move중일때 또 next를 누르지 못하게
     private int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
     public GameState curState; // 현재 게임의 상태
+    public GameState nextState; // 다음 상태
 
     [Header("StageData")]
     private int maxMoveCount;
@@ -187,7 +188,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         GoldAnimManager.Instance.GetAllCoin();
     }
@@ -290,7 +291,7 @@ public class GameManager : MonoBehaviour
             {
                 curState = GameState.TurnEnd;
 
-                Action();
+                NextAction();
             }
         });
     }
@@ -318,7 +319,7 @@ public class GameManager : MonoBehaviour
         curState = GameState.TurnStart;
     }
 
-    public void Action()
+    public void NextAction()
     {
         switch (curState)
         {
@@ -369,7 +370,7 @@ public class GameManager : MonoBehaviour
         // 부모 설정
         dragbleCard.transform.SetParent(dropArea.rectTrm, true);
 
-        dragbleCard.SetField();
+        dragbleCard.cardPower.SetField();
 
         // 정보 설정
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();
@@ -394,6 +395,8 @@ public class GameManager : MonoBehaviour
         // 부모 설정
         dragbleCard.transform.SetParent(dropArea.rectTrm, true);
 
+        dragbleCard.cardPower.SetField();
+
         dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
         dragbleCard.originDropArea = dropArea;
 
@@ -405,12 +408,12 @@ public class GameManager : MonoBehaviour
         switch (curState)
         {
             case GameState.TurnStart:
-                Action();
+                NextAction();
                 break;
 
 
             case GameState.TurnEnd:
-                Action();
+                NextAction();
                 break;
 
 
@@ -436,15 +439,15 @@ public class GameManager : MonoBehaviour
                 if (isBreak)
                     break;
 
-                Action();
+                NextAction();
                 break;
 
 
             case GameState.Modify:
-                Action();
+                NextAction();
                 break;
             case GameState.Equip:
-                Action();
+                NextAction();
                 break;
             default:
                 break;

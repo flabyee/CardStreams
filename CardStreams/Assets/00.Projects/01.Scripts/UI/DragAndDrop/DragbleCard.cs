@@ -22,13 +22,12 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Vector3 minWorldPosition;
     private Vector3 maxWorldPosition;
 
-    [HideInInspector] public DropArea droppedArea;
-    [HideInInspector]public DropArea prevDropArea;
-    [HideInInspector]public DropArea originDropArea; // 처음 드랍에리어
-    [HideInInspector]public DropArea originOriginDropArea; // 나중에 수정
+    public DropArea droppedArea;
+    public DropArea prevDropArea;
+    public DropArea originDropArea; // 처음 드랍에리어
+    public DropArea originOriginDropArea; // 나중에 수정
 
-    [HideInInspector] public bool isHandle;
-    [HideInInspector] public bool isField;
+
 
     [HideInInspector] public bool canDragAndDrop;
     [HideInInspector] public bool isDestory;
@@ -55,7 +54,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         canDragAndDrop = true;
 
-        SetHandle();
+        cardPower.SetHandle();
 
         (cardPower as BasicCard).SetData_Feild(basicType, value);
     }
@@ -64,7 +63,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         canDragAndDrop = true;
 
-        SetHandle();
+        cardPower.SetHandle();
 
         cardPower.SetData_SpecialCard();
     }
@@ -73,7 +72,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         canDragAndDrop = true;
 
-        SetHandle();
+        cardPower.SetHandle();
 
         cardPower.SetData_Build();
     }
@@ -217,17 +216,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     //    //}
     //}
 
-    public void SetHandle()
-    {
-        isHandle = true;
-        isField = false;
-    }
 
-    public void SetField()
-    {
-        isHandle = false;
-        isField = true;
-    }
 
     public void ActiveFalse()
     {

@@ -8,8 +8,9 @@ using UnityEngine.EventSystems;
 public enum DropAreaType
 {
     NULL,
-    feild,
-    build,
+    Feild,
+    Build,
+    Special,
 }
 
 public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler
@@ -140,13 +141,13 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         switch (dragCardType)
         {
             case CardType.Basic:
-                dropAreaType = DropAreaType.feild;
+                dropAreaType = DropAreaType.Feild;
                 break;
             case CardType.Special:
-                // To Do : target 따라서 다르게 처리하기
+                dropAreaType = DropAreaType.Special;
                 break;
             case CardType.Build:
-                dropAreaType = DropAreaType.build;
+                dropAreaType = DropAreaType.Build;
                 break;
         }
 

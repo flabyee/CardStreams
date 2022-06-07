@@ -11,6 +11,9 @@ public class CardPower : MonoBehaviour
     public Image faceImage;
     public Image backImage;
 
+    [HideInInspector] public bool isHandle;
+    [HideInInspector] public bool isField;
+
     [Header("Debug")]
     public CardType cardType;
 
@@ -29,5 +32,15 @@ public class CardPower : MonoBehaviour
         this.cardType = CardType.Build;
     }
 
-    
+    public void SetHandle()
+    {
+        isHandle = true;
+        isField = false;
+    }
+
+    public void SetField()
+    {
+        isHandle = false;
+        isField = true;
+    }
 }
