@@ -367,16 +367,7 @@ public class GameManager : MonoBehaviour
         // drop area 설정
         dragbleCard.SetDroppedArea(dropArea);
 
-        // 부모 설정
-        dragbleCard.transform.SetParent(dropArea.rectTrm, true);
-
-        dragbleCard.cardPower.SetField();
-
-        // 정보 설정
-        CardPower cardPower = dragbleCard.GetComponent<CardPower>();
-
-        dropArea.field.cardPower = cardPower;
-        dropArea.field.dragbleCard = dragbleCard;
+        dropArea.TriggerOnDrop(dragbleCard);
 
         return true;
     }
@@ -392,13 +383,7 @@ public class GameManager : MonoBehaviour
         // drop area 설정
         dragbleCard.SetDroppedArea(dropArea);
 
-        // 부모 설정
-        dragbleCard.transform.SetParent(dropArea.rectTrm, true);
-
-        dragbleCard.cardPower.SetField();
-
-        dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
-        dragbleCard.originDropArea = dropArea;
+        dropArea.TriggerOnDrop(dragbleCard);
 
         return true;
     }
