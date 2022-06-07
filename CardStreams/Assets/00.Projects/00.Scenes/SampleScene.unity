@@ -1432,8 +1432,8 @@ MonoBehaviour:
   - {fileID: 9052812637306524327, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
   - {fileID: 9052812637306524327, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
   coinSprite: []
-  originFieldSprite: {fileID: -1603291472181913768, guid: 41c3971fd7c9bae469f61d7847064b8a, type: 3}
-  nowFieldSprite: {fileID: -3920763251539160592, guid: 41c3971fd7c9bae469f61d7847064b8a, type: 3}
+  originFieldSprite: {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  nowFieldSprite: {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
 --- !u!1001 &265082089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11184,9 +11184,9 @@ MonoBehaviour:
   FieldResetAfterEvnet: {fileID: 11400000, guid: cdd0a4bc5ce8a204b8d90a501c0fcfb8, type: 2}
   GoldChangeEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
   coinSprites:
-  - {fileID: 21300000, guid: 832d927948475b84485125fc74716be1, type: 3}
-  - {fileID: 21300000, guid: b9a75b71e2089364bbdc20c0a6188d1d, type: 3}
-  - {fileID: 21300000, guid: 1885e1e313d83014b933b1ed9721f9ca, type: 3}
+  - {fileID: -5698335365643599524, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  - {fileID: 8964517506000033612, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  - {fileID: -3136663779302286116, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   R: 0.5
 --- !u!1 &1847185129
 GameObject:

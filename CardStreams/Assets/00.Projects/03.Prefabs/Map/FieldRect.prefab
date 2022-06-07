@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1237876089419477960}
-  fieldType: 0
+  fieldState: 0
   dragbleCard: {fileID: 0}
   cardPower: {fileID: 0}
   dropArea: {fileID: 0}
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1603291472181913768, guid: 41c3971fd7c9bae469f61d7847064b8a, type: 3}
+  m_Sprite: {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
