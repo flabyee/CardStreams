@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
+public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [HideInInspector] public ApplyTiming applyTiming;
     [HideInInspector] public List<CardType> targetTypeList;
@@ -44,5 +44,10 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         SpecialCardTooltip.Instance.Hide();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        GameManager.Instance.DropQuickSlot(GetComponent<DragbleCard>());
     }
 }

@@ -370,7 +370,7 @@ public class GameManager : MonoBehaviour
         // 부모 설정
         dragbleCard.transform.SetParent(dropArea.rectTrm, true);
 
-        dragbleCard.IsField();
+        dragbleCard.SetField();
 
         // 정보 설정
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();

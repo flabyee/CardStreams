@@ -102,7 +102,7 @@ public class DropManager : MonoBehaviour
                     area.field.cardPower = cardPower;
                     area.field.dragbleCard = dragbleCard;
 
-                    dragbleCard.IsField();
+                    dragbleCard.SetField();
 
                     // fieldType ¼³Á¤
                     //area.field.fieldType = FieldType.not;

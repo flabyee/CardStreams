@@ -15,6 +15,9 @@ public class HandleController : MonoBehaviour
     public DropArea buildHandleDropArea;
     public RectTransform buildHandleTrm;
 
+    public List<DropArea> quicSlotDropAreaList;
+    public List<RectTransform> quicSlotTrmList;
+
     public DropArea shopDropArea;
 
 

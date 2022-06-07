@@ -223,7 +223,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         isField = false;
     }
 
-    public void IsField()
+    public void SetField()
     {
         isHandle = false;
         isField = true;

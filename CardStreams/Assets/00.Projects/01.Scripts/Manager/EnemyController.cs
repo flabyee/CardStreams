@@ -117,6 +117,7 @@ public class EnemyController : MonoBehaviour
 
         // 못 움직이게
         dragbleCard.canDragAndDrop = false;
+        dragbleCard.SetField();
 
         // 필드에 적용 + not으로
         MapManager.Instance.fieldList[fieldIndex].Init(cardPower, dragbleCard, FieldState.not);
