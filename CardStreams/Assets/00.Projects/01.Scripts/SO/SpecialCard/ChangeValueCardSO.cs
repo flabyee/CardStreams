@@ -8,13 +8,15 @@ public class ChangeValueCardSO : SpecialCardSO
     [Header("amounts")]
     public int addAmount;
 
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
     }
 
     public override void AccessSpecialCard(Player player, Field field)
     {
-        field.cardPower.AddValue(addAmount);
+        BasicCard cardPower = field.cardPower as BasicCard;
+
+        cardPower.AddValue(addAmount);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }

@@ -9,7 +9,7 @@ public class ShadowShieldCardSO : SpecialCardSO
 
     int buffAddCount;
 
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
     }
 

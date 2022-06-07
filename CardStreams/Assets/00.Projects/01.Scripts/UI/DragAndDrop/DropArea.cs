@@ -139,10 +139,7 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         switch (dragCardType)
         {
-            case CardType.Sword:
-            case CardType.Sheild:
-            case CardType.Potion:
-            case CardType.Monster:
+            case CardType.Basic:
                 dropAreaType = DropAreaType.feild;
                 break;
             case CardType.Special:

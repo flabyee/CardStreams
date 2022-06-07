@@ -10,7 +10,9 @@ public class ToMuchUpBuildSO : EnemyBuildSO
 
     public override void AccessCard(Field field)
     {
-        field.cardPower.AddValue(upAmount);
+        BasicCard cardPower = field.cardPower as BasicCard;
+
+        cardPower.AddValue(upAmount);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }

@@ -56,21 +56,26 @@ public class Player : MonoBehaviour
     {
         buffCon.UseBuffs(UseTiming.AfterMove, 0);
 
-        switch (field.cardPower.cardType)
+        if(field.cardPower.cardType == CardType.Basic)
         {
-            case CardType.Potion:
+            
+        }
+
+        switch ((field.cardPower as BasicCard).basicType)
+        {
+            case BasicType.Potion:
                 OnPotion(field);
                 break;
 
-            case CardType.Sword:
+            case BasicType.Sword:
                 OnSword(field);
                 break;
 
-            case CardType.Sheild:
+            case BasicType.Sheild:
                 OnShield(field);
                 break;
 
-            case CardType.Monster:
+            case BasicType.Monster:
                 OnMonster(field);
                 break;
 
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
         playerValueChangeEvent.Occurred();
         
 
-        OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower.cardType);
+        OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower as BasicCard);
 
     }
 
@@ -97,43 +102,49 @@ public class Player : MonoBehaviour
 
     private void OnPotion(Field field) // 체력증가포션
     {
-        if(field.cardPower.value > 0)
+        BasicCard cardPower = (field.cardPower as BasicCard);
+
+        if (cardPower.value > 0)
         {
-            AddFieldBuff(field.cardPower.buffList);
+            AddFieldBuff(cardPower.buffList);
 
-            buffCon.UseBuffs(UseTiming.GetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.GetPotion, cardPower.value); // 0은 아무의미도없음 int? 나중에
 
-            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + field.cardPower.value, 0, hpValue.RuntimeMaxValue);
+            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + cardPower.value, 0, hpValue.RuntimeMaxValue);
 
-            buffCon.UseBuffs(UseTiming.AfterGetPotion, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.AfterGetPotion, cardPower.value); // 0은 아무의미도없음 int? 나중에
         }
     }
 
     private void OnSword(Field field)
     {
-        if(field.cardPower.value > 0)
+        BasicCard cardPower = (field.cardPower as BasicCard);
+
+        if (cardPower.value > 0)
         {
-            AddFieldBuff(field.cardPower.buffList);
+            AddFieldBuff(cardPower.buffList);
 
-            buffCon.UseBuffs(UseTiming.GetSword, field.cardPower.value);
+            buffCon.UseBuffs(UseTiming.GetSword, cardPower.value);
 
-            swordValue.RuntimeValue = field.cardPower.value;
+            swordValue.RuntimeValue = cardPower.value;
 
-            buffCon.UseBuffs(UseTiming.AfterGetSword, field.cardPower.value);
+            buffCon.UseBuffs(UseTiming.AfterGetSword, cardPower.value);
         }
     }
 
     private void OnShield(Field field)
     {
-        if(field.cardPower.value > 0)
+        BasicCard cardPower = (field.cardPower as BasicCard);
+
+        if (cardPower.value > 0)
         {
-            AddFieldBuff(field.cardPower.buffList);
+            AddFieldBuff(cardPower.buffList);
 
-            buffCon.UseBuffs(UseTiming.GetShield, field.cardPower.value);
+            buffCon.UseBuffs(UseTiming.GetShield, cardPower.value);
 
-            int addShieldValue = field.cardPower.value + shieldValue.RuntimeValue;
+            int addShieldValue = cardPower.value + shieldValue.RuntimeValue;
 
-            shieldValue.RuntimeValue = field.cardPower.value;
+            shieldValue.RuntimeValue = cardPower.value;
 
             buffCon.UseBuffs(UseTiming.AfterGetShield, addShieldValue);
         }
@@ -141,11 +152,13 @@ public class Player : MonoBehaviour
 
     private void OnMonster(Field field)
     {
-        int currentMonsterValue = field.cardPower.value;
+        BasicCard cardPower = (field.cardPower as BasicCard);
+
+        int currentMonsterValue = cardPower.value;
 
         if(currentMonsterValue > 0 && swordValue.RuntimeValue > 0) // 몬스터 공격력이 0 이상이고 칼이 있으면
         {
-            buffCon.UseBuffs(UseTiming.BeforeSword, field.cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.BeforeSword, cardPower.value); // 0은 아무의미도없음 int? 나중에
 
             currentMonsterValue -= swordValue.RuntimeValue;
 

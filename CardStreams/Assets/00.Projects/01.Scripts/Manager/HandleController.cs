@@ -67,23 +67,23 @@ public class HandleController : MonoBehaviour
             {
                 case 0:
                 case 1:
-                    originDeck.Add(new CardData(CardType.Sword, UnityEngine.Random.Range(2, maxValue)));
+                    originDeck.Add(new CardData(BasicType.Sword, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 2:
                 case 3:
-                    originDeck.Add(new CardData(CardType.Sheild, UnityEngine.Random.Range(2, maxValue)));
+                    originDeck.Add(new CardData(BasicType.Sheild, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    originDeck.Add(new CardData(CardType.Potion, UnityEngine.Random.Range(2, maxValue)));
+                    originDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 7:
                 case 8:
                 case 9:
                 case 10:
                 case 11:
-                    originDeck.Add(new CardData(CardType.Monster, UnityEngine.Random.Range(2, 5)));
+                    originDeck.Add(new CardData(BasicType.Monster, UnityEngine.Random.Range(2, 5)));
                     break;
             }
         }
@@ -93,7 +93,7 @@ public class HandleController : MonoBehaviour
 
         foreach(CardData cardData in originDeck)
         {
-            if (cardData.cardType != CardType.Monster)
+            if (cardData.basicType != BasicType.Monster)
                 pValue += cardData.value;
             else
                 mValue += cardData.value;
@@ -109,7 +109,7 @@ public class HandleController : MonoBehaviour
             if (deckValue > deckValueAmount)
             {
                 // 플레이어 카드를 줄이거나 몹 카드를 늘린다
-                if (originDeck[randomIndex].cardType != CardType.Monster)
+                if (originDeck[randomIndex].basicType != BasicType.Monster)
                 {
                     if (originDeck[randomIndex].value > 1)
                         originDeck[randomIndex].value--;
@@ -130,7 +130,7 @@ public class HandleController : MonoBehaviour
             else
             {
                 // 플레이어 카드를 늘리거나 몹 카드를 줄인다
-                if (originDeck[randomIndex].cardType != CardType.Monster)
+                if (originDeck[randomIndex].basicType != BasicType.Monster)
                 {
                     if (originDeck[randomIndex].value < maxValue)
                         originDeck[randomIndex].value++;
@@ -175,23 +175,23 @@ public class HandleController : MonoBehaviour
             {
                 case 0:
                 case 1:
-                    originDeck.Add(new CardData(CardType.Sword, UnityEngine.Random.Range(2, maxValue)));
+                    originDeck.Add(new CardData(BasicType.Sword, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 2:
                 case 3:
-                    originDeck.Add(new CardData(CardType.Sheild, UnityEngine.Random.Range(2, maxValue)));
+                    originDeck.Add(new CardData(BasicType.Sheild, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 4:
                 case 5:
                 case 6:
-                    originDeck.Add(new CardData(CardType.Potion, UnityEngine.Random.Range(2, maxValue)));
+                    originDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
                     break;
                 case 7:
                 case 8:
                 case 9:
                 case 10:
                 case 11:
-                    originDeck.Add(new CardData(CardType.Monster, UnityEngine.Random.Range(2, 5)));
+                    originDeck.Add(new CardData(BasicType.Monster, UnityEngine.Random.Range(2, 5)));
                     break;
             }
         }
@@ -201,7 +201,7 @@ public class HandleController : MonoBehaviour
 
         foreach (CardData cardData in originDeck)
         {
-            if (cardData.cardType != CardType.Monster)
+            if (cardData.basicType != BasicType.Monster)
                 pValue += cardData.value;
             else
                 mValue += cardData.value;
@@ -219,7 +219,7 @@ public class HandleController : MonoBehaviour
             if (deckValue > deckValueAmount)
             {
                 // 플레이어 카드를 줄이거나 몹 카드를 늘린다
-                if (originDeck[randomIndex].cardType != CardType.Monster)
+                if (originDeck[randomIndex].basicType != BasicType.Monster)
                 {
                     if (originDeck[randomIndex].value > 1)
                         originDeck[randomIndex].value--;
@@ -240,7 +240,7 @@ public class HandleController : MonoBehaviour
             else
             {
                 // 플레이어 카드를 늘리거나 몹 카드를 줄인다
-                if (originDeck[randomIndex].cardType != CardType.Monster)
+                if (originDeck[randomIndex].basicType != BasicType.Monster)
                 {
                     if (originDeck[randomIndex].value < maxValue)
                         originDeck[randomIndex].value++;
@@ -273,14 +273,14 @@ public class HandleController : MonoBehaviour
     }
 
     // 리롤은 현재 사용하지않는다
-    public void CardRerollAdd(GameObject dragbleCardObj)
-    {
-        CardPower cardPower = dragbleCardObj.GetComponent<CardPower>();
+    //public void CardRerollAdd(GameObject dragbleCardObj)
+    //{
+    //    CardPower cardPower = dragbleCardObj.GetComponent<CardPower>();
 
-        deck.Add(new CardData(cardPower.cardType, cardPower.value));
+    //    deck.Add(new CardData(cardPower.cardType, cardPower.value));
 
-        DeckShuffle(deck, true);
-    }
+    //    DeckShuffle(deck, true);
+    //}
 
     public void CardAdd(CardData cardData)
     {
@@ -343,7 +343,7 @@ public class HandleController : MonoBehaviour
             dragbleCard.SetDroppedArea(handleDropArea);
             dragbleCard.originDropArea = handleDropArea;
 
-            dragbleCard.SetData_Feild(cardData.cardType, cardData.value);
+            dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
         }
         else
         {
@@ -376,7 +376,7 @@ public class HandleController : MonoBehaviour
 
                     // build 관련 초기화
 
-                    Build build = buildObj.GetComponent<Build>();
+                    BuildCard build = buildObj.GetComponent<BuildCard>();
                     build.Init(DataManager.Instance.GetBuildSO(buildData.id));
 
 

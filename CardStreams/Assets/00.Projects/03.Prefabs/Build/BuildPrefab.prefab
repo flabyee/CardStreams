@@ -523,6 +523,7 @@ MonoBehaviour:
   droppedArea: {fileID: 0}
   prevDropArea: {fileID: 0}
   originDropArea: {fileID: 0}
+  originOriginDropArea: {fileID: 0}
   isHandle: 0
   isField: 0
   canDragAndDrop: 0
@@ -544,8 +545,6 @@ MonoBehaviour:
   backImage: {fileID: 6555687024791524721}
   valueText: {fileID: 0}
   cardType: 0
-  goldP: 0
-  originValue: 0
 --- !u!114 &-3816892781402171327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,10 +554,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1017501599584371627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35043a8b28c3734489787be9ccf4f993, type: 3}
+  m_Script: {fileID: 11500000, guid: e5ac078acb38c1a47a36b175fab3cda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildSO: {fileID: 11400000, guid: 488bf5d16c3e7944c9ed1f31b477603d, type: 2}
+  buildSO: {fileID: 0}
   buildImage: {fileID: 1017501598721244011}
   greadeText: {fileID: 4038546894875006015}
   isDrop: 0

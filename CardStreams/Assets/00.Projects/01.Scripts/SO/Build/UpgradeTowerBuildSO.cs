@@ -12,10 +12,12 @@ public class UpgradeTowerBuildSO : BuildSO
 
     public override void AccessCard(Field field)
     {
-            field.cardPower.SetValue(field.cardPower.value + addAmount);
+        BasicCard cardPower = field.cardPower as BasicCard;
+
+        cardPower.SetValue(cardPower.value + addAmount);
 
             TextMeshProUGUI text = field.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
-            text.text = field.cardPower.value.ToString();
+            text.text = cardPower.value.ToString();
             text.color = Color.red;
 
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);

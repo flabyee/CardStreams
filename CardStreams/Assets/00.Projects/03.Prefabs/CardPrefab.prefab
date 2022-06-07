@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 1017501599584371604}
   - component: {fileID: 1017501599584371605}
   - component: {fileID: 3878951438003314763}
-  - component: {fileID: 8815114534046250728}
+  - component: {fileID: 8953179285866651889}
   - component: {fileID: -4286347746058970656}
   m_Layer: 5
   m_Name: CardPrefab
@@ -421,7 +421,7 @@ MonoBehaviour:
   canDragAndDrop: 0
   isDestory: 0
   cardPower: {fileID: 0}
---- !u!114 &8815114534046250728
+--- !u!114 &8953179285866651889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -430,13 +430,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1017501599584371627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0edfb0f36c83de04bbc78940175a2efe, type: 3}
+  m_Script: {fileID: 11500000, guid: dd5e3fe8994ac9447a22255e020a362c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 1017501598721244011}
   backImage: {fileID: 1017501599461759247}
   valueText: {fileID: 1017501598648836991}
   cardType: 0
+  basicType: 0
   goldP: 0
   originValue: 0
 --- !u!114 &-4286347746058970656

@@ -197,7 +197,7 @@ public class DropManager : MonoBehaviour
             dragbleCard.canDragAndDrop = false;
 
             // 건물 효과 적용
-            Build build = obj.GetComponent<Build>();
+            BuildCard build = obj.GetComponent<BuildCard>();
             build.BuildDrop(area.point);
 
         }
@@ -210,7 +210,7 @@ public class DropManager : MonoBehaviour
             {
                 dragbleCard.isDestory = true;
 
-                Build build = area.rectTrm.GetChild(0).GetComponent<Build>();
+                BuildCard build = area.rectTrm.GetChild(0).GetComponent<BuildCard>();
                 specialCard.OnAccessBuildCard(build);
             }
             else
@@ -291,13 +291,13 @@ public class DropManager : MonoBehaviour
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         CardPower cardPower = obj.GetComponent<CardPower>();
 
-        if (cardPower.cardType == CardType.Sword || cardPower.cardType == CardType.Sheild || cardPower.cardType == CardType.Potion)
+        if (cardPower.cardType == CardType.Basic && (cardPower as BasicCard).basicType != BasicType.Monster)
         {
             GameManager.Instance.AddGold(2);
             //dragbleCard.isDestory = true;
 
-            cardPower.SetValue(0);
-            cardPower.ApplyUI();
+            (cardPower as BasicCard).SetValue(0);
+            (cardPower as BasicCard).ApplyUI();
 
             //ObjectToOrigin(area, obj);
 

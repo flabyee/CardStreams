@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BreakBuildCard", menuName = "ScriptableObject/SpecialCard/BreakBuildCard")]
 public class BreakBuildCardSO : SpecialCardSO
 {
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
         build.BuildUp();
 

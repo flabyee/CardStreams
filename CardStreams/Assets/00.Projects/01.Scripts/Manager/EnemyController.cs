@@ -113,7 +113,7 @@ public class EnemyController : MonoBehaviour
         CardPower cardPower = cardObj.GetComponent<CardPower>();
 
         // cardPower에 정보 넣기
-        dragbleCard.SetData_Feild(CardType.Monster, value);
+        dragbleCard.SetData_Feild(BasicType.Monster, value);
 
         // 못 움직이게
         dragbleCard.canDragAndDrop = false;
@@ -144,7 +144,7 @@ public class EnemyController : MonoBehaviour
         EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
 
         // 건물설치
-        Build building = CardPoolManager.Instance.GetBuildCard(buildPoint).GetComponent<Build>();
+        BuildCard building = CardPoolManager.Instance.GetBuildCard(buildPoint).GetComponent<BuildCard>();
         GameObject clone = Instantiate(enemyBuildEffect, buildPoint.transform.position, Quaternion.identity); // rectTransform ???
         Destroy(clone, 1f);
         

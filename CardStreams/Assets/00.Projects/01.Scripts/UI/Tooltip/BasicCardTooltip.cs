@@ -23,12 +23,14 @@ public class BasicCardTooltip : MonoBehaviour
 
     public void Show(CardPower cardPower, Vector3 pos)
     {
+        BasicCard basicPower = cardPower as BasicCard;
+
         transform.position = pos;
 
-        typeText.text = cardPower.cardType.ToString();
-        valueText.text = cardPower.value.ToString();
+        typeText.text = basicPower.cardType.ToString();
+        valueText.text = basicPower.value.ToString();
 
-        cardImage.sprite = cardPower.faceImage.sprite;
+        cardImage.sprite = basicPower.faceImage.sprite;
 
         gameObject.SetActive(true);
     }

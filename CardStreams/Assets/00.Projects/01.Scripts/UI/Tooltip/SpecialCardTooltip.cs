@@ -47,34 +47,34 @@ public class SpecialCardTooltip : MonoBehaviour
         {
             int index = 0;
 
-            foreach (CardType targetType in targetTypeList)
-            {
-                if(index != 0)
-                {
-                    str += " ";
-                }
+            //foreach (CardType targetType in targetTypeList)
+            //{
+            //    if(index != 0)
+            //    {
+            //        str += " ";
+            //    }
 
-                switch (targetType)
-                {
-                    case CardType.Sword:
-                        str += "<sprite=0>";
-                        break;
-                    case CardType.Sheild:
-                        str += "<sprite=1>";
-                        break;
-                    case CardType.Potion:
-                        str += "<sprite=5>";
-                        break;
-                    case CardType.Monster:
-                        str += "<sprite=3>";
-                        break;
-                    default:
-                        str += "<sprite=2>";
-                        break;
-                }
+            //    switch (targetType)
+            //    {
+            //        case CardType.Sword:
+            //            str += "<sprite=0>";
+            //            break;
+            //        case CardType.Sheild:
+            //            str += "<sprite=1>";
+            //            break;
+            //        case CardType.Potion:
+            //            str += "<sprite=5>";
+            //            break;
+            //        case CardType.Monster:
+            //            str += "<sprite=3>";
+            //            break;
+            //        default:
+            //            str += "<sprite=2>";
+            //            break;
+            //    }
 
-                index++;
-            }
+            //    index++;
+            //}
             targetText.text = str;
         }
         else

@@ -10,10 +10,12 @@ public class IronPotBuildSO : BuildSO
 
     public override void AccessCard(Field field)
     {
-        if(field.cardPower.cardType == CardType.Monster)
+        BasicCard cardPower = field.cardPower as BasicCard;
+
+        if(cardPower.basicType == BasicType.Monster)
         {
-            field.cardPower.cardType = CardType.Potion;
-            field.cardPower.SetValue(Mathf.RoundToInt(field.cardPower.value / amount));
+            cardPower.basicType = BasicType.Potion;
+            cardPower.SetValue(Mathf.RoundToInt(cardPower.value / amount));
         }
     }
 

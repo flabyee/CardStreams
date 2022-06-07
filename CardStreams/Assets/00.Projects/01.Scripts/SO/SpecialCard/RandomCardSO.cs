@@ -8,14 +8,16 @@ public class RandomCardSO : SpecialCardSO
     [Header("amounts")]
     public int mulAmount;
 
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
     }
 
     public override void AccessSpecialCard(Player player, Field field)
     {
+        BasicCard cardPower = field.cardPower as BasicCard;
+
         // cardPower
-        field.cardPower.SetValue(Random.Range(1, field.cardPower.value * mulAmount));
+        cardPower.SetValue(Random.Range(1, cardPower.value * mulAmount));
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }

@@ -6,7 +6,7 @@ using TMPro;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 
-public class Build : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BuildCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public BuildSO buildSO;
 

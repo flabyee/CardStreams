@@ -17,7 +17,7 @@ public class SpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [HideInInspector] public Image cardImage;
 
     public Action<Player, Field> OnAccessSpecialCard;
-    public Action<Build> OnAccessBuildCard;
+    public Action<BuildCard> OnAccessBuildCard;
 
     public void Init(SpecialCardSO so)
     {

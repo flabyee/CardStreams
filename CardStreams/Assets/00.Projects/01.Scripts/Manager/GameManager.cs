@@ -167,8 +167,8 @@ public class GameManager : MonoBehaviour
         {
             Field nowField = MapManager.Instance.fieldList[i];
 
-            CardPower cardPower = nowField.cardPower;
-            if (cardPower.cardType == CardType.Monster)
+            BasicCard cardPower = nowField.cardPower as BasicCard;
+            if (cardPower.basicType == BasicType.Monster)
             {
                 // 필드 리셋
                 MapManager.Instance.fieldList[i].FieldReset();

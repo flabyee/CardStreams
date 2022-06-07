@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, 
-    IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+    IPointerDownHandler, IPointerUpHandler
 {
     public Action<DragbleCard> onMoveStart;
     public Action<DragbleCard> onMoveEnd;
@@ -51,13 +51,13 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         this.droppedArea = dropArea;
     }
-    public void SetData_Feild(CardType cardType, int value)
+    public void SetData_Feild(BasicType basicType, int value)
     {
         canDragAndDrop = true;
 
         SetHandle();
 
-        cardPower.SetData_Feild(cardType, value);
+        (cardPower as BasicCard).SetData_Feild(basicType, value);
     }
 
     public void SetData_SpecialCard()
@@ -90,33 +90,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // 건물과 특수카드는 각각 Build와 SpecialCard에서
-
-        switch (cardPower.cardType)
-        {
-            case CardType.Sword:
-            case CardType.Sheild:
-            case CardType.Potion:
-            case CardType.Monster:
-                //BasicCardTooltip.Instance.Show(cardPower, transform.position);
-                break;
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        switch (cardPower.cardType)
-        {
-            case CardType.Sword:
-            case CardType.Sheild:
-            case CardType.Potion:
-            case CardType.Monster:
-                //BasicCardTooltip.Instance.Hide();
-                break;
-        }
-    }
+    
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -154,7 +128,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if(cardPower.cardType == CardType.Build)
         {
-            Build build = GetComponent<Build>();
+            BuildCard build = GetComponent<BuildCard>();
 
             BuildAreaTooltip.Instance.ShowFollow(transform, build.GetAccessPointList());
         }

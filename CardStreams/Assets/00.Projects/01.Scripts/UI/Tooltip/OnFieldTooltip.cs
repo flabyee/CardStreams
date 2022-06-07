@@ -19,27 +19,24 @@ public class OnFieldTooltip : MonoBehaviour
         Hide();
     }
 
-    public void ShowCard(Vector3 pos, CardType cardType)
+    public void ShowCard(Vector3 pos, BasicCard cardPower)
     {
         transform.position = pos;
 
         image.DOFade(1, 0f);
 
-        switch(cardType)
+        switch(cardPower.basicType)
         {
-            case CardType.Potion:
+            case BasicType.Potion:
                 image.sprite = ConstManager.Instance.potionSprite[0];
                 break;
-            case CardType.Coin:
-                image.sprite = ConstManager.Instance.coinSprite[0];
-                break;
-            case CardType.Monster:
+            case BasicType.Monster:
                 image.sprite = ConstManager.Instance.monsterSprite[0];
                 break;
-            case CardType.Sword:
+            case BasicType.Sword:
                 image.sprite = ConstManager.Instance.swordSprite[0];
                 break;
-            case CardType.Sheild:
+            case BasicType.Sheild:
                 image.sprite = ConstManager.Instance.sheildSprite[0];
                 break;
         }

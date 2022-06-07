@@ -9,15 +9,17 @@ public class GoldMonsterCardSO : SpecialCardSO
     public float mulAmount;
     public int goldPAmount;
 
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
     }
 
     public override void AccessSpecialCard(Player player, Field field)
     {
+        BasicCard cardPower = field.cardPower as BasicCard;
+
         // cardPower
-        field.cardPower.SetValue(Mathf.RoundToInt(field.cardPower.value * mulAmount));
-        field.cardPower.goldP = goldPAmount;
+        cardPower.SetValue(Mathf.RoundToInt(cardPower.value * mulAmount));
+        cardPower.goldP = goldPAmount;
         
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);

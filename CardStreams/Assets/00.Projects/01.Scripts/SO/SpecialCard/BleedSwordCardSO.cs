@@ -9,18 +9,20 @@ public class BleedSwordCardSO : SpecialCardSO
     public int upSwordAmount;
     public int lessHpAmount;
 
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
     }
 
     public override void AccessSpecialCard(Player player, Field field)
     {
+        BasicCard cardPower = field.cardPower as BasicCard;
+
         // player
         player.hpValue.RuntimeValue -= lessHpAmount;
         player.playerValueChangeEvent.Occurred();
 
         // cardPower
-        field.cardPower.AddValue(upSwordAmount);
+        cardPower.AddValue(upSwordAmount);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     } 

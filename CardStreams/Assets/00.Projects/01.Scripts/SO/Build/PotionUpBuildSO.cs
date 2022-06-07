@@ -10,9 +10,11 @@ public class PotionUpBuildSO : BuildSO
 
     public override void AccessCard(Field field)
     {
-        if (field.cardPower.cardType == CardType.Potion)
+        BasicCard cardPower = field.cardPower as BasicCard;
+
+        if (cardPower.basicType == BasicType.Potion)
         {
-            field.cardPower.AddValue(plusPotionAmount);
+            cardPower.AddValue(plusPotionAmount);
 
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
         }

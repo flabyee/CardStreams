@@ -10,9 +10,11 @@ public class GreedTempleBuildSO : BuildSO
 
     public override void AccessCard(Field field)
     {
-        if (field.cardPower.cardType == CardType.Monster)
+        BasicCard cardPower = field.cardPower as BasicCard;
+
+        if (cardPower.basicType == BasicType.Monster)
         {
-            field.cardPower.goldP = goldPAmount;
+            cardPower.goldP = goldPAmount;
 
             OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
         }

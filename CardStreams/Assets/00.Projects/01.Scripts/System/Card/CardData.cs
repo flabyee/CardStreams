@@ -6,11 +6,7 @@ using System;
 public enum CardType
 {
     NULL,
-    Sword,
-    Sheild,
-    Potion,
-    Monster,
-    Coin,
+    Basic,
     Special,
     Build,
 }
@@ -18,11 +14,11 @@ public enum CardType
 [Serializable]
 public class CardData
 {
-    public CardData(CardType cardType, int value)
+    public CardData(BasicType basicType, int value)
     {
-        this.cardType = cardType;
+        this.basicType = basicType;
         this.value = value;
     }
-    public CardType cardType;
+    public BasicType basicType;
     public int value;
 }

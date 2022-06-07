@@ -8,16 +8,18 @@ public class ItemToPotionCardSO : SpecialCardSO
     [Header("amounts")]
     public int upAmount;
 
-    public override void AccessBuildCard(Build build)
+    public override void AccessBuildCard(BuildCard build)
     {
     }
 
     public override void AccessSpecialCard(Player player, Field field)
     {
-        // cardPower
-        field.cardPower.cardType = CardType.Potion;
+        BasicCard cardPower = field.cardPower as BasicCard;
 
-        field.cardPower.AddValue(upAmount);
+        // cardPower
+        cardPower.basicType = BasicType.Potion;
+
+        cardPower.AddValue(upAmount);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }
