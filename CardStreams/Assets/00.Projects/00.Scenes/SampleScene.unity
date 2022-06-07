@@ -1456,8 +1456,8 @@ MonoBehaviour:
   - {fileID: 9052812637306524327, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
   - {fileID: 9052812637306524327, guid: 994713d368b3a3d4eb42929e9e8ced70, type: 3}
   coinSprite: []
-  originFieldSprite: {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
-  nowFieldSprite: {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  originFieldSprite: {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  nowFieldSprite: {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
 --- !u!1001 &265082089
 PrefabInstance:
   m_ObjectHideFlags: 0
