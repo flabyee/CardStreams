@@ -108,6 +108,8 @@ public class ShopController : MonoBehaviour
         isMinimize = !isMinimize;
 
         _reduceCG.alpha = isMinimize ? 0 : 1;
+        _reduceCG.interactable = isMinimize ? false : true;
+        _reduceCG.blocksRaycasts = isMinimize ? false : true;
     }
 
     public void OnShop()
