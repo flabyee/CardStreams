@@ -14,6 +14,7 @@ public class HandleController : MonoBehaviour
 
     public DropArea buildHandleDropArea;
     public RectTransform buildHandleTrm;
+    public GameObject buildHandleObj;
 
     public List<DropArea> quicSlotDropAreaList;
 
@@ -496,6 +497,6 @@ public class HandleController : MonoBehaviour
 
     public void ShowBuildHandle(bool b)
     {
-        buildHandleTrm.gameObject.SetActive(b);
+        buildHandleObj.SetActive(b);
     }
 }

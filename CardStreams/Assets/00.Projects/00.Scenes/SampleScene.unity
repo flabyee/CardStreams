@@ -4609,6 +4609,7 @@ MonoBehaviour:
   handleTrm: {fileID: 2059843747}
   buildHandleDropArea: {fileID: 2094405881}
   buildHandleTrm: {fileID: 393445010288987042}
+  buildHandleObj: {fileID: 1069635406}
   quicSlotDropAreaList:
   - {fileID: 1715979130}
   - {fileID: 2053337822}
