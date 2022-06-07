@@ -18,7 +18,7 @@ public class RewardCard : MonoBehaviour
     [HideInInspector] public SelectRewardManager selectPanel;
     private RewardSO rewardSO;
     private GameObject _createGetCardPrefab;
-    private GameObject getTargetObj;
+    private GameObject destination;
 
     
 
@@ -55,9 +55,9 @@ public class RewardCard : MonoBehaviour
             GetRewardCard getRewardCard = getCard.GetComponent<GetRewardCard>();
 
             getRewardCard.Init(rewardImage.sprite, rewardNameText.text);
-            bezier.StartBezier(getTargetObj); // 베지어 돌려요
-            getCard.DORotate(new Vector3(0, 0, 180), 2f);
-            getCard.DOScale(0.3f, 2f).OnComplete(() => Destroy(getCard.gameObject));
+            bezier.StartBezier(destination); // 베지어 돌려요
+            getCard.DORotate(new Vector3(0, 0, 180), 1f);
+            getCard.DOScale(0.3f, 1f).OnComplete(() => Destroy(getCard.gameObject));
 
             saveData.speicialCardDataList[cardSO.id].haveAmount++;
         }
@@ -73,7 +73,7 @@ public class RewardCard : MonoBehaviour
 
         _createGetCardPrefab = cardPrefab;
 
-        getTargetObj = getTarget;
+        destination = getTarget;
 
         rewardImage.sprite = so.rewardSprite;
         rewardNameText.text = so.rewardName;

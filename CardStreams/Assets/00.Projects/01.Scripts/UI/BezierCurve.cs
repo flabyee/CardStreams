@@ -10,7 +10,7 @@ public class BezierCurve : MonoBehaviour
     
     [Header("海瘤绢客 楷包等巴")]
     [SerializeField] [Range(0, 1)] float time = 0;
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 1f;
     [SerializeField] float radiusA = 0.55f;
     [SerializeField] float radiusB = 0.45f;
 

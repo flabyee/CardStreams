@@ -11,7 +11,7 @@ public class GameOverPanel : MonoBehaviour
     {
         _cg = GetComponent<CanvasGroup>();
 
-        // Hide();
+        Hide();
     }
 
     public void Show()
