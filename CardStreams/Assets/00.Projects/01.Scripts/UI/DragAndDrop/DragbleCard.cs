@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, 
-    IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Action<DragbleCard> onMoveStart;
     public Action<DragbleCard> onMoveEnd;
@@ -44,9 +44,6 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         cardPower = GetComponent<CardPower>();
 
-        isHandle = true;
-        isField = false;
-
         isDestory = false;
     }
 
@@ -58,6 +55,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         canDragAndDrop = true;
 
+        SetHandle();
+
         cardPower.SetData_Feild(cardType, value);
     }
 
@@ -65,12 +64,16 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         canDragAndDrop = true;
 
+        SetHandle();
+
         cardPower.SetData_SpecialCard();
     }
 
     public void SetData_Build()
     {
         canDragAndDrop = true;
+
+        SetHandle();
 
         cardPower.SetData_Build();
     }
@@ -221,26 +224,26 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(eventData.button == PointerEventData.InputButton.Right && isHandle == true)
-        {
-            switch(cardPower.cardType)
-            {
-                case CardType.Sword:
-                case CardType.Sheild:
-                case CardType.Potion:
-                case CardType.Monster:
-                    GameManager.Instance.DropField(this);
-                    break;
-                case CardType.Special:
-                    GameManager.Instance.DropField(this);
-                    break;
-            }
-        }
-    }
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    //if(eventData.button == PointerEventData.InputButton.Right && isHandle == true)
+    //    //{
+    //    //    switch(cardPower.cardType)
+    //    //    {
+    //    //        case CardType.Sword:
+    //    //        case CardType.Sheild:
+    //    //        case CardType.Potion:
+    //    //        case CardType.Monster:
+    //    //            GameManager.Instance.DropField(this);
+    //    //            break;
+    //    //        case CardType.Special:
+    //    //            GameManager.Instance.DropQuickSlot(this);
+    //    //            break;
+    //    //    }
+    //    //}
+    //}
 
-    public void IsHandle()
+    public void SetHandle()
     {
         isHandle = true;
         isField = false;

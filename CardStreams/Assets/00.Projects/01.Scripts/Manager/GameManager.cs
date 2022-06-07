@@ -384,6 +384,7 @@ public class GameManager : MonoBehaviour
     {
         return false;
     }
+
     public void OnClickAction()
     {
         switch (curState)

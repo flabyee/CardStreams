@@ -15591,6 +15591,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 286388865}
     m_Modifications:
+    - target: {fileID: 3210523351533830846, guid: 2e777e5f2b5ca0d4cbc83cfa0b53cb30, type: 3}
+      propertyPath: spacing.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210523351533830846, guid: 2e777e5f2b5ca0d4cbc83cfa0b53cb30, type: 3}
+      propertyPath: spacing.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210523351533830846, guid: 2e777e5f2b5ca0d4cbc83cfa0b53cb30, type: 3}
+      propertyPath: cellSize.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210523351533830846, guid: 2e777e5f2b5ca0d4cbc83cfa0b53cb30, type: 3}
+      propertyPath: cellSize.y
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 3974886949346750194, guid: 2e777e5f2b5ca0d4cbc83cfa0b53cb30, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

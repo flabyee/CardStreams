@@ -415,6 +415,7 @@ MonoBehaviour:
   droppedArea: {fileID: 0}
   prevDropArea: {fileID: 0}
   originDropArea: {fileID: 0}
+  originOriginDropArea: {fileID: 0}
   isHandle: 0
   isField: 0
   canDragAndDrop: 0

@@ -396,6 +396,6 @@ public class DropManager : MonoBehaviour
         obj.transform.SetParent(dragbleCard.originDropArea.rectTrm, true);
         dragbleCard.SetDroppedArea(dragbleCard.originDropArea);
 
-        dragbleCard.IsHandle();
+        dragbleCard.SetHandle();
     }
 }
