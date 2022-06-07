@@ -189,7 +189,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if(isDestory == true)
         {
-            gameObject.SetActive(false);
+            ActiveFalse();
         }
 
         if (cardPower.cardType == CardType.Build)
@@ -229,5 +229,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         isField = true;
     }
 
+    public void ActiveFalse()
+    {
+        transform.SetParent(ConstManager.Instance.tempTrm);
 
+        gameObject.SetActive(false);
+    }
 }

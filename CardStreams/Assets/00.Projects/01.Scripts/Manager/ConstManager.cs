@@ -6,6 +6,8 @@ public class ConstManager : MonoBehaviour
 {
     public static ConstManager Instance;
 
+    public RectTransform tempTrm;
+
     private void Awake()
     {
         if (Instance == null)
