@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        GoldAnimManager.Instance.GetAllCoin();
+        GoldAnimManager.Instance.GetAllCoin(true);
 
         canNext = true;
     }

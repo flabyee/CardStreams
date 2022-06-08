@@ -20,10 +20,6 @@ public class GoldAnimManager : MonoBehaviour
 
     public GameObject resultPanel;
 
-    [Header("System")]
-    [SerializeField] private int earnSystemCount;
-    private int count;  // 리스트에 추가할때마다 이걸 더하고 이게 2면 골드 생성
-
     private int originGold;
 
     public IntValue goldValue;
@@ -41,6 +37,9 @@ public class GoldAnimManager : MonoBehaviour
 
         HideResult();
     }
+
+    // 사용방법
+    // CreateCoin에 버는 양, 위치를 보내서 코인을 생성하고 GetAllCoin 실행해서 실행한 코인을 모두 흡수하고 돈을 얻는다
 
     public void CreateCoin(int amount, Vector3 centerPos)
     {
@@ -69,6 +68,7 @@ public class GoldAnimManager : MonoBehaviour
 
         for (int j = 0; j < coinCreateList.Count; j++)
         {
+            //float theta = (360f / coinCreateList.Count) * j;
             float theta = (360f / coinCreateList.Count) * j;
             GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
 
@@ -88,35 +88,14 @@ public class GoldAnimManager : MonoBehaviour
             movePos.y = Mathf.Sin(theta * Mathf.Deg2Rad) * R + centerPos.y;
             coinObj.transform.DOMove(movePos, 0.25f);
         }
-
-        //for (int j = 0; j < amount; j++)
-        //{
-        //    float theta = (360f / amount) * j;
-        //    GameObject coinObj = coinObjList.Find(x => !x.activeSelf);
-
-        //    if (coinObj == null)
-        //    {
-        //        coinObj = Instantiate(coinPrefab, coinObjParent.transform);
-        //        coinObjList.Add(coinObj);
-        //    }
-
-        //    coinObj.transform.position = centerPos;
-
-        //    coinObj.SetActive(true);
-
-        //    Vector3 movePos = Vector3.zero;
-        //    movePos.x = Mathf.Cos(theta * Mathf.Deg2Rad) * R + centerPos.x;
-        //    movePos.y = Mathf.Sin(theta * Mathf.Deg2Rad) * R + centerPos.y;
-        //    coinObj.transform.DOMove(movePos, 0.25f);
-        //}
     }
 
-    public void GetAllCoin()
+    public void GetAllCoin(bool isJungsan = false)
     {
-        StartCoroutine(GetCoinCor());
+        StartCoroutine(GetCoinCor(isJungsan));
     }
 
-    private IEnumerator GetCoinCor()
+    private IEnumerator GetCoinCor(bool isJungsan)
     {
         originGold = goldValue.RuntimeValue;
 
@@ -129,12 +108,15 @@ public class GoldAnimManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         AddScore(allCoinAmount);
         allCoinAmount = 0;
 
-        ShowResult();
+        if(isJungsan == true)
+        {
+            ShowResult();
+        }
     }
 
     private void CoinMove(GameObject coinObj)
@@ -152,12 +134,7 @@ public class GoldAnimManager : MonoBehaviour
         GoldChangeEvent.Occurred();
     }
 
-    public void OnClickCloseResultPanle()
-    {
-        HideResult();
-    }
-
-    public void ShowResult()
+    private void ShowResult()
     {
         // 결과창 띄우기
         int earnGold = goldValue.RuntimeValue - originGold;
@@ -168,8 +145,13 @@ public class GoldAnimManager : MonoBehaviour
         resultPanel.SetActive(true);
     }
 
-    public void HideResult()
+    private void HideResult()
     {
         resultPanel.SetActive(false);
+    }
+
+    public void OnClickCloseResultPanle()
+    {
+        HideResult();
     }
 }

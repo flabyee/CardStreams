@@ -450,15 +450,6 @@ public class HandleController : MonoBehaviour
     // turnStart or moveEnd 마다 하는 draw
     public void DrawCardWhenBeforeMove()
     {
-        Stack<DragbleCard> sellCardStack = new Stack<DragbleCard>();
-        // 뽑기전에 남아있는 카드가 있다면 제거
-        for (int i = 0; i < handleTrm.childCount; i++)
-        {
-            GameObject card = handleTrm.GetChild(i).gameObject;
-            card.SetActive(false);
-            card.gameObject.SetActive(false);
-        }
-
         for (int i = 0; i < handleCount; i++)
         {
             DrawCard();
@@ -505,7 +496,6 @@ public class HandleController : MonoBehaviour
     // 현재 손에 몬스터 카드가 있는지
     public bool HaveMobCard()
     {
-        Debug.Log("handleCount : " + handle.Count);
         foreach(BasicCard basicPower in handle)
         {
             if(basicPower.isHandle == true)
@@ -522,6 +512,24 @@ public class HandleController : MonoBehaviour
     // 현재 손에 있는 카드들을 모두 판매한다.
     public void SellHandleCards()
     {
+        // 뽑기전에 남아있는 카드가 있다면 제거
+        for (int i = handle.Count - 1; i >= 0; i--)
+        {
+            // 손에 있다면 active false
+            if(handle[i].isHandle == true)
+            {
+                // 몬스터가 아니라면 돈 획득
+                if(handle[i].basicType != BasicType.Monster)
+                {
+                    GoldAnimManager.Instance.CreateCoin(handle[i].originValue, handle[i].transform.position);
+                }
+
+                handle[i].GetComponent<DragbleCard>().ActiveFalse();
+            }
+        }
+
+        GoldAnimManager.Instance.GetAllCoin();
+
         handle.Clear();
     }
 }

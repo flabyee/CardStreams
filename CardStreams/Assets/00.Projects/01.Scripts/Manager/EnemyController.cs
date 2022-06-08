@@ -95,6 +95,16 @@ public class EnemyController : MonoBehaviour
                 deleteFieldList.Add(randIndex - 1);
                 canSpawnList.Remove(randIndex - 1);
             }
+            if (canSpawnList.Contains(randIndex + 2))
+            {
+                deleteFieldList.Add(randIndex + 2);
+                canSpawnList.Remove(randIndex + 2);
+            }
+            if (canSpawnList.Contains(randIndex - 2))
+            {
+                deleteFieldList.Add(randIndex - 2);
+                canSpawnList.Remove(randIndex - 2);
+            }
         }
 
         mobSpawnAmount += mobSpawnIncreaseAmount;
