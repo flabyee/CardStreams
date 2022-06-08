@@ -43,6 +43,8 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
     public void BuildDrop(Vector2 point)
     {
+        greadeText.text = string.Empty;
+
         isDrop = true;
 
         myPoint = point;
