@@ -107,7 +107,7 @@ public class EnemyController : MonoBehaviour
     {
         int value = mobAttackAmount; // 생성되는 몬스터의 값
 
-        // 새로운 카드 생성
+        // 새로운 카드 생성 + 부모 설정
         GameObject cardObj = CardPoolManager.Instance.GetBasicCard(MapManager.Instance.fieldList[fieldIndex].transform);
         DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
         CardPower cardPower = cardObj.GetComponent<CardPower>();

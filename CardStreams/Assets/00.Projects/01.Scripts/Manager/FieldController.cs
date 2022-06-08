@@ -43,7 +43,28 @@ public class FieldController
     {
         for (int i = nowIndex; i < nowIndex + 4; i++)
         {
-            MapManager.Instance.fieldList[i].OnBuildAccess();
+            if(MapManager.Instance.fieldList[i].isSet == true)
+                MapManager.Instance.fieldList[i].OnBuildAccess();
         }
+    }
+
+    public bool IsNextFieldAllMob(int nowIndex)
+    {
+        for (int i = nowIndex; i < nowIndex + 4; i++)
+        {
+            if(MapManager.Instance.fieldList[i].isSet == true)
+            {
+                if ((MapManager.Instance.fieldList[i].cardPower as BasicCard).basicType != BasicType.Monster)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -23,7 +23,7 @@ public class Field : MonoBehaviour
 
     public FieldState fieldState = FieldState.NULL;
 
-
+    public bool isSet;
     public DragbleCard dragbleCard;
     public CardPower cardPower;
 
@@ -36,6 +36,7 @@ public class Field : MonoBehaviour
 
     public void Init(CardPower power, DragbleCard dragCard, FieldState type)
     {
+        isSet = true;
         cardPower = power;
         dragbleCard = dragCard;
         fieldState = type;
@@ -43,6 +44,7 @@ public class Field : MonoBehaviour
 
     public void ResetData()
     {
+        isSet = false;
         cardPower = null;
         dragbleCard = null;
     }
@@ -53,7 +55,7 @@ public class Field : MonoBehaviour
 
     public void FieldReset()
     {
-        if(dragbleCard != null)
+        if(isSet == true)
         {
             dragbleCard.ActiveFalse();
         }

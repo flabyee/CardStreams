@@ -195,7 +195,9 @@ public class MapManager : MonoBehaviour
                 break;
             case FieldState.not:
                 fieldList[index].background.sprite = ConstManager.Instance.originFieldSprite;
-                fieldList[index].dragbleCard.canDragAndDrop = false;
+
+                if(fieldList[index].isSet == true)
+                    fieldList[index].dragbleCard.canDragAndDrop = false;
                 break;
         }
     }

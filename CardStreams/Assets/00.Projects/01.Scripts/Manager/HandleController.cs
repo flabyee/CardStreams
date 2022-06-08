@@ -7,6 +7,7 @@ public class HandleController : MonoBehaviour
 {
     [HideInInspector] public List<CardData> originDeck = new List<CardData>();
     [HideInInspector] public List<CardData> deck = new List<CardData>();
+    private List<BasicCard> handle = new List<BasicCard>();
 
     [Header("UI")]
     public DropArea handleDropArea;
@@ -346,7 +347,6 @@ public class HandleController : MonoBehaviour
         return null;
     }
 
-    // 뽑은 카드의 정보를 반환한다
     public void DrawCard()
     {
         CardData cardData = GetCardData();
@@ -360,6 +360,8 @@ public class HandleController : MonoBehaviour
             dragbleCard.originDropArea = handleDropArea;
 
             dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
+
+            handle.Add(dragbleCard.cardPower as BasicCard);
         }
         else
         {
@@ -498,5 +500,28 @@ public class HandleController : MonoBehaviour
     public void ShowBuildHandle(bool b)
     {
         buildHandleObj.SetActive(b);
+    }
+
+    // 현재 손에 몬스터 카드가 있는지
+    public bool HaveMobCard()
+    {
+        Debug.Log("handleCount : " + handle.Count);
+        foreach(BasicCard basicPower in handle)
+        {
+            if(basicPower.isHandle == true)
+            {
+                if(basicPower.basicType == BasicType.Monster)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    // 현재 손에 있는 카드들을 모두 판매한다.
+    public void SellHandleCards()
+    {
+        handle.Clear();
     }
 }

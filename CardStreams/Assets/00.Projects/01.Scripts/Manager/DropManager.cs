@@ -93,12 +93,13 @@ public class DropManager : MonoBehaviour
             if (area.field.fieldState == FieldState.able)
             {
                 // 2.이미 뭐가 배치되어있는지 확인, 
-                if (area.field.cardPower == null || area.field.cardPower.cardType == CardType.NULL)
+                if (area.field.isSet == false || area.field.cardPower.cardType == CardType.NULL)
                 {
                     // 부모 설정
                     obj.transform.SetParent(area.rectTrm, true);
 
                     // 정보 설정
+                    area.field.isSet = true;
                     area.field.cardPower = cardPower;
                     area.field.dragbleCard = dragbleCard;
 
@@ -147,7 +148,7 @@ public class DropManager : MonoBehaviour
                 // targetType 맞는거 있는지 확인
                 foreach (CardType targetType in specialCard.targetTypeList)
                 {
-                    if (area.field.cardPower != null && area.field.cardPower.cardType == targetType)
+                    if (area.field.isSet == true && area.field.cardPower.cardType == targetType)
                     {
                         if(targetType == CardType.Basic)
                         {

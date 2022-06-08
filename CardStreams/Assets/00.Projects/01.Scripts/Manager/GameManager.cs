@@ -173,19 +173,14 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.Move:
-                bool isBreak = false;
-
-                for (int i = moveIndex; i < moveIndex + maxMoveCount; i++)
+                // 손에 몬스터 카드가 있고 앞에 4개 필드가 모두 몬스터가 아니면 next 안됨
+                if(handleController.HaveMobCard() == true)
                 {
-                    // 전부 다 배치안했으면 move 안됨
-                    if (MapManager.Instance.fieldList[i].cardPower == null)
+                    if(fieldController.IsNextFieldAllMob(moveIndex) == false)
                     {
-                        isBreak = true;
+                        return;
                     }
                 }
-
-                if (isBreak)
-                    break;
 
                 NextAction();
                 break;
@@ -223,6 +218,7 @@ public class GameManager : MonoBehaviour
 
         canNext = true;
 
+        curState = GameState.Move;
         nextState = GameState.Move;
     }
 
@@ -248,24 +244,27 @@ public class GameManager : MonoBehaviour
         {
             Field nowField = MapManager.Instance.fieldList[i];
 
-            BasicCard cardPower = nowField.cardPower as BasicCard;
-            if (cardPower.basicType == BasicType.Monster)
+            if(nowField.isSet == true)
             {
-                // 필드 리셋
-                MapManager.Instance.fieldList[i].FieldReset();
+                BasicCard cardPower = nowField.cardPower as BasicCard;
+                if (cardPower.basicType == BasicType.Monster)
+                {
+                    // 필드 리셋
+                    MapManager.Instance.fieldList[i].FieldReset();
 
-                // effect
-                EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
+                    // effect
+                    EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
 
-                // coin 생성
-                // GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
-                GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
-                yield return new WaitForSeconds(fieldResetDelay);
-            }
-            else
-            {
-                // 필드 리셋
-                nowField.FieldReset();
+                    // coin 생성
+                    // GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
+                    GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
+                    yield return new WaitForSeconds(fieldResetDelay);
+                }
+                else
+                {
+                    // 필드 리셋
+                    nowField.FieldReset();
+                }
             }
         }
 
@@ -278,6 +277,8 @@ public class GameManager : MonoBehaviour
 
     public void MoveStart()
     {
+        handleController.SellHandleCards();
+
         // 카드에 건물 효과 적용
         fieldController.BuildAccessNextField(moveIndex);
 
@@ -330,7 +331,7 @@ public class GameManager : MonoBehaviour
             // 스페셜카드 효과 발동
             sequence.AppendCallback(() =>
             {
-                if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
+                if (MapManager.Instance.fieldList[moveIndex].isSet == true)
                 {
                     MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
                 }
@@ -340,7 +341,7 @@ public class GameManager : MonoBehaviour
             // 플레이어한테 필드 효과 적용
             sequence.AppendCallback(() =>
             {
-                if (MapManager.Instance.fieldList[moveIndex].cardPower.cardType != CardType.NULL)
+                if (MapManager.Instance.fieldList[moveIndex].isSet == true)
                 {
                     player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
                 }
@@ -350,6 +351,7 @@ public class GameManager : MonoBehaviour
             // 플레이어한테 건물효과 적용
             sequence.AppendCallback(() =>
             {
+                // 플레이어에게 적용하는 것으로 cardPower 존재 유무는 상관없다
                 MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
                 //Debug.Log("player apply build");
             });
@@ -420,7 +422,7 @@ public class GameManager : MonoBehaviour
         int tempIndex = -1; // 4칸중 비어있는 필드의 인덱스를 담을 곳
         for (int i = 0; i < 4; i++)
         {
-            if (MapManager.Instance.fieldList[moveIndex + i].dragbleCard == null)
+            if (MapManager.Instance.fieldList[moveIndex + i].isSet == false)
             {
                 tempIndex = moveIndex + i;
                 break;
