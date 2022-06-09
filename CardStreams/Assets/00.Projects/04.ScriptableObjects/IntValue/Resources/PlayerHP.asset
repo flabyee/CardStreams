@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be3a93a6091e2094a9cc71bf2576ba92, type: 3}
   m_Name: PlayerHP
   m_EditorClassIdentifier: 
-  InitialValue: 100
-  InitialMaxValue: 100
+  InitialValue: 11
+  InitialMaxValue: 11
