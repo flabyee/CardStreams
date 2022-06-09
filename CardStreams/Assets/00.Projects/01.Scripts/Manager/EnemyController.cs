@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
 
     // 적 건물 생성
     private List<BuildSO> enemyBuildList;
-    [SerializeField] GameObject enemyBuildEffect;
 
     private void Awake()
     {
@@ -46,9 +45,9 @@ public class EnemyController : MonoBehaviour
 
         for (int i = 0; i < MapManager.Instance.fieldCount; i++)
         {
-            if (i == 0) // 0번째칸 억까 방지
+            if (i == 0 || i == MapManager.Instance.fieldCount - 1) // 0번째칸 억까 방지
             {
-                deleteFieldList.Add(0);
+                deleteFieldList.Add(i);
                 continue;
             }
 
@@ -136,7 +135,8 @@ public class EnemyController : MonoBehaviour
         cardPower.backImage.color = Color.magenta;
 
         // craete effect
-        EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
+        //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
+        Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
     }
 
 
@@ -156,9 +156,9 @@ public class EnemyController : MonoBehaviour
 
         // 건물설치
         BuildCard building = CardPoolManager.Instance.GetBuildCard(buildPoint).GetComponent<BuildCard>();
-        GameObject clone = Instantiate(enemyBuildEffect, buildPoint.transform.position, Quaternion.identity); // rectTransform ???
-        Destroy(clone, 1f);
-        
+
+        Effects.Instance.TriggerTeleport(buildPoint.transform.position);
+
         building.Init(buildSO);
 
         building.BuildDrop(randomPoint);
