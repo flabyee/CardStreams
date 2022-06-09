@@ -466,6 +466,11 @@ public class GameManager : MonoBehaviour
         moveDuration = Mathf.Clamp(moveDuration + amount, 0.01f, 1f);
     }
 
+    public void SetMoveDuration(float speed)
+    {
+        moveDuration = speed;
+    }
+
     private IEnumerator Delay(Action action, float t)
     {
         yield return new WaitForSeconds(t);
