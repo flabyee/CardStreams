@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3141\u3134\u3147\u3139\u3147\uB0B4\uB86C\uC560\uB7C4\u3147\uB178\uB7B4\u3150\u3134\u3141\u3139;\u3134\u3141\uB9AC\uC5B8\uBAA8\u3151;\u3150\u3141\u3134\uC624\u3153\u3139;\u3150\u3151\u3134\uBAAC"
+  m_text: jsdaofjoidsafa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
   m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.95
+  m_fontSize: 25.05
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
