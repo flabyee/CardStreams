@@ -525,6 +525,7 @@ public class HandleController : MonoBehaviour
                 if(handle[i].basicType != BasicType.Monster)
                 {
                     GoldAnimManager.Instance.CreateCoin(handle[i].originValue, handle[i].transform.position);
+                    Effects.Instance.TriggerBlock(handle[i].transform.position);
                 }
 
                 handle[i].GetComponent<DragbleCard>().ActiveFalse();
