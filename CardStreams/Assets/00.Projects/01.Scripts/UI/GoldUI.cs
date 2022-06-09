@@ -12,6 +12,6 @@ public class GoldUI : MonoBehaviour
 
     public void ApplyGoldToText()
     {
-        goldText.text = $"gold : {goldValue.RuntimeValue}";
+        goldText.text = goldValue.RuntimeValue.ToString();
     }
 }

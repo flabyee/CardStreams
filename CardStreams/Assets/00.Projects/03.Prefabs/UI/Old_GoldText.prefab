@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3672610141400604680}
   - component: {fileID: 3672610141400604683}
   m_Layer: 5
-  m_Name: GoldText
+  m_Name: Old_GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
