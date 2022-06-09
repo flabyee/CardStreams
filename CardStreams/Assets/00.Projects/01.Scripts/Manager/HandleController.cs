@@ -358,72 +358,38 @@ public class HandleController : MonoBehaviour
         handle.Add(dragbleCard.cardPower as BasicCard);
     }
 
-    private void DrawBuild()
+    public void DrawBuild(int id)
     {
-        SaveData saveData = SaveSystem.Load();
+        GameObject buildObj = CardPoolManager.Instance.GetBuildCard(buildHandleTrm);
 
-        foreach(BuildData buildData in saveData.buildDataList)
-        {
-            if(buildData.isUnlock == true)
-            {
-                int count = buildData.haveAmount;
-                for (int i = 0; i < count; i++)
-                {
-                    GameObject buildObj = CardPoolManager.Instance.GetBuildCard(buildHandleTrm);
-
-                    // build 관련 초기화
-
-                    BuildCard build = buildObj.GetComponent<BuildCard>();
-                    build.Init(DataManager.Instance.GetBuildSO(buildData.id));
+        // build 관련 초기화
+        BuildCard build = buildObj.GetComponent<BuildCard>();
+        build.Init(DataManager.Instance.GetBuildSO(id));
 
 
-                    // dragble 관련 초기화
-                    DragbleCard dragbleCard = buildObj.GetComponent<DragbleCard>();
+        // dragble 관련 초기화
+        DragbleCard dragbleCard = buildObj.GetComponent<DragbleCard>();
 
-                    dragbleCard.SetDroppedArea(buildHandleDropArea);
-                    dragbleCard.originDropArea = buildHandleDropArea;
+        dragbleCard.SetDroppedArea(buildHandleDropArea);
+        dragbleCard.originDropArea = buildHandleDropArea;
 
-                    dragbleCard.SetData_Build();
-
-                    buildData.haveAmount--;
-                }
-            }
-        }
-
-        SaveSystem.Save(saveData);
+        dragbleCard.SetData_Build();
     }
 
-    private void DrawSpecialCard()
+    public void DrawSpecialCard(int id)
     {
-        SaveData saveData = SaveSystem.Load();
+        GameObject specialCardObj = CardPoolManager.Instance.GetSpecialCard(buildHandleTrm);
+        DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
 
-        foreach (SpecialCardData specialCardData in saveData.speicialCardDataList)
-        {
-            if(specialCardData.isUnlock == true)
-            {
-                int count = specialCardData.haveAmount;
+        // specialCard 관련 초기화
+        SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
+        specialCard.Init(DataManager.Instance.GetSpecialCardSO(id));
 
-                for (int i = 0; i < count; i++)
-                {
-                    GameObject specialCardObj = CardPoolManager.Instance.GetSpecialCard(buildHandleTrm);
-                    DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
+        // dragble 관련 초기화
+        dragbleCard.SetDroppedArea(buildHandleDropArea);
+        dragbleCard.originDropArea = buildHandleDropArea;
 
-                    // specialCard 관련 초기화
-                    SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
-                    specialCard.Init(DataManager.Instance.GetSpecialCardSO(specialCardData.id));
-
-                    // dragble 관련 초기화
-                    dragbleCard.SetDroppedArea(buildHandleDropArea);
-                    dragbleCard.originDropArea = buildHandleDropArea;
-
-                    dragbleCard.SetData_SpecialCard();
-
-                    specialCardData.haveAmount--;
-                }
-            }
-        }
-
-        SaveSystem.Save(saveData);
+        dragbleCard.SetData_SpecialCard();
     }
 
     // turnStart or moveEnd 마다 하는 draw
@@ -439,25 +405,11 @@ public class HandleController : MonoBehaviour
         }
     }
 
-    public void DrawBuildAndSpecialWhenTurnStart()
-    {
-        //Stack<DragbleCard> sellCardStack = new Stack<DragbleCard>();
-        //// 뽑기전에 남아있는 카드가 있다면 제거
-        //for (int i = 0; i < buildHandleTrm.childCount; i++)
-        //{
-        //    GameObject card = buildHandleTrm.GetChild(i).gameObject;
-        //    card.SetActive(false);
-        //    sellCardStack.Push(card.GetComponent<DragbleCard>());
-        //}
-
-        //while (sellCardStack.Count != 0)
-        //{
-        //    Destroy(sellCardStack.Pop().gameObject);
-        //}
-
-        DrawBuild();
-        DrawSpecialCard();
-    }
+    //public void DrawBuildAndSpecialWhenTurnStart()
+    //{
+    //    DrawBuild();
+    //    DrawSpecialCard();
+    //}
 
     public void LoopEnd()
     {
@@ -525,6 +477,7 @@ public class HandleController : MonoBehaviour
                 if(handle[i].basicType != BasicType.Monster)
                 {
                     GoldAnimManager.Instance.CreateCoin(handle[i].originValue, handle[i].transform.position);
+                    Effects.Instance.TriggerBlock(handle[i].transform.position);
                 }
 
                 handle[i].GetComponent<DragbleCard>().ActiveFalse();

@@ -410,7 +410,7 @@ public class GameManager : MonoBehaviour
     private void OnEquip()
     {
         handleController.ShowBuildHandle(true);
-        handleController.DrawBuildAndSpecialWhenTurnStart();
+        //handleController.DrawBuildAndSpecialWhenTurnStart();
 
         shopController.Hide();
         selectRewardManager.Hide();

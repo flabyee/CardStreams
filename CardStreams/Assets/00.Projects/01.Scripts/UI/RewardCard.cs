@@ -39,19 +39,24 @@ public class RewardCard : MonoBehaviour
         // 카드 보상이 없다면 리턴
         if (rewardSO.cardReward.Length <= 0) return;
 
-        // 세이브로드 + 카드 소매넣기
-        SaveData saveData = SaveSystem.Load();
-
         foreach (var cardSO in rewardSO.cardReward)
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, rewardImage.sprite);
+            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite);
 
-            saveData.speicialCardDataList[cardSO.id].haveAmount++;
+            StartCoroutine(Delay(() =>
+            {
+                GameManager.Instance.handleController.DrawSpecialCard(cardSO.id);
+            }, 0.75f));
         }
 
-        SaveSystem.Save(saveData);
-
         selectPanel.Hide(); // 버튼을 눌러 보상을 받았으니 부모 패널을 꺼요
+    }
+
+    IEnumerator Delay(System.Action action, float t)
+    {
+        yield return new WaitForSeconds(t);
+
+        action?.Invoke();
     }
 
     public void SetReward(RewardSO so)
