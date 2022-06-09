@@ -178,6 +178,7 @@ public class GameManager : MonoBehaviour
                 {
                     if(fieldController.IsNextFieldAllMob(moveIndex) == false)
                     {
+                        UITooltip.Instance.Show("모든 몬스터를 배치한 후에 다시 시도하세요!", new UITooltip.TooltipTimer(1f));
                         return;
                     }
                 }

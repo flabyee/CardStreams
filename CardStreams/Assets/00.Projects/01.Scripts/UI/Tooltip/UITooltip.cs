@@ -60,8 +60,8 @@ public class UITooltip : MonoBehaviour
     {
         // 마우스 포지션을 따라다니는 ui
         // 화면상의 우측, 하단을 지나면 배경이 위치가 조정된다
-        Vector2 anchoredPos = (Input.mousePosition);// / canvasRectTrm.lossyScale.x;    // 
-        //anchoredPos.y = anchoredPos.y - canvasRectTrm.rect.height;
+        Vector2 anchoredPos = (Input.mousePosition);// / canvasRectTrm.lossyScale.x;
+
         // 가로 위치 보정
         if (anchoredPos.x + backgroundRectTrm.rect.width > canvasRectTrm.rect.width)
         {

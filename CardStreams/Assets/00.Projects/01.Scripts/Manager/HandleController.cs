@@ -56,7 +56,7 @@ public class HandleController : MonoBehaviour
         DeckShuffle(deck);
     }
 
-    // 0,1   2,3   4,5,6,   7,8,9,10,11
+    // 0,1   2,3   4,5,   6,7,8,9,10,11
     private void DeckMake()
     {
         GameManager.Instance.canStartTurn = false;
@@ -79,9 +79,9 @@ public class HandleController : MonoBehaviour
                     break;
                 case 4:
                 case 5:
-                case 6:
                     originDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
                     break;
+                case 6:
                 case 7:
                 case 8:
                 case 9:
@@ -170,100 +170,6 @@ public class HandleController : MonoBehaviour
     {
         GameManager.Instance.canStartTurn = false;
 
-        originDeck.Clear();
-
-        // originDeck 만들고
-        for (int i = 0; i < 24; i++)
-        {
-            switch (i % 12)
-            {
-                case 0:
-                case 1:
-                    originDeck.Add(new CardData(BasicType.Sword, UnityEngine.Random.Range(2, maxValue)));
-                    break;
-                case 2:
-                case 3:
-                    originDeck.Add(new CardData(BasicType.Sheild, UnityEngine.Random.Range(2, maxValue)));
-                    break;
-                case 4:
-                case 5:
-                case 6:
-                    originDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
-                    break;
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                    originDeck.Add(new CardData(BasicType.Monster, UnityEngine.Random.Range(2, 5)));
-                    break;
-            }
-        }
-
-        int pValue = 0;
-        int mValue = 0;
-
-        foreach (CardData cardData in originDeck)
-        {
-            if (cardData.basicType != BasicType.Monster)
-                pValue += cardData.value;
-            else
-                mValue += cardData.value;
-        }
-
-
-
-        int deckValue = pValue - mValue;
-        int randomIndex = 0;
-
-        while (deckValue != deckValueAmount)
-        {
-            randomIndex = UnityEngine.Random.Range(0, 24);
-            // pValue가 더 크다면
-            if (deckValue > deckValueAmount)
-            {
-                // 플레이어 카드를 줄이거나 몹 카드를 늘린다
-                if (originDeck[randomIndex].basicType != BasicType.Monster)
-                {
-                    if (originDeck[randomIndex].value > 1)
-                        originDeck[randomIndex].value--;
-                    else
-                        deckValue++;
-                }
-                else
-                {
-                    if (originDeck[randomIndex].value < maxValue)
-                        originDeck[randomIndex].value++;
-                    else
-                        deckValue++;
-                }
-
-                deckValue--;
-            }
-            // mValue가 더 크다면
-            else
-            {
-                // 플레이어 카드를 늘리거나 몹 카드를 줄인다
-                if (originDeck[randomIndex].basicType != BasicType.Monster)
-                {
-                    if (originDeck[randomIndex].value < maxValue)
-                        originDeck[randomIndex].value++;
-                    else
-                        deckValue--;
-                }
-                else
-                {
-                    if (originDeck[randomIndex].value > 1)
-                        originDeck[randomIndex].value--;
-                    else
-                        deckValue--;
-                }
-
-
-                deckValue++;
-            }
-        }
-
         DeckShuffle(originDeck);
 
         // deck에 추가하고 셔플
@@ -271,7 +177,6 @@ public class HandleController : MonoBehaviour
         {
             deck.Add(cardData);
         }
-        DeckShuffle(deck);
 
         GameManager.Instance.canStartTurn = true;
     }
@@ -294,7 +199,7 @@ public class HandleController : MonoBehaviour
 
     private void DeckShuffle(List<CardData> cardList, bool isNew = false)
     {
-        for (int i = 0; i < deck.Count; i++)
+        for (int i = 0; i < cardList.Count; i++)
         {
             int j = UnityEngine.Random.Range(0, cardList.Count);
             CardData temp = cardList[i];
@@ -351,7 +256,7 @@ public class HandleController : MonoBehaviour
     {
         CardData cardData = GetCardData();
 
-        if(cardData != null)
+        if (cardData != null)
         {
             GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
             DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
@@ -367,16 +272,84 @@ public class HandleController : MonoBehaviour
         {
             Debug.LogError("카드를 뽑을수 없다?");
         }
+    }
+    public void DrawCardP()
+    {
+        int deckCount = deck.Count;
+        int searchCount = 0;
 
-        //if(cardData != null)
-        //{
-        //    return cardData;
+        CardData cardData = GetCardData();
 
-        //}
-        //else
-        //{
-        //    return null;
-        //}
+
+        while(true)
+        {
+            if (cardData.basicType == BasicType.Monster)
+            {
+                CardAdd(cardData);
+                cardData = GetCardData();
+                searchCount++;
+            }
+            else
+            {
+                break;
+            }
+
+            if (searchCount > deckCount)
+            {
+                DeckAdd();
+
+                deckCount = deck.Count;
+            }
+        }
+
+        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+
+        dragbleCard.SetDroppedArea(handleDropArea);
+        dragbleCard.originDropArea = handleDropArea;
+
+        dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
+
+        handle.Add(dragbleCard.cardPower as BasicCard);
+    }
+    public void DrawCardM()
+    {
+        int deckCount = deck.Count;
+        int searchCount = 0;
+
+        CardData cardData = GetCardData();
+
+
+        while(true)
+        {
+            if (cardData.basicType != BasicType.Monster)
+            {
+                CardAdd(cardData);
+                cardData = GetCardData();
+                searchCount++;
+            }
+            else
+            {
+                break;
+            }
+
+            if (searchCount > deckCount)
+            {
+                DeckAdd();
+
+                deckCount = deck.Count;
+            }
+        }
+
+        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+
+        dragbleCard.SetDroppedArea(handleDropArea);
+        dragbleCard.originDropArea = handleDropArea;
+
+        dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
+
+        handle.Add(dragbleCard.cardPower as BasicCard);
     }
 
     private void DrawBuild()
@@ -450,9 +423,13 @@ public class HandleController : MonoBehaviour
     // turnStart or moveEnd 마다 하는 draw
     public void DrawCardWhenBeforeMove()
     {
-        for (int i = 0; i < handleCount; i++)
+        for (int i = 0; i < handleCount / 2; i++)
         {
-            DrawCard();
+            DrawCardP();
+        }
+        for (int i = 0; i < handleCount / 2; i++)
+        {
+            DrawCardM();
         }
     }
 
