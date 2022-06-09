@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
                     MapManager.Instance.fieldList[i].FieldReset();
 
                     // effect
-                    EffectManager.Instance.GetJungSanEffect(nowField.transform.position);
+                    Effects.Instance.TriggerBlock(nowField.transform.position);
 
                     // coin »ý¼º
                     // GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);

@@ -4,7 +4,8 @@ using ca.HenrySoftware.Rage;
 [RequireComponent(typeof(Pool))]
 public class Effects : MonoBehaviour
 {
-	public CanvasGroup GroupText;
+	public static Effects Instance;
+
 	public ModelEffectAnimation Block;
 	public ModelEffectAnimation Box;
 	public ModelEffectAnimation Bubble;
@@ -41,29 +42,13 @@ public class Effects : MonoBehaviour
 	Material _materialAdditive;
 	void Awake()
 	{
+		Instance = this;
+
 		_materialNormal = new Material(Shader.Find("Sprites/Default")) { color = Color.white };
 		_materialAdditive = new Material(Shader.Find("Custom/Additive")) { color = Color.white };
 		_pool = GetComponent<Pool>();
 	}
-	void Start()
-	{
-		GroupText.alpha = 0f;
-		Begin();
-	}
-	void Begin()
-	{
-		Ease.Go(this, 0f, 1f, 1f, (p) => GroupText.alpha = p, Continue0, EaseType.Linear);
-	}
-	void Continue0()
-	{
-		Ease.Go(this, 1f, 0f, 1f, (p) => GroupText.alpha = p);
-	}
-	void Finish()
-	{
-		StopAllCoroutines();
-		Ease.GoAlpha(this, 1f, 0f, 1f, null, null, EaseType.Linear);
-		Ease.Go(this, 1f, 0f, 1f, (p) => GroupText.alpha = p, Begin, EaseType.Linear);
-	}
+
 	[ContextMenu("TriggerBlock")]
 	public void TriggerBlock()
 	{
@@ -71,7 +56,7 @@ public class Effects : MonoBehaviour
 	}
 	public void TriggerBlock(Vector2 p)
 	{
-		Trigger(Block, p);
+		Trigger(Block, p, false, false, false, 0, true, Color.yellow);
 	}
 	[ContextMenu("TriggerBox")]
 	public void TriggerBox(bool alternate = false)
