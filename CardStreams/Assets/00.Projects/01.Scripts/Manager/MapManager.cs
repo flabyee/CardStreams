@@ -112,6 +112,18 @@ public class MapManager : MonoBehaviour
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
 
+        // 필드 백그라운드 차별을 위해 번호매기기
+        int tileNum = 0;
+        for (int i = 0; i < fieldList.Count / 4; i++)
+        {
+            for(int j = 0; j < 4; j++)
+            {
+                fieldList[i * 4 + j].background.sprite = ConstManager.Instance.fieldSprites[tileNum];
+            }
+
+            tileNum = tileNum == 0 ? 1 : 0;
+        }
+
         Vector2Int[] nearPoints = new Vector2Int[] {
         new Vector2Int(-1,1), new Vector2Int(0,  1), new Vector2Int(1, 1), new Vector2Int(-1, 0),
         new Vector2Int(1, 0), new Vector2Int(-1,-1), new Vector2Int(0,-1), new Vector2Int(1, -1)};
@@ -191,11 +203,8 @@ public class MapManager : MonoBehaviour
             case FieldState.yet:
                 break;
             case FieldState.able:
-                fieldList[index].background.sprite = ConstManager.Instance.nowFieldSprite;
                 break;
             case FieldState.not:
-                fieldList[index].background.sprite = ConstManager.Instance.originFieldSprite;
-
                 if(fieldList[index].isSet == true)
                     fieldList[index].dragbleCard.canDragAndDrop = false;
                 break;

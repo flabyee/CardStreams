@@ -31,6 +31,8 @@ public class Field : MonoBehaviour
     public Action<Player, Field> accessBeforeOnField;
     public Action<Field> accessBuildToCardAfterMoveStart;
 
+    public int tileNum;
+
     [Header("Debug")]
     public DropArea dropArea;
 

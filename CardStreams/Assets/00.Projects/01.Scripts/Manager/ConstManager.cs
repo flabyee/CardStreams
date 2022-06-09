@@ -34,8 +34,7 @@ public class ConstManager : MonoBehaviour
     public Sprite[] monsterSprite;
     public Sprite[] coinSprite;
 
-    public Sprite originFieldSprite;
-    public Sprite nowFieldSprite;
+    public Sprite[] fieldSprites;
 
 
     [Header("color")]

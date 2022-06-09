@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class HandleController : MonoBehaviour
 {
@@ -15,11 +16,15 @@ public class HandleController : MonoBehaviour
 
     public DropArea buildHandleDropArea;
     public RectTransform buildHandleTrm;
-    public GameObject buildHandleObj;
+    public RectTransform buildHandleRectTrm;
 
     public List<DropArea> quicSlotDropAreaList;
 
     public DropArea shopDropArea;
+
+    private float originBuildHandleX;
+    public float buildHandleMoveAmount;
+    public float buildHandleMoveDuration;
 
 
     [Header("System")]
@@ -36,7 +41,8 @@ public class HandleController : MonoBehaviour
 
     private void Awake()
     {
-        
+        originBuildHandleX = buildHandleRectTrm.transform.position.x;
+        buildHandleRectTrm.DOAnchorPosX(originBuildHandleX, 0);
     }
 
     private void Start()
@@ -453,7 +459,7 @@ public class HandleController : MonoBehaviour
         DrawSpecialCard();
     }
 
-    public void TurnEnd()
+    public void LoopEnd()
     {
         deck.Clear();
 
@@ -465,9 +471,29 @@ public class HandleController : MonoBehaviour
         DeckMake();
     }
 
-    public void ShowBuildHandle(bool b)
+    public void ShowBuildHandle(bool isShow)
     {
-        buildHandleObj.SetActive(b);
+        if(isShow)
+        {
+            buildHandleRectTrm.DOAnchorPosX(originBuildHandleX, buildHandleMoveDuration);
+
+            buildHandleRectTrm.gameObject.SetActive(true);
+        }
+        else
+        {
+            buildHandleRectTrm.transform.DOMoveX(originBuildHandleX - buildHandleMoveAmount, buildHandleMoveDuration);
+
+            StartCoroutine(Delay(() => {
+                buildHandleRectTrm.gameObject.SetActive(false);
+            }, buildHandleMoveDuration));
+        }
+    }
+
+    private IEnumerator Delay(Action action, float t)
+    {
+        yield return new WaitForSeconds(t);
+
+        action?.Invoke();
     }
 
     // 현재 손에 몬스터 카드가 있는지

@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
     {
         canNext = false;
 
-        handleController.TurnEnd();
+        handleController.LoopEnd();
 
         moveIndex = 0;
 
