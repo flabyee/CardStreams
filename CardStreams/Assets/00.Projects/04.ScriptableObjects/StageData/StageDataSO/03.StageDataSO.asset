@@ -19,7 +19,7 @@ MonoBehaviour:
   firstDeckValueAmount: 10
   deckValueIncreaseAmount: 7
   deckValueIncreaseMultipication: 1.25
-  firstMobSpawnAmount: 4
-  mobIncreaseAmount: 2
-  firstMobAttackAmount: 3
-  mobAttackIncreaseAmount: 1
+  firstMobSpawnAmount: 6
+  mobIncreaseAmount: 1
+  firstMobAttackAmount: 2
+  mobAttackIncreaseAmount: 2
