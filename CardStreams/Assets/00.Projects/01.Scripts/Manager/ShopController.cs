@@ -343,9 +343,10 @@ public class ShopController : MonoBehaviour
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
 
-            SaveData saveData = SaveSystem.Load();
-            saveData.speicialCardDataList[specialCardSO.id].haveAmount++;
-            SaveSystem.Save(saveData);
+            StartCoroutine(Delay(() =>
+            {
+                GameManager.Instance.handleController.DrawSpecialCard(specialCardSO.id);
+            }, 0.75f));
         }
     }
 
@@ -358,10 +359,18 @@ public class ShopController : MonoBehaviour
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
 
-            SaveData saveData = SaveSystem.Load();
-            saveData.buildDataList[buildSO.id].haveAmount++;
-            SaveSystem.Save(saveData);
+            StartCoroutine(Delay(() =>
+            {
+                GameManager.Instance.handleController.DrawBuild(buildSO.id);
+            }, 0.75f));
         }
+    }
+
+    IEnumerator Delay(System.Action action, float t)
+    {
+        yield return new WaitForSeconds(t);
+
+        action?.Invoke();
     }
 
     private IEnumerator ActiveFalseCor(GameObject obj, float t)
