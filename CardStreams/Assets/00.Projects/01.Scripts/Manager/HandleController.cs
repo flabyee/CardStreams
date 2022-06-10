@@ -41,8 +41,7 @@ public class HandleController : MonoBehaviour
 
     private void Awake()
     {
-        originBuildHandleX = buildHandleRectTrm.transform.position.x;
-        buildHandleRectTrm.DOAnchorPosX(originBuildHandleX, 0);
+        originBuildHandleX = buildHandleRectTrm.anchoredPosition.x;
     }
 
     private void Start()
@@ -433,7 +432,7 @@ public class HandleController : MonoBehaviour
         }
         else
         {
-            buildHandleRectTrm.transform.DOMoveX(originBuildHandleX - buildHandleMoveAmount, buildHandleMoveDuration);
+            buildHandleRectTrm.DOAnchorPosX(originBuildHandleX + buildHandleMoveAmount, buildHandleMoveDuration);
 
             StartCoroutine(Delay(() => {
                 buildHandleRectTrm.gameObject.SetActive(false);
