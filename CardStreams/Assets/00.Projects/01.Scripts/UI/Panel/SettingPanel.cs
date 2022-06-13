@@ -36,4 +36,9 @@ public class SettingPanel : MonoBehaviour
         _cg.blocksRaycasts = false;
         isOpen = false;
     }
+
+    public void OnClickExit()
+    {
+        Application.Quit();
+    }
 }

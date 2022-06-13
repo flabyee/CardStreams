@@ -39,4 +39,5 @@ public class ConstManager : MonoBehaviour
 
     [Header("color")]
     public Dictionary<CardGrade, Color> gradeColorDict;
+    public List<Sprite> gradeSpriteDict;
 }
