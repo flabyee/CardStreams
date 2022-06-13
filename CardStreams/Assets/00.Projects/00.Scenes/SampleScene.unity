@@ -2958,7 +2958,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.5, y: 75.5}
+  cellSize: {x: 75.45809, y: 75.45809}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -6710,6 +6710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea0263fbdd1ab348aa317e6cee45516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildList: []
 --- !u!1001 &1063834739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9722,6 +9723,7 @@ MonoBehaviour:
   moveDuration: 0.001
   fieldResetDelay: 0.1
   canStartTurn: 0
+  moveIndex: 0
   curState: 0
   nextState: 0
   enemyController: {fileID: 1664593178}
@@ -11638,7 +11640,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.5, y: 75.5}
+  cellSize: {x: 75.45809, y: 75.45809}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -11831,6 +11833,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886073703}
   m_CullTransparentMesh: 1
+--- !u!1 &1886591911 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4140458998412203706, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1914850861
 GameObject:
   m_ObjectHideFlags: 0
@@ -11959,6 +11966,7 @@ MonoBehaviour:
   jungSanEffect: {fileID: 1612221337289516, guid: b9f6a5ecfd8cb174ca67a8ee8308321b, type: 3}
   bezierCardEffect: {fileID: 4617811631078992324, guid: 9fa5ad7b0ba1e5b409ed42c8e79650d8, type: 3}
   targetTrm: {fileID: 1069635407}
+  nextBuildEffect: {fileID: 1612221337289516, guid: 2959bb36081fd4e428e35494de1860e4, type: 3}
 --- !u!114 &1920793696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13247,6 +13255,7 @@ MonoBehaviour:
   _reduceCG: {fileID: 1814481313}
   specialCardShopTrm: {fileID: 1814481312}
   buildShopTrm: {fileID: 1814481311}
+  blurObj: {fileID: 1886591911}
   handleTrm: {fileID: 393445010288987042}
   hoverTrm: {fileID: 1941386226}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}

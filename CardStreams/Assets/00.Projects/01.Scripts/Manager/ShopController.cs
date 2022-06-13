@@ -19,6 +19,7 @@ public class ShopController : MonoBehaviour
     public CanvasGroup _reduceCG;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
+    public GameObject blurObj;
 
     public RectTransform handleTrm;
     public RectTransform hoverTrm;
@@ -93,6 +94,8 @@ public class ShopController : MonoBehaviour
         isMinimize = false;
         _reduceCG.alpha = 1;
 
+        blurObj.SetActive(true);
+
         OnShop();
     }
 
@@ -110,6 +113,7 @@ public class ShopController : MonoBehaviour
         _reduceCG.alpha = isMinimize ? 0 : 1;
         _reduceCG.interactable = isMinimize ? false : true;
         _reduceCG.blocksRaycasts = isMinimize ? false : true;
+        blurObj.SetActive(!isMinimize);
     }
 
     public void OnShop()

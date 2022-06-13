@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            Debug.Log("init");
         }
         else
         {
@@ -157,24 +158,42 @@ public class GameManager : MonoBehaviour
 
     public void OnClickAction()
     {
-        if (canNext == false)
-            return;
+        
+
 
         switch (curState)
         {
             case GameState.TurnStart:
+                if (canNext == false)
+                {
+                    UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
                 NextAction();
                 break;
 
 
             case GameState.TurnEnd:
+                if (canNext == false)
+                {
+                    UITooltip.Instance.Show("정산중입니다", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
                 NextAction();
                 break;
 
 
             case GameState.Move:
+                if (canNext == false)
+                {
+                    UITooltip.Instance.Show("이동중입니다", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
                 // 손에 몬스터 카드가 있고 앞에 4개 필드가 모두 몬스터가 아니면 next 안됨
-                if(handleController.HaveMobCard() == true)
+                if (handleController.HaveMobCard() == true)
                 {
                     if(fieldController.IsNextFieldAllMob(moveIndex) == false)
                     {
@@ -188,11 +207,23 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.Modify:
+                if (canNext == false)
+                {
+                    UITooltip.Instance.Show("무작위 적이 생성중입니다", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
                 NextAction();
                 break;
 
 
             case GameState.Equip:
+                if (canNext == false)
+                {
+                    UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
                 NextAction();
                 break;
             default:
@@ -366,9 +397,8 @@ public class GameManager : MonoBehaviour
                 // 플레이어 죽었으면 끝
                 if (player.isAlive == false)
                 {
-                    Debug.Log("플레이어 디짐");
-                    dontTouchController.Hide();
-                    playerDieEvent.Occurred();
+                    GameEnd();
+
                     sequence.Kill();
                     return;
                 }
@@ -481,5 +511,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(t);
 
         action?.Invoke();
+    }
+
+    private void GameEnd()
+    {
+        Debug.Log("플레이어 디짐");
+        dontTouchController.Hide();
+        playerDieEvent.Occurred();
+        DropArea.dropAreas.Clear();
     }
 } 

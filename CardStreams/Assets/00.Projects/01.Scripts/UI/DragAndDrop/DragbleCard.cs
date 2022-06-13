@@ -61,8 +61,6 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void SetData_SpecialCard()
     {
-        canDragAndDrop = false;
-
         cardPower.SetHandle();
 
         cardPower.SetData_SpecialCard();
@@ -70,8 +68,6 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void SetData_Build()
     {
-        canDragAndDrop = false;
-
         cardPower.SetHandle();
 
         cardPower.SetData_Build();
@@ -98,10 +94,6 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             return;
         }
         if(canDragAndDrop == false)
-        {
-            return;
-        }
-        if (eventData.button != PointerEventData.InputButton.Left)
         {
             return;
         }
@@ -144,6 +136,11 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (isDraging == false)
             return;
 
+        if (eventData.button != PointerEventData.InputButton.Left)
+        {
+            return;
+        }
+
         // 드래그 시작할 때 설정한 값을 이용해서 이동
         Vector3 worldPointerPosition;
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, eventData.position,
@@ -166,6 +163,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (isDraging == false)
             return;
 
+        if (eventData.button != PointerEventData.InputButton.Left)
+        {
+            return;
+        }
 
         isDraging = false;
 

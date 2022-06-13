@@ -49,7 +49,7 @@ public class BuildManager : MonoBehaviour
 
     public void NextBuildEffect()
     {
-        Debug.Log(buildList.Count);
+        EffectManager.Instance.DeleteNextBuildEffect();
 
         List<Vector2> nextFieldVectorList = new List<Vector2>();
 
@@ -64,9 +64,12 @@ public class BuildManager : MonoBehaviour
         {
             foreach (Vector2 point in build.GetAccessPointList())
             {
-                if(nextFieldVectorList.Contains(point + build.GetMyPoint()))
+                //Debug.Log($"myP : {build.GetMyPoint()}, p : {point}, result : {point + build.GetMyPoint()}");
+                Vector2 resultPoint = new Vector2(build.GetMyPoint().x + point.x, build.GetMyPoint().y - point.y);
+                if (nextFieldVectorList.Contains(resultPoint))
                 {
-                    Effects.Instance.TriggerNuclear(build.transform.position) ;
+                    EffectManager.Instance.GetNextBuildEffect(build.transform.position);
+                    break;
                 }
             }
         }

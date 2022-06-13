@@ -13,6 +13,9 @@ public class EffectManager : MonoBehaviour
     public GameObject bezierCardEffect;
     [SerializeField] Transform targetTrm;
 
+    public GameObject nextBuildEffect;
+    private List<GameObject> nextBuildEffectList = new List<GameObject>();
+
     private Canvas _mainCanvas; // 태그로 찾아요 나중엔싱글톤으로 찾아야할듯?
 
     private void Awake()
@@ -55,5 +58,22 @@ public class EffectManager : MonoBehaviour
         effect.Init(targetTrm, icon);
 
         Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요
+    }
+
+    public void GetNextBuildEffect(Vector3 pos)
+    {
+        GameObject effect = Instantiate(nextBuildEffect, pos, Quaternion.identity);
+        nextBuildEffectList.Add(effect);
+    }
+    public void DeleteNextBuildEffect()
+    {
+        for (int i = nextBuildEffectList.Count - 1; i >= 0; i--)
+        {
+            GameObject temp = nextBuildEffectList[i];
+            nextBuildEffectList.RemoveAt(i);
+            Destroy(temp);
+        }
+
+        nextBuildEffectList.Clear();
     }
 }

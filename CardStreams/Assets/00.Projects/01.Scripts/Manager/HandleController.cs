@@ -371,7 +371,7 @@ public class HandleController : MonoBehaviour
 
         dragbleCard.SetDroppedArea(buildHandleDropArea);
         dragbleCard.originDropArea = buildHandleDropArea;
-        dragbleCard.canDragAndDrop = false;
+        dragbleCard.canDragAndDrop = GameManager.Instance.curState == GameState.Equip ? true : false;
 
         dragbleCard.SetData_Build();
     }
@@ -388,7 +388,7 @@ public class HandleController : MonoBehaviour
         // dragble 관련 초기화
         dragbleCard.SetDroppedArea(buildHandleDropArea);
         dragbleCard.originDropArea = buildHandleDropArea;
-        dragbleCard.canDragAndDrop = false;
+        dragbleCard.canDragAndDrop = GameManager.Instance.curState == GameState.Equip ? true : false;
 
         dragbleCard.SetData_SpecialCard();
     }
