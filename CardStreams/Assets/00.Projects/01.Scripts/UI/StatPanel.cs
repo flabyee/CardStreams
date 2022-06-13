@@ -63,7 +63,7 @@ public class StatPanel : MonoBehaviour
         for (int i = count; i < runtimeStatImages.Length; i++)
         {
             int avoidClosure = i;
-            runtimeStatImages[avoidClosure].DOFade(0, 0.2f).OnComplete( () => runtimeStatImages[avoidClosure].sprite = null);
+            runtimeStatImages[avoidClosure].DOFade(0, 0.2f);
 
             count++;
         }
