@@ -14,8 +14,8 @@ public class SpeedSlider : MonoBehaviour
     public void ChangeSpeed()
     {
         _speed = _slider.value;
-        _speedText.text = _speed.ToString();
+        _speedText.text = $"{0.05f + _slider.value / 4f}";
 
-        GameManager.Instance.SetMoveDuration(1 / (_speed * 10));
+        GameManager.Instance.SetMoveDuration(0.05f + _slider.value / 400f);
     }
 }
