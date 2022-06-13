@@ -48,7 +48,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(isHandle)
+        if(isHandle && eventData.button == PointerEventData.InputButton.Right)
         {
             GameManager.Instance.DropQuickSlot(GetComponent<DragbleCard>());
         }

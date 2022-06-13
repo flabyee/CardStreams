@@ -60,30 +60,31 @@ public class BuildTooltip : MonoBehaviour
 
         string str = string.Empty;
 
-        for (int y = 2; y >= -2; y--)
+        if (accessPointList != null)
         {
-            for (int x = -2; x <= 2; x++)
+            for (int y = 2; y >= -2; y--)
             {
-                if(accessPointList == null)
+                for (int x = -2; x <= 2; x++)
                 {
-                    Debug.LogError("adsfasfadsf");
-                }
-                // point에 해당되는 구역이아니라면 Alpha = 0
-                if (!accessPointList.Contains(new Vector2(x, y)))
-                {
-                    areaImageArr[y + 2, x + 2].color = new Color(0, 0, 0, 0);
-                }
-                else
-                {
-                    areaImageArr[y + 2, x + 2].color = Color.green;
-                }
+                    // point에 해당되는 구역이아니라면 Alpha = 0
+                    if (!accessPointList.Contains(new Vector2(x, y)))
+                    {
+                        areaImageArr[y + 2, x + 2].color = new Color(0, 0, 0, 0);
+                    }
+                    else
+                    {
+                        areaImageArr[y + 2, x + 2].color = Color.green;
+                    }
 
-                if(y == 0 && x == 0)
-                {
-                    areaImageArr[y + 2, x + 2].color = Color.yellow;
+                    if (y == 0 && x == 0)
+                    {
+                        areaImageArr[y + 2, x + 2].color = Color.yellow;
+                    }
                 }
             }
         }
+
+
 
 
         infoText.text = tooltipStr;

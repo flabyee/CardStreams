@@ -16,7 +16,7 @@ public class HandleController : MonoBehaviour
 
     public DropArea buildHandleDropArea;
     public RectTransform buildHandleTrm;
-    public RectTransform buildHandleRectTrm;
+    public RectTransform buildHandleObjTrm;
 
     public List<DropArea> quicSlotDropAreaList;
 
@@ -41,7 +41,7 @@ public class HandleController : MonoBehaviour
 
     private void Awake()
     {
-        originBuildHandleX = buildHandleRectTrm.anchoredPosition.x;
+        originBuildHandleX = buildHandleObjTrm.anchoredPosition.x;
     }
 
     private void Start()
@@ -371,6 +371,7 @@ public class HandleController : MonoBehaviour
 
         dragbleCard.SetDroppedArea(buildHandleDropArea);
         dragbleCard.originDropArea = buildHandleDropArea;
+        dragbleCard.canDragAndDrop = false;
 
         dragbleCard.SetData_Build();
     }
@@ -387,6 +388,7 @@ public class HandleController : MonoBehaviour
         // dragble 관련 초기화
         dragbleCard.SetDroppedArea(buildHandleDropArea);
         dragbleCard.originDropArea = buildHandleDropArea;
+        dragbleCard.canDragAndDrop = false;
 
         dragbleCard.SetData_SpecialCard();
     }
@@ -426,17 +428,25 @@ public class HandleController : MonoBehaviour
     {
         if(isShow)
         {
-            buildHandleRectTrm.DOAnchorPosX(originBuildHandleX, buildHandleMoveDuration);
+            buildHandleObjTrm.DOAnchorPosX(originBuildHandleX, buildHandleMoveDuration);
 
-            buildHandleRectTrm.gameObject.SetActive(true);
+            buildHandleObjTrm.gameObject.SetActive(true);
         }
         else
         {
-            buildHandleRectTrm.DOAnchorPosX(originBuildHandleX + buildHandleMoveAmount, buildHandleMoveDuration);
+            buildHandleObjTrm.DOAnchorPosX(originBuildHandleX + buildHandleMoveAmount, buildHandleMoveDuration);
 
             StartCoroutine(Delay(() => {
-                buildHandleRectTrm.gameObject.SetActive(false);
+                buildHandleObjTrm.gameObject.SetActive(false);
             }, buildHandleMoveDuration));
+        }
+    }
+
+    public void InteractiveBuildHandle(bool canInteractive)
+    {
+        for(int i = 0; i < buildHandleTrm.childCount; i++)
+        {
+            buildHandleTrm.GetChild(i).GetComponent<DragbleCard>().canDragAndDrop = canInteractive;
         }
     }
 

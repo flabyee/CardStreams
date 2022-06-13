@@ -403,6 +403,7 @@ public class GameManager : MonoBehaviour
         enemyController.RandomEnemyBuild();
 
         handleController.ShowBuildHandle(true);
+        handleController.InteractiveBuildHandle(false);
 
         nextState = GameState.Equip;
     }
@@ -410,7 +411,7 @@ public class GameManager : MonoBehaviour
     private void OnEquip()
     {
         handleController.ShowBuildHandle(true);
-        //handleController.DrawBuildAndSpecialWhenTurnStart();
+        handleController.InteractiveBuildHandle(true);
 
         shopController.Hide();
         selectRewardManager.Hide();

@@ -523,8 +523,6 @@ MonoBehaviour:
   prevDropArea: {fileID: 0}
   originDropArea: {fileID: 0}
   originOriginDropArea: {fileID: 0}
-  isHandle: 0
-  isField: 0
   canDragAndDrop: 0
   isDestory: 0
   cardPower: {fileID: 0}
@@ -542,6 +540,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 1017501598721244011}
   backImage: {fileID: 6555687024791524721}
+  isHandle: 0
+  isField: 0
   cardType: 0
   greadeText: {fileID: 4038546894875006015}
   buildSO: {fileID: 0}
@@ -1113,7 +1113,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6709088967707925225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.4094009}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3970790989310306338}

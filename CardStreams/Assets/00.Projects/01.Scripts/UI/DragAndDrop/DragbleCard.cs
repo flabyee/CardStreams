@@ -29,10 +29,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 
 
-    [HideInInspector] public bool canDragAndDrop;
-    [HideInInspector] public bool isDestory;
+    public bool canDragAndDrop;
+    public bool isDestory;
 
-    [HideInInspector]public CardPower cardPower;
+    public CardPower cardPower;
 
     private bool isDraging;
 
@@ -61,7 +61,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void SetData_SpecialCard()
     {
-        canDragAndDrop = true;
+        canDragAndDrop = false;
 
         cardPower.SetHandle();
 
@@ -70,7 +70,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void SetData_Build()
     {
-        canDragAndDrop = true;
+        canDragAndDrop = false;
 
         cardPower.SetHandle();
 
@@ -98,6 +98,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             return;
         }
         if(canDragAndDrop == false)
+        {
+            return;
+        }
+        if (eventData.button != PointerEventData.InputButton.Left)
         {
             return;
         }
@@ -161,6 +165,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (isDraging == false)
             return;
+
 
         isDraging = false;
 
