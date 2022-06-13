@@ -45,7 +45,7 @@ public class EffectManager : MonoBehaviour
     }
 
     /// <summary> 카드 생성해서 돌면서 작아지게하는마법 </summary>
-    /// <param name="targetTrm">어디로 날아가나</param>
+    /// <param name="startPos">어디서 날아가나요</param>
     /// <param name="icon">카드의 아이콘</param>
     public void GetBezierCardEffect(Vector3 startPos, Sprite icon)
     {

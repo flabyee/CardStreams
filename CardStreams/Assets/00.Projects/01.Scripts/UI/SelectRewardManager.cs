@@ -11,7 +11,6 @@ public class SelectRewardManager : MonoBehaviour
     private int loopCount = 0; // 알아서 돌아감, 나중에 동기화 필?요
 
     [SerializeField] GameObject _cgObject;
-    [SerializeField] GameObject _getRewardCardPrefab;
 
     
 
