@@ -129,6 +129,11 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
 
         rectTransform.sizeDelta = new Vector2(75, 75);
+
+        if(GameManager.Instance.curState == GameState.Equip)
+        {
+            GameManager.Instance.handleController.RayCastTargetBuildHandle(false);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -200,6 +205,11 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (cardPower.cardType == CardType.Build)
         {
             BuildAreaTooltip.Instance.HideFollow();
+        }
+
+        if (GameManager.Instance.curState == GameState.Equip)
+        {
+            GameManager.Instance.handleController.RayCastTargetBuildHandle(true);
         }
     }
 

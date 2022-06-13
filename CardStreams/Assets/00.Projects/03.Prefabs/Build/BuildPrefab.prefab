@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: -3816892781402171327}
   - component: {fileID: 1017501599584371605}
   - component: {fileID: -4286347746058970656}
+  - component: {fileID: 3262360210417420510}
   m_Layer: 5
   m_Name: BuildPrefab
   m_TagString: Untagged
@@ -617,6 +618,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1017501599584371605}
+--- !u!225 &3262360210417420510
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017501599584371627}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1087426592903969971
 GameObject:
   m_ObjectHideFlags: 0

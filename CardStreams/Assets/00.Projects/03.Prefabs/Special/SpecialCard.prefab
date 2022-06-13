@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 8824498086586159459}
   - component: {fileID: 1017501599584371605}
   - component: {fileID: -4286347746058970656}
+  - component: {fileID: 4756597719623919819}
   m_Layer: 5
   m_Name: SpecialCard
   m_TagString: Untagged
@@ -307,8 +308,6 @@ MonoBehaviour:
   prevDropArea: {fileID: 0}
   originDropArea: {fileID: 0}
   originOriginDropArea: {fileID: 0}
-  isHandle: 0
-  isField: 0
   canDragAndDrop: 0
   isDestory: 0
   cardPower: {fileID: 0}
@@ -326,6 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 1017501598721244011}
   backImage: {fileID: 5097071954072161377}
+  isHandle: 0
+  isField: 0
   cardType: 0
   applyTiming: 0
   targetTypeList: 
@@ -404,6 +405,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1017501599584371605}
+--- !u!225 &4756597719623919819
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017501599584371627}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1929831496609583167
 GameObject:
   m_ObjectHideFlags: 0

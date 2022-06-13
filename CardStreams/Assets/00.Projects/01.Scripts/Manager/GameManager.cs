@@ -268,6 +268,8 @@ public class GameManager : MonoBehaviour
         // Á¤»ê
         StartCoroutine(JungSanCor());
 
+        EffectManager.Instance.DeleteNextBuildEffect();
+
         TurnEndEvent.Occurred();
 
         nextState = GameState.Modify;

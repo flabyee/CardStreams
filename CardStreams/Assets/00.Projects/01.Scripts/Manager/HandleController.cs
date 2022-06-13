@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using DG.Tweening;
 
@@ -447,6 +448,16 @@ public class HandleController : MonoBehaviour
         for(int i = 0; i < buildHandleTrm.childCount; i++)
         {
             buildHandleTrm.GetChild(i).GetComponent<DragbleCard>().canDragAndDrop = canInteractive;
+        }
+    }
+
+    public void RayCastTargetBuildHandle(bool canInteractive)
+    {
+        for(int i = 0; i < buildHandleTrm.childCount; i++)
+        {
+            buildHandleTrm.GetChild(i).GetComponent<CanvasGroup>().blocksRaycasts = canInteractive;
+            buildHandleTrm.GetChild(i).GetComponent<CanvasGroup>().interactable = canInteractive;
+
         }
     }
 
