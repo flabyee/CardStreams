@@ -43,6 +43,8 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
     public void BuildDrop(Vector2 point)
     {
+        BuildManager.Instance.buildList.Add(this);
+
         greadeText.text = string.Empty;
 
         isDrop = true;
@@ -73,6 +75,8 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
     public void BuildUp()
     {
+        BuildManager.Instance.buildList.Remove(this);
+
         isDrop = false;
 
         // 주변 검사해서 효과 빼기
@@ -122,5 +126,10 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     public List<Vector2> GetAccessPointList()
     {
         return accessPointList;
+    }
+
+    public Vector2 GetMyPoint()
+    {
+        return myPoint;
     }
 }

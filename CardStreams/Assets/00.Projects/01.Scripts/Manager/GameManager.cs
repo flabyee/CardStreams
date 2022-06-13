@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float moveDuration;    // Move에 걸리는 시간
     [SerializeField] float fieldResetDelay; // 정산이후 대기 시간
     public bool canStartTurn;   // deck을 다 만든 후에 게임을 진행하기 위해서
-    private int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
+    public int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
     public GameState curState; // 현재 게임의 상태
     public GameState nextState; // 다음 상태
     private bool canNext;
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         handleController.DrawCardWhenBeforeMove();
         handleController.ShowBuildHandle(false);
 
-
+        BuildManager.Instance.NextBuildEffect();
 
         TurnStartEvent.Occurred();
 
@@ -304,6 +304,8 @@ public class GameManager : MonoBehaviour
             fieldController.SetNextFieldAble(moveIndex);
             // draw
             handleController.DrawCardWhenBeforeMove();
+
+            BuildManager.Instance.NextBuildEffect();
         }
 
         MoveEndEvent.Occurred();
@@ -365,6 +367,7 @@ public class GameManager : MonoBehaviour
                 if (player.isAlive == false)
                 {
                     Debug.Log("플레이어 디짐");
+                    dontTouchController.Hide();
                     playerDieEvent.Occurred();
                     sequence.Kill();
                     return;

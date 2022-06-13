@@ -33,6 +33,6 @@ public class GameOverPanel : MonoBehaviour
     public void ReturnMenu()
     {
         Debug.Log("»ç¸Á");
-        SceneManager.LoadScene("MenuScene");
+        SceneManager.LoadScene("SampleScene");
     }
 }

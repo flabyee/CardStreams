@@ -13,6 +13,7 @@ public class BuildManager : MonoBehaviour
     public Action OnBuildWhenMoveStart;
     public Action OnBuildWhenMoveEnd;
 
+    public List<BuildCard> buildList = new List<BuildCard>();
     public List<ActionPosData> OnBuildWhenTurnEndList = new List<ActionPosData>();
 
     private void Awake()
@@ -46,9 +47,29 @@ public class BuildManager : MonoBehaviour
         OnBuildWhenMoveStart?.Invoke();
     }
 
-    public void MoveEnd()
+    public void NextBuildEffect()
     {
-        OnBuildWhenMoveEnd?.Invoke();
+        Debug.Log(buildList.Count);
+
+        List<Vector2> nextFieldVectorList = new List<Vector2>();
+
+        int moveIndex = GameManager.Instance.moveIndex;
+
+        for (int i = moveIndex; i < moveIndex + 4; i++)
+        {
+            nextFieldVectorList.Add(MapManager.Instance.fieldList[i].dropArea.point);
+        }
+
+        foreach(BuildCard build in buildList)
+        {
+            foreach (Vector2 point in build.GetAccessPointList())
+            {
+                if(nextFieldVectorList.Contains(point + build.GetMyPoint()))
+                {
+                    Effects.Instance.TriggerNuclear(build.transform.position) ;
+                }
+            }
+        }
     }
 }
 
