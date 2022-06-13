@@ -14,6 +14,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public List<BasicType> targetBasicList;
     public List<Vector2> accessPointList;
     public string tooltip;
+    public int price;
     public Image itemImage;
     public Image gradeImage;
     public TextMeshProUGUI priceText;
@@ -30,6 +31,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
         gradeImage.sprite = ConstManager.Instance.gradeSpriteDict[(int)grade];
+        this.price = price;
         priceText.text = price.ToString();
     }
 
@@ -42,6 +44,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
         gradeImage.sprite = ConstManager.Instance.gradeSpriteDict[(int)grade];
+        this.price = price;
         priceText.text = price.ToString();
     }
 

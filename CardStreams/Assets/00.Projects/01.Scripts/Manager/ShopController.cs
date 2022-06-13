@@ -23,9 +23,9 @@ public class ShopController : MonoBehaviour
     [SerializeField] List<int> chanceIncreaseAmountList;
     [SerializeField] List<tttttt> ttttt;
     // public
-    
-    // private
 
+    // private
+    List<ShopItemInfo> shopItemList = new List<ShopItemInfo>();
     // ui
     public CanvasGroup _cg;
     public CanvasGroup _reduceCG;
@@ -144,13 +144,25 @@ public class ShopController : MonoBehaviour
 
     public void OnShop()
     {
+        shopItemList.Clear();
+
         OnSpecialCardShop();
         OnBuildShop();
+
+        Renewal();
+    }
+
+    public void Renewal()
+    {
+        foreach(ShopItemInfo info in shopItemList)
+        {
+            info.priceText.color = info.price <= goldValue.RuntimeValue ? Color.white : Color.red;
+        }
 
         rerollCostText.text = $"리롤({rerollCost})";
         rerollCostText.color = rerollCost <= goldValue.RuntimeValue ? Color.white : Color.red;
 
-        if(upgradeCostList[shopGrade] != -1)
+        if (upgradeCostList[shopGrade] != -1)
         {
             upgradeCostText.text = $"상점 강화({upgradeCostList[shopGrade]})";
             upgradeCostText.color = upgradeCostList[shopGrade] <= goldValue.RuntimeValue ? Color.white : Color.red;
@@ -331,11 +343,15 @@ public class ShopController : MonoBehaviour
             GameObject shopItem = Instantiate(shopItemPrefab, buildShopTrm);
             ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
+            shopItemList.Add(info);
+
             info.Init(itemSO.buildName, itemSO.accessPointList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
 
             info.button.onClick.AddListener(() =>
             {
                 BuyBuild(itemSO, shopItem.transform.position);
+
+                Renewal();
 
                 //OnShop();
             });
@@ -361,12 +377,16 @@ public class ShopController : MonoBehaviour
             GameObject shopItem = Instantiate(shopItemPrefab, specialCardShopTrm);
             ShopItemInfo info = shopItem.GetComponent<ShopItemInfo>();
 
+            shopItemList.Add(info);
+
             info.Init(itemSO.specialCardName, itemSO.targetTypeList, itemSO.targetBasicList, itemSO.tooltip, itemSO.sprite, itemSO.grade, itemSO.price);
 
             info.button.onClick.AddListener(() =>
             {
                 BuySpecial(itemSO, shopItem.transform.position);
-               
+
+                Renewal();
+
                 //OnShop();
             });
         }
@@ -469,7 +489,8 @@ public class ShopController : MonoBehaviour
 
             SetChance();
 
-            itemCount++;
+            if(shopGrade == 2 || shopGrade == 4)
+                itemCount++;
 
             OnShop();
         }
