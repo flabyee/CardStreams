@@ -2963,7 +2963,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.48794, y: 75.48794}
+  cellSize: {x: 75.62286, y: 75.62286}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -9333,6 +9333,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578575340}
   m_CullTransparentMesh: 1
+--- !u!114 &1579216906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3197037125130148279, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1588369184
 GameObject:
   m_ObjectHideFlags: 0
@@ -10943,6 +10954,62 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2051422256}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickShopUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387902955920604841, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2051422256}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickReroll
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShopController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631205267104946032, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7285864640588924947, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -11296,6 +11363,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817029109}
   m_CullTransparentMesh: 1
+--- !u!114 &1825939040 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4357933661411160993, guid: 65f9d71292ecfff40822cf9856e166ed, type: 3}
+  m_PrefabInstance: {fileID: 1814481309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1826682317
 GameObject:
   m_ObjectHideFlags: 0
@@ -11646,7 +11724,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.48794, y: 75.48794}
+  cellSize: {x: 75.62286, y: 75.62286}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -13257,6 +13335,32 @@ MonoBehaviour:
   shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
   chanceFirstAmountList: 32000000b5ffffff70feffff1efbffff88faffff
   chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
+  ttttt:
+  - common: 100
+    rare: 50
+    epic: 0
+    unique: 0
+    legendary: 0
+  - common: 50
+    rare: 100
+    epic: 50
+    unique: 0
+    legendary: 0
+  - common: 0
+    rare: 50
+    epic: 100
+    unique: 50
+    legendary: 0
+  - common: 0
+    rare: 50
+    epic: 100
+    unique: 150
+    legendary: 0
+  - common: 0
+    rare: 0
+    epic: 150
+    unique: 200
+    legendary: 100
   _cg: {fileID: 1675048946}
   _reduceCG: {fileID: 1814481313}
   specialCardShopTrm: {fileID: 1814481312}
@@ -13264,6 +13368,11 @@ MonoBehaviour:
   blurObj: {fileID: 1886591911}
   handleTrm: {fileID: 393445010288987042}
   hoverTrm: {fileID: 1941386226}
+  rerollCostText: {fileID: 1825939040}
+  upgradeCostText: {fileID: 1579216906}
+  itemCount: 5
+  rerollCost: 5
+  upgradeCostList: 0a000000140000001e00000028000000ffffffff
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}

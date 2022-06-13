@@ -1,7 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
+
+[System.Serializable]
+public class tttttt
+{
+    public int common;
+    public int rare;
+    public int epic;
+    public int unique;
+    public int legendary;
+}
 
 public class ShopController : MonoBehaviour
 {
@@ -9,9 +21,9 @@ public class ShopController : MonoBehaviour
     [SerializeField] GameObject shopItemPrefab;
     [SerializeField] List<int> chanceFirstAmountList;
     [SerializeField] List<int> chanceIncreaseAmountList;
-
+    [SerializeField] List<tttttt> ttttt;
     // public
-
+    
     // private
 
     // ui
@@ -24,8 +36,20 @@ public class ShopController : MonoBehaviour
     public RectTransform handleTrm;
     public RectTransform hoverTrm;
 
+    public TextMeshProUGUI rerollCostText;
+    public TextMeshProUGUI upgradeCostText;
+
     // system
     private bool isMinimize;
+
+    [SerializeField]
+    private int itemCount;  // 판매 갯수
+
+    [SerializeField]
+    private int rerollCost;
+    [SerializeField]
+    private List<int> upgradeCostList;
+    private int shopGrade;
 
     // dict
     private List<BuildSO> buildList;
@@ -44,6 +68,8 @@ public class ShopController : MonoBehaviour
 
     private void Awake()
     {
+        shopGrade = 0;
+
         SaveData saveData = SaveSystem.Load();
 
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
@@ -118,10 +144,22 @@ public class ShopController : MonoBehaviour
 
     public void OnShop()
     {
-        SetChance();
-
         OnSpecialCardShop();
         OnBuildShop();
+
+        rerollCostText.text = $"리롤({rerollCost})";
+        rerollCostText.color = rerollCost <= goldValue.RuntimeValue ? Color.white : Color.red;
+
+        if(upgradeCostList[shopGrade] != -1)
+        {
+            upgradeCostText.text = $"상점 강화({upgradeCostList[shopGrade]})";
+            upgradeCostText.color = upgradeCostList[shopGrade] <= goldValue.RuntimeValue ? Color.white : Color.red;
+        }
+        else
+        {
+            upgradeCostText.text = $"강화 끝";
+            upgradeCostText.color = Color.white;
+        }
     }
 
     private void OnSpecialCardShop()
@@ -149,7 +187,7 @@ public class ShopController : MonoBehaviour
         chance[3] = chance[2] + (gradeToChance[CardGrade.Unique] > 0 ? gradeToChance[CardGrade.Unique] : 0);
         chance[4] = chance[3] + (gradeToChance[CardGrade.Legendary] > 0 ? gradeToChance[CardGrade.Legendary] : 0);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < itemCount; i++)
         {
 
             int randomChance = Random.Range(0, GetAllChance());
@@ -205,7 +243,7 @@ public class ShopController : MonoBehaviour
         chance[3] = chance[2] + (gradeToChance[CardGrade.Unique] > 0 ? gradeToChance[CardGrade.Unique] : 0);
         chance[4] = chance[3] + (gradeToChance[CardGrade.Legendary] > 0 ? gradeToChance[CardGrade.Legendary] : 0);
         
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < itemCount; i++)
         {
             int randomChance = Random.Range(0, GetAllChance());
             if (randomChance < chance[0])
@@ -395,16 +433,45 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    private void SetChance()
+    public void SetChance()
     {
-        for(int i = 0; i < 5; i++)
-        {
-            gradeToChance[(CardGrade)i] += chanceIncreaseAmountList[i];
-        }
+        //for(int i = 0; i < 5; i++)
+        //{
+        //    gradeToChance[(CardGrade)i] += chanceIncreaseAmountList[i];
+        //}
 
-        for(int i = 0; i < 5; i++)
+        gradeToChance[CardGrade.Common] = ttttt[shopGrade].common;
+        gradeToChance[CardGrade.Rare] = ttttt[shopGrade].rare;
+        gradeToChance[CardGrade.Epic] = ttttt[shopGrade].epic;
+        gradeToChance[CardGrade.Unique] = ttttt[shopGrade].unique;
+        gradeToChance[CardGrade.Legendary] = ttttt[shopGrade].legendary;
+    }
+
+    public void OnClickReroll()
+    {
+        if(rerollCost <= goldValue.RuntimeValue)
         {
-            // Debug.Log((CardGrade)i + " : " + (float)gradeToChance[(CardGrade)i] / GetAllChance() * 100f);
+            goldValue.RuntimeValue -= rerollCost;
+            goldChangeEvnet.Occurred();
+
+            OnShop();
+        }
+    }
+
+    public void OnClickShopUpgrade()
+    {
+        if (upgradeCostList[shopGrade] <= goldValue.RuntimeValue && shopGrade < upgradeCostList.Count - 1)
+        {
+            goldValue.RuntimeValue -= upgradeCostList[shopGrade];
+            goldChangeEvnet.Occurred();
+
+            shopGrade++;
+
+            SetChance();
+
+            itemCount++;
+
+            OnShop();
         }
     }
 }

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB9AC\uB864"
+  m_text: "\uB9AC\uB864(5)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
   m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 1175432129172232779}
   - component: {fileID: 1387902955920604841}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: upgradeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,12 +160,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077332961515896708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8233335095054888882}
-  m_Father: {fileID: 8401097450740705318}
+  m_Father: {fileID: 8401097450806087459}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4531050501388105163}
   - component: {fileID: 4631205267104946032}
   m_Layer: 5
-  m_Name: Button
+  m_Name: rerollBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,12 +356,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4634145993807757976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8544193297253189117}
-  m_Father: {fileID: 8401097450740705318}
+  m_Father: {fileID: 8401097450806087459}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
@@ -450,7 +450,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4531050501388105163}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7040968487826007031
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC0C1\uC810 \uAC15\uD654"
+  m_text: "\uC0C1\uC810 \uAC15\uD654(10)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
   m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
@@ -1131,7 +1143,7 @@ MonoBehaviour:
   fitType: 5
   rows: 2
   columns: 5
-  cellSize: {x: 105, y: 226.5}
+  cellSize: {x: 95, y: 201.5}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1328,7 +1340,7 @@ MonoBehaviour:
   fitType: 5
   rows: 2
   columns: 5
-  cellSize: {x: 105, y: 226.5}
+  cellSize: {x: 95, y: 201.5}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1737,8 +1749,6 @@ RectTransform:
   - {fileID: 7724625585051808997}
   - {fileID: 8401097450806087459}
   - {fileID: 8401097449505549332}
-  - {fileID: 5236747089950666365}
-  - {fileID: 1254834901643826727}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1790,6 +1800,8 @@ RectTransform:
   - {fileID: 8401097450379858428}
   - {fileID: 8401097450849603022}
   - {fileID: 8401097450920186492}
+  - {fileID: 5236747089950666365}
+  - {fileID: 1254834901643826727}
   m_Father: {fileID: 8401097450740705318}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

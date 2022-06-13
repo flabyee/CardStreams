@@ -233,6 +233,8 @@ public class GameManager : MonoBehaviour
 
     public void TurnStart()
     {
+        Debug.Log("start");
+
         // ≈œ ¡ı∞°
         turnCountValue.RuntimeValue++;
 
@@ -243,6 +245,7 @@ public class GameManager : MonoBehaviour
 
         handleController.DrawCardWhenBeforeMove();
         handleController.ShowBuildHandle(false);
+
 
         BuildManager.Instance.NextBuildEffect();
 
