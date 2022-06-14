@@ -25,8 +25,12 @@ public class RewardCard : MonoBehaviour
         // 골드 증가
         if (rewardSO.goldReward > 0)
         {
-            goldValue.RuntimeValue += rewardSO.goldReward;
-            goldValueChanged.Occurred();
+            //goldValue.RuntimeValue += rewardSO.goldReward;
+            //goldValueChanged.Occurred();
+
+            GoldAnimManager.Instance.CreateCoin(rewardSO.goldReward, transform.position);
+            StartCoroutine(Delay(1f));
+            Effects.Instance.TriggerBlock(transform.position);
         }
 
         // 체력 모두 회복
@@ -73,5 +77,12 @@ public class RewardCard : MonoBehaviour
 
         rewardImage.sprite = null;
         rewardNameText.text = null;
+    }
+
+    private IEnumerator Delay(float t)
+    {
+        yield return new WaitForSeconds(t);
+
+        GoldAnimManager.Instance.GetAllCoin();
     }
 }

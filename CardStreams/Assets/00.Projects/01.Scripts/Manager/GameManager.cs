@@ -238,8 +238,7 @@ public class GameManager : MonoBehaviour
         // 턴 증가
         turnCountValue.RuntimeValue++;
 
-        // 모든 필드의 필드타입 yet으로
-        fieldController.SetAllFieldYet();
+
         // 앞에 n칸 활성화
         fieldController.SetNextFieldAble(moveIndex);
 
@@ -436,6 +435,9 @@ public class GameManager : MonoBehaviour
             canNext = true;
         }, 1.5f));
 
+
+        // 모든 필드의 필드타입 yet으로
+        fieldController.SetAllFieldYet();
 
         enemyController.CreateRandomMob();
         enemyController.RandomEnemyBuild();
