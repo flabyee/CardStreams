@@ -7,82 +7,39 @@ using DG.Tweening;
 
 public class RewardCard : MonoBehaviour
 {
+    [SerializeField] GameObject cover; // 카드 누르기전 앞면
+
     [SerializeField] Image rewardImage;
     [SerializeField] TextMeshProUGUI rewardNameText;
 
-    [SerializeField] IntValue goldValue;
-    [SerializeField] IntValue hpValue;
-    [SerializeField] EventSO playerValueChanged;
-    [SerializeField] EventSO goldValueChanged;
+    private bool _isget = false;
+    private SpecialCardSO cardSO;
 
-    [HideInInspector] public SelectRewardManager selectPanel;
-    private RewardSO rewardSO;
-
-    
-
-    public void SelectReward() // called by Button onclick, 버튼누를때 작동함
+    public void Init(SpecialCardSO so)
     {
-        // 골드 증가
-        if (rewardSO.goldReward > 0)
-        {
-            //goldValue.RuntimeValue += rewardSO.goldReward;
-            //goldValueChanged.Occurred();
+        cover.SetActive(true);
+        rewardImage.sprite = so.sprite;
+        rewardNameText.text = so.specialCardName;
 
-            GoldAnimManager.Instance.CreateCoin(rewardSO.goldReward, transform.position);
-            StartCoroutine(Delay(1f));
-            Effects.Instance.TriggerBlock(transform.position);
-        }
-
-        // 체력 모두 회복
-        if (rewardSO.allHealReward == true)
-        {
-            hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
-            playerValueChanged.Occurred();
-        }
-
-        // 카드 보상이 없다면 리턴
-        if (rewardSO.cardReward.Length <= 0) return;
-
-        foreach (var cardSO in rewardSO.cardReward)
-        {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite);
-
-            StartCoroutine(Delay(() =>
-            {
-                GameManager.Instance.handleController.DrawSpecialCard(cardSO.id);
-            }, 0.75f));
-        }
-
-        selectPanel.Hide(); // 버튼을 눌러 보상을 받았으니 부모 패널을 꺼요
+        cardSO = so;
     }
 
-    IEnumerator Delay(System.Action action, float t)
+    public void PressButton()
     {
-        yield return new WaitForSeconds(t);
+        if (_isget) return;
 
-        action?.Invoke();
-    }
+        _isget = true;
+        cover.SetActive(false);
 
-    public void SetReward(RewardSO so)
-    {
-        this.rewardSO = so;
 
-        rewardImage.sprite = so.rewardSprite;
-        rewardNameText.text = so.rewardName;
+        EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id);
     }
 
     public void ResetReward()
     {
-        this.rewardSO = null;
-
+        gameObject.SetActive(false);
+        this.cardSO = null;
         rewardImage.sprite = null;
         rewardNameText.text = null;
-    }
-
-    private IEnumerator Delay(float t)
-    {
-        yield return new WaitForSeconds(t);
-
-        GoldAnimManager.Instance.GetAllCoin();
     }
 }

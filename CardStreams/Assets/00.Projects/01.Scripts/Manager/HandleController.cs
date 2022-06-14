@@ -504,7 +504,7 @@ public class HandleController : MonoBehaviour
             }
         }
 
-        GoldAnimManager.Instance.GetAllCoin();
+        //GoldAnimManager.Instance.GetAllCoin();
 
         handle.Clear();
     }

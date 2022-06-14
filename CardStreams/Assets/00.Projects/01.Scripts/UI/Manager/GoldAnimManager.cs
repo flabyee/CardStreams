@@ -41,13 +41,14 @@ public class GoldAnimManager : MonoBehaviour
     // 사용방법
     // CreateCoin에 버는 양, 위치를 보내서 코인을 생성하고 GetAllCoin 실행해서 실행한 코인을 모두 흡수하고 돈을 얻는다
 
-    public void CreateCoin(int amount, Vector3 centerPos)
+    public void CreateCoin(int amount, Vector3 centerPos, bool allCollect = true)
     {
         // coin 생성
         allCoinAmount += amount;
 
         int coinSum = amount;
         List<Sprite> coinCreateList = new List<Sprite>();
+        List<GameObject> coinList = new List<GameObject>();
 
         for (int coinCount = coinSprites.Length - 1; coinCount >= 0; coinCount--)
         {
@@ -60,6 +61,7 @@ public class GoldAnimManager : MonoBehaviour
                 for (int i = 0; i < divideResult; i++) // 나눈거만큼 반복(3000/1000 = 3 나오면 3번 반복)
                 {
                     coinCreateList.Add(coinSprites[coinCount]);
+
                 }
 
                 coinSum -= divideResult * pow;
@@ -78,6 +80,8 @@ public class GoldAnimManager : MonoBehaviour
                 coinObjList.Add(coinObj);
             }
 
+            coinList.Add(coinObj);
+
             coinObj.transform.position = centerPos;
             coinObj.GetComponent<Image>().sprite = coinCreateList[j];
 
@@ -87,6 +91,13 @@ public class GoldAnimManager : MonoBehaviour
             movePos.x = Mathf.Cos(theta * Mathf.Deg2Rad) * R + centerPos.x;
             movePos.y = Mathf.Sin(theta * Mathf.Deg2Rad) * R + centerPos.y;
             coinObj.transform.DOMove(movePos, 0.25f);
+        }
+
+        if (allCollect)
+        {
+            Sequence seq = DOTween.Sequence();
+            seq.AppendInterval(1f);
+            seq.AppendCallback(() => GetAllCoin());
         }
     }
 

@@ -51,7 +51,8 @@ public class BezierCard : MonoBehaviour
     /// <summary> 던질카드 Init </summary>
     /// <param name="targetTrm">카드가 날라갈 목적지</param>
     /// <param name="icon">카드 아이콘</param>
-    public void Init(Transform targetTrm, Sprite icon)
+    /// <param name="cardID">획득할 카드 ID</param>
+    public void Init(Transform targetTrm, Sprite icon, int cardID)
     {
         cardIconImage.sprite = icon;
 
@@ -59,7 +60,11 @@ public class BezierCard : MonoBehaviour
 
         seq.Append(_rectTrm.DORotate(new Vector3(0, 0, 135f), 1f / speed));
         seq.Join(_rectTrm.DOScale(0.15f, 1f / speed).OnComplete(() => _cg.alpha = 0)); // 도착하면 일단 끄고
-        seq.AppendInterval(0.2f).OnComplete(() => Destroy(gameObject)); // 잠시 기다렸다가 삭제(가 아닌 풀매니저로해야함, 기다리는이유 = trail 자연스럽게)
+        seq.AppendInterval(0.2f).OnComplete(() =>
+        {
+            GameManager.Instance.handleController.DrawSpecialCard(cardID);
+            Destroy(gameObject);
+        }); // 잠시 기다렸다가 삭제(가 아닌 풀매니저로해야함, 기다리는이유 = trail 자연스럽게)
 
         StartBezier(targetTrm);
     }
