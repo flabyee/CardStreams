@@ -6,7 +6,7 @@ using TMPro;
 using DG.Tweening;
 
 [System.Serializable]
-public class tttttt
+public class GradeAmount
 {
     public int common;
     public int rare;
@@ -19,9 +19,6 @@ public class ShopController : MonoBehaviour
 {
     // Seri
     [SerializeField] GameObject shopItemPrefab;
-    [SerializeField] List<int> chanceFirstAmountList;
-    [SerializeField] List<int> chanceIncreaseAmountList;
-    [SerializeField] List<tttttt> ttttt;
     // public
 
     // private
@@ -45,6 +42,8 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private int itemCount;  // ÆÇ¸Å °¹¼ö
 
+    [SerializeField] 
+    List<GradeAmount> gradeAmount;
     [SerializeField]
     private int rerollCost;
     [SerializeField]
@@ -69,6 +68,7 @@ public class ShopController : MonoBehaviour
     private void Awake()
     {
         shopGrade = 0;
+        SetChance();
 
         SaveData saveData = SaveSystem.Load();
 
@@ -103,10 +103,6 @@ public class ShopController : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < 5; i++)
-        {
-            gradeToChance[(CardGrade)i] = chanceFirstAmountList[i];
-        }
     }
 
 
@@ -400,7 +396,7 @@ public class ShopController : MonoBehaviour
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite, specialCardSO.id);
+            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite, specialCardSO.id, CardType.Special);
 
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
@@ -411,7 +407,7 @@ public class ShopController : MonoBehaviour
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite, buildSO.id);
+            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite, buildSO.id, CardType.Build);
 
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
@@ -450,11 +446,11 @@ public class ShopController : MonoBehaviour
         //    gradeToChance[(CardGrade)i] += chanceIncreaseAmountList[i];
         //}
 
-        gradeToChance[CardGrade.Common] = ttttt[shopGrade].common;
-        gradeToChance[CardGrade.Rare] = ttttt[shopGrade].rare;
-        gradeToChance[CardGrade.Epic] = ttttt[shopGrade].epic;
-        gradeToChance[CardGrade.Unique] = ttttt[shopGrade].unique;
-        gradeToChance[CardGrade.Legendary] = ttttt[shopGrade].legendary;
+        gradeToChance[CardGrade.Common] = gradeAmount[shopGrade].common;
+        gradeToChance[CardGrade.Rare] = gradeAmount[shopGrade].rare;
+        gradeToChance[CardGrade.Epic] = gradeAmount[shopGrade].epic;
+        gradeToChance[CardGrade.Unique] = gradeAmount[shopGrade].unique;
+        gradeToChance[CardGrade.Legendary] = gradeAmount[shopGrade].legendary;
     }
 
     public void OnClickReroll()

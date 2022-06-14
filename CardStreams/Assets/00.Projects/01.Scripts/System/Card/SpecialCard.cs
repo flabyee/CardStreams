@@ -48,6 +48,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // 손에 있고, 우클릭이고, 장착 단계고
         if(isHandle && eventData.button == PointerEventData.InputButton.Right && GameManager.Instance.curState == GameState.Equip)
         {
             GameManager.Instance.DropQuickSlot(GetComponent<DragbleCard>());

@@ -32,7 +32,7 @@ public class RewardCard : MonoBehaviour
         cover.SetActive(false);
 
 
-        EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id);
+        EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id, CardType.Special);
     }
 
     public void ResetReward()

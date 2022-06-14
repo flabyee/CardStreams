@@ -358,7 +358,7 @@ public class HandleController : MonoBehaviour
         handle.Add(dragbleCard.cardPower as BasicCard);
     }
 
-    public void DrawBuild(int id)
+    public void DrawBuildCard(int id)
     {
         GameObject buildObj = CardPoolManager.Instance.GetBuildCard(buildHandleTrm);
 

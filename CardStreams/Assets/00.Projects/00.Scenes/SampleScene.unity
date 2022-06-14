@@ -2975,7 +2975,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.5, y: 75.5}
+  cellSize: {x: 75.59332, y: 75.59332}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -11806,7 +11806,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.5, y: 75.5}
+  cellSize: {x: 75.59332, y: 75.59332}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -13282,14 +13282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
-  chanceFirstAmountList: 3200000032000000320000003200000032000000
-  chanceIncreaseAmountList: 000000006400000090010000c20100002c010000
-  ttttt:
-  - common: 50
-    rare: 50
-    epic: 50
-    unique: 50
-    legendary: 50
   _cg: {fileID: 1675048946}
   _reduceCG: {fileID: 1814481313}
   specialCardShopTrm: {fileID: 1814481312}
@@ -13300,7 +13292,33 @@ MonoBehaviour:
   rerollCostText: {fileID: 1825939040}
   upgradeCostText: {fileID: 1579216906}
   itemCount: 5
-  rerollCost: 0
+  gradeAmount:
+  - common: 100
+    rare: 50
+    epic: 0
+    unique: 0
+    legendary: 0
+  - common: 25
+    rare: 100
+    epic: 50
+    unique: 0
+    legendary: 0
+  - common: 0
+    rare: 50
+    epic: 100
+    unique: 25
+    legendary: 0
+  - common: 0
+    rare: 25
+    epic: 50
+    unique: 50
+    legendary: 25
+  - common: 0
+    rare: 0
+    epic: 30
+    unique: 60
+    legendary: 50
+  rerollCost: 5
   upgradeCostList: 0a000000140000001e00000028000000ffffffff
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
