@@ -22,6 +22,8 @@ public class DropManager : MonoBehaviour
 
     public EventSO rerollEvent;
 
+    public GameObject curDragingObj;
+
     private void Start()
     {
         foreach (DropArea dropArea in DropArea.dropAreas)
@@ -52,11 +54,11 @@ public class DropManager : MonoBehaviour
             dropArea.onDropped += ObjectDroppedToQuickSlot;
         }
 
-        shopDropArea.onLifted += ObjectLiftedFromShop;
-        shopDropArea.onDropped += ObjectDroppedToShop;
+        //shopDropArea.onLifted += ObjectLiftedFromShop;
+        //shopDropArea.onDropped += ObjectDroppedToShop;
 
-        rerollDropArea.onLifted += ObjectLiftedFromReroll;
-        rerollDropArea.onDropped += ObjectDroppedToReroll;
+        //rerollDropArea.onLifted += ObjectLiftedFromReroll;
+        //rerollDropArea.onDropped += ObjectDroppedToReroll;
 
         useDropArea.onLifted += ObjectLiftedFromUse;
         useDropArea.onDropped += ObjectDroppedToUse;
@@ -95,15 +97,14 @@ public class DropManager : MonoBehaviour
                 // 2.이미 뭐가 배치되어있는지 확인, 
                 if (area.field.isSet == false || area.field.cardPower.cardType == CardType.NULL)
                 {
-                    // 부모 설정
-                    obj.transform.SetParent(area.rectTrm, true);
+                    // 위치 설정
+                    dragbleCard.transform.position = area.field.transform.position;
 
-                    // 정보 설정
-                    area.field.isSet = true;
-                    area.field.cardPower = cardPower;
-                    area.field.dragbleCard = dragbleCard;
+                    area.field.Init(cardPower, dragbleCard);
 
                     cardPower.SetField();
+
+                    (cardPower as BasicCard).OnField();
 
                     // fieldType 설정
                     //area.field.fieldType = FieldType.not;
@@ -309,58 +310,58 @@ public class DropManager : MonoBehaviour
     }
 
 
-    private void ObjectLiftedFromShop(DropArea area, GameObject obj)
-    {
+    //private void ObjectLiftedFromShop(DropArea area, GameObject obj)
+    //{
 
-    }
-    private void ObjectDroppedToShop(DropArea area, GameObject obj)
-    {
-        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
-        CardPower cardPower = obj.GetComponent<CardPower>();
+    //}
+    //private void ObjectDroppedToShop(DropArea area, GameObject obj)
+    //{
+    //    DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
+    //    CardPower cardPower = obj.GetComponent<CardPower>();
 
-        if (cardPower.cardType == CardType.Basic && (cardPower as BasicCard).basicType != BasicType.Monster)
-        {
-            GameManager.Instance.AddGold(2);
-            //dragbleCard.isDestory = true;
+    //    if (cardPower.cardType == CardType.Basic && (cardPower as BasicCard).basicType != BasicType.Monster)
+    //    {
+    //        GameManager.Instance.AddGold(2);
+    //        //dragbleCard.isDestory = true;
 
-            (cardPower as BasicCard).SetValue(0);
-            (cardPower as BasicCard).ApplyUI();
+    //        (cardPower as BasicCard).SetValue(0);
+    //        (cardPower as BasicCard).ApplyUI();
 
-            //ObjectToOrigin(area, obj);
+    //        //ObjectToOrigin(area, obj);
 
-            bool b = GameManager.Instance.DropField(dragbleCard);
-            if(b == false)
-            {
-                ObjectToOrigin(area, obj);
-            }
-        }
-        else
-        {
-            ObjectToOrigin(area, obj);
-        }
-    }
+    //        bool b = GameManager.Instance.DropField(dragbleCard);
+    //        if(b == false)
+    //        {
+    //            ObjectToOrigin(area, obj);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        ObjectToOrigin(area, obj);
+    //    }
+    //}
 
 
-    private void ObjectLiftedFromReroll(DropArea area, GameObject obj)
-    {
+    //private void ObjectLiftedFromReroll(DropArea area, GameObject obj)
+    //{
 
-    }
-    private void ObjectDroppedToReroll(DropArea area, GameObject obj)
-    {
-        //DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
-        //CardPower cardPower = obj.GetComponent<CardPower>();
-        //if (cardPower.dropAreaType == DropAreaType.feild)
-        //{
-        //    rerollEvent.Occurred(obj);
-        //    dragbleCard.isDestory = true;
+    //}
+    //private void ObjectDroppedToReroll(DropArea area, GameObject obj)
+    //{
+    //    //DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
+    //    //CardPower cardPower = obj.GetComponent<CardPower>();
+    //    //if (cardPower.dropAreaType == DropAreaType.feild)
+    //    //{
+    //    //    rerollEvent.Occurred(obj);
+    //    //    dragbleCard.isDestory = true;
 
-        //    GameManager.Instance.RerollScore();
-        //}
-        //else
-        //{
-        //    ObjectToOrigin(area, obj);
-        //}
-    }
+    //    //    GameManager.Instance.RerollScore();
+    //    //}
+    //    //else
+    //    //{
+    //    //    ObjectToOrigin(area, obj);
+    //    //}
+    //}
 
     private void ObjectLiftedFromUse(DropArea area, GameObject obj)
     {
@@ -424,5 +425,11 @@ public class DropManager : MonoBehaviour
         dragbleCard.SetDroppedArea(dragbleCard.originDropArea);
 
         dragbleCard.cardPower.SetHandle();
+
+        CardPower cardPower = dragbleCard.GetComponent<CardPower>();
+        if(cardPower is BasicCard)
+        {
+            (cardPower as BasicCard).OnHandle();
+        }
     }
 }

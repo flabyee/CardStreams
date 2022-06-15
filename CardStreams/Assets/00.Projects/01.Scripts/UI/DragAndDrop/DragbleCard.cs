@@ -109,18 +109,18 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         DropArea.SetDropArea(true, cardPower.cardType);
 
         // 드래그 시작할 때 설정?
-        Rect clamp = new Rect(Vector2.zero, clampRectTransform.rect.size);
-        Vector3 minPosition = clamp.min - rectTransform.rect.min;
-        Vector3 maxPosition = clamp.max - rectTransform.rect.max;
-        RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, minPosition,
-            eventData.pressEventCamera, out minWorldPosition);
-        RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, maxPosition,
-            eventData.pressEventCamera, out maxWorldPosition);
+        //Rect clamp = new Rect(Vector2.zero, clampRectTransform.rect.size);
+        //Vector3 minPosition = clamp.min - rectTransform.rect.min;
+        //Vector3 maxPosition = clamp.max - rectTransform.rect.max;
+        //RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, minPosition,
+        //    eventData.pressEventCamera, out minWorldPosition);
+        //RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, maxPosition,
+        //    eventData.pressEventCamera, out maxWorldPosition);
 
 
         //Debug.Log(minWorldPosition + "/" + maxWorldPosition);
 
-
+        // 나중에 DropManager LIFT로 옮기세요
         if(cardPower.cardType == CardType.Build)
         {
             BuildCard build = GetComponent<BuildCard>();
@@ -128,7 +128,10 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             BuildAreaTooltip.Instance.ShowFollow(transform, build.GetAccessPointList());
         }
 
-        rectTransform.sizeDelta = new Vector2(75, 75);
+        if(cardPower.cardType == CardType.Basic)
+        {
+            (cardPower as BasicCard).OnField();
+        }
 
         if(GameManager.Instance.curState == GameState.Equip)
         {
@@ -147,20 +150,21 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
 
         // 드래그 시작할 때 설정한 값을 이용해서 이동
-        Vector3 worldPointerPosition;
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, eventData.position,
-            eventData.pressEventCamera, out worldPointerPosition))
-        {
-            Vector3 offsetToOriginal = worldPointerPosition - originalWorldPos;
-            rectTransform.position = originalRectWorldPos + offsetToOriginal;
-        }
+        //Vector3 worldPointerPosition;
+        //if (RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, eventData.position,
+        //    eventData.pressEventCamera, out worldPointerPosition))
+        //{
+        //    Vector3 offsetToOriginal = worldPointerPosition - originalWorldPos;
+        //    rectTransform.position = originalRectWorldPos + offsetToOriginal;
+        //}
 
-        Vector3 worldPos = rectTransform.position;
-        worldPos.x = Mathf.Clamp(rectTransform.position.x, minWorldPosition.x, maxWorldPosition.x);
-        worldPos.y = Mathf.Clamp(rectTransform.position.y, minWorldPosition.y, maxWorldPosition.y);
-        rectTransform.position = worldPos;
+        //Vector3 worldPos = rectTransform.position;
+        //worldPos.x = Mathf.Clamp(rectTransform.position.x, minWorldPosition.x, maxWorldPosition.x);
+        //worldPos.y = Mathf.Clamp(rectTransform.position.y, minWorldPosition.y, maxWorldPosition.y);
+        //rectTransform.position = worldPos;
 
-
+        Vector2 pos = Camera.main.ScreenToWorldPoint(eventData.position);
+        transform.position = pos;
     }
 
     public void OnEndDrag(PointerEventData eventData)

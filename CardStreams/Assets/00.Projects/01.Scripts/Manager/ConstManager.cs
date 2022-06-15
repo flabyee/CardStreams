@@ -36,6 +36,8 @@ public class ConstManager : MonoBehaviour
 
     public Sprite[] fieldSprites;
 
+    public List<Color> basicTypeColorList;
+
 
     [Header("color")]
     public Dictionary<CardGrade, Color> gradeColorDict;

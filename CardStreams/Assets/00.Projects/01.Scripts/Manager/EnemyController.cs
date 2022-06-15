@@ -147,6 +147,8 @@ public class EnemyController : MonoBehaviour
         // craete effect
         //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
         Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
+
+        (cardPower as BasicCard).OnField();
     }
 
 

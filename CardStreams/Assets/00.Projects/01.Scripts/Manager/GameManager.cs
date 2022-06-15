@@ -96,22 +96,6 @@ public class GameManager : MonoBehaviour
         maxMoveCount = stageData.moveCount;
     }
 
-    public void AddGold(int amount)
-    {
-        goldValue.RuntimeValue += amount;
-
-        goldChangeEvent.Occurred();
-    }
-
-    public void RerollScore()
-    {
-        goldValue.RuntimeValue -= 1 + 1 * rerollCount;
-
-        goldChangeEvent.Occurred();
-
-        rerollCount++;
-    }
-
     // To Do : 나중에 수정
     public void SetPlayerPos()
     {

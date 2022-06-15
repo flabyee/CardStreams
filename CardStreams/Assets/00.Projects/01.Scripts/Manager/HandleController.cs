@@ -266,6 +266,7 @@ public class HandleController : MonoBehaviour
         {
             GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
             DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+            BasicCard basicCard = cardObj.GetComponent<BasicCard>();
 
             dragbleCard.SetDroppedArea(handleDropArea);
             dragbleCard.originDropArea = handleDropArea;
@@ -273,6 +274,8 @@ public class HandleController : MonoBehaviour
             dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
 
             handle.Add(dragbleCard.cardPower as BasicCard);
+
+            basicCard.OnHandle();
         }
         else
         {
@@ -310,6 +313,7 @@ public class HandleController : MonoBehaviour
 
         GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
         DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+        BasicCard basicCard = cardObj.GetComponent<BasicCard>();
 
         dragbleCard.SetDroppedArea(handleDropArea);
         dragbleCard.originDropArea = handleDropArea;
@@ -317,6 +321,8 @@ public class HandleController : MonoBehaviour
         dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
 
         handle.Add(dragbleCard.cardPower as BasicCard);
+
+        basicCard.OnHandle();
     }
     public void DrawCardM()
     {
@@ -349,6 +355,7 @@ public class HandleController : MonoBehaviour
 
         GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
         DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+        BasicCard basicCard = cardObj.GetComponent<BasicCard>();
 
         dragbleCard.SetDroppedArea(handleDropArea);
         dragbleCard.originDropArea = handleDropArea;
@@ -356,6 +363,8 @@ public class HandleController : MonoBehaviour
         dragbleCard.SetData_Feild(cardData.basicType, cardData.value);
 
         handle.Add(dragbleCard.cardPower as BasicCard);
+
+        basicCard.OnHandle();
     }
 
     public void DrawBuildCard(int id)

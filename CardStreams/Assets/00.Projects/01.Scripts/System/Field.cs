@@ -20,6 +20,7 @@ public enum FieldState
 public class Field : MonoBehaviour
 {
     public Image background;
+    public Image colorImage;
 
     public FieldState fieldState = FieldState.NULL;
 
@@ -36,12 +37,23 @@ public class Field : MonoBehaviour
     [Header("Debug")]
     public DropArea dropArea;
 
+    public void Init(CardPower power, DragbleCard dragCard)
+    {
+        isSet = true;
+        cardPower = power;
+        dragbleCard = dragCard;
+
+        colorImage.color = ConstManager.Instance.basicTypeColorList[(int)(power as BasicCard).basicType];
+    }
+
     public void Init(CardPower power, DragbleCard dragCard, FieldState type)
     {
         isSet = true;
         cardPower = power;
         dragbleCard = dragCard;
         fieldState = type;
+
+        colorImage.color = ConstManager.Instance.basicTypeColorList[(int)(power as BasicCard).basicType];
     }
 
     public void ResetData()
@@ -49,6 +61,8 @@ public class Field : MonoBehaviour
         isSet = false;
         cardPower = null;
         dragbleCard = null;
+
+        colorImage.color = Color.white;
     }
     public void OnBuildAccess()
     {
