@@ -25,7 +25,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7522159771679169293}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -71,7 +71,7 @@ MonoBehaviour:
   fitType: 5
   rows: 5
   columns: 5
-  cellSize: {x: 85, y: 85}
+  cellSize: {x: 75.6, y: 75.6}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1

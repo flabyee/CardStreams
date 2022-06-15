@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private int maxMoveCount;
 
     [Header("Controller")]
-    private FieldController fieldController;
+    public FieldController fieldController;
     public EnemyController enemyController;
     public HandleController handleController;
     public ShopController shopController;
@@ -274,9 +274,6 @@ public class GameManager : MonoBehaviour
 
                     // effect
                     Effects.Instance.TriggerBlock(nowField.transform.position);
-
-                    // coin 생성
-                    // GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position);
 
                     if(i == MapManager.Instance.fieldCount - 1) // 마지막 돈생성이라면
                     {

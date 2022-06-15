@@ -67,4 +67,19 @@ public class FieldController
 
         return true;
     }
+
+    public List<Vector2> GetTempNextFieldPoint()
+    {
+        List<Vector2> tempPointList = new List<Vector2>();
+
+        for (int i = GameManager.Instance.moveIndex; i < GameManager.Instance.moveIndex + 4; i++)
+        {
+            if (MapManager.Instance.fieldList[i].isSet == false)
+            {
+                tempPointList.Add(MapManager.Instance.fieldList[i].dropArea.point);
+            }
+        }
+
+        return tempPointList;
+    }
 }
