@@ -15,6 +15,10 @@ public class RewardCard : MonoBehaviour
     private bool _isget = false;
     private SpecialCardSO cardSO;
 
+    // 단순 카드일때만 쓰는 멤버
+    private int getGoldAmount = 0;
+    private bool getHeal = false;
+
     public void Init(SpecialCardSO so)
     {
         cover.SetActive(true);
@@ -24,6 +28,15 @@ public class RewardCard : MonoBehaviour
         cardSO = so;
     }
 
+    public void StatInit(int goldValue, bool allHeal) // 카드인데 돈만주는 / 피만회복시키는 카드면 StatInit
+    {
+        getGoldAmount = goldValue;
+        getHeal = allHeal;
+
+        //rewardImage.sprite = so.sprite;
+        //rewardNameText.text = so.specialCardName;  나중에이거 돈/힐 이미지로 교체
+    }
+
     public void PressButton()
     {
         if (_isget) return;
@@ -31,8 +44,18 @@ public class RewardCard : MonoBehaviour
         _isget = true;
         cover.SetActive(false);
 
-
-        EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id, CardType.Special);
+        if (getGoldAmount > 0)
+        {
+            // Bezier로 돈UI로 날리기 도착하면 돈증가
+        }
+        else if(getHeal == true)
+        {
+            // Bezier로 회복으로 날리기 도착하면 회복
+        }
+        else
+        {
+            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id, CardType.Special);
+        }
     }
 
     public void ResetReward()

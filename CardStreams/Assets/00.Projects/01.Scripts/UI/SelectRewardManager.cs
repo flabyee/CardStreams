@@ -18,11 +18,6 @@ public class SelectRewardManager : MonoBehaviour
     private CanvasGroup _cg;
     [SerializeField] GameObject _cgObject;
 
-    [SerializeField] IntValue hpValue;
-    [SerializeField] IntValue goldValue;
-    [SerializeField] EventSO goldValueChanged;
-    [SerializeField] EventSO playerValueChanged;
-
     private int[] randomRewardNums = { 0, 1, 2 };
 
     private void Awake()
@@ -103,33 +98,31 @@ public class SelectRewardManager : MonoBehaviour
         SetActiveChoose(false);
         SetActiveGet(true);
 
-        for (int i = 0; i < reward.cardReward.Length; i++)
+        int cardCount = 0;
+
+        if(reward.goldReward > 0) // 골드 보상이 있다면 카드하나생성
         {
-            SpecialCardSO card = reward.cardReward[i];
-            getCards[i].Init(card);
+            // 카드 하나 Init하고 누르면 돈UI로 보내게하기
+            getCards[cardCount].StatInit(reward.goldReward, false);
+            cardCount++;
         }
 
-        for (int i = reward.cardReward.Length; i < getCards.Length; i++)
+        if(reward.allHealReward == true)
         {
-            getCards[i].ResetReward();
+            // 카드 하나 Init하고 누르면 플레이어하트로 보내게하기
+            getCards[cardCount].StatInit(0, reward.allHealReward);
+            cardCount++;
         }
 
-        if (reward.goldReward > 0)
+        for (; cardCount < reward.cardReward.Length; cardCount++)
         {
-            goldValue.RuntimeValue += reward.goldReward;
-            goldValueChanged.Occurred();
-
-            GoldAnimManager.Instance.CreateCoin(reward.goldReward, transform.position);
-            Effects.Instance.TriggerBlock(transform.position);
+            SpecialCardSO card = reward.cardReward[cardCount];
+            getCards[cardCount].Init(card);
         }
 
-
-
-        // 체력 모두 회복
-        if (reward.allHealReward == true)
+        for (; cardCount < getCards.Length; cardCount++)
         {
-            hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
-            playerValueChanged.Occurred();
+            getCards[cardCount].ResetReward();
         }
     }
 
