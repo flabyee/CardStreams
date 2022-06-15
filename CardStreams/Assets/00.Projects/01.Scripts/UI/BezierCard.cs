@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,9 +13,8 @@ public class BezierCard : MonoBehaviour
     [SerializeField] float speed = 1.5f;
     [SerializeField] float radiusA = 0.55f;
     [SerializeField] float radiusB = 0.45f;
-
-    [Header("카드 설정")]
-    [SerializeField] Image cardIconImage;
+    
+    private Image cardIconImage;
 
 
     private RectTransform _rectTrm;
@@ -52,28 +52,21 @@ public class BezierCard : MonoBehaviour
     /// <param name="targetTrm">카드가 날라갈 목적지</param>
     /// <param name="icon">카드 아이콘</param>
     /// <param name="cardID">획득할 카드 ID</param>
-    public void Init(Transform targetTrm, Sprite icon, int cardID, CardType cardType)
+    /// <param name="callback">끝까지 날라갔을때 추가로실행할 함수</param>
+    public void Init(Transform targetTrm, Sprite icon, int cardID, Action callback)
     {
         cardIconImage.sprite = icon;
 
         Sequence seq = DOTween.Sequence();
 
         seq.Append(_rectTrm.DORotate(new Vector3(0, 0, 135f), 1f / speed));
-        seq.Join(_rectTrm.DOScale(0.15f, 1f / speed).OnComplete(() => _cg.alpha = 0)); // 도착하면 일단 끄고
-        seq.AppendInterval(0.2f).OnComplete(() =>
+        seq.Join(_rectTrm.DOScale(0.15f, 1f / speed).OnComplete( () =>
         {
-            if(cardType == CardType.Build)
-            {
-                GameManager.Instance.handleController.DrawBuildCard(cardID);
-                Destroy(gameObject);
-            }
-            else
-            {
-                GameManager.Instance.handleController.DrawSpecialCard(cardID);
-                Destroy(gameObject);
-            }
-
-        }); // 잠시 기다렸다가 삭제(가 아닌 풀매니저로해야함, 기다리는이유 = trail 자연스럽게)
+            callback?.Invoke();
+            _cg.alpha = 0;
+        })); // 도착하면 일단 끄고 완료 Action 실행
+        seq.AppendInterval(0.2f).OnComplete(() => Destroy(gameObject));
+         // 잠시 기다렸다가 삭제(가 아닌 풀매니저로해야함, 기다리는이유 = trail 자연스럽게)
 
         StartBezier(targetTrm);
     }
@@ -110,8 +103,8 @@ public class BezierCard : MonoBehaviour
     Vector2 SetRandomBezierPointP2(Vector2 origin) // 시작-끝 사이의 점1개를 만들어요(랜덤아님)
     {
         return new Vector2(
-            radiusA * Mathf.Cos(Random.Range(0, 360) * Mathf.Deg2Rad) + origin.x,
-            radiusA * Mathf.Sin(Random.Range(0, 360) * Mathf.Deg2Rad + origin.y)
+            radiusA * Mathf.Cos(UnityEngine.Random.Range(0, 360) * Mathf.Deg2Rad) + origin.x,
+            radiusA * Mathf.Sin(UnityEngine.Random.Range(0, 360) * Mathf.Deg2Rad + origin.y)
             );
     }
 
@@ -150,8 +143,8 @@ public class BezierCard : MonoBehaviour
     Vector3 SetRandomBezierPointP3(Vector3 origin)
     {
         return new Vector2(
-            radiusB * Mathf.Cos(Random.Range(0, 360) * Mathf.Deg2Rad) + origin.x,
-            radiusB * Mathf.Sin(Random.Range(0, 360) * Mathf.Deg2Rad + origin.y)
+            radiusB * Mathf.Cos(UnityEngine.Random.Range(0, 360) * Mathf.Deg2Rad) + origin.x,
+            radiusB * Mathf.Sin(UnityEngine.Random.Range(0, 360) * Mathf.Deg2Rad + origin.y)
             );
 
     }

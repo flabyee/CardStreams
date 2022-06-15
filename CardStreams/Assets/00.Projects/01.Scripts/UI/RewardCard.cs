@@ -30,6 +30,8 @@ public class RewardCard : MonoBehaviour
 
     public void StatInit(int goldValue, bool allHeal) // 카드인데 돈만주는 / 피만회복시키는 카드면 StatInit
     {
+        cover.SetActive(true);
+
         getGoldAmount = goldValue;
         getHeal = allHeal;
 
@@ -54,7 +56,7 @@ public class RewardCard : MonoBehaviour
         }
         else
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id, CardType.Special);
+            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id, () => GameManager.Instance.handleController.DrawBuildCard(cardSO.id));
         }
     }
 
