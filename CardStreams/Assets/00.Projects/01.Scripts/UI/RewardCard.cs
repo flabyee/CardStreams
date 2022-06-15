@@ -56,7 +56,7 @@ public class RewardCard : MonoBehaviour
         }
         else
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, cardSO.id, () => GameManager.Instance.handleController.DrawBuildCard(cardSO.id));
+            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, () => GameManager.Instance.handleController.DrawBuildCard(cardSO.id));
         }
     }
 

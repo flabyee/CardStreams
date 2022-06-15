@@ -14,7 +14,7 @@ public class BezierCard : MonoBehaviour
     [SerializeField] float radiusA = 0.55f;
     [SerializeField] float radiusB = 0.45f;
     
-    private Image cardIconImage;
+    [SerializeField] Image cardIconImage;
 
 
     private RectTransform _rectTrm;
@@ -53,7 +53,7 @@ public class BezierCard : MonoBehaviour
     /// <param name="icon">카드 아이콘</param>
     /// <param name="cardID">획득할 카드 ID</param>
     /// <param name="callback">끝까지 날라갔을때 추가로실행할 함수</param>
-    public void Init(Transform targetTrm, Sprite icon, int cardID, Action callback)
+    public void Init(Transform targetTrm, Sprite icon, Action callback)
     {
         cardIconImage.sprite = icon;
 
