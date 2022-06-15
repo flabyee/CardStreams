@@ -97,13 +97,13 @@ public class BasicCard : CardPower, IPointerClickHandler
         }
         else if (value > originValue)
         {
-            valueText.color = Color.blue;
-            fieldText.color = Color.blue;
+            valueText.color = ConstManager.Instance.upValueColor;
+            fieldText.color = ConstManager.Instance.upValueColor;
         }
         else if (value < originValue)
         {
-            valueText.color = Color.red;
-            fieldText.color = Color.red;
+            valueText.color = ConstManager.Instance.downValueColor;
+            fieldText.color = ConstManager.Instance.downValueColor;
         }
     }
 
@@ -139,6 +139,15 @@ public class BasicCard : CardPower, IPointerClickHandler
     public void OnField()
     {
         rectTransform.sizeDelta = new Vector2(65, 65);
+
+        fieldObj.SetActive(true);
+        handleObj.SetActive(false);
+
+        ApplyUI();
+    }
+    public void OnHover()
+    {
+        rectTransform.sizeDelta = new Vector2(100, 100);
 
         fieldObj.SetActive(true);
         handleObj.SetActive(false);

@@ -1402,6 +1402,8 @@ MonoBehaviour:
   - {r: 0.5647059, g: 0.66832805, b: 0.7529412, a: 1}
   - {r: 0.5647059, g: 0.7529412, b: 0.5790362, a: 1}
   - {r: 0.7529412, g: 0.5647059, b: 0.5647059, a: 1}
+  upValueColor: {r: 0, g: 0.5416665, b: 1, a: 1}
+  downValueColor: {r: 1, g: 0.13614154, b: 0, a: 1}
   gradeSpriteDict:
   - {fileID: 21300000, guid: b7be89ec6862e9143bc1930e13dabc61, type: 3}
   - {fileID: 21300000, guid: b2d2147de3023c14b8f52bd731c66d78, type: 3}

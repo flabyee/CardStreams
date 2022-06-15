@@ -37,6 +37,7 @@ public class Field : MonoBehaviour
     [Header("Debug")]
     public DropArea dropArea;
 
+    // 기본적으론 이걸로 정보 넣고
     public void Init(CardPower power, DragbleCard dragCard)
     {
         isSet = true;
@@ -46,6 +47,7 @@ public class Field : MonoBehaviour
         colorImage.color = ConstManager.Instance.basicTypeColorList[(int)(power as BasicCard).basicType];
     }
 
+    // 랜덤몹생성같이 필드의 상태도 변해야 하면 이걸 쓴다
     public void Init(CardPower power, DragbleCard dragCard, FieldState type)
     {
         isSet = true;

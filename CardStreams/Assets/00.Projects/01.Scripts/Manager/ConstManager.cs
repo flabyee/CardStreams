@@ -38,6 +38,8 @@ public class ConstManager : MonoBehaviour
 
     public List<Color> basicTypeColorList;
 
+    public Color upValueColor;
+    public Color downValueColor;
 
     [Header("color")]
     public Dictionary<CardGrade, Color> gradeColorDict;

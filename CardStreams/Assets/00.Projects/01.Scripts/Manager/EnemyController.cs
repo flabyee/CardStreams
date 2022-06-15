@@ -138,16 +138,22 @@ public class EnemyController : MonoBehaviour
         dragbleCard.canDragAndDrop = false;
         cardPower.SetField();
 
-        // 필드에 적용 + not으로
-        MapManager.Instance.fieldList[fieldIndex].Init(cardPower, dragbleCard, FieldState.not);
+        Field field = MapManager.Instance.fieldList[fieldIndex];
 
-        // 배경색 변경
-        cardPower.backImage.color = Color.magenta;
+        // 위치&부모 설정
+        dragbleCard.transform.position = field.transform.position;
+        dragbleCard.transform.SetParent(field.transform);
+
+        // 필드에 적용 + not으로
+        field.Init(cardPower, dragbleCard, FieldState.not);
 
         // craete effect
         //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
         Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
 
+
+
+        cardPower.SetField();
         (cardPower as BasicCard).OnField();
     }
 

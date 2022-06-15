@@ -95,10 +95,11 @@ public class DropManager : MonoBehaviour
             if (area.field.fieldState == FieldState.able)
             {
                 // 2.이미 뭐가 배치되어있는지 확인, 
-                if (area.field.isSet == false || area.field.cardPower.cardType == CardType.NULL)
+                if (area.field.isSet == false)
                 {
-                    // 위치 설정
+                    // 위치&부모 설정
                     dragbleCard.transform.position = area.field.transform.position;
+                    dragbleCard.transform.SetParent(area.field.transform);
 
                     area.field.Init(cardPower, dragbleCard);
 
@@ -114,7 +115,7 @@ public class DropManager : MonoBehaviour
                     // 놓으려고 한곳의 있던 카드의 드랍에이어 얻기
                     DropArea myDropArea = dragbleCard.prevDropArea;  // 내가 있던 dropArea
                     DropArea changeDropArea = area;                 // 드랍한 곳의 dropArea
-                    DragbleCard otherDragbleCard = changeDropArea.rectTrm.GetChild(0).GetComponent<DragbleCard>();
+                    DragbleCard otherDragbleCard = changeDropArea.rectTrm.GetChild(1).GetComponent<DragbleCard>();
 
                     if (otherDragbleCard == null)
                     {

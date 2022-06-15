@@ -130,7 +130,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if(cardPower.cardType == CardType.Basic)
         {
-            (cardPower as BasicCard).OnField();
+            (cardPower as BasicCard).OnHover();
         }
 
         if(GameManager.Instance.curState == GameState.Equip)

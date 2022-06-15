@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
 
     private BuffController buffCon;
 
+    [Header("Debug")]
+    public bool isDontDie;
+
     private void Awake()
     {
         rectTrm = GetComponent<RectTransform>();
@@ -49,6 +52,11 @@ public class Player : MonoBehaviour
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
     {
+        if(isDontDie == true)
+        {
+            return;
+        }
+
         isAlive = (hpValue.RuntimeValue > 0) ? true : false;
     }
 

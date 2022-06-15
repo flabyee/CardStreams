@@ -472,9 +472,6 @@ public class GameManager : MonoBehaviour
 
         DropArea dropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
 
-        // drop area ¼³Á¤
-        dragbleCard.SetDroppedArea(dropArea);
-
         dropArea.TriggerOnDrop(dragbleCard);
 
         return true;
