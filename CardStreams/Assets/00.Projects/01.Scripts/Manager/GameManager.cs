@@ -275,15 +275,8 @@ public class GameManager : MonoBehaviour
                     // effect
                     Effects.Instance.TriggerBlock(nowField.transform.position);
 
-                    if(i == MapManager.Instance.fieldCount - 1) // 마지막 돈생성이라면
-                    {
-                        // 정산애니메이션 on (마지막 allCollect bool true)
-                        GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position, false);
-                    }
-                    else
-                    {
-                        GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position, false);
-                    }
+                    GoldAnimManager.Instance.CreateCoin(cardPower.originValue * cardPower.goldP, nowField.transform.position, false);
+
                     yield return new WaitForSeconds(fieldResetDelay);
                 }
                 else
@@ -294,7 +287,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         GoldAnimManager.Instance.GetAllCoin(true);
 
