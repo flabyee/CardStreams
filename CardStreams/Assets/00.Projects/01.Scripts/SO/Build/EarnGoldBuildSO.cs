@@ -20,7 +20,7 @@ public class EarnGoldBuildSO : BuildSO
         //goldChangeEvnet.Occurred();
 
         // GoldAnimManager.Instance.CreateCoin(earnAmount, buildPos);
-        GoldAnimManager.Instance.CreateCoin(earnAmount, buildPos);
+        GoldAnimManager.Instance.CreateCoin(earnAmount, buildPos, false);
     }
 
 }

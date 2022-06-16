@@ -18,8 +18,7 @@ public class BasicCard : CardPower, IPointerClickHandler
 {
     public BasicType basicType;
 
-    public GameObject handleObj;
-    public GameObject fieldObj;
+
 
     public Image backColorImage;
 
@@ -34,16 +33,9 @@ public class BasicCard : CardPower, IPointerClickHandler
     // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();
 
-    private RectTransform rectTransform;
-
-    private void Awake()
+    public override void InitData_Feild(BasicType basicType, int value)
     {
-        rectTransform = GetComponent<RectTransform>();
-    }
-
-    public override void SetData_Feild(BasicType basicType, int value)
-    {
-        base.SetData_Feild(basicType, value);
+        base.InitData_Feild(basicType, value);
 
         this.value = value;
         this.originValue = value;
@@ -127,30 +119,21 @@ public class BasicCard : CardPower, IPointerClickHandler
         }
     }
 
-    public void OnHandle()
+    public override void OnHandle()
     {
-        rectTransform.sizeDelta = new Vector2(150, 200);
-
-        handleObj.SetActive(true);
-        fieldObj.SetActive(false);
+        base.OnHandle();
 
         ApplyUI();
     }
-    public void OnField()
+    public override void OnField()
     {
-        rectTransform.sizeDelta = new Vector2(65, 65);
-
-        fieldObj.SetActive(true);
-        handleObj.SetActive(false);
+        base.OnField();
 
         ApplyUI();
     }
-    public void OnHover()
+    public override void OnHover()
     {
-        rectTransform.sizeDelta = new Vector2(100, 100);
-
-        fieldObj.SetActive(true);
-        handleObj.SetActive(false);
+        base.OnHover();
 
         ApplyUI();
     }

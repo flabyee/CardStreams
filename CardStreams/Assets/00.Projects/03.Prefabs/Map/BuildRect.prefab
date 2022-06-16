@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9012474091747116166}
   - component: {fileID: 9012474091747116164}
   - component: {fileID: 9012474091747116167}
-  - component: {fileID: -3131391558807008095}
   m_Layer: 5
   m_Name: BuildRect
   m_TagString: Untagged
@@ -76,28 +75,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-3131391558807008095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9012474091747116161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 176a6911160a2534d8a2268ff6a0316f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
-  m_ChildAlignment: 0
-  fitType: 0
-  rows: 0
-  columns: 0
-  cellSize: {x: 0, y: 0}
-  spacing: {x: 0, y: 0}
-  fitX: 0
-  fitY: 0

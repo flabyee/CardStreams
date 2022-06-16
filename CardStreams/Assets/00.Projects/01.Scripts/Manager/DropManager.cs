@@ -167,6 +167,8 @@ public class DropManager : MonoBehaviour
 
                                             dragbleCard.isDestory = true;
 
+                                            cardPower.SetField();
+
                                             return;
                                         case ApplyTiming.OnFeild:
                                             //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
@@ -186,6 +188,7 @@ public class DropManager : MonoBehaviour
 
                                     dragbleCard.isDestory = true;
 
+                                    cardPower.SetField();
                                     return;
                                 case ApplyTiming.OnFeild:
                                     //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
@@ -218,7 +221,8 @@ public class DropManager : MonoBehaviour
         if (cardPower.cardType == CardType.Build && area.rectTrm.childCount == 0)
         {
             // 부모 설정(위치 설정)
-            obj.transform.SetParent(area.rectTrm, true);
+            dragbleCard.transform.position = area.rectTrm.transform.position;
+            dragbleCard.transform.SetParent(area.rectTrm.transform);
 
             // 못움직이게 설정
             dragbleCard.canDragAndDrop = false;
@@ -227,6 +231,9 @@ public class DropManager : MonoBehaviour
             BuildCard build = obj.GetComponent<BuildCard>();
             build.BuildDrop(area.point);
 
+            build.OnField();
+
+            cardPower.SetField();
         }
         // To Do : 건물부시기 나중에 개선 무조건 해라!!
         else if(cardPower.cardType == CardType.Special)
@@ -239,6 +246,8 @@ public class DropManager : MonoBehaviour
 
                 BuildCard build = area.rectTrm.GetChild(0).GetComponent<BuildCard>();
                 specialCard.OnAccessBuildCard(build);
+
+                cardPower.SetField();
             }
             else
             {
@@ -428,9 +437,6 @@ public class DropManager : MonoBehaviour
         dragbleCard.cardPower.SetHandle();
 
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();
-        if(cardPower is BasicCard)
-        {
-            (cardPower as BasicCard).OnHandle();
-        }
+        cardPower.OnHandle();
     }
 }

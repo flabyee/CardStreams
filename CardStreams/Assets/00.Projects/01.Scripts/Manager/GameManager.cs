@@ -176,15 +176,20 @@ public class GameManager : MonoBehaviour
                     return;
                 }
 
-                // 손에 몬스터 카드가 있고 앞에 4개 필드가 모두 몬스터가 아니면 next 안됨
-                //if (handleController.HaveMobCard() == true)
-                //{
-                //    if(fieldController.IsNextFieldAllMob(moveIndex) == false)
-                //    {
-                //        UITooltip.Instance.Show("모든 몬스터를 배치한 후에 다시 시도하세요!", new UITooltip.TooltipTimer(1f));
-                //        return;
-                //    }
-                //}
+                
+                // 꽉 차있는지
+                if (fieldController.IsNextFieldFull(moveIndex) == false)
+                {
+                    UITooltip.Instance.Show("앞에 4칸을 전부 채운후 다시 시도하세요!!", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
+                // 플레이어 카드가 2장 이하인지
+                if (fieldController.IsNextFieldPlayerCardTwo(moveIndex) == false)
+                {
+                    UITooltip.Instance.Show("플레이어 카드를 2장 이하로 배치해주세요", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
 
                 NextAction();
                 break;
@@ -226,8 +231,8 @@ public class GameManager : MonoBehaviour
         // 앞에 n칸 활성화
         fieldController.SetNextFieldAble(moveIndex);
 
+        handleController.HandleReturnToDeck();
         handleController.DrawCardWhenBeforeMove();
-        handleController.ShowBuildHandle(false);
 
 
         BuildManager.Instance.NextBuildEffect();
@@ -296,7 +301,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveStart()
     {
-        handleController.SellHandleCards();
+        handleController.HandleReturnToDeck();
 
         // 카드에 건물 효과 적용
         fieldController.BuildAccessNextField(moveIndex);
@@ -426,19 +431,15 @@ public class GameManager : MonoBehaviour
         enemyController.CreateRandomMob();
         enemyController.RandomEnemyBuild();
 
-        handleController.ShowBuildHandle(true);
-        handleController.InteractiveBuildHandle(false);
-
         nextState = GameState.Equip;
     }
 
     private void OnEquip()
     {
-        handleController.ShowBuildHandle(true);
-        handleController.InteractiveBuildHandle(true);
-
         shopController.Hide();
         selectRewardManager.Hide();
+
+        handleController.DrawBuildCard();
 
         nextState = GameState.TurnStart;
     }
@@ -469,7 +470,7 @@ public class GameManager : MonoBehaviour
     }
     public bool DropQuickSlot(DragbleCard dragbleCard)
     {
-        DropArea dropArea = handleController.GetTempQuicSlot();
+        DropArea dropArea = null;
         // 비어있는 곳 없으면 리턴
         if (dropArea == null)
         {

@@ -104,16 +104,6 @@ public class EnemyController : MonoBehaviour
                 deleteFieldList.Add(randIndex - 2);
                 canSpawnList.Remove(randIndex - 2);
             }
-            if (canSpawnList.Contains(randIndex + 3))
-            {
-                deleteFieldList.Add(randIndex + 3);
-                canSpawnList.Remove(randIndex + 3);
-            }
-            if (canSpawnList.Contains(randIndex - 3))
-            {
-                deleteFieldList.Add(randIndex - 3);
-                canSpawnList.Remove(randIndex - 3);
-            }
         }
 
         mobSpawnAmount += mobSpawnIncreaseAmount;
@@ -132,7 +122,7 @@ public class EnemyController : MonoBehaviour
         CardPower cardPower = cardObj.GetComponent<CardPower>();
 
         // cardPower에 정보 넣기
-        dragbleCard.SetData_Feild(BasicType.Monster, value);
+        dragbleCard.InitData_Feild(BasicType.Monster, value);
 
         // 못 움직이게
         dragbleCard.canDragAndDrop = false;
@@ -151,9 +141,6 @@ public class EnemyController : MonoBehaviour
         //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
         Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
 
-
-
-        cardPower.SetField();
         (cardPower as BasicCard).OnField();
     }
 
@@ -166,16 +153,17 @@ public class EnemyController : MonoBehaviour
     {
         // 설치할 위치
         Vector2 randomPoint = MapManager.Instance.RandomMapIndex(); // 랜덤 위치 획득
-        RectTransform buildPoint = MapManager.Instance.GetMapRectTrm((int)randomPoint.y, (int)randomPoint.x); // 랜덤값으로 설치할 위치 퍼오기
+        RectTransform rectTrm = MapManager.Instance.GetMapRectTrm((int)randomPoint.y, (int)randomPoint.x); // 랜덤값으로 설치할 위치 퍼오기
 
         // 설치할 건물
         int randomIndex = Random.Range(0, enemyBuildList.Count); // 랜덤 건물 획득
         EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
 
         // 건물설치
-        BuildCard building = CardPoolManager.Instance.GetBuildCard(buildPoint).GetComponent<BuildCard>();
+        BuildCard building = CardPoolManager.Instance.GetBuildCard(rectTrm).GetComponent<BuildCard>();
+        building.transform.position = rectTrm.position;
 
-        Effects.Instance.TriggerTeleport(buildPoint.transform.position);
+        Effects.Instance.TriggerTeleport(rectTrm.transform.position);
 
         building.Init(buildSO);
 
@@ -184,6 +172,7 @@ public class EnemyController : MonoBehaviour
         // 색 변경
         CardPower cardPower = building.GetComponent<CardPower>();
         cardPower.backImage.color = Color.magenta;
+        cardPower.OnField();
     }
 
 }

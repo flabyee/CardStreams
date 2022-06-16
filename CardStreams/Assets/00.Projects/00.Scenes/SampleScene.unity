@@ -1730,7 +1730,6 @@ RectTransform:
   - {fileID: 1814481310}
   - {fileID: 500018059}
   - {fileID: 1242648266}
-  - {fileID: 1069635407}
   - {fileID: 1745190212}
   - {fileID: 1241420657}
   m_Father: {fileID: 1755125823}
@@ -3172,6 +3171,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1102615507}
+  - {fileID: 1069635407}
   m_Father: {fileID: 740867261}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4902,28 +4902,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71cd0394b58d0d14c811b3b6e7a70d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originDeck: []
-  deck: []
   handleDropArea: {fileID: 905695225}
   handleTrm: {fileID: 2059843747}
-  buildHandleDropArea: {fileID: 2094405881}
-  buildHandleTrm: {fileID: 393445010288987042}
-  buildHandleObjTrm: {fileID: 1069635407}
-  quicSlotDropAreaList:
-  - {fileID: 1715979130}
-  - {fileID: 2053337822}
-  - {fileID: 222054408}
-  - {fileID: 1182545047}
-  - {fileID: 1555910557}
-  - {fileID: 1712102426}
-  - {fileID: 413398448}
-  - {fileID: 31818194}
-  - {fileID: 650352946}
-  - {fileID: 265082091}
-  shopDropArea: {fileID: 475797421}
-  buildHandleMoveAmount: -400
-  buildHandleMoveDuration: 0.75
-  canStartTurn: 0
 --- !u!1 &754234689
 GameObject:
   m_ObjectHideFlags: 0
@@ -6972,8 +6952,8 @@ RectTransform:
   m_Children:
   - {fileID: 397877563}
   - {fileID: 275002469}
-  m_Father: {fileID: 277858216}
-  m_RootOrder: 5
+  m_Father: {fileID: 483483595}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -9918,7 +9898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rerollCount: 0
   player: {fileID: 981051407}
-  moveDuration: 0.1725
+  moveDuration: 0.01
   fieldResetDelay: 0.1
   canStartTurn: 0
   moveIndex: 0
@@ -10423,7 +10403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2695733896093849183, guid: ed262d74be06f6b448bb6a7d5a06e4e7, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2695733896093849183, guid: ed262d74be06f6b448bb6a7d5a06e4e7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14790,6 +14770,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UITooltip
       objectReference: {fileID: 0}
+    - target: {fileID: 3477649626194446112, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
+      propertyPath: m_text
+      value: "\uD55C\uC0C1\uC218\uB294 \uC624\uBBFC\uADDC\uC758 \uB3D9\uAE09\uC774\uAC70\uB098
+        \uADF8 \uC774\uC0C1\uC774\u3137"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
 --- !u!1001 &932299729608769443
@@ -15854,7 +15839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621748290497226655, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4621748290497226655, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_AnchorMax.x

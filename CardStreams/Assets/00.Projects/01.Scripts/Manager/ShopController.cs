@@ -396,10 +396,12 @@ public class ShopController : MonoBehaviour
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite, TargetType.Handle, () => GameManager.Instance.handleController.DrawSpecialCard(specialCardSO.id));
+            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite, TargetType.Handle, () => { });
 
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
+
+            GameManager.Instance.handleController.AddSpecial(specialCardSO.id);
         }
     }
 
@@ -407,10 +409,12 @@ public class ShopController : MonoBehaviour
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite, TargetType.Handle, () => GameManager.Instance.handleController.DrawBuildCard(buildSO.id));
+            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite, TargetType.Handle, () => { });
 
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();
+
+            GameManager.Instance.handleController.AddBuild(buildSO.id);
         }
     }
 

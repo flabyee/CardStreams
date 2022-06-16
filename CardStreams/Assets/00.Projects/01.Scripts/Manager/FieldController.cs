@@ -47,25 +47,36 @@ public class FieldController
                 MapManager.Instance.fieldList[i].OnBuildAccess();
         }
     }
+    
 
-    public bool IsNextFieldAllMob(int nowIndex)
+    // 앞에 4칸이 꽉 찼는지
+    public bool IsNextFieldFull(int nowIndex)
     {
         for (int i = nowIndex; i < nowIndex + 4; i++)
         {
-            if(MapManager.Instance.fieldList[i].isSet == true)
-            {
-                if ((MapManager.Instance.fieldList[i].cardPower as BasicCard).basicType != BasicType.Monster)
-                {
-                    return false;
-                }
-            }
-            else
+            if (MapManager.Instance.fieldList[i].isSet == false)
             {
                 return false;
             }
         }
 
         return true;
+    }
+
+    // 앞에 4칸에 플레이어카드가 2장 이하인지
+    public bool IsNextFieldPlayerCardTwo(int nowIndex)
+    {
+        int playerCardCount = 0;
+
+        for (int i = nowIndex; i < nowIndex + 4; i++)
+        {
+            Field field = MapManager.Instance.fieldList[i];
+            if (field.isSet == true && (field.cardPower as BasicCard).basicType != BasicType.Monster)
+            {
+                playerCardCount++;
+            }
+        }
+        return playerCardCount <= 2 ? true : false;
     }
 
     public List<Vector2> GetTempNextFieldPoint()

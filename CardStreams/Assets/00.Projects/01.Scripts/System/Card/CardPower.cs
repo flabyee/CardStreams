@@ -11,23 +11,32 @@ public class CardPower : MonoBehaviour
     public Image faceImage;
     public Image backImage;
 
-    [HideInInspector] public bool isHandle;
-    [HideInInspector] public bool isField;
+    private RectTransform rectTransform;
+    public GameObject handleObj;
+    public GameObject fieldObj;
+
+    public bool isHandle;
+    public bool isField;
 
     [Header("Debug")]
     public CardType cardType;
 
-    public virtual void SetData_Feild(BasicType basicType, int value)
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    public virtual void InitData_Feild(BasicType basicType, int value)
     {
         this.cardType = CardType.Basic;
     }
 
-    public void SetData_SpecialCard()
+    public void InitData_SpecialCard()
     {
         this.cardType = CardType.Special;
     }
 
-    public void SetData_Build()
+    public void InitData_Build()
     {
         this.cardType = CardType.Build;
     }
@@ -42,5 +51,27 @@ public class CardPower : MonoBehaviour
     {
         isHandle = false;
         isField = true;
+    }
+
+    public virtual void OnHandle()
+    {
+        rectTransform.sizeDelta = new Vector2(75, 100);
+
+        handleObj.SetActive(true);
+        fieldObj.SetActive(false);
+    }
+    public virtual void OnField()
+    {
+        rectTransform.sizeDelta = new Vector2(65, 65);
+
+        fieldObj.SetActive(true);
+        handleObj.SetActive(false);
+    }
+    public virtual void OnHover()
+    {
+        rectTransform.sizeDelta = new Vector2(100, 100);
+
+        fieldObj.SetActive(true);
+        handleObj.SetActive(false);
     }
 }

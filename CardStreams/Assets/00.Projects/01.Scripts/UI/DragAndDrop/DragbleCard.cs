@@ -50,27 +50,31 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         this.droppedArea = dropArea;
     }
-    public void SetData_Feild(BasicType basicType, int value)
+    public void InitData_Feild(BasicType basicType, int value)
     {
         canDragAndDrop = true;
 
         cardPower.SetHandle();
 
-        (cardPower as BasicCard).SetData_Feild(basicType, value);
+        (cardPower as BasicCard).InitData_Feild(basicType, value);
     }
 
-    public void SetData_SpecialCard()
+    public void InitData_SpecialCard()
     {
+        canDragAndDrop = true;
+
         cardPower.SetHandle();
 
-        cardPower.SetData_SpecialCard();
+        cardPower.InitData_SpecialCard();
     }
 
-    public void SetData_Build()
+    public void InitData_Build()
     {
+        canDragAndDrop = true;
+
         cardPower.SetHandle();
 
-        cardPower.SetData_Build();
+        cardPower.InitData_Build();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -128,14 +132,11 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             BuildAreaTooltip.Instance.ShowFollow(transform, build.GetAccessPointList());
         }
 
-        if(cardPower.cardType == CardType.Basic)
-        {
-            (cardPower as BasicCard).OnHover();
-        }
+        cardPower.OnHover();
 
         if(GameManager.Instance.curState == GameState.Equip)
         {
-            GameManager.Instance.handleController.RayCastTargetBuildHandle(false);
+            //GameManager.Instance.handleController.RayCastTargetBuildHandle(false);
         }
     }
 
@@ -213,7 +214,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         if (GameManager.Instance.curState == GameState.Equip)
         {
-            GameManager.Instance.handleController.RayCastTargetBuildHandle(true);
+            //GameManager.Instance.handleController.RayCastTargetBuildHandle(true);
         }
     }
 

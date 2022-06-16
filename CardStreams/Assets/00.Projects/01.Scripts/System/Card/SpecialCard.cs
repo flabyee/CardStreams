@@ -7,6 +7,7 @@ using System;
 
 public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [HideInInspector] public int id;
     [HideInInspector] public ApplyTiming applyTiming;
     [HideInInspector] public List<CardType> targetTypeList;
     [HideInInspector] public List<BasicType> targetBasicList;
@@ -20,6 +21,8 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler,
 
     public void Init(SpecialCardSO so)
     {
+        id = so.id;
+
         applyTiming = so.applyTiming;
         targetTypeList = so.targetTypeList;
         targetBasicList = so.targetBasicList;

@@ -19,14 +19,6 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
     private ActionPosData actionPosData;
 
-    protected virtual void Awake()
-    {
-    }
-
-    private void Start()
-    {
-
-    }
 
     public void Init(BuildSO buildSO)
     {
