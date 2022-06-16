@@ -30,7 +30,14 @@ public class HandleController : MonoBehaviour
     private int deckValueIncreaseAmount;
     private float deckValueIncreaseMultipication;
 
+    public CardSorting cardSorting;
+
     private int maxValue;
+
+    private void Awake()
+    {
+        cardSorting = handleTrm.GetComponent<CardSorting>();
+    }
 
     private void Start()
     {
@@ -284,6 +291,8 @@ public class HandleController : MonoBehaviour
         }
 
         buildDeck.Clear();
+
+        cardSorting.AlignCards();
     }
     public void DrawSpecialCard()
     {
@@ -327,6 +336,8 @@ public class HandleController : MonoBehaviour
         DrawPlayerCard();
         DrawEnemyCard();
         DrawSpecialCard();
+
+        cardSorting.AlignCards();
     }
 
     public void LoopEnd()
