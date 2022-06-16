@@ -55,7 +55,7 @@ public class CardPower : MonoBehaviour
 
     public virtual void OnHandle()
     {
-        rectTransform.sizeDelta = new Vector2(75, 100);
+        rectTransform.sizeDelta = new Vector2(150, 200);
 
         handleObj.SetActive(true);
         fieldObj.SetActive(false);

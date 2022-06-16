@@ -4,18 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class CardLoad : MonoBehaviour
+public class CardSorting : MonoBehaviour
 {
-    private List<Image> _imgList;
+    private List<RectTransform> _imgList = new List<RectTransform>();
     [SerializeField] Transform _cardStartPos;
     [SerializeField] Transform _cardEndPos;
 
-    public void AddList(Image obj) // 카드리스트에 담기
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            AlignCards();
+    }
+
+    public void AddList(RectTransform obj) // 카드리스트에 담기
     {
         _imgList.Add(obj);
     }
 
-    public void RemoveList(Image obj)
+    public void RemoveList(RectTransform obj)
     {
         if (_imgList.Contains(obj))
             _imgList.Remove(obj);
@@ -23,6 +29,20 @@ public class CardLoad : MonoBehaviour
 
     public void AlignCards() // 카드 원형정렬
     {
+        _imgList.Clear();
+
+        int temp = -1;
+        foreach(var item in GetComponentsInChildren<RectTransform>())
+        {
+            temp++;
+
+            if (temp == 0 || temp == 1 || temp == 2)
+                continue;
+
+            _imgList.Add(item);
+        }
+
+
         Vector3 delta = _cardEndPos.transform.position - _cardStartPos.transform.position;
 
         Vector3 stepPos = delta / 4;  //4등분 지점
