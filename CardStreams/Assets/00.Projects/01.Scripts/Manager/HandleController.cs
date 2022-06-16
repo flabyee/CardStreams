@@ -148,15 +148,19 @@ public class HandleController : MonoBehaviour
             }
         }
 
-        DeckShuffle(allDeck);
-        // deck에 추가하고 셔플
         foreach (CardData cardData in allDeck)
         {
             if (cardData.basicType != BasicType.Monster)
             {
                 playerOriginDeck.Add(cardData);
             }
-            else
+        }
+
+        DeckShuffle(allDeck);
+
+        foreach (CardData cardData in allDeck)
+        {
+            if (cardData.basicType == BasicType.Monster)
             {
                 enemyOriginDeck.Add(cardData);
             }
@@ -176,7 +180,6 @@ public class HandleController : MonoBehaviour
 
     private void AddPlayerDeck()
     {
-        DeckShuffle(playerOriginDeck);
         foreach (CardData cardData in playerOriginDeck)
         {
             playerDeck.Add(cardData);

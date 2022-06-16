@@ -15,12 +15,9 @@ public class DropTooltip : MonoBehaviour
     public GameObject dropTooltipObj;
     public RectTransform parentRect;
     public RectTransform mapParentRect;
-    public RectTransform quikSlotParentRect;
-    public List<RectTransform> quikSlotRectList;
     public RectTransform playerAreaRect;
 
     private Image[,] mapImageArr;
-    private Image[] quikSlotImageArr;
     private Image playerAreaImage = null;
 
     private Color showColor = new Color(1, 1, 1, 1);
@@ -31,7 +28,6 @@ public class DropTooltip : MonoBehaviour
         Instance = this;
 
         mapImageArr = new Image[10, 10];
-        quikSlotImageArr = new Image[10];
 
         for (int y = 0; y < 10; y++)
         {
@@ -45,18 +41,6 @@ public class DropTooltip : MonoBehaviour
                 mapImageArr[y, x] = image;
             }
         }
-
-        for(int i = 0; i < quikSlotRectList.Count; i++)
-        {
-            GameObject obj = Instantiate(dropTooltipObj, quikSlotParentRect);
-
-            Image image = obj.GetComponent<Image>();
-            image.color = hideColor;
-
-            quikSlotImageArr[i] = image;
-        }
-
-        // quikSlot과 playerArea는 width와 height를 구해서 dropTooltipObj를 생성한다
     }
 
     public void Show(bool b, CardType cardType)

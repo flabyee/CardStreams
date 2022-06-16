@@ -468,6 +468,8 @@ public class GameManager : MonoBehaviour
 
         dragbleCard.transform.rotation = Quaternion.identity;
 
+        handleController.cardSorting.AlignCards();
+
         return true;
     }
 

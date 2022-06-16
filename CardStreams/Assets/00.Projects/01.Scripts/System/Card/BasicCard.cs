@@ -40,7 +40,7 @@ public class BasicCard : CardPower, IPointerClickHandler
         this.value = value;
         this.originValue = value;
         this.basicType = basicType;
-        this.goldP = 1;
+        this.goldP = 2;
 
         ApplyUI();
     }
