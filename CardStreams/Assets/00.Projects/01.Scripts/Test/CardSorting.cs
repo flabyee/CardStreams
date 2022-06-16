@@ -66,20 +66,24 @@ public class CardSorting : MonoBehaviour
 
         // 회전
 
-        for (int i = 0; i <= _imgList.Count / 2 - 1; i++) // 4면 1 5여도 1 6이면 2
+        for (int i = 0; i < (_imgList.Count - 1) / 2; i++) // 4면 1 5여도 1 6이면 2
         {
+            Debug.Log(_imgList.Count);
+
             Vector3 normal = (_imgList[i + 1].transform.position - _imgList[i].transform.position).normalized;
 
             float cos = normal.x;
             float sin = normal.y;
-            float theta = Mathf.Atan2(sin,cos) * Mathf.Rad2Deg;
+            float theta = Mathf.Atan2(sin, cos) * Mathf.Rad2Deg;
 
             _imgList[i].transform.Rotate(new Vector3(0, 0, theta));
         }
 
-        for (int i = _imgList.Count - 1; i >= (_imgList.Count + 1) / 2; i--) // 4면 32 5면 43 6이면 543
+        // 3 = 1 4 = 1 5 = 2 6 = 2 ((length-1)/2)
+
+        for (int i = _imgList.Count - 1; i > _imgList.Count / 2; i--) // 4면 3 5면 43 6이면 54 (length           i < 2
         {
-            Vector3 normal = (_imgList[i].transform.position - _imgList[i-1].transform.position).normalized;
+            Vector3 normal = (_imgList[i].transform.position - _imgList[i - 1].transform.position).normalized;
 
             float cos = normal.x;
             float sin = normal.y;
