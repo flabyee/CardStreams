@@ -27,15 +27,23 @@ public class CardSorting : MonoBehaviour
             _imgList.Remove(obj);
     }
 
-    public void AlignCards() // 카드 원형정렬
+    private void InitCardSettings()
     {
         _imgList.Clear();
 
-        foreach(var item in GetComponentsInChildren<DragbleCard>())
+        // 자식의 자식 컴포넌트까지 싹긁어와서 잘못하면 멸망할수있음, GetComponentsInChildren 최적화에 악영향끼쳐서(무거움) AddList RemoveList로 교체해야함
+        foreach (var item in GetComponentsInChildren<DragbleCard>())
         {
             _imgList.Add(item);
+            item.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
+    }
 
+    public void AlignCards() // 카드 원형정렬
+    {
+        
+
+        InitCardSettings();
 
         Vector3 delta = _cardEndPos.transform.position - _cardStartPos.transform.position;
 
