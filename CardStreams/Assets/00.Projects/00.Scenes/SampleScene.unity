@@ -15289,6 +15289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DropTooltip
       objectReference: {fileID: 0}
+    - target: {fileID: 2237568515062349059, guid: b9c08fe124fa275459c7384bde74af86, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2237568515062349069, guid: b9c08fe124fa275459c7384bde74af86, type: 3}
       propertyPath: parentRect
       value: 

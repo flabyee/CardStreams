@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DropTooltip : MonoBehaviour
 {
@@ -18,37 +19,41 @@ public class DropTooltip : MonoBehaviour
     public List<RectTransform> quikSlotRectList;
     public RectTransform playerAreaRect;
 
-    private RectTransform[,] mapRectArr;
-    private RectTransform[] quikSlotArr;
+    private Image[,] mapImageArr;
+    private Image[] quikSlotImageArr;
+    private Image playerAreaImage = null;
+
+    private Color showColor = new Color(1, 1, 1, 1);
+    private Color hideColor = new Color(0, 0, 0, 0);
 
     private void Awake()
     {
         Instance = this;
 
-        mapRectArr = new RectTransform[10, 10];
-        quikSlotArr = new RectTransform[10];
+        mapImageArr = new Image[10, 10];
+        quikSlotImageArr = new Image[10];
 
         for (int y = 0; y < 10; y++)
         {
             for (int x = 0; x < 10; x++)
             {
                 GameObject obj = Instantiate(dropTooltipObj, mapParentRect);
-                obj.SetActive(false);
 
-                RectTransform rectTrm = obj.GetComponent<RectTransform>();
+                Image image = obj.GetComponent<Image>();
+                image.color = hideColor;
 
-                mapRectArr[y, x] = rectTrm;
+                mapImageArr[y, x] = image;
             }
         }
 
         for(int i = 0; i < quikSlotRectList.Count; i++)
         {
             GameObject obj = Instantiate(dropTooltipObj, quikSlotParentRect);
-            obj.SetActive(false);
 
-            RectTransform rectTrm = obj.GetComponent<RectTransform>();
+            Image image = obj.GetComponent<Image>();
+            image.color = hideColor;
 
-            quikSlotArr[i] = rectTrm;
+            quikSlotImageArr[i] = image;
         }
 
         // quikSlot과 playerArea는 width와 height를 구해서 dropTooltipObj를 생성한다
@@ -72,7 +77,7 @@ public class DropTooltip : MonoBehaviour
                 List<Vector2> tempPointList = GameManager.Instance.fieldController.GetTempNextFieldPoint();
                 foreach(Vector2 point in tempPointList)
                 {
-                    mapRectArr[(int)point.x, (int)point.y].gameObject.SetActive(true);
+                    mapImageArr[(int)point.y, (int)point.x].color = showColor;
                 }
                 break;
             case CardType.Special:
@@ -127,6 +132,19 @@ public class DropTooltip : MonoBehaviour
 
     public void Hide()
     {
+        for (int y = 0; y < 10; y++)
+        {
+            for (int x = 0; x < 10; x++)
+            {
+                mapImageArr[y, x].color = hideColor;
+            }
+        }
 
+        for (int i = 0; i < quikSlotRectList.Count; i++)
+        {
+            quikSlotImageArr[i].color = hideColor;
+        }
+
+        //playerAreaImage.color = hideColor;
     }
 }
