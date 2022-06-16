@@ -130,12 +130,6 @@ public class DropTooltip : MonoBehaviour
                 mapImageArr[y, x].color = hideColor;
             }
         }
-
-        for (int i = 0; i < quikSlotRectList.Count; i++)
-        {
-            quikSlotImageArr[i].color = hideColor;
-        }
-
         //playerAreaImage.color = hideColor;
     }
 }
