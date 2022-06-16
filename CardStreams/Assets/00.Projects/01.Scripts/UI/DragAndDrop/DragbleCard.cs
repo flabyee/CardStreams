@@ -134,10 +134,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         cardPower.OnHover();
 
-        if(GameManager.Instance.curState == GameState.Equip)
-        {
-            //GameManager.Instance.handleController.RayCastTargetBuildHandle(false);
-        }
+        rectTransform.rotation = Quaternion.identity;
+        GameManager.Instance.handleController.cardSorting.AlignCards();
     }
 
     public void OnDrag(PointerEventData eventData)
