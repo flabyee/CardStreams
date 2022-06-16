@@ -84,7 +84,14 @@ public class DropTooltip : MonoBehaviour
                 // 스페셜 카드의 타겟에 맞게 앞에 4개, 플레이어, 건물 등등
                 break;
             case CardType.Build:
-                // 아직 건물이 배치되지않은 맵 전부
+                foreach(DropArea dropArea in DropArea.dropAreas)
+                {
+                    if(dropArea.dropAreaType == DropAreaType.Build && dropArea.rectTrm.childCount == 0)
+                    {
+                        Vector2 point = dropArea.point;
+                        mapImageArr[(int)point.y, (int)point.x].color = showColor;
+                    }
+                }
                 break;
         }
 

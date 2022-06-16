@@ -177,14 +177,14 @@ public class GameManager : MonoBehaviour
                 }
 
                 // 손에 몬스터 카드가 있고 앞에 4개 필드가 모두 몬스터가 아니면 next 안됨
-                if (handleController.HaveMobCard() == true)
-                {
-                    if(fieldController.IsNextFieldAllMob(moveIndex) == false)
-                    {
-                        UITooltip.Instance.Show("모든 몬스터를 배치한 후에 다시 시도하세요!", new UITooltip.TooltipTimer(1f));
-                        return;
-                    }
-                }
+                //if (handleController.HaveMobCard() == true)
+                //{
+                //    if(fieldController.IsNextFieldAllMob(moveIndex) == false)
+                //    {
+                //        UITooltip.Instance.Show("모든 몬스터를 배치한 후에 다시 시도하세요!", new UITooltip.TooltipTimer(1f));
+                //        return;
+                //    }
+                //}
 
                 NextAction();
                 break;
@@ -340,9 +340,10 @@ public class GameManager : MonoBehaviour
 
     public void Move()
     {
-        MoveStart();
-
         Sequence sequence = DOTween.Sequence();
+
+        sequence.AppendCallback(() => MoveStart());
+        sequence.AppendInterval(moveDuration * 2);
 
         for(int i = 0; i < maxMoveCount; i++)
         {

@@ -508,6 +508,12 @@ public class HandleController : MonoBehaviour
                     GoldAnimManager.Instance.CreateCoin(handle[i].originValue, handle[i].transform.position);
                     Effects.Instance.TriggerBlock(handle[i].transform.position);
                 }
+                // 몬스터라면 그만큼 돈 깍기
+                else
+                {
+                    GameManager.Instance.goldValue.RuntimeValue -= handle[i].originValue;
+                    GameManager.Instance.goldChangeEvent.Occurred();
+                }
 
                 handle[i].GetComponent<DragbleCard>().ActiveFalse();
             }
