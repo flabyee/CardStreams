@@ -6,26 +6,22 @@ using DG.Tweening;
 
 public class CardLoad : MonoBehaviour
 {
-    private Image[] _imgList;
-    private Transform _cardStartPos;
-    private Transform _cardEndPos;
+    private List<Image> _imgList;
+    [SerializeField] Transform _cardStartPos;
+    [SerializeField] Transform _cardEndPos;
 
-    private void Awake()
+    public void AddList(Image obj) // 카드리스트에 담기
     {
-         _imgList = GetComponentsInChildren<Image>();
-        _cardStartPos = transform.Find("CardStartPosition");
-        _cardEndPos = transform.Find("CardEndPostion");
+        _imgList.Add(obj);
     }
 
-    private void Update()
+    public void RemoveList(Image obj)
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            AlignCards();
-        }
+        if (_imgList.Contains(obj))
+            _imgList.Remove(obj);
     }
 
-    private void AlignCards()
+    public void AlignCards() // 카드 원형정렬
     {
         Vector3 delta = _cardEndPos.transform.position - _cardStartPos.transform.position;
 
@@ -37,21 +33,18 @@ public class CardLoad : MonoBehaviour
         int index = 5; //5~끝-4까지의 인덱스를 써야하니까 이렇게
         int step = 2;
 
-        Vector3[] points = DOCurve.CubicBezier.GetSegmentPointCloud(_cardStartPos.position, cp1, _cardEndPos.position, cp2, (_imgList.Length - 1) * step + 10);
+        Vector3[] points = DOCurve.CubicBezier.GetSegmentPointCloud(_cardStartPos.position, cp1, _cardEndPos.position, cp2, (_imgList.Count - 1) * step + 10);
 
-        Debug.Log(_imgList.Length);
 
-        for(int i = 0; i < _imgList.Length; i++)
+        for(int i = 0; i < _imgList.Count; i++)
         {
-            Debug.Log(index);
-            Debug.Log("위치 : " + points[index]);
             _imgList[i].transform.position = points[index];
             index += step;
         }
 
         // 회전
 
-        for (int i = 0; i <= _imgList.Length / 2 - 1; i++) // 4면 1 5여도 1 6이면 2
+        for (int i = 0; i <= _imgList.Count / 2 - 1; i++) // 4면 1 5여도 1 6이면 2
         {
             Vector3 normal = (_imgList[i + 1].transform.position - _imgList[i].transform.position).normalized;
 
@@ -62,7 +55,7 @@ public class CardLoad : MonoBehaviour
             _imgList[i].transform.Rotate(new Vector3(0, 0, theta));
         }
 
-        for (int i = _imgList.Length - 1; i >= (_imgList.Length + 1) / 2; i--) // 4면 32 5면 43 6이면 543
+        for (int i = _imgList.Count - 1; i >= (_imgList.Count + 1) / 2; i--) // 4면 32 5면 43 6이면 543
         {
             Vector3 normal = (_imgList[i].transform.position - _imgList[i-1].transform.position).normalized;
 
