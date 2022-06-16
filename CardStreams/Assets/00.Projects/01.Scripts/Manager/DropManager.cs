@@ -9,12 +9,6 @@ public class DropManager : MonoBehaviour
 
     public DropArea buildHandleDropArea;
 
-    public DropArea[] quickSlotDropAreaArr;
-
-    public DropArea shopDropArea;
-
-    public DropArea rerollDropArea;
-
     public DropArea useDropArea;
 
     public DropArea hoverDropArea;
@@ -47,18 +41,6 @@ public class DropManager : MonoBehaviour
 
         buildHandleDropArea.onLifted += ObjectLiftedFromBuildHandle;
         buildHandleDropArea.onDropped += ObjectDroppedToBuildHandle;
-
-        foreach(DropArea dropArea in quickSlotDropAreaArr)
-        {
-            dropArea.onLifted += ObjectLiftedFromQuickSlot;
-            dropArea.onDropped += ObjectDroppedToQuickSlot;
-        }
-
-        //shopDropArea.onLifted += ObjectLiftedFromShop;
-        //shopDropArea.onDropped += ObjectDroppedToShop;
-
-        //rerollDropArea.onLifted += ObjectLiftedFromReroll;
-        //rerollDropArea.onDropped += ObjectDroppedToReroll;
 
         useDropArea.onLifted += ObjectLiftedFromUse;
         useDropArea.onDropped += ObjectDroppedToUse;

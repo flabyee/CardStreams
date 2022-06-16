@@ -466,21 +466,7 @@ public class GameManager : MonoBehaviour
 
         dropArea.TriggerOnDrop(dragbleCard);
 
-        return true;
-    }
-    public bool DropQuickSlot(DragbleCard dragbleCard)
-    {
-        DropArea dropArea = null;
-        // 비어있는 곳 없으면 리턴
-        if (dropArea == null)
-        {
-            return false;
-        }
-
-        // drop area 설정
-        dragbleCard.SetDroppedArea(dropArea);
-
-        dropArea.TriggerOnDrop(dragbleCard);
+        dragbleCard.transform.rotation = Quaternion.identity;
 
         return true;
     }

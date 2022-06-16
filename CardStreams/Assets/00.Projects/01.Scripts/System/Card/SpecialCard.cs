@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
     [HideInInspector] public int id;
     [HideInInspector] public ApplyTiming applyTiming;
@@ -47,14 +47,5 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler,
     public void OnPointerExit(PointerEventData eventData)
     {
         SpecialCardTooltip.Instance.Hide();
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // 손에 있고, 우클릭이고, 장착 단계고
-        if(isHandle && eventData.button == PointerEventData.InputButton.Right && GameManager.Instance.curState == GameState.Equip)
-        {
-            GameManager.Instance.DropQuickSlot(GetComponent<DragbleCard>());
-        }
     }
 }
