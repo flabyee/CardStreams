@@ -83,6 +83,7 @@ public class SelectRewardManager : MonoBehaviour
             canChooseRewardList.Add(item);
         }
 
+        loopCount++; // 보상놨으니 루프보상횟수 + 1
         SetActiveChoose(true);
     }
 
@@ -118,9 +119,8 @@ public class SelectRewardManager : MonoBehaviour
 
         for (int i = 0; i < reward.cardReward.Length; i++) // reward 특수카드들을 다 먹어야하니까 i = 0으로 루프시작해서 다먹기
         {
-            Debug.Log(i);
             SpecialCardSO card = reward.cardReward[i]; // i번째 보상
-            getCards[i + statCount].Init(card); // 보상을 i + statCount 집어넣으면됨 (ex : 2번째보상, statCount 1 = 3번째카드에 들어감)
+            getCards[i + statCount].CardInit(card); // 보상을 i + statCount 집어넣으면됨 (ex : 2번째보상, statCount 1 = 3번째카드에 들어감)
             cardCount++; // 그래도 cardCount는 증가시켜야함
         }
 

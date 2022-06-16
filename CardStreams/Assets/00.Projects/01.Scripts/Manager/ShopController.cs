@@ -480,7 +480,10 @@ public class ShopController : MonoBehaviour
             SetChance();
 
             if(shopGrade == 2 || shopGrade == 4)
-                itemCount++;
+            {
+                Debug.Log("itemCount++ 이 있었으나 상점 연장점검으로인해 폐쇄되었습니다");
+                // itemCount++;
+            }
 
             OnShop();
         }

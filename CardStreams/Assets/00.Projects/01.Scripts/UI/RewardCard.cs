@@ -36,9 +36,17 @@ public class RewardCard : MonoBehaviour
     [SerializeField] EventSO goldValueChanged;
     [SerializeField] EventSO playerValueChanged;
     
-    public void Init(SpecialCardSO so)
+    private void DefaultInit()
     {
         cover.SetActive(true);
+        gameObject.SetActive(true);
+        _isget = false;
+    }
+
+    public void CardInit(SpecialCardSO so)
+    {
+        DefaultInit();
+
         rewardImage.sprite = so.sprite;
         rewardNameText.text = so.specialCardName;
 
@@ -47,7 +55,8 @@ public class RewardCard : MonoBehaviour
 
     public void GoldInit(int goldValue) // 카드인데 돈만주는 / 피만회복시키는 카드면 Gold Init / Heal Init
     {
-        cover.SetActive(true);
+        DefaultInit();
+
         rewardImage.sprite = goldSprite;
         rewardNameText.text = "돈";
         getGoldAmount = goldValue;
@@ -55,7 +64,7 @@ public class RewardCard : MonoBehaviour
 
     public void HealInit()
     {
-        cover.SetActive(true);
+        DefaultInit();
 
         rewardImage.sprite = healSprite;
         rewardNameText.text = "회복";
