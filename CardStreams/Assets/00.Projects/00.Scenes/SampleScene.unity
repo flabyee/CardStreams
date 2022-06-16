@@ -10622,23 +10622,23 @@ MonoBehaviour:
     legendary: 0
   - common: 25
     rare: 100
-    epic: 50
+    epic: 25
     unique: 0
     legendary: 0
   - common: 0
     rare: 50
-    epic: 100
+    epic: 50
     unique: 25
     legendary: 0
   - common: 0
     rare: 25
-    epic: 50
+    epic: 100
     unique: 50
     legendary: 25
   - common: 0
     rare: 0
-    epic: 30
-    unique: 60
+    epic: 50
+    unique: 50
     legendary: 50
   rerollCost: 5
   upgradeCostList: 0a000000140000001e00000028000000ffffffff
@@ -12669,7 +12669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2492770840972574033, guid: c1cd2af4578d12f45b0df7fa7e0a0025, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 2492770840972574033, guid: c1cd2af4578d12f45b0df7fa7e0a0025, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
