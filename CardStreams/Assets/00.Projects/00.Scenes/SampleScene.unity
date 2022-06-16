@@ -3333,11 +3333,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_Pivot.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_RootOrder
@@ -3397,11 +3397,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -169.99988
+      value: -310
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12140,7 +12140,9 @@ MonoBehaviour:
   spawnMobEffect: {fileID: 1612221337289516, guid: 2959bb36081fd4e428e35494de1860e4, type: 3}
   jungSanEffect: {fileID: 1612221337289516, guid: b9f6a5ecfd8cb174ca67a8ee8308321b, type: 3}
   bezierCardEffect: {fileID: 4617811631078992324, guid: 9fa5ad7b0ba1e5b409ed42c8e79650d8, type: 3}
-  targetTrm: {fileID: 1069635407}
+  specialCardTargetTrm: {fileID: 1069635407}
+  goldCardTargetTrm: {fileID: 500018059}
+  healCardTargetTrm: {fileID: 2123179030}
   nextBuildEffect: {fileID: 1612221337289516, guid: 2959bb36081fd4e428e35494de1860e4, type: 3}
 --- !u!114 &1920793696
 MonoBehaviour:
@@ -14080,11 +14082,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 61b09321ef2b0ad459714bf25c0e84a4, type: 3}
     - target: {fileID: 6983622778912894910, guid: c2068911fc127f9488fad2c715676f31, type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6983622778912894910, guid: c2068911fc127f9488fad2c715676f31, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6983622778912894910, guid: c2068911fc127f9488fad2c715676f31, type: 3}
       propertyPath: m_RootOrder
@@ -14144,11 +14146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6983622778912894910, guid: c2068911fc127f9488fad2c715676f31, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 6983622778912894910, guid: c2068911fc127f9488fad2c715676f31, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 6983622778912894910, guid: c2068911fc127f9488fad2c715676f31, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

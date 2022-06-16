@@ -151,6 +151,12 @@ MonoBehaviour:
   cover: {fileID: 6377191105193056586}
   rewardImage: {fileID: 4519116125312343086}
   rewardNameText: {fileID: 7882412477737608422}
+  healSprite: {fileID: 21300000, guid: b8af07a1c96d94c40ad4175459ea0117, type: 3}
+  goldSprite: {fileID: 21300000, guid: 06acc3f657eb71f47b95599f2c67f699, type: 3}
+  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
+  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
+  goldValueChanged: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
 --- !u!1 &4360146661685609773
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,21 +103,25 @@ public class SelectRewardManager : MonoBehaviour
         if(reward.goldReward > 0) // 골드 보상이 있다면 카드하나생성
         {
             // 카드 하나 Init하고 누르면 돈UI로 보내게하기
-            getCards[cardCount].StatInit(reward.goldReward, false);
+            getCards[cardCount].GoldInit(reward.goldReward);
             cardCount++;
         }
 
         if(reward.allHealReward == true)
         {
             // 카드 하나 Init하고 누르면 플레이어하트로 보내게하기
-            getCards[cardCount].StatInit(0, reward.allHealReward);
+            getCards[cardCount].HealInit();
             cardCount++;
         }
 
-        for (; cardCount < reward.cardReward.Length; cardCount++)
+        int statCount = cardCount;
+
+        for (int i = 0; i < reward.cardReward.Length; i++) // reward 특수카드들을 다 먹어야하니까 i = 0으로 루프시작해서 다먹기
         {
-            SpecialCardSO card = reward.cardReward[cardCount];
-            getCards[cardCount].Init(card);
+            Debug.Log(i);
+            SpecialCardSO card = reward.cardReward[i]; // i번째 보상
+            getCards[i + statCount].Init(card); // 보상을 i + statCount 집어넣으면됨 (ex : 2번째보상, statCount 1 = 3번째카드에 들어감)
+            cardCount++; // 그래도 cardCount는 증가시켜야함
         }
 
         for (; cardCount < getCards.Length; cardCount++)

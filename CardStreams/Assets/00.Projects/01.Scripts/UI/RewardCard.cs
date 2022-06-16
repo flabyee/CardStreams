@@ -5,6 +5,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+public enum TargetType // 보상카드가 날아갈 위치
+{
+    Handle,
+    GoldUI,
+    HPUI
+}
+
 public class RewardCard : MonoBehaviour
 {
     [SerializeField] GameObject cover; // 카드 누르기전 앞면
@@ -19,6 +26,16 @@ public class RewardCard : MonoBehaviour
     private int getGoldAmount = 0;
     private bool getHeal = false;
 
+    [Header("단순 스텟 관련")]
+    [SerializeField] Sprite healSprite;
+    [SerializeField] Sprite goldSprite;
+
+    [Header("단순 스텟 조절목적 SO")]
+    [SerializeField] IntValue goldValue;
+    [SerializeField] IntValue hpValue;
+    [SerializeField] EventSO goldValueChanged;
+    [SerializeField] EventSO playerValueChanged;
+    
     public void Init(SpecialCardSO so)
     {
         cover.SetActive(true);
@@ -28,15 +45,21 @@ public class RewardCard : MonoBehaviour
         cardSO = so;
     }
 
-    public void StatInit(int goldValue, bool allHeal) // 카드인데 돈만주는 / 피만회복시키는 카드면 StatInit
+    public void GoldInit(int goldValue) // 카드인데 돈만주는 / 피만회복시키는 카드면 Gold Init / Heal Init
+    {
+        cover.SetActive(true);
+        rewardImage.sprite = goldSprite;
+        rewardNameText.text = "돈";
+        getGoldAmount = goldValue;
+    }
+
+    public void HealInit()
     {
         cover.SetActive(true);
 
-        getGoldAmount = goldValue;
-        getHeal = allHeal;
-
-        //rewardImage.sprite = so.sprite;
-        //rewardNameText.text = so.specialCardName;  나중에이거 돈/힐 이미지로 교체
+        rewardImage.sprite = healSprite;
+        rewardNameText.text = "회복";
+        getHeal = true;
     }
 
     public void PressButton()
@@ -49,14 +72,24 @@ public class RewardCard : MonoBehaviour
         if (getGoldAmount > 0)
         {
             // Bezier로 돈UI로 날리기 도착하면 돈증가
+            EffectManager.Instance.GetBezierCardEffect(transform.position, goldSprite, TargetType.GoldUI, () =>
+            {
+                goldValue.RuntimeValue += getGoldAmount;
+                goldValueChanged.Occurred();
+            });
         }
         else if(getHeal == true)
         {
             // Bezier로 회복으로 날리기 도착하면 회복
+            EffectManager.Instance.GetBezierCardEffect(transform.position, healSprite, TargetType.HPUI, () =>
+            {
+                hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
+                playerValueChanged.Occurred();
+            });
         }
         else
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, () => GameManager.Instance.handleController.DrawBuildCard(cardSO.id));
+            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, TargetType.Handle, () => GameManager.Instance.handleController.DrawSpecialCard(cardSO.id));
         }
     }
 

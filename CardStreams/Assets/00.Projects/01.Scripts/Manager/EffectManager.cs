@@ -12,7 +12,9 @@ public class EffectManager : MonoBehaviour
     public GameObject jungSanEffect;
 
     public GameObject bezierCardEffect;
-    [SerializeField] Transform targetTrm;
+    [SerializeField] Transform specialCardTargetTrm; // 특수카드가 날아갈 목적지
+    [SerializeField] Transform goldCardTargetTrm; // 골드카드가 날아갈 목적지
+    [SerializeField] Transform healCardTargetTrm; // 회복카드가 날아갈 목적지
 
     public GameObject nextBuildEffect;
     private List<GameObject> nextBuildEffectList = new List<GameObject>();
@@ -51,11 +53,33 @@ public class EffectManager : MonoBehaviour
     /// <summary> 카드 생성해서 돌면서 작아지게하는마법 </summary>
     /// <param name="startPos">어디서 날아가나요</param>
     /// <param name="icon">카드의 아이콘</param>
-    /// <param name="cardID">카드의 ID, 날라가서 목적지 도착하면 카드획득. -1이면 아무것도 획득 안함</param>
-    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, Action callback)
+    /// <param name="callback">카드 날라가는거 완료된후 터질 함수</param>
+    /// <param name="rewardType">카드 날라가는거 완료된후 얻을 보상의 종류</param>
+    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, TargetType rewardType, Action callback)
     {
         startPos.z = 0; // canvas UI라서 z 문제생길수있음 그래서 0
         BezierCard effect = Instantiate(bezierCardEffect, startPos, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
+
+        Transform targetTrm = null;
+
+        switch (rewardType)
+        {
+            case TargetType.Handle:
+                targetTrm = specialCardTargetTrm;
+                break;
+
+            case TargetType.GoldUI:
+                targetTrm = goldCardTargetTrm;
+                break;
+
+            case TargetType.HPUI:
+                targetTrm = healCardTargetTrm;
+                break;
+
+            default:
+                Debug.Log("EffectManager - GetBezierCardEffect 에러");
+                break;
+        }
 
         effect.Init(targetTrm, icon, callback);
 
