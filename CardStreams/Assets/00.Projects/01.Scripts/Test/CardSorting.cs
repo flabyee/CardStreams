@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class CardSorting : MonoBehaviour
 {
-    private List<RectTransform> _imgList = new List<RectTransform>();
+    private List<DragbleCard> _imgList = new List<DragbleCard>();
     [SerializeField] Transform _cardStartPos;
     [SerializeField] Transform _cardEndPos;
 
@@ -16,12 +16,12 @@ public class CardSorting : MonoBehaviour
             AlignCards();
     }
 
-    public void AddList(RectTransform obj) // 카드리스트에 담기
+    public void AddList(DragbleCard obj) // 카드리스트에 담기
     {
         _imgList.Add(obj);
     }
 
-    public void RemoveList(RectTransform obj)
+    public void RemoveList(DragbleCard obj)
     {
         if (_imgList.Contains(obj))
             _imgList.Remove(obj);
@@ -31,14 +31,8 @@ public class CardSorting : MonoBehaviour
     {
         _imgList.Clear();
 
-        int temp = -1;
-        foreach(var item in GetComponentsInChildren<RectTransform>())
+        foreach(var item in GetComponentsInChildren<DragbleCard>())
         {
-            temp++;
-
-            if (temp == 0 || temp == 1 || temp == 2)
-                continue;
-
             _imgList.Add(item);
         }
 
