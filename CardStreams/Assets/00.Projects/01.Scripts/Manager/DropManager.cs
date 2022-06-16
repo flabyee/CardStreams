@@ -438,5 +438,7 @@ public class DropManager : MonoBehaviour
 
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();
         cardPower.OnHandle();
+
+        GameManager.Instance.handleController.cardSorting.AlignCards();
     }
 }
