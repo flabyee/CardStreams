@@ -187,6 +187,8 @@ public class HandleController : MonoBehaviour
     }
     private void AddEnemyDeck()
     {
+        DeckMake();
+
         DeckShuffle(enemyOriginDeck);
         foreach (CardData cardData in enemyOriginDeck)
         {
