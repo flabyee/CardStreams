@@ -77,7 +77,7 @@ public class CardSorting : MonoBehaviour
         {
             for (int i = 0; i < _imgList.Count; i++)
             {
-                Debug.Log(index);
+                //Debug.Log(index);
                 _imgList[i].transform.position = points[index];
                 index += step;
             }

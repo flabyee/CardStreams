@@ -95,12 +95,12 @@ public static class SaveSystem
         for (int i = 0; i < buildCount; i++)
         {
             saveData.buildDataList.Add(
-                new BuildData() { id = i, haveAmount = 0, isUnlock = true, upgradeAmount = 0 });
+                new BuildData() { id = i });
         }
         for(int i = 0; i < specialCardCount; i++)
         {
             saveData.speicialCardDataList.Add(
-                new SpecialCardData() { id = i, haveAmount = 0, isUnlock = true, upgradeAmount = 0 });
+                new SpecialCardData() { id = i });
         }
 
         // 저장할 클래스를 Json으로 바꿔주기
@@ -139,8 +139,7 @@ public class SpecialCardData
 {
     public int id;
     public bool isUnlock;
-    public int upgradeAmount;
-    public int haveAmount;
+    public bool isUse;
 }
 
 [System.Serializable]
@@ -148,7 +147,6 @@ public class BuildData
 {
     public int id;
     public bool isUnlock;
-    public int upgradeAmount;
-    public int haveAmount;
+    public bool isUse;
 }
 

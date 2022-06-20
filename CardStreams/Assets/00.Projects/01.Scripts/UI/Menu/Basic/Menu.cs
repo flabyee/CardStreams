@@ -33,25 +33,13 @@ public abstract class Menu<T> : Menu where T : Menu<T>
         if (MenuManager.Instance != null && Instance != null)
         {
             MenuManager.Instance.OpenMenu(Instance);
-            //Instance.OnOpen();
-        }
-    }
-
-    // menu를 열때 id 전달할수있게
-    public static void Open(int index)
-    {
-        if (MenuManager.Instance != null && Instance != null)
-        {
-            MenuManager.Instance.OpenMenu(Instance, index);
-            //Instance.OnOpen();
+            Instance.OnOpen();
         }
     }
 }
 
 public abstract class Menu : MonoBehaviour
 {
-    public Action onBackPressed;
-
     public virtual void OnOpen()
     {
 

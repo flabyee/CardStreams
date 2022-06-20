@@ -18,6 +18,7 @@ using UnityEngine;
 //    }
 //}
 
+[System.Serializable]
 public enum CardGrade
 {
     Common,

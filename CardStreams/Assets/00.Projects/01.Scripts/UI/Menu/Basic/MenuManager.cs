@@ -10,13 +10,9 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
     // 필요한 메뉴 프리팹들을 변수로 선언
-    //public MainMenu mainMenuPrefab;
-    //public InformationMenu informationMenuPrefab;
-    //public ReinforcementMenu reinforcementMenu;
-    //public RevivalMenu revivalMenu;
-    //public DungeonJoinMenu dungeonJoinMenu;
-    //public ShopMenu shopMenu;
-    //public Menu2 menu2Prefab;
+    public MainMenu mainMenuPrefab;
+    public EquipMenu equipMenuPrefab;
+    public UnlockMenu unlockMenuPrefab;
 
 
     // 메뉴들의 부모로 쓸 트랜스폼 변수 선언
@@ -28,18 +24,6 @@ public class MenuManager : MonoBehaviour
 
     private static MenuManager _instance;
     public static MenuManager Instance { get { return _instance; } }
-
-
-    [SerializeField]
-    private Image fadeInOutImage;
-
-
-    // To Do : 나중에 빌리지 매니저로 옮기는게 맞는듯?
-    public GoldTextClass shopGT;    // 상점에서 사용하는 재화
-    public GoldTextClass reinforceGT;  // 강화에 사용하는 재화
-    public GoldTextClass spendGT;
-
-    public GameObject moneyObj;
 
     private void Awake()
     {
@@ -55,11 +39,6 @@ public class MenuManager : MonoBehaviour
         }
 
 
-    }
-
-    private void Start()
-    {
-        Instance.spendGT.FirstInit(0, false, GoldTextClass.GoldType.reinforceGold);
     }
 
     private void OnDestroy()
@@ -106,15 +85,15 @@ public class MenuManager : MonoBehaviour
             {
                 Menu menuInstance = Instantiate(prefab, _menuParent);
 
-                // 첫 오픈하는 메뉴는 메인메뉴로 하겠다
-                //if (prefab != mainMenuPrefab)
-                //{
-                //    menuInstance.gameObject.SetActive(false);
-                //}
-                //else
-                //{
-                //    OpenMenu(menuInstance);
-                //}
+                //첫 오픈하는 메뉴는 메인메뉴로 하겠다
+                if (prefab != mainMenuPrefab)
+                {
+                    menuInstance.gameObject.SetActive(false);
+                }
+                else
+                {
+                    OpenMenu(menuInstance);
+                }
             }
         }
     }
@@ -182,110 +161,6 @@ public class MenuManager : MonoBehaviour
             // 바로 그 다음 메뉴를 꺼내서 활성화(제거 No)
             Menu nextMenu = _menuStack.Peek();  // Pop은 제거까지 함, Peek은 꺼내기만
             nextMenu.gameObject.SetActive(true);
-        }
-    }
-
-    public void FadeInOut()
-    {
-        fadeInOutImage.DOColor(new Color(0, 0, 0, 1), 0.5f).SetDelay(0.25f);
-        fadeInOutImage.DOColor(new Color(0, 0, 0, 0), 0.5f).SetDelay(0.75f);
-    }
-
-    public void OnOffMoney(bool b)
-    {
-        moneyObj.SetActive(b);
-    }
-
-    public void SetSpendText(TextMeshProUGUI spendText)
-    {
-        spendGT.setText = spendText;
-    }
-    public void GoldApplyAnim(GoldTextClass gt)
-    {
-        StartCoroutine(UpDownGoldCor(gt));
-    }
-    public IEnumerator UpDownGoldCor(GoldTextClass gt)
-    {
-        if (gt.gold < gt.targetGold)   // 골드가 올라갈 때
-        {
-            while (gt.gold <= gt.targetGold)
-            {
-                // To Do : 사운드
-                gt.gold += gt.amount;
-                gt.ApplyText(GoldTextClass.GoldType.reinforceGold);
-                yield return null;
-            }
-
-            gt.gold = gt.targetGold;
-            gt.ApplyText(GoldTextClass.GoldType.reinforceGold);
-        }
-        else if (gt.gold > gt.targetGold)  // 골드가 내려갈 때
-        {
-            while (gt.gold >= gt.targetGold)
-            {
-                // To Do : 사운드
-                gt.gold -= gt.amount;
-                gt.ApplyText(GoldTextClass.GoldType.reinforceGold);
-                yield return null;
-            }
-
-            gt.gold = gt.targetGold;
-            gt.ApplyText(GoldTextClass.GoldType.reinforceGold);
-        }
-    }
-}
-
-// gold와 targetGold는 일치되어있어야 함
-[System.Serializable]
-public class GoldTextClass
-{
-    public int gold;
-    public int targetGold;  // 중요! 골드와 타겟골드는 동기화(똑같)되어야 한다.
-    public int amount = 100;  // 골드 줄어들거나 늘어나는 에니메이션에서 변경 속도? 양? 이다   // To Do : 변화 총량에 따라 자동으로 설정
-    public TextMeshProUGUI setText;
-
-    public enum GoldType
-    {
-        reinforceGold,
-        shopGold,
-    }
-
-    public void ApplyText(GoldType goldType)   // 적용
-    {
-        setText.text = $"<sprite={(int)goldType}>" + gold.ToString();
-    }
-    public void SetColor(Color color)
-    {
-        setText.color = color;
-    }
-
-    public void UpGold(int amount)
-    {
-        targetGold += amount;
-    }
-
-    public void DownGold(int amount)
-    {
-        targetGold -= amount;
-    }
-
-    public void ResetGold()
-    {
-        targetGold = 0;
-    }
-
-    public void ApplyGold()
-    {
-        gold = targetGold;
-    }
-
-    public void FirstInit(int _gold, bool isApply, GoldType goldType)
-    {
-        this.gold = _gold;
-        targetGold = gold;
-        if (isApply)
-        {
-            ApplyText(goldType);
         }
     }
 }

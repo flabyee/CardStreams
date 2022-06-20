@@ -83,9 +83,10 @@ public class ShopController : MonoBehaviour
             specialDict[(CardGrade)i] = new List<SpecialCardData>();
         }
 
+        // 언락 되어있는 건물과 특수카드 dict에 넣기
         foreach (BuildData itemData in saveData.buildDataList)
         {
-            if (itemData.isUnlock == true)
+            if (itemData.isUnlock == true && itemData.isUse == true)
             {
                 BuildSO buildSO = buildList.Find((x) => x.id == itemData.id);
 
@@ -95,7 +96,7 @@ public class ShopController : MonoBehaviour
 
         foreach (SpecialCardData itemData in saveData.speicialCardDataList)
         {
-            if (itemData.isUnlock == true)
+            if (itemData.isUnlock == true && itemData.isUse == true)
             {
                 SpecialCardSO specialSO = specialList.Find((x) => x.id == itemData.id);
 
