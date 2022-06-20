@@ -244,43 +244,7 @@ public class DropManager : MonoBehaviour
         }
     }
 
-    private void ObjectLiftedFromQuickSlot(DropArea area, GameObject obj)
-    {
-        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
-
-        obj.transform.SetParent(hoverTrm, true);
-
-        if(GameManager.Instance.curState == GameState.Equip)
-        {
-            dragbleCard.originDropArea = dragbleCard.originOriginDropArea;
-        }
-    }
-    private void ObjectDroppedToQuickSlot(DropArea area, GameObject obj)
-    {
-        DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
-        CardPower cardPower = obj.GetComponent<CardPower>();
-
-        // 아무것도없고 특수카드라면 (buildDropArea는 field가 없어서 자식의 갯수로 체크
-        if (cardPower.cardType == CardType.Special && area.rectTrm.childCount == 0)
-        {
-            // 부모 설정(위치 설정)
-            obj.transform.SetParent(area.rectTrm, true);
-
-            if (GameManager.Instance.curState == GameState.Equip)
-            {
-                dragbleCard.originOriginDropArea = dragbleCard.originDropArea;
-                dragbleCard.originDropArea = area;
-            }
-
-
-            cardPower.SetField();
-        }
-        else
-        {
-            // 재자리로
-            ObjectToOrigin(area, obj);
-        }
-    }
+    
 
     private void ObjectLiftedFromHandle(DropArea area, GameObject obj)
     {
@@ -410,6 +374,8 @@ public class DropManager : MonoBehaviour
 
     private void ObjectToOrigin(DropArea area, GameObject obj)
     {
+        Debug.Log("hover drop");
+
         DragbleCard dragbleCard = obj.GetComponent<DragbleCard>();
         //Debug.Log(dragbleCard.cardPower.cardType);
 
