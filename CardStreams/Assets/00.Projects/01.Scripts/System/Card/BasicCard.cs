@@ -14,7 +14,7 @@ public enum BasicType
     Monster,
 }
 
-public class BasicCard : CardPower, IPointerClickHandler
+public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public BasicType basicType;
 
@@ -31,6 +31,14 @@ public class BasicCard : CardPower, IPointerClickHandler
 
     // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();
+
+    private int originSiblingIndex; // 원래 자식 인덱스값(인덱스 순서기억)
+    private Vector3 originPos; // 원래 위치(카드 커졌다가 다시돌아오기)
+    private Quaternion originRot; // 원래 회전(카드 일직선이었다가 돌아오기)
+    private void Start()
+    {
+        originSiblingIndex = transform.GetSiblingIndex();
+    }
 
     public override void InitData_Feild(BasicType basicType, int value)
     {
@@ -114,8 +122,37 @@ public class BasicCard : CardPower, IPointerClickHandler
     {
         if(isHandle && eventData.button == PointerEventData.InputButton.Right)
         {
+            transform.localScale = Vector3.one;
             GameManager.Instance.DropField(GetComponent<DragbleCard>());
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (isHandle == false) return;
+
+        originSiblingIndex = transform.GetSiblingIndex();
+        transform.SetAsLastSibling();
+
+        originPos = transform.position;
+
+        transform.position += transform.up * 0.5f;
+        transform.localScale *= 1.5f;
+
+        originRot = transform.rotation;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (isHandle == false) return;
+
+        transform.SetSiblingIndex(originSiblingIndex);
+
+        transform.position = originPos;
+        transform.localScale /= 1.5f;
+
+        transform.rotation = originRot;
     }
 
     public override void OnHandle()

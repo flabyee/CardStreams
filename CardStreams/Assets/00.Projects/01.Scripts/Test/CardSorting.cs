@@ -49,11 +49,11 @@ public class CardSorting : MonoBehaviour
 
         Vector3 stepPos = delta / 4;  //4등분 지점
 
-        Vector3 cp1 = _cardStartPos.transform.position + stepPos + new Vector3(0, 2f);
-        Vector3 cp2 = _cardEndPos.transform.position - stepPos + new Vector3(0, 2f);
+        Vector3 cp1 = _cardStartPos.transform.position + stepPos + new Vector3(0, 1f);
+        Vector3 cp2 = _cardEndPos.transform.position - stepPos + new Vector3(0, 1f);
 
         int index = 5; //5~끝-4까지의 인덱스를 써야하니까 이렇게
-        int step = 2;
+        int step = 8;
 
 
         Vector3[] points = DOCurve.CubicBezier.GetSegmentPointCloud(_cardStartPos.position, cp1, _cardEndPos.position, cp2, (_imgList.Count - 1) * step + 10);

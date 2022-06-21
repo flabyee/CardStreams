@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
 
+    public Action<int> ShowTuTorialEvent;
+
     private void Awake()
     {
         if (Instance == null)
@@ -88,6 +90,8 @@ public class GameManager : MonoBehaviour
 
         goldValue.RuntimeValue += 20;
         goldChangeEvent.Occurred();
+
+        ShowTuTorialEvent?.Invoke(0);
     }
 
     public void LoadStageData()
@@ -223,6 +227,7 @@ public class GameManager : MonoBehaviour
     public void TurnStart()
     {
         Debug.Log("start");
+        // fieldController.SetAllFieldYet(); // 안해주면 카드가 안들어감 근데 여기다가 이거쓰면 손에보라색몬스터 버그남 ??그럼어떻게해야하지
 
         // 턴 증가
         turnCountValue.RuntimeValue++;
@@ -241,6 +246,8 @@ public class GameManager : MonoBehaviour
 
         canNext = true;
 
+        ShowTuTorialEvent?.Invoke(1);
+
         curState = GameState.Move;
         nextState = GameState.Move;
     }
@@ -252,6 +259,7 @@ public class GameManager : MonoBehaviour
         handleController.LoopEnd();
 
         moveIndex = 0;
+        ShowTuTorialEvent?.Invoke(3);
 
         // 정산
         StartCoroutine(JungSanCor());
@@ -315,6 +323,8 @@ public class GameManager : MonoBehaviour
 
     public void MoveEnd()
     {
+        if (moveIndex == maxMoveCount) ShowTuTorialEvent?.Invoke(2);
+
         canNext = true;
 
         // 이전 4개의 필드
@@ -343,7 +353,7 @@ public class GameManager : MonoBehaviour
         sequence.AppendCallback(() => MoveStart());
         sequence.AppendInterval(moveDuration * 2);
 
-        for(int i = 0; i < maxMoveCount; i++)
+        for (int i = 0; i < maxMoveCount; i++)
         {
             // player 위치 이동
             sequence.AppendCallback(() =>
