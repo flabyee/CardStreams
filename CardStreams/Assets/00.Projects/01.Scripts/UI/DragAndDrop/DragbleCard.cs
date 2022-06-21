@@ -111,6 +111,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         droppedArea = null;
 
         DropArea.SetDropArea(true, cardPower.cardType);
+        DontRaycastTarget.SetRaycastTarget(false);
 
         // 드래그 시작할 때 설정?
         //Rect clamp = new Rect(Vector2.zero, clampRectTransform.rect.size);
@@ -125,7 +126,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         //Debug.Log(minWorldPosition + "/" + maxWorldPosition);
 
         // 나중에 DropManager LIFT로 옮기세요
-        if(cardPower.cardType == CardType.Build)
+        if (cardPower.cardType == CardType.Build)
         {
             BuildCard build = GetComponent<BuildCard>();
 
@@ -179,6 +180,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         isDraging = false;
 
         DropArea.SetDropArea(false, cardPower.cardType);
+        DontRaycastTarget.SetRaycastTarget(true);
         if (onMoveEnd != null) onMoveEnd(this);
 
         bool noEvent = true;

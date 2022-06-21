@@ -120,8 +120,6 @@ public class EquipController : MonoBehaviour
                     int closerID = buildData.id;
 
                     OnClickBuildRemove(closerID, build);
-
-                    Debug.Log("c");
                 });
 
                 count++;

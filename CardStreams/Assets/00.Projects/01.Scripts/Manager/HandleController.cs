@@ -198,9 +198,47 @@ public class HandleController : MonoBehaviour
 
     private void DrawPlayerCard()
     {
-        if(playerDeck.Count > 1)
+        //if(playerDeck.Count > 1)
+        //{
+        //    foreach(CardData cardData in playerDeck)
+        //    {
+        //        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+        //        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+        //        BasicCard basicCard = cardObj.GetComponent<BasicCard>();
+
+        //        dragbleCard.SetDroppedArea(handleDropArea);
+        //        dragbleCard.originDropArea = handleDropArea;
+
+        //        dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
+
+        //        basicCard.OnHandle();
+
+        //        playerHandleObj.Add(basicCard);
+        //    }
+
+        //    // 클리어하고 나중에 moveStart때 다시 추가
+        //    playerDeck.Clear();
+        //}
+        //else
+        //{
+        //    playerDeck.Clear();
+
+        //    AddPlayerDeck();
+
+        //    DrawPlayerCard();
+        //}
+
+        if(playerHandleObj.Count <= 1)
         {
-            foreach(CardData cardData in playerDeck)
+            foreach(BasicCard card in playerHandleObj)
+            {
+                card.GetComponent<DragbleCard>().ActiveFalse();
+            }
+            playerHandleObj.Clear();
+
+            DeckShuffle(playerOriginDeck);
+
+            foreach(CardData cardData in playerOriginDeck)
             {
                 GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
                 DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
@@ -215,18 +253,9 @@ public class HandleController : MonoBehaviour
 
                 playerHandleObj.Add(basicCard);
             }
-
-            // 클리어하고 나중에 moveStart때 다시 추가
-            playerDeck.Clear();
         }
-        else
-        {
-            playerDeck.Clear();
 
-            AddPlayerDeck();
-
-            DrawPlayerCard();
-        }
+        cardSorting.AlignCards();
     }
     private void DrawEnemyCard()
     {
@@ -364,14 +393,11 @@ public class HandleController : MonoBehaviour
         for (int i = 0; i < playerHandleObj.Count; i++)
         {
             // 손에 있다면 active false
-            if (playerHandleObj[i].isHandle == true)
+            if (playerHandleObj[i].isField == true)
             {
-                playerDeck.Add(new CardData(playerHandleObj[i].basicType, playerHandleObj[i].value));
-
-                playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+                playerHandleObj.RemoveAt(i);
             }
         }
-        playerHandleObj.Clear();
 
         for (int i = 0; i < enemyHandleObj.Count; i++)
         {
@@ -406,5 +432,7 @@ public class HandleController : MonoBehaviour
             }
         }
         specialHandleObj.Clear();
+
+        cardSorting.AlignCards();
     }
 }
