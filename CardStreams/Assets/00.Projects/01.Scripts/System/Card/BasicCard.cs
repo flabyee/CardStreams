@@ -23,7 +23,6 @@ public class BasicCard : CardPower, IPointerClickHandler
     public Image backColorImage;
 
     public TextMeshProUGUI valueText;
-    public Image fieldImage;
     public TextMeshProUGUI fieldText;
 
     public int value { get; private set; }

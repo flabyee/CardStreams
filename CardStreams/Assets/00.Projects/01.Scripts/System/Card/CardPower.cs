@@ -10,6 +10,7 @@ public class CardPower : MonoBehaviour
 {
     public Image faceImage;
     public Image backImage;
+    public Image fieldImage;
 
     private RectTransform rectTransform;
     public GameObject handleObj;

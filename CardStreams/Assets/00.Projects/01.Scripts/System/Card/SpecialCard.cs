@@ -32,6 +32,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         sprite = so.sprite;
 
         faceImage.sprite = so.sprite;
+        fieldImage.sprite = so.sprite;
 
         OnAccessSpecialCard = so.AccessSpecialCard;
         OnAccessBuildCard = so.AccessBuildCard;

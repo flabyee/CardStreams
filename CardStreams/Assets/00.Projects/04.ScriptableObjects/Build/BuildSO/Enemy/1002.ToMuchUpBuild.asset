@@ -16,7 +16,7 @@ MonoBehaviour:
   buildName: "\uACFC\uC131\uC7A5"
   price: 0
   grade: 0
-  tooltip: "\uBAA8\uB4E0 \uCE74\uB4DC + 2"
+  tooltip: "\uBAA8\uB4E0 \uCE74\uB4DC + 1"
   sprite: {fileID: -3241013192994710432, guid: d2646cfba3bd9a64996697158b10f8b9, type: 3}
   accessPointList:
   - {x: -1, y: 1}
@@ -27,4 +27,4 @@ MonoBehaviour:
   - {x: -1, y: -1}
   - {x: 0, y: -1}
   - {x: 1, y: -1}
-  upAmount: 2
+  upAmount: 1

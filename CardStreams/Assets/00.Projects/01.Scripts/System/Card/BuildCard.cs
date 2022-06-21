@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
     public TextMeshProUGUI greadeText;
+    
 
     public BuildSO buildSO;
     private List<Vector2> accessPointList;
@@ -25,6 +26,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         this.buildSO = buildSO;
 
         faceImage.sprite = this.buildSO.sprite;
+        fieldImage.sprite = this.buildSO.sprite;
         greadeText.text = this.buildSO.grade.ToString();
         accessPointList = this.buildSO.accessPointList;
         
