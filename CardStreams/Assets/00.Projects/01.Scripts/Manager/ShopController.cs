@@ -36,8 +36,13 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI rerollCostText;
     public TextMeshProUGUI upgradeCostText;
 
+    public Button rerollBtn;
+    public Button upgradeBtn;
+    public Image lockBtnImage;
+
     // system
     private bool isMinimize;
+    private bool isLock;
 
     [SerializeField]
     private int itemCount;  // 판매 갯수
@@ -68,6 +73,8 @@ public class ShopController : MonoBehaviour
     private void Awake()
     {
         shopGrade = 0;
+        isLock = false;
+        lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
         SetChance();
 
         SaveData saveData = SaveSystem.Load();
@@ -141,10 +148,17 @@ public class ShopController : MonoBehaviour
 
     public void OnShop()
     {
-        shopItemList.Clear();
+        if(isLock == true)
+        {
+            isLock = false;
+        }
+        else
+        {
+            shopItemList.Clear();
 
-        OnSpecialCardShop();
-        OnBuildShop();
+            OnSpecialCardShop();
+            OnBuildShop();
+        }
 
         Renewal();
     }
@@ -169,6 +183,11 @@ public class ShopController : MonoBehaviour
             upgradeCostText.text = $"강화 끝";
             upgradeCostText.color = Color.white;
         }
+
+        lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
+
+        rerollBtn.interactable = !isLock;
+        upgradeBtn.interactable = !isLock;
     }
 
     private void OnSpecialCardShop()
@@ -488,5 +507,15 @@ public class ShopController : MonoBehaviour
 
             OnShop();
         }
+    }
+
+    public void OnClickLock()
+    {
+        isLock = !isLock;
+
+        lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
+
+        rerollBtn.interactable = !isLock;
+        upgradeBtn.interactable = !isLock;
     }
 }

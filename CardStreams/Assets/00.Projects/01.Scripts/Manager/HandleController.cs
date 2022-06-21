@@ -30,12 +30,17 @@ public class HandleController : MonoBehaviour
     private int deckValueIncreaseAmount;
     private float deckValueIncreaseMultipication;
 
+    private float originHandleY;
+    public float handleMoveAmount;
+
     public CardSorting cardSorting;
 
     private int maxValue;
 
     private void Awake()
     {
+        originHandleY = handleTrm.anchoredPosition.y;
+
         cardSorting = handleTrm.GetComponent<CardSorting>();
     }
 
@@ -330,8 +335,15 @@ public class HandleController : MonoBehaviour
     }
     public void DrawSpecialCard()
     {
-        Debug.Log("special deck count : " + specialDeck.Count);
-        for(int i = 0; i < specialDeck.Count; i++)
+        for (int i = 0; i < specialDeck.Count; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, specialDeck.Count);
+            int temp = specialDeck[i];
+            specialDeck[i] = specialDeck[randomIndex];
+            specialDeck[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < specialDeck.Count; i++)
         {
             if (i == 2)
                 break;
@@ -390,13 +402,19 @@ public class HandleController : MonoBehaviour
     // 현재 손에 있는 카드들을 모두 판매한다.
     public void HandleReturnToDeck()
     {
+        List<BasicCard> removeIndex = new List<BasicCard>();
         for (int i = 0; i < playerHandleObj.Count; i++)
         {
             // 손에 있다면 active false
             if (playerHandleObj[i].isField == true)
             {
-                playerHandleObj.RemoveAt(i);
+                removeIndex.Add(playerHandleObj[i]);
             }
+        }
+        while(removeIndex.Count != 0)
+        {
+            playerHandleObj.Remove(removeIndex[0]);
+            removeIndex.RemoveAt(0);
         }
 
         for (int i = 0; i < enemyHandleObj.Count; i++)
@@ -434,5 +452,18 @@ public class HandleController : MonoBehaviour
         specialHandleObj.Clear();
 
         cardSorting.AlignCards();
+    }
+
+    public void MoveHandle(bool isDown)
+    {
+        if(isDown == true)
+        {
+            handleTrm.DOAnchorPosY(originHandleY + handleMoveAmount, 0.5f);
+        }
+        else
+        {
+            handleTrm.DOAnchorPosY(originHandleY, 0.5f);
+        }
+        
     }
 }

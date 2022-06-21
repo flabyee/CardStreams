@@ -112,6 +112,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         DropArea.SetDropArea(true, cardPower.cardType);
         DontRaycastTarget.SetRaycastTarget(false);
+        GameManager.Instance.handleController.MoveHandle(true);
 
         // 드래그 시작할 때 설정?
         //Rect clamp = new Rect(Vector2.zero, clampRectTransform.rect.size);
@@ -181,6 +182,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         DropArea.SetDropArea(false, cardPower.cardType);
         DontRaycastTarget.SetRaycastTarget(true);
+        GameManager.Instance.handleController.MoveHandle(false);
         if (onMoveEnd != null) onMoveEnd(this);
 
         bool noEvent = true;
