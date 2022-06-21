@@ -33,7 +33,6 @@ public abstract class Menu<T> : Menu where T : Menu<T>
         if (MenuManager.Instance != null && Instance != null)
         {
             MenuManager.Instance.OpenMenu(Instance);
-            Instance.OnOpen();
         }
     }
 }
@@ -42,7 +41,7 @@ public abstract class Menu : MonoBehaviour
 {
     public virtual void OnOpen()
     {
-
+        
     }
 
     public virtual void OnBackPressed()

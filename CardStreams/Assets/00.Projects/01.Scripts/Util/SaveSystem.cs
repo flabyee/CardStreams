@@ -132,6 +132,8 @@ public class SaveData
     // 강화 상태, 해금 상태, 
     public List<SpecialCardData> speicialCardDataList;
     public List<BuildData> buildDataList;
+
+    public int maxRemoveCount;
 }
 
 [System.Serializable]

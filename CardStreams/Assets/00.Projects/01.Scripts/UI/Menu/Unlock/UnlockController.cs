@@ -122,6 +122,8 @@ public class UnlockController : MonoBehaviour
             specialData.isUse = b;
         }
 
+        saveData.maxRemoveCount = 5;
+
         SaveSystem.Save(saveData);
     }
 }

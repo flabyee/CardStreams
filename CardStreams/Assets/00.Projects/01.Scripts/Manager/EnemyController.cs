@@ -142,6 +142,7 @@ public class EnemyController : MonoBehaviour
         Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
 
         (cardPower as BasicCard).OnField();
+
     }
 
 

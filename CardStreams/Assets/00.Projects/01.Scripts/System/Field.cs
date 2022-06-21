@@ -56,6 +56,11 @@ public class Field : MonoBehaviour
         fieldState = type;
 
         colorImage.color = ConstManager.Instance.basicTypeColorList[(int)(power as BasicCard).basicType];
+
+        if(type == FieldState.not)
+        {
+            colorImage.color = Color.magenta;
+        }
     }
 
     public void ResetData()

@@ -4,10 +4,35 @@ using UnityEngine;
 
 public class EquipMenu : Menu<EquipMenu>
 {
-    // 등급별로 n개씩 카드 장착 최대 15개로 할까?
+    public GameObject buildPanel;
+    public GameObject specialPanel;
+
+    public EquipController equipController;
+
+    public override void OnOpen()
+    {
+        Debug.Log("open");
+        //base.OnOpen();
+
+        equipController.OnEquip();
+
+        OnClickBuildPanel();
+    }
 
     public override void OnBackPressed()
     {
         base.OnBackPressed();
+    }
+
+    public void OnClickBuildPanel()
+    {
+        buildPanel.SetActive(true);
+        specialPanel.SetActive(false);
+    }
+
+    public void OnClickSpecialPanel()
+    {
+        specialPanel.SetActive(true);
+        buildPanel.SetActive(false);
     }
 }
