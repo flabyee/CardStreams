@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7171265624146965137}
   - component: {fileID: 7171265624146965143}
   - component: {fileID: 7171265624146965142}
+  - component: {fileID: 4892484787235987277}
+  - component: {fileID: 8725413240655236436}
   m_Layer: 5
   m_Name: LoopCount
   m_TagString: Untagged
@@ -77,6 +79,48 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4892484787235987277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171265624146965136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c699f1f916caa0b4a8be4749d253a2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopCountText: {fileID: 7171265624353457136}
+  loopCount: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
+--- !u!114 &8725413240655236436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7171265624146965136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 62c5e0e2740202e42a0751eb50abf4d5, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4892484787235987277}
+        m_TargetAssemblyTypeName: TurnCountUI, Assembly-CSharp
+        m_MethodName: UpdateText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7171265624353457149
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +130,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7171265624353457138}
-  - component: {fileID: 7171265624353457142}
   - component: {fileID: 7171265624353457137}
   - component: {fileID: 7171265624353457136}
   - component: {fileID: 7171265624353457139}
@@ -116,20 +159,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &7171265624353457142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7171265624353457149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78b2272bcb4e4b4b9901e9b0cbbd11a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 7171265624353457136}
-  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
 --- !u!222 &7171265624353457137
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -243,7 +272,7 @@ MonoBehaviour:
   responseObj:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7171265624353457142}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Gold, Assembly-CSharp
         m_MethodName: ApplyGoldToText
         m_Mode: 1

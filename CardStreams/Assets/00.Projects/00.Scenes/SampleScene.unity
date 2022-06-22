@@ -2284,7 +2284,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.499985, y: 75.499985}
+  cellSize: {x: 75.5, y: 75.5}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -8356,13 +8356,14 @@ MonoBehaviour:
   selectRewardManager: {fileID: 1003183670}
   dontTouchController: {fileID: 1268897476}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
-  turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
+  loopCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   TurnStartEvent: {fileID: 11400000, guid: f14c813a5c4ecf04488c45373c6d14c2, type: 2}
   TurnEndEvent: {fileID: 11400000, guid: 86bae96343fd5af44bf2845a4a12e4f9, type: 2}
   MoveStartEvent: {fileID: 11400000, guid: 0d3fd4cc819dd7641aa2f0f0b28704e7, type: 2}
   MoveEndEvent: {fileID: 11400000, guid: da229d7acc1fbb942938ce39c06100b5, type: 2}
   goldChangeEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
   playerDieEvent: {fileID: 11400000, guid: eea0373126d115d45b14e4ed65be3631, type: 2}
+  loopChangeEvent: {fileID: 11400000, guid: 62c5e0e2740202e42a0751eb50abf4d5, type: 2}
 --- !u!4 &1637668232
 Transform:
   m_ObjectHideFlags: 0
@@ -9935,7 +9936,7 @@ MonoBehaviour:
   fitType: 5
   rows: 10
   columns: 10
-  cellSize: {x: 75.499985, y: 75.499985}
+  cellSize: {x: 75.5, y: 75.5}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1

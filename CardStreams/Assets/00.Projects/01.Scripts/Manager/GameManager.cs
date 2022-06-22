@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     [Header("IntValue")]
     public IntValue goldValue;
-    public IntValue turnCountValue;
+    public IntValue loopCountValue;
     
 
     [Header("Event")]
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
+    public EventSO loopChangeEvent;
 
     public Action<int> ShowTuTorialEvent;
 
@@ -93,6 +94,9 @@ public class GameManager : MonoBehaviour
         goldChangeEvent.Occurred();
 
         ShowTuTorialEvent?.Invoke(0);
+
+        loopCountValue.RuntimeValue = 0;
+        loopChangeEvent.Occurred();
     }
 
     private void Update()
@@ -239,7 +243,8 @@ public class GameManager : MonoBehaviour
         // fieldController.SetAllFieldYet(); // 안해주면 카드가 안들어감 근데 여기다가 이거쓰면 손에보라색몬스터 버그남 ??그럼어떻게해야하지
 
         // 턴 증가
-        turnCountValue.RuntimeValue++;
+        loopCountValue.RuntimeValue++;
+        loopChangeEvent.Occurred();
 
 
         // 앞에 n칸 활성화
