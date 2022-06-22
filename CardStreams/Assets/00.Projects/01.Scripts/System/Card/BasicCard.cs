@@ -18,27 +18,14 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 {
     public BasicType basicType;
 
-
-
     public Image backColorImage;
-
     public TextMeshProUGUI valueText;
     public TextMeshProUGUI fieldText;
 
     public int value { get; private set; }
     public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
     public int originValue;
-
-    // public List<BuffSO> buffList = new List<BuffSO>();
     public List<Buff> buffList = new List<Buff>();
-
-    private int originSiblingIndex; // 원래 자식 인덱스값(인덱스 순서기억)
-    private Vector3 originPos; // 원래 위치(카드 커졌다가 다시돌아오기)
-    private Quaternion originRot; // 원래 회전(카드 일직선이었다가 돌아오기)
-    private void Start()
-    {
-        originSiblingIndex = transform.GetSiblingIndex();
-    }
 
     public override void InitData_Feild(BasicType basicType, int value)
     {
@@ -123,6 +110,8 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         if(isHandle && eventData.button == PointerEventData.InputButton.Right)
         {
             transform.localScale = Vector3.one;
+            transform.rotation = Quaternion.Euler(Vector3.one);
+
             GameManager.Instance.DropField(GetComponent<DragbleCard>());
         }
     }
@@ -131,28 +120,13 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         if (isHandle == false) return;
 
-        originSiblingIndex = transform.GetSiblingIndex();
-        transform.SetAsLastSibling();
-
-        originPos = transform.position;
-
-        transform.position += transform.up * 0.5f;
-        transform.localScale *= 1.5f;
-
-        originRot = transform.rotation;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, transform.rotation, value, faceImage.sprite, fieldText.text, backColorImage.color);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (isHandle == false) return;
-
-        transform.SetSiblingIndex(originSiblingIndex);
-
-        transform.position = originPos;
-        transform.localScale /= 1.5f;
-
-        transform.rotation = originRot;
+        HandleCardTooltip.Instance.Hide();
     }
 
     public override void OnHandle()

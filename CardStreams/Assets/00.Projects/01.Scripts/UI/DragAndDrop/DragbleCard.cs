@@ -136,7 +136,7 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         cardPower.OnHover();
 
-        rectTransform.rotation = Quaternion.identity;
+        rectTransform.rotation = Quaternion.Euler(Vector3.zero);
         GameManager.Instance.handleController.cardSorting.AlignCards();
     }
 
