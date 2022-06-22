@@ -58,18 +58,19 @@ public class CardSorting : MonoBehaviour
 
         Vector3[] points = DOCurve.CubicBezier.GetSegmentPointCloud(_cardStartPos.position, cp1, _cardEndPos.position, cp2, (_imgList.Count - 1) * step + 10);
 
+        int twoStep = 2;
 
         if(_imgList.Count == 2) // 2개일때는 배치 어색해서 강제교체
         {
             if (points.Length % 2 == 0) // 짝수면(ex 14개) 14 / 2 = 7 => 중간중에 오른쪽, length/2 - 1 || length/2
             {
-                _imgList[0].transform.position = points[points.Length / 2 - 1];
-                _imgList[1].transform.position = points[points.Length / 2];
+                _imgList[0].transform.position = points[points.Length / 2 - twoStep];
+                _imgList[1].transform.position = points[points.Length / 2 - 1 + twoStep];
             }
             else if(points.Length % 2 == 1) // 홀수면(ex 13개) 13 / 2 = 6 => 가운데, length/2 - 1 || length/2 + 1
             {
-                _imgList[0].transform.position = points[points.Length / 2 - 1];
-                _imgList[1].transform.position = points[points.Length / 2 + 1];
+                _imgList[0].transform.position = points[points.Length / 2 - twoStep];
+                _imgList[1].transform.position = points[points.Length / 2 + twoStep];
             }
             
         }
@@ -87,8 +88,6 @@ public class CardSorting : MonoBehaviour
 
         for (int i = 0; i < (_imgList.Count - 1) / 2; i++) // 4면 1 5여도 1 6이면 2
         {
-            Debug.Log(_imgList.Count);
-
             Vector3 normal = (_imgList[i + 1].transform.position - _imgList[i].transform.position).normalized;
 
             float cos = normal.x;

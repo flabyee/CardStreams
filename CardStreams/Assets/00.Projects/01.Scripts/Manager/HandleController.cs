@@ -24,6 +24,8 @@ public class HandleController : MonoBehaviour
     [Header("UI")]
     public DropArea handleDropArea;
     public RectTransform handleTrm;
+    public Transform drawCardStartTrm;
+    public GameObject drawCardBezierEffect;
 
     [Header("system")]
     private int deckValueAmount;
@@ -201,7 +203,7 @@ public class HandleController : MonoBehaviour
         }
     }
 
-    private void DrawPlayerCard()
+    private IEnumerator DrawPlayerCard()
     {
         //if(playerDeck.Count > 1)
         //{
@@ -245,24 +247,30 @@ public class HandleController : MonoBehaviour
 
             foreach(CardData cardData in playerOriginDeck)
             {
-                GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
-                DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-                BasicCard basicCard = cardObj.GetComponent<BasicCard>();
+                BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+                drawBezier.Init(handleTrm, null, () =>
+                {
+                    GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+                    DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+                    BasicCard basicCard = cardObj.GetComponent<BasicCard>();
 
-                dragbleCard.SetDroppedArea(handleDropArea);
-                dragbleCard.originDropArea = handleDropArea;
+                    dragbleCard.SetDroppedArea(handleDropArea);
+                    dragbleCard.originDropArea = handleDropArea;
 
-                dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
+                    dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
 
-                basicCard.OnHandle();
+                    basicCard.OnHandle();
 
-                playerHandleObj.Add(basicCard);
+                    playerHandleObj.Add(basicCard);
+
+                    cardSorting.AlignCards();
+                });
+
+                yield return new WaitForSeconds(0.2f);
             }
         }
-
-        cardSorting.AlignCards();
     }
-    private void DrawEnemyCard()
+    private IEnumerator DrawEnemyCard()
     {
         if(enemyDeck.Count != 0)
         {
@@ -270,18 +278,26 @@ public class HandleController : MonoBehaviour
             {
                 CardData cardData = enemyDeck[i];
 
-                GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
-                DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-                BasicCard basicCard = cardObj.GetComponent<BasicCard>();
+                BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+                drawBezier.Init(handleTrm, null, () =>
+                {
+                    GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+                    DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+                    BasicCard basicCard = cardObj.GetComponent<BasicCard>();
 
-                dragbleCard.SetDroppedArea(handleDropArea);
-                dragbleCard.originDropArea = handleDropArea;
+                    dragbleCard.SetDroppedArea(handleDropArea);
+                    dragbleCard.originDropArea = handleDropArea;
 
-                dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
+                    dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
 
-                basicCard.OnHandle();
+                    basicCard.OnHandle();
 
-                enemyHandleObj.Add(basicCard);
+                    enemyHandleObj.Add(basicCard);
+
+                    cardSorting.AlignCards();
+                });
+
+                yield return new WaitForSeconds(0.2f);
             }
 
             enemyDeck.RemoveAt(0);
@@ -291,7 +307,7 @@ public class HandleController : MonoBehaviour
         {
             AddEnemyDeck();
 
-            DrawEnemyCard();
+            StartCoroutine(DrawEnemyCard());
         }
 
     }
@@ -333,8 +349,9 @@ public class HandleController : MonoBehaviour
 
         cardSorting.AlignCards();
     }
-    public void DrawSpecialCard()
+    public IEnumerator DrawSpecialCard()
     {
+        Debug.Log(specialDeck.Count);
         for (int i = 0; i < specialDeck.Count; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, specialDeck.Count);
@@ -348,22 +365,35 @@ public class HandleController : MonoBehaviour
             if (i == 2)
                 break;
 
-            GameObject specialCardObj = CardPoolManager.Instance.GetSpecialCard(handleTrm);
-            DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
+            int avoidClosure = i;
+            int temp = specialDeck[avoidClosure];
 
-            // specialCard 관련 초기화
-            SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
-            specialCard.Init(DataManager.Instance.GetSpecialCardSO(specialDeck[i]));
+            BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+            drawBezier.Init(handleTrm, null, () =>
+            {
+                GameObject specialCardObj = CardPoolManager.Instance.GetSpecialCard(handleTrm);
+                DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
 
-            // dragble 관련 초기화
-            dragbleCard.SetDroppedArea(handleDropArea);
-            dragbleCard.originDropArea = handleDropArea;
+                // specialCard 관련 초기화
+                SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
+                Debug.Log(avoidClosure);
+                Debug.Log("Count : " + specialDeck.Count);
+                specialCard.Init(DataManager.Instance.GetSpecialCardSO(temp));
 
-            dragbleCard.InitData_SpecialCard();
+                // dragble 관련 초기화
+                dragbleCard.SetDroppedArea(handleDropArea);
+                dragbleCard.originDropArea = handleDropArea;
 
-            specialCard.OnHandle();
+                dragbleCard.InitData_SpecialCard();
 
-            specialHandleObj.Add(specialCard);
+                specialCard.OnHandle();
+
+                specialHandleObj.Add(specialCard);
+
+                cardSorting.AlignCards();
+            });
+
+            yield return new WaitForSeconds(0.2f);
         }
 
         for (int i = 0; i < specialDeck.Count; i++)
@@ -379,11 +409,13 @@ public class HandleController : MonoBehaviour
     // turnStart or moveEnd 마다 하는 draw
     public void DrawCardWhenBeforeMove()
     {
-        DrawPlayerCard();
-        DrawEnemyCard();
-        DrawSpecialCard();
+        Sequence seq = DOTween.Sequence();
 
-        cardSorting.AlignCards();
+        seq.AppendCallback(() => StartCoroutine(DrawPlayerCard()));
+        seq.AppendInterval(1.3f); // 6번째 카드가 1.0~1.2초에 진행되니 1.2초 이후부터는 적카드 드로우도 시작 가능
+        seq.AppendCallback(() => StartCoroutine(DrawEnemyCard()));
+        seq.AppendInterval(1f); // 2번째 카드가 0.2~0.4초에 진행되니 0.4초 이후부터는 특수카드 드로우도 시작 가능
+        seq.AppendCallback(() => StartCoroutine(DrawSpecialCard()));
     }
 
     public void LoopEnd()
