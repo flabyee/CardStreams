@@ -388,6 +388,13 @@ public class HandleController : MonoBehaviour
 
     public void LoopEnd()
     {
+        // 남아있는 플레이어 핸드 제거
+        for(int i = playerHandleObj.Count - 1; i >= 0; i--)
+        {
+            playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+        }
+
+
         playerDeck.Clear();
         enemyDeck.Clear();
 

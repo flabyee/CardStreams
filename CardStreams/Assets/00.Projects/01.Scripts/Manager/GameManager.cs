@@ -87,11 +87,20 @@ public class GameManager : MonoBehaviour
         LoadStageData();
 
         fieldController = new FieldController(maxMoveCount);
+        fieldController.SetAllFieldYet();
 
         goldValue.RuntimeValue += 20;
         goldChangeEvent.Occurred();
 
         ShowTuTorialEvent?.Invoke(0);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StopGame();
+        }
     }
 
     public void LoadStageData()
@@ -304,6 +313,8 @@ public class GameManager : MonoBehaviour
 
         GoldAnimManager.Instance.GetAllCoin(true);
 
+        fieldController.SetAllFieldYet();
+
         canNext = true;
     }
 
@@ -351,7 +362,7 @@ public class GameManager : MonoBehaviour
         Sequence sequence = DOTween.Sequence();
 
         sequence.AppendCallback(() => MoveStart());
-        sequence.AppendInterval(moveDuration * 2);
+        sequence.AppendInterval(moveDuration * 3);
 
         for (int i = 0; i < maxMoveCount; i++)
         {
@@ -435,9 +446,6 @@ public class GameManager : MonoBehaviour
         }, 1.5f));
 
 
-        // 모든 필드의 필드타입 yet으로
-        fieldController.SetAllFieldYet();
-
         enemyController.CreateRandomMob();
         enemyController.RandomEnemyBuild();
 
@@ -483,9 +491,16 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    public void OnClickSpeedAdd(float amount)
+    public void StopGame()
     {
-        moveDuration = Mathf.Clamp(moveDuration + amount, 0.01f, 1f);
+        if(Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void SetMoveDuration(float speed)
