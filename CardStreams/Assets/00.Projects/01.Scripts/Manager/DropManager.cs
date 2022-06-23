@@ -64,13 +64,14 @@ public class DropManager : MonoBehaviour
         CardPower cardPower = obj.GetComponent<CardPower>();
 
         // field에 놓는게 아니라면(예시 : 건물) 다시 원위치
-        if (cardPower.cardType == CardType.Build || cardPower.cardType == CardType.Special)
+        if (cardPower.cardType == CardType.Build)
         {
             ObjectToOrigin(area, obj);
+            return;
         }
 
         // 카드가 일반 카드라면
-        if (cardPower.cardType != CardType.Special && cardPower.cardType != CardType.Build)
+        if (cardPower.cardType != CardType.Special)
         {
             // 1. 설치가능한곳 인지 3,  area.field.fieldType == FieldType.randomMob 이거는 왜하냐?
             // 하는 이유 : 처음에 모든 필드의 상태가 not 이기 때문에
@@ -122,72 +123,50 @@ public class DropManager : MonoBehaviour
         // 스페셜 카드라면? 
         else
         {
-            // 일단 한번더 확인, 왜냐하면 다른 카드도 추가될수있어서?
-            if (cardPower.cardType == CardType.Special)
+            SpecialCard specialCard = obj.GetComponent<SpecialCard>();
+
+            if (area.field.fieldState != FieldState.able)
             {
-                SpecialCard specialCard = obj.GetComponent<SpecialCard>();
+                ObjectToOrigin(area, obj);
+                return;
+            }
 
-
-
-                // targetType 맞는거 있는지 확인
-                foreach (CardType targetType in specialCard.targetTypeList)
+            // targetType 맞는거 있는지 확인
+            foreach (CardType targetType in specialCard.targetTypeList)
+            {
+                if (area.field.isSet == true && area.field.cardPower.cardType == targetType)
                 {
-                    if (area.field.isSet == true && area.field.cardPower.cardType == targetType)
+                    if (targetType == CardType.Basic)
                     {
-                        if(targetType == CardType.Basic)
+                        foreach (BasicType targetBasic in specialCard.targetBasicList)
                         {
-                            foreach(BasicType targetBasic in specialCard.targetBasicList)
-                            {
-                                BasicCard basicPower = area.field.cardPower as BasicCard;
+                            BasicCard basicPower = area.field.cardPower as BasicCard;
 
-                                if(targetBasic == basicPower.basicType)
+                            if (targetBasic == basicPower.basicType)
+                            {
+                                if (specialCard.applyTiming == ApplyTiming.NowField)
                                 {
-                                    switch (specialCard.applyTiming)
-                                    {
-                                        case ApplyTiming.NowField:
-                                            specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
-                                            (area.field.cardPower as BasicCard).AddSpecial(specialCard.id);
-
-                                            dragbleCard.isDestory = true;
-
-                                            cardPower.SetField();
-
-                                            return;
-                                        case ApplyTiming.OnFeild:
-                                            //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
-                                            break;
-                                        case ApplyTiming.ToPlayer:
-                                            break;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            switch (specialCard.applyTiming)
-                            {
-                                case ApplyTiming.NowField:
                                     specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
                                     (area.field.cardPower as BasicCard).AddSpecial(specialCard.id);
 
                                     dragbleCard.isDestory = true;
 
                                     cardPower.SetField();
+
                                     return;
-                                case ApplyTiming.OnFeild:
-                                    //area.feild.accessBeforeOnField += specialCard.OnAccessSpecialCard;
-                                    break;
-                                case ApplyTiming.ToPlayer:
-                                    break;
+                                }
+                                else
+                                {
+                                    Debug.LogError("basic에 쓰는건데 nowFile가 아니다??");
+                                }
                             }
                         }
-                        // 맞는게 있다면 효과적용하고 스페셜 카드 삭제
                     }
                 }
-
-                // 맞는게 없으면 다시 재자리로
-                ObjectToOrigin(area, obj);
             }
+
+            // 맞는게 없으면 다시 재자리로
+            ObjectToOrigin(area, obj);
         }
     }
 

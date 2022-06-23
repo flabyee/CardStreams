@@ -440,12 +440,14 @@ public class HandleController : MonoBehaviour
     // turnStart or moveEnd 마다 하는 draw
     public void DrawCardWhenBeforeMove()
     {
+        float delay1 = playerHandleObj.Count <= 1 ? 1.2f : 0f;  // 새로 뽑으면 6장, 아니면 0장
+        float delay2 = 0.4f;    // 적 카드 2장
         Sequence seq = DOTween.Sequence();
 
         seq.AppendCallback(() => StartCoroutine(DrawPlayerCard()));
-        seq.AppendInterval(1.3f); // 6번째 카드가 1.0~1.2초에 진행되니 1.2초 이후부터는 적카드 드로우도 시작 가능
+        seq.AppendInterval(delay1); // 6번째 카드가 1.0~1.2초에 진행되니 1.2초 이후부터는 적카드 드로우도 시작 가능
         seq.AppendCallback(() => StartCoroutine(DrawEnemyCard()));
-        seq.AppendInterval(1f); // 2번째 카드가 0.2~0.4초에 진행되니 0.4초 이후부터는 특수카드 드로우도 시작 가능
+        seq.AppendInterval(delay2); // 2번째 카드가 0.2~0.4초에 진행되니 0.4초 이후부터는 특수카드 드로우도 시작 가능
         seq.AppendCallback(() => StartCoroutine(DrawSpecialCard()));
     }
 

@@ -57,6 +57,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         cardPower.SetHandle();
 
         (cardPower as BasicCard).InitData_Feild(basicType, value);
+
+        isDestory = false;
     }
 
     public void InitData_SpecialCard()
@@ -66,6 +68,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         cardPower.SetHandle();
 
         cardPower.InitData_SpecialCard();
+
+        isDestory = false;
     }
 
     public void InitData_Build()
@@ -75,6 +79,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         cardPower.SetHandle();
 
         cardPower.InitData_Build();
+
+        isDestory = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
