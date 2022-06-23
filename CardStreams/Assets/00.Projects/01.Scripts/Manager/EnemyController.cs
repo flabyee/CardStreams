@@ -135,7 +135,7 @@ public class EnemyController : MonoBehaviour
         dragbleCard.transform.SetParent(field.transform);
 
         // 필드에 적용 + not으로
-        field.Init(cardPower, dragbleCard, FieldState.not);
+        field.Init(cardPower, dragbleCard, FieldState.randomMob);
 
         // craete effect
         //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);

@@ -125,7 +125,7 @@ public class DropManager : MonoBehaviour
         {
             SpecialCard specialCard = obj.GetComponent<SpecialCard>();
 
-            if (area.field.fieldState != FieldState.able)
+            if (area.field.fieldState != FieldState.able && area.field.fieldState != FieldState.randomMob)
             {
                 ObjectToOrigin(area, obj);
                 return;

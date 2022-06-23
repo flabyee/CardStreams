@@ -57,7 +57,7 @@ public class Field : MonoBehaviour
 
         colorImage.color = ConstManager.Instance.basicTypeColorList[(int)(power as BasicCard).basicType];
 
-        if(type == FieldState.not)
+        if(type == FieldState.randomMob)
         {
             colorImage.color = Color.magenta;
         }

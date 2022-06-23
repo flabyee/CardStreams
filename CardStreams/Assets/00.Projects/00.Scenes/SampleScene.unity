@@ -1307,6 +1307,8 @@ MonoBehaviour:
   - {r: 0.5647059, g: 0.66832805, b: 0.7529412, a: 1}
   - {r: 0.5647059, g: 0.7529412, b: 0.5790362, a: 1}
   - {r: 0.7529412, g: 0.5647059, b: 0.5647059, a: 1}
+  buildColor: {r: 0, g: 0, b: 0, a: 0}
+  specialCardColor: {r: 0, g: 0, b: 0, a: 0}
   upValueColor: {r: 0, g: 0.5416665, b: 1, a: 1}
   downValueColor: {r: 1, g: 0.13614154, b: 0, a: 1}
   gradeSpriteDict:
@@ -11283,8 +11285,8 @@ MonoBehaviour:
     legendary: 0
   - common: 0
     rare: 25
-    epic: 100
-    unique: 50
+    epic: 75
+    unique: 75
     legendary: 25
   - common: 0
     rare: 0
