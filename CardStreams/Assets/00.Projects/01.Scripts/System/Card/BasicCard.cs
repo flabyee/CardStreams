@@ -136,11 +136,12 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         if (isHandle == false) return;
 
-        HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, transform.rotation, value, faceImage.sprite, fieldText.text, backColorImage.color);
+        HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, faceImage.sprite, basicType.ToString(), backColorImage.color, value);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (isHandle == false) return;
         HandleCardTooltip.Instance.Hide();
     }
 

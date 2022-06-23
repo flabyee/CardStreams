@@ -30,7 +30,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         greadeText.text = this.buildSO.grade.ToString();
         accessPointList = this.buildSO.accessPointList;
         
-        greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade];
+        greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade]; // 이거 Dictionary라서 작동을 안하는데용?? Hierarchy에서 못바꾸는거라
 
         isDrop = false;
     }
@@ -100,7 +100,9 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            BuildTooltip.Instance.Show(buildSO.buildName, accessPointList, buildSO.tooltip, buildSO.sprite, transform.position);
+            HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, faceImage.sprite, buildSO.buildName, Color.white, buildSO.tooltip);
+
+            // BuildTooltip.Instance.Show(buildSO.buildName, accessPointList, buildSO.tooltip, buildSO.sprite, transform.position);
         }
     }
 
@@ -113,7 +115,9 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            BuildTooltip.Instance.Hide();
+            HandleCardTooltip.Instance.Hide();
+
+            // BuildTooltip.Instance.Hide();
         }
     }
 
