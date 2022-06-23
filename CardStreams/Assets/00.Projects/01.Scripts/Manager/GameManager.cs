@@ -493,6 +493,8 @@ public class GameManager : MonoBehaviour
 
         handleController.cardSorting.AlignCards();
 
+        HandleCardTooltip.Instance.Hide();
+
         return true;
     }
 
