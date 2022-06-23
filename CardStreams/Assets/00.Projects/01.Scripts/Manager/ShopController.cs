@@ -30,9 +30,6 @@ public class ShopController : MonoBehaviour
     public RectTransform buildShopTrm;
     public GameObject blurObj;
 
-    public RectTransform handleTrm;
-    public RectTransform hoverTrm;
-
     public TextMeshProUGUI rerollCostText;
     public TextMeshProUGUI upgradeCostText;
 
@@ -134,6 +131,8 @@ public class ShopController : MonoBehaviour
         _cg.alpha = 0;
         _cg.blocksRaycasts = false;
         _cg.interactable = false;
+
+        blurObj.SetActive(false);
     }
 
     public void Minimize() // called by Button

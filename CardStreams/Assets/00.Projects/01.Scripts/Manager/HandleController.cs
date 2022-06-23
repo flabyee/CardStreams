@@ -10,7 +10,7 @@ public class HandleController : MonoBehaviour
     private List<CardData> playerOriginDeck = new List<CardData>();
     private List<CardData> enemyOriginDeck = new List<CardData>();
 
-    private List<CardData> playerDeck = new List<CardData>();
+    // plaeyr deck == playerHandleObj 
     private List<CardData> enemyDeck = new List<CardData>();
 
     private List<int> buildDeck = new List<int>();
@@ -170,6 +170,7 @@ public class HandleController : MonoBehaviour
             if (cardData.basicType == BasicType.Monster)
             {
                 enemyOriginDeck.Add(cardData);
+                enemyDeck.Add(cardData);
             }
         }
     }
@@ -185,17 +186,9 @@ public class HandleController : MonoBehaviour
         }
     }
 
-    private void AddPlayerDeck()
-    {
-        foreach (CardData cardData in playerOriginDeck)
-        {
-            playerDeck.Add(cardData);
-        }
-    }
+
     private void AddEnemyDeck()
     {
-        DeckMake();
-
         DeckShuffle(enemyOriginDeck);
         foreach (CardData cardData in enemyOriginDeck)
         {
@@ -235,14 +228,8 @@ public class HandleController : MonoBehaviour
         //    DrawPlayerCard();
         //}
 
-        if(playerHandleObj.Count <= 1)
+        if(playerHandleObj.Count == 0)
         {
-            foreach(BasicCard card in playerHandleObj)
-            {
-                card.GetComponent<DragbleCard>().ActiveFalse();
-            }
-            playerHandleObj.Clear();
-
             DeckShuffle(playerOriginDeck);
 
             foreach(CardData cardData in playerOriginDeck)
@@ -308,6 +295,8 @@ public class HandleController : MonoBehaviour
             AddEnemyDeck();
 
             StartCoroutine(DrawEnemyCard());
+
+            Debug.Log("add enemy deck");
         }
 
     }
@@ -458,9 +447,8 @@ public class HandleController : MonoBehaviour
         {
             playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
         }
+        playerHandleObj.Clear();
 
-
-        playerDeck.Clear();
         enemyDeck.Clear();
 
         deckValueAmount -= deckValueIncreaseAmount;
@@ -487,6 +475,12 @@ public class HandleController : MonoBehaviour
         {
             playerHandleObj.Remove(removeIndex[0]);
             removeIndex.RemoveAt(0);
+        }
+        // 한장 남으면 버린다
+        if (playerHandleObj.Count == 1)
+        {
+            playerHandleObj[0].GetComponent<DragbleCard>().ActiveFalse();
+            playerHandleObj.Clear();
         }
 
         for (int i = 0; i < enemyHandleObj.Count; i++)
