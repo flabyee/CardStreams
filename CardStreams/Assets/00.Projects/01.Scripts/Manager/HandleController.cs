@@ -459,9 +459,17 @@ public class HandleController : MonoBehaviour
         for (int i = 0; i < enemyHandleObj.Count; i++)
         {
             // 손에 있다면 active false
+
+            int iAvoidClosure = i;
+
             if (enemyHandleObj[i].isHandle == true)
             {
                 enemyHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                // 덱으로돌아가기연출
+                BezierCard returnBezier = Instantiate(drawCardBezierEffect, enemyHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+
+                returnBezier.Init(drawCardStartTrm, null, null);
             }
         }
         enemyHandleObj.Clear();
@@ -472,8 +480,12 @@ public class HandleController : MonoBehaviour
             if (buildHandleObj[i].isHandle == true)
             {
                 buildDeck.Add(buildHandleObj[i].buildSO.id);
-
                 buildHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                // 덱으로돌아가기연출
+                BezierCard returnBezier = Instantiate(drawCardBezierEffect, buildHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+
+                returnBezier.Init(drawCardStartTrm, null, null);
             }
         }
         buildHandleObj.Clear();
@@ -484,8 +496,12 @@ public class HandleController : MonoBehaviour
             if (specialHandleObj[i].isHandle == true)
             {
                 specialDeck.Add(specialHandleObj[i].id);
-
                 specialHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                // 덱으로돌아가기연출
+                BezierCard returnBezier = Instantiate(drawCardBezierEffect, specialHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+
+                returnBezier.Init(drawCardStartTrm, null, null);
             }
         }
         specialHandleObj.Clear();

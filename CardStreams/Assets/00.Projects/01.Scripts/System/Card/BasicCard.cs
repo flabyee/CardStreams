@@ -118,6 +118,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        
         if (isHandle == false) return;
 
         HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, transform.rotation, value, faceImage.sprite, fieldText.text, backColorImage.color);
