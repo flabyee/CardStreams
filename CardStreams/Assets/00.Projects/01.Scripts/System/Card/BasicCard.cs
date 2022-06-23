@@ -141,7 +141,6 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (isHandle == false) return;
         HandleCardTooltip.Instance.Hide();
     }
 
