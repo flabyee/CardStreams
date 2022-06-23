@@ -30,5 +30,7 @@ public class Resolution : MonoBehaviour
             float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // 货肺款 臭捞
             Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // 货肺款 Rect 利侩
         }
+
+
     }
 }

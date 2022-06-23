@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class RemoveBuildCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RemoveBuildCard : RemoveCard, IPointerEnterHandler, IPointerExitHandler
 {
-    public Image cardImage;
-    public Image removeImage;
-    public Button button;
-
     public BuildSO buildSO;
 
     public void Init(BuildSO buildSO, bool isRemove)
@@ -21,11 +17,6 @@ public class RemoveBuildCard : MonoBehaviour, IPointerEnterHandler, IPointerExit
         ActiveRemoveImage(isRemove);
     }
 
-    public void ActiveRemoveImage(bool b)
-    {
-        // isUse가 true면 꺼지고, false면 켜지고
-        removeImage.gameObject.SetActive(!b);
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

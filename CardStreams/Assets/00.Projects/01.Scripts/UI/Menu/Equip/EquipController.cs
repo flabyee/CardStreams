@@ -2,29 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EquipController : MonoBehaviour
 {
     private Dictionary<CardGrade, List<BuildData>> buildDict = new Dictionary<CardGrade, List<BuildData>>();
     private Dictionary<CardGrade, List<SpecialCardData>> specialDict = new Dictionary<CardGrade, List<SpecialCardData>>();
 
+    // 현제 리무브 중인 리스트
+    private List<RemoveBuildCard> removeBuildList = new List<RemoveBuildCard>();
+    private List<RemoveSpecialCard> removeSpecialList = new List<RemoveSpecialCard>();
+
     private List<BuildSO> buildList;
     private List<SpecialCardSO> specialList;
 
     private SaveData saveData;
 
+    private int maxRemoveCount;
+    private int removeCount;
 
-
-    private int maxBuildRemoveCount;
-    private int buildRemoveCount;
-    private int maxSpecialRemoveCount;
-    private int specialRemoveCount;
-
+    [Header("UI")]
     public RectTransform buildScrollTrm;
     public RectTransform specialScrollTrm;
 
     public RemoveBuildCard buildCardPrefab;
     public RemoveSpecialCard specialCardPrefab;
+
+    public TextMeshProUGUI countText;
+
+    public RectTransform rightListTrm;
+    public GameObject rightListPrefab;
 
     private void Awake()
     {
@@ -38,11 +45,9 @@ public class EquipController : MonoBehaviour
     {
         saveData = SaveSystem.Load();
 
-        maxBuildRemoveCount = saveData.maxRemoveCount;
-        maxSpecialRemoveCount = saveData.maxRemoveCount;
+        maxRemoveCount = saveData.maxRemoveCount;
 
-        buildRemoveCount = 0;
-        specialRemoveCount = 0;
+        removeCount = 0;
 
         buildDict.Clear();
         specialDict.Clear();
@@ -55,8 +60,8 @@ public class EquipController : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        buildScrollTrm.sizeDelta = new Vector2(0, 300);
-        specialScrollTrm.sizeDelta = new Vector2(0, 300);
+        buildScrollTrm.sizeDelta = new Vector2(0, 305f);
+        specialScrollTrm.sizeDelta = new Vector2(0, 305f);
 
         for (int i = 0; i < 5; i++)
         {
@@ -75,7 +80,7 @@ public class EquipController : MonoBehaviour
 
                 if(itemData.isUse == false)
                 {
-                    buildRemoveCount++;
+                    removeCount++;
                 }
             }
         }
@@ -90,12 +95,14 @@ public class EquipController : MonoBehaviour
 
                 if (itemData.isUse == false)
                 {
-                    specialRemoveCount++;
+                    removeCount++;
                 }
             }
         }
 
         CreateCard();
+
+        ApplyUI();
     }
 
     public void CreateCard()
@@ -110,7 +117,7 @@ public class EquipController : MonoBehaviour
                 if(b == true)
                 {
                     b = false;
-                    buildScrollTrm.sizeDelta += new Vector2(0, 300);
+                    buildScrollTrm.sizeDelta += new Vector2(0, 330f);
                 }
                 RemoveBuildCard build = Instantiate(buildCardPrefab, buildScrollTrm);
 
@@ -123,10 +130,15 @@ public class EquipController : MonoBehaviour
                 });
 
                 count++;
-                if(count == 6)
+                if(count == 4)
                 {
                     count = 0;
                     b = true;
+                }
+
+                if(buildData.isUse == false)
+                {
+                    removeBuildList.Add(build);
                 }
             }
         }
@@ -141,7 +153,7 @@ public class EquipController : MonoBehaviour
                 if (b == true)
                 {
                     b = false;
-                    specialScrollTrm.sizeDelta += new Vector2(0, 300);
+                    specialScrollTrm.sizeDelta += new Vector2(0, 330);
                 }
                 RemoveSpecialCard special = Instantiate(specialCardPrefab, specialScrollTrm);
 
@@ -155,10 +167,15 @@ public class EquipController : MonoBehaviour
                 });
 
                 count++;
-                if (count == 6)
+                if (count == 4)
                 {
                     count = 0;
                     b = true;
+                }
+
+                if (specialData.isUse == false)
+                {
+                    removeSpecialList.Add(special);
                 }
             }
         }
@@ -169,13 +186,15 @@ public class EquipController : MonoBehaviour
         // isUse확인하고 remove 하거나 remove 해제 하거나
         if(saveData.buildDataList[id].isUse == true)
         {
-            if (buildRemoveCount < maxBuildRemoveCount)
+            if (removeCount < maxRemoveCount)
             {
                 saveData.buildDataList[id].isUse = false;
 
-                buildRemoveCount++;
+                removeCount++;
 
                 build.ActiveRemoveImage(false);
+
+                removeBuildList.Add(build);
             }
             else 
             {
@@ -184,12 +203,16 @@ public class EquipController : MonoBehaviour
         }
         else
         {
-            buildRemoveCount--;
+            removeCount--;
 
             saveData.buildDataList[id].isUse = true;
 
             build.ActiveRemoveImage(true);
+
+            removeBuildList.Remove(build);
         }
+
+        ApplyUI();
 
         SaveSystem.Save(saveData);
     }
@@ -198,13 +221,15 @@ public class EquipController : MonoBehaviour
         // isUse확인하고 remove 하거나 remove 해제 하거나
         if (saveData.speicialCardDataList[id].isUse == true)
         {
-            if (specialRemoveCount < maxSpecialRemoveCount)
+            if (removeCount < maxRemoveCount)
             {
                 saveData.speicialCardDataList[id].isUse = false;
 
-                specialRemoveCount++;
+                removeCount++;
 
                 special.ActiveRemoveImage(false);
+
+                removeSpecialList.Add(special);
             }
             else
             {
@@ -213,13 +238,49 @@ public class EquipController : MonoBehaviour
         }
         else
         {
-            specialRemoveCount--;
+            removeCount--;
 
             saveData.speicialCardDataList[id].isUse = true;
 
             special.ActiveRemoveImage(true);
+
+            removeSpecialList.Remove(special);
         }
 
+        ApplyUI();
+
         SaveSystem.Save(saveData);
+    }
+
+    private void ApplyUI()
+    {
+        countText.text = $"{removeCount} / {maxRemoveCount}";
+
+        foreach(RectTransform item in rightListTrm)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach(RemoveBuildCard build in removeBuildList)
+        {
+            GameObject obj = Instantiate(rightListPrefab, rightListTrm);
+            RightListUI rightListUI = obj.GetComponent<RightListUI>();
+            rightListUI.Init(CardType.Build, build.buildSO.grade, build.buildSO.buildName);
+            rightListUI.button.onClick.AddListener(() =>
+            {
+                OnClickBuildRemove(build.buildSO.id, build);
+            });
+        }
+
+        foreach(RemoveSpecialCard special in removeSpecialList)
+        {
+            GameObject obj = Instantiate(rightListPrefab, rightListTrm);
+            RightListUI rightListUI = obj.GetComponent<RightListUI>();
+            rightListUI.Init(CardType.Special, special.specialSO.grade, special.specialSO.specialCardName);
+            rightListUI.button.onClick.AddListener(() =>
+            {
+                OnClickSpecialRemove(special.specialSO.id, special);
+            });
+        }
     }
 }

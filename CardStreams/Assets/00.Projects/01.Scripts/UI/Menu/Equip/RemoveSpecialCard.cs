@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class RemoveSpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RemoveSpecialCard : RemoveCard, IPointerEnterHandler, IPointerExitHandler
 {
-    public Image cardImage;
-    public Image removeImage;
-    public Button button;
-
     public SpecialCardSO specialSO;
 
     public void Init(SpecialCardSO specialSO, bool isRemove)
@@ -21,10 +17,6 @@ public class RemoveSpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerEx
         ActiveRemoveImage(isRemove);
     }
 
-    public void ActiveRemoveImage(bool b)
-    {
-        removeImage.gameObject.SetActive(!b);
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

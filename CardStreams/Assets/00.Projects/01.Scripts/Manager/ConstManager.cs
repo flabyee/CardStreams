@@ -38,6 +38,9 @@ public class ConstManager : MonoBehaviour
 
     public List<Color> basicTypeColorList;
 
+    public Color buildColor;
+    public Color specialCardColor;
+
     public Color upValueColor;
     public Color downValueColor;
 
