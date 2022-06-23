@@ -526,5 +526,6 @@ public class GameManager : MonoBehaviour
         dontTouchController.Hide();
         playerDieEvent.Occurred();
         DropArea.dropAreas.Clear();
+        DontRaycastTarget.dontRaycastTargetList.Clear();
     }
 } 

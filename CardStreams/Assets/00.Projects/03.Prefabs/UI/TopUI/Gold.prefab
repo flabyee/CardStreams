@@ -264,6 +264,8 @@ GameObject:
   - component: {fileID: 511898135893707944}
   - component: {fileID: 511898135893707950}
   - component: {fileID: 511898135893707951}
+  - component: {fileID: -6731208223097230791}
+  - component: {fileID: 2796047717856524837}
   m_Layer: 5
   m_Name: Gold
   m_TagString: Untagged
@@ -314,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -330,3 +332,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-6731208223097230791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511898135893707945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dab44aa20be8424494a028943738a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  msg: "\uB8E8\uD504\uB97C \uB3C8 \uD6C4 \uC0C1\uC810\uC5D0\uC11C \uC0AC\uC6A9\uD558\uB294
+    \uC7AC\uD654"
+--- !u!114 &2796047717856524837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511898135893707945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf9ab72ce24a56429a861bb1c4c150e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontRayImage: {fileID: 511898135893707951}

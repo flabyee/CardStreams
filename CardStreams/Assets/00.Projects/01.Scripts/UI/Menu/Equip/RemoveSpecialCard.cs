@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class RemoveSpecialCard : MonoBehaviour
+public class RemoveSpecialCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image cardImage;
     public Image removeImage;
@@ -23,5 +24,16 @@ public class RemoveSpecialCard : MonoBehaviour
     public void ActiveRemoveImage(bool b)
     {
         removeImage.gameObject.SetActive(!b);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SpecialCardTooltip.Instance.Show(specialSO.specialCardName, specialSO.targetTypeList, 
+            specialSO.targetBasicList, specialSO.tooltip, specialSO.sprite, transform.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SpecialCardTooltip.Instance.Hide();
     }
 }
