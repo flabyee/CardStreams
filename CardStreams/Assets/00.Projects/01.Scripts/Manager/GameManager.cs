@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public ShopController shopController;
     public SelectRewardManager selectRewardManager;
     public DontTouchController dontTouchController;
+    public BlurCoverController blurController;
 
 
     [Header("IntValue")]
@@ -446,6 +447,7 @@ public class GameManager : MonoBehaviour
         {
             shopController.Show();
             selectRewardManager.Show();
+            blurController.SetActive(true);
 
             canNext = true;
         }, 1.5f));
@@ -461,6 +463,7 @@ public class GameManager : MonoBehaviour
     {
         shopController.Hide();
         selectRewardManager.Hide();
+        blurController.SetActive(false);
 
         handleController.DrawBuildCard();
 

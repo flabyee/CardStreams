@@ -706,6 +706,50 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &141537391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 141537392}
+  - component: {fileID: 141537393}
+  m_Layer: 0
+  m_Name: BlurCoverOntroller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &141537392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141537391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1637668232}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &141537393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141537391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904982b3a19427544901e223954f8b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurObj: {fileID: 1323943204}
 --- !u!1 &159214115
 GameObject:
   m_ObjectHideFlags: 0
@@ -8469,6 +8513,7 @@ MonoBehaviour:
   shopController: {fileID: 2051422256}
   selectRewardManager: {fileID: 1003183670}
   dontTouchController: {fileID: 1268897476}
+  blurController: {fileID: 141537393}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   loopCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   TurnStartEvent: {fileID: 11400000, guid: f14c813a5c4ecf04488c45373c6d14c2, type: 2}
@@ -8494,6 +8539,7 @@ Transform:
   - {fileID: 2051422255}
   - {fileID: 1003183669}
   - {fileID: 1268897473}
+  - {fileID: 141537392}
   m_Father: {fileID: 1562801202}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11213,7 +11259,6 @@ MonoBehaviour:
   _reduceCG: {fileID: 1814481313}
   specialCardShopTrm: {fileID: 1814481312}
   buildShopTrm: {fileID: 1814481311}
-  blurObj: {fileID: 1323943204}
   rerollCostText: {fileID: 1825939040}
   upgradeCostText: {fileID: 1579216906}
   rerollBtn: {fileID: 1055720232}
