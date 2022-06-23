@@ -406,6 +406,37 @@ public class HandleController : MonoBehaviour
 
     }
 
+    public void ReturnSpecialCards(List<int> idList)
+    {
+        foreach(int id in idList)
+        {
+            int temp = id;
+            BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+            
+            drawBezier.Init(handleTrm, null, () =>
+            {
+                GameObject specialCardObj = CardPoolManager.Instance.GetSpecialCard(handleTrm);
+                DragbleCard dragbleCard = specialCardObj.GetComponent<DragbleCard>();
+
+                // specialCard 관련 초기화
+                SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
+                specialCard.Init(DataManager.Instance.GetSpecialCardSO(temp));
+
+                // dragble 관련 초기화
+                dragbleCard.SetDroppedArea(handleDropArea);
+                dragbleCard.originDropArea = handleDropArea;
+
+                dragbleCard.InitData_SpecialCard();
+
+                specialCard.OnHandle();
+
+                specialHandleObj.Add(specialCard);
+
+                cardSorting.AlignCards();
+            });
+        }
+    }
+
     // turnStart or moveEnd 마다 하는 draw
     public void DrawCardWhenBeforeMove()
     {

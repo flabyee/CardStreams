@@ -146,6 +146,7 @@ public class DropManager : MonoBehaviour
                                     {
                                         case ApplyTiming.NowField:
                                             specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
+                                            (area.field.cardPower as BasicCard).AddSpecial(specialCard.id);
 
                                             dragbleCard.isDestory = true;
 
@@ -167,6 +168,7 @@ public class DropManager : MonoBehaviour
                             {
                                 case ApplyTiming.NowField:
                                     specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
+                                    (area.field.cardPower as BasicCard).AddSpecial(specialCard.id);
 
                                     dragbleCard.isDestory = true;
 
@@ -386,6 +388,17 @@ public class DropManager : MonoBehaviour
 
         CardPower cardPower = dragbleCard.GetComponent<CardPower>();
         cardPower.OnHandle();
+
+        if(cardPower is BasicCard)
+        {
+            BasicCard basicCard = cardPower as BasicCard;
+
+            // 다시 돌려 받기
+            basicCard.GetApplySpecial();
+
+            // 카드 원상복귀
+            basicCard.InitData_Feild(basicCard.originBasicType, basicCard.originValue);
+        }
 
         GameManager.Instance.handleController.cardSorting.AlignCards();
     }

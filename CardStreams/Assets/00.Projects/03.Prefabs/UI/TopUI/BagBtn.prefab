@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3647085980814441094}
   m_Layer: 5
-  m_Name: bezierTarget
+  m_Name: BagBezierTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

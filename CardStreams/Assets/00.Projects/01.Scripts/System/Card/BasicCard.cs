@@ -25,7 +25,9 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     public int value { get; private set; }
     public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
     public int originValue;
+    public BasicType originBasicType;
     public List<Buff> buffList = new List<Buff>();
+    public List<int> applySpecialList = new List<int>();
 
     public override void InitData_Feild(BasicType basicType, int value)
     {
@@ -34,7 +36,10 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         this.value = value;
         this.originValue = value;
         this.basicType = basicType;
+        this.originBasicType = basicType;
         this.goldP = 2;
+        this.buffList.Clear();
+        this.applySpecialList.Clear();
 
         ApplyUI();
     }
@@ -45,6 +50,17 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         // 나중엔 중복되는버프 들어가게해줘야함
 
         buffList.Add(buff);
+    }
+
+    public void AddSpecial(int id)
+    {
+        applySpecialList.Add(id);
+    }
+
+    public void GetApplySpecial()
+    {
+        // 지금은 추가하고 뽑기 이렇게말고 바로 뽑게해라
+        GameManager.Instance.handleController.ReturnSpecialCards(applySpecialList);
     }
 
     public void ApplyUI()
@@ -107,7 +123,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(isHandle && eventData.button == PointerEventData.InputButton.Right)
+        if (isHandle && eventData.button == PointerEventData.InputButton.Right)
         {
             transform.localScale = Vector3.one;
             transform.rotation = Quaternion.Euler(Vector3.one);
