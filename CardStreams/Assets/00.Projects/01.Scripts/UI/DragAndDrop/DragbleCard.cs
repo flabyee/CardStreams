@@ -249,6 +249,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void ActiveFalse()
     {
+        transform.rotation = Quaternion.identity;
+
         transform.SetParent(ConstManager.Instance.tempTrm, true);
 
         gameObject.SetActive(false);

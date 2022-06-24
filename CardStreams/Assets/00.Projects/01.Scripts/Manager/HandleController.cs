@@ -548,4 +548,13 @@ public class HandleController : MonoBehaviour
         }
         
     }
+
+    public List<int> GetBuildDeck()
+    {
+        return buildDeck;
+    }
+    public List<int> GetSpecialDeck()
+    {
+        return specialDeck;
+    }
 }
