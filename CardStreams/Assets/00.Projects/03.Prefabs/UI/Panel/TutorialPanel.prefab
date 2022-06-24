@@ -909,7 +909,6 @@ GameObject:
   - component: {fileID: 4794772006442446090}
   - component: {fileID: 4794772006442446088}
   - component: {fileID: 4794772006442446089}
-  - component: {fileID: 4794772006442446095}
   m_Layer: 5
   m_Name: TutorialPanel
   m_TagString: Untagged
@@ -965,31 +964,3 @@ MonoBehaviour:
   - {fileID: 4794772006156780495}
   - {fileID: 4794772005766009497}
   - {fileID: 4794772006179821055}
---- !u!114 &4794772006442446095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4794772006442446091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: fad841f3c77c1894193761aa39e5a27e, type: 2}
-  responseObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4794772006442446089}
-        m_TargetAssemblyTypeName: TutorialPanel, Assembly-CSharp
-        m_MethodName: ShowTutorial
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

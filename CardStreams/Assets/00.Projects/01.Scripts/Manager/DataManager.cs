@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
 
 
     public IntValue stageNumValue;
+    public bool isEnterTutorial;
 
     private void Awake()
     {

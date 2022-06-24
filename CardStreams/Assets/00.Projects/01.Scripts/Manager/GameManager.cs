@@ -79,8 +79,8 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        curState = GameState.TurnEnd;
-        nextState = GameState.Modify;
+        curState = GameState.TurnStart;
+        nextState = GameState.TurnStart;
         canNext = true;
     }
 
@@ -93,8 +93,6 @@ public class GameManager : MonoBehaviour
 
         goldValue.RuntimeValue += 20;
         goldChangeEvent.Occurred();
-
-        ShowTuTorialEvent?.Invoke(0);
 
         loopCountValue.RuntimeValue = 0;
         loopChangeEvent.Occurred();
@@ -242,6 +240,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("start");
         // fieldController.SetAllFieldYet(); // 안해주면 카드가 안들어감 근데 여기다가 이거쓰면 손에보라색몬스터 버그남 ??그럼어떻게해야하지
+
 
         // 턴 증가
         loopCountValue.RuntimeValue++;

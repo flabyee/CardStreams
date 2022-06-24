@@ -9,17 +9,17 @@ public class TutorialPanel : MonoBehaviour
     [SerializeField] CanvasGroup[] tutorialImages;
     private int currentIndex; // 현재 보여지는 튜토리얼이미지
 
+    private List<int> showIndexList = new List<int>(); // 보여진것들(안켜줌 2번은)
     private void Awake()
     {
     }
 
     private void Start()
     {
-        GameManager.Instance.ShowTuTorialEvent += ShowTutorial;
-        Debug.Log("?");
+        if(DataManager.Instance.isEnterTutorial) GameManager.Instance.ShowTuTorialEvent += ShowTutorial;
+        
         for (int i = 0; i < tutorialImages.Length; i++)
         {
-            Debug.Log("??");
             HideTutorial(i);
         }
     }
@@ -31,6 +31,11 @@ public class TutorialPanel : MonoBehaviour
 
     public void ShowTutorial(int index)
     {
+        if(showIndexList.Contains(index)) // 이미 한번 보여준거면 x
+        {
+            return;
+        }
+        showIndexList.Add(index);
         HideTutorial(currentIndex);
 
         tutorialImages[index].DOFade(1f, 0.5f);
@@ -42,7 +47,7 @@ public class TutorialPanel : MonoBehaviour
     
     private void HideTutorial(int index)
     {
-        tutorialImages[index].DOFade(0f, 0.5f);
+        tutorialImages[index].alpha = 0;
         tutorialImages[index].blocksRaycasts = false;
         tutorialImages[index].interactable = false;
     }
