@@ -11,9 +11,6 @@ public class EquipMenu : Menu<EquipMenu>
 
     public override void OnOpen()
     {
-        Debug.Log("open");
-        //base.OnOpen();
-
         equipController.OnEquip();
 
         OnClickBuildPanel();
@@ -21,6 +18,8 @@ public class EquipMenu : Menu<EquipMenu>
 
     public override void OnBackPressed()
     {
+        equipController.Close();
+
         base.OnBackPressed();
     }
 

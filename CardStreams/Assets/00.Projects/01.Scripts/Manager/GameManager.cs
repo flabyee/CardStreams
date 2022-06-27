@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     [Header("StageData")]
     private int maxMoveCount;
 
+
+
     [Header("Controller")]
     public FieldController fieldController;
     public EnemyController enemyController;
@@ -535,6 +537,10 @@ public class GameManager : MonoBehaviour
 
     private void GameEnd()
     {
+        SaveData saveData = SaveSystem.Load();
+        saveData.gold += player.killMobCount;
+        SaveSystem.Save(saveData);
+
         Debug.Log("플레이어 디짐");
         dontTouchController.Hide();
         playerDieEvent.Occurred();

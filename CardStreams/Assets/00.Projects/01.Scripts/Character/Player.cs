@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     [Header("Debug")]
     public bool isDontDie;
 
+    public int killMobCount;
+
     private void Awake()
     {
         rectTrm = GetComponent<RectTransform>();
@@ -209,5 +211,7 @@ public class Player : MonoBehaviour
         currentMonsterValue = Mathf.Clamp(currentMonsterValue, 0, 99);
         hpValue.RuntimeValue -= currentMonsterValue;
         playerValueChangeEvent.Occurred();
+
+        killMobCount++;
     }
 }

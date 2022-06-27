@@ -24,5 +24,18 @@ public class StreamEditor : EditorWindow
             goldValue.RuntimeValue += 100;
             GoldChangeEvnet.Occurred();
         }
+
+        if(GUILayout.Button("Get Gold 100 in menu"))
+        {
+            SaveData saveData = SaveSystem.Load();
+            saveData.gold += 100;
+            SaveSystem.Save(saveData);
+        }
+        if(GUILayout.Button("Reset Remove Count"))
+        {
+            SaveData saveData = SaveSystem.Load();
+            saveData.maxRemoveCount = 0;
+            SaveSystem.Save(saveData);
+        }
     }
 }

@@ -33,6 +33,8 @@ public class EquipController : MonoBehaviour
     public RectTransform rightListTrm;
     public GameObject rightListPrefab;
 
+    public TextMeshProUGUI goldText;
+
     private void Awake()
     {
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
@@ -60,6 +62,7 @@ public class EquipController : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
+        
         buildScrollTrm.sizeDelta = new Vector2(0, 305f);
         specialScrollTrm.sizeDelta = new Vector2(0, 305f);
 
@@ -100,9 +103,34 @@ public class EquipController : MonoBehaviour
             }
         }
 
+        if(saveData.maxRemoveCount < removeCount)
+        {
+            Debug.LogError("최대 제외 갯수 보다 제외한 갯수가 더 많습니다");
+        }
+
         CreateCard();
 
         ApplyUI();
+    }
+
+    public void Close()
+    {
+        foreach (RectTransform item in rightListTrm)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (RectTransform item in buildScrollTrm)
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (RectTransform item in specialScrollTrm)
+        {
+            Destroy(item.gameObject);
+        }
+
+        removeBuildList.Clear();
+        removeSpecialList.Clear();
     }
 
     public void CreateCard()
@@ -153,7 +181,7 @@ public class EquipController : MonoBehaviour
                 if (b == true)
                 {
                     b = false;
-                    specialScrollTrm.sizeDelta += new Vector2(0, 330);
+                    specialScrollTrm.sizeDelta += new Vector2(0, 330f);
                 }
                 RemoveSpecialCard special = Instantiate(specialCardPrefab, specialScrollTrm);
 
@@ -256,12 +284,15 @@ public class EquipController : MonoBehaviour
     {
         countText.text = $"{removeCount} / {maxRemoveCount}";
 
-        foreach(RectTransform item in rightListTrm)
+        goldText.text = saveData.gold.ToString();
+
+        foreach (RectTransform item in rightListTrm)
         {
             Destroy(item.gameObject);
         }
+        rightListTrm.sizeDelta = Vector2.zero;
 
-        foreach(RemoveBuildCard build in removeBuildList)
+        foreach (RemoveBuildCard build in removeBuildList)
         {
             GameObject obj = Instantiate(rightListPrefab, rightListTrm);
             RightListUI rightListUI = obj.GetComponent<RightListUI>();
@@ -270,6 +301,7 @@ public class EquipController : MonoBehaviour
             {
                 OnClickBuildRemove(build.buildSO.id, build);
             });
+            rightListTrm.sizeDelta += new Vector2(0, 100);
         }
 
         foreach(RemoveSpecialCard special in removeSpecialList)
@@ -281,6 +313,26 @@ public class EquipController : MonoBehaviour
             {
                 OnClickSpecialRemove(special.specialSO.id, special);
             });
+            rightListTrm.sizeDelta += new Vector2(0, 100);
+        }
+    }
+
+    public void UpgradeCount()
+    {
+        if(saveData.gold >= 5)
+        {
+            saveData.gold -= 5;
+
+            saveData.maxRemoveCount++;
+            SaveSystem.Save(saveData);
+
+            maxRemoveCount = saveData.maxRemoveCount;
+
+            ApplyUI();
+        }
+        else
+        {
+            UITooltip.Instance.Show("돈이 부족합니다");
         }
     }
 }
