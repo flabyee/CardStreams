@@ -33,6 +33,7 @@ public class ConstManager : MonoBehaviour
     public Sprite[] potionSprite;
     public Sprite[] monsterSprite;
     public Sprite[] coinSprite;
+    public Sprite bossSprite;
 
     public Sprite[] fieldSprites;
 

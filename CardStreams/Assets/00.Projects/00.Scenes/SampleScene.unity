@@ -1296,8 +1296,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5f02fc54f1857e544b00a2ea2b91005c, type: 3}
   - {fileID: 21300006, guid: 6d0df163110ae424f909acf887f94f27, type: 3}
   - {fileID: 21300002, guid: 57289054a10f7e04bbe7d575d213f248, type: 3}
-  - {fileID: 21300000, guid: 3c3a29a727884844499b67527dba3c93, type: 3}
+  - {fileID: 21300004, guid: 3d4b55be2c9677e4fade767730e92015, type: 3}
   coinSprite: []
+  bossSprite: {fileID: 21300000, guid: 3c3a29a727884844499b67527dba3c93, type: 3}
   fieldSprites:
   - {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   - {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
@@ -8764,6 +8765,7 @@ MonoBehaviour:
   moveIndex: 0
   curState: 0
   nextState: 0
+  canNext: 0
   enemyController: {fileID: 1664593178}
   handleController: {fileID: 745525164}
   shopController: {fileID: 2051422256}

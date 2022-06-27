@@ -31,6 +31,7 @@ public class HandleController : MonoBehaviour
     private int deckValueAmount;
     private int deckValueIncreaseAmount;
     private float deckValueIncreaseMultipication;
+    private int bossDownValue;
 
     private float originHandleY;
     public float handleMoveAmount;
@@ -53,6 +54,8 @@ public class HandleController : MonoBehaviour
         deckValueAmount = stageData.firstDeckValueAmount;
         deckValueIncreaseAmount = stageData.deckValueIncreaseAmount;
         deckValueIncreaseMultipication = stageData.deckValueIncreaseMultipication;
+        bossDownValue = stageData.downValue;
+        
         maxValue = 5;
 
         DeckMake();
@@ -455,6 +458,8 @@ public class HandleController : MonoBehaviour
         maxValue = Mathf.RoundToInt((float)maxValue * deckValueIncreaseMultipication);
 
         deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
+
+        deckValueAmount -= bossDownValue;
 
         DeckMake();
     }

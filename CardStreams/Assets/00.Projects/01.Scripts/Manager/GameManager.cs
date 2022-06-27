@@ -15,6 +15,7 @@ public enum GameState
     Move,
     Modify,
     Equip,
+    GameStart,
 }
 
 public class GameManager : MonoBehaviour
@@ -35,7 +36,11 @@ public class GameManager : MonoBehaviour
     public int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
     public GameState curState; // 현재 게임의 상태
     public GameState nextState; // 다음 상태
-    private bool canNext;
+    public bool canNext;
+
+    // 임시
+    private bool isFirst = false;
+    private int bossRound;
 
     [Header("StageData")]
     private int maxMoveCount;
@@ -69,6 +74,8 @@ public class GameManager : MonoBehaviour
 
     public Action<int> ShowTuTorialEvent;
 
+    
+
     private void Awake()
     {
         if (Instance == null)
@@ -80,22 +87,23 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        canNext = true;
     }
 
     private void Start()
     {
         if (DataManager.Instance.stageNumValue.RuntimeValue == 0)
         {
-            curState = GameState.TurnStart;
+            curState = GameState.GameStart;
             nextState = GameState.TurnStart;
         }
         else
         {
-            curState = GameState.TurnEnd;
+            curState = GameState.GameStart;
             nextState = GameState.Modify;
         }
+
+        isFirst = false;
+        canNext = false;
 
         LoadStageData();
 
@@ -121,6 +129,7 @@ public class GameManager : MonoBehaviour
     {
         StageDataSO stageData = DataManager.Instance.GetNowStageData();
         maxMoveCount = stageData.moveCount;
+        bossRound = stageData.bossRound;
     }
 
     // To Do : 나중에 수정
@@ -242,6 +251,15 @@ public class GameManager : MonoBehaviour
 
                 NextAction();
                 break;
+            case GameState.GameStart:
+                if (canNext == false)
+                {
+                    UITooltip.Instance.Show("먼저 시작 보상을 선택해주세요", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
+                NextAction();
+                break;
             default:
                 break;
         }
@@ -258,8 +276,14 @@ public class GameManager : MonoBehaviour
         loopChangeEvent.Occurred();
 
 
-        // 앞에 n칸 활성화
-        fieldController.SetNextFieldAble(moveIndex);
+        if(loopCountValue.RuntimeValue == 6)
+        {
+            // 플레이해주셔서 감사합니다
+        }
+
+
+            // 앞에 n칸 활성화
+            fieldController.SetNextFieldAble(moveIndex);
 
         handleController.HandleReturnToDeck();
         handleController.DrawCardWhenBeforeMove();
@@ -453,20 +477,45 @@ public class GameManager : MonoBehaviour
     {
         canNext = false;
 
+        if(isFirst == true)
+        {
+            nextState = GameState.Equip;
+        }
+        else
+        {
+            nextState = GameState.TurnStart;
+        }
+
+
         StartCoroutine(Delay(() =>
         {
-            shopController.Show();
-            selectRewardManager.Show();
-            blurController.SetActive(true);
+            if(isFirst == true)
+            {
+                shopController.Show();
+                selectRewardManager.Show();
+                blurController.SetActive(true);
+            }
+            else
+            {
+                isFirst = true;
+            }
 
             canNext = true;
         }, 1.5f));
 
-
-        enemyController.CreateRandomMob();
-        enemyController.RandomEnemyBuild();
-
-        nextState = GameState.Equip;
+        if (loopCountValue.RuntimeValue == bossRound)
+        {
+            enemyController.BossRound();
+        }
+        else if(loopCountValue.RuntimeValue < bossRound)
+        {
+            enemyController.CreateRandomMob();
+            enemyController.RandomEnemyBuild();
+        }
+        else
+        {
+            Debug.LogError("클리어");
+        }
     }
 
     private void OnEquip()

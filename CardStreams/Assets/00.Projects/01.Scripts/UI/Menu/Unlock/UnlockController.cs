@@ -172,4 +172,9 @@ public class UnlockController : MonoBehaviour
 
         SaveSystem.Save(saveData);
     }
+
+    public void OnClickDoGam()
+    {
+
+    }
 }

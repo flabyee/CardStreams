@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour
     private int mobSpawnIncreaseAmount;
     private int mobAttackAmount;
     private int mobAttackIncreaseAmount;
+    private int bossValue;
 
     // 적 건물 생성
     private List<BuildSO> enemyBuildList;
@@ -32,7 +33,7 @@ public class EnemyController : MonoBehaviour
         mobSpawnIncreaseAmount = stageData.mobIncreaseAmount;
         mobAttackAmount = stageData.firstMobAttackAmount;
         mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
-
+        bossValue = stageData.bossValue;
     }
 
     /// <summary>
@@ -176,4 +177,52 @@ public class EnemyController : MonoBehaviour
         cardPower.OnField();
     }
 
+    public void BossRound()
+    {
+        mobSpawnAmount /= 2;
+        mobAttackAmount /= 2;
+
+        CreateRandomMob();
+        RandomEnemyBuild();
+        RandomEnemyBuild();
+        RandomEnemyBuild();
+
+        CreateBoss(MapManager.Instance.fieldCount - 1);
+    }
+
+    public void CreateBoss(int fieldIndex)
+    {
+        int value = bossValue;
+
+        // 새로운 카드 생성 + 부모 설정
+        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(MapManager.Instance.fieldList[fieldIndex].transform);
+        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+        CardPower cardPower = cardObj.GetComponent<CardPower>();
+
+        (cardPower as BasicCard).isBoss = true;
+
+        // cardPower에 정보 넣기
+        dragbleCard.InitData_Feild(BasicType.Monster, value);
+
+        // 못 움직이게
+        dragbleCard.canDragAndDrop = false;
+        cardPower.SetField();
+
+        Field field = MapManager.Instance.fieldList[fieldIndex];
+
+        // 위치&부모 설정
+        dragbleCard.transform.position = field.transform.position;
+        dragbleCard.transform.SetParent(field.transform);
+
+        // 필드에 적용 + not으로
+        field.Init(cardPower, dragbleCard, FieldState.randomMob);
+
+        // craete effect
+        //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
+        Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
+
+        (cardPower as BasicCard).OnField();
+
+
+    }
 }

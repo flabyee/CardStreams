@@ -34,6 +34,8 @@ public class GameStartingPanel : MonoBehaviour
             // 이미지바꾸기
             startingButtons[i].image.sprite = startingCards[i].sprite;
         }
+
+        GameManager.Instance.blurController.SetActive(true);
     }
 
     public void PressStarting(int startingIndex)
@@ -42,6 +44,10 @@ public class GameStartingPanel : MonoBehaviour
         GameManager.Instance.handleController.AddSpecial(startingCards[startingIndex].id);
 
         gameObject.SetActive(false);
+
+        GameManager.Instance.canNext = true;
+
+        GameManager.Instance.blurController.SetActive(false);
     }
 
     public void EnterStarting(int startingIndex)

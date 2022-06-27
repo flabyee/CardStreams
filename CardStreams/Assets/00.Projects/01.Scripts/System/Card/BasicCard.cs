@@ -29,6 +29,8 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     public List<Buff> buffList = new List<Buff>();
     public List<int> applySpecialList = new List<int>();
 
+    public bool isBoss;
+
     public override void InitData_Feild(BasicType basicType, int value)
     {
         base.InitData_Feild(basicType, value);
@@ -65,9 +67,35 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void ApplyUI()
     {
-        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length - 1);
-
         backColorImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
+
+        valueText.text = value.ToString();
+        fieldText.text = value.ToString();
+
+        if (value == originValue)
+        {
+            valueText.color = Color.white;
+            fieldText.color = Color.white;
+        }
+        else if (value > originValue)
+        {
+            valueText.color = ConstManager.Instance.upValueColor;
+            fieldText.color = ConstManager.Instance.upValueColor;
+        }
+        else if (value < originValue)
+        {
+            valueText.color = ConstManager.Instance.downValueColor;
+            fieldText.color = ConstManager.Instance.downValueColor;
+        }
+
+        if (isBoss == true)
+        {
+            faceImage.sprite = ConstManager.Instance.bossSprite;
+            fieldImage.sprite = ConstManager.Instance.bossSprite;
+            return;
+        }
+
+        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length - 1);
 
         switch (basicType)
         {
@@ -89,24 +117,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
                 break;
         }
 
-        valueText.text = value.ToString();
-        fieldText.text = value.ToString();
 
-        if (value == originValue)
-        {
-            valueText.color = Color.white;
-            fieldText.color = Color.white;
-        }
-        else if (value > originValue)
-        {
-            valueText.color = ConstManager.Instance.upValueColor;
-            fieldText.color = ConstManager.Instance.upValueColor;
-        }
-        else if (value < originValue)
-        {
-            valueText.color = ConstManager.Instance.downValueColor;
-            fieldText.color = ConstManager.Instance.downValueColor;
-        }
     }
 
     public void AddValue(int value)

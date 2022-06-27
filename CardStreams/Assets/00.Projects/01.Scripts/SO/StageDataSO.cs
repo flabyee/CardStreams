@@ -22,4 +22,9 @@ public class StageDataSO : ScriptableObject
     public int mobIncreaseAmount;  // 몹 늘어나는 양
     public int firstMobAttackAmount;            // 몹의 공격력
     public int mobAttackIncreaseAmount;     // 몹 공격력 증가량
+
+    [Header("보스 관련 정보")]
+    public int bossRound;   // 보스가 나오는 루프수
+    public int bossValue;
+    public int downValue;   // 보스가 나오는 라운드에 약화되는 덱의 수치
 }
