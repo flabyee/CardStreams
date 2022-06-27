@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class UnlockController : MonoBehaviour
 {
@@ -12,9 +14,13 @@ public class UnlockController : MonoBehaviour
 
     private SaveData saveData;
 
-    private void OnEnable()
+    public TextMeshProUGUI goldText;
+
+    public void OnOpen()
     {
         saveData = SaveSystem.Load();
+
+        ApplyUI();
 
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
         buildList = buildListSO.buildList;
@@ -49,27 +55,59 @@ public class UnlockController : MonoBehaviour
             }
         }
     }
-
-    public void OnClick(int cardGrade)
+     
+    public void OnClickBuildUnlock(int cardGrade)
     {
-        if(Random.Range(0, 2) == 0)
+        if(saveData.gold >= 5)
         {
-            UnlockRandomBuildCard((CardGrade)cardGrade);
+            saveData.gold -= 5;
+
+            bool b = UnlockRandomBuildCard((CardGrade)cardGrade);
+
+            if (b == false)
+            {
+                saveData.gold += 5;
+                UITooltip.Instance.Show("이미 해당 등급의 건물카드를 해금하였습니다", new UITooltip.TooltipTimer(2f));
+            }
+
+            SaveSystem.Save(saveData);
+            ApplyUI();
         }
         else
         {
-            UnlockRandomSpecialCard((CardGrade)cardGrade);
+            UITooltip.Instance.Show("돈이 부족합니다", new UITooltip.TooltipTimer(2f));
         }
-
-        SaveSystem.Save(saveData);
     }
 
-    private void UnlockRandomBuildCard(CardGrade cardGrade)
+    public void OnClickSpecialUnlock(int cardGrade)
+    {
+        if (saveData.gold >= 5)
+        {
+            saveData.gold -= 5;
+
+            bool b = UnlockRandomSpecialCard((CardGrade)cardGrade);
+
+            if (b == false)
+            {
+                saveData.gold += 5;
+                UITooltip.Instance.Show("이미 해당 등급의 특수카드를 해금하였습니다", new UITooltip.TooltipTimer(2f));
+            }
+
+            SaveSystem.Save(saveData);
+            ApplyUI();
+        }
+        else
+        {
+            UITooltip.Instance.Show("돈이 부족합니다", new UITooltip.TooltipTimer(2f));
+        }
+    }
+
+    private bool UnlockRandomBuildCard(CardGrade cardGrade)
     {
         if(buildDict[cardGrade].Count == 0)
         {
             Debug.Log("b이미 모두 해금");
-            return;
+            return false;
         }
 
         int randomIndex = Random.Range(0, buildDict[cardGrade].Count);
@@ -81,14 +119,18 @@ public class UnlockController : MonoBehaviour
         saveData.buildDataList[buildData.id].isUse = true;
 
         buildDict[cardGrade].Remove(buildData);
+
+        return true;
+
+
     }
 
-    private void UnlockRandomSpecialCard(CardGrade cardGrade)
+    private bool UnlockRandomSpecialCard(CardGrade cardGrade)
     {
         if (specialDict[cardGrade].Count == 0)
         {
             Debug.Log("s이미 모두 해금");
-            return;
+            return false;
         }
 
         int randomIndex = Random.Range(0, specialDict[cardGrade].Count);
@@ -100,11 +142,19 @@ public class UnlockController : MonoBehaviour
         saveData.speicialCardDataList[specialData.id].isUse = true;
 
         specialDict[cardGrade].Remove(specialData);
+
+        return true;
     }
 
+    private void ApplyUI()
+    {
+        goldText.text = saveData.gold.ToString();
+    }
 
+    public void OnClose()
+    {
 
-
+    }
 
     // test 코드
     public void ResetData(bool b)
@@ -119,8 +169,6 @@ public class UnlockController : MonoBehaviour
             specialData.isUnlock = b;
             specialData.isUse = b;
         }
-
-        saveData.maxRemoveCount = 5;
 
         SaveSystem.Save(saveData);
     }
