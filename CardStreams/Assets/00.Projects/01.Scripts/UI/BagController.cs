@@ -15,6 +15,8 @@ public class BagController : MonoBehaviour
 
     public void Show()
     {
+        ClearScroll();
+
         Debug.Log("dsaf");
         gameObject.SetActive(true);
 
@@ -45,7 +47,7 @@ public class BagController : MonoBehaviour
             }
         }
 
-        //OnBuild();
+        OnBuild();
     }
 
     public void Hide()
@@ -97,15 +99,20 @@ public class BagController : MonoBehaviour
 
     public void OnClickExit()
     {
-        foreach(RectTransform item in buildScrollTrm)
-        {
-            poolQueue.Enqueue(item.gameObject);
-        }
-        foreach(RectTransform item in specialScrollTrm)
-        {
-            poolQueue.Enqueue(item.gameObject);
-        }
+        ClearScroll();
 
         Hide();
+    }
+
+    private void ClearScroll()
+    {
+        foreach (RectTransform item in buildScrollTrm)
+        {
+            poolQueue.Enqueue(item.gameObject);
+        }
+        foreach (RectTransform item in specialScrollTrm)
+        {
+            poolQueue.Enqueue(item.gameObject);
+        }
     }
 }

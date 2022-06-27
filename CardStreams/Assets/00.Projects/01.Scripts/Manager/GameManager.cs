@@ -79,13 +79,22 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        curState = GameState.TurnStart;
-        nextState = GameState.TurnStart;
         canNext = true;
     }
 
     private void Start()
     {
+        if (DataManager.Instance.stageNumValue.RuntimeValue == 0)
+        {
+            curState = GameState.TurnStart;
+            nextState = GameState.TurnStart;
+        }
+        else
+        {
+            curState = GameState.TurnEnd;
+            nextState = GameState.Modify;
+        }
+
         LoadStageData();
 
         fieldController = new FieldController(maxMoveCount);

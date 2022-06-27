@@ -8,9 +8,6 @@ using UnityEngine.EventSystems;
 
 public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
-    public TextMeshProUGUI greadeText;
-    
-
     public BuildSO buildSO;
     private List<Vector2> accessPointList;
 
@@ -27,10 +24,10 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
         faceImage.sprite = this.buildSO.sprite;
         fieldImage.sprite = this.buildSO.sprite;
-        greadeText.text = this.buildSO.grade.ToString();
+        //greadeText.text = this.buildSO.grade.ToString();
         accessPointList = this.buildSO.accessPointList;
         
-        greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade]; // 이거 Dictionary라서 작동을 안하는데용?? Hierarchy에서 못바꾸는거라
+        //greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade]; // 이거 Dictionary라서 작동을 안하는데용?? Hierarchy에서 못바꾸는거라
 
         isDrop = false;
     }
@@ -39,7 +36,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     {
         BuildManager.Instance.buildList.Add(this);
 
-        greadeText.text = string.Empty;
+        //greadeText.text = string.Empty;
 
         isDrop = true;
 
