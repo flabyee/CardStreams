@@ -16,10 +16,11 @@ MonoBehaviour:
   specialCardName: "\uD53C\uC5D0 \uC801\uC2E0 \uAC80"
   price: 25
   grade: 3
-  tooltip: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825 - 2, \uCE7C + 15"
+  tooltip: "\uCE7C + 15, \uD68D\uB4DD\uC2DC \uCCB4\uB825 1 \uAC10\uC18C\uD558\uBA70
+    \uCE7C \uACF5\uACA9\uB825 10\uB9C8\uB2E4 \uCCB4\uB825 \uAC10\uC18C + 1"
   sprite: {fileID: -4209723624490933604, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 01000000
   targetBasicList: 01000000
   upSwordAmount: 15
-  lessHpAmount: 2
+  reduceHPso: {fileID: 11400000, guid: 25b69979f4131da439a979a5743a7e47, type: 2}

@@ -33,44 +33,46 @@ public class StatPanel : MonoBehaviour
 
         return;
 
-        int divide100 = statAmount / 100;
+        // 여기아래 = 옛날옛적 아이콘으로 1 10 100 수치표기했을시절
 
-        for (int i = 0; i < divide100; i++)
-        {
-            runtimeStatImages[i].DOFade(1, 0.2f);
-            runtimeStatImages[i].sprite = statUnitSprites[2]; // 10 이미지로 교체
+        //int divide100 = statAmount / 100;
 
-            count++;
-        } // count 1
+        //for (int i = 0; i < divide100; i++)
+        //{
+        //    runtimeStatImages[i].DOFade(1, 0.2f);
+        //    runtimeStatImages[i].sprite = statUnitSprites[2]; // 10 이미지로 교체
 
-        statAmount -= divide100 * 100; // 3
+        //    count++;
+        //} // count 1
 
-        int divide10 = statAmount / 10;
-        for (int i = 0; i < divide10; i++)
-        {
-            runtimeStatImages[i].DOFade(1, 0.2f);
-            runtimeStatImages[i].sprite = statUnitSprites[1]; // 10 이미지로 교체
+        //statAmount -= divide100 * 100; // 3
 
-            count++;
-        } // count 1
+        //int divide10 = statAmount / 10;
+        //for (int i = 0; i < divide10; i++)
+        //{
+        //    runtimeStatImages[i].DOFade(1, 0.2f);
+        //    runtimeStatImages[i].sprite = statUnitSprites[1]; // 10 이미지로 교체
 
-        statAmount -= divide10 * 10; // 3
+        //    count++;
+        //} // count 1
 
-        int divide1 = statAmount; // 3
-        for (int i = count; i < divide1 + divide10; i++) // 1 < 3
-        {
-            runtimeStatImages[i].DOFade(1, 0.2f);
-            runtimeStatImages[i].sprite = statUnitSprites[0]; // 1 이미지로 교체
+        //statAmount -= divide10 * 10; // 3
 
-            count++;
-        }
+        //int divide1 = statAmount; // 3
+        //for (int i = count; i < divide1 + divide10; i++) // 1 < 3
+        //{
+        //    runtimeStatImages[i].DOFade(1, 0.2f);
+        //    runtimeStatImages[i].sprite = statUnitSprites[0]; // 1 이미지로 교체
 
-        for (int i = count; i < runtimeStatImages.Length; i++)
-        {
-            int avoidClosure = i;
-            runtimeStatImages[avoidClosure].DOFade(0, 0.2f);
+        //    count++;
+        //}
 
-            count++;
-        }
+        //for (int i = count; i < runtimeStatImages.Length; i++)
+        //{
+        //    int avoidClosure = i;
+        //    runtimeStatImages[avoidClosure].DOFade(0, 0.2f);
+
+        //    count++;
+        //}
     }
 }

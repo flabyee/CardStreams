@@ -6,7 +6,7 @@ using UnityEngine;
 public class RandomCardSO : SpecialCardSO
 {
     [Header("amounts")]
-    public int mulAmount;
+    public int changeAmount;
 
     public override void AccessBuildCard(BuildCard build)
     {
@@ -17,7 +17,9 @@ public class RandomCardSO : SpecialCardSO
         BasicCard cardPower = field.cardPower as BasicCard;
 
         // cardPower
-        cardPower.SetValue(Random.Range(1, cardPower.value * mulAmount));
+        int addAmount = cardPower.value % 2 == 0 ? changeAmount : -changeAmount;
+        addAmount = Mathf.Clamp(addAmount, -cardPower.value, int.MaxValue); // 2몬스터에 -4주사위를 썼을때 0이되게하려고 (-카드수치) 까지만 내려가게함
+        cardPower.AddValue(addAmount);
 
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }

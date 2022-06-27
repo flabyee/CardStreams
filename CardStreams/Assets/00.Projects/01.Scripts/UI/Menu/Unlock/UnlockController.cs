@@ -106,11 +106,6 @@ public class UnlockController : MonoBehaviour
 
 
 
-    public void DoTutorial()
-    {
-        DataManager.Instance.isEnterTutorial = true;
-    }
-
     // test ÄÚµå
     public void ResetData(bool b)
     {

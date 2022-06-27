@@ -7,6 +7,8 @@ using DG.Tweening;
 public class TutorialPanel : MonoBehaviour
 {
     [SerializeField] CanvasGroup[] tutorialImages;
+    [SerializeField] IntValue stageNum;
+
     private int currentIndex; // 현재 보여지는 튜토리얼이미지
 
     private List<int> showIndexList = new List<int>(); // 보여진것들(안켜줌 2번은)
@@ -16,7 +18,8 @@ public class TutorialPanel : MonoBehaviour
 
     private void Start()
     {
-        if(DataManager.Instance.isEnterTutorial) GameManager.Instance.ShowTuTorialEvent += ShowTutorial;
+        // 튜토리얼 스테이지라면 튜토리얼을 키자
+        if(stageNum.RuntimeValue == 0) GameManager.Instance.ShowTuTorialEvent += ShowTutorial;
         
         for (int i = 0; i < tutorialImages.Length; i++)
         {

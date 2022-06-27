@@ -16,10 +16,10 @@ MonoBehaviour:
   specialCardName: "\uBE5B\uB098\uB294 \uC8FC\uC0AC\uC704"
   price: 15
   grade: 2
-  tooltip: "\uC77C\uBC18\uCE74\uB4DC\uC758 \uAC00\uCE58\uB97C 1 ~ \uAE30\uC874\uAC00\uCE58
-    * 4\uB85C \uBC14\uAFBC\uB2E4"
+  tooltip: "\uCE74\uB4DC\uC758 \uC218\uCE58\uAC00 \uD640\uC218\uBA74 +4, \uC9DD\uC218\uBA74
+    -4"
   sprite: {fileID: 627625725489826318, guid: 07c4b3a315249bf43b6a5e8241d7ad32, type: 3}
   applyTiming: 1
   targetTypeList: 01000000
   targetBasicList: 01000000020000000300000004000000
-  mulAmount: 4
+  changeAmount: 4

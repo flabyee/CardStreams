@@ -964,3 +964,4 @@ MonoBehaviour:
   - {fileID: 4794772006156780495}
   - {fileID: 4794772005766009497}
   - {fileID: 4794772006179821055}
+  stageNum: {fileID: 11400000, guid: 30def1b82f847a3498ae3bf278035357, type: 2}
