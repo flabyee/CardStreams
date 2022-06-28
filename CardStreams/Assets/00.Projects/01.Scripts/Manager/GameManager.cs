@@ -300,7 +300,7 @@ public class GameManager : MonoBehaviour
 
         ShowTuTorialEvent?.Invoke(1);
 
-        curState = GameState.Move;
+        curState = GameState.TurnStart;
         nextState = GameState.Move;
     }
 
@@ -375,8 +375,6 @@ public class GameManager : MonoBehaviour
         // 카드에 건물 효과 적용
         fieldController.BuildAccessNextField(moveIndex);
 
-        canNext = false;
-
         TurnStartEvent.Occurred();
 
         dontTouchController.Show();
@@ -410,6 +408,8 @@ public class GameManager : MonoBehaviour
     public void Move()
     {
         Sequence sequence = DOTween.Sequence();
+
+        canNext = false;
 
         sequence.AppendCallback(() => MoveStart());
         sequence.AppendInterval(moveDuration * 3);
@@ -648,7 +648,7 @@ public class GameManager : MonoBehaviour
                 curStateText.text = "현재 : 정산";
                 break;
             case GameState.Move:
-                curStateText.text = "현재 : 이동";
+                curStateText.text = "현재 : 루프";
                 break;
             case GameState.Modify:
                 curStateText.text = "현재 : 정비";

@@ -27,6 +27,12 @@ public class UnlockController : MonoBehaviour
         SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
         specialList = specialListSO.specialCardList;
 
+        if(specialList == null)
+        {
+            
+        }
+
+        Debug.Log(specialList.Count);
 
         for (int i = 0; i < 5; i++)
         {

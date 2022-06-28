@@ -7,7 +7,7 @@ public class StreamEditor : EditorWindow
 {
     IntValue goldValue;
     EventSO GoldChangeEvnet;
-    
+
     [MenuItem("Window/StreamEditor")]
     public static void ShowWindow()
     {
