@@ -119,6 +119,7 @@ public class MapManager : MonoBehaviour
             for(int j = 0; j < 4; j++)
             {
                 fieldList[i * 4 + j].background.sprite = ConstManager.Instance.fieldSprites[tileNum];
+                fieldList[i * 4 + j].tileNum = tileNum;
             }
 
             tileNum = tileNum == 0 ? 1 : 0;
@@ -203,10 +204,13 @@ public class MapManager : MonoBehaviour
             case FieldState.yet:
                 break;
             case FieldState.able:
+                fieldList[index].background.sprite = ConstManager.Instance.nextFieldSprites[fieldList[index].tileNum];
                 break;
             case FieldState.not:
                 if(fieldList[index].isSet == true)
                     fieldList[index].dragbleCard.canDragAndDrop = false;
+
+                fieldList[index].background.sprite = ConstManager.Instance.fieldSprites[fieldList[index].tileNum];
                 break;
         }
     }

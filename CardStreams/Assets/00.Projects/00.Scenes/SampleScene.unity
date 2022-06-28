@@ -1313,6 +1313,9 @@ MonoBehaviour:
   fieldSprites:
   - {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   - {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  nextFieldSprites:
+  - {fileID: -1955121601114562390, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  - {fileID: 3092998500186721542, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   basicTypeColorList:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
@@ -8746,6 +8749,9 @@ MonoBehaviour:
   blurController: {fileID: 141537393}
   nextStateText: {fileID: 155912497}
   curStateText: {fileID: 2004891494}
+  stopImage: {fileID: 1519945978934729565}
+  playSprite: {fileID: -5535182666878974321, guid: c076b6648a45a5642baf03d0f2e91d60, type: 3}
+  stopSprite: {fileID: 981439026007651082, guid: c076b6648a45a5642baf03d0f2e91d60, type: 3}
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   loopCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   TurnStartEvent: {fileID: 11400000, guid: f14c813a5c4ecf04488c45373c6d14c2, type: 2}
@@ -12930,6 +12936,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8553585819876958309, guid: 331267bf7c3140d43a7cd8b088c08b99, type: 3}
   m_PrefabInstance: {fileID: 1519945978934729563}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1519945978934729565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 954588641691421551, guid: 331267bf7c3140d43a7cd8b088c08b99, type: 3}
+  m_PrefabInstance: {fileID: 1519945978934729563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1855150497601680229
 PrefabInstance:
   m_ObjectHideFlags: 0

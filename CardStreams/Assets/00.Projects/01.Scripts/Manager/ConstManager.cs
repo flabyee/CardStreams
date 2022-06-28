@@ -36,6 +36,7 @@ public class ConstManager : MonoBehaviour
     public Sprite bossSprite;
 
     public Sprite[] fieldSprites;
+    public Sprite[] nextFieldSprites;
 
     public List<Color> basicTypeColorList;
 

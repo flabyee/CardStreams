@@ -11,6 +11,7 @@ public class FieldController
         this.maxMoveCount = maxMoveCount;
     }
 
+    // 모든 걸 아직으로
     public void SetAllFieldYet()
     {
         foreach (Field field in MapManager.Instance.fieldList)
@@ -19,6 +20,7 @@ public class FieldController
         }
     }
 
+    // 다음걸 활성화
     public void SetNextFieldAble(int nowIndex)
     {
         for (int i = nowIndex; i < maxMoveCount + nowIndex; i++)
@@ -30,6 +32,7 @@ public class FieldController
         }
     }
 
+    // 이전걸 비활성화
     public void SetBeforeFieldNot(int nowIndex)
     {
         for (int i = nowIndex - 4; i < nowIndex; i++)
@@ -39,6 +42,7 @@ public class FieldController
         }
     }
 
+    // 건물 효과 적용
     public void BuildAccessNextField(int nowIndex)
     {
         for (int i = nowIndex; i < nowIndex + 4; i++)
@@ -79,6 +83,7 @@ public class FieldController
         return playerCardCount <= 2 ? true : false;
     }
 
+    // 앞 4칸에 비어있는 곳 리스트
     public List<Vector2> GetTempNextFieldPoint()
     {
         List<Vector2> tempPointList = new List<Vector2>();

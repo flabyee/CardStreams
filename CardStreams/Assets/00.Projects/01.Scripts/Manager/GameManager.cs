@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
     public Text nextStateText;
     public Text curStateText;
 
+    public Image stopImage;
+    public Sprite playSprite;
+    public Sprite stopSprite;
+
     [Header("IntValue")]
     public IntValue goldValue;
     public IntValue loopCountValue;
@@ -190,6 +194,20 @@ public class GameManager : MonoBehaviour
                 if (canNext == false)
                 {
                     UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
+                // 꽉 차있는지
+                if (fieldController.IsNextFieldFull(moveIndex) == false)
+                {
+                    UITooltip.Instance.Show("앞에 4칸을 전부 채운후 다시 시도하세요!!", new UITooltip.TooltipTimer(1f));
+                    return;
+                }
+
+                // 플레이어 카드가 2장 이하인지
+                if (fieldController.IsNextFieldPlayerCardTwo(moveIndex) == false)
+                {
+                    UITooltip.Instance.Show("플레이어 카드를 2장 이하로 배치해주세요", new UITooltip.TooltipTimer(1f));
                     return;
                 }
 
