@@ -598,10 +598,12 @@ public class GameManager : MonoBehaviour
         if(Time.timeScale == 1)
         {
             Time.timeScale = 0;
+            stopImage.sprite = stopSprite;
         }
         else
         {
             Time.timeScale = 1;
+            stopImage.sprite = playSprite;
         }
     }
 
