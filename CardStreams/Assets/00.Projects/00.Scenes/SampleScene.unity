@@ -12575,11 +12575,11 @@ PrefabInstance:
       objectReference: {fileID: 1755125822}
     - target: {fileID: 915454325328547673, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
       propertyPath: m_Pivot.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 915454325328547673, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 915454325328547673, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
       propertyPath: m_RootOrder
@@ -12660,11 +12660,6 @@ PrefabInstance:
     - target: {fileID: 915454325328547686, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
       propertyPath: m_Name
       value: UITooltip
-      objectReference: {fileID: 0}
-    - target: {fileID: 3477649626194446112, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
-      propertyPath: m_text
-      value: "\uD55C\uC0C1\uC218\uB294 \uC624\uBBFC\uADDC\uC758 \uB3D9\uAE09\uC774\uAC70\uB098
-        \uADF8 \uC774\uC0C1\uC774\u3137"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab3a33dceadcd543aa55aeb7da5c63c, type: 3}
