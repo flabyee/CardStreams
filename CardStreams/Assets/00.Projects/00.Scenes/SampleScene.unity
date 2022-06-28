@@ -7408,6 +7408,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6615669721334766718, guid: 32300bcac048f5c45a043be09b5f1050, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32300bcac048f5c45a043be09b5f1050, type: 3}
 --- !u!1 &1323943204 stripped
@@ -9589,6 +9593,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1637668231}
+    - target: {fileID: 660032161651460041, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 660032161651460041, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 660032161651460041, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 706798571723540225, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11402,9 +11418,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopItemPrefab: {fileID: 50701676518544889, guid: 84227e77681cccf458626655efad60ae, type: 3}
   _cg: {fileID: 1819880831}
-  _reduceCG: {fileID: 1193160111}
   specialCardShopTrm: {fileID: 1819880830}
   buildShopTrm: {fileID: 1819880829}
+  _minimizePanel: {fileID: 1193160111}
+  miniMizeText: {fileID: 2115085158}
   rerollCostText: {fileID: 1819880828}
   rerollBtn: {fileID: 1819880833}
   lockBtnImage: {fileID: 1819880834}
@@ -11438,7 +11455,7 @@ MonoBehaviour:
   rerollCost: 5
   upgradeCostList: 0a000000140000001e00000028000000ffffffff
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
-  turnCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
+  loopCountValue: {fileID: 11400000, guid: fca0625465991264f94c6733a6d51382, type: 2}
   goldChangeEvnet: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
   nextTurnEvent: {fileID: 11400000, guid: 54a64b073e2443b4da6f32531da52964, type: 2}
 --- !u!224 &2059843747 stripped
@@ -11934,6 +11951,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114542112}
   m_CullTransparentMesh: 1
+--- !u!114 &2115085158 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2115085158, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
+  m_PrefabInstance: {fileID: 1819880826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2123179029
 PrefabInstance:
   m_ObjectHideFlags: 0

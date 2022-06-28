@@ -25,9 +25,12 @@ public class ShopController : MonoBehaviour
     List<ShopItemInfo> shopItemList = new List<ShopItemInfo>();
     // ui
     public CanvasGroup _cg;
-    public CanvasGroup _reduceCG;
     public RectTransform specialCardShopTrm;
     public RectTransform buildShopTrm;
+
+    // 최소화 관련
+    public CanvasGroup _minimizePanel;
+    public TextMeshProUGUI miniMizeText;
 
     public TextMeshProUGUI rerollCostText;
 
@@ -41,7 +44,7 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private int itemCount;  // 판매 갯수
 
-    [SerializeField] 
+    [SerializeField]
     List<GradeAmount> gradeAmount;
     [SerializeField]
     private int rerollCost;
@@ -60,7 +63,7 @@ public class ShopController : MonoBehaviour
 
     // so
     public IntValue goldValue;
-    public IntValue turnCountValue;
+    public IntValue loopCountValue;
     public EventSO goldChangeEvnet;
     public EventSO nextTurnEvent;
 
@@ -114,8 +117,9 @@ public class ShopController : MonoBehaviour
 
         // 이전에 최소화했어도 다시 키기위해서
         isMinimize = false;
-        _reduceCG.alpha = 1;
+        _minimizePanel.alpha = 1;
 
+        UpgradeShop();
         OnShop();
     }
 
@@ -130,15 +134,17 @@ public class ShopController : MonoBehaviour
     {
         isMinimize = !isMinimize;
 
-        _reduceCG.alpha = isMinimize ? 0 : 1;
-        _reduceCG.interactable = isMinimize ? false : true;
-        _reduceCG.blocksRaycasts = isMinimize ? false : true;
+        miniMizeText.text = isMinimize ? "확대" : "축소";
+
+        _minimizePanel.alpha = isMinimize ? 0 : 1;
+        _minimizePanel.interactable = isMinimize ? false : true;
+        _minimizePanel.blocksRaycasts = isMinimize ? false : true;
         GameManager.Instance.blurController.SetActive(!isMinimize);
     }
 
     public void OnShop()
     {
-        if(isLock == true)
+        if (isLock == true)
         {
             isLock = false;
         }
@@ -155,7 +161,7 @@ public class ShopController : MonoBehaviour
 
     public void Renewal()
     {
-        foreach(ShopItemInfo info in shopItemList)
+        foreach (ShopItemInfo info in shopItemList)
         {
             info.priceText.color = info.price <= goldValue.RuntimeValue ? Color.white : Color.red;
         }
@@ -260,7 +266,7 @@ public class ShopController : MonoBehaviour
         chance[2] = chance[1] + (gradeToChance[CardGrade.Epic] > 0 ? gradeToChance[CardGrade.Epic] : 0);
         chance[3] = chance[2] + (gradeToChance[CardGrade.Unique] > 0 ? gradeToChance[CardGrade.Unique] : 0);
         chance[4] = chance[3] + (gradeToChance[CardGrade.Legendary] > 0 ? gradeToChance[CardGrade.Legendary] : 0);
-        
+
         for (int i = 0; i < itemCount; i++)
         {
             int randomChance = Random.Range(0, GetAllChance());
@@ -268,19 +274,19 @@ public class ShopController : MonoBehaviour
             {
                 CreateBuildItem(CardGrade.Common, countDict[CardGrade.Common]++);
             }
-            else if(randomChance < chance[1])
+            else if (randomChance < chance[1])
             {
                 CreateBuildItem(CardGrade.Rare, countDict[CardGrade.Rare]++);
             }
-            else if(randomChance < chance[2])
+            else if (randomChance < chance[2])
             {
                 CreateBuildItem(CardGrade.Epic, countDict[CardGrade.Epic]++);
             }
-            else if(randomChance < chance[3])
+            else if (randomChance < chance[3])
             {
                 CreateBuildItem(CardGrade.Unique, countDict[CardGrade.Unique]++);
             }
-            else if(randomChance < chance[4])
+            else if (randomChance < chance[4])
             {
                 CreateBuildItem(CardGrade.Legendary, countDict[CardGrade.Legendary]++);
             }
@@ -307,7 +313,7 @@ public class ShopController : MonoBehaviour
                 }
             }
         }
-        if(cardType == CardType.Build)
+        if (cardType == CardType.Build)
         {
             foreach (var list in buildDict.Values)
             {
@@ -336,7 +342,7 @@ public class ShopController : MonoBehaviour
 
     private void CreateBuildItem(CardGrade grade, int i)
     {
-        if(buildDict[grade].Count - 1 < i)
+        if (buildDict[grade].Count - 1 < i)
         {
             return;
         }
@@ -434,7 +440,7 @@ public class ShopController : MonoBehaviour
     public void CloseShop()
     {
         Debug.Log("adsf");
-        if(GameManager.Instance.canStartTurn == true)
+        if (GameManager.Instance.canStartTurn == true)
         {
             Hide();
 
@@ -458,7 +464,7 @@ public class ShopController : MonoBehaviour
 
     public void OnClickReroll()
     {
-        if(rerollCost <= goldValue.RuntimeValue)
+        if (rerollCost <= goldValue.RuntimeValue)
         {
             goldValue.RuntimeValue -= rerollCost;
             goldChangeEvnet.Occurred();
@@ -467,24 +473,19 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    public void OnClickShopUpgrade()
+    public void UpgradeShop()
     {
-        if (upgradeCostList[shopGrade] <= goldValue.RuntimeValue && shopGrade < upgradeCostList.Count - 1)
+        if (shopGrade < 4)
         {
-            goldValue.RuntimeValue -= upgradeCostList[shopGrade];
-            goldChangeEvnet.Occurred();
-
             shopGrade++;
 
             SetChance();
 
-            if(shopGrade == 2 || shopGrade == 4)
+            if (shopGrade == 2 || shopGrade == 4)
             {
                 Debug.Log("itemCount++ 이 있었으나 상점 연장점검으로인해 폐쇄되었습니다");
                 // itemCount++;
             }
-
-            OnShop();
         }
     }
 
