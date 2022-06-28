@@ -554,6 +554,8 @@ public class GameManager : MonoBehaviour
         // 비어있는 곳 없으면 리턴
         if (tempIndex == -1)
         {
+            handleController.cardSorting.AlignCards();
+
             return false;
         }
 
@@ -631,6 +633,31 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.GameStart:
                 nextStateText.text = "게임 시작";
+                break;
+            default:
+                break;
+        }
+
+
+        switch (curState)
+        {
+            case GameState.TurnStart:
+                curStateText.text = "현재 : 루프 시작";
+                break;
+            case GameState.TurnEnd:
+                curStateText.text = "현재 : 정산";
+                break;
+            case GameState.Move:
+                curStateText.text = "현재 : 이동";
+                break;
+            case GameState.Modify:
+                curStateText.text = "현재 : 정비";
+                break;
+            case GameState.Equip:
+                curStateText.text = "현재 : 건물 배치";
+                break;
+            case GameState.GameStart:
+                curStateText.text = "현재 : 게임 시작";
                 break;
             default:
                 break;
