@@ -117,6 +117,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         droppedArea = null;
 
         DropArea.SetDropArea(true, cardPower.cardType);
+        DropTooltip.Instance.Show(cardPower);
+
         DontRaycastTarget.SetRaycastTarget(false);
         GameManager.Instance.handleController.MoveHandle(true);
 
@@ -187,6 +189,8 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         isDraging = false;
 
         DropArea.SetDropArea(false, cardPower.cardType);
+        DropTooltip.Instance.Hide();
+
         DontRaycastTarget.SetRaycastTarget(true);
         GameManager.Instance.handleController.MoveHandle(false);
         if (onMoveEnd != null) onMoveEnd(this);

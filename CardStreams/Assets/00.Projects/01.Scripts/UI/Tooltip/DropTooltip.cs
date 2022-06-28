@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DropTooltip : MonoBehaviour
 {
-
-
     /// <summary>
     /// 다음에 오면 Show Hide active true false 말고 color a로 ㄱㄱㄱ
     /// </summary>
@@ -18,7 +16,6 @@ public class DropTooltip : MonoBehaviour
     public RectTransform playerAreaRect;
 
     private Image[,] mapImageArr;
-    private Image playerAreaImage = null;
 
     private Color showColor = new Color(1, 1, 1, 1);
     private Color hideColor = new Color(0, 0, 0, 0);
@@ -43,19 +40,12 @@ public class DropTooltip : MonoBehaviour
         }
     }
 
-    public void Show(bool b, CardType cardType)
+    public void Show(CardPower cardPower)
     {
-        if(b == false)
-        {
-            Hide();
-            return;
-        }
-
-
         //// 필드, 맵(건물), 특수카드(사용처에 따라 필드에 basicType에 따라 켜, 퀵슬롯, 플레이어
         //DropAreaType dropAreaType = DropAreaType.NULL;
 
-        switch (cardType)
+        switch (cardPower.cardType)
         {
             case CardType.Basic:
                 List<Vector2> tempPointList = GameManager.Instance.fieldController.GetTempNextFieldPoint();
@@ -65,7 +55,24 @@ public class DropTooltip : MonoBehaviour
                 }
                 break;
             case CardType.Special:
-                // 스페셜 카드의 타겟에 맞게 앞에 4개, 플레이어, 건물 등등
+                if(cardPower is SpecialCard)
+                {
+                    SpecialCard specialCard = cardPower as SpecialCard;
+
+                    switch(specialCard.targetTypeList[0])
+                    {
+                        case CardType.Basic:
+                            break;
+                        case CardType.Build:
+                            foreach(BuildCard build in BuildManager.Instance.buildList)
+                            {
+                                Vector2 point = build.GetMyPoint();
+
+                                mapImageArr[(int)point.y, (int)point.x].color = showColor;
+                            }
+                            break;
+                    }
+                }
                 break;
             case CardType.Build:
                 foreach(DropArea dropArea in DropArea.dropAreas)

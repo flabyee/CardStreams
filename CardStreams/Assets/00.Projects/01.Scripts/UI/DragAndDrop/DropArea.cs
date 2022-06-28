@@ -140,7 +140,5 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             area.gameObject.SetActive(enable);
         }
-
-        DropTooltip.Instance.Show(enable, dragCardType);
     }
 }

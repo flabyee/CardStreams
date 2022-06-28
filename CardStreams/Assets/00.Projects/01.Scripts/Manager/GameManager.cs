@@ -42,10 +42,9 @@ public class GameManager : MonoBehaviour
     private bool isFirst = false;
     private int bossRound;
 
+
     [Header("StageData")]
     private int maxMoveCount;
-
-
 
     [Header("Controller")]
     public FieldController fieldController;
@@ -56,6 +55,9 @@ public class GameManager : MonoBehaviour
     public DontTouchController dontTouchController;
     public BlurCoverController blurController;
 
+    [Header("UI")]
+    public Text nextStateText;
+    public Text curStateText;
 
     [Header("IntValue")]
     public IntValue goldValue;
@@ -101,6 +103,8 @@ public class GameManager : MonoBehaviour
             curState = GameState.GameStart;
             nextState = GameState.Modify;
         }
+
+        ApplyStateText();
 
         isFirst = false;
         canNext = false;
@@ -174,13 +178,12 @@ public class GameManager : MonoBehaviour
                 Debug.LogError("ereoroeroeoroeorooeoroeoroeor");
                 break;
         }
+
+        ApplyStateText();
     }
 
     public void OnClickAction()
     {
-        
-
-
         switch (curState)
         {
             case GameState.TurnStart:
@@ -605,5 +608,32 @@ public class GameManager : MonoBehaviour
         playerDieEvent.Occurred();
         DropArea.dropAreas.Clear();
         DontRaycastTarget.dontRaycastTargetList.Clear();
+    }
+
+    private void ApplyStateText()
+    {
+        switch (nextState)
+        {
+            case GameState.TurnStart:
+                nextStateText.text = "루프 시작";
+                break;
+            case GameState.TurnEnd:
+                nextStateText.text = "루프 끝";
+                break;
+            case GameState.Move:
+                nextStateText.text = "이동";
+                break;
+            case GameState.Modify:
+                nextStateText.text = "정비";
+                break;
+            case GameState.Equip:
+                nextStateText.text = "건물 배치";
+                break;
+            case GameState.GameStart:
+                nextStateText.text = "게임 시작";
+                break;
+            default:
+                break;
+        }
     }
 } 

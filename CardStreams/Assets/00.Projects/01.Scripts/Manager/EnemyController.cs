@@ -155,7 +155,10 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void RandomEnemyBuild()
     {
-        for(int i = 0; i < loopCountValue.RuntimeValue; i++)
+        if (loopCountValue.RuntimeValue == 0)
+            return;
+
+        for(int i = 0; i < loopCountValue.RuntimeValue / 2 + 2; i++)
         {
             // ¼³Ä¡ÇÒ À§Ä¡
             Vector2 randomPoint = MapManager.Instance.RandomMapIndex(); // ·£´ý À§Ä¡ È¹µæ
