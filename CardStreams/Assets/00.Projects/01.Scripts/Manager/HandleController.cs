@@ -459,7 +459,7 @@ public class HandleController : MonoBehaviour
 
         deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
 
-        deckValueAmount -= bossDownValue;
+        deckValueAmount += bossDownValue;
 
         DeckMake();
     }

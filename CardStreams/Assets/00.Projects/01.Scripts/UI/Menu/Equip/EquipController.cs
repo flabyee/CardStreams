@@ -226,7 +226,7 @@ public class EquipController : MonoBehaviour
             }
             else 
             {
-                // tooltip
+                UITooltip.Instance.Show("이미 모두 제외했습니다", new UITooltip.TooltipTimer(2f));
             }
         }
         else
