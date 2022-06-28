@@ -305,7 +305,14 @@ public class GameManager : MonoBehaviour
     {
         canNext = false;
 
-        handleController.LoopEnd();
+        if(loopCountValue.RuntimeValue == bossRound - 1)
+        {
+            handleController.LoopEnd(true);
+        }
+        else
+        {
+            handleController.LoopEnd(false);
+        }
 
         moveIndex = 0;
         ShowTuTorialEvent?.Invoke(3);
@@ -503,11 +510,11 @@ public class GameManager : MonoBehaviour
             canNext = true;
         }, 1.5f));
 
-        if (loopCountValue.RuntimeValue == bossRound)
+        if (loopCountValue.RuntimeValue == bossRound - 1)
         {
             enemyController.BossRound();
         }
-        else if(loopCountValue.RuntimeValue < bossRound)
+        else if(loopCountValue.RuntimeValue < bossRound - 1)
         {
             enemyController.CreateRandomMob();
             enemyController.RandomEnemyBuild();
@@ -546,6 +553,9 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+
+        DropArea handleArea = dragbleCard.originDropArea;
+        handleArea.TriggerOnLift(dragbleCard);
 
         DropArea dropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
 

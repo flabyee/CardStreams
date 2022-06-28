@@ -174,6 +174,8 @@ public class DropManager : MonoBehaviour
     private void ObjectLiftedFromBuild(DropArea area, GameObject obj)
     {
         obj.transform.SetParent(hoverTrm, true);
+
+        GameManager.Instance.handleController.cardSorting.RemoveList(obj.GetComponent<CardPower>());
     }
     private void ObjectDroppedToBuild(DropArea area, GameObject obj)
     {
@@ -230,6 +232,8 @@ public class DropManager : MonoBehaviour
     private void ObjectLiftedFromHandle(DropArea area, GameObject obj)
     {
         obj.transform.SetParent(hoverTrm, true);
+
+        GameManager.Instance.handleController.cardSorting.RemoveList(obj.GetComponent<CardPower>());
     }
     private void ObjectDroppedToHandle(DropArea area, GameObject obj)
     {
@@ -379,6 +383,6 @@ public class DropManager : MonoBehaviour
             basicCard.InitData_Feild(basicCard.originBasicType, basicCard.originValue);
         }
 
-        GameManager.Instance.handleController.cardSorting.AlignCards();
+        GameManager.Instance.handleController.cardSorting.AddList(obj.GetComponent<CardPower>());
     }
 }

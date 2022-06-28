@@ -253,7 +253,7 @@ public class HandleController : MonoBehaviour
 
                     playerHandleObj.Add(basicCard);
 
-                    cardSorting.AlignCards();
+                    cardSorting.AddList(basicCard);
                 });
 
                 yield return new WaitForSeconds(0.2f);
@@ -284,7 +284,7 @@ public class HandleController : MonoBehaviour
 
                     enemyHandleObj.Add(basicCard);
 
-                    cardSorting.AlignCards();
+                    cardSorting.AddList(basicCard);
                 });
 
                 yield return new WaitForSeconds(0.2f);
@@ -335,11 +335,11 @@ public class HandleController : MonoBehaviour
             build.OnHandle();
 
             buildHandleObj.Add(build);
+
+            cardSorting.AddList(build);
         }
 
         buildDeck.Clear();
-
-        cardSorting.AlignCards();
     }
     public IEnumerator DrawSpecialCard()
     {
@@ -382,7 +382,7 @@ public class HandleController : MonoBehaviour
 
                 specialHandleObj.Add(specialCard);
 
-                cardSorting.AlignCards();
+                cardSorting.AddList(specialCard);
             });
 
             yield return new WaitForSeconds(0.2f);
@@ -424,7 +424,7 @@ public class HandleController : MonoBehaviour
 
                 specialHandleObj.Add(specialCard);
 
-                cardSorting.AlignCards();
+                cardSorting.AddList(specialCard);
             });
         }
     }
@@ -443,7 +443,7 @@ public class HandleController : MonoBehaviour
         seq.AppendCallback(() => StartCoroutine(DrawSpecialCard()));
     }
 
-    public void LoopEnd()
+    public void LoopEnd(bool isBoss)
     {
         // 남아있는 플레이어 핸드 제거
         for(int i = playerHandleObj.Count - 1; i >= 0; i--)
@@ -459,7 +459,10 @@ public class HandleController : MonoBehaviour
 
         deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
 
-        deckValueAmount += bossDownValue;
+        if(isBoss)
+        {
+            deckValueAmount += bossDownValue;
+        }
 
         DeckMake();
     }
@@ -470,7 +473,7 @@ public class HandleController : MonoBehaviour
         List<BasicCard> removeIndex = new List<BasicCard>();
         for (int i = 0; i < playerHandleObj.Count; i++)
         {
-            // 손에 있다면 active false
+            // 필드에 있다면 active false
             if (playerHandleObj[i].isField == true)
             {
                 removeIndex.Add(playerHandleObj[i]);
@@ -485,6 +488,9 @@ public class HandleController : MonoBehaviour
         if (playerHandleObj.Count == 1)
         {
             playerHandleObj[0].GetComponent<DragbleCard>().ActiveFalse();
+
+            cardSorting.RemoveList(playerHandleObj[0]);
+
             playerHandleObj.Clear();
         }
 
@@ -498,10 +504,13 @@ public class HandleController : MonoBehaviour
             {
                 enemyHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
 
+
                 // 덱으로돌아가기연출
                 BezierCard returnBezier = Instantiate(drawCardBezierEffect, enemyHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
 
                 returnBezier.Init(drawCardStartTrm, null, null);
+
+                cardSorting.RemoveList(enemyHandleObj[i]);
             }
         }
         enemyHandleObj.Clear();
@@ -514,10 +523,14 @@ public class HandleController : MonoBehaviour
                 buildDeck.Add(buildHandleObj[i].buildSO.id);
                 buildHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
 
+
+
                 // 덱으로돌아가기연출
                 BezierCard returnBezier = Instantiate(drawCardBezierEffect, buildHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
 
                 returnBezier.Init(drawCardStartTrm, null, null);
+
+                cardSorting.RemoveList(buildHandleObj[i]);
             }
         }
         buildHandleObj.Clear();
@@ -530,10 +543,14 @@ public class HandleController : MonoBehaviour
                 specialDeck.Add(specialHandleObj[i].id);
                 specialHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
 
+
+
                 // 덱으로돌아가기연출
                 BezierCard returnBezier = Instantiate(drawCardBezierEffect, specialHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
 
                 returnBezier.Init(drawCardStartTrm, null, null);
+
+                cardSorting.RemoveList(specialHandleObj[i]);
             }
         }
         specialHandleObj.Clear();

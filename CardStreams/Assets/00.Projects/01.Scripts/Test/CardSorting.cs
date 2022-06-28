@@ -6,27 +6,31 @@ using DG.Tweening;
 
 public class CardSorting : MonoBehaviour
 {
-    private List<DragbleCard> _imgList = new List<DragbleCard>();
+    private List<CardPower> _imgList = new List<CardPower>();
     [SerializeField] Transform _cardStartPos;
     [SerializeField] Transform _cardEndPos;
 
     [SerializeField] int step = 5; // 카드 간의 간격(4-6정도가 적당한듯)
 
-    private void Update()
+
+    public void AddList(CardPower obj) // 카드리스트에 담기
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            AlignCards();
+        if (_imgList.Contains(obj) == false)
+            _imgList.Add(obj);
+        else
+            Debug.LogError("이미 있는 카드를 다시 추가하려 했습니다");
+
+        AlignCards();
     }
 
-    public void AddList(DragbleCard obj) // 카드리스트에 담기
-    {
-        _imgList.Add(obj);
-    }
-
-    public void RemoveList(DragbleCard obj)
+    public void RemoveList(CardPower obj)
     {
         if (_imgList.Contains(obj))
             _imgList.Remove(obj);
+        else
+            Debug.LogError("존재하지 않는 카드를 제거하려 했습니다");
+
+        AlignCards();
     }
 
     private void InitCardSettings()
@@ -34,7 +38,7 @@ public class CardSorting : MonoBehaviour
         _imgList.Clear();
 
         // 자식의 자식 컴포넌트까지 싹긁어와서 잘못하면 멸망할수있음, GetComponentsInChildren 최적화에 악영향끼쳐서(무거움) AddList RemoveList로 교체해야함
-        foreach (var item in GetComponentsInChildren<DragbleCard>())
+        foreach (var item in GetComponentsInChildren<CardPower>())
         {
             _imgList.Add(item);
             item.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -43,7 +47,19 @@ public class CardSorting : MonoBehaviour
 
     public void AlignCards() // 카드 원형정렬
     {
-        InitCardSettings();
+        //InitCardSettings();
+
+        // 회전값 다시 원점
+        foreach(CardPower item in _imgList)
+        {
+            item.gameObject.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
+
+        // 다 부모에서 뺐다가
+        foreach (CardPower item in _imgList)
+        {
+            item.gameObject.transform.SetAsLastSibling();
+        }
 
         Vector3 delta = _cardEndPos.transform.position - _cardStartPos.transform.position;
 
