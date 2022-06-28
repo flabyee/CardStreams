@@ -21,10 +21,7 @@ public class TutorialPanel : MonoBehaviour
         // 튜토리얼 스테이지라면 튜토리얼을 키자
         if(stageNum.RuntimeValue == 0) GameManager.Instance.ShowTuTorialEvent += ShowTutorial;
         
-        for (int i = 0; i < tutorialImages.Length; i++)
-        {
-            HideTutorial(i);
-        }
+        HideTutorial();
     }
 
     public void ShowHide(bool value) // 독립적인씬이면 사실상쓸일없음
@@ -38,8 +35,9 @@ public class TutorialPanel : MonoBehaviour
         {
             return;
         }
+
         showIndexList.Add(index);
-        HideTutorial(currentIndex);
+        HideTutorial();
 
         tutorialImages[index].DOFade(1f, 0.5f);
         tutorialImages[index].blocksRaycasts = true;
@@ -48,10 +46,13 @@ public class TutorialPanel : MonoBehaviour
         currentIndex = index;
     }
     
-    private void HideTutorial(int index)
+    private void HideTutorial()
     {
-        tutorialImages[index].alpha = 0;
-        tutorialImages[index].blocksRaycasts = false;
-        tutorialImages[index].interactable = false;
+        for (int i = 0; i < tutorialImages.Length; i++)
+        {
+            tutorialImages[i].alpha = 0;
+            tutorialImages[i].blocksRaycasts = false;
+            tutorialImages[i].interactable = false;
+        }
     }
 }

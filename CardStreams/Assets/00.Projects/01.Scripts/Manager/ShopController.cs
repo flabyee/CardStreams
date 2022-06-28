@@ -33,7 +33,6 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI upgradeCostText;
 
     public Button rerollBtn;
-    public Button upgradeBtn;
     public Image lockBtnImage;
 
     // system
@@ -181,7 +180,7 @@ public class ShopController : MonoBehaviour
         lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
 
         rerollBtn.interactable = !isLock;
-        upgradeBtn.interactable = !isLock;
+        // upgradeBtn.interactable = !isLock;
     }
 
     private void OnSpecialCardShop()
@@ -510,6 +509,6 @@ public class ShopController : MonoBehaviour
         lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
 
         rerollBtn.interactable = !isLock;
-        upgradeBtn.interactable = !isLock;
+        // upgradeBtn.interactable = !isLock;
     }
 }
