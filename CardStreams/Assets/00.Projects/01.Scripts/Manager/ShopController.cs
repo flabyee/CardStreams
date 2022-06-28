@@ -30,7 +30,6 @@ public class ShopController : MonoBehaviour
     public RectTransform buildShopTrm;
 
     public TextMeshProUGUI rerollCostText;
-    public TextMeshProUGUI upgradeCostText;
 
     public Button rerollBtn;
     public Image lockBtnImage;
@@ -101,11 +100,9 @@ public class ShopController : MonoBehaviour
             if (itemData.isUnlock == true && itemData.isUse == true)
             {
                 SpecialCardSO specialSO = specialList.Find((x) => x.id == itemData.id);
-
                 specialDict[specialSO.grade].Add(itemData);
             }
         }
-
     }
 
 
@@ -166,16 +163,16 @@ public class ShopController : MonoBehaviour
         rerollCostText.text = $"리롤({rerollCost})";
         rerollCostText.color = rerollCost <= goldValue.RuntimeValue ? Color.white : Color.red;
 
-        if (upgradeCostList[shopGrade] != -1)
-        {
-            upgradeCostText.text = $"상점 강화({upgradeCostList[shopGrade]})";
-            upgradeCostText.color = upgradeCostList[shopGrade] <= goldValue.RuntimeValue ? Color.white : Color.red;
-        }
-        else
-        {
-            upgradeCostText.text = $"강화 끝";
-            upgradeCostText.color = Color.white;
-        }
+        //if (upgradeCostList[shopGrade] != -1)
+        //{
+        //    upgradeCostText.text = $"상점 강화({upgradeCostList[shopGrade]})";
+        //    upgradeCostText.color = upgradeCostList[shopGrade] <= goldValue.RuntimeValue ? Color.white : Color.red;
+        //}
+        //else
+        //{
+        //    upgradeCostText.text = $"강화 끝";
+        //    upgradeCostText.color = Color.white;
+        //}
 
         lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
 
@@ -373,10 +370,12 @@ public class ShopController : MonoBehaviour
 
     private void CreateSpecialCardItem(CardGrade grade, int i)
     {
+
         if (specialDict[grade].Count - 1 < i)
         {
             return;
         }
+
 
         SpecialCardSO itemSO = specialList.Find((x) => x.id == specialDict[grade][i].id);
 
@@ -403,6 +402,7 @@ public class ShopController : MonoBehaviour
         {
             Debug.LogError("saveData에는 있는 id가 SO에 존재하지 않습니다");
         }
+
     }
 
     private void BuySpecial(SpecialCardSO specialCardSO, Vector3 pos)
@@ -429,20 +429,6 @@ public class ShopController : MonoBehaviour
 
             GameManager.Instance.handleController.AddBuild(buildSO.id);
         }
-    }
-
-    IEnumerator Delay(System.Action action, float t)
-    {
-        yield return new WaitForSeconds(t);
-
-        action?.Invoke();
-    }
-
-    private IEnumerator ActiveFalseCor(GameObject obj, float t)
-    {
-        yield return new WaitForSeconds(t);
-
-        obj.SetActive(false);
     }
 
     public void CloseShop()

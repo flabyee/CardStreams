@@ -1347,7 +1347,7 @@ MonoBehaviour:
   fitType: 5
   rows: 2
   columns: 5
-  cellSize: {x: 95, y: 201.5}
+  cellSize: {x: 105, y: 226.5}
   spacing: {x: 0, y: 0}
   fitX: 1
   fitY: 1
@@ -1544,9 +1544,9 @@ MonoBehaviour:
   fitType: 5
   rows: 2
   columns: 5
-  cellSize: {x: 95, y: 201.5}
+  cellSize: {x: 105, y: 226.5}
   spacing: {x: 0, y: 0}
-  fitX: 1
+  fitX: 0
   fitY: 1
 --- !u!1 &8401097450555875869
 GameObject:

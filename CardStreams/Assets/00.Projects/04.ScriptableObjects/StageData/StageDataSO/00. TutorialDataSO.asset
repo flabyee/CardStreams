@@ -23,3 +23,6 @@ MonoBehaviour:
   mobIncreaseAmount: 1
   firstMobAttackAmount: 2
   mobAttackIncreaseAmount: 1
+  bossRound: 4
+  bossValue: 0
+  downValue: 0
