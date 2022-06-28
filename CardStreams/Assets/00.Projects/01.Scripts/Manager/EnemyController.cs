@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     // 적 건물 생성
     private List<BuildSO> enemyBuildList;
 
+    public IntValue loopCountValue;
+
     private void Awake()
     {
         enemyBuildList = Resources.Load<BuildListSO>("EnemyBuildListSO").buildList;
@@ -153,28 +155,31 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public void RandomEnemyBuild()
     {
-        // 설치할 위치
-        Vector2 randomPoint = MapManager.Instance.RandomMapIndex(); // 랜덤 위치 획득
-        RectTransform rectTrm = MapManager.Instance.GetMapRectTrm((int)randomPoint.y, (int)randomPoint.x); // 랜덤값으로 설치할 위치 퍼오기
+        for(int i = 0; i < loopCountValue.RuntimeValue; i++)
+        {
+            // 설치할 위치
+            Vector2 randomPoint = MapManager.Instance.RandomMapIndex(); // 랜덤 위치 획득
+            RectTransform rectTrm = MapManager.Instance.GetMapRectTrm((int)randomPoint.y, (int)randomPoint.x); // 랜덤값으로 설치할 위치 퍼오기
 
-        // 설치할 건물
-        int randomIndex = Random.Range(0, enemyBuildList.Count); // 랜덤 건물 획득
-        EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
+            // 설치할 건물
+            int randomIndex = Random.Range(0, enemyBuildList.Count); // 랜덤 건물 획득
+            EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
 
-        // 건물설치
-        BuildCard building = CardPoolManager.Instance.GetBuildCard(rectTrm).GetComponent<BuildCard>();
-        building.transform.position = rectTrm.position;
+            // 건물설치
+            BuildCard building = CardPoolManager.Instance.GetBuildCard(rectTrm).GetComponent<BuildCard>();
+            building.transform.position = rectTrm.position;
 
-        Effects.Instance.TriggerTeleport(rectTrm.transform.position);
+            Effects.Instance.TriggerTeleport(rectTrm.transform.position);
 
-        building.Init(buildSO);
+            building.Init(buildSO);
 
-        building.BuildDrop(randomPoint);
+            building.BuildDrop(randomPoint);
 
-        // 색 변경
-        CardPower cardPower = building.GetComponent<CardPower>();
-        cardPower.backImage.color = Color.magenta;
-        cardPower.OnField();
+            // 색 변경
+            CardPower cardPower = building.GetComponent<CardPower>();
+            cardPower.backImage.color = Color.magenta;
+            cardPower.OnField();
+        }
     }
 
     public void BossRound()
