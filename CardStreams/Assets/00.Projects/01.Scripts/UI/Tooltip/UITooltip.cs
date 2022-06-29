@@ -69,28 +69,20 @@ public class UITooltip : MonoBehaviour
         // x 보정
         if(rectTrm.anchoredPosition.x - tooltipWidth / 2 < 10f) // x가 너무 낮으면(최소10)
         {
-            Debug.Log("UITooltip x가 너무 낮다");
-            // return;
             rectTrm.anchoredPosition = new Vector2(tooltipWidth / 2 + 10f, rectTrm.anchoredPosition.y); // x 10으로 올려줌
         }
         else if(rectTrm.anchoredPosition.x + tooltipWidth / 2 > Screen.width - 10f) // x가 너무 높으면(최대 : 화면길이-10)
         {
-            Debug.Log("UITooltip x가 너무 높다");
-            // return;
             rectTrm.anchoredPosition = new Vector2(Screen.width - (tooltipWidth / 2 + 10f), rectTrm.anchoredPosition.y); // x 화면길이-10으로 내려줌
         }
 
         // y 보정
         if(rectTrm.anchoredPosition.y - tooltipHeight / 2 < 10f) // y가 너무 낮으면(최소10)
         {
-            Debug.Log("UITooltip y가 너무 낮다");
-            // return;
             rectTrm.anchoredPosition = new Vector2(rectTrm.anchoredPosition.x, tooltipHeight / 2 + 10f); // y 10으로 올려줌
         }
         else if(rectTrm.anchoredPosition.y + tooltipHeight / 2 > Screen.height - 10f) // y가 너무 높으면(최대 : 화면높이-10)
         {
-            Debug.Log("UITooltip y가 너무 높다");
-            // return;
             rectTrm.anchoredPosition = new Vector2(rectTrm.anchoredPosition.x, Screen.height - (tooltipHeight / 2 + 10f)); // y 화면높이-10으로 내려줌
         }
 
