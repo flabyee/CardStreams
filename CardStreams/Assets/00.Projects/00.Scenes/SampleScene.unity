@@ -1444,9 +1444,9 @@ RectTransform:
   - {fileID: 8298097032681917060}
   - {fileID: 1146633997}
   - {fileID: 481635361}
+  - {fileID: 332727962}
   - {fileID: 1145760201}
   - {fileID: 2130284295}
-  - {fileID: 332727962}
   m_Father: {fileID: 1755125823}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7476,6 +7476,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277858216}
     m_Modifications:
+    - target: {fileID: 1311838989, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
+      propertyPath: stageNumValue
+      value: 
+      objectReference: {fileID: 11400000, guid: 30def1b82f847a3498ae3bf278035357, type: 2}
     - target: {fileID: 6503324291764519424, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
       propertyPath: m_Name
       value: GameStartingPanel
@@ -12932,7 +12936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855150496457149544, guid: feee47ee2a361394895fd401ca5144b7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1855150496457149544, guid: feee47ee2a361394895fd401ca5144b7, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14182,7 +14186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5015649737976677237, guid: 3e2b0af1bbbe92f42a1c88ac1768cdb4, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5015649737976677237, guid: 3e2b0af1bbbe92f42a1c88ac1768cdb4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14789,7 +14793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8029641346272117293, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8029641346272117293, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
       propertyPath: m_AnchorMax.x

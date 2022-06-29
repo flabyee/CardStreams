@@ -99,18 +99,20 @@ public class GameManager : MonoBehaviour
         {
             curState = GameState.GameStart;
             nextState = GameState.TurnStart;
+            canNext = true;
         }
         else
         {
             curState = GameState.GameStart;
             nextState = GameState.Modify;
+            canNext = false;
         }
 
         ApplyStateText();
 
         // isFirst 반대로 되어있는 듯?
-        isFirst = false;
-        canNext = false;
+        isFirst = true;
+        
 
         LoadStageData();
 
@@ -335,7 +337,6 @@ public class GameManager : MonoBehaviour
         }
 
         moveIndex = 0;
-        ShowTuTorialEvent?.Invoke(3);
 
         // 정산
         StartCoroutine(JungSanCor());
@@ -504,7 +505,7 @@ public class GameManager : MonoBehaviour
     {
         canNext = false;
 
-        if(isFirst == true)
+        if(isFirst == false)
         {
             nextState = GameState.Equip;
         }
@@ -516,33 +517,33 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(Delay(() =>
         {
-            if(isFirst == true)
+            if(isFirst == false)
             {
                 shopController.Show();
                 selectRewardManager.Show();
                 blurController.SetActive(true);
+
+                if (loopCountValue.RuntimeValue == bossRound - 1)
+                {
+                    enemyController.BossRound();
+                }
+                else if (loopCountValue.RuntimeValue < bossRound - 1)
+                {
+                    enemyController.CreateRandomMob();
+                    enemyController.RandomEnemyBuild();
+                }
+                else
+                {
+                    Debug.LogError("클리어");
+                }
             }
             else
             {
-                isFirst = true;
+                isFirst = false;
             }
 
             canNext = true;
         }, 1.5f));
-
-        if (loopCountValue.RuntimeValue == bossRound - 1)
-        {
-            enemyController.BossRound();
-        }
-        else if(loopCountValue.RuntimeValue < bossRound - 1)
-        {
-            enemyController.CreateRandomMob();
-            enemyController.RandomEnemyBuild();
-        }
-        else
-        {
-            Debug.LogError("클리어");
-        }
     }
 
     private void OnEquip()
