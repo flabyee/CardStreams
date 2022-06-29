@@ -10,7 +10,7 @@ public class MainMenu : Menu<MainMenu>
     public void OnClickPlay()
     {
         stageValue.RuntimeValue = 3;
-        SceneManager.LoadScene(1);
+        LoadingSceneManager.LoadScene("SampleScene");
     }
 
     public void OnClickOption()

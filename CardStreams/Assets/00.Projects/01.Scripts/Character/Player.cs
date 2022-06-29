@@ -15,16 +15,16 @@ public class Player : MonoBehaviour
     public IntValue swordValue;
     public IntValue shieldValue;
     public IntValue goldValue;
-   
+
 
     public bool isAlive { get; private set; }
 
     private BuffController buffCon;
 
-    [Header("Debug")]
-    public bool isDontDie;
-
     public int killMobCount;
+
+    [Header("Debug")]
+    public DebugBoolSO isDontDie;
 
     private void Awake()
     {
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
     {
-        if(isDontDie == true)
+        if(isDontDie.b == true)
         {
             return;
         }
