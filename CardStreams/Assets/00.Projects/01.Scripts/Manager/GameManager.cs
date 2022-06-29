@@ -400,8 +400,6 @@ public class GameManager : MonoBehaviour
 
     public void MoveEnd()
     {
-        if (moveIndex == maxMoveCount) ShowTuTorialEvent?.Invoke(2);
-
         canNext = true;
 
         // 이전 4개의 필드
