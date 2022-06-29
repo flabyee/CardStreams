@@ -232,41 +232,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &1047182583370645765
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3444931152256327294}
-  m_Layer: 5
-  m_Name: GoldBezireTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3444931152256327294
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047182583370645765}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4035982259185922321}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1097615210452247642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,10 +1540,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4035982258845188210}
-  - component: {fileID: 4035982258845188214}
   - component: {fileID: 4035982258845188209}
   - component: {fileID: 4035982258845188208}
-  - component: {fileID: 4035982258845188211}
   m_Layer: 5
   m_Name: GoldText
   m_TagString: Untagged
@@ -1605,20 +1568,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &4035982258845188214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4035982258845188221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78b2272bcb4e4b4b9901e9b0cbbd11a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldText: {fileID: 4035982258845188208}
-  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
 --- !u!222 &4035982258845188209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1716,34 +1665,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4035982258845188211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4035982258845188221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
-  responseObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4035982258845188214}
-        m_TargetAssemblyTypeName: Gold, Assembly-CSharp
-        m_MethodName: ApplyGoldToText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4035982258905963308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,6 +1751,7 @@ GameObject:
   - component: {fileID: 4035982259185922321}
   - component: {fileID: 4035982259185922327}
   - component: {fileID: 4035982259185922326}
+  - component: {fileID: 7613953213733937771}
   m_Layer: 5
   m_Name: Gold
   m_TagString: Untagged
@@ -1850,7 +1772,6 @@ RectTransform:
   m_Children:
   - {fileID: 4035982258905963309}
   - {fileID: 4035982258845188210}
-  - {fileID: 3444931152256327294}
   m_Father: {fileID: 7816156734045959710}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1897,6 +1818,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7613953213733937771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035982259185922320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dab44aa20be8424494a028943738a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  msg: "\uC778\uAC8C\uC784\uC5D0\uC11C \uBAAC\uC2A4\uD130\uB97C \uC7A1\uC744 \uB54C
+    \uB9C8\uB2E4 1\uC6D0 \uC529 \uC5BB\uC2B5\uB2C8\uB2E4"
 --- !u!1 &4061659725156648880
 GameObject:
   m_ObjectHideFlags: 0

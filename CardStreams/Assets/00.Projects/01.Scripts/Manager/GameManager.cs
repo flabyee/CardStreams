@@ -80,8 +80,6 @@ public class GameManager : MonoBehaviour
 
     public Action<int> ShowTuTorialEvent;
 
-    
-
     private void Awake()
     {
         if (Instance == null)
@@ -110,6 +108,7 @@ public class GameManager : MonoBehaviour
 
         ApplyStateText();
 
+        // isFirst 반대로 되어있는 듯?
         isFirst = false;
         canNext = false;
 

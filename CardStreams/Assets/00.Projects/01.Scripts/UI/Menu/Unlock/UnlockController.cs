@@ -73,7 +73,7 @@ public class UnlockController : MonoBehaviour
             if (b == false)
             {
                 saveData.gold += 5;
-                UITooltip.Instance.Show("이미 해당 등급의 건물카드를 해금하였습니다", new UITooltip.TooltipTimer(2f));
+                UITooltip.Instance.Show("이미 해당 등급의 건물카드를 모두 해금하였습니다", new UITooltip.TooltipTimer(2f));
             }
 
             SaveSystem.Save(saveData);
@@ -96,7 +96,7 @@ public class UnlockController : MonoBehaviour
             if (b == false)
             {
                 saveData.gold += 5;
-                UITooltip.Instance.Show("이미 해당 등급의 특수카드를 해금하였습니다", new UITooltip.TooltipTimer(2f));
+                UITooltip.Instance.Show("이미 해당 등급의 특수카드를 모두 해금하였습니다", new UITooltip.TooltipTimer(2f));
             }
 
             SaveSystem.Save(saveData);
