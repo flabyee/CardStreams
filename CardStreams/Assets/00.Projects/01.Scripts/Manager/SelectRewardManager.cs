@@ -137,7 +137,9 @@ public class SelectRewardManager : MonoBehaviour
 
         for (int i = 0; i < getCards.Length; i++)
         {
-            getCards[i].ResetReward();
+            RewardCard card = getCards[i];
+            card.GetReward();
+            card.ResetReward();
         }
     }
 

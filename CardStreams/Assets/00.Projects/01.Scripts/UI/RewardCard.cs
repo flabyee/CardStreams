@@ -22,9 +22,11 @@ public class RewardCard : MonoBehaviour
     private bool _isget = false;
     private SpecialCardSO cardSO;
 
-    // 단순 카드일때만 쓰는 멤버
-    private int getGoldAmount = 0;
-    private bool getHeal = false;
+    [Header("테스트 : 단순 카드일때만 쓰는 멤버")]
+    [SerializeField] private int getGoldAmount = 0;
+    [SerializeField] private bool getHeal = false;
+
+    [SerializeField] float reverseTime = 1f;
 
     [Header("단순 스텟 관련")]
     [SerializeField] Sprite healSprite;
@@ -36,7 +38,7 @@ public class RewardCard : MonoBehaviour
     [SerializeField] EventSO goldValueChanged;
     [SerializeField] EventSO playerValueChanged;
     
-    private void DefaultInit()
+    private void DefaultInit() // 카드 뽑을때 해주기(시작시에잠깐)
     {
         cover.SetActive(true);
         gameObject.SetActive(true);
@@ -76,8 +78,15 @@ public class RewardCard : MonoBehaviour
         if (_isget) return;
 
         _isget = true;
-        cover.SetActive(false);
 
+        Sequence seq = DOTween.Sequence();
+        seq.Append(transform.DOScaleX(0, reverseTime / 2)); // 카드 1/2 뒤집기
+        seq.AppendCallback(() => cover.gameObject.SetActive(false)); // 뒷부분 끄기
+        seq.Append(transform.DOScaleX(1, reverseTime / 2)); // 카드 나머지 뒤집기
+    }
+
+    public void GetReward()
+    {
         if (getGoldAmount > 0)
         {
             // Bezier로 돈UI로 날리기 도착하면 돈증가
@@ -87,7 +96,7 @@ public class RewardCard : MonoBehaviour
                 goldValueChanged.Occurred();
             });
         }
-        else if(getHeal == true)
+        else if (getHeal == true)
         {
             // Bezier로 회복으로 날리기 도착하면 회복
             EffectManager.Instance.GetBezierCardEffect(transform.position, healSprite, TargetType.HPUI, () =>
@@ -103,9 +112,10 @@ public class RewardCard : MonoBehaviour
         }
     }
 
-    public void ResetReward()
+    public void ResetReward() // 카드 안뽑을때 or 다뽑았을떄 해주기
     {
         gameObject.SetActive(false);
+        transform.rotation = Quaternion.Euler(Vector3.zero); // 카드 돌리는거 초기화
         this.cardSO = null;
         rewardImage.sprite = null;
         rewardNameText.text = null;
