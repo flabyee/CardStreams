@@ -14,6 +14,8 @@ public class GameStartingPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI itemNameText;
     [SerializeField] TextMeshProUGUI itemExplainText;
 
+    public IntValue stageNumValue;
+
     private CanvasGroup _cg;
 
     private void Awake()
@@ -23,6 +25,9 @@ public class GameStartingPanel : MonoBehaviour
 
     private void Start()
     {
+        if (stageNumValue.RuntimeValue == 0)
+            return;
+
         _cg.alpha = 1;
         _cg.blocksRaycasts = true;
         _cg.interactable = true;
