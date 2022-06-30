@@ -1,0 +1,836 @@
+fileFormatVersion: 2
+guid: fd50cb6ff17dfc2489de78b4b8666f0d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4693671752273788929
+    second: CardGameUI11_0
+  - first:
+      213: 4663178324444175635
+    second: CardGameUI11_1
+  - first:
+      213: 2277327009785443648
+    second: CardGameUI11_2
+  - first:
+      213: -479712620549910602
+    second: CardGameUI11_3
+  - first:
+      213: 5714267959163507656
+    second: CardGameUI11_4
+  - first:
+      213: 661087484673136721
+    second: CardGameUI11_5
+  - first:
+      213: -3426398017222308192
+    second: CardGameUI11_6
+  - first:
+      213: -5158222038059249831
+    second: CardGameUI11_7
+  - first:
+      213: 4565387176792553709
+    second: CardGameUI11_8
+  - first:
+      213: -4062260771743969755
+    second: CardGameUI11_9
+  - first:
+      213: 405489003079075939
+    second: CardGameUI11_10
+  - first:
+      213: -2889976947124806360
+    second: CardGameUI11_11
+  - first:
+      213: 8358481747608493956
+    second: CardGameUI11_12
+  - first:
+      213: 7842922867737497228
+    second: CardGameUI11_13
+  - first:
+      213: -4150159334201083508
+    second: CardGameUI11_14
+  - first:
+      213: 5257721210081070862
+    second: CardGameUI11_15
+  - first:
+      213: -6703133537722585520
+    second: CardGameUI11_16
+  - first:
+      213: -3392698101946980593
+    second: CardGameUI11_17
+  - first:
+      213: -5904505100527105542
+    second: CardGameUI11_18
+  - first:
+      213: 3853579175386619513
+    second: CardGameUI11_19
+  - first:
+      213: -5595820067778769108
+    second: CardGameUI11_20
+  - first:
+      213: -1949254459204567301
+    second: CardGameUI11_21
+  - first:
+      213: -5814773949425736426
+    second: CardGameUI11_22
+  - first:
+      213: 3062317504877421416
+    second: CardGameUI11_23
+  - first:
+      213: -7014441396319397485
+    second: CardGameUI11_24
+  - first:
+      213: -2057078108810742786
+    second: CardGameUI11_25
+  - first:
+      213: 2814471927547391400
+    second: CardGameUI11_26
+  - first:
+      213: -3852209746597484167
+    second: CardGameUI11_27
+  - first:
+      213: 2965173759976657316
+    second: CardGameUI11_28
+  - first:
+      213: 1877774528634492416
+    second: CardGameUI11_29
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CardGameUI11_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 107
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff7f61d86abcdeb0800000000000000
+      internalID: -4693671752273788929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 107
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31ddbc0caffe6b040800000000000000
+      internalID: 4663178324444175635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 72
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 045f9af79d0ba9f10800000000000000
+      internalID: 2277327009785443648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 82
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bfc9d9c9e7b759f0800000000000000
+      internalID: -479712620549910602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 82
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c35651fe682d4f40800000000000000
+      internalID: 5714267959163507656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 82
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15816619097ac2900800000000000000
+      internalID: 661087484673136721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_6
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 82
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae8c5c382df270d0800000000000000
+      internalID: -3426398017222308192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_7
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 63
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95f03e4c2605a68b0800000000000000
+      internalID: -5158222038059249831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_8
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 63
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de8f7d6e2738b5f30800000000000000
+      internalID: 4565387176792553709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_9
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 63
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e4233d953ff97c0800000000000000
+      internalID: -4062260771743969755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_10
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 63
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3680bd4991690a500800000000000000
+      internalID: 405489003079075939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_11
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 42
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82dde81474db4e7d0800000000000000
+      internalID: -2889976947124806360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_12
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f5ac34dda4ff370800000000000000
+      internalID: 8358481747608493956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e084c6bc8a7dc60800000000000000
+      internalID: 7842922867737497228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_14
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c893ca3f21ca766c0800000000000000
+      internalID: -4150159334201083508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_15
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 45
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0f4bee759d27f840800000000000000
+      internalID: 5257721210081070862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_16
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 26
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ea90aef8fa9f2a0800000000000000
+      internalID: -6703133537722585520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 26
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07ee433d07bae0d0800000000000000
+      internalID: -3392698101946980593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_18
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 26
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9899cf4ebfe0ea0800000000000000
+      internalID: -5904505100527105542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_19
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 26
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e13c6c7d9aa7530800000000000000
+      internalID: 3853579175386619513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_20
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 26
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f4b09db47a752b0800000000000000
+      internalID: -5595820067778769108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_21
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfef34e956bd2f4e0800000000000000
+      internalID: -1949254459204567301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_22
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 615a847a6e5cd4fa0800000000000000
+      internalID: -5814773949425736426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_23
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 863edabbb898f7a20800000000000000
+      internalID: 3062317504877421416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_24
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3995692d6b2b7ae90800000000000000
+      internalID: -7014441396319397485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_25
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef37a11eb5ac373e0800000000000000
+      internalID: -2057078108810742786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_26
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 26
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ad65cf6e430f0720800000000000000
+      internalID: 2814471927547391400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_27
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 26
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97962c535a33a8ac0800000000000000
+      internalID: -3852209746597484167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_28
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1d7b413d9662920800000000000000
+      internalID: 2965173759976657316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardGameUI11_29
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 10
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00619832cf13f0a10800000000000000
+      internalID: 1877774528634492416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
