@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 13
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
-  m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+  m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -602,35 +602,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1b31e4254346f469e034b9e849ec85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRuntimeMaxValueExist: 1
   statIntValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
-  valueText: {fileID: 1213234669417097513}
-  runtimeStatImages:
-  - {fileID: 6983622778742005033}
-  - {fileID: 6983622779989952833}
-  - {fileID: 6983622779223890759}
-  - {fileID: 6983622779517114539}
-  - {fileID: 6983622779647747543}
-  - {fileID: 6983622780049018154}
-  - {fileID: 6983622779175795674}
-  - {fileID: 6983622780111282934}
-  - {fileID: 6983622779241617893}
-  - {fileID: 6983622780396221840}
-  - {fileID: 6983622780031514917}
-  - {fileID: 6983622779930217885}
-  - {fileID: 6983622778561215842}
-  - {fileID: 6983622779570607186}
-  - {fileID: 6983622780100048127}
-  - {fileID: 6983622780258585566}
-  - {fileID: 6983622778397093012}
-  - {fileID: 6983622778712581153}
-  - {fileID: 6983622780127163705}
-  - {fileID: 6983622780324701222}
-  statUnitSprites:
-  - {fileID: 21300000, guid: b8af07a1c96d94c40ad4175459ea0117, type: 3}
-  - {fileID: 21300000, guid: 74ac690e9cdc11043b38f2afc97ddc9d, type: 3}
-  - {fileID: 21300000, guid: 61b09321ef2b0ad459714bf25c0e84a4, type: 3}
   isShowMax: 0
+  valueText: {fileID: 1213234669417097513}
 --- !u!114 &9038131020138752945
 MonoBehaviour:
   m_ObjectHideFlags: 0

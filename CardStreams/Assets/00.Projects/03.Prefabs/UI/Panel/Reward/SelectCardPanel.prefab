@@ -220,8 +220,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD558\uB098\uB9CC\uC120\uD0DD"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
-  m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+  m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -794,7 +794,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD655\uC778"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4877754071667000452
@@ -928,8 +928,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD558\uB098\uB9CC\uC120\uD0DD"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
-  m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+  m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1190,8 +1190,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD0D0\uD5D8 \uBCF4\uC0C1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
-  m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+  m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1392,8 +1392,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD558\uB098\uB9CC\uC120\uD0DD"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
-  m_sharedMaterial: {fileID: -3822030046453847783, guid: 70175084e4a08d24a8ca02530a481964, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+  m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1607,6 +1607,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardPressCard (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1712,6 +1720,14 @@ PrefabInstance:
     - target: {fileID: 2459831907721176246, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Name
       value: RewardPressCard (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
@@ -1819,6 +1835,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardPressCard (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1925,6 +1949,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardPressCard (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2030,6 +2062,14 @@ PrefabInstance:
     - target: {fileID: 2459831907721176246, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Name
       value: RewardPressCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
@@ -2142,12 +2182,15 @@ MonoBehaviour:
   cover: {fileID: 0}
   rewardImage: {fileID: 0}
   rewardNameText: {fileID: 0}
+  getGoldAmount: 0
+  getHeal: 0
   healSprite: {fileID: 0}
   goldSprite: {fileID: 0}
   goldValue: {fileID: 0}
   hpValue: {fileID: 0}
   goldValueChanged: {fileID: 0}
   playerValueChanged: {fileID: 0}
+  isget: 0
 --- !u!1001 &6212031875451916567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2162,6 +2205,14 @@ PrefabInstance:
     - target: {fileID: 2459831907721176246, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Name
       value: RewardPressCard (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
@@ -2269,6 +2320,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardPressCard (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2374,6 +2433,14 @@ PrefabInstance:
     - target: {fileID: 2459831907721176246, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Name
       value: RewardPressCard (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+    - target: {fileID: 7882412477737608422, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
       propertyPath: m_Pivot.x

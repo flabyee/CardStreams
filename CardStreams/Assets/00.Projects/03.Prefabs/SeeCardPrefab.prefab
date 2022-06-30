@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
+  m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -361,8 +361,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faceImage: {fileID: 1017501598721244011}
-  valueText: {fileID: 1017501598648836991}
-  dropAreaType: 0
+  backImage: {fileID: 0}
+  fieldImage: {fileID: 0}
+  handleObj: {fileID: 0}
+  fieldObj: {fileID: 0}
+  isHandle: 0
+  isField: 0
   cardType: 0
-  value: 0
-  originValue: 0

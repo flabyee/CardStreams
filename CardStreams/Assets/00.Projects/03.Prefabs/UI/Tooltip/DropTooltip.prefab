@@ -50,3 +50,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropTooltipObj: {fileID: 2274497991002972003, guid: c0e68ba4f64aad94cb9f01ac523fd604, type: 3}
   parentRect: {fileID: 0}
+  mapParentRect: {fileID: 0}
+  playerAreaRect: {fileID: 0}
