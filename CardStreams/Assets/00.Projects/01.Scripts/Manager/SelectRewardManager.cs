@@ -19,6 +19,7 @@ public class SelectRewardManager : MonoBehaviour
     private int loopCount = 0; // 알아서 돌아감, 나중에 동기화 필?요
     private int rewardCount = 0; // 얻는 보상 개수
     private CanvasGroup _cg;
+    private bool isGetCard = false; // 보상을 획득하고 있는지
 
     private int[] randomRewardNums = { 0, 1, 2 };
 
@@ -69,6 +70,8 @@ public class SelectRewardManager : MonoBehaviour
 
     public void SetReward() // 보상설정
     {
+        isGetCard = false;
+
         for (int i = 0; i < randomRewardNums.Length; i++) // 숫자 012 섞기
         {
             int rand = Random.Range(0, 3); // 0~2
@@ -137,8 +140,9 @@ public class SelectRewardManager : MonoBehaviour
 
     public void PressOKButton() // 버튼으로누름
     {
-        
+        if (isGetCard == true) return;
 
+        isGetCard = true;
         bool isAllGet = true; // 보상카드 다 뒤집었나요?
 
         for (int i = 0; i < rewardCount; i++) // 확인

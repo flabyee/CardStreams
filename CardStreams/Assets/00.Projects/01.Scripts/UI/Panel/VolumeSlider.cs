@@ -1,40 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class VolumeSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider;
-    [SerializeField] TextMeshProUGUI _volumeText;
-    [SerializeField] AudioMixer _masterVolumeMixer;
+    [SerializeField] Text _volumeText;
+    public SoundType _soundType;
 
-    private bool isMute = false;
-    private float _volume = 0;
+    public Action<SoundType, float> SetVolumeEvent;
 
-    public void ChangeVolume()
+    private void Start()
     {
-        _volume = _slider.value;
-        _volumeText.text = _volume.ToString();
-
-        Debug.Log("Change Volume");
-        if (_volume <= 0)
-        {
-            _masterVolumeMixer.SetFloat("BGM", -80f);
-        }
-        else
-        {
-            Debug.Log(0.4f * _volume - 40);
-            _masterVolumeMixer.SetFloat("BGM", 0.2f * _volume - 20);
-        }
+        SetVolumeEvent += SoundManager.Instance.ChangeVolume;
     }
 
-    public void MuteVolume()
+    /// <summary> Slider의 OnValueChanged 이벤트에 추가할 함수. 볼륨이 바뀔때마다 Update해주는 함수입니다. </summary>
+    /// <param name="type">볼륨조절할 소리타입</param>
+    public void VolumeChangeUpdate()
     {
-        isMute = !isMute;
-
-        AudioListener.volume = isMute ? 0 : 1;
+        // 여기서 오류터지거나 작동안되면 VolumeSlider Start가 SoundManager Awake보다 먼저실행된거임
+        SetVolumeEvent(_soundType, _slider.value);
+        _volumeText.text = _slider.value.ToString();
     }
 }
