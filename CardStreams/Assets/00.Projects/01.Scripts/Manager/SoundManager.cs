@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum SFXType // 공격효과음 버튼효과음 턴시작효과음
+public enum SFXType
 {
-    Attack,
-    Button,
-    StartTurn
+    Moving, // 이동할때
+    BasicCardSet, // 기본카드 바닥에깔떄
+    NextButton, // 다음버튼 누를때
+    RandomMonster, // 랜덤으로 몬스터 나올때
+    CardReverse, // 보상카드뒤집을때
+    BuyCard, // 뭐 살때
+    DrawCard, // 뭐 드로우할때
 }
 
 public enum BGMType
@@ -15,7 +19,7 @@ public enum BGMType
     MainTheme
 }
 
-public enum SoundType // 마스터소리 브금소리 효과소리
+public enum SoundType // 마스터소리 배경소리 효과소리
 {
     Master,
     BGM,

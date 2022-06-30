@@ -84,6 +84,7 @@ public class RewardCard : MonoBehaviour
         if (isget) return;
 
         isget = true;
+        SoundManager.Instance.PlaySFX(SFXType.CardReverse);
 
         Sequence seq = DOTween.Sequence();
         seq.Append(transform.DOScaleX(0, reverseTime / 2)); // 카드 1/2 뒤집기

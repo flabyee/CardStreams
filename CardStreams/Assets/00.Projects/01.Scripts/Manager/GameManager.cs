@@ -198,6 +198,8 @@ public class GameManager : MonoBehaviour
 
     public void OnClickAction()
     {
+        SoundManager.Instance.PlaySFX(SFXType.NextButton);
+
         switch (curState)
         {
             case GameState.TurnStart:
@@ -447,6 +449,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < maxMoveCount; i++)
         {
+            SoundManager.Instance.PlaySFX(SFXType.Moving);
+
             // player 위치 이동
             sequence.AppendCallback(() =>
             {
@@ -529,10 +533,12 @@ public class GameManager : MonoBehaviour
 
         if (loopCountValue.RuntimeValue == bossRound - 1)
         {
+            SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             enemyController.BossRound();
         }
         else if (loopCountValue.RuntimeValue < bossRound - 1)
         {
+            SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             enemyController.CreateRandomMob();
             enemyController.RandomEnemyBuild();
         }
@@ -570,6 +576,7 @@ public class GameManager : MonoBehaviour
 
     public bool DropField(DragbleCard dragbleCard)
     {
+        SoundManager.Instance.PlaySFX(SFXType.BasicCardSet);
         int tempIndex = -1; // 4칸중 비어있는 필드의 인덱스를 담을 곳
         for (int i = 0; i < 4; i++)
         {

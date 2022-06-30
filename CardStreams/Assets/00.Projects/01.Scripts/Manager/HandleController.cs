@@ -245,6 +245,7 @@ public class HandleController : MonoBehaviour
 
             foreach(CardData cardData in playerOriginDeck)
             {
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
                 BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
                 drawBezier.Init(handleTrm, null, () =>
                 {
@@ -275,7 +276,7 @@ public class HandleController : MonoBehaviour
             for(int i = 0; i < 2; i++)
             {
                 CardData cardData = enemyDeck[i];
-
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
                 BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
                 drawBezier.Init(handleTrm, null, () =>
                 {
@@ -368,6 +369,7 @@ public class HandleController : MonoBehaviour
             int avoidClosure = i;
             int temp = specialDeck[avoidClosure];
 
+            SoundManager.Instance.PlaySFX(SFXType.DrawCard);
             BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
             drawBezier.Init(handleTrm, null, () =>
             {
@@ -411,6 +413,7 @@ public class HandleController : MonoBehaviour
         foreach(int id in idList)
         {
             int temp = id;
+            SoundManager.Instance.PlaySFX(SFXType.DrawCard);
             BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
             
             drawBezier.Init(handleTrm, null, () =>
@@ -515,6 +518,7 @@ public class HandleController : MonoBehaviour
 
 
                 // 덱으로돌아가기연출
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
                 BezierCard returnBezier = Instantiate(drawCardBezierEffect, enemyHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
 
                 returnBezier.Init(drawCardStartTrm, null, null);
@@ -535,6 +539,7 @@ public class HandleController : MonoBehaviour
 
 
                 // 덱으로돌아가기연출
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
                 BezierCard returnBezier = Instantiate(drawCardBezierEffect, buildHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
 
                 returnBezier.Init(drawCardStartTrm, null, null);
@@ -555,6 +560,7 @@ public class HandleController : MonoBehaviour
 
 
                 // 덱으로돌아가기연출
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
                 BezierCard returnBezier = Instantiate(drawCardBezierEffect, specialHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
 
                 returnBezier.Init(drawCardStartTrm, null, null);

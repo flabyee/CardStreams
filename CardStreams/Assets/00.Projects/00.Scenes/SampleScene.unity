@@ -15889,7 +15889,14 @@ MonoBehaviour:
   _masterVolumeMixer: {fileID: 24100000, guid: 0c8652f5d05e39243971f0ddee48aab7, type: 2}
   _bgmPlayer: {fileID: 8386153795785425363}
   _sfxPlayer: {fileID: 8386153797271538971}
-  sfxSounds: []
+  sfxSounds:
+  - {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
+  - {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
+  - {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+  - {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  - {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
+  - {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
+  - {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
   bgmSounds:
   - {fileID: 8300000, guid: ab1d6c8284aac433f950f27ea2253c15, type: 3}
 --- !u!1 &8386153797271538965
@@ -15935,7 +15942,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

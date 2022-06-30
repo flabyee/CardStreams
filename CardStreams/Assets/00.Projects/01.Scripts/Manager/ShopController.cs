@@ -361,6 +361,7 @@ public class ShopController : MonoBehaviour
 
             info.button.onClick.AddListener(() =>
             {
+                SoundManager.Instance.PlaySFX(SFXType.BuyCard);
                 BuyBuild(itemSO, shopItem.transform.position);
 
                 Renewal();
@@ -397,6 +398,7 @@ public class ShopController : MonoBehaviour
 
             info.button.onClick.AddListener(() =>
             {
+                SoundManager.Instance.PlaySFX(SFXType.BuyCard);
                 BuySpecial(itemSO, shopItem.transform.position);
 
                 Renewal();
