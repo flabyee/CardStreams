@@ -7,9 +7,9 @@ public class MainMenu : Menu<MainMenu>
 {
     public IntValue stageValue;
 
-    public void OnClickPlay()
+    public void OnClickPlay(int i)
     {
-        stageValue.RuntimeValue = 3;
+        stageValue.RuntimeValue = i;
         LoadingSceneManager.LoadScene("SampleScene");
     }
 
