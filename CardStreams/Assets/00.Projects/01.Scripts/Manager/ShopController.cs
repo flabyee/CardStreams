@@ -69,10 +69,9 @@ public class ShopController : MonoBehaviour
 
     private void Awake()
     {
-        shopGrade = 0;
+        shopGrade = -1;
         isLock = false;
         lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
-        SetChance();
 
         SaveData saveData = SaveSystem.Load();
 
@@ -119,8 +118,9 @@ public class ShopController : MonoBehaviour
         isMinimize = false;
         _minimizePanel.alpha = 1;
 
-        OnShop();
+
         UpgradeShop();
+        OnShop();
     }
 
     public void Hide()
