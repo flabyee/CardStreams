@@ -16,6 +16,8 @@ public enum GameState
     Modify,
     Equip,
     GameStart,
+    TutoEnd,
+    GameEnd,
 }
 
 public class GameManager : MonoBehaviour
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     // 임시
     private bool isFirst = false;
+    private bool isEnd = false;
     private int bossRound;
 
 
@@ -178,6 +181,12 @@ public class GameManager : MonoBehaviour
             case GameState.Equip:
                 curState = GameState.Equip;
                 OnEquip();
+                break;
+            case GameState.TutoEnd:
+                Debug.LogError("tuto 패널 만드세용");
+                break;
+            case GameState.GameEnd:
+                Debug.LogError("clear 패널 만드세용, 플레이 해주셔서 감사합니다, 앞으로 ~~가 추가될것입니다");
                 break;
             default:
                 Debug.LogError("ereoroeroeoroeorooeoroeoroeor");
@@ -347,6 +356,11 @@ public class GameManager : MonoBehaviour
         TurnEndEvent.Occurred();
 
         nextState = GameState.Modify;
+
+        if(isEnd == true)
+        {
+            nextState = GameState.TutoEnd;
+        }
     }
 
     public IEnumerator JungSanCor()
@@ -509,7 +523,12 @@ public class GameManager : MonoBehaviour
         if (isFirst == true)
         {
             isFirst = false;
-            ShowTuTorialEvent.Invoke(2);
+            ShowTuTorialEvent?.Invoke(2);
+        }
+
+        if(isEnd == false)
+        {
+            isEnd = true;
         }
 
         StartCoroutine(Delay(() =>
