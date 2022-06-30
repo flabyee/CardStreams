@@ -5685,6 +5685,7 @@ MonoBehaviour:
   - {fileID: 1242648267}
   choosePanel: {fileID: 1242648280}
   getPanel: {fileID: 1242648279}
+  cardReverseTime: 1
   _cgObject: {fileID: 1242648270}
 --- !u!1 &1034315495
 GameObject:
@@ -14886,6 +14887,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 286388865}
     m_Modifications:
+    - target: {fileID: 2796132988591246523, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796132988591246523, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796132988591246523, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8029641346272117293, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14916,11 +14929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8029641346272117293, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8029641346272117293, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 380
+      value: 322
       objectReference: {fileID: 0}
     - target: {fileID: 8029641346272117293, guid: 399cc6bc104c6d145a97d1d612175948, type: 3}
       propertyPath: m_LocalPosition.x
