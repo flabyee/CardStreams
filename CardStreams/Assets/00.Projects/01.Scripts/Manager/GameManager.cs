@@ -317,7 +317,8 @@ public class GameManager : MonoBehaviour
 
         canNext = true;
 
-        ShowTuTorialEvent?.Invoke(1);
+        if(isFirst == true)
+            ShowTuTorialEvent?.Invoke(1);
 
         curState = GameState.TurnStart;
         nextState = GameState.Move;
@@ -503,41 +504,34 @@ public class GameManager : MonoBehaviour
     {
         canNext = false;
 
-        if(isFirst == false)
-        {
-            nextState = GameState.Equip;
-        }
-        else
-        {
-            nextState = GameState.TurnStart;
-        }
+        nextState = GameState.Equip;
 
+        if (isFirst == true)
+        {
+            isFirst = false;
+            ShowTuTorialEvent.Invoke(2);
+        }
 
         StartCoroutine(Delay(() =>
         {
-            if(isFirst == false)
-            {
-                shopController.Show();
-                selectRewardManager.Show();
-                blurController.SetActive(true);
+            shopController.Show();
+            selectRewardManager.Show();
+            blurController.SetActive(true);
 
-                if (loopCountValue.RuntimeValue == bossRound - 1)
-                {
-                    enemyController.BossRound();
-                }
-                else if (loopCountValue.RuntimeValue < bossRound - 1)
-                {
-                    enemyController.CreateRandomMob();
-                    enemyController.RandomEnemyBuild();
-                }
-                else
-                {
-                    Debug.LogError("클리어");
-                }
+
+
+            if (loopCountValue.RuntimeValue == bossRound - 1)
+            {
+                enemyController.BossRound();
+            }
+            else if (loopCountValue.RuntimeValue < bossRound - 1)
+            {
+                enemyController.CreateRandomMob();
+                enemyController.RandomEnemyBuild();
             }
             else
             {
-                isFirst = false;
+                Debug.LogError("클리어");
             }
 
             canNext = true;
