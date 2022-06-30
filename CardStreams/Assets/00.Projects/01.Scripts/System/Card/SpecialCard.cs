@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using TMPro;
 
 public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,6 +16,10 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     [HideInInspector] public string specialCardName;
     [HideInInspector] public string tooltip;
     [HideInInspector] public Sprite sprite;
+
+    [Header("UI")]
+    public TextMeshProUGUI tooltipText;
+    
 
     public Action<Player, Field> OnAccessSpecialCard;
     public Action<BuildCard> OnAccessBuildCard;
@@ -33,6 +38,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
         faceImage.sprite = so.sprite;
         fieldImage.sprite = so.sprite;
+        tooltipText.text = so.tooltip;
 
         OnAccessSpecialCard = so.AccessSpecialCard;
         OnAccessBuildCard = so.AccessBuildCard;

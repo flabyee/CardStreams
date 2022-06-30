@@ -61,6 +61,14 @@ public class HandleController : MonoBehaviour
         DeckMake();
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            cardSorting.AlignCards();
+        }
+    }
+
     private void DeckMake()
     {
         List<CardData> allDeck = new List<CardData>();

@@ -119,8 +119,8 @@ public class ShopController : MonoBehaviour
         isMinimize = false;
         _minimizePanel.alpha = 1;
 
-        UpgradeShop();
         OnShop();
+        UpgradeShop();
     }
 
     public void Hide()

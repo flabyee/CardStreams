@@ -17,6 +17,9 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
     private ActionPosData actionPosData;
 
+    [Header("UI")]
+    public TextMeshProUGUI tooltipText;
+
 
     public void Init(BuildSO buildSO)
     {
@@ -26,7 +29,8 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         fieldImage.sprite = this.buildSO.sprite;
         //greadeText.text = this.buildSO.grade.ToString();
         accessPointList = this.buildSO.accessPointList;
-        
+        tooltipText.text = this.buildSO.tooltip;
+
         //greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade]; // 이거 Dictionary라서 작동을 안하는데용?? Hierarchy에서 못바꾸는거라
 
         isDrop = false;
