@@ -520,38 +520,38 @@ public class GameManager : MonoBehaviour
 
         nextState = GameState.Equip;
 
-        if (isFirst == true)
-        {
-            isFirst = false;
-            ShowTuTorialEvent?.Invoke(2);
-        }
+
 
         if(isEnd == false)
         {
             isEnd = true;
         }
 
+        if (loopCountValue.RuntimeValue == bossRound - 1)
+        {
+            enemyController.BossRound();
+        }
+        else if (loopCountValue.RuntimeValue < bossRound - 1)
+        {
+            enemyController.CreateRandomMob();
+            enemyController.RandomEnemyBuild();
+        }
+        else
+        {
+            Debug.LogError("클리어");
+        }
+
         StartCoroutine(Delay(() =>
         {
+            if (isFirst == true)
+            {
+                isFirst = false;
+                ShowTuTorialEvent?.Invoke(2);
+            }
+
             shopController.Show();
             selectRewardManager.Show();
             blurController.SetActive(true);
-
-
-
-            if (loopCountValue.RuntimeValue == bossRound - 1)
-            {
-                enemyController.BossRound();
-            }
-            else if (loopCountValue.RuntimeValue < bossRound - 1)
-            {
-                enemyController.CreateRandomMob();
-                enemyController.RandomEnemyBuild();
-            }
-            else
-            {
-                Debug.LogError("클리어");
-            }
 
             canNext = true;
         }, 1.5f));

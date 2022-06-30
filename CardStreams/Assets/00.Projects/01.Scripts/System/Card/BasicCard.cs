@@ -100,20 +100,20 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         switch (basicType)
         {
             case BasicType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite[tempValue];
-                fieldImage.sprite = ConstManager.Instance.potionSprite[tempValue];
+                faceImage.sprite = ConstManager.Instance.potionSprite[0];
+                fieldImage.sprite = ConstManager.Instance.potionSprite[0];
                 break;
             case BasicType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite[tempValue];
-                fieldImage.sprite = ConstManager.Instance.swordSprite[tempValue];
+                faceImage.sprite = ConstManager.Instance.swordSprite[0];
+                fieldImage.sprite = ConstManager.Instance.swordSprite[0];
                 break;
             case BasicType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite[tempValue];
-                fieldImage.sprite = ConstManager.Instance.sheildSprite[tempValue];
+                faceImage.sprite = ConstManager.Instance.sheildSprite[0];
+                fieldImage.sprite = ConstManager.Instance.sheildSprite[0];
                 break;
             case BasicType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
-                fieldImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
+                faceImage.sprite = ConstManager.Instance.monsterSprite[0];
+                fieldImage.sprite = ConstManager.Instance.monsterSprite[0];
                 break;
         }
 
