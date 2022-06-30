@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,14 @@ public class SelectRewardManager : MonoBehaviour
 
     [SerializeField] GameObject choosePanel;
     [SerializeField] GameObject getPanel;
+    [SerializeField] float cardReverseTime = 1f;
+    [SerializeField] GameObject _cgObject;
 
     private List<RewardSO> canChooseRewardList = new List<RewardSO>();
     private List<RewardListSO> loopRewardList = new List<RewardListSO>();
     private int loopCount = 0; // 알아서 돌아감, 나중에 동기화 필?요
-
+    private int rewardCount = 0; // 얻는 보상 개수
     private CanvasGroup _cg;
-    [SerializeField] GameObject _cgObject;
 
     private int[] randomRewardNums = { 0, 1, 2 };
 
@@ -94,6 +96,7 @@ public class SelectRewardManager : MonoBehaviour
         int chooseNumber = randomRewardNums[index]; // 고른숫자 = 랜덤돌린거의 index번째
 
         RewardSO reward = canChooseRewardList[chooseNumber]; // 고른보상 = 3개중에하나[고른숫자]
+        
 
         // 보상획득창 on
         SetActiveChoose(false);
@@ -101,17 +104,17 @@ public class SelectRewardManager : MonoBehaviour
 
         int cardCount = 0;
 
-        if(reward.goldReward > 0) // 골드 보상이 있다면 카드하나생성
+        if (reward.goldReward > 0) // 골드 보상이 있다면 카드하나생성
         {
             // 카드 하나 Init하고 누르면 돈UI로 보내게하기
-            getCards[cardCount].GoldInit(reward.goldReward);
+            getCards[cardCount].GoldInit(reward.goldReward, cardReverseTime);
             cardCount++;
         }
 
-        if(reward.allHealReward == true)
+        if (reward.allHealReward == true)
         {
             // 카드 하나 Init하고 누르면 플레이어하트로 보내게하기
-            getCards[cardCount].HealInit();
+            getCards[cardCount].HealInit(cardReverseTime);
             cardCount++;
         }
 
@@ -120,28 +123,62 @@ public class SelectRewardManager : MonoBehaviour
         for (int i = 0; i < reward.cardReward.Length; i++) // reward 특수카드들을 다 먹어야하니까 i = 0으로 루프시작해서 다먹기
         {
             SpecialCardSO card = reward.cardReward[i]; // i번째 보상
-            getCards[i + statCount].CardInit(card); // 보상을 i + statCount 집어넣으면됨 (ex : 2번째보상, statCount 1 = 3번째카드에 들어감)
+            getCards[i + statCount].CardInit(card, cardReverseTime); // 보상을 i + statCount 집어넣으면됨 (ex : 2번째보상, statCount 1 = 3번째카드에 들어감)
             cardCount++; // 그래도 cardCount는 증가시켜야함
         }
 
-        for (; cardCount < getCards.Length; cardCount++)
+        rewardCount = cardCount; // 여기까지 보상개수
+
+        for (; cardCount < getCards.Length; cardCount++) // 보상아닌 카드들은
         {
-            getCards[cardCount].ResetReward();
+            getCards[cardCount].ResetReward(); // 초기화하고 잠시 off
         }
     }
 
     public void PressOKButton() // 버튼으로누름
     {
-        SetActiveGet(false);
-        Hide();
+        
 
-        for (int i = 0; i < getCards.Length; i++)
+        bool isAllGet = true; // 보상카드 다 뒤집었나요?
+
+        for (int i = 0; i < rewardCount; i++) // 확인
         {
             RewardCard card = getCards[i];
-            card.GetReward();
-            card.ResetReward();
-        }
-    }
 
-    
+            if (card.isget == false)
+            {
+                isAllGet = false;
+                break;
+            }
+        }
+
+        Sequence seq = DOTween.Sequence();
+
+        if (isAllGet == false) // 다 안뒤집혔다면
+        {
+            seq.AppendCallback(() =>
+            {
+                for (int i = 0; i < rewardCount; i++)
+                {
+                    RewardCard card = getCards[i];
+                    if (card.isget == false) card.PressButton(); // 안뒤집은걸 뒤집자
+                }
+            });
+
+            seq.AppendInterval(cardReverseTime);
+        }
+
+        seq.AppendCallback(() => // 모든 카드 보상을 실제로 획득(뒤집는건 위에서) + 패널 끄기
+        {
+            SetActiveGet(false);
+            Hide();
+
+            for (int i = 0; i < rewardCount; i++)
+            {
+                Debug.Log("getCards : " + i);
+                RewardCard card = getCards[i];
+                card.GetReward();
+            }
+        });
+    }
 }
