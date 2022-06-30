@@ -30,7 +30,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.targetBasicList = targetBasicList;
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
-        gradeImage.sprite = ConstManager.Instance.gradeSpriteDict[(int)grade];
+        gradeImage.color = ConstManager.Instance.gradeColorDict[(int)grade];
         this.price = price;
         priceText.text = price.ToString();
     }
@@ -43,7 +43,7 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         this.accessPointList = accessPointList;
         this.tooltip = tooltip;
         itemImage.sprite = sprite;
-        gradeImage.sprite = ConstManager.Instance.gradeSpriteDict[(int)grade];
+        gradeImage.color = ConstManager.Instance.gradeColorDict[(int)grade];
         this.price = price;
         priceText.text = price.ToString();
     }

@@ -18,13 +18,6 @@ public class ConstManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
-        gradeColorDict = new Dictionary<CardGrade, Color>();
-        gradeColorDict.Add(CardGrade.Common, Color.black);
-        gradeColorDict.Add(CardGrade.Rare, Color.blue);
-        gradeColorDict.Add(CardGrade.Epic, Color.magenta);
-        gradeColorDict.Add(CardGrade.Unique, Color.yellow);
-        gradeColorDict.Add(CardGrade.Legendary, Color.red);
     }
 
     [Header("sprite")]
@@ -47,6 +40,6 @@ public class ConstManager : MonoBehaviour
     public Color downValueColor;
 
     [Header("color")]
-    public Dictionary<CardGrade, Color> gradeColorDict;
+    public List<Color> gradeColorDict;
     public List<Sprite> gradeSpriteDict;
 }
