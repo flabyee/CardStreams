@@ -14,6 +14,7 @@ public class BezierCard : MonoBehaviour
     [SerializeField] float radiusA = 0.55f;
     [SerializeField] float radiusB = 0.45f;
     
+    [Header("UI")]
     [SerializeField] Image cardIconImage;
 
 
