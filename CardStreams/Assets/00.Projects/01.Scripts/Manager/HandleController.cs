@@ -449,6 +449,7 @@ public class HandleController : MonoBehaviour
         for(int i = playerHandleObj.Count - 1; i >= 0; i--)
         {
             playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+            cardSorting.RemoveList(playerHandleObj[i]);
         }
         playerHandleObj.Clear();
 
