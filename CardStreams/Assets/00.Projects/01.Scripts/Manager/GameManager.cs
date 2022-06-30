@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     // юс╫ц
     private bool isFirst = false;
-    private bool isEnd = false;
+    private bool isTutoEnd = false;
     private int bossRound;
 
 
@@ -357,7 +357,7 @@ public class GameManager : MonoBehaviour
 
         nextState = GameState.Modify;
 
-        if(isEnd == true)
+        if(isTutoEnd == true)
         {
             nextState = GameState.TutoEnd;
         }
@@ -522,9 +522,9 @@ public class GameManager : MonoBehaviour
 
 
 
-        if(isEnd == false)
+        if(isTutoEnd == false && DataManager.Instance.stageNumValue.RuntimeValue == 0)
         {
-            isEnd = true;
+            isTutoEnd = true;
         }
 
         if (loopCountValue.RuntimeValue == bossRound - 1)
