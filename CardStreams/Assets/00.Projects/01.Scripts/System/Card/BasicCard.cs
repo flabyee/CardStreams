@@ -147,7 +147,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         if (isHandle == false) return;
 
-        HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, faceImage.sprite, basicType.ToString(), backColorImage.color, value);
+        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, basicType.ToString(), backColorImage.color, value);
     }
 
     public void OnPointerExit(PointerEventData eventData)

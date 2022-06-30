@@ -97,7 +97,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, faceImage.sprite, buildSO.buildName, Color.white, buildSO.tooltip);
+            HandleCardTooltip.Instance.ShowBuild(transform.position + transform.up * 0.5f, faceImage.sprite, buildSO.buildName, buildSO.tooltip);
 
             // BuildTooltip.Instance.Show(buildSO.buildName, accessPointList, buildSO.tooltip, buildSO.sprite, transform.position);
         }

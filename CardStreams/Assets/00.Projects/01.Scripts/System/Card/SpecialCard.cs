@@ -43,7 +43,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         // SpecialCardTooltip.Instance.Show(specialCardName, targetTypeList, targetBasicList, tooltip, sprite, transform.position);
-        HandleCardTooltip.Instance.Show(transform.position + transform.up * 0.5f, sprite, specialCardName, Color.white, tooltip);
+        HandleCardTooltip.Instance.ShowSpecial(transform.position + transform.up * 0.5f, sprite, specialCardName, tooltip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
