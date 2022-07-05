@@ -187,11 +187,10 @@ public class GameManager : MonoBehaviour
                 OnEquip();
                 break;
             case GameState.TutoEnd:
-                Debug.Log("tuto 패널 만들었습니다");
                 ShowTuTorialEvent?.Invoke(3);
                 break;
             case GameState.GameEnd:
-                Debug.LogError("clear 패널 만드세용, 플레이 해주셔서 감사합니다, 앞으로 ~~가 추가될것입니다");
+                clearPanel.SetActive(true);
                 break;
             default:
                 Debug.LogError("ereoroeroeoroeorooeoroeoroeor");

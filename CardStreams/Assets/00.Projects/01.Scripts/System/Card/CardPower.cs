@@ -8,6 +8,8 @@ using UnityEngine.EventSystems;
 
 public class CardPower : MonoBehaviour
 {
+    public TextMeshProUGUI nameText;
+
     public Image faceImage;
     public Image backImage;
     public Image fieldImage;

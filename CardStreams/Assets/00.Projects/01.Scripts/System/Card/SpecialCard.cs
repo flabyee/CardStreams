@@ -38,6 +38,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 
         faceImage.sprite = so.sprite;
         fieldImage.sprite = so.sprite;
+        nameText.text = so.specialCardName;
         tooltipText.text = so.tooltip;
 
         OnAccessSpecialCard = so.AccessSpecialCard;

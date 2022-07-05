@@ -69,6 +69,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         backColorImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
 
+        
         valueText.text = value.ToString();
         fieldText.text = value.ToString();
 
@@ -102,18 +103,22 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
             case BasicType.Potion:
                 faceImage.sprite = ConstManager.Instance.potionSprite[0];
                 fieldImage.sprite = ConstManager.Instance.potionSprite[0];
+                nameText.text = "¹É¾à";
                 break;
             case BasicType.Sword:
                 faceImage.sprite = ConstManager.Instance.swordSprite[0];
                 fieldImage.sprite = ConstManager.Instance.swordSprite[0];
+                nameText.text = "Ä®";
                 break;
             case BasicType.Sheild:
                 faceImage.sprite = ConstManager.Instance.sheildSprite[0];
                 fieldImage.sprite = ConstManager.Instance.sheildSprite[0];
+                nameText.text = "¹æÆÐ";
                 break;
             case BasicType.Monster:
                 faceImage.sprite = ConstManager.Instance.monsterSprite[0];
                 fieldImage.sprite = ConstManager.Instance.monsterSprite[0];
+                nameText.text = "¸ó½ºÅÍ";
                 break;
         }
 
@@ -155,7 +160,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         if (isHandle == false) return;
 
-        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, basicType.ToString(), backColorImage.color, value);
+        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, nameText.text, backColorImage.color, value);
     }
 
     public void OnPointerExit(PointerEventData eventData)
