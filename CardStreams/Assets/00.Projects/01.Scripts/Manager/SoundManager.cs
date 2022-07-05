@@ -16,7 +16,8 @@ public enum SFXType
 
 public enum BGMType
 {
-    MainTheme
+    MainTheme,
+    Boss
 }
 
 public enum SoundType // 마스터소리 배경소리 효과소리

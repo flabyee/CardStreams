@@ -192,8 +192,8 @@ public class EnemyController : MonoBehaviour
 
         CreateRandomMob();
         RandomEnemyBuild();
-        RandomEnemyBuild();
-        RandomEnemyBuild();
+        // RandomEnemyBuild();
+        // RandomEnemyBuild();
 
         CreateBoss(MapManager.Instance.fieldCount - 1);
     }

@@ -183,7 +183,8 @@ public class GameManager : MonoBehaviour
                 OnEquip();
                 break;
             case GameState.TutoEnd:
-                Debug.LogError("tuto 패널 만드세용");
+                Debug.Log("tuto 패널 만들었습니다");
+                ShowTuTorialEvent?.Invoke(3);
                 break;
             case GameState.GameEnd:
                 Debug.LogError("clear 패널 만드세용, 플레이 해주셔서 감사합니다, 앞으로 ~~가 추가될것입니다");
@@ -526,7 +527,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        if(isTutoEnd == false && DataManager.Instance.stageNumValue.RuntimeValue == 0)
+        if(isTutoEnd == false && loopCountValue.RuntimeValue == bossRound - 1)
         {
             isTutoEnd = true;
         }
@@ -534,6 +535,7 @@ public class GameManager : MonoBehaviour
         if (loopCountValue.RuntimeValue == bossRound - 1)
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
+            SoundManager.Instance.PlayBGM(BGMType.Boss);
             enemyController.BossRound();
         }
         else if (loopCountValue.RuntimeValue < bossRound - 1)

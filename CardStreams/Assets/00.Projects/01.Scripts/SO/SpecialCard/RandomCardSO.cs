@@ -17,7 +17,7 @@ public class RandomCardSO : SpecialCardSO
         BasicCard cardPower = field.cardPower as BasicCard;
 
         // cardPower
-        int addAmount = cardPower.value % 2 == 0 ? changeAmount : -changeAmount;
+        int addAmount = cardPower.value % 2 != 0 ? changeAmount : -changeAmount; // 홀수+ 짝수-
         addAmount = Mathf.Clamp(addAmount, -cardPower.value, int.MaxValue); // 2몬스터에 -4주사위를 썼을때 0이되게하려고 (-카드수치) 까지만 내려가게함
         cardPower.AddValue(addAmount);
 

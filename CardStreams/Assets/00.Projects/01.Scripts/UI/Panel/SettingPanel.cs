@@ -41,4 +41,9 @@ public class SettingPanel : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnClickTitle()
+    {
+        LoadingSceneManager.LoadScene("MenuScene");
+    }
 }
