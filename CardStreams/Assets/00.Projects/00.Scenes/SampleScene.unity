@@ -5450,6 +5450,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995605019}
   m_CullTransparentMesh: 1
+--- !u!1 &996784344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101320587233763384, guid: 580ebdf084c14464bb24cc3612ceb87f, type: 3}
+  m_PrefabInstance: {fileID: 5550255820974136872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1003183668
 GameObject:
   m_ObjectHideFlags: 0
@@ -8800,7 +8805,7 @@ MonoBehaviour:
   nextStateText: {fileID: 155912497}
   curStateText: {fileID: 2004891494}
   tutoEndPanel: {fileID: 0}
-  clearPanel: {fileID: 0}
+  clearPanel: {fileID: 996784344}
   stopImage: {fileID: 1519945978934729565}
   playSprite: {fileID: -5535182666878974321, guid: c076b6648a45a5642baf03d0f2e91d60, type: 3}
   stopSprite: {fileID: 981439026007651082, guid: c076b6648a45a5642baf03d0f2e91d60, type: 3}
@@ -14318,6 +14323,10 @@ PrefabInstance:
     - target: {fileID: 101320587233763384, guid: 580ebdf084c14464bb24cc3612ceb87f, type: 3}
       propertyPath: m_Name
       value: GameClearPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 101320587233763384, guid: 580ebdf084c14464bb24cc3612ceb87f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3191894223117788855, guid: 580ebdf084c14464bb24cc3612ceb87f, type: 3}
       propertyPath: m_Pivot.x
