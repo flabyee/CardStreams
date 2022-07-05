@@ -7,6 +7,8 @@ public class MainMenu : Menu<MainMenu>
 {
     public IntValue stageValue;
 
+    public GameObject levelSelectPanel;
+
     public void OnClickPlay(int i)
     {
         stageValue.RuntimeValue = i;
@@ -31,5 +33,10 @@ public class MainMenu : Menu<MainMenu>
     public override void OnBackPressed()
     {
         Application.Quit();
+    }
+
+    public void OnClickLevelSelect(bool b)
+    {
+        levelSelectPanel.SetActive(b);
     }
 }

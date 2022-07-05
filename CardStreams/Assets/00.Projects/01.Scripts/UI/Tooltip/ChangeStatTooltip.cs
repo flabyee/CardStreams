@@ -26,7 +26,16 @@ public class ChangeStatTooltip : MonoBehaviour
         statTextRect.anchoredPosition = pos;
 
         statText.text = value.ToString();
-        statText.color = isUp ? Color.blue : Color.red;
+
+        if(isUp)
+        {
+            statText.color = Color.blue;
+            statText.text = "+" + statText.text;
+        }
+        else
+        {
+            statText.color = Color.red;
+        }
 
         statTextRect.DOAnchorPosY(statTextRect.anchoredPosition.y + 50, 1f);
 

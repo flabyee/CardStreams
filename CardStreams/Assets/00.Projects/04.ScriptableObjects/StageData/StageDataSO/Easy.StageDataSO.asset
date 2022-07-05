@@ -17,12 +17,12 @@ MonoBehaviour:
   moveCount: 4
   isDeckShuffle: 1
   firstDeckValueAmount: 0
-  deckValueIncreaseAmount: 10
-  deckValueIncreaseMultipication: 1.5
+  deckValueIncreaseAmount: 5
+  deckValueIncreaseMultipication: 1.25
   firstMobSpawnAmount: 2
   mobIncreaseAmount: 2
-  firstMobAttackAmount: 2
-  mobAttackIncreaseAmount: 2
+  firstMobAttackAmount: 1
+  mobAttackIncreaseAmount: 1
   bossRound: 4
-  bossValue: 0
+  bossValue: 20
   downValue: 0
