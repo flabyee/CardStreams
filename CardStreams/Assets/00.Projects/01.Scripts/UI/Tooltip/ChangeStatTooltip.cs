@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class ChangeStatTooltip : MonoBehaviour
 {
     public static ChangeStatTooltip Instance;
 
-    public TextMeshProUGUI[] valueText;
-
-    private RectTransform rectTrm;
+    public GameObject statTextPrefab;
 
     private void Awake()
     {
-        rectTrm = GetComponent<RectTransform>();
-
         Instance = this;
     }
 
-    public void Show(int value, bool isUp, Vector3 pos, int statType)
+    public void Show(int value, bool isUp, Vector3 pos)
     {
-        valueText[statType].GetComponent<RectTransform>().anchoredPosition = pos;
+        GameObject statTextObj = Instantiate(statTextPrefab, transform);
 
-        valueText[statType].text = value.ToString();
+        RectTransform statTextRect = statTextObj.GetComponent<RectTransform>();
+        TextMeshProUGUI statText = statTextObj.GetComponent<TextMeshProUGUI>();
 
-        valueText[statType].color = isUp ? Color.blue : Color.red;
+        statTextRect.anchoredPosition = pos;
 
-        valueText[statType].gameObject.SetActive(true);
+        statText.text = value.ToString();
+        statText.color = isUp ? Color.blue : Color.red;
+
+        statTextRect.DOAnchorPosY(statTextRect.anchoredPosition.y + 50, 1f);
+
+        Destroy(statTextObj, 1f);
     }
 }
