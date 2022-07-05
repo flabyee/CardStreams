@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class SpeedSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider;
-    [SerializeField] TextMeshProUGUI _speedText;
 
-    private float _speed = 0;
+    [Header("테스트")]
+    [SerializeField] float _speed = 50; // 딱절반 : 100(느림) ~ 0(빠름)
 
     public void ChangeSpeed()
     {
