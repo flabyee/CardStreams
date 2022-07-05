@@ -317,10 +317,11 @@ public class GameManager : MonoBehaviour
 
 
             // 앞에 n칸 활성화
-            fieldController.SetNextFieldAble(moveIndex);
+        fieldController.SetNextFieldAble(moveIndex);
 
         handleController.HandleReturnToDeck();
         handleController.DrawCardWhenBeforeMove();
+        handleController.notHaveBuildUI.SetActive(false);
 
 
         BuildManager.Instance.NextBuildEffect();

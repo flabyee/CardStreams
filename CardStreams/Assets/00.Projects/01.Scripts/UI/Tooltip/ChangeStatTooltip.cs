@@ -8,7 +8,7 @@ public class ChangeStatTooltip : MonoBehaviour
 {
     public static ChangeStatTooltip Instance;
 
-    public TextMeshProUGUI valueText;
+    public TextMeshProUGUI[] valueText;
 
     private RectTransform rectTrm;
 
@@ -19,8 +19,14 @@ public class ChangeStatTooltip : MonoBehaviour
         Instance = this;
     }
 
-    public void Show(int value, bool isUp, Vector3 pos)
+    public void Show(int value, bool isUp, Vector3 pos, int statType)
     {
-        rectTrm.anchoredPosition = pos;
+        valueText[statType].GetComponent<RectTransform>().anchoredPosition = pos;
+
+        valueText[statType].text = value.ToString();
+
+        valueText[statType].color = isUp ? Color.blue : Color.red;
+
+        valueText[statType].gameObject.SetActive(true);
     }
 }

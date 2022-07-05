@@ -26,6 +26,7 @@ public class HandleController : MonoBehaviour
     public RectTransform handleTrm;
     public Transform drawCardStartTrm;
     public GameObject drawCardBezierEffect;
+    public GameObject notHaveBuildUI = null;
 
     [Header("system")]
     private int deckValueAmount;
@@ -324,6 +325,12 @@ public class HandleController : MonoBehaviour
 
     public void DrawBuildCard()
     {
+        if(buildDeck.Count == 0)
+        {
+            notHaveBuildUI.SetActive(true);
+            return;
+        }
+
         foreach(int id in buildDeck)
         {
             GameObject buildObj = CardPoolManager.Instance.GetBuildCard(handleTrm);
