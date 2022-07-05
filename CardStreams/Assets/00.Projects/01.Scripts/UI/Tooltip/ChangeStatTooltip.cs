@@ -30,6 +30,6 @@ public class ChangeStatTooltip : MonoBehaviour
 
         statTextRect.DOAnchorPosY(statTextRect.anchoredPosition.y + 50, 1f);
 
-        Destroy(statTextObj, 1f);
+        Destroy(statTextObj, 1.5f);
     }
 }

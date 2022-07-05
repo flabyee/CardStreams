@@ -19,6 +19,13 @@ public class StatPanel : MonoBehaviour
     //[SerializeField] Image[] runtimeStatImages; // 게임할때 뜨는 칩 개수, 일단 20개만 넣음
     //[SerializeField] Sprite[] statUnitSprites; // 1 | 10 | 50 | 100 | 500 | 1000 단위, 지금은 1이랑 10만 넣음
 
+    private Camera mainCam;
+
+    private void Awake()
+    {
+        mainCam = Camera.main;
+    }
+
 
     public void StatUIChange() // Called by EventSO from gameObject | 게임오브젝트에 들어있는 EventSO에서 호출됨
     {
@@ -26,15 +33,16 @@ public class StatPanel : MonoBehaviour
         {
             int changedValue = statIntValue.RuntimeValue - prevStat;
 
+            Vector3 pos = mainCam.WorldToScreenPoint(transform.position);
             // 증가한 경우
             if (prevStat < statIntValue.RuntimeValue)
             {
-
+                ChangeStatTooltip.Instance.Show(changedValue, true, pos);
             }
             // 감소한 경우
             else
             {
-
+                ChangeStatTooltip.Instance.Show(changedValue, false, pos);
             }
         }
 
