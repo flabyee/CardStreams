@@ -25,4 +25,4 @@ MonoBehaviour:
   mobAttackIncreaseAmount: 1
   bossRound: 4
   bossValue: 20
-  downValue: 0
+  downValue: 20

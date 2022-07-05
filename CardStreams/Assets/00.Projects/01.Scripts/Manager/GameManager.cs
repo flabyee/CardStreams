@@ -62,6 +62,10 @@ public class GameManager : MonoBehaviour
     public Text nextStateText;
     public Text curStateText;
 
+    // 임시 나중에 다른 곳으로 이동
+    public GameObject tutoEndPanel;
+    public GameObject clearPanel;
+
     public Image stopImage;
     public Sprite playSprite;
     public Sprite stopSprite;
