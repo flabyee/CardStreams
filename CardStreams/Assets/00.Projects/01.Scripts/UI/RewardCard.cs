@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
 public enum TargetType // 보상카드가 날아갈 위치
 {
@@ -12,12 +13,14 @@ public enum TargetType // 보상카드가 날아갈 위치
     HPUI
 }
 
-public class RewardCard : MonoBehaviour
+public class RewardCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] GameObject cover; // 카드 누르기전 앞면
 
-    [SerializeField] Image rewardImage;
-    [SerializeField] TextMeshProUGUI rewardNameText;
+    [Header("공통 카드 속성")]
+    [SerializeField] Image rewardImage; // 카드의 이미지
+    [SerializeField] TextMeshProUGUI rewardNameText; // 카드의 이름
+    [SerializeField] TextMeshProUGUI rewardDescriptionText; // 카드의 설명
 
 
     [Header("테스트 : 단순 카드일때만 쓰는 멤버")]
@@ -35,9 +38,10 @@ public class RewardCard : MonoBehaviour
     [SerializeField] EventSO goldValueChanged;
     [SerializeField] EventSO playerValueChanged;
 
+    public bool isGet = false; // 카드의 보상을 얻었나요?
     
-    private float reverseTime = 1f;
-    public bool isget = false;
+    private float reverseTime = 1f; // 카드가 뒤집어지는 시간
+    private bool isCompleteReverse = false; // 카드가 뒤집어져 보상 앞면이 노출되었나요?
 
 
     private SpecialCardSO cardSO;
@@ -47,7 +51,7 @@ public class RewardCard : MonoBehaviour
         cover.SetActive(true);
         gameObject.SetActive(true);
         reverseTime = cardReverseTime;
-        isget = false;
+        isGet = false;
     }
 
     public void CardInit(SpecialCardSO so, float cardReverseTime)
@@ -56,6 +60,7 @@ public class RewardCard : MonoBehaviour
 
         rewardImage.sprite = so.sprite;
         rewardNameText.text = so.specialCardName;
+        rewardDescriptionText.text = so.tooltip;
 
         Debug.Log(so == null);
         cardSO = so;
@@ -67,6 +72,7 @@ public class RewardCard : MonoBehaviour
 
         rewardImage.sprite = goldSprite;
         rewardNameText.text = "돈";
+        rewardDescriptionText.text = $"돈 {goldValue}을 얻습니다.";
         getGoldAmount = goldValue;
     }
 
@@ -76,20 +82,22 @@ public class RewardCard : MonoBehaviour
 
         rewardImage.sprite = healSprite;
         rewardNameText.text = "회복";
+        rewardDescriptionText.text = "체력을 전부 회복합니다.";
         getHeal = true;
     }
 
-    public void PressButton() // called by Button
+    public void PressButton() // called by Button or RewardManager OK Button
     {
-        if (isget) return;
+        if (isGet) return;
 
-        isget = true;
-        SoundManager.Instance.PlaySFX(SFXType.CardReverse);
+        isGet = true;
+        SoundManager.Instance.PlaySFX(SFXType.CardReverse, 0.3f);
 
         Sequence seq = DOTween.Sequence();
         seq.Append(transform.DOScaleX(0, reverseTime / 2)); // 카드 1/2 뒤집기
         seq.AppendCallback(() => cover.gameObject.SetActive(false)); // 뒷부분 끄기
         seq.Append(transform.DOScaleX(1, reverseTime / 2)); // 카드 나머지 뒤집기
+        seq.AppendCallback(() => isCompleteReverse = true); // 다뒤집었나요 변수 true
     }
 
     public void GetReward()
@@ -116,9 +124,6 @@ public class RewardCard : MonoBehaviour
         }
         else
         {
-            Debug.Log(cardSO);
-            Debug.Log(cardSO.sprite);
-            Debug.Log(cardSO.id);
             EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, TargetType.Handle, () => { });
             GameManager.Instance.handleController.AddSpecial(cardSO.id);
             ResetReward();
@@ -132,5 +137,22 @@ public class RewardCard : MonoBehaviour
         this.cardSO = null;
         rewardImage.sprite = null;
         rewardNameText.text = null;
+        rewardDescriptionText.text = null;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (isCompleteReverse)
+        {
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (isCompleteReverse)
+        {
+            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
     }
 }

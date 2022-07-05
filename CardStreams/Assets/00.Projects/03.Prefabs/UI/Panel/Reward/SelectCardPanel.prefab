@@ -1975,35 +1975,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8154775497778358253, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
   m_PrefabInstance: {fileID: 5211823708468706805}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7671611601293154627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2459831907721176246, guid: dfd0c2ae8f9fa5d4b839e92453f1ecba, type: 3}
-  m_PrefabInstance: {fileID: 5211823708468706805}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1242648271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7671611601293154627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3c47d8a02dbd44ca40436701afcabf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cover: {fileID: 0}
-  rewardImage: {fileID: 0}
-  rewardNameText: {fileID: 0}
-  getGoldAmount: 0
-  getHeal: 0
-  healSprite: {fileID: 0}
-  goldSprite: {fileID: 0}
-  goldValue: {fileID: 0}
-  hpValue: {fileID: 0}
-  goldValueChanged: {fileID: 0}
-  playerValueChanged: {fileID: 0}
-  isget: 0
 --- !u!1001 &6212031875451916567
 PrefabInstance:
   m_ObjectHideFlags: 0

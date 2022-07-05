@@ -149,7 +149,7 @@ public class SelectRewardManager : MonoBehaviour
         {
             RewardCard card = getCards[i];
 
-            if (card.isget == false)
+            if (card.isGet == false)
             {
                 isAllGet = false;
                 break;
@@ -165,7 +165,7 @@ public class SelectRewardManager : MonoBehaviour
                 for (int i = 0; i < rewardCount; i++)
                 {
                     RewardCard card = getCards[i];
-                    if (card.isget == false) card.PressButton(); // 안뒤집은걸 뒤집자
+                    if (card.isGet == false) card.PressButton(); // 안뒤집은걸 뒤집자
                 }
             });
 
