@@ -148,6 +148,7 @@ public class GoldAnimManager : MonoBehaviour
     private void ShowResult()
     {
         // 결과창 띄우기
+        GameManager.Instance.blurController.SetActive(true);
         int earnGold = goldValue.RuntimeValue - originGold;
         originText.text = originGold.ToString();
         earnText.text = earnGold.ToString();
@@ -159,6 +160,7 @@ public class GoldAnimManager : MonoBehaviour
     private void HideResult()
     {
         resultPanel.SetActive(false);
+        GameManager.Instance.blurController.SetActive(false);
     }
 
     public void OnClickCloseResultPanle()
