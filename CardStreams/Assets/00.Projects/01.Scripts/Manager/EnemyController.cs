@@ -140,6 +140,8 @@ public class EnemyController : MonoBehaviour
         // 필드에 적용 + not으로
         field.Init(cardPower, dragbleCard, FieldState.randomMob);
 
+        dragbleCard.SetDroppedArea(field.dropArea);
+
         // craete effect
         //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
         Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);

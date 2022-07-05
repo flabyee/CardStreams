@@ -600,9 +600,9 @@ public class GameManager : MonoBehaviour
         DropArea handleArea = dragbleCard.originDropArea;
         handleArea.TriggerOnLift(dragbleCard);
 
-        DropArea dropArea = MapManager.Instance.fieldList[tempIndex].dropArea;
+        DropArea fieldArea = MapManager.Instance.fieldList[tempIndex].dropArea;
 
-        dropArea.TriggerOnDrop(dragbleCard);
+        fieldArea.TriggerOnDrop(dragbleCard);
 
         dragbleCard.transform.rotation = Quaternion.identity;
 
@@ -611,6 +611,23 @@ public class GameManager : MonoBehaviour
         HandleCardTooltip.Instance.Hide();
 
         return true;
+    }
+
+    public void LiftField(DragbleCard dragbleCard)
+    {
+        DropArea fieldArea = dragbleCard.droppedArea;
+
+        if(fieldArea.field.fieldState == FieldState.able)
+        {
+            fieldArea.TriggerOnLift(dragbleCard);
+
+            DropArea handleArea = dragbleCard.originDropArea;
+            handleArea.TriggerOnDrop(dragbleCard);
+
+            dragbleCard.transform.rotation = Quaternion.identity;
+
+            handleController.cardSorting.AlignCards();
+        }
     }
 
     public void StopGame()

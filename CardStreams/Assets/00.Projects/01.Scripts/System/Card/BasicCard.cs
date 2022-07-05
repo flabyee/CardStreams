@@ -134,13 +134,21 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isHandle && eventData.button == PointerEventData.InputButton.Right)
+        if(eventData.button == PointerEventData.InputButton.Right)
         {
-            transform.localScale = Vector3.one;
-            transform.rotation = Quaternion.Euler(Vector3.one);
+            if (isHandle)
+            {
+                transform.localScale = Vector3.one;
+                transform.rotation = Quaternion.Euler(Vector3.one);
 
-            GameManager.Instance.DropField(GetComponent<DragbleCard>());
+                GameManager.Instance.DropField(GetComponent<DragbleCard>());
+            }
+            else
+            {
+                GameManager.Instance.LiftField(GetComponent<DragbleCard>());
+            }
         }
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
