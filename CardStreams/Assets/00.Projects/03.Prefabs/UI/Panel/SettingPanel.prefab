@@ -592,7 +592,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 50
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slider: {fileID: 1672573046}
-  _speedText: {fileID: 7417026024031295720}
+  _speed: 50
 --- !u!1 &268469052956633785
 GameObject:
   m_ObjectHideFlags: 0

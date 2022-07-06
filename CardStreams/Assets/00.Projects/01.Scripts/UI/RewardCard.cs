@@ -52,6 +52,7 @@ public class RewardCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         gameObject.SetActive(true);
         reverseTime = cardReverseTime;
         isGet = false;
+        isCompleteReverse = false;
     }
 
     public void CardInit(SpecialCardSO so, float cardReverseTime)
