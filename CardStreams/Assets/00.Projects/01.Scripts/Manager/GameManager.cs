@@ -466,7 +466,7 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < maxMoveCount; i++)
         {
-            SoundManager.Instance.PlaySFX(SFXType.Moving);
+            SoundManager.Instance.PlaySFX(SFXType.Moving, 1.5f);
 
             // player 위치 이동
             sequence.AppendCallback(() =>

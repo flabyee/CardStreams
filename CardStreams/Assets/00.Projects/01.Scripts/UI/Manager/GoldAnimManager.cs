@@ -43,6 +43,8 @@ public class GoldAnimManager : MonoBehaviour
 
     public void CreateCoin(int amount, Vector3 centerPos, bool allCollect = true)
     {
+        SoundManager.Instance.PlaySFX(SFXType.CreateMoney);
+
         // coin »ý¼º
         allCoinAmount += amount;
 

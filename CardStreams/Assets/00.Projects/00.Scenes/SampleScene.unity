@@ -14129,14 +14129,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1672573046, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_Value
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1895315583, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: _speed
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 1978412385653660953, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -14149,9 +14141,9 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4621748289310930160, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_Alpha
-      value: 0
+    - target: {fileID: 4621748289310930161, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
+      propertyPath: _soundType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4621748290497226654, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_Name
@@ -15439,7 +15431,7 @@ AudioSource:
   m_GameObject: {fileID: 8386153795785425357}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8453588002894788011, guid: 527dfe11d22941645823395d7f5834df, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.4
@@ -15571,7 +15563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a276157b038a840a9f6ab7e50b430b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _masterVolumeMixer: {fileID: 24100000, guid: 0c8652f5d05e39243971f0ddee48aab7, type: 2}
   _bgmPlayer: {fileID: 8386153795785425363}
   _sfxPlayer: {fileID: 8386153797271538971}
   sfxSounds:
@@ -15582,6 +15573,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   - {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
   - {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
+  - {fileID: 8300000, guid: 657578e4be6b64dbf9b09deada272e55, type: 3}
   bgmSounds:
   - {fileID: 8300000, guid: b15ff5a2e363844f495045993610505b, type: 3}
   - {fileID: 8300000, guid: a716130e5ecf94cfa9514c1ae65a516b, type: 3}
@@ -15628,7 +15620,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

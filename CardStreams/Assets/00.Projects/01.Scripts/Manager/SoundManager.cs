@@ -12,6 +12,7 @@ public enum SFXType
     CardReverse, // 보상카드뒤집을때
     BuyCard, // 뭐 살때
     DrawCard, // 뭐 드로우할때
+    CreateMoney, // 정산코인 생성될때
 }
 
 public enum BGMType
@@ -32,7 +33,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [Header("스피커 설정")]
-    [SerializeField] AudioMixer _masterVolumeMixer;
+    // [SerializeField] AudioMixer _masterVolumeMixer;
     [SerializeField] AudioSource _bgmPlayer;
     [SerializeField] AudioSource _sfxPlayer;
 
@@ -102,21 +103,25 @@ public class SoundManager : MonoBehaviour
     /// <param name="volume">음량</param>
     public void ChangeVolume(SoundType type, float volume)
     {
+        Debug.Log(volume);
+
         switch (type)
         {
             case SoundType.Master:
                 if (volume <= 0)
                 {
-                    _masterVolumeMixer.SetFloat("Master", -80f);
+                    Debug.Log("꺼");
+                    // _masterVolumeMixer.SetFloat("Master", -80f);
                 }
                 else
                 {
-                    _masterVolumeMixer.SetFloat("Master", 0.2f * volume - 20);
+                    Debug.Log("줄이기 : " + (0.2f * volume - 20));
+                    // _masterVolumeMixer.SetFloat("Master", 0.2f * volume - 20);
                 }
                 break;
 
             case SoundType.BGM:
-                _bgmPlayer.volume = volume / 100;
+                _bgmPlayer.volume = volume / 100 * 0.4f;
                 break;
 
             case SoundType.SFX:

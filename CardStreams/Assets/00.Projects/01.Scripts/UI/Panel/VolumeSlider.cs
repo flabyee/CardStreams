@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 public class VolumeSlider : MonoBehaviour
 {
     [SerializeField] Slider _slider;
-    [SerializeField] Text _volumeText;
+    [SerializeField] TextMeshProUGUI _volumeText;
     public SoundType _soundType;
 
     public Action<SoundType, float> SetVolumeEvent;
