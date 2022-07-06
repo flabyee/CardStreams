@@ -8888,7 +8888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rerollCount: 0
   player: {fileID: 981051407}
-  moveDuration: 0.01
+  moveDuration: 0.2
   fieldResetDelay: 0.1
   canStartTurn: 0
   moveIndex: 0
