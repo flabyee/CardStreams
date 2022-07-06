@@ -180,6 +180,7 @@ public class EnemyController : MonoBehaviour
 
             building.BuildDrop(randomPoint);
 
+
             // 색 변경
             CardPower cardPower = building.GetComponent<CardPower>();
             cardPower.backImage.color = Color.magenta;
@@ -226,6 +227,8 @@ public class EnemyController : MonoBehaviour
 
         // 필드에 적용 + not으로
         field.Init(cardPower, dragbleCard, FieldState.randomMob);
+
+        dragbleCard.SetDroppedArea(field.dropArea);
 
         // craete effect
         //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);

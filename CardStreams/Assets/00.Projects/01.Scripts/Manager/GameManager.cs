@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     // 임시
     private bool isFirst = false;
     private bool isTutoEnd = false;
+    private bool isBossEnd = false;
     private int bossRound;
 
 
@@ -342,6 +343,14 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnd()
     {
+        if(isBossEnd == true)
+        {
+            blurController.SetActive(true);
+            clearPanel.SetActive(true);
+            canNext = false;
+            return;
+        }
+
         canNext = false;
 
         if(loopCountValue.RuntimeValue == bossRound - 1)
@@ -536,21 +545,26 @@ public class GameManager : MonoBehaviour
             isTutoEnd = true;
         }
 
+        // 보스라 일 때
         if (loopCountValue.RuntimeValue == bossRound - 1)
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             SoundManager.Instance.PlayBGM(BGMType.Boss);
             enemyController.BossRound();
+
+            isBossEnd = true;
         }
+        // 일반 라일때
         else if (loopCountValue.RuntimeValue < bossRound - 1)
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             enemyController.CreateRandomMob();
             enemyController.RandomEnemyBuild();
+
         }
         else
         {
-            Debug.LogError("클리어");
+            
         }
 
         StartCoroutine(Delay(() =>
