@@ -122,6 +122,7 @@ public class SoundManager : MonoBehaviour
 
             case SoundType.BGM:
                 _bgmPlayer.volume = volume / 100 * 0.4f;
+                _sfxPlayer.volume = volume / 100;
                 break;
 
             case SoundType.SFX:

@@ -44,6 +44,11 @@ public class SettingPanel : MonoBehaviour
 
     public void OnClickTitle()
     {
+        DropArea.dropAreas.Clear();
+        DontRaycastTarget.dontRaycastTargetList.Clear();
+
         LoadingSceneManager.LoadScene("MenuScene");
     }
+
+
 }

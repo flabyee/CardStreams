@@ -116,8 +116,8 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
                 nameText.text = "방패";
                 break;
             case BasicType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite[0];
-                fieldImage.sprite = ConstManager.Instance.monsterSprite[0];
+                faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
+                fieldImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 nameText.text = "몬스터";
                 break;
         }

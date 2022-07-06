@@ -95,12 +95,12 @@ public static class SaveSystem
         for (int i = 0; i < buildCount; i++)
         {
             saveData.buildDataList.Add(
-                new BuildData() { id = i });
+                new BuildData() { id = i, isUnlock = true, isUse = true });
         }
         for(int i = 0; i < specialCardCount; i++)
         {
             saveData.speicialCardDataList.Add(
-                new SpecialCardData() { id = i });
+                new SpecialCardData() { id = i, isUnlock = true, isUse = true });
         }
 
         // 저장할 클래스를 Json으로 바꿔주기
