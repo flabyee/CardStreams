@@ -43,7 +43,7 @@ public class BagController : MonoBehaviour
             {
                 count = 1;
 
-                buildScrollTrm.sizeDelta += new Vector2(0, 280);
+                specialScrollTrm.sizeDelta += new Vector2(0, 280);
             }
         }
 
