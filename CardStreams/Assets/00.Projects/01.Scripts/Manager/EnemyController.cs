@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class EnemyController : MonoBehaviour
 {
     // Àû »ý¼º
@@ -15,6 +16,8 @@ public class EnemyController : MonoBehaviour
     private List<BuildSO> enemyBuildList;
 
     public IntValue loopCountValue;
+
+    public GameObject bossSpawnImage;
 
     private void Awake()
     {
@@ -236,6 +239,16 @@ public class EnemyController : MonoBehaviour
 
         (cardPower as BasicCard).OnField();
 
+        bossSpawnImage.SetActive(true);
+        bossSpawnImage.GetComponent<Image>().DOFade(1f, 0f);
+        bossSpawnImage.GetComponent<Image>().DOFade(0f, 2f);
+        StartCoroutine(Temp(2f));
+       
+    }
 
+    IEnumerator Temp(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        bossSpawnImage.SetActive(false);
     }
 }

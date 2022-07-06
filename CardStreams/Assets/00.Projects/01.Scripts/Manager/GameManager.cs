@@ -188,6 +188,9 @@ public class GameManager : MonoBehaviour
                 OnEquip();
                 break;
             case GameState.TutoEnd:
+                dontTouchController.Hide();
+                DropArea.dropAreas.Clear();
+                DontRaycastTarget.dontRaycastTargetList.Clear();
                 ShowTuTorialEvent?.Invoke(3);
                 break;
             case GameState.GameEnd:
@@ -540,7 +543,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        if(isTutoEnd == false && loopCountValue.RuntimeValue == bossRound - 1)
+        if(isTutoEnd == false)
         {
             isTutoEnd = true;
         }
