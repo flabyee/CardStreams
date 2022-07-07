@@ -33,7 +33,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [Header("스피커 설정")]
-    // [SerializeField] AudioMixer _masterVolumeMixer;
+    [SerializeField] AudioMixer _masterVolumeMixer;
     [SerializeField] AudioSource _bgmPlayer;
     [SerializeField] AudioSource _sfxPlayer;
 
@@ -111,18 +111,17 @@ public class SoundManager : MonoBehaviour
                 if (volume <= 0)
                 {
                     Debug.Log("꺼");
-                    // _masterVolumeMixer.SetFloat("Master", -80f);
+                    _masterVolumeMixer.SetFloat("Master", -80f);
                 }
                 else
                 {
                     Debug.Log("줄이기 : " + (0.2f * volume - 20));
-                    // _masterVolumeMixer.SetFloat("Master", 0.2f * volume - 20);
+                    _masterVolumeMixer.SetFloat("Master", 0.2f * volume - 20);
                 }
                 break;
 
             case SoundType.BGM:
                 _bgmPlayer.volume = volume / 100 * 0.4f;
-                _sfxPlayer.volume = volume / 100;
                 break;
 
             case SoundType.SFX:
@@ -142,7 +141,7 @@ public class SoundManager : MonoBehaviour
         switch (type)
         {
             case SoundType.Master:
-                MasterVolumeMute(isMute);
+                // MasterVolumeMute(isMute);
                 break;
 
             case SoundType.BGM:

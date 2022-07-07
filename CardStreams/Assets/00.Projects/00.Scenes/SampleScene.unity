@@ -13911,42 +13911,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277858216}
     m_Modifications:
-    - target: {fileID: 1425012800, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1425012800, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1425012800, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1603984151, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1603984151, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1978412385653660953, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1978412385653660953, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1978412385653660953, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4621748289310930161, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: _soundType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4621748290497226654, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_Name
       value: SettingPanel
@@ -14033,14 +13997,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621748290497226655, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8280090691336400996, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8280090691336400996, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15233,7 +15189,7 @@ AudioSource:
   m_GameObject: {fileID: 8386153795785425357}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 8453588002894788011, guid: 527dfe11d22941645823395d7f5834df, type: 2}
+  OutputAudioMixerGroup: {fileID: 7515655480739465888, guid: cc0911ab4c8715e428b172f333cdd1d6, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.4
@@ -15365,6 +15321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a276157b038a840a9f6ab7e50b430b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _masterVolumeMixer: {fileID: 24100000, guid: cc0911ab4c8715e428b172f333cdd1d6, type: 2}
   _bgmPlayer: {fileID: 8386153795785425363}
   _sfxPlayer: {fileID: 8386153797271538971}
   sfxSounds:
@@ -15419,7 +15376,7 @@ AudioSource:
   m_GameObject: {fileID: 8386153797271538965}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5995361535017368384, guid: cc0911ab4c8715e428b172f333cdd1d6, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
