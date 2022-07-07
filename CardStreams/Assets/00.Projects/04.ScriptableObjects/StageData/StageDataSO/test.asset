@@ -19,10 +19,10 @@ MonoBehaviour:
   firstDeckValueAmount: 0
   deckValueIncreaseAmount: 10
   deckValueIncreaseMultipication: 1.5
-  firstMobSpawnAmount: 2
+  firstMobSpawnAmount: 8
   mobIncreaseAmount: 2
-  firstMobAttackAmount: 3
+  firstMobAttackAmount: 8
   mobAttackIncreaseAmount: 2
-  bossRound: 1
+  bossRound: 3
   bossValue: 45
   downValue: 30

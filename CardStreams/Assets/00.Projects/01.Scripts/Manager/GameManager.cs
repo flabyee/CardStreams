@@ -543,7 +543,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        if(isTutoEnd == false)
+        if(isTutoEnd == false && DataManager.Instance.stageNumValue.RuntimeValue == 0)
         {
             isTutoEnd = true;
         }
