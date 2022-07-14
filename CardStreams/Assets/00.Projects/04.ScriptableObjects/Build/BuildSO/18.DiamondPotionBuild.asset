@@ -28,4 +28,7 @@ MonoBehaviour:
   - {x: 2, y: 2}
   - {x: -2, y: -2}
   - {x: 2, y: -2}
+  isAcceseCard: 1
+  isAccesePlayer: 0
+  isAcceseLoopEnd: 0
   plusPotionAmount: 6

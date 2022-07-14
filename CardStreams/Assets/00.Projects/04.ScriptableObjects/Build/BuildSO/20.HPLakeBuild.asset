@@ -28,7 +28,11 @@ MonoBehaviour:
   - {x: -1, y: -1}
   - {x: 0, y: -1}
   - {x: 1, y: -1}
+  isAcceseCard: 0
+  isAccesePlayer: 1
+  isAcceseLoopEnd: 0
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   playerValueChangeEvnet: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
   healAmount: 2
+  maxUpAmount: 0
   hpLimit: 8

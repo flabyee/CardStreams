@@ -21,4 +21,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 826fc47ba6d506d4c8888de6d08de99b, type: 3}
   accessPointList:
   - {x: 0, y: 1}
+  isAcceseCard: 1
+  isAccesePlayer: 0
+  isAcceseLoopEnd: 0
   amount: 2

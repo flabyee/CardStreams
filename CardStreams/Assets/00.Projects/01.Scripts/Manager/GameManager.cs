@@ -461,17 +461,39 @@ public class GameManager : MonoBehaviour
 
         canNext = false;
 
+        // Move Start
         sequence.AppendCallback(() => MoveStart());
+
+        // 필드에 건물 효과 적용
+        for (int i = 0; i < maxMoveCount; i++)
+        {
+            Field field = MapManager.Instance.fieldList[moveIndex + i];
+
+            foreach (BuildCard buildCard in field.accessBuildList)
+            {
+                if (buildCard.isAcceseCard == true)
+                {
+                    sequence.AppendCallback(() =>
+                    {
+                        buildCard.AcceseCard(field);
+                    });
+                    sequence.AppendInterval(moveDuration * 2);
+                }
+            }
+        }
+
         sequence.AppendInterval(moveDuration * 3);
 
         for (int i = 0; i < maxMoveCount; i++)
         {
             SoundManager.Instance.PlaySFX(SFXType.Moving, 1.5f);
 
+            Field field = MapManager.Instance.fieldList[moveIndex];
+
             // player 위치 이동
             sequence.AppendCallback(() =>
             {
-                Vector3 movePos = MapManager.Instance.fieldList[moveIndex].transform.position;
+                Vector3 movePos = field.transform.position;
                 player.transform.DOMove(movePos, moveDuration);
                 //player.Move(MapManager.Instance.fieldRectList[moveIndex].transform.position, 0.25f);
 
@@ -491,21 +513,19 @@ public class GameManager : MonoBehaviour
             // 플레이어한테 필드 효과 적용 
             sequence.AppendCallback(() =>
             {
-                if (MapManager.Instance.fieldList[moveIndex].isSet == true)
+                if (field.isSet == true)
                 {
-                    player.OnFeild(MapManager.Instance.fieldList[moveIndex]);
+                    player.OnFeild(field);
                 }
             });
             sequence.AppendInterval(moveDuration);
 
 
             // 플레이어한테 건물효과 적용
-            foreach (BuildCard buildCard in MapManager.Instance.fieldList[moveIndex + i].accessBuildList)
+            foreach (BuildCard buildCard in field.accessBuildList)
             {
                 if (buildCard.isAccesePlayer == true)
                 {
-                    Debug.Log("accese player");
-
                     sequence.AppendCallback(() =>
                     {
                         buildCard.AccesePlayer(player);
@@ -514,8 +534,10 @@ public class GameManager : MonoBehaviour
                 }
             }
 
+            moveIndex++;
+
             sequence.AppendCallback(() => {
-                moveIndex++;
+                
 
                 // 플레이어 죽었으면 끝
                 if (player.isAlive == false)
@@ -529,6 +551,7 @@ public class GameManager : MonoBehaviour
             sequence.AppendInterval(moveDuration);
         }
 
+        // Move End
         sequence.AppendCallback(() => MoveEnd());
 
         sequence.AppendCallback(() =>
