@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &810464093205397177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810464093205397176}
+  - component: {fileID: 810464093205397179}
+  m_Layer: 0
+  m_Name: ConstManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &810464093205397176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810464093205397177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &810464093205397179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810464093205397177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c71a71f393cfb54f85bea3bb51d34d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempTrm: {fileID: 0}
+  swordSprite:
+  - {fileID: 21300000, guid: f4038e659078cb84ea671bc25d2b46cc, type: 3}
+  - {fileID: 21300000, guid: 9739276fcb328404094d29bae9e976b5, type: 3}
+  - {fileID: 21300000, guid: 1fe32d59dc76a2c40a5fadb1ab441c58, type: 3}
+  - {fileID: 21300000, guid: 24d8904731883db458b60549677f8a53, type: 3}
+  - {fileID: 21300000, guid: 424180d2307b6ef4391a64c9bf0a9b76, type: 3}
+  - {fileID: 21300000, guid: 20448216e5066a34eac7cf679a034d13, type: 3}
+  - {fileID: 21300000, guid: aecc35f1789f5dc449b5f1647feb531f, type: 3}
+  - {fileID: 21300000, guid: 6fa9992ff9ce300499dd29ce647c9197, type: 3}
+  - {fileID: 21300000, guid: 1775e263cef7ed248a6444f25e1fdff9, type: 3}
+  - {fileID: 21300000, guid: 3fbac6dfd760f2d4e8d25ca048aca77f, type: 3}
+  sheildSprite:
+  - {fileID: 21300000, guid: 14699ecb0157a0945b91290b78eb26e8, type: 3}
+  - {fileID: 21300000, guid: 7ffc58d35d6dade42aa760f89609b86a, type: 3}
+  - {fileID: 21300000, guid: e1780311aa86a324eb218b65446f8e95, type: 3}
+  - {fileID: 21300000, guid: bc2cc741607b6ea48b10cc45a65c0394, type: 3}
+  - {fileID: 21300000, guid: 4a6a07ad49a415147aef669dc4f1d051, type: 3}
+  - {fileID: 21300000, guid: f5df13a7899ff5044ab00ef36c4dc915, type: 3}
+  - {fileID: 21300000, guid: 026ed4c6c37e5cd42b580f906a7a2977, type: 3}
+  - {fileID: 21300000, guid: fb3f951dd6fad694f9c63f94a5c26cda, type: 3}
+  - {fileID: 21300000, guid: 7da5512992784c6499fccc200242f3bb, type: 3}
+  - {fileID: 21300000, guid: 923f0acf352a92e4f91749ca400099bf, type: 3}
+  potionSprite:
+  - {fileID: 21300000, guid: 199c44cd309183f47a87b88ff3d3967f, type: 3}
+  - {fileID: 21300000, guid: e0f48a7060a4532439cd56374cb3e648, type: 3}
+  - {fileID: 21300000, guid: 1803ef86791c32d469887212bf769cb6, type: 3}
+  - {fileID: 21300000, guid: c4a92898c2e86254a8150430a5e9fb05, type: 3}
+  - {fileID: 21300000, guid: f984ff29597a4ac4d849c5a18d4882b2, type: 3}
+  - {fileID: 21300000, guid: 13aac714e881a4140843481b767e6022, type: 3}
+  - {fileID: 21300000, guid: 4aa114c9c8ba5a248a87d9b10bc570c0, type: 3}
+  - {fileID: 21300000, guid: 6f76f2d4189d1324a95d930a8cd4f8c4, type: 3}
+  - {fileID: 21300000, guid: 80e2c76985351784b9820ecf15e9d459, type: 3}
+  - {fileID: 21300000, guid: a6531d30d9e464a4e954cab5bb92faf1, type: 3}
+  monsterSprite:
+  - {fileID: 21300000, guid: 88d3e5589ddf54642b0be3b779aabd91, type: 3}
+  - {fileID: 21300000, guid: 336582a46774db741816235f145c750d, type: 3}
+  - {fileID: 21300000, guid: 62aed0a42d0cd6e4a9380a837322be8d, type: 3}
+  - {fileID: 21300000, guid: c63c0b57d90498f4b96782e49957660d, type: 3}
+  - {fileID: 21300000, guid: e0d3578a5dc26f94dbd94b2616bbf7a5, type: 3}
+  - {fileID: 21300002, guid: c9b87f933c939b241bdb89d05d3d27e3, type: 3}
+  - {fileID: 21300000, guid: 5f02fc54f1857e544b00a2ea2b91005c, type: 3}
+  - {fileID: 21300006, guid: 6d0df163110ae424f909acf887f94f27, type: 3}
+  - {fileID: 21300002, guid: 57289054a10f7e04bbe7d575d213f248, type: 3}
+  - {fileID: 21300000, guid: 3c3a29a727884844499b67527dba3c93, type: 3}
+  coinSprite: []
+  bossSprite: {fileID: 21300000, guid: 94e247a96c7456d4e8e6df0c558431a6, type: 3}
+  fieldSprites:
+  - {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  - {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  nextFieldSprites:
+  - {fileID: -1955121601114562390, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  - {fileID: 3092998500186721542, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  basicTypeColorList:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  - {r: 0.42352942, g: 0.6179283, b: 0.7764706, a: 1}
+  - {r: 0.42352942, g: 0.7764706, b: 0.4639406, a: 1}
+  - {r: 0.7735849, g: 0.41963333, b: 0.41963333, a: 1}
+  buildColor: {r: 0, g: 0, b: 0, a: 0}
+  specialCardColor: {r: 0, g: 0, b: 0, a: 0}
+  upValueColor: {r: 0, g: 0.5416665, b: 1, a: 1}
+  downValueColor: {r: 1, g: 0.13614154, b: 0, a: 1}
+  gradeColorDict:
+  - {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  - {r: 0.25943398, g: 0.6029696, b: 1, a: 1}
+  - {r: 1, g: 0.4575472, b: 0.9792908, a: 1}
+  - {r: 1, g: 0.96236783, b: 0.4481132, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  gradeSpriteDict:
+  - {fileID: 21300000, guid: b7be89ec6862e9143bc1930e13dabc61, type: 3}
+  - {fileID: 21300000, guid: b2d2147de3023c14b8f52bd731c66d78, type: 3}
+  - {fileID: 21300000, guid: c7ae2823cd2d9e34e9d2df6649bbb6fe, type: 3}
+  - {fileID: 21300000, guid: f3eeadf58692a5841beddf46dfd81b5e, type: 3}
+  - {fileID: 21300000, guid: acb5b7e67a237d3428c6014319588bd9, type: 3}

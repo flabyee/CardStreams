@@ -18,7 +18,6 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 {
     public BasicType basicType;
 
-    public Image backColorImage;
     public TextMeshProUGUI valueText;
     public TextMeshProUGUI fieldText;
 
@@ -67,7 +66,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void ApplyUI()
     {
-        backColorImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
+        backImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
 
         
         valueText.text = value.ToString();
@@ -160,7 +159,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         if (isHandle == false) return;
 
-        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, nameText.text, backColorImage.color, value);
+        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, nameText.text, backImage.color, value);
     }
 
     public void OnPointerExit(PointerEventData eventData)
