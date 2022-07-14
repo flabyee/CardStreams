@@ -28,9 +28,9 @@ public class Field : MonoBehaviour
     public DragbleCard dragbleCard;
     public CardPower cardPower;
 
-    public Action<Player> accessBuildToPlayerAfterOnField;
-    public Action<Player, Field> accessBeforeOnField;
-    public Action<Field> accessBuildToCardAfterMoveStart;
+    public Action<Player> accessBuildToPlayer;
+    //public Action<Player, Field> accessBeforeOnField;
+    public Action<Field> accessBuildToCard;
 
     public int tileNum;
 
@@ -73,7 +73,7 @@ public class Field : MonoBehaviour
     }
     public void OnBuildAccess()
     {
-        accessBuildToCardAfterMoveStart?.Invoke(this);
+        accessBuildToCard?.Invoke(this);
     }
 
     public void FieldReset()

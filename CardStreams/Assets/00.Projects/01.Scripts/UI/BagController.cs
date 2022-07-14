@@ -115,7 +115,7 @@ public class BagController : MonoBehaviour
             poolQueue.Enqueue(item.gameObject);
         }
 
-        buildScrollTrm.sizeDelta = new Vector2(0, 265);
-        specialScrollTrm.sizeDelta = new Vector2(0, 265);
+        buildScrollTrm.sizeDelta = new Vector2(0, 335);
+        specialScrollTrm.sizeDelta = new Vector2(0, 335);
     }
 }

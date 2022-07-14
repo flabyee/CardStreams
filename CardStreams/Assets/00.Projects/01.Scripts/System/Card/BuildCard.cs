@@ -57,8 +57,8 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
                 Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
             if(field != null)
             {
-                field.accessBuildToPlayerAfterOnField += buildSO.AccessPlayer;
-                field.accessBuildToCardAfterMoveStart += buildSO.AccessCard;
+                field.accessBuildToPlayer += buildSO.AccessPlayer;
+                field.accessBuildToCard += buildSO.AccessCard;
             }
         }
 
@@ -85,8 +85,8 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
                 Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
             if (field != null)
             {
-                field.accessBuildToPlayerAfterOnField -= buildSO.AccessPlayer;
-                field.accessBuildToCardAfterMoveStart -= buildSO.AccessCard;
+                field.accessBuildToPlayer -= buildSO.AccessPlayer;
+                field.accessBuildToCard -= buildSO.AccessCard;
             }
         }
 

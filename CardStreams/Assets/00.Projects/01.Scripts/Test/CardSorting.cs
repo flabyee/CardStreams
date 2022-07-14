@@ -12,6 +12,13 @@ public class CardSorting : MonoBehaviour
 
     [SerializeField] int step = 5; // 카드 간의 간격(4-6정도가 적당한듯)
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            AlignCards();
+        }
+    }
 
     public void AddList(CardPower obj) // 카드리스트에 담기
     {

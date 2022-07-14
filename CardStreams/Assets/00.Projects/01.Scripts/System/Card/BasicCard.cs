@@ -30,6 +30,8 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public bool isBoss;
 
+    public Image[] changeColorImages;
+
     public override void InitData_Feild(BasicType basicType, int value)
     {
         base.InitData_Feild(basicType, value);
@@ -66,8 +68,11 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
 
     public void ApplyUI()
     {
-        backImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
-
+        //backImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
+        for(int i = 0; i < changeColorImages.Length; i++)
+        {
+            changeColorImages[i].color = ConstManager.Instance.basicTypeColorList[(int)basicType];
+        }
         
         valueText.text = value.ToString();
         fieldText.text = value.ToString();
@@ -159,7 +164,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         if (isHandle == false) return;
 
-        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, nameText.text, backImage.color, value);
+        HandleCardTooltip.Instance.ShowBasic(transform.position + transform.up * 0.5f, faceImage.sprite, nameText.text, changeColorImages[0].color, value);
     }
 
     public void OnPointerExit(PointerEventData eventData)

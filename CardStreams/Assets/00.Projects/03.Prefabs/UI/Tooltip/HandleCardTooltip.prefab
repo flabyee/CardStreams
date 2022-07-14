@@ -1349,7 +1349,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -20, y: 40}
+  m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4762813958970142023
 GameObject:
@@ -2007,7 +2007,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -20, y: 40}
+  m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5619484015791305614
 GameObject:
@@ -2044,7 +2044,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -20, y: 40}
+  m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5860685864189259044
 GameObject:
@@ -3323,7 +3323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicObj: {fileID: 3527745131692735081}
   iconImage_basic: {fileID: 2796132988591246520}
-  backgroundColorImage_basic: {fileID: 2796132986781642460}
+  backgroundColorImage_basic: {fileID: 629485513618053312}
   nameText_basic: {fileID: 3804746899112322998}
   powerText_basic: {fileID: 8812456935286933826}
   descriptionText_basic: {fileID: 7006010200398269068}

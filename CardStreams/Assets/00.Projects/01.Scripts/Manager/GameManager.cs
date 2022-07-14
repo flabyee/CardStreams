@@ -479,14 +479,14 @@ public class GameManager : MonoBehaviour
             sequence.AppendInterval(0.25f);
 
             // 스페셜카드 효과 발동
-            sequence.AppendCallback(() =>
-            {
-                if (MapManager.Instance.fieldList[moveIndex].isSet == true)
-                {
-                    MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
-                }
-            });
-            sequence.AppendInterval(moveDuration);
+            //sequence.AppendCallback(() =>
+            //{
+            //    if (MapManager.Instance.fieldList[moveIndex].isSet == true)
+            //    {
+            //        MapManager.Instance.fieldList[moveIndex].accessBeforeOnField?.Invoke(player, MapManager.Instance.fieldList[moveIndex]);
+            //    }
+            //});
+            //sequence.AppendInterval(moveDuration);
 
             // 플레이어한테 필드 효과 적용
             sequence.AppendCallback(() =>
@@ -502,7 +502,7 @@ public class GameManager : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 // 플레이어에게 적용하는 것으로 cardPower 존재 유무는 상관없다
-                MapManager.Instance.fieldList[moveIndex].accessBuildToPlayerAfterOnField?.Invoke(player);
+                MapManager.Instance.fieldList[moveIndex].accessBuildToPlayer?.Invoke(player);
                 //Debug.Log("player apply build");
             });
             sequence.AppendInterval(moveDuration);
