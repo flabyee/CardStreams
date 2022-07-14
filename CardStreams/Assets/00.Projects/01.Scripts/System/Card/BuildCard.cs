@@ -20,9 +20,15 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     [Header("UI")]
     public TextMeshProUGUI tooltipText;
 
+    public bool isAcceseCard;
+    public bool isAccesePlayer = true;
+    public bool isAcceseLoopEnd;
+
 
     public void Init(BuildSO buildSO)
     {
+        isAccesePlayer = true;
+
         this.buildSO = buildSO;
 
         faceImage.sprite = this.buildSO.sprite;
@@ -57,8 +63,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
                 Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
             if(field != null)
             {
-                field.accessBuildToPlayer += buildSO.AccessPlayer;
-                field.accessBuildToCard += buildSO.AccessCard;
+                field.accessBuildList.Add(this);
             }
         }
 
@@ -85,12 +90,18 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
                 Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
             if (field != null)
             {
-                field.accessBuildToPlayer -= buildSO.AccessPlayer;
-                field.accessBuildToCard -= buildSO.AccessCard;
+                field.accessBuildList.Remove(this);
             }
         }
 
         BuildManager.Instance.OnBuildWhenTurnEndList.Remove(actionPosData);
+    }
+
+    public void AccesePlayer(Player player)
+    {
+        buildSO.AccessPlayer(player);
+
+        Effects.Instance.TriggerBubble(transform.position);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

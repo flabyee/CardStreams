@@ -43,14 +43,14 @@ public class FieldController
     }
 
     // °Ç¹° È¿°ú Àû¿ë
-    public void BuildAccessNextField(int nowIndex)
-    {
-        for (int i = nowIndex; i < nowIndex + 4; i++)
-        {
-            if(MapManager.Instance.fieldList[i].isSet == true)
-                MapManager.Instance.fieldList[i].OnBuildAccess();
-        }
-    }
+    //public void BuildAccessNextField(int nowIndex)
+    //{
+    //    for (int i = nowIndex; i < nowIndex + 4; i++)
+    //    {
+    //        if(MapManager.Instance.fieldList[i].isSet == true)
+    //            MapManager.Instance.fieldList[i].OnAcceseBuildToCard();
+    //    }
+    //}
     
 
     // ¾Õ¿¡ 4Ä­ÀÌ ²Ë Ã¡´ÂÁö

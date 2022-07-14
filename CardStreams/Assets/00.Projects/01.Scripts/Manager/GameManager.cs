@@ -425,7 +425,7 @@ public class GameManager : MonoBehaviour
         handleController.HandleReturnToDeck();
 
         // 카드에 건물 효과 적용
-        fieldController.BuildAccessNextField(moveIndex);
+        //fieldController.BuildAccessNextField(moveIndex);
 
         TurnStartEvent.Occurred();
 
@@ -472,11 +472,11 @@ public class GameManager : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 Vector3 movePos = MapManager.Instance.fieldList[moveIndex].transform.position;
-                player.transform.DOMove(movePos, 0.25f);
+                player.transform.DOMove(movePos, moveDuration);
                 //player.Move(MapManager.Instance.fieldRectList[moveIndex].transform.position, 0.25f);
 
             });
-            sequence.AppendInterval(0.25f);
+            sequence.AppendInterval(moveDuration);
 
             // 스페셜카드 효과 발동
             //sequence.AppendCallback(() =>
@@ -488,7 +488,7 @@ public class GameManager : MonoBehaviour
             //});
             //sequence.AppendInterval(moveDuration);
 
-            // 플레이어한테 필드 효과 적용
+            // 플레이어한테 필드 효과 적용 
             sequence.AppendCallback(() =>
             {
                 if (MapManager.Instance.fieldList[moveIndex].isSet == true)
@@ -498,14 +498,21 @@ public class GameManager : MonoBehaviour
             });
             sequence.AppendInterval(moveDuration);
 
+
             // 플레이어한테 건물효과 적용
-            sequence.AppendCallback(() =>
+            foreach (BuildCard buildCard in MapManager.Instance.fieldList[moveIndex + i].accessBuildList)
             {
-                // 플레이어에게 적용하는 것으로 cardPower 존재 유무는 상관없다
-                MapManager.Instance.fieldList[moveIndex].accessBuildToPlayer?.Invoke(player);
-                //Debug.Log("player apply build");
-            });
-            sequence.AppendInterval(moveDuration);
+                if (buildCard.isAccesePlayer == true)
+                {
+                    Debug.Log("accese player");
+
+                    sequence.AppendCallback(() =>
+                    {
+                        buildCard.AccesePlayer(player);
+                    });
+                    sequence.AppendInterval(moveDuration * 2);
+                }
+            }
 
             sequence.AppendCallback(() => {
                 moveIndex++;

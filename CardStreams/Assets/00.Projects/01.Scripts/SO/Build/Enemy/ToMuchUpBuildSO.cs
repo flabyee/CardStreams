@@ -14,6 +14,5 @@ public class ToMuchUpBuildSO : EnemyBuildSO
 
         cardPower.AddValue(upAmount);
 
-        OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }
 }

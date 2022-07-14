@@ -31,7 +31,6 @@ public class HPLakeBuildSO : BuildSO
             hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + healAmount, 0, hpValue.RuntimeMaxValue);
 
             playerValueChangeEvnet.Occurred();
-            OnFieldTooltip.Instance.ShowBuild(player.transform.position, sprite);
         }
     }
 }

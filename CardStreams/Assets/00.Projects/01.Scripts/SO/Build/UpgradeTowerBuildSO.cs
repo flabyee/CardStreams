@@ -20,7 +20,6 @@ public class UpgradeTowerBuildSO : BuildSO
             text.text = cardPower.value.ToString();
             text.color = Color.red;
 
-            OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
     }
 
     public override void AccessPlayer(Player player)

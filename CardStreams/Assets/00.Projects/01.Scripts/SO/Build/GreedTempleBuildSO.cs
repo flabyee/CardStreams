@@ -16,7 +16,6 @@ public class GreedTempleBuildSO : BuildSO
         {
             cardPower.goldP = goldPAmount;
 
-            OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
         }
     }
 }

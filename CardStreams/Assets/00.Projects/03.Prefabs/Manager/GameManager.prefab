@@ -54,6 +54,7 @@ MonoBehaviour:
   rerollCount: 0
   player: {fileID: 0}
   moveDuration: 0.2
+  buildDuration: 0.25
   fieldResetDelay: 0.1
   canStartTurn: 0
   moveIndex: 0

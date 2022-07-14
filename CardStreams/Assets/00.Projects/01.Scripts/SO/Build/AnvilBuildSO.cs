@@ -40,6 +40,5 @@ public class AnvilBuildSO : BuildSO
 
         playerValueChangeEvnet.Occurred();
 
-        OnFieldTooltip.Instance.ShowBuild(player.transform.position, sprite);
     }
 }

@@ -25,6 +25,5 @@ public class CounterAnvilBuildSO : EnemyBuildSO
 
         playerValueChangeEvnet.Occurred();
 
-        OnFieldTooltip.Instance.ShowBuild(player.transform.position, sprite);
     }
 }

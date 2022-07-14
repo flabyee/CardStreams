@@ -28,9 +28,8 @@ public class Field : MonoBehaviour
     public DragbleCard dragbleCard;
     public CardPower cardPower;
 
-    public Action<Player> accessBuildToPlayer;
-    //public Action<Player, Field> accessBeforeOnField;
-    public Action<Field> accessBuildToCard;
+    public List<BuildCard> accessBuildList;
+
 
     public int tileNum;
 
@@ -70,10 +69,6 @@ public class Field : MonoBehaviour
         dragbleCard = null;
 
         colorImage.color = Color.white;
-    }
-    public void OnBuildAccess()
-    {
-        accessBuildToCard?.Invoke(this);
     }
 
     public void FieldReset()

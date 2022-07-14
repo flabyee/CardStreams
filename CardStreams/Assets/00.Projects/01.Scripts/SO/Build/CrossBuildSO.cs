@@ -18,7 +18,6 @@ public class CrossBuildSO : BuildSO
         {
             cardPower.AddValue(-minusMonsterAmount);
 
-            OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
 
         }
     }

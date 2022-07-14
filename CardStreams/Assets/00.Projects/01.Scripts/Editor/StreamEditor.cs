@@ -7,6 +7,7 @@ public class StreamEditor : EditorWindow
 {
     IntValue goldValue;
     EventSO GoldChangeEvnet;
+    ShopController shopController;
 
     [MenuItem("Window/StreamEditor")]
     public static void ShowWindow()
@@ -17,12 +18,16 @@ public class StreamEditor : EditorWindow
     {
         goldValue = Resources.Load<IntValue>("Gold");
         GoldChangeEvnet = Resources.Load<EventSO>("GoldChange");
+        shopController = FindObjectOfType<ShopController>();
 
-
-        if(GUILayout.Button("Get Gold 100"))
+        if (GUILayout.Button("Get Gold 100"))
         {
             goldValue.RuntimeValue += 100;
             GoldChangeEvnet.Occurred();
+        }
+        if (GUILayout.Button("Upgrade Shop"))
+        {
+            shopController.UpgradeShop();
         }
 
         if(GUILayout.Button("Get Gold 100 in menu"))

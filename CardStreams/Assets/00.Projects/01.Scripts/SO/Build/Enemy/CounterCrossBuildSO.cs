@@ -16,7 +16,6 @@ public class CounterCrossBuildSO : EnemyBuildSO
         {
             cardPower.SetValue(cardPower.value + addMonsterAmount);
 
-            OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
         }
     }
 }

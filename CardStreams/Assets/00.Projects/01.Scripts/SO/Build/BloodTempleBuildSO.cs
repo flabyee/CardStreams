@@ -29,7 +29,6 @@ public class BloodTempleBuildSO : BuildSO
 
             playerValueChangeEvnet.Occurred();
 
-            OnFieldTooltip.Instance.ShowBuild(player.transform.position, sprite);
         }
     }
 }

@@ -16,7 +16,6 @@ public class PotionUpBuildSO : BuildSO
         {
             cardPower.AddValue(plusPotionAmount);
 
-            OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
         }
     }
 

@@ -214,11 +214,6 @@ public class MapManager : MonoBehaviour
                 break;
         }
     }
-
-    public void BuildAccess(int index)
-    {
-        fieldList[index].OnBuildAccess();
-    }
 }
 
 // 맵 생성할 때 정렬하기 위해서 존재하는 클래스
