@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour
         if(isFirst == true)
             ShowTuTorialEvent?.Invoke(1);
 
-        curState = GameState.TurnStart;
+        curState = GameState.Move;
         nextState = GameState.Move;
     }
 

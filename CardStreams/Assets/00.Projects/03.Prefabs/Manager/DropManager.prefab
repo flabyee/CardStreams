@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3510374096733869557}
   - component: {fileID: 3510374096733869558}
+  - component: {fileID: 4172005240025058466}
   m_Layer: 0
   m_Name: DropManager
   m_TagString: Untagged
@@ -50,3 +51,31 @@ MonoBehaviour:
   hoverTrm: {fileID: 0}
   rerollEvent: {fileID: 11400000, guid: 2535d175b75e79445b48d744b35d2a95, type: 2}
   curDragingObj: {fileID: 0}
+--- !u!114 &4172005240025058466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510374096733869556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 142ccbfbc769d294698c460142ed95da, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3510374096733869558}
+        m_TargetAssemblyTypeName: DropManager, Assembly-CSharp
+        m_MethodName: Init
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

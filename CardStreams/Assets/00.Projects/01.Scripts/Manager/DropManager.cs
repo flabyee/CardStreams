@@ -18,7 +18,7 @@ public class DropManager : MonoBehaviour
 
     public GameObject curDragingObj;
 
-    private void Start()
+    public void Init()
     {
         foreach (DropArea dropArea in DropArea.dropAreas)
         {
