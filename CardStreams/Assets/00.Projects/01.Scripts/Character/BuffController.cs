@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffController : MonoBehaviour
+public class BuffController : MonoBehaviour 
 {
     private readonly List<Buff> buffList = new List<Buff>();
 

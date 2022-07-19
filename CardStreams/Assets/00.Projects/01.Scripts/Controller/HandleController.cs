@@ -359,7 +359,7 @@ public class HandleController : MonoBehaviour
     }
     public IEnumerator DrawSpecialCard()
     {
-        Debug.Log(specialDeck.Count);
+        //Debug.Log(specialDeck.Count);
         for (int i = 0; i < specialDeck.Count; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, specialDeck.Count);
@@ -385,8 +385,8 @@ public class HandleController : MonoBehaviour
 
                 // specialCard 관련 초기화
                 SpecialCard specialCard = specialCardObj.GetComponent<SpecialCard>();
-                Debug.Log(avoidClosure);
-                Debug.Log("Count : " + specialDeck.Count);
+                //Debug.Log(avoidClosure);
+                //Debug.Log("Count : " + specialDeck.Count);
                 specialCard.Init(DataManager.Instance.GetSpecialCardSO(temp));
 
                 // dragble 관련 초기화

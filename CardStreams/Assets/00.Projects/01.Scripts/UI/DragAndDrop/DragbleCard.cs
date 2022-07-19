@@ -158,9 +158,6 @@ public class DragbleCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             return;
         }
 
-        GameObject rayObj = eventData.selectedObject;
-        Debug.Log(rayObj.name);
-
         // 드래그 시작할 때 설정한 값을 이용해서 이동
         //Vector3 worldPointerPosition;
         //if (RectTransformUtility.ScreenPointToWorldPointInRectangle(clampRectTransform, eventData.position,
