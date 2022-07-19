@@ -9,6 +9,7 @@ public class BagController : MonoBehaviour
     public GameObject bagCardPrefab;
     public RectTransform buildScrollTrm;
     public RectTransform specialScrollTrm;
+    public GameObject notItemImage;
 
     public GameObject buildPanel;
     public GameObject specialPanel;
@@ -57,12 +58,18 @@ public class BagController : MonoBehaviour
 
     public void OnBuild()
     {
+        bool notItem = (buildScrollTrm.childCount <= 0) ? true : false;
+        SetActiveNotItem(notItem);
+
         buildPanel.SetActive(true);
         specialPanel.SetActive(false);
     }
 
     public void OnSpecial()
     {
+        bool notItem = (specialScrollTrm.childCount <= 0) ? true : false;
+        SetActiveNotItem(notItem);
+
         specialPanel.SetActive(true);
         buildPanel.SetActive(false);
     }
@@ -117,5 +124,10 @@ public class BagController : MonoBehaviour
 
         buildScrollTrm.sizeDelta = new Vector2(0, 335);
         specialScrollTrm.sizeDelta = new Vector2(0, 335);
+    }
+
+    public void SetActiveNotItem(bool value)
+    {
+        notItemImage.SetActive(value);
     }
 }
