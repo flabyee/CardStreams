@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
         switch (nextState)
         {
             case GameState.TurnStart:
-                curState = GameState.TurnStart;
+                curState = GameState.Move;
                 TurnStart();
                 break;
             case GameState.TurnEnd:
@@ -340,7 +340,6 @@ public class GameManager : MonoBehaviour
         if(isFirst == true)
             ShowTuTorialEvent?.Invoke(1);
 
-        curState = GameState.Move;
         nextState = GameState.Move;
     }
 
