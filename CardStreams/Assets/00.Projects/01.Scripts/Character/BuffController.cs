@@ -33,11 +33,11 @@ public class BuffController : MonoBehaviour
     {
         foreach (var buff in buffList)
         {
-            Debug.Log("Use Buff");
+            //Debug.Log("Use Buff");
 
             if (timing == buff.timing)
             {
-                Debug.Log("Use Buff Timing");
+                //Debug.Log("Use Buff Timing");
                 buff.UseBuff(prevDamage);
                 buff.ReduceBuffTime();
             }
@@ -54,5 +54,15 @@ public class BuffController : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void RemoveAllBuff()
+    {
+        buffList.Clear();
+    }
+
+    public List<Buff> GetBuffList()
+    {
+        return buffList;
     }
 }

@@ -57,4 +57,19 @@ public class Buff
     {
         OnBuff(prevDamage);
     }
+
+    public Buff GetCopyBuff()
+    {
+        Buff copyBuff = new Buff();
+
+        copyBuff.id = id;
+        copyBuff.timing = timing;
+        copyBuff.remainTime = remainTime;
+        copyBuff.buffName = buffName;
+        copyBuff.buffIcon = buffIcon;
+
+        copyBuff.OnBuff += OnBuff;
+
+        return copyBuff;
+    }
 }

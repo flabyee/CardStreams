@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 class Values
 {
@@ -16,35 +18,52 @@ class Values
     }
 }
 
-public class PreviewManager : MonoBehaviour
+public class PreviewController : MonoBehaviour
 {
+    public TextMeshProUGUI resultText;
+
     int maxMoveCount = 4;
 
-    Player tempPlayer;
+    BuffController playerBuffCon;
+    public Player tempPlayer;
+    public BuffController tempPlayerBuffCon;
 
     IntValue hpValue;
     IntValue swordValue;
     IntValue shieldValue;
 
-    private void Awake()
+    private void Start()
     {
-        tempPlayer = GetComponent<Player>();
+        playerBuffCon = GameManager.Instance.player.GetComponent<BuffController>();
 
         hpValue = tempPlayer.hpValue;
         swordValue = tempPlayer.swordValue;
         shieldValue = tempPlayer.shieldValue;
     }
 
-    public void OnPreviewMode(int moveIndex)
+    public void OnPreviewMode()
     {
-        moveIndex = GameManager.Instance.moveIndex;
+        resultText.text = string.Empty;
+
+        int moveIndex = GameManager.Instance.moveIndex;
 
         // 기존 값, 버프 저장
         int originHP = hpValue.RuntimeValue;
         int originSword = swordValue.RuntimeValue;
         int originShield = shieldValue.RuntimeValue;
 
-        // temp에 버프 적용
+        Queue<Buff> originBuffList = new Queue<Buff>();
+        foreach(Buff buff in playerBuffCon.GetBuffList())
+        {
+            originBuffList.Enqueue(buff.GetCopyBuff());
+        }
+
+        // temp에게 버프 적용
+        tempPlayerBuffCon.RemoveAllBuff();
+        foreach(Buff buff in originBuffList)
+        {
+            tempPlayerBuffCon.AddBuff(buff);
+        }
 
         // move 한 결과 저장
         Queue<Values> valueList = Move(moveIndex);
@@ -52,7 +71,9 @@ public class PreviewManager : MonoBehaviour
         // ui로 표시
         foreach(Values values in valueList)
         {
-            Debug.Log($"hp : {values.hp}, swrod : {values.sword}, shield : {values.shield}");
+            print($"hp : {values.hp}, swrod : {values.sword}, shield : {values.shield}");
+
+            resultText.text += $"{values.hp}/{values.sword}/{values.shield}" + "\n";
         }
 
         // 값, 버프 되돌리기

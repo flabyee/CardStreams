@@ -31,11 +31,6 @@ public class Player : MonoBehaviour
         rectTrm = GetComponent<RectTransform>();
         buffCon = GetComponent<BuffController>();
 
-        if (rectTrm == null)
-        {
-            Debug.LogError("player rectTrm is null");
-        }
-
         // IntValue Init
         hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
         swordValue.RuntimeValue = 0;
