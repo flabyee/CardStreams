@@ -355,7 +355,7 @@ public class GameManager : MonoBehaviour
 
         canNext = false;
 
-        if(loopCountValue.RuntimeValue == bossRound - 1)
+        if(IsBossRound()) // 보스가 나오는 루프일때
         {
             handleController.LoopEnd(true);
         }
@@ -578,7 +578,7 @@ public class GameManager : MonoBehaviour
         }
 
         // 보스라 일 때
-        if (loopCountValue.RuntimeValue == bossRound - 1)
+        if (IsBossRound()) // 보스가 나오는 루프일때
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             SoundManager.Instance.PlayBGM(BGMType.Boss);
@@ -587,16 +587,11 @@ public class GameManager : MonoBehaviour
             isBossEnd = true;
         }
         // 일반 라일때
-        else if (loopCountValue.RuntimeValue < bossRound - 1)
+        else
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             enemyController.CreateRandomMob();
             enemyController.RandomEnemyBuild();
-
-        }
-        else
-        {
-            
         }
 
         StartCoroutine(Delay(() =>
@@ -608,7 +603,10 @@ public class GameManager : MonoBehaviour
             }
 
             shopController.Show();
-            selectRewardManager.Show();
+            if (IsBossEnter()) // 보스라운드 깨고 다음으로 넘어갔으면 보상창오픈
+            {
+                selectRewardManager.Show();
+            }
             blurController.SetActive(true);
 
             canNext = true;
@@ -769,5 +767,16 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private bool IsBossRound()
+    {
+        return (loopCountValue.RuntimeValue + 1) % bossRound == 0; // 현재루프가 보스라운드의 배수라면 true
+    }
+
+    private bool IsBossEnter()
+    {
+        // 현재 루프가 0이 아니면서 + 현재루프가 보스라운드 다음이라면 true
+        return (loopCountValue.RuntimeValue != 0) && ( (loopCountValue.RuntimeValue + 1) % bossRound == 1) ;
     }
 } 
