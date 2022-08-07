@@ -32,7 +32,6 @@ public class HandleController : MonoBehaviour
     private int deckValueAmount;
     private int deckValueIncreaseAmount;
     private float deckValueIncreaseMultipication;
-    private int bossDownValue;
 
     private float originHandleY;
     public float handleMoveAmount;
@@ -55,7 +54,6 @@ public class HandleController : MonoBehaviour
         deckValueAmount = stageData.firstDeckValueAmount;
         deckValueIncreaseAmount = stageData.deckValueIncreaseAmount;
         deckValueIncreaseMultipication = stageData.deckValueIncreaseMultipication;
-        bossDownValue = stageData.downValue;
         
         maxValue = 5;
 
@@ -461,7 +459,7 @@ public class HandleController : MonoBehaviour
         seq.AppendCallback(() => StartCoroutine(DrawSpecialCard()));
     }
 
-    public void LoopEnd(bool isBoss)
+    public void LoopEnd()
     {
         // 남아있는 플레이어 핸드 제거
         for(int i = playerHandleObj.Count - 1; i >= 0; i--)
@@ -477,11 +475,6 @@ public class HandleController : MonoBehaviour
         maxValue = Mathf.RoundToInt((float)maxValue * deckValueIncreaseMultipication);
 
         deckValueIncreaseAmount = Mathf.RoundToInt((float)deckValueIncreaseAmount * deckValueIncreaseMultipication);
-
-        if(isBoss)
-        {
-            deckValueAmount += bossDownValue;
-        }
 
         DeckMake();
     }

@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     private int bossRound;
 
 
+
     [Header("StageData")]
     private int maxMoveCount;
 
@@ -345,24 +346,17 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnd()
     {
-        if(isBossEnd == true)
-        {
-            blurController.SetActive(true);
-            clearPanel.SetActive(true);
-            canNext = false;
-            return;
-        }
+        //if(isBossEnd == true)
+        //{
+        //    blurController.SetActive(true);
+        //    clearPanel.SetActive(true);
+        //    canNext = false;
+        //    return;
+        //}
 
         canNext = false;
 
-        if(IsBossRound()) // 보스가 나오는 루프일때
-        {
-            handleController.LoopEnd(true);
-        }
-        else
-        {
-            handleController.LoopEnd(false);
-        }
+        handleController.LoopEnd();
 
         moveIndex = 0;
 
@@ -438,8 +432,29 @@ public class GameManager : MonoBehaviour
         // 이전 4개의 필드
         fieldController.SetBeforeFieldNot(moveIndex);
 
+        // 보스라 중이라면 보스와 전투후 뒤로 밀기
+        if (IsBossRound())
+        {
+            // 보스와 전투, 플레이어가 죽으면 true
+            if(player.OnBoss(enemyController.GetBossAtk(), out int sword)) // 플레이어 칼 수치를 out에 담는다
+            {
+                // 사망 처리
+                GameEnd();
+                return;
+            }
+            else
+            {
+                // 보스 체력 까기
+                enemyController.AttackBoss(sword);
+
+                // 보스 뒤로 미루고 해당 칸 카드 비우기 or 몬스터 0으로 설정하기? 아무튼 배치가 안되야함 
+                // 아 아니구나 그냥 뒤로 미루기만 하면됨, 나중에는 그 자리에 랜덤몹이면 힐 되게?
+                enemyController.MoveBoss(moveIndex);
+            }
+        }
+
         // 마지막이 아니라면 혹은 다음 칸이 있다면
-        if(moveIndex != MapManager.Instance.fieldCount)
+        if (moveIndex != MapManager.Instance.fieldCount)
         {
             // 다음 필드(fieldType 변경)
             fieldController.SetNextFieldAble(moveIndex);
@@ -577,40 +592,50 @@ public class GameManager : MonoBehaviour
             isTutoEnd = true;
         }
 
-        // 보스라 일 때
-        if (IsBossRound()) // 보스가 나오는 루프일때
+        // 다음 루프가 보스가 나오는 루프일때
+        if (IsBossEnter()) 
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             SoundManager.Instance.PlayBGM(BGMType.Boss);
             enemyController.BossRound();
-
-            isBossEnd = true;
         }
         // 일반 라일때
         else
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             enemyController.CreateRandomMob();
-            enemyController.RandomEnemyBuild();
+            enemyController.CreateEnemyBuild();
         }
 
-        StartCoroutine(Delay(() =>
+        // 보스가 나온 이후에 못잡고 한바퀴를 돌면 패널티 부여
+        if(IsBossRound())
         {
-            if (isFirst == true)
-            {
-                isFirst = false;
-                ShowTuTorialEvent?.Invoke(2);
-            }
-
-            shopController.Show();
-            if (IsBossEnter()) // 보스라운드 깨고 다음으로 넘어갔으면 보상창오픈
-            {
-                selectRewardManager.Show();
-            }
-            blurController.SetActive(true);
-
             canNext = true;
-        }, 1.5f));
+
+            enemyController.CreateEnemyBuild();
+            enemyController.CreateEnemyBuild();
+            enemyController.CreateEnemyBuild();
+        }
+        else
+        {
+            StartCoroutine(Delay(() =>
+            {
+                if (isFirst == true)
+                {
+                    isFirst = false;
+                    ShowTuTorialEvent?.Invoke(2);
+                }
+
+                shopController.Show();
+                //if (IsBossRound()) // 보스라운드 깨고 다음으로 넘어갔으면 보상창오픈
+                //{
+                //    selectRewardManager.Show();
+                //}
+                blurController.SetActive(true);
+
+                canNext = true;
+            }, 1.5f));
+        }
     }
 
     private void OnEquip()
@@ -771,12 +796,13 @@ public class GameManager : MonoBehaviour
 
     private bool IsBossRound()
     {
-        return (loopCountValue.RuntimeValue + 1) % bossRound == 0; // 현재루프가 보스라운드의 배수라면 true
+        // 현재 보스를 잡는중 이라면
+        return loopCountValue.RuntimeValue >= bossRound;
     }
 
     private bool IsBossEnter()
     {
-        // 현재 루프가 0이 아니면서 + 현재루프가 보스라운드 다음이라면 true
-        return (loopCountValue.RuntimeValue != 0) && ( (loopCountValue.RuntimeValue + 1) % bossRound == 1) ;
+        // 다음 라운드가 보스라면
+        return loopCountValue.RuntimeValue + 1 == bossRound;
     }
 } 

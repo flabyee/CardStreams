@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 public class EnemyController : MonoBehaviour
 {
+
     // 적 생성
     private int mobSpawnAmount;
     private int mobSpawnIncreaseAmount;
@@ -18,6 +20,15 @@ public class EnemyController : MonoBehaviour
     public IntValue loopCountValue;
 
     public GameObject bossSpawnImage;
+
+    // 보스 관련
+    public Transform bossParentTrm;
+    public GameObject bossPrefab;
+    private GameObject bossObj;
+    private TextMeshProUGUI bossValueText;
+
+    private int bossHp = 30;     // 보스의 현재 체력
+    private int bossAtk = 1;    // 보스와 주고받는 공격량
 
     private void Awake()
     {
@@ -158,7 +169,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// 건물
     /// </summary>
-    public void RandomEnemyBuild()
+    public void CreateEnemyBuild()
     {
         if (loopCountValue.RuntimeValue == 0)
             return;
@@ -193,57 +204,59 @@ public class EnemyController : MonoBehaviour
 
     public void BossRound()
     {
-        mobSpawnAmount /= 2;
-        mobAttackAmount /= 2;
-
         CreateRandomMob();
-        RandomEnemyBuild();
-        // RandomEnemyBuild();
-        // RandomEnemyBuild();
+        CreateEnemyBuild();
 
-        CreateBoss(MapManager.Instance.fieldCount - 1);
+        CreateBoss();
     }
 
-    public void CreateBoss(int fieldIndex)
+    public void CreateBoss()
     {
         int value = bossValue;
 
-        // 새로운 카드 생성 + 부모 설정
-        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(MapManager.Instance.fieldList[fieldIndex].transform);
-        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-        CardPower cardPower = cardObj.GetComponent<CardPower>();
+        // 보스 생성
+        bossObj = Instantiate(bossPrefab, bossParentTrm);
+        bossObj.transform.position = MapManager.Instance.fieldList[4].transform.position;
 
-        (cardPower as BasicCard).isBoss = true;
+        bossValueText = bossObj.GetComponentInChildren<TextMeshProUGUI>();
+        bossValueText.text = bossHp.ToString();
 
-        // cardPower에 정보 넣기
-        dragbleCard.InitData_Feild(BasicType.Monster, value);
+        Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[4].transform.position);
 
-        // 못 움직이게
-        dragbleCard.canDragAndDrop = false;
-        cardPower.SetField();
-
-        Field field = MapManager.Instance.fieldList[fieldIndex];
-
-        // 위치&부모 설정
-        dragbleCard.transform.position = field.transform.position;
-        dragbleCard.transform.SetParent(field.transform);
-
-        // 필드에 적용 + not으로
-        field.Init(cardPower, dragbleCard, FieldState.randomMob);
-
-        dragbleCard.SetDroppedArea(field.dropArea);
-
-        // craete effect
-        //EffectManager.Instance.GetSpawnMobEffect(MapManager.Instance.fieldList[fieldIndex].transform.position);
-        Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[fieldIndex].transform.position);
-
-        (cardPower as BasicCard).OnField();
-
+        // 연출
         bossSpawnImage.SetActive(true);
         bossSpawnImage.GetComponent<Image>().DOFade(1f, 0f);
         bossSpawnImage.GetComponent<Image>().DOFade(0f, 2f);
         StartCoroutine(Temp(2f));
-       
+    }
+
+    public void MoveBoss(int moveIndex)
+    {
+        if(bossObj == null)
+        {
+            Debug.LogError("보스가 없는데 보스를 움직이려 했습니다");
+            return;
+        }
+
+        bossObj.transform.DOMove(MapManager.Instance.fieldList[(moveIndex + 4) % MapManager.Instance.fieldCount].transform.position, 1f);
+    }
+
+    public int GetBossAtk()
+    {
+        return bossAtk;
+    }
+
+    public void AttackBoss(int sword)
+    {
+        bossHp -= bossAtk + sword;
+
+        // UI 갱신
+        bossValueText.text = bossHp.ToString();
+
+        if(bossHp <= 0)
+        {
+
+        }
     }
 
     IEnumerator Temp(float delay)

@@ -97,6 +97,47 @@ public class Player : MonoBehaviour
 
     }
 
+    public bool OnBoss(int damage, out int sword)
+    {
+        int currentMonsterValue = damage;
+
+        // 방패 쓰는지 검사
+        int leftShieldValue = shieldValue.RuntimeValue;
+
+        if (currentMonsterValue > 0 && shieldValue.RuntimeValue > 0) // 남은 몬스터 공격력이 0 이상이고 방패가 있으면
+        {
+            buffCon.UseBuffs(UseTiming.BeforeShield, currentMonsterValue);
+
+            if (currentMonsterValue - shieldValue.RuntimeValue > 0) // 몬스터가더크면
+            {
+                currentMonsterValue -= shieldValue.RuntimeValue; // 몬스터 -= 방패
+                leftShieldValue = 0; // 방패 0
+            }
+            else // 방패가더크면
+            {
+                leftShieldValue -= currentMonsterValue; // 방패 -= 몬스터
+                currentMonsterValue = 0; // 피해 0
+            }
+
+            buffCon.UseBuffs(UseTiming.AfterShield, currentMonsterValue);
+        }
+
+        // 칼 사용해서 보스에게 추가 피해
+        sword = swordValue.RuntimeValue;
+        swordValue.RuntimeValue = 0;
+
+        // 방패 남은거
+        shieldValue.RuntimeValue = leftShieldValue;
+
+        // 실제데미지 적용
+        currentMonsterValue = Mathf.Clamp(currentMonsterValue, 0, 99);
+        hpValue.RuntimeValue -= currentMonsterValue;
+        playerValueChangeEvent.Occurred();
+
+
+        return hpValue.RuntimeValue <= 0;
+    }
+
     private void AddFieldBuff(List<Buff> buffList) // 필드의 버프들을 버프컨트롤러에 추가
     {
         foreach (Buff buff in buffList)
