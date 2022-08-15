@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoDelay
+public class Util
 {
     public static IEnumerator DelayCoroutine(float delayTime, Action completeCallback)
     {
