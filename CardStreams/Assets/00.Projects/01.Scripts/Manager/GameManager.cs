@@ -367,17 +367,16 @@ public class GameManager : MonoBehaviour
         {
             // Á¤»ê
             StartCoroutine(JungSanCor());
+            nextState = GameState.Modify;
         }
         else
         {
             StartCoroutine(FieldResetCor());
+            TurnEndEvent.Occurred();
+            nextState = GameState.TurnStart;
         }
 
         EffectManager.Instance.DeleteNextBuildEffect();
-
-        TurnEndEvent.Occurred();
-
-        nextState = GameState.Modify;
 
         if(isTutoEnd == true)
         {
@@ -669,8 +668,6 @@ public class GameManager : MonoBehaviour
 
         nextState = GameState.Equip;
 
-
-
         if(isTutoEnd == false && DataManager.Instance.stageNumValue.RuntimeValue == 0)
         {
             isTutoEnd = true;
@@ -696,9 +693,9 @@ public class GameManager : MonoBehaviour
         {
             canNext = true;
 
-            enemyController.CreateEnemyBuild();
-            enemyController.CreateEnemyBuild();
-            enemyController.CreateEnemyBuild();
+            //enemyController.CreateEnemyBuild();
+            //enemyController.CreateEnemyBuild();
+            //enemyController.CreateEnemyBuild();
         }
         else
         {

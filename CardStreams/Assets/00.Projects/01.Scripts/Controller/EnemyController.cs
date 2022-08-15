@@ -31,14 +31,21 @@ public class EnemyController : MonoBehaviour
     private int bossInitAtk;
     
 
-    public Action<int> bossMoveEvent;
+    public Action<int, int> bossMoveEvent;
 
 
     private void Awake()
     {
         enemyBuildList = Resources.Load<BuildListSO>("EnemyBuildListSO").buildList;
-    }
 
+        bossMoveEvent = (i, moveIndex) =>
+        {
+            if(i == 1 || i == 3)
+            {
+                CreateEnemy(i + moveIndex - 1);
+            }
+        };
+    }
 
     private void Start()
     {
@@ -209,7 +216,7 @@ public class EnemyController : MonoBehaviour
 
     public void BossRound()
     {
-        CreateRandomMob();
+        //CreateRandomMob();
         CreateEnemyBuild();
 
         CreateBoss();
@@ -248,7 +255,7 @@ public class EnemyController : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 Boss.MovePos(MapManager.Instance.fieldList[(moveIndex + closerIndex) % MapManager.Instance.fieldCount].transform.position, 1f);
-                bossMoveEvent?.Invoke(moveIndex + closerIndex);
+                bossMoveEvent?.Invoke(closerIndex, moveIndex);
             });
             sequence.AppendInterval(1f);
         }
