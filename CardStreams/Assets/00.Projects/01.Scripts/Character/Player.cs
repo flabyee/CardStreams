@@ -32,7 +32,8 @@ public class Player : MonoBehaviour
         buffCon = GetComponent<BuffController>();
 
         // IntValue Init
-        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
+        hpValue.RuntimeValue = hpValue.InitialMaxValue;
+        hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
         goldValue.RuntimeValue = 0;

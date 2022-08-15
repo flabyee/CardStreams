@@ -99,17 +99,19 @@ public class GoldAnimManager : MonoBehaviour
         {
             Sequence seq = DOTween.Sequence();
             seq.AppendInterval(1f);
-            seq.AppendCallback(() => GetAllCoin());
+            seq.AppendCallback(() => GetAllCoin(0f));
         }
     }
 
-    public void GetAllCoin(bool isJungsan = false)
+    public void GetAllCoin(float delay, bool isJungsan = false)
     {
-        StartCoroutine(GetCoinCor(isJungsan));
+        Debug.Log("실행1");
+        StartCoroutine(Util.DelayCoroutine(delay, () => StartCoroutine(GetCoinCor(isJungsan))));
     }
 
     private IEnumerator GetCoinCor(bool isJungsan)
     {
+        Debug.Log("실행");
         originGold = goldValue.RuntimeValue;
 
         // 돈 들어오는 연출
