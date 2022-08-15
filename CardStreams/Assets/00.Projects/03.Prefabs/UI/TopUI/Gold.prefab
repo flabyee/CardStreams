@@ -370,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213379795833152455}
   m_Layer: 5
-  m_Name: GoldBezireTarget
+  m_Name: GoldBezierTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

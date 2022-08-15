@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8710500360120161050}
   - component: {fileID: 8168263710466031967}
   m_Layer: 5
-  m_Name: fieldText
+  m_Name: BossHPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 6364193893644089246}
   - component: {fileID: 1280975539989362468}
   - component: {fileID: 2955821540403039797}
+  - component: {fileID: 5593543848537084669}
   m_Layer: 5
   m_Name: BossPrefab
   m_TagString: Untagged
@@ -456,3 +457,16 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 7176487349515080768}
+--- !u!114 &5593543848537084669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7176487349515080830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564f713ae99be1a47a2b37cbbcf50be2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHpText: {fileID: 8168263710466031967}

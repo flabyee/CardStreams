@@ -25,18 +25,18 @@ public class EnemyController : MonoBehaviour
     // 보스 관련
     public Transform bossParentTrm;
     public GameObject bossPrefab;
-    private GameObject bossObj;
-    private TextMeshProUGUI bossValueText;
-    private int bossHp;
-    private int bossAtk;
 
-    public Action<int> bossMoveEvnet;
+    [HideInInspector] public Boss Boss;
+    private int bossInitHp;
+    private int bossInitAtk;
+    
+
+    public Action<int> bossMoveEvent;
 
 
     private void Awake()
     {
         enemyBuildList = Resources.Load<BuildListSO>("EnemyBuildListSO").buildList;
-
     }
 
 
@@ -53,8 +53,8 @@ public class EnemyController : MonoBehaviour
         mobAttackAmount = stageData.firstMobAttackAmount;
         mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
 
-        bossHp = stageData.bossHP;
-        bossAtk = stageData.bossAtk;
+        bossInitHp = stageData.bossHP;
+        bossInitAtk = stageData.bossAtk; // 현재 루프 카운트로 해도 될듯 4루프때 4뎀
     }
 
     /// <summary>
@@ -218,24 +218,23 @@ public class EnemyController : MonoBehaviour
     public void CreateBoss()
     {
         // 보스 생성
-        bossObj = Instantiate(bossPrefab, bossParentTrm);
-        bossObj.transform.position = MapManager.Instance.fieldList[4].transform.position;
-
-        bossValueText = bossObj.GetComponentInChildren<TextMeshProUGUI>();
-        bossValueText.text = bossHp.ToString();
-
-        Effects.Instance.TriggerTeleport(MapManager.Instance.fieldList[4].transform.position);
+        Boss = Instantiate(bossPrefab, bossParentTrm).GetComponent<Boss>();
+        Boss.Init(bossInitHp, bossInitAtk, MapManager.Instance.fieldList[4].transform.position);
 
         // 연출
         bossSpawnImage.SetActive(true);
-        bossSpawnImage.GetComponent<Image>().DOFade(1f, 0f);
-        bossSpawnImage.GetComponent<Image>().DOFade(0f, 2f);
-        StartCoroutine(Temp(2f));
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(bossSpawnImage.GetComponent<Image>().DOFade(1f, 0.1f));
+        seq.Append(bossSpawnImage.GetComponent<Image>().DOFade(0f, 2f).OnComplete( () =>
+        {
+            bossSpawnImage.SetActive(false);
+        }));
     }
 
     public void MoveBoss(int moveIndex)
     {
-        if(bossObj == null)
+        if(Boss == null)
         {
             Debug.LogError("보스가 없는데 보스를 움직이려 했습니다");
             return;
@@ -248,40 +247,15 @@ public class EnemyController : MonoBehaviour
             int closerIndex = i;
             sequence.AppendCallback(() =>
             {
-                bossObj.transform.DOMove(MapManager.Instance.fieldList[(moveIndex + closerIndex) % MapManager.Instance.fieldCount].transform.position, 1f);
-                bossMoveEvnet?.Invoke(moveIndex + closerIndex);
+                Boss.MovePos(MapManager.Instance.fieldList[(moveIndex + closerIndex) % MapManager.Instance.fieldCount].transform.position, 1f);
+                bossMoveEvent?.Invoke(moveIndex + closerIndex);
             });
             sequence.AppendInterval(1f);
         }
-
-        
-    }
-
-    public int GetBossAtk()
-    {
-        return bossAtk;
-    }
-    public GameObject GetBossObj()
-    {
-        return bossObj;
     }
 
     public void AttackBoss(int sword)
     {
-        bossHp -= bossAtk + sword;
-
-        // UI 갱신
-        bossValueText.text = bossHp.ToString();
-
-        if(bossHp <= 0)
-        {
-
-        }
-    }
-
-    IEnumerator Temp(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        bossSpawnImage.SetActive(false);
+        Boss.OnDamage(bossInitAtk + sword);
     }
 }

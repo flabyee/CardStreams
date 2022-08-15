@@ -485,7 +485,7 @@ public class GameManager : MonoBehaviour
         // 보스라 중이라면 보스와 전투후 뒤로 밀기
         if (IsBossRound())
         {
-            GameObject bossObj = enemyController.GetBossObj();
+            Boss bossObj = enemyController.Boss;
             Vector3 playerToBossDir = bossObj.transform.position - player.transform.position;
             Vector3 middlePos = (bossObj.transform.position + player.transform.position) / 2;
             // 전투 애니메이션?
@@ -495,7 +495,7 @@ public class GameManager : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 player.transform.DOMove(player.transform.position - playerToBossDir, 0.5f);
-                bossObj.transform.DOMove(bossObj.transform.position + playerToBossDir, 0.5f);
+                bossObj.MovePos(bossObj.transform.position + playerToBossDir, 0.5f);
             });
             sequence.AppendInterval(0.5f);
 
@@ -503,7 +503,7 @@ public class GameManager : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 player.transform.DOMove(middlePos - (playerToBossDir / 2), 0.25f);
-                bossObj.transform.DOMove(middlePos + (playerToBossDir / 2), 0.25f);
+                bossObj.MovePos(middlePos + (playerToBossDir / 2), 0.25f);
 
                 Effects.Instance.TriggerNuclear(middlePos);
             });
@@ -513,7 +513,7 @@ public class GameManager : MonoBehaviour
             sequence.AppendCallback(() =>
             {
                 player.transform.DOMove(MapManager.Instance.fieldList[moveIndex - 1].transform.position, 0.5f);
-                enemyController.GetBossObj().transform.DOMove(MapManager.Instance.fieldList[moveIndex].transform.position, 0.5f);
+                enemyController.Boss.MovePos(MapManager.Instance.fieldList[moveIndex].transform.position, 0.5f);
             });
             sequence.AppendInterval(0.5f);
 
@@ -521,7 +521,7 @@ public class GameManager : MonoBehaviour
 
 
             // 보스와 전투, 플레이어가 죽으면 true
-            if(player.OnBoss(enemyController.GetBossAtk(), out int sword)) // 플레이어 칼 수치를 out에 담는다
+            if(player.OnBoss(enemyController.Boss.Attack, out int sword)) // 플레이어 칼 수치를 out에 담는다
             {
                 // 사망 처리
                 GameEnd();
