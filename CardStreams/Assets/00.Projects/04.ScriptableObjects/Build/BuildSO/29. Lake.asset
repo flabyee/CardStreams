@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2e03280706d494f9dbcce74afbbec9, type: 3}
+  m_Name: 29. Lake
+  m_EditorClassIdentifier: 
+  id: 29
+  buildName: "\uC548\uAC1C \uD638\uC218"
+  price: 5
+  grade: 0
+  tooltip: "\uD0C0\uC77C\uC758 \uC218\uCE58\uB97C 5\uB85C \uB9CC\uB4E0\uB2E4"
+  sprite: {fileID: 21300004, guid: 69db1921e9d5aa443af58aa1a95f979a, type: 3}
+  accessPointList:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  isAcceseCard: 1
+  isAccesePlayer: 0
+  isAcceseLoopEnd: 0
+  swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}
+  shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}
+  playerValueChangeEvnet: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
+  fixValue: 5

@@ -416,7 +416,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        GoldAnimManager.Instance.GetAllCoin(true);
+        GoldAnimManager.Instance.GetAllCoin(0f, true);
 
         fieldController.SetAllFieldYet();
 
