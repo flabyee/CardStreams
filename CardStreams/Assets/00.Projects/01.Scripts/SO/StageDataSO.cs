@@ -25,6 +25,6 @@ public class StageDataSO : ScriptableObject
 
     [Header("보스 관련 정보")]
     public int bossRound;   // 보스가 나오는 루프수
-    public int bossValue;
-    public int downValue;   // 보스가 나오는 라운드에 약화되는 덱의 수치
+    public int bossHP;      // 보스 체력
+    public int bossAtk;     // 보스의 공격력
 }

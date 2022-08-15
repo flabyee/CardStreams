@@ -89,6 +89,9 @@ public class GameManager : MonoBehaviour
 
     public Action<int> ShowTuTorialEvent;
 
+    // 보스 패턴을 위한 Action, CardType을 int로 전환해서 배열에 접근한다
+    public Action<CardPower, Vector3>[] ResetFieldEvent;
+
     private void Awake()
     {
         if (Instance == null)
@@ -360,8 +363,15 @@ public class GameManager : MonoBehaviour
 
         moveIndex = 0;
 
-        // 정산
-        StartCoroutine(JungSanCor());
+        if(IsBossRound() == false)
+        {
+            // 정산
+            StartCoroutine(JungSanCor());
+        }
+        else
+        {
+            StartCoroutine(FieldResetCor());
+        }
 
         EffectManager.Instance.DeleteNextBuildEffect();
 
@@ -375,6 +385,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 보스전이 아닐 때 필드 초기화하면서 정산하는 코루틴
     public IEnumerator JungSanCor()
     {
         for (int i = 0; i < MapManager.Instance.fieldCount; i++)
@@ -412,6 +423,40 @@ public class GameManager : MonoBehaviour
 
         canNext = true;
     }
+    // 보스전 때 필드 초기화하는 코루틴
+    public IEnumerator FieldResetCor()
+    {
+        for (int i = 0; i < MapManager.Instance.fieldCount; i++)
+        {
+            Field nowField = MapManager.Instance.fieldList[i];
+
+            if (nowField.isSet == true)
+            {
+                BasicCard cardPower = nowField.cardPower as BasicCard;
+                if (cardPower.basicType == BasicType.Monster)
+                {
+                    // 필드 리셋
+                    Field field = MapManager.Instance.fieldList[i];
+                    field.FieldReset();
+
+                    //ResetFieldEvent[(int)cardPower.cardType]?.Invoke(cardPower, field.transform.position);
+
+                    //yield return new WaitForSeconds(fieldResetDelay);
+                }
+                else
+                {
+                    // 필드 리셋
+                    nowField.FieldReset();
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        fieldController.SetAllFieldYet();
+
+        canNext = true;
+    }
 
     public void MoveStart()
     {
@@ -427,20 +472,59 @@ public class GameManager : MonoBehaviour
 
     public void MoveEnd()
     {
+        StartCoroutine(MoveEndCor());
+    }
+
+    public IEnumerator MoveEndCor()
+    {
         canNext = true;
 
-        // 이전 4개의 필드
+        // 이전 4개의 필드 상호작용 불가능 하게
         fieldController.SetBeforeFieldNot(moveIndex);
 
         // 보스라 중이라면 보스와 전투후 뒤로 밀기
         if (IsBossRound())
         {
+            GameObject bossObj = enemyController.GetBossObj();
+            Vector3 playerToBossDir = bossObj.transform.position - player.transform.position;
+            Vector3 middlePos = (bossObj.transform.position + player.transform.position) / 2;
+            // 전투 애니메이션?
+            Sequence sequence = DOTween.Sequence();
+
+            // 뒤로 이동
+            sequence.AppendCallback(() =>
+            {
+                player.transform.DOMove(player.transform.position - playerToBossDir, 0.5f);
+                bossObj.transform.DOMove(bossObj.transform.position + playerToBossDir, 0.5f);
+            });
+            sequence.AppendInterval(0.5f);
+
+            // 격돌
+            sequence.AppendCallback(() =>
+            {
+                player.transform.DOMove(middlePos - (playerToBossDir / 2), 0.25f);
+                bossObj.transform.DOMove(middlePos + (playerToBossDir / 2), 0.25f);
+
+                Effects.Instance.TriggerNuclear(middlePos);
+            });
+            sequence.AppendInterval(0.25f);
+
+            // 원위치
+            sequence.AppendCallback(() =>
+            {
+                player.transform.DOMove(MapManager.Instance.fieldList[moveIndex - 1].transform.position, 0.5f);
+                enemyController.GetBossObj().transform.DOMove(MapManager.Instance.fieldList[moveIndex].transform.position, 0.5f);
+            });
+            sequence.AppendInterval(0.5f);
+
+            yield return new WaitForSeconds(1.5f);
+
+
             // 보스와 전투, 플레이어가 죽으면 true
             if(player.OnBoss(enemyController.GetBossAtk(), out int sword)) // 플레이어 칼 수치를 out에 담는다
             {
                 // 사망 처리
                 GameEnd();
-                return;
             }
             else
             {
@@ -456,7 +540,7 @@ public class GameManager : MonoBehaviour
         // 마지막이 아니라면 혹은 다음 칸이 있다면
         if (moveIndex != MapManager.Instance.fieldCount)
         {
-            // 다음 필드(fieldType 변경)
+            // 다음 필드 상호작용 가능하게
             fieldController.SetNextFieldAble(moveIndex);
             // draw
             handleController.DrawCardWhenBeforeMove();
@@ -467,6 +551,16 @@ public class GameManager : MonoBehaviour
         MoveEndEvent.Occurred();
 
         dontTouchController.Hide();
+
+        // 다음 차례로
+        if (moveIndex == MapManager.Instance.fieldCount)
+        {
+            nextState = GameState.TurnEnd;
+
+            NextAction();
+        }
+
+        yield return null;
     }
 
     public void Move()
@@ -567,16 +661,6 @@ public class GameManager : MonoBehaviour
 
         // Move End
         sequence.AppendCallback(() => MoveEnd());
-
-        sequence.AppendCallback(() =>
-        {
-            if (moveIndex == MapManager.Instance.fieldCount)
-            {
-                nextState = GameState.TurnEnd;
-
-                NextAction();
-            }
-        });
     }
 
     private void OnModify()

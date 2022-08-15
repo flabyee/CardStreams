@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System;
+
 public class EnemyController : MonoBehaviour
 {
 
@@ -12,7 +14,6 @@ public class EnemyController : MonoBehaviour
     private int mobSpawnIncreaseAmount;
     private int mobAttackAmount;
     private int mobAttackIncreaseAmount;
-    private int bossValue;
 
     // 적 건물 생성
     private List<BuildSO> enemyBuildList;
@@ -26,9 +27,11 @@ public class EnemyController : MonoBehaviour
     public GameObject bossPrefab;
     private GameObject bossObj;
     private TextMeshProUGUI bossValueText;
+    private int bossHp;
+    private int bossAtk;
 
-    private int bossHp = 30;     // 보스의 현재 체력
-    private int bossAtk = 1;    // 보스와 주고받는 공격량
+    public Action<int> bossMoveEvnet;
+
 
     private void Awake()
     {
@@ -49,7 +52,9 @@ public class EnemyController : MonoBehaviour
         mobSpawnIncreaseAmount = stageData.mobIncreaseAmount;
         mobAttackAmount = stageData.firstMobAttackAmount;
         mobAttackIncreaseAmount = stageData.mobAttackIncreaseAmount;
-        bossValue = stageData.bossValue;
+
+        bossHp = stageData.bossHP;
+        bossAtk = stageData.bossAtk;
     }
 
     /// <summary>
@@ -79,7 +84,7 @@ public class EnemyController : MonoBehaviour
                 // 랜덤하게 셔플
                 for (int j = 0; j < deleteFieldList.Count; j++)
                 {
-                    int randomIndex = Random.Range(0, deleteFieldList.Count);
+                    int randomIndex = UnityEngine.Random.Range(0, deleteFieldList.Count);
                     int temp = deleteFieldList[j];
                     deleteFieldList[j] = deleteFieldList[randomIndex];
                     deleteFieldList[randomIndex] = temp;
@@ -97,7 +102,7 @@ public class EnemyController : MonoBehaviour
                 break;
             }
 
-            int randIndex = canSpawnList[Random.Range(0, canSpawnList.Count)];
+            int randIndex = canSpawnList[UnityEngine.Random.Range(0, canSpawnList.Count)];
             CreateEnemy(randIndex);
 
             canSpawnList.Remove(randIndex);
@@ -181,7 +186,7 @@ public class EnemyController : MonoBehaviour
             RectTransform rectTrm = MapManager.Instance.GetMapRectTrm((int)randomPoint.y, (int)randomPoint.x); // 랜덤값으로 설치할 위치 퍼오기
 
             // 설치할 건물
-            int randomIndex = Random.Range(0, enemyBuildList.Count); // 랜덤 건물 획득
+            int randomIndex = UnityEngine.Random.Range(0, enemyBuildList.Count); // 랜덤 건물 획득
             EnemyBuildSO buildSO = enemyBuildList[randomIndex] as EnemyBuildSO; // 랜덤값으로 설치할건물 퍼오기
 
             // 건물설치
@@ -212,8 +217,6 @@ public class EnemyController : MonoBehaviour
 
     public void CreateBoss()
     {
-        int value = bossValue;
-
         // 보스 생성
         bossObj = Instantiate(bossPrefab, bossParentTrm);
         bossObj.transform.position = MapManager.Instance.fieldList[4].transform.position;
@@ -238,12 +241,29 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        bossObj.transform.DOMove(MapManager.Instance.fieldList[(moveIndex + 4) % MapManager.Instance.fieldCount].transform.position, 1f);
+        Sequence sequence = DOTween.Sequence();
+
+        for(int i = 1; i <= 4; i++)
+        {
+            int closerIndex = i;
+            sequence.AppendCallback(() =>
+            {
+                bossObj.transform.DOMove(MapManager.Instance.fieldList[(moveIndex + closerIndex) % MapManager.Instance.fieldCount].transform.position, 1f);
+                bossMoveEvnet?.Invoke(moveIndex + closerIndex);
+            });
+            sequence.AppendInterval(1f);
+        }
+
+        
     }
 
     public int GetBossAtk()
     {
         return bossAtk;
+    }
+    public GameObject GetBossObj()
+    {
+        return bossObj;
     }
 
     public void AttackBoss(int sword)
