@@ -49,6 +49,8 @@ public class ShopController : MonoBehaviour
     [SerializeField]
     private int rerollCost;
     [SerializeField]
+    private int mineUpgradeCost;
+    [SerializeField]
     private List<int> upgradeCostList;
     private int shopGrade;
 
@@ -472,6 +474,16 @@ public class ShopController : MonoBehaviour
             goldChangeEvnet.Occurred();
 
             OnShop();
+        }
+    }
+
+    public void OnClickMineUpgrade()
+    {
+        if (mineUpgradeCost <= goldValue.RuntimeValue)
+        {
+            goldValue.RuntimeValue -= mineUpgradeCost;
+            goldChangeEvnet.Occurred();
+            GameManager.Instance.mineLevel++;
         }
     }
 

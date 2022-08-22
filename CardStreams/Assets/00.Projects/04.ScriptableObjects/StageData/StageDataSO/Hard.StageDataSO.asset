@@ -24,5 +24,5 @@ MonoBehaviour:
   firstMobAttackAmount: 3
   mobAttackIncreaseAmount: 2
   bossRound: 4
-  bossValue: 45
-  downValue: 30
+  bossHP: 30
+  bossAtk: 5

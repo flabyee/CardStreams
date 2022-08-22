@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
 
     public Action<int> ShowTuTorialEvent;
 
+    public int mineLevel = 1;
+
     // 보스 패턴을 위한 Action, CardType을 int로 전환해서 배열에 접근한다
     public Action<CardPower, Vector3>[] ResetFieldEvent;
 
@@ -813,7 +815,7 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         SaveData saveData = SaveSystem.Load();
-        saveData.gold += player.killMobCount;
+        saveData.gold += player.killMobCount * mineLevel;
         SaveSystem.Save(saveData);
 
         Debug.Log("플레이어 디짐");
