@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SettingPanel : MonoBehaviour
 {
-    private CanvasGroup _cg;
+    [SerializeField] EventSO saveGameEvent;
 
+    private CanvasGroup _cg;
     private bool isOpen = false;
 
     private void Awake()
@@ -39,11 +40,13 @@ public class SettingPanel : MonoBehaviour
 
     public void OnClickExit()
     {
+        saveGameEvent?.Occurred();
         Application.Quit();
     }
 
     public void OnClickTitle()
     {
+        saveGameEvent?.Occurred();
         DropArea.dropAreas.Clear();
         DontRaycastTarget.dontRaycastTargetList.Clear();
 

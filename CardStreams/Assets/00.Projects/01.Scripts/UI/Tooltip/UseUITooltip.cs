@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UseUITooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [TextArea]
     public string msg;
 
     public void OnPointerEnter(PointerEventData eventData)

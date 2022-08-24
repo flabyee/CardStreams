@@ -11384,7 +11384,7 @@ MonoBehaviour:
   responseObj:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 511898133895053630}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CrystalUI, Assembly-CSharp
         m_MethodName: ApplyCrystalToText
         m_Mode: 1
@@ -11406,7 +11406,6 @@ GameObject:
   m_Component:
   - component: {fileID: 511898133895053618}
   - component: {fileID: 511898133895053617}
-  - component: {fileID: 511898133895053630}
   - component: {fileID: 511898133895053616}
   - component: {fileID: 511898133895053619}
   m_Layer: 5
@@ -11416,19 +11415,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &511898133895053630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511898133895053629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 006d9b55aa4aaf542aa7a72f714418bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crystalText: {fileID: 511898133895053616}
 --- !u!114 &511898134027262562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11517,6 +11503,8 @@ GameObject:
   - component: {fileID: 511898134779080790}
   - component: {fileID: 2492163812707915456}
   - component: {fileID: 2796047716792207068}
+  - component: {fileID: 511898134779080787}
+  - component: {fileID: 511898134779080786}
   m_Layer: 5
   m_Name: Crystal
   m_TagString: Untagged
@@ -11546,6 +11534,47 @@ RectTransform:
   m_AnchoredPosition: {x: -487, y: 0}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &511898134779080786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511898134779080784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006d9b55aa4aaf542aa7a72f714418bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystalText: {fileID: 511898133895053616}
+--- !u!114 &511898134779080787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511898134779080784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: cea64e67794b220439a5d4b093924167, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 511898134779080786}
+        m_TargetAssemblyTypeName: Crystal, Assembly-CSharp
+        m_MethodName: ApplyCrystalToText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &511898134779080790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11692,6 +11721,14 @@ PrefabInstance:
       propertyPath: nextStateText
       value: 
       objectReference: {fileID: 155912497}
+    - target: {fileID: 667824531967878574, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: saveGameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d6cfeae3fe4c7e44c80d2440b2ecddc4, type: 2}
+    - target: {fileID: 667824531967878574, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: crystalChangeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: cea64e67794b220439a5d4b093924167, type: 2}
     - target: {fileID: 667824532007410995, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
       propertyPath: bossParent
       value: 
@@ -11830,6 +11867,50 @@ PrefabInstance:
       objectReference: {fileID: 1242648276}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+--- !u!1 &667824532528066602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1245434023116290173, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+  m_PrefabInstance: {fileID: 667824532528066601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &667824532528066603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3615757310103066885, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+  m_PrefabInstance: {fileID: 667824532528066601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667824532528066602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d75fab594455504c95ce45b0f107125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &667824532528066604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667824532528066602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: d6cfeae3fe4c7e44c80d2440b2ecddc4, type: 2}
+  responseObj:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 667824532528066603}
+        m_TargetAssemblyTypeName: SaveFile, Assembly-CSharp
+        m_MethodName: SaveCurrentFile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &915454324234268281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13417,6 +13498,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2623751582228071109, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
+      propertyPath: saveGameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: d6cfeae3fe4c7e44c80d2440b2ecddc4, type: 2}
     - target: {fileID: 4621748289310930160, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_Alpha
       value: 0

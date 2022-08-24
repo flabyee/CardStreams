@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
 {
     private RectTransform rectTrm;
 
+    [SerializeField] EventSO crystalChangeEvent;
     public EventSO playerValueChangeEvent;
+
     public IntValue hpValue;
     public IntValue swordValue;
     public IntValue shieldValue;
@@ -250,5 +252,7 @@ public class Player : MonoBehaviour
         playerValueChangeEvent.Occurred();
 
         killMobCount++;
+        Crystal.crystalAmount += GameManager.Instance.mineLevel;
+        crystalChangeEvent?.Occurred();
     }
 }

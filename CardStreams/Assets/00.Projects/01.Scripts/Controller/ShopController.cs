@@ -75,8 +75,6 @@ public class ShopController : MonoBehaviour
         isLock = false;
         lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
 
-        SaveData saveData = SaveSystem.Load();
-
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
         buildList = buildListSO.buildList;
         SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
@@ -89,7 +87,7 @@ public class ShopController : MonoBehaviour
         }
 
         // 언락 되어있는 건물과 특수카드 dict에 넣기
-        foreach (BuildData itemData in saveData.buildDataList)
+        foreach (BuildData itemData in SaveFile.recentFile.buildDataList)
         {
             if (itemData.isUnlock == true && itemData.isUse == true)
             {
@@ -99,7 +97,7 @@ public class ShopController : MonoBehaviour
             }
         }
 
-        foreach (SpecialCardData itemData in saveData.speicialCardDataList)
+        foreach (SpecialCardData itemData in SaveFile.recentFile.speicialCardDataList)
         {
             if (itemData.isUnlock == true && itemData.isUse == true)
             {

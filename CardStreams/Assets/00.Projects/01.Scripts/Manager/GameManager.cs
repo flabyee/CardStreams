@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
     public EventSO loopChangeEvent;
+    [SerializeField] EventSO saveGameEvent;
 
     public Action<int> ShowTuTorialEvent;
 
@@ -814,11 +815,12 @@ public class GameManager : MonoBehaviour
 
     private void GameEnd()
     {
-        SaveData saveData = SaveSystem.Load();
-        saveData.gold += player.killMobCount * mineLevel;
-        SaveSystem.Save(saveData);
+        // SaveData saveData = SaveSystem.Load();
+        // saveData.gold += player.killMobCount * mineLevel;
+        // Crystal.crystalAmount += player.killMobCount * mineLevel;
 
-        Debug.Log("플레이어 디짐");
+        saveGameEvent?.Occurred();
+
         dontTouchController.Hide();
         playerDieEvent.Occurred();
         DropArea.dropAreas.Clear();
