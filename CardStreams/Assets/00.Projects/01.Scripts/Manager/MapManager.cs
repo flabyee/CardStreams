@@ -160,7 +160,7 @@ public class MapManager : MonoBehaviour
             nearRoadPointList[randomIndex] = temp;
         }
 
-        afterMapCreateEvent.Occurred();
+        StartCoroutine(Util.DelayCoroutine(0.03f, () => afterMapCreateEvent.Occurred()));
     }
 
     public RectTransform GetMapRectTrm(int y, int x)

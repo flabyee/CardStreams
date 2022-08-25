@@ -15,7 +15,6 @@ public class TutorialInfos : MonoBehaviour
     private void OnEnable()
     {
         maxIndex = infoList.Count - 1;
-
         index = 0;
 
         ShowInfo();
@@ -23,15 +22,13 @@ public class TutorialInfos : MonoBehaviour
 
     public void OnClickLeft()
     {
-        index = Mathf.Max(--index, 0);
-
+        index = Mathf.Clamp(index - 1, 0, maxIndex);
         ShowInfo();
     }
 
     public void OnClickRight()
     {
-        index = Mathf.Min(++index, maxIndex);
-
+        index = Mathf.Clamp(index + 1, 0, maxIndex);
         ShowInfo();
     }
 
@@ -44,15 +41,11 @@ public class TutorialInfos : MonoBehaviour
 
         infoList[index].SetActive(true);
 
-        leftBtn.SetActive(true);
-        rightBtn.SetActive(true);
-        if (index == 0)
-        {
-            leftBtn.SetActive(false);
-        }
-        else if(index == maxIndex)
-        {
-            rightBtn.SetActive(false);
-        }
+        // 왼쪽 오른쪽버튼 on/off
+        bool notfirstIndex = index != 0;
+        bool notLastIndex = index != maxIndex;
+
+        leftBtn.SetActive(notfirstIndex); // 맨처음이 아니라면 on
+        rightBtn.SetActive(notLastIndex); // 맨끝이 아니라면 on
     }
 }

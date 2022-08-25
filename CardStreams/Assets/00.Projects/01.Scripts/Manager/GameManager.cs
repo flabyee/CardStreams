@@ -154,17 +154,13 @@ public class GameManager : MonoBehaviour
     }
 
     // To Do : 나중에 수정
-    public void SetPlayerPos()
+    public void SetPlayerPos() // afterMapCreate 0.03초 늦게부르면 버그안생기고 바로부르면 위치버그생김 뭐지??????????
     {
-        StartCoroutine(TempPlayerPosSetCor());
-    }
-
-    private IEnumerator TempPlayerPosSetCor()
-    {
-        yield return new WaitForSeconds(0.25f);
-
         Vector3 movePos = MapManager.Instance.fieldList[MapManager.Instance.fieldCount - 1].transform.position;
-        player.transform.DOMove(movePos, 0.25f);
+
+        Sequence seq = DOTween.Sequence();
+        seq.AppendInterval(0.03f);
+        seq.Append(player.transform.DOMove(movePos, 0.25f));
     }
 
     public void NextAction()
@@ -215,99 +211,95 @@ public class GameManager : MonoBehaviour
         switch (curState)
         {
             case GameState.TurnStart:
-                if (canNextLoop == false)
                 {
-                    UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
-                    return;
-                }
+                    if (canNextLoop == false)
+                    {
+                        UITooltip.Instance.Show("뭘까용~", 1f);
+                        return;
+                    }
 
-                // 꽉 차있는지
-                if (fieldController.IsNextFieldFull(moveIndex) == false)
-                {
-                    UITooltip.Instance.Show("앞에 4칸을 전부 채운후 다시 시도하세요!!", new UITooltip.TooltipTimer(1f));
-                    return;
-                }
+                    // 꽉 차있는지
+                    if (fieldController.IsNextFieldFull(moveIndex) == false)
+                    {
+                        UITooltip.Instance.Show("앞에 4칸을 전부 채운후 다시 시도하세요!!", 1f);
+                        return;
+                    }
 
-                // 플레이어 카드가 2장 이하인지
-                if (fieldController.IsNextFieldPlayerCardTwo(moveIndex) == false)
-                {
-                    UITooltip.Instance.Show("플레이어 카드를 2장 이하로 배치해주세요", new UITooltip.TooltipTimer(1f));
-                    return;
+                    // 플레이어 카드가 2장 이하인지
+                    if (fieldController.IsNextFieldPlayerCardTwo(moveIndex) == false)
+                    {
+                        UITooltip.Instance.Show("플레이어 카드를 2장 이하로 배치해주세요", 1f);
+                        return;
+                    }
                 }
-
-                NextAction();
                 break;
-
 
             case GameState.TurnEnd:
-                if (canNextLoop == false)
                 {
-                    UITooltip.Instance.Show("정산중입니다", new UITooltip.TooltipTimer(1f));
-                    return;
+                    if (canNextLoop == false)
+                    {
+                        UITooltip.Instance.Show("정산중입니다", 1f);
+                        return;
+                    }
                 }
-
-                NextAction();
                 break;
-
 
             case GameState.Move:
-                if (canNextLoop == false)
                 {
-                    UITooltip.Instance.Show("이동중입니다", new UITooltip.TooltipTimer(1f));
-                    return;
-                }
+                    if (canNextLoop == false)
+                    {
+                        UITooltip.Instance.Show("이동중입니다", 1f);
+                        return;
+                    }
 
-                
-                // 꽉 차있는지
-                if (fieldController.IsNextFieldFull(moveIndex) == false)
-                {
-                    UITooltip.Instance.Show("앞에 4칸을 전부 채운후 다시 시도하세요!!", new UITooltip.TooltipTimer(1f));
-                    return;
-                }
+                    // 꽉 차있는지
+                    if (fieldController.IsNextFieldFull(moveIndex) == false)
+                    {
+                        UITooltip.Instance.Show("앞에 4칸을 전부 채운후 다시 시도하세요!!", 1f);
+                        return;
+                    }
 
-                // 플레이어 카드가 2장 이하인지
-                if (fieldController.IsNextFieldPlayerCardTwo(moveIndex) == false)
-                {
-                    UITooltip.Instance.Show("플레이어 카드를 2장 이하로 배치해주세요", new UITooltip.TooltipTimer(1f));
-                    return;
+                    // 플레이어 카드가 2장 이하인지
+                    if (fieldController.IsNextFieldPlayerCardTwo(moveIndex) == false)
+                    {
+                        UITooltip.Instance.Show("플레이어 카드를 2장 이하로 배치해주세요", 1f);
+                        return;
+                    }
                 }
-
-                NextAction();
                 break;
-
 
             case GameState.Modify:
-                if (canNextLoop == false)
                 {
-                    UITooltip.Instance.Show("무작위 적이 생성중입니다", new UITooltip.TooltipTimer(1f));
-                    return;
+                    if (canNextLoop == false)
+                    {
+                        UITooltip.Instance.Show("무작위 적이 생성중입니다", 1f);
+                        return;
+                    }
                 }
-
-                NextAction();
                 break;
-
 
             case GameState.Equip:
-                if (canNextLoop == false)
                 {
-                    UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
-                    return;
+                    if (canNextLoop == false)
+                    {
+                        UITooltip.Instance.Show("뭘까용~", 1f);
+                        return;
+                    }
                 }
-
-                NextAction();
                 break;
+
             case GameState.GameStart:
-                if (canNextLoop == false)
                 {
-                    UITooltip.Instance.Show("먼저 시작 보상을 선택해주세요", new UITooltip.TooltipTimer(1f));
-                    return;
+                    if (canNextLoop == false)
+                    {
+                        UITooltip.Instance.Show("먼저 시작 보상을 선택해주세요", 1f);
+                        return;
+                    }
                 }
-
-                NextAction();
-                break;
-            default:
                 break;
         }
+
+        NextAction();
     }
 
     public void TurnStart()

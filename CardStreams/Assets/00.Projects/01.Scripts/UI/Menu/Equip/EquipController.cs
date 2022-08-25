@@ -226,7 +226,7 @@ public class EquipController : MonoBehaviour
             }
             else 
             {
-                UITooltip.Instance.Show("제외 가능 횟수가 부족합니다, 업그레이드를 하세요", new UITooltip.TooltipTimer(2f));
+                UITooltip.Instance.Show("제외 가능 횟수가 부족합니다, 업그레이드를 하세요", 2f);
             }
         }
         else

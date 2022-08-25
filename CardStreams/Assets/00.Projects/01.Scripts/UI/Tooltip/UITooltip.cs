@@ -118,10 +118,14 @@ public class UITooltip : MonoBehaviour
         tooltipHeight = size.y;
     }
 
-    public void Show(string tooltipText, TooltipTimer tooltipTimer = null)
+    public void Show(string tooltipText, float time = 0f)
     {
         // 타이머 세팅
-        this.tooltipTimer = tooltipTimer;
+        // this.tooltipTimer = tooltipTimer;
+
+        // time이 0 이하라면 null, 아니라면 new timer
+        TooltipTimer timer = (time <= 0) ? null : new TooltipTimer(time);
+        this.tooltipTimer = timer;
 
         gameObject.SetActive(true);
         SetText(tooltipText);
