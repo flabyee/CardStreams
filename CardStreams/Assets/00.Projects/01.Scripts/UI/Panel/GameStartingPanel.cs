@@ -50,7 +50,7 @@ public class GameStartingPanel : MonoBehaviour
 
         gameObject.SetActive(false);
 
-        GameManager.Instance.canNext = true;
+        GameManager.Instance.canNextLoop = true;
 
         GameManager.Instance.blurController.SetActive(false);
     }

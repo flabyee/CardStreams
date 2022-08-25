@@ -100,27 +100,27 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
             return;
         }
 
-        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length - 1);
+        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.monsterSprite.Length - 1);
 
         switch (basicType)
         {
             case BasicType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite[0];
-                fieldImage.sprite = ConstManager.Instance.potionSprite[0];
+                 faceImage.sprite = ConstManager.Instance.potionSprite;
+                fieldImage.sprite = ConstManager.Instance.potionSprite;
                 nameText.text = "¹É¾à";
                 break;
             case BasicType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite[0];
-                fieldImage.sprite = ConstManager.Instance.swordSprite[0];
+                 faceImage.sprite = ConstManager.Instance.swordSprite;
+                fieldImage.sprite = ConstManager.Instance.swordSprite;
                 nameText.text = "Ä®";
                 break;
             case BasicType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite[0];
-                fieldImage.sprite = ConstManager.Instance.sheildSprite[0];
+                 faceImage.sprite = ConstManager.Instance.shieldSprite;
+                fieldImage.sprite = ConstManager.Instance.shieldSprite;
                 nameText.text = "¹æÆÐ";
                 break;
             case BasicType.Monster:
-                faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
+                 faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 fieldImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 nameText.text = "¸ó½ºÅÍ";
                 break;

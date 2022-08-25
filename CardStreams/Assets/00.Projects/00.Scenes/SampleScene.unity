@@ -14795,6 +14795,38 @@ PrefabInstance:
       propertyPath: tempTrm
       value: 
       objectReference: {fileID: 844448239}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: buildColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: buildColor.b
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: buildColor.g
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: buildColor.r
+      value: 0.8509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: specialCardColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: specialCardColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: specialCardColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088710734114224682, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: specialCardColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8088710734489428474, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
       propertyPath: m_Name
       value: etcManagers

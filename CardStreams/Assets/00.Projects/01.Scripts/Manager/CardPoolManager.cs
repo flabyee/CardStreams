@@ -16,10 +16,12 @@ public class CardPoolManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if(Instance != null)
         {
-            Instance = this;
+            Debug.Log("CardPoolManager가 여러개 존재합니다");
+            Destroy(gameObject);
         }
+        Instance = this;
     }
 
     public GameObject GetBasicCard(Transform trm)

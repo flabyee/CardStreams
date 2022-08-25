@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     public int moveIndex = 0;  // 현재 플레이어가 맵에 위치한 곳
     public GameState curState; // 현재 게임의 상태
     public GameState nextState; // 다음 상태
-    public bool canNext;
+    public bool canNextLoop;
 
     // 임시
     private bool isFirst = false;
@@ -97,15 +97,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
-            Debug.Log("init");
-        }
-        else
-        {
+            Debug.LogError("GameManager가 중복되었습니다");
             Destroy(this.gameObject);
         }
+        Instance = this;
     }
 
     private void Start()
@@ -114,13 +111,13 @@ public class GameManager : MonoBehaviour
         {
             curState = GameState.GameStart;
             nextState = GameState.TurnStart;
-            canNext = true;
+            canNextLoop = true;
         }
         else
         {
             curState = GameState.GameStart;
             nextState = GameState.Modify;
-            canNext = false;
+            canNextLoop = false;
         }
 
         ApplyStateText();
@@ -218,7 +215,7 @@ public class GameManager : MonoBehaviour
         switch (curState)
         {
             case GameState.TurnStart:
-                if (canNext == false)
+                if (canNextLoop == false)
                 {
                     UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
                     return;
@@ -243,7 +240,7 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.TurnEnd:
-                if (canNext == false)
+                if (canNextLoop == false)
                 {
                     UITooltip.Instance.Show("정산중입니다", new UITooltip.TooltipTimer(1f));
                     return;
@@ -254,7 +251,7 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.Move:
-                if (canNext == false)
+                if (canNextLoop == false)
                 {
                     UITooltip.Instance.Show("이동중입니다", new UITooltip.TooltipTimer(1f));
                     return;
@@ -280,7 +277,7 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.Modify:
-                if (canNext == false)
+                if (canNextLoop == false)
                 {
                     UITooltip.Instance.Show("무작위 적이 생성중입니다", new UITooltip.TooltipTimer(1f));
                     return;
@@ -291,7 +288,7 @@ public class GameManager : MonoBehaviour
 
 
             case GameState.Equip:
-                if (canNext == false)
+                if (canNextLoop == false)
                 {
                     UITooltip.Instance.Show("뭘까용~", new UITooltip.TooltipTimer(1f));
                     return;
@@ -300,7 +297,7 @@ public class GameManager : MonoBehaviour
                 NextAction();
                 break;
             case GameState.GameStart:
-                if (canNext == false)
+                if (canNextLoop == false)
                 {
                     UITooltip.Instance.Show("먼저 시작 보상을 선택해주세요", new UITooltip.TooltipTimer(1f));
                     return;
@@ -342,7 +339,7 @@ public class GameManager : MonoBehaviour
 
         TurnStartEvent.Occurred();
 
-        canNext = true;
+        canNextLoop = true;
 
         if(isFirst == true)
             ShowTuTorialEvent?.Invoke(1);
@@ -360,7 +357,7 @@ public class GameManager : MonoBehaviour
         //    return;
         //}
 
-        canNext = false;
+        canNextLoop = false;
 
         handleController.LoopEnd();
 
@@ -423,7 +420,7 @@ public class GameManager : MonoBehaviour
 
         fieldController.SetAllFieldYet();
 
-        canNext = true;
+        canNextLoop = true;
     }
     // 보스전 때 필드 초기화하는 코루틴
     public IEnumerator FieldResetCor()
@@ -457,7 +454,7 @@ public class GameManager : MonoBehaviour
 
         fieldController.SetAllFieldYet();
 
-        canNext = true;
+        canNextLoop = true;
     }
 
     public void MoveStart()
@@ -479,7 +476,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator MoveEndCor()
     {
-        canNext = true;
+        canNextLoop = true;
 
         // 이전 4개의 필드 상호작용 불가능 하게
         fieldController.SetBeforeFieldNot(moveIndex);
@@ -526,7 +523,7 @@ public class GameManager : MonoBehaviour
             if(player.OnBoss(enemyController.Boss.Attack, out int sword)) // 플레이어 칼 수치를 out에 담는다
             {
                 // 사망 처리
-                GameEnd();
+                GameOver();
             }
             else
             {
@@ -569,7 +566,7 @@ public class GameManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
 
-        canNext = false;
+        canNextLoop = false;
 
         // Move Start
         sequence.AppendCallback(() => MoveStart());
@@ -652,7 +649,7 @@ public class GameManager : MonoBehaviour
                 // 플레이어 죽었으면 끝
                 if (player.isAlive == false)
                 {
-                    GameEnd();
+                    GameOver();
 
                     sequence.Kill();
                     return;
@@ -667,7 +664,7 @@ public class GameManager : MonoBehaviour
 
     private void OnModify()
     {
-        canNext = false;
+        canNextLoop = false;
 
         nextState = GameState.Equip;
 
@@ -694,15 +691,11 @@ public class GameManager : MonoBehaviour
         // 보스가 나온 이후에 못잡고 한바퀴를 돌면 패널티 부여
         if(IsBossRound())
         {
-            canNext = true;
-
-            //enemyController.CreateEnemyBuild();
-            //enemyController.CreateEnemyBuild();
-            //enemyController.CreateEnemyBuild();
+            canNextLoop = true;
         }
         else
         {
-            StartCoroutine(Delay(() =>
+            StartCoroutine(Util.DelayCoroutine(1.5f, () =>
             {
                 if (isFirst == true)
                 {
@@ -716,9 +709,8 @@ public class GameManager : MonoBehaviour
                 //    selectRewardManager.Show();
                 //}
                 blurController.SetActive(true);
-
-                canNext = true;
-            }, 1.5f));
+                canNextLoop = true;
+            }));
         }
     }
 
@@ -806,19 +798,8 @@ public class GameManager : MonoBehaviour
         moveDuration = speed;
     }
 
-    private IEnumerator Delay(Action action, float t)
+    private void GameOver()
     {
-        yield return new WaitForSeconds(t);
-
-        action?.Invoke();
-    }
-
-    private void GameEnd()
-    {
-        // SaveData saveData = SaveSystem.Load();
-        // saveData.gold += player.killMobCount * mineLevel;
-        // Crystal.crystalAmount += player.killMobCount * mineLevel;
-
         saveGameEvent?.Occurred();
 
         dontTouchController.Hide();
