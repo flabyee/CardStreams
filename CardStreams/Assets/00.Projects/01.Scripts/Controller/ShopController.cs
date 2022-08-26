@@ -87,7 +87,7 @@ public class ShopController : MonoBehaviour
         }
 
         // 언락 되어있는 건물과 특수카드 dict에 넣기
-        foreach (BuildData itemData in SaveFile.recentFile.buildDataList)
+        foreach (BuildData itemData in SaveFile.GetSaveData().buildDataList)
         {
             if (itemData.isUnlock == true && itemData.isUse == true)
             {
@@ -97,7 +97,7 @@ public class ShopController : MonoBehaviour
             }
         }
 
-        foreach (SpecialCardData itemData in SaveFile.recentFile.speicialCardDataList)
+        foreach (SpecialCardData itemData in SaveFile.GetSaveData().speicialCardDataList)
         {
             if (itemData.isUnlock == true && itemData.isUse == true)
             {

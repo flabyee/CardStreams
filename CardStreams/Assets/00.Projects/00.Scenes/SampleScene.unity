@@ -11724,7 +11724,7 @@ PrefabInstance:
     - target: {fileID: 667824531967878574, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
       propertyPath: saveGameEvent
       value: 
-      objectReference: {fileID: 11400000, guid: d6cfeae3fe4c7e44c80d2440b2ecddc4, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 667824531967878574, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
       propertyPath: crystalChangeEvent
       value: 
@@ -11865,52 +11865,9 @@ PrefabInstance:
       propertyPath: rewardClickButtons.Array.data[2]
       value: 
       objectReference: {fileID: 1242648276}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3615757310103066885, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
---- !u!1 &667824532528066602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1245434023116290173, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-  m_PrefabInstance: {fileID: 667824532528066601}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &667824532528066603 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3615757310103066885, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-  m_PrefabInstance: {fileID: 667824532528066601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667824532528066602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d75fab594455504c95ce45b0f107125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &667824532528066604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667824532528066602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f33f6cac7f592c0448d89d26e6955707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: d6cfeae3fe4c7e44c80d2440b2ecddc4, type: 2}
-  responseObj:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 667824532528066603}
-        m_TargetAssemblyTypeName: SaveFile, Assembly-CSharp
-        m_MethodName: SaveCurrentFile
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &915454324234268281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13501,7 +13458,7 @@ PrefabInstance:
     - target: {fileID: 2623751582228071109, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: saveGameEvent
       value: 
-      objectReference: {fileID: 11400000, guid: d6cfeae3fe4c7e44c80d2440b2ecddc4, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4621748289310930160, guid: 485568fd81df1fc4286fc15a59a0a97a, type: 3}
       propertyPath: m_Alpha
       value: 0

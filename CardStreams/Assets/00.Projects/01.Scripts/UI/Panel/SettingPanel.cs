@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SettingPanel : MonoBehaviour
 {
-    [SerializeField] EventSO saveGameEvent;
-
     private CanvasGroup _cg;
     private bool isOpen = false;
 
@@ -40,13 +38,13 @@ public class SettingPanel : MonoBehaviour
 
     public void OnClickExit()
     {
-        saveGameEvent?.Occurred();
+        SaveFile.SaveGame();
         Application.Quit();
     }
 
     public void OnClickTitle()
     {
-        saveGameEvent?.Occurred();
+        SaveFile.SaveGame();
         DropArea.dropAreas.Clear();
         DontRaycastTarget.dontRaycastTargetList.Clear();
 

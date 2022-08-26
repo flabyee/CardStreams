@@ -13,7 +13,7 @@ public class Crystal : MonoBehaviour
     {
         // 로드
         
-        crystalAmount = SaveFile.recentFile.gold;
+        crystalAmount = SaveFile.GetSaveData().gold;
         crystalText.text = crystalAmount.ToString();
     }
 
@@ -22,6 +22,6 @@ public class Crystal : MonoBehaviour
         crystalText.text = crystalAmount.ToString();
 
         // 저장
-        SaveFile.recentFile.gold = crystalAmount;
+        SaveFile.GetSaveData().gold = crystalAmount;
     }
 }

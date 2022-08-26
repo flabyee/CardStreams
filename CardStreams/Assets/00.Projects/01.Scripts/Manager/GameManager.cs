@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
     public EventSO loopChangeEvent;
-    [SerializeField] EventSO saveGameEvent;
 
     public Action<int> ShowTuTorialEvent;
 
@@ -304,22 +303,18 @@ public class GameManager : MonoBehaviour
 
     public void TurnStart()
     {
-        Debug.Log("start");
         // fieldController.SetAllFieldYet(); // 안해주면 카드가 안들어감 근데 여기다가 이거쓰면 손에보라색몬스터 버그남 ??그럼어떻게해야하지
-
 
         // 턴 증가
         loopCountValue.RuntimeValue++;
         loopChangeEvent.Occurred();
 
+        //if(loopCountValue.RuntimeValue == 6)
+        //{
+        //    // 플레이해주셔서 감사합니다
+        //}
 
-        if(loopCountValue.RuntimeValue == 6)
-        {
-            // 플레이해주셔서 감사합니다
-        }
-
-
-            // 앞에 n칸 활성화
+        // 앞에 n칸 활성화
         fieldController.SetNextFieldAble(moveIndex);
 
         handleController.HandleReturnToDeck();
@@ -792,7 +787,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        saveGameEvent?.Occurred();
+        SaveFile.SaveGame();
 
         dontTouchController.Hide();
         playerDieEvent.Occurred();
