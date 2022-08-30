@@ -29,6 +29,10 @@ public class Boss : MonoBehaviour
         if (Hp <= 0)
         {
             Debug.Log("º¸½º »ç¸Á");
+
+            Time.timeScale = 0;
+
+            UIManager.instance.Show(PanelType.Clear);
         }
     }
 
