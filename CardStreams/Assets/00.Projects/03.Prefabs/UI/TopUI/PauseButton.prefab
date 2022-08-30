@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 8553585819876958309}
   - component: {fileID: 1186405013739337698}
   m_Layer: 5
-  m_Name: SpeedControll
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

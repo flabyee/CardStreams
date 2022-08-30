@@ -100,7 +100,7 @@ public class PreviewController : MonoBehaviour
 
             foreach (BuildCard buildCard in field.accessBuildList)
             {
-                if (buildCard.isAcceseCard == true)
+                if (buildCard.isAccessCard == true)
                 {
                     buildCard.AcceseCard(field);
                 }
@@ -121,7 +121,7 @@ public class PreviewController : MonoBehaviour
             // 플레이어한테 건물효과 적용
             foreach (BuildCard buildCard in field.accessBuildList)
             {
-                if (buildCard.isAccesePlayer == true)
+                if (buildCard.isAccessPlayer == true)
                 {
                     buildCard.AccesePlayer(tempPlayer);
                 }

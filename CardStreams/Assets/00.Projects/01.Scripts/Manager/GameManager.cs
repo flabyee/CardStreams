@@ -68,10 +68,6 @@ public class GameManager : MonoBehaviour
     public GameObject tutoEndPanel;
     public GameObject clearPanel;
 
-    public Image stopImage;
-    public Sprite playSprite;
-    public Sprite stopSprite;
-
     [Header("IntValue")]
     public IntValue goldValue;
     public IntValue loopCountValue;
@@ -135,14 +131,6 @@ public class GameManager : MonoBehaviour
 
         loopCountValue.RuntimeValue = 0;
         loopChangeEvent.Occurred();
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            StopGame();
-        }
     }
 
     public void LoadStageData()
@@ -336,14 +324,6 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnd()
     {
-        //if(isBossEnd == true)
-        //{
-        //    blurController.SetActive(true);
-        //    clearPanel.SetActive(true);
-        //    canNext = false;
-        //    return;
-        //}
-
         canNextLoop = false;
 
         handleController.LoopEnd();
@@ -409,6 +389,7 @@ public class GameManager : MonoBehaviour
 
         canNextLoop = true;
     }
+
     // 보스전 때 필드 초기화하는 코루틴
     public IEnumerator FieldResetCor()
     {
@@ -565,7 +546,7 @@ public class GameManager : MonoBehaviour
 
             foreach (BuildCard buildCard in field.accessBuildList)
             {
-                if (buildCard.isAcceseCard == true)
+                if (buildCard.isAccessCard == true)
                 {
                     sequence.AppendCallback(() =>
                     {
@@ -578,6 +559,7 @@ public class GameManager : MonoBehaviour
 
         sequence.AppendInterval(moveDuration * 3);
 
+        // 4칸 이동
         for (int i = 0; i < maxMoveCount; i++)
         {
             SoundManager.Instance.PlaySFX(SFXType.Moving, 1.5f);
@@ -618,7 +600,7 @@ public class GameManager : MonoBehaviour
             // 플레이어한테 건물효과 적용
             foreach (BuildCard buildCard in field.accessBuildList)
             {
-                if (buildCard.isAccesePlayer == true)
+                if (buildCard.isAccessPlayer == true)
                 {
                     sequence.AppendCallback(() =>
                     {
@@ -766,18 +748,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StopGame()
+    public void PauseGame() // for KeyShortcutManager
     {
-        if(Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-            stopImage.sprite = stopSprite;
-        }
-        else
-        {
-            Time.timeScale = 1;
-            stopImage.sprite = playSprite;
-        }
+        bool isPause = Time.timeScale == 0; // 게임 멈췄으면 true
+
+        Time.timeScale = isPause ? 1 : 0; // pause 상태면 재생, not pause면 멈춤
     }
 
     public void SetMoveDuration(float speed)

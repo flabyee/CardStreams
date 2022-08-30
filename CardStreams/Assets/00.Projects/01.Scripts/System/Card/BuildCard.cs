@@ -20,9 +20,9 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     [Header("UI")]
     public TextMeshProUGUI tooltipText;
 
-    public bool isAcceseCard;
-    public bool isAccesePlayer;
-    public bool isAcceseLoopEnd;
+    public bool isAccessCard;
+    public bool isAccessPlayer;
+    public bool isAccessLoopEnd;
 
 
     public void Init(BuildSO buildSO)
@@ -36,9 +36,9 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         nameText.text = this.buildSO.buildName;
         tooltipText.text = this.buildSO.tooltip;
 
-        isAcceseCard = buildSO.isAcceseCard;
-        isAccesePlayer = buildSO.isAccesePlayer;
-        isAcceseLoopEnd = buildSO.isAcceseLoopEnd;
+        isAccessCard = buildSO.isAcceseCard;
+        isAccessPlayer = buildSO.isAccesePlayer;
+        isAccessLoopEnd = buildSO.isAcceseLoopEnd;
 
         //greadeText.color = ConstManager.Instance.gradeColorDict[this.buildSO.grade]; // 이거 Dictionary라서 작동을 안하는데용?? Hierarchy에서 못바꾸는거라
 
