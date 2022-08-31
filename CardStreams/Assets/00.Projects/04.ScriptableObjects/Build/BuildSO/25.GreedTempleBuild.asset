@@ -29,4 +29,4 @@ MonoBehaviour:
   isAcceseCard: 0
   isAccesePlayer: 1
   isAcceseLoopEnd: 0
-  goldPAmount: 8
+  goldPAmount: 12

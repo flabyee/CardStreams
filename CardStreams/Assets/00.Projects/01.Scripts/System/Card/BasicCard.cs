@@ -40,7 +40,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         this.originValue = value;
         this.basicType = basicType;
         this.originBasicType = basicType;
-        this.goldP = 2;
+        this.goldP = 4;
         this.buffList.Clear();
         this.applySpecialList.Clear();
 

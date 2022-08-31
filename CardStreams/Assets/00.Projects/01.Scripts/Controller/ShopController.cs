@@ -166,7 +166,7 @@ public class ShopController : MonoBehaviour
             info.priceText.color = info.price <= goldValue.RuntimeValue ? Color.white : Color.red;
         }
 
-        rerollCostText.text = $"府费({rerollCost})";
+        rerollCostText.text = $"府费({rerollCost}盔)";
         rerollCostText.color = rerollCost <= goldValue.RuntimeValue ? Color.white : Color.red;
 
         //if (upgradeCostList[shopGrade] != -1)

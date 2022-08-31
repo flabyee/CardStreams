@@ -23,6 +23,6 @@ MonoBehaviour:
   mobIncreaseAmount: 2
   firstMobAttackAmount: 2
   mobAttackIncreaseAmount: 2
-  bossRound: 4
-  bossHP: 35
-  bossAtk: 5
+  bossRound: 3
+  bossHP: 25
+  bossAtk: 3

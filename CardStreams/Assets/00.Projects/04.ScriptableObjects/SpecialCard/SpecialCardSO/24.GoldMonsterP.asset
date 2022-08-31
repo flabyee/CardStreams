@@ -24,4 +24,4 @@ MonoBehaviour:
   targetTypeList: 01000000
   targetBasicList: 04000000
   mulAmount: 2
-  goldPAmount: 8
+  goldPAmount: 24

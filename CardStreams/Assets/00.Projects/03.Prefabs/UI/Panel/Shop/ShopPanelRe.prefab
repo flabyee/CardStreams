@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -20, y: 0}
+  m_SizeDelta: {x: 90, y: 150}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &1515018104
 CanvasRenderer:
@@ -466,7 +466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB9AC\uB864(5)"
+  m_text: "\uB9AC\uB864\n(5\uC6D0)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
@@ -681,12 +681,12 @@ GameObject:
   - component: {fileID: 7543977426660182473}
   - component: {fileID: 3865422590433659397}
   m_Layer: 5
-  m_Name: rerollBtn (1)
+  m_Name: cystalUpBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8082903989267368698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1009,8 +1009,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -60, y: 0}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -20, y: 0}
+  m_SizeDelta: {x: 90, y: 150}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2682439204623680707
 CanvasRenderer:
@@ -1682,7 +1682,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 129.99991, y: 0}
-  m_SizeDelta: {x: 1010, y: 300}
+  m_SizeDelta: {x: 850, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8401097450334799792
 CanvasRenderer:
@@ -1878,7 +1878,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 130, y: 0}
-  m_SizeDelta: {x: 1010, y: 300}
+  m_SizeDelta: {x: 850, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8401097450540825123
 CanvasRenderer:

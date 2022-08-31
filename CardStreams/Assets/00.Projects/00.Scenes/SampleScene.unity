@@ -2778,7 +2778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -675
+      value: -619
       objectReference: {fileID: 0}
     - target: {fileID: 511898135893707944, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8931,10 +8931,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2051422256}
-    - target: {fileID: 7321047556439123042, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
-      propertyPath: m_text
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 8136759703680810994, guid: eede5936c10f8de4d8551e178504a04f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11540,7 +11536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &511898134779080785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11818,6 +11814,50 @@ PrefabInstance:
       propertyPath: specialCardShopTrm
       value: 
       objectReference: {fileID: 1819880830}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[0].epic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[1].epic
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[1].rare
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[2].epic
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[2].rare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[3].epic
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[3].rare
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[2].unique
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[3].unique
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[2].legendary
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
+      propertyPath: gradeAmount.Array.data[3].legendary
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 667824532665385048, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
       propertyPath: blurObj
       value: 
