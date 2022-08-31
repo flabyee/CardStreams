@@ -5654,6 +5654,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1122057855}
   m_CullTransparentMesh: 1
+--- !u!1 &1123804818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 511898135028579780, guid: aaa9f83f07d5d7b46a7eb26858affe98, type: 3}
+  m_PrefabInstance: {fileID: 500018058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136348329
 GameObject:
   m_ObjectHideFlags: 0
@@ -14439,6 +14444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreviewBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 4469144648938254173, guid: 062230aa48665494ab482beb4c6a750b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 062230aa48665494ab482beb4c6a750b, type: 3}
 --- !u!1001 &8029641345989854391
@@ -14625,6 +14634,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2372242099352596880, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: clearPanel
+      value: 
+      objectReference: {fileID: 996784344}
     - target: {fileID: 6400561799862947574, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
       propertyPath: EscPress.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -14804,7 +14817,7 @@ PrefabInstance:
     - target: {fileID: 8088710735747398216, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
       propertyPath: goldTextObj
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1123804818}
     - target: {fileID: 8088710735747398216, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
       propertyPath: resultPanel
       value: 
