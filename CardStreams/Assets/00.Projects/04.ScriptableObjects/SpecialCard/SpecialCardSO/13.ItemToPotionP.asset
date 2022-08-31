@@ -16,8 +16,8 @@ MonoBehaviour:
   specialCardName: "\uD3EC\uC154\uB098\uC774\uC988+"
   price: 15
   grade: 2
-  tooltip: "\uCE7C\uC774\uB098 \uBC29\uD328\uB97C \uD3EC\uC158\uC73C\uB85C \uBC14\uAFB8\uACE0
-    + 3"
+  tooltip: "\uCE7C/\uBC29\uD328\uB97C \uD3EC\uC158\uC73C\uB85C \uBCC0\uD654\uC2DC\uD0A4\uACE0
+    +3\uC744 \uBD80\uC5EC\uD569\uB2C8\uB2E4"
   sprite: {fileID: 2383970454257503764, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 0100000002000000

@@ -12,8 +12,9 @@ public class ReduceHPDebuffSO : BuffSO
 
     public override void UseBuff(int fieldValue)
     {
+        Debug.Log(fieldValue);
         // 칼 공격력 / 10만큼 데미지입음, 나머지는 올림처리
-        int damage = swordValue.RuntimeValue / 10 + 1;
+        int damage = fieldValue / 5;
         hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue - damage, 1, hpValue.RuntimeMaxValue);
     }
 }

@@ -16,7 +16,9 @@ MonoBehaviour:
   specialCardName: "\uBC29\uD328 \uB54C\uB9AC\uAE30"
   price: 20
   grade: 2
-  tooltip: "\uBAAC\uC2A4\uD130 - \uD604\uC7AC \uBC29\uD328 \uC218\uCE58"
+  tooltip: "\uBAAC\uC2A4\uD130\uC5D0\uAC8C [ \uD604\uC7AC \uCC29\uC6A9\uC911\uC778
+    \uBC29\uD328\uC758 \uBC29\uC5B4\uB825 ] \uB9CC\uD07C\uC758 \uD53C\uD574\uB97C
+    \uC785\uD799\uB2C8\uB2E4"
   sprite: {fileID: -2510476293373519475, guid: 07c4b3a315249bf43b6a5e8241d7ad32, type: 3}
   applyTiming: 1
   targetTypeList: 01000000

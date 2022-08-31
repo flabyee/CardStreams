@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 04. ReduceHPDebuff
   m_EditorClassIdentifier: 
   id: 4
-  timing: 6
+  timing: 3
   remainTime: 1
   buffName: "\uAC00\uC2DC"
   buffIcon: {fileID: 21300008, guid: 276b7a01f2887bc40af5202b2f2c7785, type: 3}

@@ -146,7 +146,6 @@ public class GameManager : MonoBehaviour
         Vector3 movePos = MapManager.Instance.fieldList[MapManager.Instance.fieldCount - 1].transform.position;
 
         Sequence seq = DOTween.Sequence();
-        seq.AppendInterval(0.03f);
         seq.Append(player.transform.DOMove(movePos, 0.25f));
     }
 

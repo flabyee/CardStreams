@@ -16,7 +16,7 @@ MonoBehaviour:
   specialCardName: "\uAC74\uBB3C\uBD80\uC218\uAE30"
   price: 15
   grade: 2
-  tooltip: "\uAC74\uBB3C\uC744 \uBD80\uC21C\uB2E4"
+  tooltip: "\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD55C \uAC74\uBB3C\uC744 \uD30C\uAD34\uD569\uB2C8\uB2E4"
   sprite: {fileID: -2175433389777405958, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 03000000

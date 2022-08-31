@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PauseImage : MonoBehaviour
+public class PauseButton : MonoBehaviour
 {
     [SerializeField] Image pauseImage;
     [SerializeField] Sprite playSprite;

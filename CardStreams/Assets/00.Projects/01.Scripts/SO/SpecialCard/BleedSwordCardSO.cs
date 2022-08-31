@@ -19,15 +19,13 @@ public class BleedSwordCardSO : SpecialCardSO
     {
         BasicCard cardPower = field.cardPower as BasicCard;
 
-        player.playerValueChangeEvent.Occurred();
+        // cardPower Add
+        cardPower.AddValue(upSwordAmount);
 
         // Buff Add
         Buff buff = new Buff();
         reduceHPso.Init(buff); // SO의 값으로 Buff를 초기화해줌
         cardPower.AddBuff(buff);
-
-        // cardPower Add
-        cardPower.AddValue(upSwordAmount);
 
         // Show icon
         OnFieldTooltip.Instance.ShowBuild(field.transform.position, sprite);
