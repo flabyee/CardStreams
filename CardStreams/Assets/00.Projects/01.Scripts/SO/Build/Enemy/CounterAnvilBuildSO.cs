@@ -11,8 +11,6 @@ public class CounterAnvilBuildSO : EnemyBuildSO
 
     public EventSO playerValueChangeEvnet;
 
-    [Header("Amount")]
-    public int addSwordAmount;
 
     public override void AccessCard(Field field)
     {
@@ -20,8 +18,7 @@ public class CounterAnvilBuildSO : EnemyBuildSO
 
     public override void AccessPlayer(Player player)
     {
-        swordValue.RuntimeValue += addSwordAmount;
-        shieldValue.RuntimeValue = 0;
+        swordValue.RuntimeValue = 0;
 
         playerValueChangeEvnet.Occurred();
 

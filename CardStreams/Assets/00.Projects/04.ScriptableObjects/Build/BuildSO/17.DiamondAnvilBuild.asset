@@ -16,7 +16,9 @@ MonoBehaviour:
   buildName: "\uB2E4\uC774\uC544 \uBAA8\uB8E8"
   price: 220
   grade: 4
-  tooltip: "\uCE7C, \uBC29\uD328 \uC5C6\uC73C\uBA74 + 7, \uC788\uC73C\uBA74 + 6"
+  tooltip: "\uD604\uC7AC \uBCF4\uC720\uC911\uC778 \uCE7C\uACFC \uBC29\uD328\uAC00
+    \uAC01\uAC01 0\uC774\uB77C\uBA74 7\uC529 \uC5BB\uACE0 0\uC774 \uC544\uB2C8\uB77C\uBA74
+    +6\uC744 \uCD94\uAC00\uB85C \uC5BB\uC2B5\uB2C8\uB2E4"
   sprite: {fileID: -79607168524292790, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   accessPointList:
   - {x: 1, y: 0}

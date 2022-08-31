@@ -12,7 +12,9 @@ public class ToMuchUpBuildSO : EnemyBuildSO
     {
         BasicCard cardPower = field.cardPower as BasicCard;
 
-        cardPower.AddValue(upAmount);
-
+        if(cardPower.basicType == BasicType.Monster)
+            cardPower.AddValue(upAmount + 1);
+        else
+            cardPower.AddValue(upAmount);
     }
 }

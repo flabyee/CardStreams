@@ -203,6 +203,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         ApplyUI();
     }
 
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if(eventData.button == PointerEventData.InputButton.Right)

@@ -8524,6 +8524,7 @@ GameObject:
   - component: {fileID: 1755125822}
   - component: {fileID: 1755125821}
   - component: {fileID: 1755125820}
+  - component: {fileID: 1755125824}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: MainCanvas
@@ -8622,6 +8623,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1755125824
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755125819}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1773831965
 GameObject:
   m_ObjectHideFlags: 0

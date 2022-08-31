@@ -16,7 +16,8 @@ MonoBehaviour:
   buildName: "\uAD6C\uB9AC \uC2ED\uC790\uAC00"
   price: 10
   grade: 1
-  tooltip: "\uBAAC\uC2A4\uD130 - 2"
+  tooltip: "\uBAAC\uC2A4\uD130\uC5D0\uAC8C 2\uB9CC\uD07C\uC758 \uD53C\uD574\uB97C
+    \uC785\uD799\uB2C8\uB2E4"
   sprite: {fileID: -3904792322817937474, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   accessPointList:
   - {x: -1, y: 0}
