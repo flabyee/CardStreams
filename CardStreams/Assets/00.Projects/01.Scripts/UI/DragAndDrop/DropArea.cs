@@ -102,7 +102,10 @@ public class DropArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         onHoverExit?.Invoke(this, gameObject);
     }
 
-
+    public void OnDestroy()
+    {
+        dropAreas.Clear();
+    }
 
 
 
