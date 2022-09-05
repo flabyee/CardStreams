@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
 
-    [HideInInspector]public int rerollCount;
+    [HideInInspector] public int rerollCount;
 
 
     [Header("Player")]
@@ -60,9 +60,9 @@ public class GameManager : MonoBehaviour
     public DontTouchController dontTouchController;
     public BlurCoverController blurController;
 
-    [Header("UI")]
-    public Text nextStateText;
-    public Text curStateText;
+    //[Header("UI")]
+    //public Text nextStateText;
+    //public Text curStateText;
 
     // 임시 나중에 다른 곳으로 이동
     public GameObject tutoEndPanel;
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     [Header("IntValue")]
     public IntValue goldValue;
     public IntValue loopCountValue;
-    
+
 
     [Header("Event")]
     public EventSO TurnStartEvent;
@@ -83,7 +83,9 @@ public class GameManager : MonoBehaviour
     public EventSO playerDieEvent;
     public EventSO loopChangeEvent;
 
+    [Header("Action")]
     public Action<int> ShowTuTorialEvent;
+    public Action<GameState, GameState> ChangeStateEvent; // 현재 state | 다음 state
 
     public int mineLevel = 1;
 
@@ -115,11 +117,12 @@ public class GameManager : MonoBehaviour
             canNextLoop = false;
         }
 
-        ApplyStateText();
+        // ApplyStateText();
+        ChangeStateEvent?.Invoke(curState, nextState);
 
         // isFirst 반대로 되어있는 듯?
         isFirst = true;
-        
+
 
         LoadStageData();
 
@@ -154,7 +157,7 @@ public class GameManager : MonoBehaviour
         switch (nextState)
         {
             case GameState.TurnStart:
-                curState = GameState.Move;
+                curState = GameState.TurnStart;
                 TurnStart();
                 break;
             case GameState.TurnEnd:
@@ -187,7 +190,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        ApplyStateText();
+        // ApplyStateText();
+        ChangeStateEvent?.Invoke(curState, nextState);
     }
 
     public void OnClickAction()
@@ -304,7 +308,6 @@ public class GameManager : MonoBehaviour
         // 앞에 n칸 활성화
         fieldController.SetNextFieldAble(moveIndex);
 
-        // 건물카드 날리기 위해서
         handleController.HandleReturnToDeck();
         handleController.DrawCardWhenBeforeMove();
         handleController.notHaveBuildUI.SetActive(false);
@@ -316,7 +319,7 @@ public class GameManager : MonoBehaviour
 
         canNextLoop = true;
 
-        if(isFirst == true)
+        if (isFirst == true)
             ShowTuTorialEvent?.Invoke(1);
 
         nextState = GameState.Move;
@@ -330,7 +333,7 @@ public class GameManager : MonoBehaviour
 
         moveIndex = 0;
 
-        if(IsBossRound() == false)
+        if (IsBossRound() == false)
         {
             // 정산
             StartCoroutine(JungSanCor());
@@ -345,7 +348,7 @@ public class GameManager : MonoBehaviour
 
         EffectManager.Instance.DeleteNextBuildEffect();
 
-        if(isTutoEnd == true)
+        if (isTutoEnd == true)
         {
             nextState = GameState.TutoEnd;
         }
@@ -358,7 +361,7 @@ public class GameManager : MonoBehaviour
         {
             Field nowField = MapManager.Instance.fieldList[i];
 
-            if(nowField.isSet == true)
+            if (nowField.isSet == true)
             {
                 BasicCard cardPower = nowField.cardPower as BasicCard;
                 if (cardPower.basicType == BasicType.Monster)
@@ -427,7 +430,6 @@ public class GameManager : MonoBehaviour
 
     public void MoveStart()
     {
-        // 몬스터카드, 특수카드 날리기 위해서
         handleController.HandleReturnToDeck();
 
         // 카드에 건물 효과 적용
@@ -490,7 +492,7 @@ public class GameManager : MonoBehaviour
 
 
             // 보스와 전투, 플레이어가 죽으면 true
-            if(player.OnBoss(enemyController.Boss.Attack, out int sword)) // 플레이어 칼 수치를 out에 담는다
+            if (player.OnBoss(enemyController.Boss.Attack, out int sword)) // 플레이어 칼 수치를 out에 담는다
             {
                 // 사망 처리
                 GameOver();
@@ -615,7 +617,7 @@ public class GameManager : MonoBehaviour
             moveIndex++;
 
             sequence.AppendCallback(() => {
-                
+
 
                 // 플레이어 죽었으면 끝
                 if (player.isAlive == false)
@@ -639,28 +641,27 @@ public class GameManager : MonoBehaviour
 
         nextState = GameState.Equip;
 
-        if(isTutoEnd == false && DataManager.Instance.stageNumValue.RuntimeValue == 0)
+        if (isTutoEnd == false && DataManager.Instance.stageNumValue.RuntimeValue == 0)
         {
             isTutoEnd = true;
         }
 
         // 다음 루프가 보스가 나오는 루프일때
-        if (IsBossEnter()) 
+        if (IsBossEnter())
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             SoundManager.Instance.PlayBGM(BGMType.Boss);
             enemyController.BossRound();
         }
-        // 일반 라일때
         else
         {
+            // 일반 라일때
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
-            //enemyController.CreateRandomMob();
             enemyController.CreateEnemyBuild();
         }
 
         // 보스가 나온 이후에 못잡고 한바퀴를 돌면 패널티 부여
-        if(IsBossRound())
+        if (IsBossRound())
         {
             canNextLoop = true;
         }
@@ -737,7 +738,7 @@ public class GameManager : MonoBehaviour
     {
         DropArea fieldArea = dragbleCard.droppedArea;
 
-        if(fieldArea.field.fieldState == FieldState.able)
+        if (fieldArea.field.fieldState == FieldState.able)
         {
             fieldArea.TriggerOnLift(dragbleCard);
 
@@ -772,57 +773,7 @@ public class GameManager : MonoBehaviour
         DontRaycastTarget.dontRaycastTargetList.Clear();
     }
 
-    private void ApplyStateText()
-    {
-        switch (nextState)
-        {
-            case GameState.TurnStart:
-                nextStateText.text = "루프 시작";
-                break;
-            case GameState.TurnEnd:
-                nextStateText.text = "루프 끝";
-                break;
-            case GameState.Move:
-                nextStateText.text = "이동";
-                break;
-            case GameState.Modify:
-                nextStateText.text = "정비";
-                break;
-            case GameState.Equip:
-                nextStateText.text = "건물 배치";
-                break;
-            case GameState.GameStart:
-                nextStateText.text = "게임 시작";
-                break;
-            default:
-                break;
-        }
 
-
-        switch (curState)
-        {
-            case GameState.TurnStart:
-                curStateText.text = "현재 : 루프 시작";
-                break;
-            case GameState.TurnEnd:
-                curStateText.text = "현재 : 정산";
-                break;
-            case GameState.Move:
-                curStateText.text = "현재 : 루프";
-                break;
-            case GameState.Modify:
-                curStateText.text = "현재 : 정비";
-                break;
-            case GameState.Equip:
-                curStateText.text = "현재 : 건물 배치";
-                break;
-            case GameState.GameStart:
-                curStateText.text = "현재 : 게임 시작";
-                break;
-            default:
-                break;
-        }
-    }
 
     private bool IsBossRound()
     {
@@ -835,4 +786,4 @@ public class GameManager : MonoBehaviour
         // 다음 라운드가 보스라면
         return loopCountValue.RuntimeValue + 1 == bossRound;
     }
-} 
+}
