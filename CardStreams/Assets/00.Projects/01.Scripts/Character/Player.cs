@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
-using System;
 
 public class Player : MonoBehaviour
 {
     private RectTransform rectTrm;
+    private BuffController buffCon;
 
     [SerializeField] EventSO crystalChangeEvent;
     public EventSO playerValueChangeEvent;
@@ -18,12 +15,12 @@ public class Player : MonoBehaviour
     public IntValue shieldValue;
     public IntValue goldValue;
 
-
     public bool isAlive { get; private set; }
 
-    private BuffController buffCon;
-
-    public int killMobCount;
+    // 레벨 관련
+    private int level = 1;
+    private int exp;
+    private int nextExp;
 
     [Header("Debug")]
     public DebugBoolSO isDontDie;
@@ -248,8 +245,23 @@ public class Player : MonoBehaviour
         }
 
         // 킬카운트, 크리스탈 업
-        killMobCount++;
         Crystal.crystalAmount += GameManager.Instance.mineLevel;
         crystalChangeEvent?.Occurred();
+
+        GetExp(cardPower.originValue);
+    }
+
+    private void GetExp(int exp)
+    {
+        this.exp += exp;
+
+        if(exp >= nextExp)
+        {
+            // 초과분 넘기기
+            exp = exp - nextExp;
+            level++;
+            hpValue.RuntimeMaxValue += 2;
+            nextExp = level * level;
+        }
     }
 }

@@ -22,7 +22,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     public TextMeshProUGUI fieldText;
 
     public int value { get; private set; }
-    public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율, 기본 1
+    public int goldP;   // 몬스터를 잡을 때 얻는 골드 배율
     public int originValue;
     public BasicType originBasicType;
     public List<Buff> buffList = new List<Buff>();
