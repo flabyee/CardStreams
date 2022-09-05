@@ -48,9 +48,26 @@ public class FieldController
 
         for (int i = nowIndex - 4; i < nowIndex; i++)
         {
-            if((MapManager.Instance.fieldList[i].cardPower.basicType == BasicType.Monster))
+            if(MapManager.Instance.fieldList[i].cardPower.basicType == BasicType.Monster)
             {
                 mobCount++;
+            }
+        }
+
+        int goldP = 1;
+
+        if(mobCount == 3)
+            goldP = 2;
+        else if(mobCount == 4)
+        {
+            goldP = 3;
+        }
+
+        for (int i = nowIndex - 4; i < nowIndex; i++)
+        {
+            if (MapManager.Instance.fieldList[i].cardPower.basicType == BasicType.Monster)
+            {
+                MapManager.Instance.fieldList[i].cardPower.goldP *= goldP;
             }
         }
     }

@@ -358,6 +358,7 @@ MonoBehaviour:
   gradeImage: {fileID: 7717180003953440437}
   priceText: {fileID: 50701676015306483}
   button: {fileID: 50701676518544895}
+  canBuy: 0
 --- !u!114 &50701676518544895
 MonoBehaviour:
   m_ObjectHideFlags: 0

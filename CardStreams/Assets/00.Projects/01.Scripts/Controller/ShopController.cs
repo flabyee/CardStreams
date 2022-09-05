@@ -164,6 +164,12 @@ public class ShopController : MonoBehaviour
         foreach (ShopItemInfo info in shopItemList)
         {
             info.priceText.color = info.price <= goldValue.RuntimeValue ? Color.white : Color.red;
+
+            if(info.canBuy == false)
+            {
+                info.priceText.text = "X";
+                info.priceText.color = Color.red;
+            }
         }
 
         rerollCostText.text = $"¸®·Ñ({rerollCost}¿ø)";
@@ -361,11 +367,16 @@ public class ShopController : MonoBehaviour
 
             info.button.onClick.AddListener(() =>
             {
-                SoundManager.Instance.PlaySFX(SFXType.BuyCard);
-                BuyBuild(itemSO, shopItem.transform.position);
+                if(info.canBuy == true)
+                {
+                    SoundManager.Instance.PlaySFX(SFXType.BuyCard);
+                    BuyBuild(itemSO, shopItem.transform.position);
 
-                Renewal();
+                    info.canBuy = false;
 
+                    Renewal();
+                }
+                
                 //OnShop();
             });
         }
@@ -398,12 +409,16 @@ public class ShopController : MonoBehaviour
 
             info.button.onClick.AddListener(() =>
             {
-                SoundManager.Instance.PlaySFX(SFXType.BuyCard);
-                BuySpecial(itemSO, shopItem.transform.position);
+                if(info.canBuy == true)
+                {
+                    SoundManager.Instance.PlaySFX(SFXType.BuyCard);
+                    BuySpecial(itemSO, shopItem.transform.position);
 
-                Renewal();
+                    info.canBuy = false;
 
-                //OnShop();
+                    Renewal();
+                }
+
             });
         }
         else

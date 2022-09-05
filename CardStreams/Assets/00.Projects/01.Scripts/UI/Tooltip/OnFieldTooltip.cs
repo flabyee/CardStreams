@@ -31,7 +31,8 @@ public class OnFieldTooltip : MonoBehaviour
                 image.sprite = ConstManager.Instance.potionSprite;
                 break;
             case BasicType.Monster:
-                image.sprite = ConstManager.Instance.monsterSprite[0];
+                int tempValue = Mathf.Clamp(cardPower.originValue, 0, ConstManager.Instance.monsterSprite.Length - 1);
+                image.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 break;
             case BasicType.Sword:
                 image.sprite = ConstManager.Instance.swordSprite;

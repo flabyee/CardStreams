@@ -7,10 +7,10 @@ using DG.Tweening;
 
 public class HandleController : MonoBehaviour
 {
-    private List<CardData> playerOriginDeck = new List<CardData>();
+    private List<CardData> playerOriginDeck = new List<CardData>();     // 앞에 12칸 이동 때 사용
+    private List<CardData> playerOriginDeck2 = new List<CardData>();    // 뒤에 12칸 이동 때 사용
     private List<CardData> enemyOriginDeck = new List<CardData>();
 
-    // plaeyr deck == playerHandleObj 
     private List<CardData> enemyDeck = new List<CardData>();
 
     private List<int> buildDeck = new List<int>();
@@ -60,131 +60,255 @@ public class HandleController : MonoBehaviour
         DeckMake();
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            cardSorting.AlignCards();
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        cardSorting.AlignCards();
+    //    }
+    //}
 
+    // origin decks, enemyDeck 초기화
     private void DeckMake()
     {
         List<CardData> allDeck = new List<CardData>();
 
         playerOriginDeck.Clear();
         enemyOriginDeck.Clear();
+        playerOriginDeck2.Clear();
 
-        // originDeck 만들고
-        for (int i = 0; i < 12; i++)
+        // allDeck 만들고
         {
-            switch (i % 12)
+            for (int i = 0; i < 12; i++)
             {
-                case 0:
-                case 1:
-                    allDeck.Add(new CardData(BasicType.Sword, UnityEngine.Random.Range(2, maxValue)));
-                    break;
-                case 2:
-                case 3:
-                    allDeck.Add(new CardData(BasicType.Sheild, UnityEngine.Random.Range(2, maxValue)));
-                    break;
-                case 4:
-                case 5:
-                    allDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
-                    break;
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                case 11:
-                    allDeck.Add(new CardData(BasicType.Monster, UnityEngine.Random.Range(2, 5)));
-                    break;
-            }
-        }
-
-        int pValue = 0;
-        int mValue = 0;
-
-        foreach (CardData cardData in allDeck)
-        {
-            if (cardData.basicType != BasicType.Monster)
-                pValue += cardData.value;
-            else
-                mValue += cardData.value;
-        }
-
-        int deckValue = pValue - mValue;
-        int randomIndex = 0;
-
-        while (deckValue != deckValueAmount)
-        {
-            randomIndex = UnityEngine.Random.Range(0, 12);
-            // pValue가 더 크다면
-            if (deckValue > deckValueAmount)
-            {
-                // 플레이어 카드를 줄이거나 몹 카드를 늘린다
-                if (allDeck[randomIndex].basicType != BasicType.Monster)
+                switch (i % 12)
                 {
-                    if (allDeck[randomIndex].value > 1)
-                        allDeck[randomIndex].value--;
-                    else
-                        deckValue++;
+                    case 0:
+                    case 1:
+                        allDeck.Add(new CardData(BasicType.Sword, UnityEngine.Random.Range(2, maxValue)));
+                        break;
+                    case 2:
+                    case 3:
+                        allDeck.Add(new CardData(BasicType.Sheild, UnityEngine.Random.Range(2, maxValue)));
+                        break;
+                    case 4:
+                    case 5:
+                        allDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                        allDeck.Add(new CardData(BasicType.Monster, UnityEngine.Random.Range(2, 5)));
+                        break;
                 }
+            }
+
+            int pValue = 0;
+            int mValue = 0;
+
+            foreach (CardData cardData in allDeck)
+            {
+                if (cardData.basicType != BasicType.Monster)
+                    pValue += cardData.value;
+                else
+                    mValue += cardData.value;
+            }
+
+            int deckValue = pValue - mValue;
+            int randomIndex = 0;
+
+            while (deckValue != deckValueAmount)
+            {
+                randomIndex = UnityEngine.Random.Range(0, 12);
+                // pValue가 더 크다면
+                if (deckValue > deckValueAmount)
+                {
+                    // 플레이어 카드를 줄이거나 몹 카드를 늘린다
+                    if (allDeck[randomIndex].basicType != BasicType.Monster)
+                    {
+                        if (allDeck[randomIndex].value > 1)
+                            allDeck[randomIndex].value--;
+                        else
+                            deckValue++;
+                    }
+                    else
+                    {
+                        if (allDeck[randomIndex].value < maxValue)
+                            allDeck[randomIndex].value++;
+                        else
+                            deckValue++;
+                    }
+
+                    deckValue--;
+                }
+                // mValue가 더 크다면
                 else
                 {
-                    if (allDeck[randomIndex].value < maxValue)
-                        allDeck[randomIndex].value++;
+                    // 플레이어 카드를 늘리거나 몹 카드를 줄인다
+                    if (allDeck[randomIndex].basicType != BasicType.Monster)
+                    {
+                        if (allDeck[randomIndex].value < maxValue)
+                            allDeck[randomIndex].value++;
+                        else
+                            deckValue--;
+                    }
                     else
-                        deckValue++;
-                }
+                    {
+                        if (allDeck[randomIndex].value > 1)
+                            allDeck[randomIndex].value--;
+                        else
+                            deckValue--;
+                    }
 
-                deckValue--;
-            }
-            // mValue가 더 크다면
-            else
-            {
-                // 플레이어 카드를 늘리거나 몹 카드를 줄인다
-                if (allDeck[randomIndex].basicType != BasicType.Monster)
-                {
-                    if (allDeck[randomIndex].value < maxValue)
-                        allDeck[randomIndex].value++;
-                    else
-                        deckValue--;
+
+                    deckValue++;
                 }
+            }
+        }
+
+        // origin deck에 추가
+        {
+            foreach (CardData cardData in allDeck)
+            {
+                if (cardData.basicType != BasicType.Monster)
+                {
+                    playerOriginDeck.Add(cardData);
+                }
+            }
+
+            DeckShuffle(allDeck);
+
+            foreach (CardData cardData in allDeck)
+            {
+                if (cardData.basicType == BasicType.Monster)
+                {
+                    enemyOriginDeck.Add(cardData);
+                }
+            }
+        }
+
+
+        // allDeck2 만들고
+        {
+            allDeck.Clear();
+            for (int i = 0; i < 12; i++)
+            {
+                switch (i % 12)
+                {
+                    case 0:
+                    case 1:
+                        allDeck.Add(new CardData(BasicType.Sword, UnityEngine.Random.Range(2, maxValue)));
+                        break;
+                    case 2:
+                    case 3:
+                        allDeck.Add(new CardData(BasicType.Sheild, UnityEngine.Random.Range(2, maxValue)));
+                        break;
+                    case 4:
+                    case 5:
+                        allDeck.Add(new CardData(BasicType.Potion, UnityEngine.Random.Range(2, maxValue)));
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                        allDeck.Add(new CardData(BasicType.Monster, UnityEngine.Random.Range(2, 5)));
+                        break;
+                }
+            }
+
+            int pValue = 0;
+            int mValue = 0;
+
+            foreach (CardData cardData in allDeck)
+            {
+                if (cardData.basicType != BasicType.Monster)
+                    pValue += cardData.value;
+                else
+                    mValue += cardData.value;
+            }
+
+            int deckValue = pValue - mValue;
+            int randomIndex = 0;
+
+            while (deckValue != deckValueAmount)
+            {
+                randomIndex = UnityEngine.Random.Range(0, 12);
+                // pValue가 더 크다면
+                if (deckValue > deckValueAmount)
+                {
+                    // 플레이어 카드를 줄이거나 몹 카드를 늘린다
+                    if (allDeck[randomIndex].basicType != BasicType.Monster)
+                    {
+                        if (allDeck[randomIndex].value > 1)
+                            allDeck[randomIndex].value--;
+                        else
+                            deckValue++;
+                    }
+                    else
+                    {
+                        if (allDeck[randomIndex].value < maxValue)
+                            allDeck[randomIndex].value++;
+                        else
+                            deckValue++;
+                    }
+
+                    deckValue--;
+                }
+                // mValue가 더 크다면
                 else
                 {
-                    if (allDeck[randomIndex].value > 1)
-                        allDeck[randomIndex].value--;
+                    // 플레이어 카드를 늘리거나 몹 카드를 줄인다
+                    if (allDeck[randomIndex].basicType != BasicType.Monster)
+                    {
+                        if (allDeck[randomIndex].value < maxValue)
+                            allDeck[randomIndex].value++;
+                        else
+                            deckValue--;
+                    }
                     else
-                        deckValue--;
+                    {
+                        if (allDeck[randomIndex].value > 1)
+                            allDeck[randomIndex].value--;
+                        else
+                            deckValue--;
+                    }
+
+
+                    deckValue++;
                 }
-
-
-                deckValue++;
             }
         }
 
-        foreach (CardData cardData in allDeck)
+        // origin deck2 에 추가
         {
-            if (cardData.basicType != BasicType.Monster)
+            foreach (CardData cardData in allDeck)
             {
-                playerOriginDeck.Add(cardData);
+                if (cardData.basicType != BasicType.Monster)
+                {
+                    playerOriginDeck2.Add(cardData);
+                }
+            }
+
+            DeckShuffle(allDeck);
+
+            foreach (CardData cardData in allDeck)
+            {
+                if (cardData.basicType == BasicType.Monster)
+                {
+                    enemyOriginDeck.Add(cardData);
+                }
             }
         }
 
-        DeckShuffle(allDeck);
-
-        foreach (CardData cardData in allDeck)
-        {
-            if (cardData.basicType == BasicType.Monster)
-            {
-                enemyOriginDeck.Add(cardData);
-                enemyDeck.Add(cardData);
-            }
-        }
+        AddEnemyDeck();
     }
 
+    // 범용적으로 사용할 수 있는 덱 셔플 함수
     private void DeckShuffle(List<CardData> cardList)
     {
         for (int i = 0; i < cardList.Count; i++)
@@ -197,82 +321,83 @@ public class HandleController : MonoBehaviour
     }
 
 
-    private void AddEnemyDeck()
-    {
-        DeckShuffle(enemyOriginDeck);
-        foreach (CardData cardData in enemyOriginDeck)
-        {
-            enemyDeck.Add(cardData);
-        }
-    }
-
+    #region 플레이어 카드 관련
     private IEnumerator DrawPlayerCard()
     {
-        //if(playerDeck.Count > 1)
-        //{
-        //    foreach(CardData cardData in playerDeck)
-        //    {
-        //        GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
-        //        DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-        //        BasicCard basicCard = cardObj.GetComponent<BasicCard>();
-
-        //        dragbleCard.SetDroppedArea(handleDropArea);
-        //        dragbleCard.originDropArea = handleDropArea;
-
-        //        dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
-
-        //        basicCard.OnHandle();
-
-        //        playerHandleObj.Add(basicCard);
-        //    }
-
-        //    // 클리어하고 나중에 moveStart때 다시 추가
-        //    playerDeck.Clear();
-        //}
-        //else
-        //{
-        //    playerDeck.Clear();
-
-        //    AddPlayerDeck();
-
-        //    DrawPlayerCard();
-        //}
-
-        if(playerHandleObj.Count == 0)
+        foreach (CardData cardData in playerOriginDeck)
         {
-            DeckShuffle(playerOriginDeck);
-
-            foreach(CardData cardData in playerOriginDeck)
+            SoundManager.Instance.PlaySFX(SFXType.DrawCard);
+            BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+            drawBezier.Init(handleTrm, null, () =>
             {
-                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
-                BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
-                drawBezier.Init(handleTrm, null, () =>
-                {
-                    GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
-                    DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
-                    BasicCard basicCard = cardObj.GetComponent<BasicCard>();
+                GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+                DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+                BasicCard basicCard = cardObj.GetComponent<BasicCard>();
 
-                    dragbleCard.SetDroppedArea(handleDropArea);
-                    dragbleCard.originDropArea = handleDropArea;
+                dragbleCard.SetDroppedArea(handleDropArea);
+                dragbleCard.originDropArea = handleDropArea;
 
-                    dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
+                dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
 
-                    basicCard.OnHandle();
+                basicCard.OnHandle();
 
-                    playerHandleObj.Add(basicCard);
+                playerHandleObj.Add(basicCard);
 
-                    cardSorting.AddList(basicCard);
-                });
+                cardSorting.AddList(basicCard);
+            });
 
-                yield return new WaitForSeconds(0.2f);
-            }
+            yield return new WaitForSeconds(0.2f);
         }
     }
+    private IEnumerator DrawPlayerCard2()
+    {
+        foreach (CardData cardData in playerOriginDeck2)
+        {
+            SoundManager.Instance.PlaySFX(SFXType.DrawCard);
+            BezierCard drawBezier = Instantiate(drawCardBezierEffect, drawCardStartTrm.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+            drawBezier.Init(handleTrm, null, () =>
+            {
+                GameObject cardObj = CardPoolManager.Instance.GetBasicCard(handleTrm);
+                DragbleCard dragbleCard = cardObj.GetComponent<DragbleCard>();
+                BasicCard basicCard = cardObj.GetComponent<BasicCard>();
+
+                dragbleCard.SetDroppedArea(handleDropArea);
+                dragbleCard.originDropArea = handleDropArea;
+
+                dragbleCard.InitData_Feild(cardData.basicType, cardData.value);
+
+                basicCard.OnHandle();
+
+                playerHandleObj.Add(basicCard);
+
+                cardSorting.AddList(basicCard);
+            });
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    // 가지고 있던 플레이어 카드 버리는 함수, 다른 카드는 움직일 때 마다 버려주기 때문에 플레이어만 따로 있다
+    private void ClearHavingPlayerCard()
+    {
+        for (int i = 0; i < playerHandleObj.Count; i++)
+        {
+            if (playerHandleObj[i].isHandle == true)
+            {
+                playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                cardSorting.RemoveList(playerHandleObj[i]);
+            }
+        }
+        playerHandleObj.Clear();
+    }
+    #endregion
+
+    #region 몬스터 카드 관련
     private IEnumerator DrawEnemyCard()
     {
-        if(enemyDeck.Count != 0)
+        if(enemyDeck.Count > 3)
         {
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < 4; i++)
             {
                 CardData cardData = enemyDeck[i];
                 SoundManager.Instance.PlaySFX(SFXType.DrawCard);
@@ -300,18 +425,35 @@ public class HandleController : MonoBehaviour
 
             enemyDeck.RemoveAt(0);
             enemyDeck.RemoveAt(0);
+            enemyDeck.RemoveAt(0);
+            enemyDeck.RemoveAt(0);
         }
         else
         {
+            if(enemyDeck.Count != 0)
+            {
+                Debug.LogError("12장에서 4장씩 빼갔는데 4장 단위로 딱 떨어지지 않음");
+                enemyDeck.Clear();
+            }
+
+            // 12장 다쓰면 다시 12장 보충
             AddEnemyDeck();
-
             StartCoroutine(DrawEnemyCard());
-
-            Debug.Log("add enemy deck");
         }
 
     }
+    private void AddEnemyDeck()
+    {
+        Debug.Log(enemyOriginDeck.Count + "deck count");
+        DeckShuffle(enemyOriginDeck);
+        foreach (CardData cardData in enemyOriginDeck)
+        {
+            enemyDeck.Add(cardData);
+        }
+    }
+    #endregion
 
+    #region 특수, 건물 카드 관련
     public void AddBuild(int id)
     {
         buildDeck.Add(id);
@@ -320,7 +462,6 @@ public class HandleController : MonoBehaviour
     {
         specialDeck.Add(id);
     }
-
     public void DrawBuildCard()
     {
         if(buildDeck.Count == 0)
@@ -412,7 +553,7 @@ public class HandleController : MonoBehaviour
         }
 
     }
-
+    // 필드에 사용한 특수카드를 다시 회수할 때 사용하는 함수
     public void ReturnSpecialCards(List<int> idList)
     {
         foreach(int id in idList)
@@ -444,21 +585,103 @@ public class HandleController : MonoBehaviour
             });
         }
     }
+    public List<int> GetBuildDeck()
+    {
+        return buildDeck;
+    }
+    public List<int> GetSpecialDeck()
+    {
+        return specialDeck;
+    }
+    #endregion
 
     // turnStart or moveEnd 마다 하는 draw
     public void DrawCardWhenBeforeMove()
     {
-        float delay1 = playerHandleObj.Count <= 1 ? 1.2f : 0f;  // 새로 뽑으면 6장, 아니면 0장
-        float delay2 = 0.4f;    // 적 카드 2장
+        float playerDrawDelay = 1.2f;    // 플레이어 카드 4장
+        float mobDrawDelay = 0.8f;    // 적 카드 4장
+
         Sequence seq = DOTween.Sequence();
 
-        seq.AppendCallback(() => StartCoroutine(DrawPlayerCard()));
-        seq.AppendInterval(delay1); // 6번째 카드가 1.0~1.2초에 진행되니 1.2초 이후부터는 적카드 드로우도 시작 가능
+        if(GameManager.Instance.moveIndex == 0)
+        {
+            seq.AppendCallback(() => StartCoroutine(DrawPlayerCard()));
+            seq.AppendInterval(playerDrawDelay);
+        }
+        if(GameManager.Instance.moveIndex == 12)
+        {
+            seq.AppendCallback(() => StartCoroutine(DrawPlayerCard2()));
+            seq.AppendInterval(playerDrawDelay);
+        }
+
         seq.AppendCallback(() => StartCoroutine(DrawEnemyCard()));
-        seq.AppendInterval(delay2); // 2번째 카드가 0.2~0.4초에 진행되니 0.4초 이후부터는 특수카드 드로우도 시작 가능
+        seq.AppendInterval(mobDrawDelay);
         seq.AppendCallback(() => StartCoroutine(DrawSpecialCard()));
     }
 
+    // 몬스터, 건물, 특수 카드 버리는 함수, 특수, 건물카드는 다시 덱으로 돌아간다
+    public void HandleReturnToDeck()
+    {
+        // 몬스터카드 버리기
+        for (int i = 0; i < enemyHandleObj.Count; i++)
+        {
+            if (enemyHandleObj[i].isHandle == true)
+            {
+                enemyHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                cardSorting.RemoveList(enemyHandleObj[i]);
+            }
+        }
+        enemyHandleObj.Clear();
+
+        // 건물카드 버리기
+        for (int i = 0; i < buildHandleObj.Count; i++)
+        {
+            // 손에 있다면 active false
+            if (buildHandleObj[i].isHandle == true)
+            {
+                buildDeck.Add(buildHandleObj[i].buildSO.id);
+                buildHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                // 덱으로돌아가기연출
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
+                BezierCard returnBezier = Instantiate(drawCardBezierEffect, buildHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+
+                returnBezier.Init(drawCardStartTrm, null, null);
+
+                cardSorting.RemoveList(buildHandleObj[i]);
+            }
+        }
+        buildHandleObj.Clear();
+
+        // 특수카드 버리기
+        for (int i = 0; i < specialHandleObj.Count; i++)
+        {
+            // 손에 있다면 active false
+            if (specialHandleObj[i].isHandle == true)
+            {
+                specialDeck.Add(specialHandleObj[i].id);
+                specialHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+
+                // 덱으로돌아가기연출
+                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
+                BezierCard returnBezier = Instantiate(drawCardBezierEffect, specialHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
+
+                returnBezier.Init(drawCardStartTrm, null, null);
+
+                cardSorting.RemoveList(specialHandleObj[i]);
+            }
+        }
+        specialHandleObj.Clear();
+
+        if(GameManager.Instance.moveIndex == 12)
+            ClearHavingPlayerCard();
+
+        // 버릴 것 버린 이후에 다시 카드 정렬하기
+        cardSorting.AlignCards();
+    }
+
+    // 루프 종료 이후 덱에서 해야할 처리하는 함수(기존에 패 초기화 및 덱 새로 생성)
     public void LoopEnd()
     {
         // 남아있는 플레이어 핸드 제거
@@ -479,100 +702,7 @@ public class HandleController : MonoBehaviour
         DeckMake();
     }
 
-    // 현재 손에 있는 카드들을 모두 판매한다.
-    public void HandleReturnToDeck()
-    {
-        List<BasicCard> removeIndex = new List<BasicCard>();
-        for (int i = 0; i < playerHandleObj.Count; i++)
-        {
-            // 필드에 있다면 active false
-            if (playerHandleObj[i].isField == true)
-            {
-                removeIndex.Add(playerHandleObj[i]);
-            }
-        }
-        while(removeIndex.Count != 0)
-        {
-            playerHandleObj.Remove(removeIndex[0]);
-            removeIndex.RemoveAt(0);
-        }
-        // 한장 남으면 버린다
-        if (playerHandleObj.Count == 1)
-        {
-            playerHandleObj[0].GetComponent<DragbleCard>().ActiveFalse();
-
-            cardSorting.RemoveList(playerHandleObj[0]);
-
-            playerHandleObj.Clear();
-        }
-
-        for (int i = 0; i < enemyHandleObj.Count; i++)
-        {
-            // 손에 있다면 active false
-
-            int iAvoidClosure = i;
-
-            if (enemyHandleObj[i].isHandle == true)
-            {
-                enemyHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
-
-
-                // 덱으로돌아가기연출
-                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
-                BezierCard returnBezier = Instantiate(drawCardBezierEffect, enemyHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
-
-                returnBezier.Init(drawCardStartTrm, null, null);
-
-                cardSorting.RemoveList(enemyHandleObj[i]);
-            }
-        }
-        enemyHandleObj.Clear();
-
-        for (int i = 0; i < buildHandleObj.Count; i++)
-        {
-            // 손에 있다면 active false
-            if (buildHandleObj[i].isHandle == true)
-            {
-                buildDeck.Add(buildHandleObj[i].buildSO.id);
-                buildHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
-
-
-
-                // 덱으로돌아가기연출
-                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
-                BezierCard returnBezier = Instantiate(drawCardBezierEffect, buildHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
-
-                returnBezier.Init(drawCardStartTrm, null, null);
-
-                cardSorting.RemoveList(buildHandleObj[i]);
-            }
-        }
-        buildHandleObj.Clear();
-
-        for (int i = 0; i < specialHandleObj.Count; i++)
-        {
-            // 손에 있다면 active false
-            if (specialHandleObj[i].isHandle == true)
-            {
-                specialDeck.Add(specialHandleObj[i].id);
-                specialHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
-
-
-
-                // 덱으로돌아가기연출
-                SoundManager.Instance.PlaySFX(SFXType.DrawCard);
-                BezierCard returnBezier = Instantiate(drawCardBezierEffect, specialHandleObj[i].transform.position, Quaternion.identity, handleTrm.parent).GetComponent<BezierCard>();
-
-                returnBezier.Init(drawCardStartTrm, null, null);
-
-                cardSorting.RemoveList(specialHandleObj[i]);
-            }
-        }
-        specialHandleObj.Clear();
-
-        cardSorting.AlignCards();
-    }
-
+    // 카드를 들면 패가 밑으로 내려가서 더 넓게 보이게 해주는 함수
     public void MoveHandle(bool isDown)
     {
         if(isDown == true)
@@ -584,14 +714,5 @@ public class HandleController : MonoBehaviour
             handleTrm.DOAnchorPosY(originHandleY, 0.5f);
         }
         
-    }
-
-    public List<int> GetBuildDeck()
-    {
-        return buildDeck;
-    }
-    public List<int> GetSpecialDeck()
-    {
-        return specialDeck;
     }
 }

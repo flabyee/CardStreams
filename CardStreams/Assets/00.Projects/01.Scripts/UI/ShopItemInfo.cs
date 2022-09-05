@@ -21,6 +21,8 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public Button button;
 
+    public bool canBuy;
+
     public void Init(string itemName, List<CardType> targetTypeList, List<BasicType> targetBasicList, string tooltip, Sprite sprite, CardGrade grade, int price)
     {
         cardType = CardType.Special;
@@ -33,6 +35,8 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         gradeImage.color = ConstManager.Instance.gradeColorDict[(int)grade];
         this.price = price;
         priceText.text = price.ToString();
+
+        canBuy = true;
     }
 
     public void Init(string itemName, List<Vector2> accessPointList, string tooltip, Sprite sprite, CardGrade grade, int price)
@@ -46,6 +50,8 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         gradeImage.color = ConstManager.Instance.gradeColorDict[(int)grade];
         this.price = price;
         priceText.text = price.ToString();
+
+        canBuy = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

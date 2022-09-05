@@ -304,6 +304,7 @@ public class GameManager : MonoBehaviour
         // 앞에 n칸 활성화
         fieldController.SetNextFieldAble(moveIndex);
 
+        // 건물카드 날리기 위해서
         handleController.HandleReturnToDeck();
         handleController.DrawCardWhenBeforeMove();
         handleController.notHaveBuildUI.SetActive(false);
@@ -426,6 +427,7 @@ public class GameManager : MonoBehaviour
 
     public void MoveStart()
     {
+        // 몬스터카드, 특수카드 날리기 위해서
         handleController.HandleReturnToDeck();
 
         // 카드에 건물 효과 적용
@@ -653,7 +655,7 @@ public class GameManager : MonoBehaviour
         else
         {
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
-            enemyController.CreateRandomMob();
+            //enemyController.CreateRandomMob();
             enemyController.CreateEnemyBuild();
         }
 

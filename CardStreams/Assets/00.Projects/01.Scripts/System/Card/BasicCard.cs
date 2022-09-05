@@ -40,12 +40,11 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         this.originValue = value;
         this.basicType = basicType;
         this.originBasicType = basicType;
-        this.goldP = 4;
+        this.goldP = 2;
         this.buffList.Clear();
         this.applySpecialList.Clear();
 
-        Init();
-        //ApplyUI();
+        ApplyUI();
     }
 
     public void AddBuff(Buff buff)
@@ -67,7 +66,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
         GameManager.Instance.handleController.ReturnSpecialCards(applySpecialList);
     }
 
-    public void Init()
+    public void ApplyUI()
     {
         for (int i = 0; i < changeColorImages.Length; i++)
         {
@@ -100,7 +99,6 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
             return;
         }
 
-        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.monsterSprite.Length - 1);
 
         switch (basicType)
         {
@@ -120,7 +118,7 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
                 nameText.text = "방패";
                 break;
             case BasicType.Monster:
-                tempValue = Mathf.Clamp(originValue, 0, ConstManager.Instance.monsterSprite.Length - 1);
+                int tempValue = Mathf.Clamp(originValue, 0, ConstManager.Instance.monsterSprite.Length - 1);
                 faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 fieldImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 nameText.text = "몬스터";
@@ -131,13 +129,13 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     public void AddValue(int value)
     {
         this.value += value;
-        Init();
+        ApplyUI();
     }
 
     public void SetValue(int value)
     {
         this.value = value;
-        Init();
+        ApplyUI();
     }
 
 
@@ -177,21 +175,18 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
     {
         base.OnHandle();
 
-        Init();
-        // ApplyUI();
+        ApplyUI();
     }
     public override void OnField()
     {
         base.OnField();
 
-        Init();
-        // ApplyUI();
+        ApplyUI();
     }
     public override void OnHover()
     {
         base.OnHover();
 
-        Init();
-        // ApplyUI();
+        ApplyUI();
     }
 }

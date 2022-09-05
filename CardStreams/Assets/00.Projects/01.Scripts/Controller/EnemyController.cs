@@ -65,8 +65,10 @@ public class EnemyController : MonoBehaviour
     }
 
     /// <summary>
-    /// 랜덤 적 소환
+    /// 랜덤 적 소환, 구시대의 유물
     /// </summary>
+    /// 
+    /*
     public void CreateRandomMob()
     {
         List<int> canSpawnList = new List<int>();
@@ -138,6 +140,8 @@ public class EnemyController : MonoBehaviour
         mobSpawnAmount += mobSpawnIncreaseAmount;
         mobAttackAmount += mobAttackIncreaseAmount;
     }
+    */
+
 
     // <summary> 맵의 특정 칸에 몬스터를 생성합니다. </summary>
     // <param name = "fieldIndex" > 생성할 칸</param>
