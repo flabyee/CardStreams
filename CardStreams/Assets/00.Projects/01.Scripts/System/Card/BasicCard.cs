@@ -120,87 +120,24 @@ public class BasicCard : CardPower, IPointerClickHandler, IPointerEnterHandler, 
                 nameText.text = "방패";
                 break;
             case BasicType.Monster:
-                 faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
-                fieldImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
-                nameText.text = "몬스터";
-                break;
-        }
-    }
-
-    public void ApplyUI()
-    {
-        //backImage.color = ConstManager.Instance.basicTypeColorList[(int)basicType];
-        for(int i = 0; i < changeColorImages.Length; i++)
-        {
-            changeColorImages[i].color = ConstManager.Instance.basicTypeColorList[(int)basicType];
-        }
-        
-        valueText.text = value.ToString();
-        fieldText.text = value.ToString();
-
-        if (value == originValue)
-        {
-            valueText.color = Color.white;
-            fieldText.color = Color.white;
-        }
-        else if (value > originValue)
-        {
-            valueText.color = ConstManager.Instance.upValueColor;
-            fieldText.color = ConstManager.Instance.upValueColor;
-        }
-        else if (value < originValue)
-        {
-            valueText.color = ConstManager.Instance.downValueColor;
-            fieldText.color = ConstManager.Instance.downValueColor;
-        }
-
-        if (isBoss == true)
-        {
-            faceImage.sprite = ConstManager.Instance.bossSprite;
-            fieldImage.sprite = ConstManager.Instance.bossSprite;
-            return;
-        }
-
-
-        /* Init과 분리
-        int tempValue = Mathf.Clamp(value, 0, ConstManager.Instance.potionSprite.Length - 1);
-
-        switch (basicType)
-        {
-            case BasicType.Potion:
-                faceImage.sprite = ConstManager.Instance.potionSprite[0];
-                fieldImage.sprite = ConstManager.Instance.potionSprite[0];
-                nameText.text = "믈약";
-                break;
-            case BasicType.Sword:
-                faceImage.sprite = ConstManager.Instance.swordSprite[0];
-                fieldImage.sprite = ConstManager.Instance.swordSprite[0];
-                nameText.text = "칼";
-                break;
-            case BasicType.Sheild:
-                faceImage.sprite = ConstManager.Instance.sheildSprite[0];
-                fieldImage.sprite = ConstManager.Instance.sheildSprite[0];
-                nameText.text = "방패";
-                break;
-            case BasicType.Monster:
+                tempValue = Mathf.Clamp(originValue, 0, ConstManager.Instance.monsterSprite.Length - 1);
                 faceImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 fieldImage.sprite = ConstManager.Instance.monsterSprite[tempValue];
                 nameText.text = "몬스터";
                 break;
         }
-        */
     }
 
     public void AddValue(int value)
     {
         this.value += value;
-        ApplyUI();
+        Init();
     }
 
     public void SetValue(int value)
     {
         this.value = value;
-        ApplyUI();
+        Init();
     }
 
 

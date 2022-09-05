@@ -42,6 +42,19 @@ public class FieldController
         }
     }
 
+    public void SetMonsterGoldP(int nowIndex)
+    {
+        int mobCount = 0;
+
+        for (int i = nowIndex - 4; i < nowIndex; i++)
+        {
+            if((MapManager.Instance.fieldList[i].cardPower.basicType == BasicType.Monster))
+            {
+                mobCount++;
+            }
+        }
+    }
+
     // 건물 효과 적용
     //public void BuildAccessNextField(int nowIndex)
     //{

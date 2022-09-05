@@ -447,6 +447,7 @@ public class GameManager : MonoBehaviour
 
         // 이전 4개의 필드 상호작용 불가능 하게
         fieldController.SetBeforeFieldNot(moveIndex);
+        fieldController.SetMonsterGoldP(moveIndex);
 
         // 보스라 중이라면 보스와 전투후 뒤로 밀기
         if (IsBossRound())

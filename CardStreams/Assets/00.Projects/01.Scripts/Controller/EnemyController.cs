@@ -164,7 +164,7 @@ public class EnemyController : MonoBehaviour
         dragbleCard.transform.SetParent(field.transform);
 
         // 필드에 적용 + not으로
-        field.Init(cardPower, dragbleCard, FieldState.randomMob);
+        field.Init(cardPower as BasicCard, dragbleCard, FieldState.randomMob);
 
         dragbleCard.SetDroppedArea(field.dropArea);
 

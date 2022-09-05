@@ -84,7 +84,7 @@ public class DropManager : MonoBehaviour
                     dragbleCard.transform.position = area.field.transform.position;
                     dragbleCard.transform.SetParent(area.field.transform);
 
-                    area.field.Init(cardPower, dragbleCard);
+                    area.field.Init(cardPower as BasicCard, dragbleCard);
 
                     cardPower.SetField();
 

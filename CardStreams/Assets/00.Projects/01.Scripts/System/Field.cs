@@ -26,7 +26,7 @@ public class Field : MonoBehaviour
 
     public bool isSet;
     public DragbleCard dragbleCard;
-    public CardPower cardPower;
+    public BasicCard cardPower;
 
     public List<BuildCard> accessBuildList;
 
@@ -37,7 +37,7 @@ public class Field : MonoBehaviour
     public DropArea dropArea;
 
     // 기본적으론 이걸로 정보 넣고
-    public void Init(CardPower power, DragbleCard dragCard)
+    public void Init(BasicCard power, DragbleCard dragCard)
     {
         isSet = true;
         cardPower = power;
@@ -47,7 +47,7 @@ public class Field : MonoBehaviour
     }
 
     // 랜덤몹생성같이 필드의 상태도 변해야 하면 이걸 쓴다
-    public void Init(CardPower power, DragbleCard dragCard, FieldState type)
+    public void Init(BasicCard power, DragbleCard dragCard, FieldState type)
     {
         isSet = true;
         cardPower = power;
