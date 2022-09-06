@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,8 @@ public class Player : MonoBehaviour
     // 레벨 관련
     private int level = 1;
     private int exp;
-    private int nextExp;
+    private int nextExp = 30;
+    public Action<int, int, int> GetExpEvent;
 
     [Header("Debug")]
     public DebugBoolSO isDontDie;
@@ -255,13 +257,17 @@ public class Player : MonoBehaviour
     {
         this.exp += exp;
 
-        if(exp >= nextExp)
+        if(this.exp >= nextExp)
         {
             // 초과분 넘기기
-            exp = exp - nextExp;
+            this.exp = this.exp - nextExp;
             level++;
             hpValue.RuntimeMaxValue += 2;
-            nextExp = level * level;
+            nextExp = 20 + (level + 2) * (level + 2);
+
+            playerValueChangeEvent.Occurred();
         }
+
+        GetExpEvent?.Invoke(level, this.exp, nextExp);
     }
 }
