@@ -75,4 +75,9 @@ public class DataManager : MonoBehaviour
     {
         return stageDataList[stageNumValue.RuntimeValue];
     }
+
+    public StageDataSO GetStageData(int stageNum)
+    {
+        return stageDataList[stageNum];
+    }
 }

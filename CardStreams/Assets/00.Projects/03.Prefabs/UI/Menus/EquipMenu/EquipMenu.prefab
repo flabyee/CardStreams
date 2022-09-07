@@ -514,6 +514,7 @@ MonoBehaviour:
   buildPanel: {fileID: 3266747366765663916}
   specialPanel: {fileID: 2825100230910151263}
   equipController: {fileID: 2952457769955454400}
+  closeMenuEvent: {fileID: 11400000, guid: 079467a8c4e4894429b3a7973f8ad9df, type: 2}
 --- !u!114 &2952457769955454400
 MonoBehaviour:
   m_ObjectHideFlags: 0

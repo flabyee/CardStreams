@@ -22,10 +22,6 @@ public class VillageMapManager : MonoBehaviour
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
-    [SerializeField] GameObject square;
-    private Vector3 firstSquarePoint;
-    private Vector3 lastSquarePoint;
-
     public int fieldCount => fieldList.Count;
 
     private void Awake()
@@ -39,7 +35,7 @@ public class VillageMapManager : MonoBehaviour
 
     void Start()
     {
-        CreateMap(DataManager.Instance.GetNowStageData().mapStr);
+        CreateMap(DataManager.Instance.GetStageData(5).mapStr);
     }
 
     // 맵 생성 관련
@@ -47,8 +43,6 @@ public class VillageMapManager : MonoBehaviour
     {
         mapRectArr = new RectTransform[10, 10];
         string[] mapStrArr = mapStr.Split(',');
-
-        int squareCount = 0;
 
         for (int y = 0; y < 10; y++)
         {
@@ -60,60 +54,16 @@ public class VillageMapManager : MonoBehaviour
                 if (mapStrArr[y * 10 + x] == "0")
                 {
                     rectTrm = Instantiate(buildRectPrefab, mapRectParent).GetComponent<RectTransform>();
-
-                    GameObject dropAreaObj = Instantiate(buildDropPrefab, mapDropParent);
-
-                    // dropArea - field 연결
-                    DropArea dropArea = dropAreaObj.GetComponent<DropArea>();
-                    dropArea.rectTrm = rectTrm;
-
-
-                    dropArea.point = new Vector2(x, y);
-
                 }
-                else if(mapStrArr[y * 10 + x] == "s")
-                {
-                    squareCount++;
-
-                    rectTrm = Instantiate(fieldRectPrefab, mapRectParent).GetComponent<RectTransform>();
-
-                    GameObject dropAreaObj = Instantiate(fieldDropPrefab, mapDropParent);
-                    Debug.Log(dropAreaObj.transform.position);
-
-                    DropArea dropArea = dropAreaObj.GetComponent<DropArea>();
-                    dropArea.rectTrm = rectTrm;
-                    dropArea.point = new Vector2(x, y);
-
-                    if (squareCount == 1)
-                    {
-                        Debug.Log("first");
-                        firstSquarePoint = rectTrm.position;
-                    }
-                    lastSquarePoint = rectTrm.position;
-                }
-
-                // 필드(플레이어가 움직이는 곳)라면
                 else
                 {
+                    // 필드(플레이어가 움직이는 곳)라면
                     rectTrm = Instantiate(fieldRectPrefab, mapRectParent).GetComponent<RectTransform>();
 
                     GameObject dropAreaObj = Instantiate(fieldDropPrefab, mapDropParent);
-
-
-                    // dropArea - field 연결
-                    Field field = rectTrm.GetComponent<Field>();
-                    DropArea dropArea = dropAreaObj.GetComponent<DropArea>();
-                    field.dropArea = dropArea;
-                    dropArea.field = field;
-                    dropArea.rectTrm = rectTrm;
-                    dropArea.point = new Vector2(x, y);
-                    fieldvectorList.Add(field.dropArea.point); // 도로 벡터리스트에추가
-
-
 
                     // 필드 정렬하기 위해서
                     int num = int.Parse(mapStrArr[y * 10 + x]);
-                    //Debug.Log("int : " + num);
                     sortFieldRectList.Add(new FieldData(num, rectTrm));
                 }
 
@@ -128,17 +78,12 @@ public class VillageMapManager : MonoBehaviour
             fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
         }
 
-        // 필드 백그라운드 차별을 위해 번호매기기
-        int tileNum = 0;
-        for (int i = 0; i < fieldList.Count / 4; i++)
+        // 필드의 스프라이트는 어떻게 할것인가 : null로 하고 타일맵 찍어버리기~
+        for (int i = 0; i < fieldList.Count; i++)
         {
-            for (int j = 0; j < 4; j++)
-            {
-                fieldList[i * 4 + j].background.sprite = ConstManager.Instance.fieldSprites[tileNum];
-                fieldList[i * 4 + j].tileNum = tileNum;
-            }
-
-            tileNum = tileNum == 0 ? 1 : 0;
+            fieldList[i].background.sprite = null; // ConstManager.Instance.fieldSprites[0];
+            //fieldList[i].background.color = new Color(1,1,1,0);
+            fieldList[i].tileNum = 0;
         }
 
         Vector2Int[] nearPoints = new Vector2Int[] {
@@ -175,6 +120,8 @@ public class VillageMapManager : MonoBehaviour
             nearRoadPointList[i] = nearRoadPointList[randomIndex];
             nearRoadPointList[randomIndex] = temp;
         }
+
+        VillageGameManager.Instance.Init();
     }
 
     public RectTransform GetMapRectTrm(int y, int x)

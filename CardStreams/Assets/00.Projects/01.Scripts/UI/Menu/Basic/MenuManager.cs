@@ -6,6 +6,13 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
+public enum MenuType
+{
+    Null,
+    Main,
+    Equip,
+    Unlock
+}
 
 public class MenuManager : MonoBehaviour
 {
@@ -141,6 +148,24 @@ public class MenuManager : MonoBehaviour
         menuInstance.OnOpen();
 
         _menuStack.Push(menuInstance);
+    }
+
+    public void OpenMenu(MenuType type)
+    {
+        switch (type)
+        {
+            case MenuType.Main:
+                MainMenu.Open();
+                break;
+            case MenuType.Equip:
+                EquipMenu.Open();
+                break;
+            case MenuType.Unlock:
+                UnlockMenu.Open();
+                break;
+            default:
+                break;
+        }
     }
 
     public void CloseMenu()

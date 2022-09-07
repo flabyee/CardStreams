@@ -76,6 +76,37 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         BuildManager.Instance.OnBuildWhenTurnEndList.Add(actionPosData);
     }
 
+    public void VillageBuildDrop(Vector2 point)
+    {
+        BuildManager.Instance.buildList.Add(this);
+
+        //greadeText.text = string.Empty;
+
+        isDrop = true;
+
+        myPoint = point;
+        // 주변 검사해서 효과 적용
+
+        foreach (Vector2 accessPoint in buildSO.accessPointList)
+        {
+
+            // mapRectArr이 x는 왼쪽에서 오른쪽이지만, y는 위에서 아래라서 + 대신 -를 했다
+            Field field = VillageMapManager.Instance.mapRectArr[
+                Mathf.Clamp(Mathf.RoundToInt(myPoint.y - accessPoint.y), 0, 9),
+                Mathf.Clamp(Mathf.RoundToInt(myPoint.x + accessPoint.x), 0, 9)].GetComponent<Field>();
+            if (field != null)
+            {
+                field.accessBuildList.Add(this);
+            }
+        }
+
+
+        // 턴 엔드 효과 실행 리스트에 추가 (예시 : 돈버는 건물)
+        //BuildManager.Instance.OnBuildWhenTurnEnd += buildSO.AccessTurnEnd;
+        actionPosData = new ActionPosData(buildSO.AccessTurnEnd, gameObject);
+        BuildManager.Instance.OnBuildWhenTurnEndList.Add(actionPosData);
+    }
+
     public void BuildUp()
     {
         BuildManager.Instance.buildList.Remove(this);

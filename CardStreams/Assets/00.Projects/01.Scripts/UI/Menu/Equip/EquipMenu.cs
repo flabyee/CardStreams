@@ -9,6 +9,8 @@ public class EquipMenu : Menu<EquipMenu>
 
     public EquipController equipController;
 
+    public EventSO closeMenuEvent;
+
     public override void OnOpen()
     {
         equipController.OnEquip();
@@ -19,6 +21,7 @@ public class EquipMenu : Menu<EquipMenu>
     public override void OnBackPressed()
     {
         equipController.Close();
+        closeMenuEvent.Occurred();
 
         base.OnBackPressed();
     }

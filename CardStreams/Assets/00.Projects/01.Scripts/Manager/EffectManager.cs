@@ -35,7 +35,7 @@ public class EffectManager : MonoBehaviour
 
     private void Start()
     {
-        _mainCanvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
+        _mainCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
     public void GetSpawnMobEffect(Vector3 pos)

@@ -39,10 +39,11 @@ public class BuildSO : ScriptableObject
     public Sprite sprite;
 
     public List<Vector2> accessPointList;
-
+    
     public bool isAcceseCard;
     public bool isAccesePlayer;
     public bool isAcceseLoopEnd;
+    
 
     // 상속해서 여기를 채운다
     public virtual void AccessCard(Field field)
