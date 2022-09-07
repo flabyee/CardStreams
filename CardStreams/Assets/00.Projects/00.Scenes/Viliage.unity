@@ -6858,6 +6858,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 810464093205397176, guid: 7f46f41212786e349929b08a5e635de0, type: 3}
   m_PrefabInstance: {fileID: 982287288}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &987904386
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1823602404}
+    m_Modifications:
+    - target: {fileID: 3545387500625592770, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 80959048945e34cb889540e9c8728b9e, type: 3}
+    - target: {fileID: 3545387500625592770, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585540, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_Name
+      value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585546, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: bgmSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585546, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: bgmSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 80959048945e34cb889540e9c8728b9e, type: 3}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+--- !u!4 &987904387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3545387500873585547, guid: 7e3afcd177fe80f408d918207ee9b491, type: 3}
+  m_PrefabInstance: {fileID: 987904386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009589037
 GameObject:
   m_ObjectHideFlags: 0
@@ -8212,6 +8290,7 @@ Transform:
   - {fileID: 292074671}
   - {fileID: 1625031294}
   - {fileID: 17789306}
+  - {fileID: 987904387}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8917,7 +8996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnX: 2
   spawnY: 2
-  launchBuildSO: {fileID: 11400000, guid: aa6ad4943be9f29428e5929f7ff4f2b2, type: 2}
+  launchBuildSO: {fileID: 11400000, guid: 05984a013a8803b4f9517f675feb94a4, type: 2}
 --- !u!1 &2041637113
 GameObject:
   m_ObjectHideFlags: 0

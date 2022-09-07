@@ -27,14 +27,19 @@ public class Player : MonoBehaviour
     [Header("Debug")]
     public DebugBoolSO isDontDie;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rectTrm = GetComponent<RectTransform>();
         buffCon = GetComponent<BuffController>();
 
-        // IntValue Init
-        hpValue.RuntimeValue = hpValue.InitialMaxValue;
-        hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+        // IntValue Init : VillagePlayer로 옮겨서 마을에서 수치바꿀수있게
+        //hpValue.RuntimeValue = hpValue.InitialMaxValue;
+        //hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+        if (hpValue.RuntimeMaxValue <= 0)
+        {
+            hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+        }
+        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
         goldValue.RuntimeValue = 0;

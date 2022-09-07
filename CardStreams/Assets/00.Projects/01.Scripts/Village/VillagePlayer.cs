@@ -20,7 +20,16 @@ public class VillagePlayer : Player
     [Header("필드")]
     [HideInInspector] public Field curField;
     private Field destField;
-    
+
+    protected override void Awake()
+    {
+        // IntValue Init
+        hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+        hpValue.RuntimeValue = hpValue.InitialValue;
+
+        base.Awake();
+    }
+
     private void Start()
     {
         StartCoroutine(Util.DelayCoroutine(0.5f, () => Init()));
@@ -86,6 +95,11 @@ public class VillagePlayer : Player
             }
         }
 
+        foreach (Npc npc in destField.accessNpcList)
+        {
+            npc.AccessPlayer(this);
+        }
+
         // 다음 목표타일 설정
         mapIndex++;
         remainTime = movingTime;
@@ -103,6 +117,7 @@ public class VillagePlayer : Player
         {
             // 마지막 타일 도착했으니 정리하고 던전으로
             Debug.Log("마지막 타일에 도착했습니다");
+            LoadingSceneManager.LoadScene("SampleScene");
         }
     }
 }

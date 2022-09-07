@@ -25,3 +25,4 @@ MonoBehaviour:
   isAcceseLoopEnd: 0
   isOpenCardUI: 0
   openMenuType: 0
+  openVillagMenuEvent: {fileID: 11400000, guid: 29fe8bca925ccab4eb2f8c93881118c7, type: 2}

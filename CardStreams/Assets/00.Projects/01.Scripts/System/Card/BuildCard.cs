@@ -14,6 +14,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     public bool isDrop;
 
     private Vector2 myPoint;    // 맵에서의 내 위치
+    private List<Field> accessFieldList = new List<Field>(); // 범위가 닿는 필드들 리스트
 
     private ActionPosData actionPosData;
 
@@ -66,6 +67,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
             if(field != null)
             {
                 field.accessBuildList.Add(this);
+                accessFieldList.Add(field);
             }
         }
 
@@ -97,14 +99,17 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
             if (field != null)
             {
                 field.accessBuildList.Add(this);
+                accessFieldList.Add(field);
             }
         }
 
+        CreateNPC();
 
         // 턴 엔드 효과 실행 리스트에 추가 (예시 : 돈버는 건물)
         //BuildManager.Instance.OnBuildWhenTurnEnd += buildSO.AccessTurnEnd;
         actionPosData = new ActionPosData(buildSO.AccessTurnEnd, gameObject);
         BuildManager.Instance.OnBuildWhenTurnEndList.Add(actionPosData);
+
     }
 
     public void BuildUp()
@@ -142,6 +147,21 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         buildSO.AccessCard(field);
 
         Effects.Instance.TriggerBubble(transform.position);
+    }
+
+    public void CreateNPC()
+    {
+        VillageNPCHouseSO npcBuildSO = buildSO as VillageNPCHouseSO;
+        if(npcBuildSO != null)
+        {
+            int randIndex = Random.Range(0, accessFieldList.Count);
+            Field randField = accessFieldList[randIndex];
+
+            Npc npc = Instantiate(npcBuildSO.npcPrefab, randField.transform.position, Quaternion.identity).GetComponent<Npc>();
+            randField.accessNpcList.Add(npc);
+            npc.Init(npcBuildSO.npcSO);
+            
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

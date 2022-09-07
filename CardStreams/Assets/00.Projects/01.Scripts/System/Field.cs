@@ -29,6 +29,7 @@ public class Field : MonoBehaviour
     public BasicCard cardPower;
 
     public List<BuildCard> accessBuildList;
+    public List<Npc> accessNpcList;
 
 
     public int tileNum;
