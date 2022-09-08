@@ -19,7 +19,7 @@ public class VillageMapManager : MonoBehaviour
     public List<Vector2> fieldvectorList = new List<Vector2>();
     [HideInInspector] public RectTransform[,] mapRectArr;         // 전체 맵 배열
     public List<Vector2> nearRoadPointList = new List<Vector2>();
-    [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
+    [HideInInspector] public List<VillageField> fieldList = new List<VillageField>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
     public int fieldCount => fieldList.Count;
@@ -75,7 +75,7 @@ public class VillageMapManager : MonoBehaviour
 
         foreach (FieldData fieldData in sortFieldRectList)
         {
-            fieldList.Add(fieldData.rectTrm.GetComponent<Field>());
+            fieldList.Add(fieldData.rectTrm.GetComponent<VillageField>());
         }
 
         // 필드의 스프라이트는 어떻게 할것인가 : null로 하고 타일맵 찍어버리기~

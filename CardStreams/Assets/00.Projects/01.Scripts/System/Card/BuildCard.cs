@@ -155,8 +155,9 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         if(npcBuildSO != null)
         {
             int randIndex = Random.Range(0, accessFieldList.Count);
-            Field randField = accessFieldList[randIndex];
-
+            VillageField randField = accessFieldList[randIndex] as VillageField;
+            if (randField == null) return;
+            
             Npc npc = Instantiate(npcBuildSO.npcPrefab, randField.transform.position, Quaternion.identity).GetComponent<Npc>();
             randField.accessNpcList.Add(npc);
             npc.Init(npcBuildSO.npcSO);

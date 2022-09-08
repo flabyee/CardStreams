@@ -18,8 +18,8 @@ public class VillagePlayer : Player
     private float remainTime = 0.5f; // 다음 타일 가기까지 남은시간
 
     [Header("필드")]
-    [HideInInspector] public Field curField;
-    private Field destField;
+    [HideInInspector] public VillageField curField;
+    private VillageField destField;
 
     protected override void Awake()
     {
@@ -108,8 +108,8 @@ public class VillagePlayer : Player
         {
             destField = VillageMapManager.Instance.fieldList[mapIndex];
 
-            // 다시 이동
-            if (curState != VillageState.Move) return;
+                // 다시 이동
+                if (curState != VillageState.Move) return;
 
             MoveNextTile();
         }
