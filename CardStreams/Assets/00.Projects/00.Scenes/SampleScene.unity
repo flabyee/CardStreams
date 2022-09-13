@@ -15575,6 +15575,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1941386225}
     - target: {fileID: 8088710735771653155, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: expTargetTrm
+      value: 
+      objectReference: {fileID: 96024655907945862}
+    - target: {fileID: 8088710735771653155, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
       propertyPath: goldCardTargetTrm
       value: 
       objectReference: {fileID: 0}
