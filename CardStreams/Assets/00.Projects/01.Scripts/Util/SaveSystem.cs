@@ -128,12 +128,13 @@ public static class SaveSystem
 public class SaveData
 {
     // 마을 관련 ( 재화, 마을의 시설, 클리어한 스테이지 정보?? <- 이거는 따로? 등등)
-    public int gold;
+    public int crystal;
     // 강화 상태, 해금 상태, 
     public List<SpecialCardData> speicialCardDataList;
     public List<BuildData> buildDataList;
 
     public int maxRemoveCount;
+    public int prestige; // 명성치
 }
 
 [System.Serializable]

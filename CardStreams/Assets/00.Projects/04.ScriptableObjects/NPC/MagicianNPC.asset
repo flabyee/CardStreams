@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe44e02cbd4d6ec49859cc97ac37473f, type: 3}
+  m_Name: MagicianNPC
+  m_EditorClassIdentifier: 
+  npcSprite: {fileID: 21300020, guid: bd46ea097e0591f4bba4ad38524e9a9d, type: 3}
+  npcName: "\uB9C8\uBC95\uC0AC"
+  buffListSO: {fileID: 11400000, guid: b9b8679d53f814449859fd1f5732f447, type: 2}
+  buffSO: {fileID: 11400000, guid: 9b920dd46cef8bd4e92233c9b544c53d, type: 2}

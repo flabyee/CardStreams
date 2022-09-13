@@ -33,7 +33,7 @@ public class StreamEditor : EditorWindow
         if(GUILayout.Button("Get Gold 100 in menu"))
         {
             SaveData saveData = SaveSystem.Load();
-            saveData.gold += 100;
+            saveData.crystal += 100;
             SaveSystem.Save(saveData);
         }
         if(GUILayout.Button("Reset Remove Count"))

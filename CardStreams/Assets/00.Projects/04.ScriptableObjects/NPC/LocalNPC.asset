@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3a93a6091e2094a9cc71bf2576ba92, type: 3}
-  m_Name: PlayerHP
+  m_Script: {fileID: 11500000, guid: 23aca6f116bc33343b01cb319f1446f0, type: 3}
+  m_Name: LocalNPC
   m_EditorClassIdentifier: 
-  InitialValue: 13
-  InitialMaxValue: 13
+  npcSprite: {fileID: 21300006, guid: d7473fdd4fe09744ca7d0a667411bdcd, type: 3}
+  npcName: "\uC8FC\uBBFC"

@@ -284,7 +284,7 @@ public class EquipController : MonoBehaviour
     {
         countText.text = $"{removeCount} / {maxRemoveCount}";
 
-        goldText.text = saveData.gold.ToString();
+        goldText.text = saveData.crystal.ToString();
 
         foreach (RectTransform item in rightListTrm)
         {
@@ -319,9 +319,9 @@ public class EquipController : MonoBehaviour
 
     public void UpgradeCount()
     {
-        if(saveData.gold >= 5)
+        if(saveData.crystal >= 5)
         {
-            saveData.gold -= 5;
+            saveData.crystal -= 5;
 
             saveData.maxRemoveCount++;
             SaveSystem.Save(saveData);

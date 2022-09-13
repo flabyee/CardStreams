@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3772865b85c7b6b40a6654aa1c8dfb38, type: 3}
-  m_Name: VillageNPCHouse
+  m_Name: PriestNPCHouse
   m_EditorClassIdentifier: 
   id: 2
-  buildName: "NPC\uC758 \uC9D1"
+  buildName: "\uC131\uC9C1\uC790\uC758 \uC9D1"
   price: 0
   grade: 0
-  tooltip: "\uD2B9\uC815 NPC\uAC00 \uC18C\uD658\uB429\uB2C8\uB2E4"
+  tooltip: "\uC131\uC9C1\uC790\uB85C\uBD80\uD130 [ \uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00
+    ] \uBC84\uD504\uB97C \uBC1B\uC744 \uC218 \uC788\uB2E4."
   sprite: {fileID: -1389601507034977019, guid: ca2edd75766ebf64cad3ef42c53d87e1, type: 3}
   accessPointList:
   - {x: -1, y: 1}

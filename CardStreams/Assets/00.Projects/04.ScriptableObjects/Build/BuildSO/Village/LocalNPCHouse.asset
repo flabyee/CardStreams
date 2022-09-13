@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3772865b85c7b6b40a6654aa1c8dfb38, type: 3}
+  m_Name: LocalNPCHouse
+  m_EditorClassIdentifier: 
+  id: 3
+  buildName: "\uB9C8\uC744\uC8FC\uBBFC\uC758 \uC9D1"
+  price: 0
+  grade: 0
+  tooltip: "\uB9C8\uC744\uC8FC\uBBFC\uC5D0\uAC8C\uC11C [\uC2DC\uC791 \uACE8\uB4DC
+    \uC99D\uAC00] \uBC84\uD504\uB97C \uD68D\uB4DD\uD560 \uC218 \uC788\uB2E4."
+  sprite: {fileID: 21300006, guid: 31ce87929f339224a82e9333faedcab7, type: 3}
+  accessPointList:
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  - {x: -1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  isAcceseCard: 0
+  isAccesePlayer: 0
+  isAcceseLoopEnd: 0
+  isOpenCardUI: 0
+  openMenuType: 0
+  npcSO: {fileID: 11400000, guid: 33343c3645eb7a04ab231cd4b84103c4, type: 2}
+  npcPrefab: {fileID: 5143073422182789500, guid: 0325efba43f21834db555f53c605a2e9, type: 3}

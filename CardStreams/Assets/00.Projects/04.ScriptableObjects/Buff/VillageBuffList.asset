@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be3a93a6091e2094a9cc71bf2576ba92, type: 3}
-  m_Name: PlayerHP
+  m_Script: {fileID: 11500000, guid: 2b702c373ddc49d44a118656269a9507, type: 3}
+  m_Name: VillageBuffList
   m_EditorClassIdentifier: 
-  InitialValue: 13
-  InitialMaxValue: 13
+  buffList: []

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] EventSO crystalChangeEvent;
     public EventSO playerValueChangeEvent;
+    public VillageBuffListSO buffListSO;
 
     public IntValue hpValue;
     public IntValue swordValue;
@@ -42,13 +43,17 @@ public class Player : MonoBehaviour
         hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
-        goldValue.RuntimeValue = 0;
     }
 
 
     void Start()
     {
-
+        foreach (BuffSO so in buffListSO.buffList)
+        {
+            Buff buff = new Buff();
+            so.Init(buff); // SO의 값으로 Buff를 초기화해줌
+            buffCon.AddBuff(buff);
+        }
         playerValueChangeEvent.Occurred();
 
         isAlive = true;
@@ -205,7 +210,7 @@ public class Player : MonoBehaviour
         int currentMonsterValue = cardPower.value;
 
         // 몬스터의 밸류가 0 이상일 때만
-        if(currentMonsterValue > 0)
+        if (currentMonsterValue > 0)
         {
             // 칼 사용 검사
             if (currentMonsterValue > 0 && swordValue.RuntimeValue > 0) // 몬스터 공격력이 0 이상이고 칼이 있으면
