@@ -11950,50 +11950,6 @@ PrefabInstance:
       propertyPath: specialCardShopTrm
       value: 
       objectReference: {fileID: 1819880830}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[0].epic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[1].epic
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[1].rare
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[2].epic
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[2].rare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[3].epic
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[3].rare
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[2].unique
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[3].unique
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[2].legendary
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 667824532431980569, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
-      propertyPath: gradeAmount.Array.data[3].legendary
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 667824532665385048, guid: 478a8d072ccfbb8459f1ad77634ea23b, type: 3}
       propertyPath: blurObj
       value: 

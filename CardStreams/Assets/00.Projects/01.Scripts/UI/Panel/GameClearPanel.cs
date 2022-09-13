@@ -6,6 +6,8 @@ public class GameClearPanel : MonoBehaviour
 {
     public void OnClickTitleButton()
     {
+        GameManager.Instance.SettingClear();
+
         LoadingSceneManager.LoadScene("MenuScene");
     }
 }

@@ -495,7 +495,8 @@ public class GameManager : MonoBehaviour
             if (player.OnBoss(enemyController.Boss.Attack, out int sword)) // 플레이어 칼 수치를 out에 담는다
             {
                 // 사망 처리
-                GameOver();
+                SaveFile.SaveGame();
+                SettingClear();
             }
             else
             {
@@ -622,7 +623,8 @@ public class GameManager : MonoBehaviour
                 // 플레이어 죽었으면 끝
                 if (player.isAlive == false)
                 {
-                    GameOver();
+                    SaveFile.SaveGame();
+                    SettingClear();
 
                     sequence.Kill();
                     return;
@@ -763,9 +765,9 @@ public class GameManager : MonoBehaviour
         moveDuration = speed;
     }
 
-    private void GameOver()
+    public void SettingClear()
     {
-        SaveFile.SaveGame();
+        
 
         dontTouchController.Hide();
         playerDieEvent.Occurred();
