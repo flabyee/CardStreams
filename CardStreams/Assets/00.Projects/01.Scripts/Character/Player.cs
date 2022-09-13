@@ -59,6 +59,11 @@ public class Player : MonoBehaviour
         isAlive = true;
     }
 
+    private void OnDestroy()
+    {
+        buffListSO?.buffList.Clear();
+    }
+
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
     {
         if(isDontDie.b == true)

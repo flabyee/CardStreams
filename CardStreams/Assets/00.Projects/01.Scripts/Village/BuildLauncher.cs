@@ -23,7 +23,7 @@ public class BuildLauncher : MonoBehaviour
             building.transform.position = rectTrm.position;
 
             building.Init(launchBuildSO);
-            building.VillageBuildDrop(new Vector2(spawnY, spawnX));
+            building.VillageBuildDrop(new Vector2(spawnX, spawnY));
 
             CardPower cardPower = building.GetComponent<CardPower>();
             cardPower.backImage.color = Color.magenta;
