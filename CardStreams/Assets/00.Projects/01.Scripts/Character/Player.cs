@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
     private RectTransform rectTrm;
     private BuffController buffCon;
 
-    [SerializeField] EventSO crystalChangeEvent;
     public EventSO playerValueChangeEvent;
+    public EventSO prestigeValueChangeEvent;
     public VillageBuffListSO buffListSO;
 
     public IntValue hpValue;
@@ -256,9 +256,9 @@ public class Player : MonoBehaviour
             playerValueChangeEvent.Occurred();
         }
 
-        // 킬카운트, 크리스탈 업
-        Crystal.crystalAmount += GameManager.Instance.mineLevel;
-        crystalChangeEvent?.Occurred();
+        // 킬카운트, 명성 업 (크리스탈은 루프 완료시마다 5개, 게임매니저로 이사감)
+        Prestige.prestigeAmount += 1;
+        prestigeValueChangeEvent.Occurred();
 
         GetExp(cardPower.originValue);
     }

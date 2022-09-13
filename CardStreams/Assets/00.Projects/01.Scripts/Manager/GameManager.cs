@@ -82,6 +82,8 @@ public class GameManager : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
     public EventSO loopChangeEvent;
+    [SerializeField] EventSO crystalChangeEvent;
+
 
     [Header("Action")]
     public Action<int> ShowTuTorialEvent;
@@ -328,10 +330,11 @@ public class GameManager : MonoBehaviour
     public void TurnEnd()
     {
         canNextLoop = false;
+        moveIndex = 0;
 
         handleController.LoopEnd();
-
-        moveIndex = 0;
+        Crystal.crystalAmount += mineLevel * 5;
+        crystalChangeEvent?.Occurred();
 
         if (IsBossRound() == false)
         {

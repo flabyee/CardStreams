@@ -15,6 +15,11 @@ public class MainMenu : Menu<MainMenu>
         LoadingSceneManager.LoadScene("SampleScene");
     }
 
+    public void OnClickVillage()
+    {
+        LoadingSceneManager.LoadScene("Village");
+    }
+
     public void OnClickOption()
     {
         
