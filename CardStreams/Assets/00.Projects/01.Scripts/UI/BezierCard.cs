@@ -54,9 +54,12 @@ public class BezierCard : MonoBehaviour
     /// <param name="icon">카드 아이콘</param>
     /// <param name="cardID">획득할 카드 ID</param>
     /// <param name="callback">끝까지 날라갔을때 추가로실행할 함수</param>
-    public void Init(Transform targetTrm, Sprite icon, Action callback)
+    public void Init(Transform targetTrm, Sprite icon, Action callback, float speed = 1.3f, float radiusA = 6f, float radiusB = 10f)
     {
         cardIconImage.sprite = icon;
+        this.speed = speed;
+        this.radiusA = radiusA;
+        this.radiusB = radiusB;
 
         Sequence seq = DOTween.Sequence();
 
@@ -71,6 +74,8 @@ public class BezierCard : MonoBehaviour
 
         StartBezier(targetTrm);
     }
+
+    
 
     #region 2차 베지어 곡선
 

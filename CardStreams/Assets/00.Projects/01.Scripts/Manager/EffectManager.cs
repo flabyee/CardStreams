@@ -13,8 +13,9 @@ public class EffectManager : MonoBehaviour
 
     public GameObject bezierCardEffect;
     [SerializeField] Transform specialCardTargetTrm; // 특수카드가 날아갈 목적지
-    [SerializeField] Transform goldCardTargetTrm; // 골드카드가 날아갈 목적지
-    [SerializeField] Transform healCardTargetTrm; // 회복카드가 날아갈 목적지
+    [SerializeField] Transform goldCardTargetTrm;   // 골드카드가 날아갈 목적지
+    [SerializeField] Transform healCardTargetTrm;   // 회복카드가 날아갈 목적지
+    [SerializeField] Transform expTargetTrm;        // 경험치가 날아갈 목적지
 
     public GameObject nextBuildEffect;
     private List<GameObject> nextBuildEffectList = new List<GameObject>();
@@ -55,10 +56,11 @@ public class EffectManager : MonoBehaviour
     /// <param name="icon">카드의 아이콘</param>
     /// <param name="callback">카드 날라가는거 완료된후 터질 함수</param>
     /// <param name="rewardType">카드 날라가는거 완료된후 얻을 보상의 종류</param>
-    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, TargetType rewardType, Action callback)
+    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, TargetType rewardType, Action callback, float speed = 1.3f, float radiusA = 6f, float radiusB = 10f)
     {
         startPos.z = 0; // canvas UI라서 z 문제생길수있음 그래서 0
         BezierCard effect = Instantiate(bezierCardEffect, startPos, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
+        
 
         Transform targetTrm = null;
 
@@ -74,6 +76,10 @@ public class EffectManager : MonoBehaviour
 
             case TargetType.HPUI:
                 targetTrm = healCardTargetTrm;
+                break;
+
+            case TargetType.Exp:
+                targetTrm = expTargetTrm;
                 break;
 
             default:

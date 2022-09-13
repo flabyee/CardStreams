@@ -260,7 +260,10 @@ public class Player : MonoBehaviour
         Prestige.prestigeAmount += 1;
         prestigeValueChangeEvent.Occurred();
 
-        GetExp(cardPower.originValue);
+        for(int i = 0; i < cardPower.originValue; i++)
+        {
+            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.shieldSprite, TargetType.Exp, () => { GetExp(1); }, 1.3f, 4f, 1f );
+        }
     }
 
     private void GetExp(int exp)

@@ -10,7 +10,8 @@ public enum TargetType // 보상카드가 날아갈 위치
 {
     Handle,
     GoldUI,
-    HPUI
+    HPUI,
+    Exp,
 }
 
 public class RewardCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
