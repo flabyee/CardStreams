@@ -13,14 +13,17 @@ public class TurnRecoveryBuffSO : BuffSO
 
     public override void UseBuff(int fieldValue)
     {
+        Debug.Log("4Ä­Èú");
         tileCount++;
 
         if(tileCount >= 4)
         {
+            Debug.Log("Èú");
             hpValue.RuntimeValue += 1;
             playerValueChanged.Occurred();
+            tileCount = 0;
         }
 
-        tileCount = 0;
+        
     }
 }
