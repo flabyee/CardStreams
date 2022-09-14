@@ -5,7 +5,8 @@ using UnityEngine;
 public class DropInputManager : MonoBehaviour
 {
     public static DropInputManager Instance;
-    public VillageShop villageShop; 
+    public VillageShop villageShop;
+    public GameObject highlight;
 
     private void Awake()
     {
@@ -15,8 +16,14 @@ public class DropInputManager : MonoBehaviour
         Instance = this;
     }
     
-    public void TargetingBuildRect()
+    public void TargetingBuildRect(Vector3 pos)
     {
         villageShop.OnOffMenu();
+        highlight.transform.position = pos; // 켜주는건 villageShop에서
+    }
+
+    public void SetActiveHighlight(bool isActive)
+    {
+        highlight.SetActive(isActive);
     }
 }

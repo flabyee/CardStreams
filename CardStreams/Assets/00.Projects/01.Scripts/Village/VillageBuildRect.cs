@@ -9,9 +9,9 @@ public class VillageBuildRect : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        DropInputManager.Instance.TargetingBuildRect();
+        
+        DropInputManager.Instance.TargetingBuildRect(transform.position);
         VillageShopItem.buildPos = rectPos;
         Debug.Log(rectPos);
-        Debug.Log("OnPointerDown");
     }
 }

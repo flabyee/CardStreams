@@ -39,6 +39,7 @@ public class VillageShop : MonoBehaviour
         {
             // ¿­±â
             _rectTrm.DOAnchorPosX(openPosX, 1.0f);
+            DropInputManager.Instance.SetActiveHighlight(true);
             foreach (VillageShopItem item in shopItems)
             {
                 item.SetInteractable(true);
@@ -48,6 +49,7 @@ public class VillageShop : MonoBehaviour
         {
             // ´Ý±â
             _rectTrm.DOAnchorPosX(closePosX, 1.0f);
+            DropInputManager.Instance.SetActiveHighlight(false);
             foreach (VillageShopItem item in shopItems)
             {
                 item.SetInteractable(false);
