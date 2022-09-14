@@ -19,8 +19,11 @@ public class PassiveSystem : MonoBehaviour
         {
             if(registerSOList[i] == so)
             {
-                soLevelList[i]++;
-                slots[i].LevelUpdate(soLevelList[i]);
+                if (soLevelList[i] < 3) // 3 이상일땐 레벨업 x
+                {
+                    soLevelList[i]++;
+                    slots[i].LevelUpdate(soLevelList[i]);
+                }
                 return;
             }
         }

@@ -39,15 +39,33 @@ public class VillageShopItem : MonoBehaviour
 
     public void OnClickBuy()
     {
+        // 크리스탈 충분 체크
+        if (EnoughCrystal() == false) return;
+
         // buildItemSO를 깔기
         CreateNpc();
         shop.OnOffMenu(); // 샀으니까 사이드 창은 끄기
 
         // 크리스탈 소모
+        UseCrystal();
     }
     public void SetInteractable(bool isInteractable)
     {
         thisButton.interactable = isInteractable;
+    }
+
+    private bool EnoughCrystal()
+    {
+        var saveData = SaveFile.GetSaveData();
+        bool enough = saveData.crystal >= buildItemSO.price ? true : false;
+
+        return enough;
+    }
+
+    private void UseCrystal()
+    {
+        SaveFile.GetSaveData().crystal -= buildItemSO.price;
+        SaveFile.SaveGame();
     }
 
     private void CreateNpc()
