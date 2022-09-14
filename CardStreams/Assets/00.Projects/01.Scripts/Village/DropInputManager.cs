@@ -14,18 +14,9 @@ public class DropInputManager : MonoBehaviour
 
         Instance = this;
     }
-
-
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            VillageShopItem.buildPos = new Vector2Int(5, 2);
-        }
-    }
-
+    
     public void TargetingBuildRect()
     {
-        villageShop.OpenMenu();
+        villageShop.OnOffMenu();
     }
 }

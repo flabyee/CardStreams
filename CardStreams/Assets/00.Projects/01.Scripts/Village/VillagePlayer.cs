@@ -35,6 +35,8 @@ public class VillagePlayer : Player
 
     private void Start()
     {
+        buffListSO.buffList.Clear(); // 마을 시작할때 마을버프 싹다 리셋
+        buffListSO = null; // 참조 풀어서 player에 있는 ondestroy 작동안하게
         StartCoroutine(Util.DelayCoroutine(0.5f, () => Init()));
     }
 

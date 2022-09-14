@@ -1,28 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VillageShopItem : MonoBehaviour
 {
-    public VillageBuildSO buildItemSO;
     public static Vector2Int buildPos;
+    public VillageBuildSO buildItemSO;
+    
+    [SerializeField] VillageShop shop;
+    [SerializeField] Image buildImage;
+    [SerializeField] TextMeshProUGUI buildName;
+    [SerializeField] TextMeshProUGUI detailText;
+    [SerializeField] TextMeshProUGUI requireCrystalText;
 
-    public void Buy()
+    private Button thisButton;
+
+    private void Awake()
+    {
+        thisButton = GetComponent<Button>();
+    }
+
+    public void Init(BuildSO so)
+    {
+        buildItemSO = so as VillageBuildSO;
+        if (buildItemSO == null)
+        {
+            Debug.LogError("마을 건물을 받아오지 못했습니다");
+            return;
+        }
+
+        buildImage.sprite = so.sprite;
+        buildName.text = so.buildName;
+        detailText.text = so.tooltip;
+        requireCrystalText.text = so.price.ToString();
+    }
+
+    public void OnClickBuy()
     {
         // buildItemSO를 깔기
         CreateNpc();
+        shop.OnOffMenu(); // 샀으니까 사이드 창은 끄기
 
         // 크리스탈 소모
     }
-
-    void Start()
+    public void SetInteractable(bool isInteractable)
     {
-        
-    }
-
-    void Update()
-    {
-        
+        thisButton.interactable = isInteractable;
     }
 
     private void CreateNpc()

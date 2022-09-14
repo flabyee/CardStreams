@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   buildName: "\uB9C8\uBC95\uC0AC\uC758 \uC9D1"
-  price: 0
+  price: 20
   grade: 0
   tooltip: "\uB9C8\uBC95\uC0AC\uC5D0\uAC8C\uC11C [ 4\uCE78\uB9C8\uB2E4 \uCCB4\uB825
     +1 \uD68C\uBCF5 ] \uBC84\uD504\uB97C \uBC1B\uC744 \uC218 \uC788\uB2E4."
