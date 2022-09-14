@@ -18,7 +18,7 @@ MonoBehaviour:
   grade: 0
   tooltip: "\uB9C8\uC744\uC8FC\uBBFC\uC5D0\uAC8C\uC11C [\uC2DC\uC791 \uACE8\uB4DC
     \uC99D\uAC00] \uBC84\uD504\uB97C \uD68D\uB4DD\uD560 \uC218 \uC788\uB2E4."
-  sprite: {fileID: 21300006, guid: 31ce87929f339224a82e9333faedcab7, type: 3}
+  sprite: {fileID: -7120701815064617541, guid: ca2edd75766ebf64cad3ef42c53d87e1, type: 3}
   accessPointList:
   - {x: -1, y: 1}
   - {x: 0, y: 1}

@@ -54,13 +54,15 @@ public class VillageMapManager : MonoBehaviour
                 if (mapStrArr[y * 10 + x] == "0")
                 {
                     rectTrm = Instantiate(buildRectPrefab, mapRectParent).GetComponent<RectTransform>();
+                    VillageBuildRect buildRect = rectTrm.GetComponent<VillageBuildRect>();
+                    if (buildRect != null) buildRect.rectPos = new Vector2Int(x, y);
                 }
                 else
                 {
                     // 필드(플레이어가 움직이는 곳)라면
                     rectTrm = Instantiate(fieldRectPrefab, mapRectParent).GetComponent<RectTransform>();
 
-                    GameObject dropAreaObj = Instantiate(fieldDropPrefab, mapDropParent);
+                    // GameObject dropAreaObj = Instantiate(fieldDropPrefab, mapDropParent); dropArea는 마을에선 안쓰니까 주석처리
 
                     // 필드 정렬하기 위해서
                     int num = int.Parse(mapStrArr[y * 10 + x]);
