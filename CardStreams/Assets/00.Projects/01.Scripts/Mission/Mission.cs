@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-public enum MissionType
-{
-    Now,
-    AfterLoop,
-}
+using System;
 
 public enum MissionGrade
 {
@@ -22,23 +17,42 @@ public class Mission : MonoBehaviour
     // UI도 필수적인 부분만 여기서 선언하고 나머지는 알아서
     public TextMeshProUGUI missionNameText;
     public TextMeshProUGUI missionInfoText;
+    public Image gradeImage;
+    public Slider progressSlider;
+    public TextMeshProUGUI progressText;
 
-    public virtual void Complete()
+    public Action GetMissionEvent;
+    public Action ApplyUIEvent;
+    public Func<bool> IsCompleteEvent;
+
+    public void Init(MissionSO missionSO)
     {
-        // 보수
+        GetMissionEvent += missionSO.GetMission;
+        ApplyUIEvent += missionSO.ApplyUI;
+        IsCompleteEvent += missionSO.IsComplete;
     }
 
-    public virtual void GetMission()
+    public void GetMission()
     {
-        // 여기서 감시할 대상의 액션에 자기 추가
-        // 매개변수 모두 다르기 때문에 알아서 구현
+        GetMissionEvent?.Invoke();
 
-        // UI도 설정
         ApplyUI();
     }
 
-    public virtual void ApplyUI()
+    public void ApplyUI()
     {
+        ApplyUIEvent?.Invoke();
+    }
 
+    // 성공여부는 한바퀴돈 이후에 체크
+    public bool IsComplete()
+    {
+        if (IsCompleteEvent == null)
+        {
+            Debug.LogError("IsCompleteEvent에 조건이 할당되지 않음");
+            return false;
+        }
+
+        return IsCompleteEvent.Invoke();
     }
 }

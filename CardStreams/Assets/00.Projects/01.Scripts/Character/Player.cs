@@ -25,8 +25,13 @@ public class Player : MonoBehaviour
     private int nextExp = 30;
     public Action<int, int, int> GetExpEvent;
 
+    // 미션 시스템을 위한
+    public Action<BasicCard> OnBasicCardEvent;
+
     [Header("Debug")]
     public DebugBoolSO isDontDie;
+
+    
 
     protected virtual void Awake()
     {
@@ -107,6 +112,8 @@ public class Player : MonoBehaviour
 
         OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower);
 
+        // 미션
+        OnBasicCardEvent?.Invoke(field.cardPower);
     }
 
     public bool OnBoss(int damage, out int sword)
