@@ -5,11 +5,23 @@ using UnityEngine;
 public class BuffController : MonoBehaviour 
 {
     private readonly List<Buff> buffList = new List<Buff>();
+    [SerializeField] PassiveDisplayPanel passiveDisplayPanel;
 
     public void AddBuff(Buff buff)
     {
         // 중복검사, if (버프가 중복) return
         if (!CanAddBuff(buff)) return;
+
+        buffList.Add(buff);
+    }
+
+    public void AddPassiveBuff(Buff buff)
+    {
+        // 중복검사, if (버프가 중복) return
+        if (!CanAddBuff(buff)) return;
+
+        // 어떤 버프 추가할지 고른다음 왼쪽상단에 표기
+        passiveDisplayPanel.SetPassive(buff.buffIcon, buff.buffName);
 
         buffList.Add(buff);
     }

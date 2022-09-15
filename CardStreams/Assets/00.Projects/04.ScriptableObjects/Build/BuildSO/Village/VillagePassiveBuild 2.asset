@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b772b153c49ba4aa5dc80c71c762dd, type: 3}
+  m_Name: VillagePassiveBuild 2
+  m_EditorClassIdentifier: 
+  id: 5
+  buildName: "\uD655\uC7A5 "
+  price: 0
+  grade: 0
+  tooltip: "\uBC29\uD328\uD655\uC7A5 \uCCAB\uBC88\uC9F8\uB9CC\uC90D\uB2C8\uB2E4"
+  sprite: {fileID: 21300000, guid: 792c25629222e6f40a0362a86a085fe7, type: 3}
+  accessPointList:
+  - {x: -1, y: 1}
+  - {x: 1, y: 1}
+  isAcceseCard: 0
+  isAccesePlayer: 1
+  isAcceseLoopEnd: 0
+  isOpenCardUI: 0
+  openMenuType: 0
+  passiveSO: {fileID: 11400000, guid: 58dadbbfc668aba489cd24676cc72f50, type: 2}

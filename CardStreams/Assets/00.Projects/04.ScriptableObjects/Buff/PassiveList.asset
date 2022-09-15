@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe44e02cbd4d6ec49859cc97ac37473f, type: 3}
-  m_Name: MagicianNPC
+  m_Script: {fileID: 11500000, guid: 7c96e644c092d324ca8b2f2df2ef726f, type: 3}
+  m_Name: PassiveList
   m_EditorClassIdentifier: 
-  npcSprite: {fileID: 21300020, guid: bd46ea097e0591f4bba4ad38524e9a9d, type: 3}
-  npcName: "\uB9C8\uBC95\uC0AC"
-  createShieldAmount: 10
+  passiveList: []
