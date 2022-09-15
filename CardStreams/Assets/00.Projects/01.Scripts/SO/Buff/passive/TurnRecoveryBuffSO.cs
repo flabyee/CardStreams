@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TurnRecoveryBuf", menuName = "ScriptableObject/Buff/TurnRecoveryBuf")]
+[CreateAssetMenu(fileName = "TurnRecoveryBuff", menuName = "ScriptableObject/Buff/TurnRecoveryBuff")]
 
-public class TurnRecoveryBuffSO : BuffSO
+public class TurnRecoveryBuffSO : PassiveSO
 {
     public IntValue hpValue;
     public EventSO playerValueChanged;
@@ -13,17 +13,13 @@ public class TurnRecoveryBuffSO : BuffSO
 
     public override void UseBuff(int fieldValue)
     {
-        Debug.Log("4Ä­Èú");
         tileCount++;
 
         if(tileCount >= 4)
         {
-            Debug.Log("Èú");
-            hpValue.RuntimeValue += 1;
+            hpValue.RuntimeValue += currentLevel;
             playerValueChanged.Occurred();
             tileCount = 0;
         }
-
-        
     }
 }

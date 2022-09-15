@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "VillagePassiveBuild", menuName = "ScriptableObject/Build/Village/Passive")]
 public class VillagePassiveBuildSO : VillageBuildSO
 {
-    public BuffSO passiveSO;
+    public PassiveSO passiveSO;
 
     public override void AccessPlayer(Player player)
     {

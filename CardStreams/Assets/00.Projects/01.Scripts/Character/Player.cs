@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public EventSO playerValueChangeEvent;
     public EventSO prestigeValueChangeEvent;
     public VillageBuffListSO buffListSO;
+    public PassiveListSO passiveListSO;
 
     public IntValue hpValue;
     public IntValue swordValue;
@@ -48,7 +49,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        foreach (BuffSO so in buffListSO.buffList)
+        foreach (PassiveSO so in passiveListSO.passiveList) // 패시브 목록 추가
+        {
+            Passive buff = new Passive();
+            so.Init(buff);
+            buffCon.AddPassiveBuff(buff);
+        }
+
+        foreach (BuffSO so in buffListSO.buffList) // 딴거 목록 추가
         {
             Buff buff = new Buff();
             so.Init(buff); // SO의 값으로 Buff를 초기화해줌
@@ -62,6 +70,16 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         buffListSO?.buffList.Clear();
+
+        if (passiveListSO == null) return;
+
+        // 패시브는 레벨이 있어서 레벨전부 1로바꾸고 하기
+        foreach (PassiveSO so in passiveListSO.passiveList)
+        {
+            so.currentLevel = 1;
+        }
+
+        passiveListSO.passiveList.Clear();
     }
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨

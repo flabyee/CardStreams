@@ -17,5 +17,6 @@ MonoBehaviour:
   remainTime: 999
   buffName: "\uC7AC\uC0DD \uB9C8\uBC95"
   buffIcon: {fileID: 21300004, guid: e800bc726f83ebd4f95217c27b326b92, type: 3}
+  currentLevel: 1
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}

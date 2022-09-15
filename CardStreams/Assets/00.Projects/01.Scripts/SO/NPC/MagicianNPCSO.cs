@@ -5,11 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MagicianNPC", menuName = "ScriptableObject/NPC/Magician")]
 public class MagicianNPCSO : NpcSO
 {
-    public VillageBuffListSO buffListSO;
-    public TurnRecoveryBuffSO buffSO;
+    public int createShieldAmount;
 
     public override void AccessPlayer(Player player)
     {
-        buffListSO.buffList.Add(buffSO);
+        player.shieldValue.RuntimeMaxValue += createShieldAmount;
     }
 }
