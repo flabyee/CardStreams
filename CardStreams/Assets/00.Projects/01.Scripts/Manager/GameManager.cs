@@ -338,7 +338,6 @@ public class GameManager : MonoBehaviour
         ResourceManager.Instance.AddResource(ResourceType.crystal, mineLevel * 5);
         // crystalChangeEvent?.Occurred();
 
-        missionController.IsCompleteMission();
 
         if (IsBossRound() == false)
         {
@@ -394,6 +393,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         GoldAnimManager.Instance.GetAllCoin(0f, true);
+
+        yield return new WaitForSeconds(1f);
+
+        missionController.IsCompleteMission();
+
+        yield return new WaitForSeconds(2f);
 
         fieldController.SetAllFieldYet();
 
@@ -648,6 +653,8 @@ public class GameManager : MonoBehaviour
 
     private void OnModify()
     {
+        missionController.ResetMissions();
+
         canNextLoop = false;
 
         nextState = GameState.Equip;

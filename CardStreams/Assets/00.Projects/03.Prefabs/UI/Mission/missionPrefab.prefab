@@ -477,6 +477,7 @@ MonoBehaviour:
   gradeImage: {fileID: 8489998390336035204}
   progressSlider: {fileID: 513015852329015474}
   progressText: {fileID: 4436880819295363148}
+  backgroundImage: {fileID: 692097202542771414}
 --- !u!1 &5212724535063678452
 GameObject:
   m_ObjectHideFlags: 0
