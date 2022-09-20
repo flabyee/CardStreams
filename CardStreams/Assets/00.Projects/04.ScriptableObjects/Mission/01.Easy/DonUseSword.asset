@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64486bf552a6ef946a055964441c36ba, type: 3}
-  m_Name: TestMission
+  m_Script: {fileID: 11500000, guid: 69bfd447b96e51a42863a9055413bc33, type: 3}
+  m_Name: DonUseSword
   m_EditorClassIdentifier: 
-  missionName: asdf
-  infoStr: sdfds
+  missionSprite: {fileID: 0}
+  missionName: "\uCE7C \uC0AC\uC6A9 \uC81C\uD55C"
+  infoStr: "\uCE7C\uC744 4\uC7A5 \uC774\uD558\uB85C \uC0AC\uC6A9\uD558\uC138\uC694"
   grade: 0
+  limitTypes: 01000000
+  limitCount: 4

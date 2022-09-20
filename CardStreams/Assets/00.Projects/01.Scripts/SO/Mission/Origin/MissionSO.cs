@@ -7,19 +7,20 @@ using TMPro;
 [CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Mission")]
 public class MissionSO : ScriptableObject
 {
+    public Sprite missionSprite;
     public string missionName;
     public string infoStr;
     public MissionGrade grade;
 
-    Slider progressSlider;
-    TextMeshProUGUI progressText;
+    protected Slider progressSlider;
+    protected TextMeshProUGUI progressText;
 
     public void SetUI(Slider progressSlider, TextMeshProUGUI progressText)
     {
         this.progressSlider = progressSlider;
         this.progressText = progressText;
     }
-    public void UnSetUI(Slider progressSlider, TextMeshProUGUI progressText)
+    public void UnSetUI()
     {
         this.progressSlider = null;
         this.progressText = null;

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69bfd447b96e51a42863a9055413bc33, type: 3}
-  m_Name: TestMission2
+  m_Name: DonUseShield
   m_EditorClassIdentifier: 
-  missionName: a
-  infoStr: 
+  missionSprite: {fileID: 0}
+  missionName: "\uBC29\uD328 \uC0AC\uC6A9 \uC81C\uD55C"
+  infoStr: "\uBC29\uD328\uB97C 4\uC7A5 \uC774\uD558\uB85C \uC0AC\uC6A9\uD558\uC138\uC694"
   grade: 0
-  limitTypes: 010000000200000003000000
-  limitCount: 5
+  limitTypes: 02000000
+  limitCount: 4

@@ -21,15 +21,31 @@ public class Mission : MonoBehaviour
     public Slider progressSlider;
     public TextMeshProUGUI progressText;
 
+    // mission reward UI 필요함
+    private MissionRewardSO missionRewardSO;
+
+
     public Action GetMissionEvent;
     public Action ApplyUIEvent;
     public Func<bool> IsCompleteEvent;
 
+    private MissionSO missionSO;
+
     public void Init(MissionSO missionSO)
     {
+        // Action 연동
         GetMissionEvent += missionSO.GetMission;
         ApplyUIEvent += missionSO.ApplyUI;
         IsCompleteEvent += missionSO.IsComplete;
+
+        // 가변 UI 전달
+        missionSO.SetUI(progressSlider, progressText);
+
+        // 고정 UI 설정
+        gradeImage.sprite = missionSO.missionSprite;
+        missionInfoText.text = missionSO.infoStr;
+
+        this.missionSO = missionSO;
     }
 
     public void GetMission()
@@ -54,5 +70,32 @@ public class Mission : MonoBehaviour
         }
 
         return IsCompleteEvent.Invoke();
+    }
+
+    public void SetMissionReward(MissionRewardSO missionRewardSO)
+    {
+        this.missionRewardSO = missionRewardSO;
+    }
+
+    public MissionRewardSO GetMissionReward()
+    {
+        return missionRewardSO;
+    }
+
+    public void ResetMission()
+    {
+        // Action 연동
+        GetMissionEvent = null;
+        ApplyUIEvent = null;
+        IsCompleteEvent = null;
+
+        // 가변 UI 전달
+        missionSO.UnSetUI();
+
+        // 고정 UI 설정
+        gradeImage.sprite = null;
+        missionInfoText.text = string.Empty;
+
+        missionSO = null;
     }
 }
