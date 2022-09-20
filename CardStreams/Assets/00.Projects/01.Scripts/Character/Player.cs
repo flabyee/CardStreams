@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     private BuffController buffCon;
 
     public EventSO playerValueChangeEvent;
-    public EventSO prestigeValueChangeEvent;
     public VillageBuffListSO buffListSO;
     public PassiveListSO passiveListSO;
 
@@ -289,7 +288,6 @@ public class Player : MonoBehaviour
 
         // 킬카운트, 명성 업 (크리스탈은 루프 완료시마다 5개, 게임매니저로 이사감)
         ResourceManager.Instance.AddResource(ResourceType.prestige, 1);
-        prestigeValueChangeEvent.Occurred();
 
         for(int i = 0; i < cardPower.originValue; i++)
         {
