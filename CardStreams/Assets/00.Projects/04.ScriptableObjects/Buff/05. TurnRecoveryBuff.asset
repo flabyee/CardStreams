@@ -16,6 +16,7 @@ MonoBehaviour:
   timing: 10
   remainTime: 999
   buffName: "\uC7AC\uC0DD \uB9C8\uBC95"
+  buffTooltip: "\uD328\uC2DC\uBE0C\uB3C4 \uC124\uBA85\uC774 \uD544\uC694\uD560\uAE4C"
   buffIcon: {fileID: 21300004, guid: e800bc726f83ebd4f95217c27b326b92, type: 3}
   currentLevel: 1
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}

@@ -65,7 +65,7 @@ public class VillageShopItem : MonoBehaviour
     private void UseCrystal()
     {
         SaveFile.GetSaveData().crystal -= buildItemSO.price;
-        SaveFile.SaveGame();
+        // SaveFile.SaveGame();
     }
 
     private void CreateNpc()

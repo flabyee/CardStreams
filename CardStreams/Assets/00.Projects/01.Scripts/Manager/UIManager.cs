@@ -9,13 +9,13 @@ public enum PanelType
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager instance;
+    public static UIManager Instance;
 
     private void Awake()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Panels")]
     public GameObject clearPanel;
+    public PlayerBuffPanel playerBuffPanel;
 
     public void Show(PanelType panelType)
     {

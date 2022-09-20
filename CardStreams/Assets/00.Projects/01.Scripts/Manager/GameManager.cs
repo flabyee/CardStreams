@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerDieEvent;
     public EventSO loopChangeEvent;
-    [SerializeField] EventSO crystalChangeEvent;
 
 
     [Header("Action")]
@@ -336,8 +335,8 @@ public class GameManager : MonoBehaviour
         moveIndex = 0;
 
         handleController.LoopEnd();
-        Crystal.crystalAmount += mineLevel * 5;
-        crystalChangeEvent?.Occurred();
+        ResourceManager.Instance.AddResource(ResourceType.crystal, mineLevel * 5);
+        // crystalChangeEvent?.Occurred();
 
         missionController.IsCompleteMission();
 
@@ -503,6 +502,7 @@ public class GameManager : MonoBehaviour
             if (player.OnBoss(enemyController.Boss.Attack, out int sword)) // 플레이어 칼 수치를 out에 담는다
             {
                 // 사망 처리
+                ResourceManager.Instance.SendSaveFile();
                 SaveFile.SaveGame();
                 SettingClear();
             }
@@ -631,6 +631,7 @@ public class GameManager : MonoBehaviour
                 // 플레이어 죽었으면 끝
                 if (player.isAlive == false)
                 {
+                    ResourceManager.Instance.SendSaveFile();
                     SaveFile.SaveGame();
                     SettingClear();
 

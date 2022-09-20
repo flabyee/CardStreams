@@ -16,6 +16,7 @@ MonoBehaviour:
   timing: 6
   remainTime: 1
   buffName: "\uD761\uD608"
+  buffTooltip: "\uD761\uD608\uC758\uC124\uBA85\uC744\uC801\uC5B4\uC8FC\uC138\uC694"
   buffIcon: {fileID: 21300000, guid: d2aa374c46f63e1468c0f4420b0f0a9b, type: 3}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}

@@ -32,7 +32,7 @@ public class Boss : MonoBehaviour
 
             Time.timeScale = 0;
 
-            UIManager.instance.Show(PanelType.Clear);
+            UIManager.Instance.Show(PanelType.Clear);
         }
     }
 

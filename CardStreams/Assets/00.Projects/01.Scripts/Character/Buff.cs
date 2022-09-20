@@ -24,6 +24,7 @@ public class Buff
     public UseTiming timing; // 쓰는타이밍
     public int remainTime; // 지속시간
     public string buffName; // 버프이름
+    public string buffTooltip; // 버프내용
     public Sprite buffIcon; // 버프아이콘
 
     public Action<int> OnBuff; // 인자 : 이전 데미지

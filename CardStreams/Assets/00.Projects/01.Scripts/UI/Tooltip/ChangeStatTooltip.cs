@@ -29,7 +29,7 @@ public class ChangeStatTooltip : MonoBehaviour
 
         if(isUp)
         {
-            statText.color = Color.blue;
+            statText.color = Color.green;
             statText.text = "+" + statText.text;
         }
         else

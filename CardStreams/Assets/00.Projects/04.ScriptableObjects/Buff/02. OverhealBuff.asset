@@ -16,6 +16,7 @@ MonoBehaviour:
   timing: 0
   remainTime: 1
   buffName: "\uCD08\uC7AC\uC0DD"
+  buffTooltip: "\uCD08\uC7AC\uC0DD\uC758\uC124\uBA85\uC744\uC801\uC5B4\uC8FC\uC138\uC694"
   buffIcon: {fileID: 21300000, guid: d607b4ca24745ff49b53b93d9cff5be0, type: 3}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   overHeal: 0
