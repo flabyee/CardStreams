@@ -20,12 +20,14 @@ public class DontUseMission : MissionSO
 
     public override void ApplyUI()
     {
-        
+        progressText.text = $"{curCount}/{limitCount}";
+        progressSlider.value = Mathf.Clamp((float)curCount / (float)limitCount, 0, 1f);
     }
 
     public override bool IsComplete()
     {
         GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
+        UnSetUI();
 
         if (curCount < limitCount)
             return true;

@@ -27,6 +27,11 @@ public class ConstManager : MonoBehaviour
     public Sprite[] monsterSprite;
     public Sprite bossSprite;
 
+    public Sprite goldSprite;
+    public Sprite heartSprite;
+
+    public Sprite expSprite;
+
     public Sprite[] fieldSprites;
     public Sprite[] nextFieldSprites;
 

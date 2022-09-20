@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissionRewardListSO : MonoBehaviour
+[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/MissionRewardList")]
+public class MissionRewardListSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<MissionRewardSO> rewardList;
 }

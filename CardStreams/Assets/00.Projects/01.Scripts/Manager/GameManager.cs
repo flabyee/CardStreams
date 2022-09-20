@@ -60,6 +60,8 @@ public class GameManager : MonoBehaviour
     public DontTouchController dontTouchController;
     public BlurCoverController blurController;
 
+    public MissionController missionController;
+
     //[Header("UI")]
     //public Text nextStateText;
     //public Text curStateText;
@@ -314,6 +316,7 @@ public class GameManager : MonoBehaviour
         handleController.DrawCardWhenBeforeMove();
         handleController.notHaveBuildUI.SetActive(false);
 
+        missionController.GetRandomMission();
 
         BuildManager.Instance.NextBuildEffect();
 
@@ -335,6 +338,8 @@ public class GameManager : MonoBehaviour
         handleController.LoopEnd();
         Crystal.crystalAmount += mineLevel * 5;
         crystalChangeEvent?.Occurred();
+
+        missionController.IsCompleteMission();
 
         if (IsBossRound() == false)
         {
