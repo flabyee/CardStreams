@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8836562908614432633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8836562908614432632}
+  - component: {fileID: 2626749428173797083}
+  m_Layer: 0
+  m_Name: MissionController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8836562908614432632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836562908614432633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2626749428173797083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836562908614432633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbc4adf10996704fa9d7425b6afd59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionList: []
+  missionListSO: {fileID: 11400000, guid: 81870ff29d3af9549b4f693348c4d465, type: 2}
+  rewardListSO: {fileID: 11400000, guid: acd5396539a78a64d9f52c6f14142135, type: 2}
+  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
+  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
+  goldChangeEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}
+  playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
