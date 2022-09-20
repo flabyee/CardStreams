@@ -5,23 +5,15 @@ using UnityEngine;
 
 public class Crystal : MonoBehaviour
 {
-    public TextMeshProUGUI crystalText;
-
-    public static int crystalAmount = 0;
+    [SerializeField] TextMeshProUGUI crystalText;
 
     private void Start()
     {
-        // 로드
-        
-        crystalAmount = SaveFile.GetSaveData().crystal;
-        crystalText.text = crystalAmount.ToString();
+        UpdateCrystalText();
     }
 
-    public void ApplyCrystalToText()
+    public void UpdateCrystalText() // ResourceManager Action에서 실행
     {
-        crystalText.text = crystalAmount.ToString();
-
-        // 저장
-        SaveFile.GetSaveData().crystal = crystalAmount;
+        crystalText.text = ResourceManager.Instance.crystal.ToString();
     }
 }

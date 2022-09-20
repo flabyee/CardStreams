@@ -7,21 +7,13 @@ public class Prestige : MonoBehaviour
 {
     public TextMeshProUGUI prestigeText;
 
-    public static int prestigeAmount = 0;
-
     private void Start()
     {
-        // 로드
-
-        prestigeAmount = SaveFile.GetSaveData().prestige;
-        prestigeText.text = prestigeAmount.ToString();
+        UpdatePrestigeText();
     }
 
-    public void ApplyPrestigeToText() // 이 스크립트가 있는곳의 Event Listener에서 호출됨
+    public void UpdatePrestigeText() // ResourceManager Action에서 실행
     {
-        prestigeText.text = prestigeAmount.ToString();
-
-        // 저장
-        SaveFile.GetSaveData().prestige = prestigeAmount;
+        prestigeText.text = ResourceManager.Instance.prestige.ToString();
     }
 }

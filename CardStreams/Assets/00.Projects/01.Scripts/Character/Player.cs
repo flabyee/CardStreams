@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
         // IntValue Init : VillagePlayer로 옮겨서 마을에서 수치바꿀수있게
         //hpValue.RuntimeValue = hpValue.InitialMaxValue;
         //hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+
         if (hpValue.RuntimeMaxValue <= 0)
         {
             hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
@@ -56,9 +57,9 @@ public class Player : MonoBehaviour
     {
         foreach (PassiveSO so in passiveListSO.passiveList) // 패시브 목록 추가
         {
-            Passive buff = new Passive();
-            so.Init(buff);
-            buffCon.AddPassiveBuff(buff);
+            Passive passive = new Passive();
+            so.Init(passive);
+            buffCon.AddPassiveBuff(passive);
         }
 
         foreach (BuffSO so in buffListSO.buffList) // 딴거 목록 추가
@@ -287,7 +288,7 @@ public class Player : MonoBehaviour
         }
 
         // 킬카운트, 명성 업 (크리스탈은 루프 완료시마다 5개, 게임매니저로 이사감)
-        Prestige.prestigeAmount += 1;
+        ResourceManager.Instance.AddResource(ResourceType.prestige, 1);
         prestigeValueChangeEvent.Occurred();
 
         for(int i = 0; i < cardPower.originValue; i++)

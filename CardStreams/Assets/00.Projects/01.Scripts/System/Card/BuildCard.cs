@@ -171,6 +171,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         {
             BuildAreaTooltip.Instance.Show(transform.position, accessPointList);
             BuildExplain.Instance.Show(buildSO);
+            UIManager.Instance.playerBuffPanel.Hide();
         }
         else
         {
@@ -186,6 +187,7 @@ public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         {
             BuildAreaTooltip.Instance.Hide();
             BuildExplain.Instance.Hide();
+            UIManager.Instance.playerBuffPanel.Show();
         }
         else
         {

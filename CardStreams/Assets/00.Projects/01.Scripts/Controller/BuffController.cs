@@ -6,6 +6,7 @@ public class BuffController : MonoBehaviour
 {
     private readonly List<Buff> buffList = new List<Buff>();
     [SerializeField] PassiveDisplayPanel passiveDisplayPanel;
+    [SerializeField] PlayerBuffPanel playerBuffPanel;
 
     public void AddBuff(Buff buff)
     {
@@ -13,17 +14,18 @@ public class BuffController : MonoBehaviour
         if (!CanAddBuff(buff)) return;
 
         buffList.Add(buff);
+        playerBuffPanel.AddBuff(buff);
     }
 
-    public void AddPassiveBuff(Buff buff)
+    public void AddPassiveBuff(Passive passive)
     {
         // 중복검사, if (버프가 중복) return
-        if (!CanAddBuff(buff)) return;
+        if (!CanAddBuff(passive)) return;
 
         // 어떤 버프 추가할지 고른다음 왼쪽상단에 표기
-        passiveDisplayPanel.SetPassive(buff.buffIcon, buff.buffName);
+        passiveDisplayPanel.SetPassive(passive);
 
-        buffList.Add(buff);
+        buffList.Add(passive);
     }
 
     public void RemoveTimeOutBuff() // 지속시간 0된 버프들을 검사하고 삭제합니다.
@@ -35,6 +37,7 @@ public class BuffController : MonoBehaviour
             if(buff.IsTimeOutBuff())
             {
                 willRemove.Add(buff);
+                playerBuffPanel.RemoveBuff(buff);
             }
         }
 

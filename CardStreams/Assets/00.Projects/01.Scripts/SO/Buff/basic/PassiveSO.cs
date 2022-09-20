@@ -14,6 +14,7 @@ public class PassiveSO : BuffSO
     public void Init(Passive passive)
     {
         base.Init(passive);
+        passive.currentLevel = currentLevel;
     }
 
     public void LevelUp()

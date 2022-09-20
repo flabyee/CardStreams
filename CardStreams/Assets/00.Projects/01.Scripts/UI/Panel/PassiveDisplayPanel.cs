@@ -6,33 +6,23 @@ using UnityEngine.UI;
 
 public class PassiveDisplayPanel : MonoBehaviour
 {
-    [SerializeField] Image passive1Image;
-    [SerializeField] Image passive2Image;
-    [SerializeField] Image passive3Image;
+    [SerializeField] List<PassiveSlot> passiveSlots = new List<PassiveSlot>();
 
-    [SerializeField] TextMeshProUGUI passive1Text;
-    [SerializeField] TextMeshProUGUI passive2Text;
-    [SerializeField] TextMeshProUGUI passive3Text;
+    private int slotCount;
 
-    private int passiveCount;
-
-    public void SetPassive(Sprite passiveIcon, string passiveName) // 일단 개대충만듬 3번 호출 ㄱ
+    private void Start()
     {
-        if(passiveCount == 0)
+        for (int i = 0; i < passiveSlots.Count; i++)
         {
-            passive1Image.sprite = passiveIcon;
-            passive1Text.text = passiveName;
+            passiveSlots[i].gameObject.SetActive(false); // 끄고 있다가 버프들어오면 on
         }
-        else if(passiveCount == 1)
-        {
-            passive2Image.sprite = passiveIcon;
-            passive2Text.text = passiveName;
-        }
-        else // 2부턴걍대충해
-        {
-            passive3Image.sprite = passiveIcon;
-            passive3Text.text = passiveName;
-        }
-        passiveCount++;
+    }
+
+    public void SetPassive(Passive passive) // 일단 개대충만듬 3번 호출 ㄱ
+    {
+        passiveSlots[slotCount].Init(passive.buffIcon, passive.buffName, passive.currentLevel);
+        passiveSlots[slotCount].gameObject.SetActive(true);
+
+        slotCount++;
     }
 }

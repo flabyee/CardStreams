@@ -8,6 +8,7 @@ public abstract class BuffSO : ScriptableObject
     public UseTiming timing; // 쓰는타이밍
     public int remainTime; // 지속시간
     public string buffName;
+    [TextArea] public string buffTooltip; // 버프 내용
     public Sprite buffIcon;
 
     
@@ -23,6 +24,7 @@ public abstract class BuffSO : ScriptableObject
         buff.buffName = buffName;
         buff.buffIcon = buffIcon;
         buff.remainTime = remainTime;
+        buff.buffTooltip = buffTooltip;
 
         buff.OnBuff += UseBuff; // 액션
     }

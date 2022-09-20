@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class SpawnNpcButton : MonoBehaviour
 {
-    [SerializeField] NpcSpawnDataSO npcDataSO;
-
     // Button UI 속성
     [SerializeField] Image npcImage;
     [SerializeField] TextMeshProUGUI npcNameText;
@@ -15,12 +13,11 @@ public class SpawnNpcButton : MonoBehaviour
     [SerializeField] TextMeshProUGUI requireCrystalText;
 
     // NPCData SO 속성
+    [SerializeField] NpcSpawnDataSO npcDataSO;
     private VillageNPCHouseSO npcBuildSO;
     private Vector2Int npcSpawnPos;
     private int requirePrestige;
     private int requireCrystal;
-
-    private bool isEnoughPrestige;
 
     void Start()
     {
@@ -40,17 +37,17 @@ public class SpawnNpcButton : MonoBehaviour
         var npcSO = npcBuildSO.npcSO;
         npcImage.sprite = npcSO.npcSprite;
         npcNameText.text = npcSO.npcName;
-
-        CheckPrestige();
     }
 
     public void SpawnNpc() // 버튼 Event에 넣고 누르면 NPC가 나옴(자원없으면 안나옴)
     {
-        if (isEnoughPrestige == false) return;
-        if (CheckCrystal() == false) return;
+        if (ResourceManager.Instance.prestige >= requirePrestige == false)
+            return;
+
+        if (ResourceManager.Instance.UseResource(ResourceType.crystal, requireCrystal) == false)
+            return;
 
         CreateNpc();
-        UseCrystal();
     }
 
     private void CreateNpc()
@@ -65,27 +62,5 @@ public class SpawnNpcButton : MonoBehaviour
         CardPower cardPower = building.GetComponent<CardPower>();
         cardPower.backImage.color = Color.magenta;
         cardPower.OnField();
-    }
-
-    private bool CheckCrystal()
-    {
-        var saveData = SaveFile.GetSaveData();
-        bool enough = saveData.crystal >= requireCrystal ? true : false;
-
-        return enough;
-    }
-
-    private void CheckPrestige()
-    {
-        var saveData = SaveFile.GetSaveData();
-        bool enough = saveData.prestige >= requirePrestige ? true : false;
-
-        isEnoughPrestige = enough;
-    }
-
-    private void UseCrystal()
-    {
-        SaveFile.GetSaveData().crystal -= requireCrystal;
-        SaveFile.SaveGame();
     }
 }

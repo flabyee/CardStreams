@@ -38,12 +38,14 @@ public class SettingPanel : MonoBehaviour
 
     public void OnClickExit()
     {
+        ResourceManager.Instance.SendSaveFile();
         SaveFile.SaveGame();
         Application.Quit();
     }
 
     public void OnClickTitle()
     {
+        ResourceManager.Instance.SendSaveFile();
         SaveFile.SaveGame();
         DropArea.dropAreas.Clear();
         DontRaycastTarget.dontRaycastTargetList.Clear();

@@ -16,5 +16,6 @@ MonoBehaviour:
   timing: 5
   remainTime: 1
   buffName: "\uBC29\uD328 \uC911\uCCA9"
+  buffTooltip: "\uBC29\uC911\uC758\uC124\uBA85\uC744\uC801\uC5B4\uC8FC\uC138\uC694"
   buffIcon: {fileID: 21300000, guid: 792c25629222e6f40a0362a86a085fe7, type: 3}
   shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}
