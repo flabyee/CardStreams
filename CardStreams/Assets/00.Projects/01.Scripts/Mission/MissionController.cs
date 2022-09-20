@@ -24,8 +24,6 @@ public class MissionController : MonoBehaviour
     // 루프 시작할 때 랜덤 미션 3개 획득
     public void GetRandomMission()
     {
-        Debug.Log(missionList.Count);
-
         Util.RandomList(ref missionListSO.missionList);
         Util.RandomList(ref rewardListSO.rewardList);
 
@@ -40,47 +38,13 @@ public class MissionController : MonoBehaviour
     // 루프 끝날 때 미션들 클리어 여부 확인하고 보상 획득
     public void IsCompleteMission()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            if(missionList[i].IsComplete())
-            {
-                MissionRewardSO missionReward = missionList[i].GetMissionReward();
+        StartCoroutine(CompleteMissionCor());
+    }
 
-                switch (missionReward.rewardType)
-                {
-                    case RewardType.Gold:
-                        // Bezier로 돈UI로 날리기 도착하면 돈증가
-                        EffectManager.Instance.GetBezierCardEffect(missionList[i].transform.position, ConstManager.Instance.goldSprite, TargetType.GoldUI, () =>
-                        {
-                            goldValue.RuntimeValue += missionReward.value;
-                            goldChangeEvent.Occurred();
-                        });
-                        break;
-                    case RewardType.Hp:
-                        // Bezier로 회복으로 날리기 도착하면 회복
-                        EffectManager.Instance.GetBezierCardEffect(missionList[i].transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
-                        {
-                            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + missionReward.value, 0, hpValue.RuntimeMaxValue);
-                            playerValueChanged.Occurred();
-                        });
-                        break;
-                    case RewardType.MaxHp:
-                        EffectManager.Instance.GetBezierCardEffect(missionList[i].transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
-                        {
-                            hpValue.RuntimeMaxValue += missionReward.value;
-                            playerValueChanged.Occurred();
-                        });
-                        break;
-                    case RewardType.BuildCard:
-                        break;
-                    case RewardType.SpecialCard:
-                        break;
-                    default:
-                        break;
-                }
-            }
+    public void ResetMissions()
+    {
+        for (int i = 0; i < 3; i++)
             missionList[i].ResetMission();
-        }
     }
 
     private void Update()
@@ -92,6 +56,61 @@ public class MissionController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             IsCompleteMission();
+        }
+    }
+
+    private IEnumerator CompleteMissionCor()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (missionList[i].IsComplete())
+            {
+                MissionRewardSO missionReward = missionList[i].GetMissionReward();
+
+                RewardInterprinter(missionList[i], missionReward);
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    private void RewardInterprinter(Mission mission, MissionRewardSO missionReward)
+    {
+        switch (missionReward.rewardType)
+        {
+            case RewardType.Gold:
+                // Bezier로 돈UI로 날리기 도착하면 돈증가
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.goldSprite, TargetType.GoldUI, () =>
+                {
+                    goldValue.RuntimeValue += missionReward.value;
+                    goldChangeEvent.Occurred();
+                });
+                break;
+            case RewardType.Hp:
+                // Bezier로 회복으로 날리기 도착하면 회복
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
+                {
+                    hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + missionReward.value, 0, hpValue.RuntimeMaxValue);
+                    playerValueChanged.Occurred();
+                });
+                break;
+            case RewardType.MaxHp:
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
+                {
+                    hpValue.RuntimeMaxValue += missionReward.value;
+                    playerValueChanged.Occurred();
+                });
+                break;
+            case RewardType.BuildCard:
+                break;
+            case RewardType.SpecialCard:
+                break;
+            default:
+                break;
         }
     }
 }

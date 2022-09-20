@@ -22,6 +22,11 @@ public class DontUseMission : MissionSO
     {
         progressText.text = $"{curCount}/{limitCount}";
         progressSlider.value = Mathf.Clamp((float)curCount / (float)limitCount, 0, 1f);
+
+        if (curCount >= limitCount)
+        {
+            progressText.color = Color.red;
+        }
     }
 
     public override bool IsComplete()

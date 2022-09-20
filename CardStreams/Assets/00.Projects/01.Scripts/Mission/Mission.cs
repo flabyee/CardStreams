@@ -21,6 +21,8 @@ public class Mission : MonoBehaviour
     public Slider progressSlider;
     public TextMeshProUGUI progressText;
 
+    public Image backgroundImage;
+
     // mission reward UI 필요함
     private MissionRewardSO missionRewardSO;
 
@@ -68,7 +70,8 @@ public class Mission : MonoBehaviour
             Debug.LogError("IsCompleteEvent에 조건이 할당되지 않음");
             return false;
         }
-
+        
+        CompleteEffect(IsCompleteEvent.Invoke());
         return IsCompleteEvent.Invoke();
     }
 
@@ -84,18 +87,34 @@ public class Mission : MonoBehaviour
 
     public void ResetMission()
     {
-        // Action 연동
+        // Action 연동 해제
         GetMissionEvent = null;
         ApplyUIEvent = null;
         IsCompleteEvent = null;
 
-        // 가변 UI 전달
+        // 가변 UI 할당 해제 및 초기화
         missionSO.UnSetUI();
+        progressText.color = Color.white;
+        progressText.text = string.Empty;
+        progressSlider.value = 0;
 
-        // 고정 UI 설정
+        // 고정 UI 초기화
         gradeImage.sprite = null;
         missionInfoText.text = string.Empty;
+        backgroundImage.color = Color.white;
 
         missionSO = null;
+    }
+
+    public void CompleteEffect(bool isComplete)
+    {
+        if(isComplete)
+        {
+            backgroundImage.color = Color.green;
+        }
+        else
+        {
+            backgroundImage.color = Color.red;
+        }
     }
 }
