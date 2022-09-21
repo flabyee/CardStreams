@@ -58,6 +58,9 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (canBuy == false)
+            return;
+
         switch(cardType)
         {
             case CardType.Special:

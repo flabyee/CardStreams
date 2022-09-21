@@ -126,7 +126,8 @@ public class Mission : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        MissionTooltip.instance.Show(missionSO.missionName, missionSO.infoStr, missionRewardSO.rewardStr, transform.position);
+        if(missionSO != null)
+            MissionTooltip.instance.Show(missionSO.missionName, missionSO.timInfoStr, missionRewardSO.rewardStr, transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)

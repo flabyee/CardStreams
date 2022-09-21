@@ -63,19 +63,25 @@ public class MissionController : MonoBehaviour
 
     private IEnumerator CompleteMissionCor()
     {
+        // 클리어 확인 및 클리어 이펙트
+        bool[] isClearArr = new bool[3] { false, false, false };
         for(int i = 0; i < 3; i++)
         {
             yield return new WaitForSeconds(0.5f);
 
             if (missionList[i].IsComplete())
+                isClearArr[i] = true;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        // 동시에 모든 보상 지급
+        for (int i = 0; i < 3; i++)
+        {
+            if(isClearArr[i])
             {
                 MissionRewardSO missionReward = missionList[i].GetMissionReward();
-
                 RewardInterprinter(missionList[i], missionReward);
-            }
-            else
-            {
-
             }
         }
     }

@@ -9,7 +9,10 @@ public abstract class MissionSO : ScriptableObject
 {
     public Sprite missionSprite;
     public string missionName;
-    public string infoStr;
+    [TextArea] 
+    public string infoStr;      // 간단하게 왼쪽 위에 표시하기 위한 미션 내용
+    [TextArea] 
+    public string timInfoStr;   // 상세한 미션 내용
     public MissionGrade grade;
 
     protected Slider progressSlider;

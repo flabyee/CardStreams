@@ -12847,6 +12847,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 286388865}
     m_Modifications:
+    - target: {fileID: 445129602, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_text
+      value: "\uB8F0\uB8E8\uB784\uB77C\uB784\uB77C\uB77C\uB77C\uB784\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C\uB77C"
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_fontSize
+      value: 34.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_margin.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_margin.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_margin.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 445129603, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2955482472499269501, guid: 9d57c26ce2198c0449706112ee117ba1, type: 3}
       propertyPath: m_Name
       value: MissionTooltip
