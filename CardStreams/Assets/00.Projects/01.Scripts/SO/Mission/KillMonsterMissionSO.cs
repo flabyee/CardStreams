@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/KillMonsterMission")]
+[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Missions/KillMonsterMission")]
 public class KillMonsterMissionSO : MissionSO
 {
     private int curCount;
@@ -23,6 +23,10 @@ public class KillMonsterMissionSO : MissionSO
         if (IsComplete())
         {
             progressText.color = Color.green;
+        }
+        else
+        {
+            progressText.color = Color.white;
         }
     }
 

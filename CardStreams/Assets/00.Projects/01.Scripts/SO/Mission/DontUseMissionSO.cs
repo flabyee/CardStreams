@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/DontUseMission")]
+[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Missions/DontUseMission")]
 public class DontUseMissionSO : MissionSO
 {
     public List<BasicType> limitTypes;
@@ -25,7 +25,15 @@ public class DontUseMissionSO : MissionSO
 
         if (IsComplete())
         {
+            progressText.color = Color.green;
+        }
+        else if(curCount >= limitCount)
+        {
             progressText.color = Color.red;
+        }
+        else
+        {
+            progressText.color = Color.white;
         }
     }
 

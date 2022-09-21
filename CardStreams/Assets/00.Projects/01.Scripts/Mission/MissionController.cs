@@ -108,6 +108,7 @@ public class MissionController : MonoBehaviour
                 });
                 break;
             case RewardType.BuildCard:
+                CardGrade grade = (CardGrade)Mathf.Clamp(missionReward.value, 0, 5);
                 break;
             case RewardType.SpecialCard:
                 break;

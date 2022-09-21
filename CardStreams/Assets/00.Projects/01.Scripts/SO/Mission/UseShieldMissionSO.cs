@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/UseShieldMission")]
+[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Missions/UseShieldMission")]
 public class UseShieldMissionSO : MissionSO
 {
     private int curCount;
@@ -10,21 +10,42 @@ public class UseShieldMissionSO : MissionSO
 
     public override void GetMission()
     {
-        throw new System.NotImplementedException();
+        GameManager.Instance.player.OnShieldUse += ObserverUseShield;
+
+        curCount = 0;
     }
 
     public override void ApplyUI()
     {
-        throw new System.NotImplementedException();
+        progressText.text = $"{curCount}/{targetCount}";
+        progressSlider.value = Mathf.Clamp((float)curCount / (float)targetCount, 0, 1f);
+
+        if (IsComplete())
+        {
+            progressText.color = Color.green;
+        }
+        else
+        {
+            progressText.color = Color.white;
+        }
     }
 
     public override bool IsComplete()
     {
-        throw new System.NotImplementedException();
+        if (curCount >= targetCount)
+            return true;
+        else
+            return false;
+    }
+
+    private void ObserverUseShield(int value)
+    {
+        curCount += value;
+        ApplyUI();
     }
 
     public override void Reset()
     {
-        throw new System.NotImplementedException();
+        GameManager.Instance.player.OnShieldUse -= ObserverUseShield;
     }
 }

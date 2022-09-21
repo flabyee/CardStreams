@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bfd447b96e51a42863a9055413bc33, type: 3}
-  m_Name: DonUseSword
+  m_Script: {fileID: 11500000, guid: b5d88c98a9793be4e835de087c7a7d8c, type: 3}
+  m_Name: 03.UseShieldMission_Easy
   m_EditorClassIdentifier: 
   missionSprite: {fileID: 0}
-  missionName: "\uCE7C \uC0AC\uC6A9 \uC81C\uD55C"
-  infoStr: "\uCE7C\uC744 4\uC7A5 \uC774\uD558\uB85C \uC0AC\uC6A9\uD558\uC138\uC694"
+  missionName: "\uB9C9\uAE30 \uC5F0\uC2B5"
+  infoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBC29\uD328\uB85C 10\uC774\uC0C1\uC758
+    \uACF5\uACA9\uC744 \uB9C9\uC73C\uC138\uC694"
   grade: 0
-  limitTypes: 01000000
-  limitCount: 4
+  targetCount: 10
