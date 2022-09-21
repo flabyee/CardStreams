@@ -87,23 +87,26 @@ public class Mission : MonoBehaviour
 
     public void ResetMission()
     {
-        // Action 연동 해제
-        GetMissionEvent = null;
-        ApplyUIEvent = null;
-        IsCompleteEvent = null;
+        if(missionSO != null)
+        {
+            // Action 연동 해제
+            GetMissionEvent = null;
+            ApplyUIEvent = null;
+            IsCompleteEvent = null;
 
-        // 가변 UI 할당 해제 및 초기화
-        missionSO.UnSetUI();
-        progressText.color = Color.white;
-        progressText.text = string.Empty;
-        progressSlider.value = 0;
+            // 가변 UI 할당 해제 및 초기화
+            missionSO.UnSetUI();
+            progressText.color = Color.white;
+            progressText.text = string.Empty;
+            progressSlider.value = 0;
 
-        // 고정 UI 초기화
-        gradeImage.sprite = null;
-        missionInfoText.text = string.Empty;
-        backgroundImage.color = Color.white;
+            // 고정 UI 초기화
+            gradeImage.sprite = null;
+            missionInfoText.text = string.Empty;
+            backgroundImage.color = Color.white;
 
-        missionSO = null;
+            missionSO = null;
+        }
     }
 
     public void CompleteEffect(bool isComplete)
