@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 01.MissionReward_Easy
   m_EditorClassIdentifier: 
   grade: 0
-  rewardStr: 
+  rewardStr: "10\uACE8\uB4DC"
   rewardType: 0
   value: 10

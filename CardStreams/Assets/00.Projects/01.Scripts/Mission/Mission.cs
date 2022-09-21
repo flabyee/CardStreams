@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
 public enum MissionGrade
 {
@@ -12,7 +13,7 @@ public enum MissionGrade
     Hard,
 }
 
-public class Mission : MonoBehaviour
+public class Mission : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     // UI도 필수적인 부분만 여기서 선언하고 나머지는 알아서
     public TextMeshProUGUI missionNameText;
@@ -121,5 +122,15 @@ public class Mission : MonoBehaviour
         {
             backgroundImage.color = Color.red;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        MissionTooltip.instance.Show(missionSO.missionName, missionSO.infoStr, missionRewardSO.rewardStr, transform.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MissionTooltip.instance.Hide();
     }
 }
