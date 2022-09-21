@@ -31,6 +31,7 @@ public class PlayerBuffPanel : MonoBehaviour
 
     public void Show()
     {
+        UpdatePanel();
         cg.alpha = 1;
         cg.interactable = true;
         cg.blocksRaycasts = true;
