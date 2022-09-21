@@ -59,6 +59,13 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 57289054a10f7e04bbe7d575d213f248, type: 3}
   - {fileID: 21300000, guid: 3c3a29a727884844499b67527dba3c93, type: 3}
   bossSprite: {fileID: 21300000, guid: 94e247a96c7456d4e8e6df0c558431a6, type: 3}
+  goldSprite: {fileID: 0}
+  heartSprite: {fileID: 0}
+  expSprites:
+  - {fileID: 21300000, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
+  - {fileID: 21300002, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
+  - {fileID: 21300004, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
+  - {fileID: 21300006, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
   fieldSprites:
   - {fileID: -7379964143135913791, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   - {fileID: -8967215082435449910, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}

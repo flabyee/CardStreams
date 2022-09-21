@@ -20,6 +20,7 @@ public class BezierCard : MonoBehaviour
 
     private RectTransform _rectTrm;
     private CanvasGroup _cg;
+    TrailRenderer _trailRenderer;
     private List<Vector2> point = new List<Vector2>(); // 곡선을 이루는 점들
     private Vector3 objectPos; // 도달할곳
     private bool initComplete = false;
@@ -29,6 +30,7 @@ public class BezierCard : MonoBehaviour
     {
         _rectTrm = GetComponent<RectTransform>();
         _cg = GetComponent<CanvasGroup>();
+        _trailRenderer = GetComponent<TrailRenderer>();
     }
 
     void Update() // 곡선 형식대로 물체를 움직여요
@@ -54,17 +56,19 @@ public class BezierCard : MonoBehaviour
     /// <param name="icon">카드 아이콘</param>
     /// <param name="cardID">획득할 카드 ID</param>
     /// <param name="callback">끝까지 날라갔을때 추가로실행할 함수</param>
-    public void Init(Transform targetTrm, Sprite icon, Action callback, float speed = 1.3f, float radiusA = 6f, float radiusB = 10f)
+    public void Init(Transform targetTrm, Sprite icon, Action callback, float speed = 1.3f, float radiusA = 6f, float radiusB = 10f, bool isTrail = false, float size = 1)
     {
         cardIconImage.sprite = icon;
+        _trailRenderer.enabled = isTrail;
         this.speed = speed;
         this.radiusA = radiusA;
         this.radiusB = radiusB;
 
         Sequence seq = DOTween.Sequence();
 
+        _rectTrm.transform.localScale = new Vector2(size, size);
         seq.Append(_rectTrm.DORotate(new Vector3(0, 0, 135f), 1f / speed));
-        seq.Join(_rectTrm.DOScale(0.15f, 1f / speed).OnComplete( () =>
+        seq.Join(_rectTrm.DOScale(0.15f * size, 1f / speed).OnComplete( () =>
         {
             callback?.Invoke();
             _cg.alpha = 0;

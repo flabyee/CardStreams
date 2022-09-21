@@ -296,7 +296,8 @@ public class Player : MonoBehaviour
 
         for(int i = 0; i < cardPower.originValue; i++)
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.shieldSprite, TargetType.Exp, () => { GetExp(1); }, 1.3f, 2f, 2f );
+            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)], 
+                TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
         }
     }
 
@@ -310,6 +311,7 @@ public class Player : MonoBehaviour
             this.exp = this.exp - nextExp;
             level++;
             hpValue.RuntimeMaxValue += 2;
+            hpValue.RuntimeValue += 2;
             nextExp = 20 + (level + 2) * (level + 2);
 
             playerValueChangeEvent.Occurred();

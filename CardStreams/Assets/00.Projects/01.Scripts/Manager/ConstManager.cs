@@ -30,7 +30,7 @@ public class ConstManager : MonoBehaviour
     public Sprite goldSprite;
     public Sprite heartSprite;
 
-    public Sprite expSprite;
+    public Sprite[] expSprites;
 
     public Sprite[] fieldSprites;
     public Sprite[] nextFieldSprites;

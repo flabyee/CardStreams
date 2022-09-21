@@ -56,7 +56,8 @@ public class EffectManager : MonoBehaviour
     /// <param name="icon">카드의 아이콘</param>
     /// <param name="callback">카드 날라가는거 완료된후 터질 함수</param>
     /// <param name="rewardType">카드 날라가는거 완료된후 얻을 보상의 종류</param>
-    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, TargetType rewardType, Action callback, float speed = 1.3f, float radiusA = 6f, float radiusB = 10f)
+    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, TargetType rewardType, Action callback, float speed = 1.3f, float radiusA = 6f, float radiusB = 10f, 
+        bool isTrail = true, float size = 1f)
     {
         startPos.z = 0; // canvas UI라서 z 문제생길수있음 그래서 0
         BezierCard effect = Instantiate(bezierCardEffect, startPos, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
@@ -87,8 +88,7 @@ public class EffectManager : MonoBehaviour
                 break;
         }
 
-        //effect.Init(targetTrm, icon, callback, speed, radiusA, radiusB);
-        effect.Init(targetTrm, icon, callback);
+        effect.Init(targetTrm, icon, callback, speed, radiusA, radiusB, isTrail, size);
 
         Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요
     }
