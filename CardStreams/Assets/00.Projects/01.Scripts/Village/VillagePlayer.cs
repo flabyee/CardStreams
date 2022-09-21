@@ -46,9 +46,21 @@ public class VillagePlayer : Player
 
     private void Update()
     {
-        if(curState == VillageState.Move) // 이동중이면 시간 계산
+        if (curState == VillageState.Move) // 이동중이면 시간 계산
         {
             remainTime -= Time.deltaTime;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (curState == VillageState.Move)
+            {
+                Stop();
+            }
+            else if (curState == VillageState.Idle)
+            {
+                MoveStart();
+            }
         }
     }
 
@@ -61,7 +73,7 @@ public class VillagePlayer : Player
         curField = VillageMapManager.Instance.fieldList[0];
         destField = VillageMapManager.Instance.fieldList[1];
         transform.position = curField.transform.position;
-        MoveStart();
+        Stop();
     }
 
     public void MoveStart() // 플레이어 이동시킬때 호출하기
