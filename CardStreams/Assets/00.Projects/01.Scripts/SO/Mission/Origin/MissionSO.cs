@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 [CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Mission")]
-public class MissionSO : ScriptableObject
+public abstract class MissionSO : ScriptableObject
 {
     public Sprite missionSprite;
     public string missionName;
@@ -26,13 +26,12 @@ public class MissionSO : ScriptableObject
         this.progressText = null;
     }
 
-    public virtual void GetMission()
-    {
-        // 여기서 감시할 대상의 액션에 자기 추가
-        // 매개변수 모두 다르기 때문에 알아서 구현
-        // 예시
-        //GameManager.Instance.player.OnBasicCardEvent += ObserverUseBasicCard;
-    }
+    // 여기서 감시할 대상의 액션에 자기 추가
+    // 매개변수 모두 다르기 때문에 알아서 구현
+    // 예시
+    //GameManager.Instance.player.OnBasicCardEvent += ObserverUseBasicCard;
+    public abstract void GetMission();
+
 
     // 추가하려는 감시 대상에 맞는 함수 만들기
     // 예시
@@ -42,17 +41,12 @@ public class MissionSO : ScriptableObject
     }
 
     // UI 모두 다르려나? 때문에 알아서 구현
-    public virtual void ApplyUI()
-    {
-        
-    }
+    public abstract void ApplyUI();
 
-    public virtual bool IsComplete()
-    {
-        // GetMisiion에서 추가한 이벤트는 IsComplete에서 제거
-        // 예시
-        GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
+    public abstract bool IsComplete();
 
-        return false;
-    }
+    // GetMisiion에서 추가한 이벤트는 Reset에서 제거
+    // 예시
+    //GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
+    public abstract void Reset();
 }

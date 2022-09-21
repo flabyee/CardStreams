@@ -87,6 +87,7 @@ public class EffectManager : MonoBehaviour
                 break;
         }
 
+        //effect.Init(targetTrm, icon, callback, speed, radiusA, radiusB);
         effect.Init(targetTrm, icon, callback);
 
         Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요

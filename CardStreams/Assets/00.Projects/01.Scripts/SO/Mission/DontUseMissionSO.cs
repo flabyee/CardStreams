@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/DontUseMission")]
-public class DontUseMission : MissionSO
+public class DontUseMissionSO : MissionSO
 {
     public List<BasicType> limitTypes;
     private int curCount;
@@ -23,7 +23,7 @@ public class DontUseMission : MissionSO
         progressText.text = $"{curCount}/{limitCount}";
         progressSlider.value = Mathf.Clamp((float)curCount / (float)limitCount, 0, 1f);
 
-        if (curCount >= limitCount)
+        if (IsComplete())
         {
             progressText.color = Color.red;
         }
@@ -31,9 +31,6 @@ public class DontUseMission : MissionSO
 
     public override bool IsComplete()
     {
-        GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
-        UnSetUI();
-
         if (curCount < limitCount)
             return true;
         else
@@ -50,5 +47,10 @@ public class DontUseMission : MissionSO
             ApplyUI();
             Debug.Log($"{curCount}/{limitCount}");
         }
+    }
+
+    public override void Reset()
+    {
+        GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
     }
 }

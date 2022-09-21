@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     // 미션 시스템을 위한
     public Action<BasicCard> OnBasicCardEvent;
+    public Action<int> OnShieldUse;
 
     [Header("Debug")]
     public DebugBoolSO isDontDie;
@@ -262,11 +263,15 @@ public class Player : MonoBehaviour
 
                 if (currentMonsterValue - shieldValue.RuntimeValue > 0) // 몬스터가더크면
                 {
+                    OnShieldUse?.Invoke(shieldValue.RuntimeValue);
+
                     currentMonsterValue -= shieldValue.RuntimeValue; // 몬스터 -= 방패
                     leftShieldValue = 0; // 방패 0
                 }
                 else // 방패가더크면
                 {
+                    OnShieldUse?.Invoke(currentMonsterValue);
+
                     leftShieldValue -= currentMonsterValue; // 방패 -= 몬스터
                     currentMonsterValue = 0; // 피해 0
                 }
@@ -293,7 +298,7 @@ public class Player : MonoBehaviour
 
         for(int i = 0; i < cardPower.originValue; i++)
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.shieldSprite, TargetType.Exp, () => { GetExp(1); }, 1.3f, 4f, 1f );
+            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.shieldSprite, TargetType.Exp, () => { GetExp(1); }, 1.3f, 2f, 2f );
         }
     }
 

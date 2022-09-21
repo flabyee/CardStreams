@@ -44,7 +44,9 @@ public class MissionController : MonoBehaviour
     public void ResetMissions()
     {
         for (int i = 0; i < 3; i++)
+        {
             missionList[i].ResetMission();
+        }
     }
 
     private void Update()

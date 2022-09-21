@@ -21,6 +21,8 @@ public class ShopItemInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public Button button;
 
+    public Image soldOutImage;
+
     public bool canBuy;
 
     public void Init(string itemName, List<CardType> targetTypeList, List<BasicType> targetBasicList, string tooltip, Sprite sprite, CardGrade grade, int price)

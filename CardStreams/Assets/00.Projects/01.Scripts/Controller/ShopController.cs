@@ -167,8 +167,11 @@ public class ShopController : MonoBehaviour
 
             if(info.canBuy == false)
             {
-                info.priceText.text = "X";
-                info.priceText.color = Color.red;
+                info.soldOutImage.gameObject.SetActive(true);
+            }
+            else
+            {
+                info.soldOutImage.gameObject.SetActive(false);
             }
         }
 
@@ -370,9 +373,8 @@ public class ShopController : MonoBehaviour
                 if(info.canBuy == true)
                 {
                     SoundManager.Instance.PlaySFX(SFXType.BuyCard);
-                    BuyBuild(itemSO, shopItem.transform.position);
-
-                    info.canBuy = false;
+                    if(BuyBuild(itemSO, shopItem.transform.position))
+                        info.canBuy = false;
 
                     Renewal();
                 }
@@ -412,9 +414,8 @@ public class ShopController : MonoBehaviour
                 if(info.canBuy == true)
                 {
                     SoundManager.Instance.PlaySFX(SFXType.BuyCard);
-                    BuySpecial(itemSO, shopItem.transform.position);
-
-                    info.canBuy = false;
+                    if(BuySpecial(itemSO, shopItem.transform.position))
+                        info.canBuy = false;
 
                     Renewal();
                 }
@@ -428,7 +429,7 @@ public class ShopController : MonoBehaviour
 
     }
 
-    private void BuySpecial(SpecialCardSO specialCardSO, Vector3 pos)
+    private bool BuySpecial(SpecialCardSO specialCardSO, Vector3 pos)
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
@@ -438,10 +439,14 @@ public class ShopController : MonoBehaviour
             goldChangeEvnet.Occurred();
 
             GameManager.Instance.handleController.AddSpecial(specialCardSO.id);
+
+            return true;
         }
+
+        return false;
     }
 
-    private void BuyBuild(BuildSO buildSO, Vector3 pos)
+    private bool BuyBuild(BuildSO buildSO, Vector3 pos)
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
@@ -451,7 +456,11 @@ public class ShopController : MonoBehaviour
             goldChangeEvnet.Occurred();
 
             GameManager.Instance.handleController.AddBuild(buildSO.id);
+
+            return true;
         }
+
+        return false;
     }
 
     public void CloseShop()
