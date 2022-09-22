@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69bfd447b96e51a42863a9055413bc33, type: 3}
-  m_Name: 02.DontUsePotionMission_Easy
+  m_Name: 02.DontUsePotionMission_Hard
   m_EditorClassIdentifier: 
   missionSprite: {fileID: 0}
   missionName: "\uBB3C\uC57D \uBD80\uC871"
-  infoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBB3C\uC57D\uC744 4\uAC1C \uBBF8\uB9CC\uC73C\uB85C
-    \uC0AC\uC6A9\uD558\uC138\uC694"
-  timInfoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBB3C\uC57D\uC744 4\uAC1C \uBBF8\uB9CC\uC73C\uB85C
-    \uC0AC\uC6A9\uD558\uC138\uC694"
-  grade: 0
+  infoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBB3C\uC57D\uC744 \uC0AC\uC6A9\uD558\uC9C0
+    \uB9C8\uC138\uC694"
+  timInfoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBB3C\uC57D\uC744 \uC0AC\uC6A9\uD558\uC9C0
+    \uB9C8\uC138\uC694"
+  grade: 2
   limitTypes: 03000000
-  limitCount: 4
+  limitCount: 1

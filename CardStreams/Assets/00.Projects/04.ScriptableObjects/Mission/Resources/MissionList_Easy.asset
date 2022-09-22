@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MissionList_Easy
   m_EditorClassIdentifier: 
   missionList:
+  - {fileID: 11400000, guid: 8e47e03a320439d46bdc63b3b83c0c9b, type: 2}
+  - {fileID: 11400000, guid: fb4c595f9398e894598fc27f7358b815, type: 2}
   - {fileID: 11400000, guid: bd305b6833affae469a11765adfd46e2, type: 2}
-  - {fileID: 11400000, guid: 07042a44b3902604bbe63e35ed628614, type: 2}
-  - {fileID: 11400000, guid: 2f6343efee1129148bfc3dfbf7715abf, type: 2}

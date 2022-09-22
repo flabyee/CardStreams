@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9f0b3c1bd878904a95f6aabd0437096, type: 3}
-  m_Name: 01.KillMonsterMission_Easy
+  m_Name: 01.KillMonsterMission_Normal
   m_EditorClassIdentifier: 
   missionSprite: {fileID: 0}
   missionName: "\uBAAC\uC2A4\uD130\uB97C \uC8FD\uC5EC\uB77C"
-  infoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBAAC\uC2A4\uD130\uB97C 14\uB9C8\uB9AC
+  infoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBAAC\uC2A4\uD130\uB97C 17\uB9C8\uB9AC
     \uC774\uC0C1 \uC7A1\uC73C\uC138\uC694"
-  timInfoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBAAC\uC2A4\uD130\uB97C 14\uB9C8\uB9AC
+  timInfoStr: "\uC774\uBC88 \uB8E8\uD504\uB3D9\uC548 \uBAAC\uC2A4\uD130\uB97C 17\uB9C8\uB9AC
     \uC774\uC0C1 \uC7A1\uC73C\uC138\uC694"
-  grade: 0
-  targetCount: 14
+  grade: 1
+  targetCount: 17

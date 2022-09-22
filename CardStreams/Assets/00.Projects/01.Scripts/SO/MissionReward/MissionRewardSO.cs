@@ -9,6 +9,8 @@ public enum RewardType
     MaxHp,
     BuildCard,
     SpecialCard,
+    Exp,
+    Crystal,
 }
 
 [CreateAssetMenu(fileName = "new Reward", menuName = "ScriptableObject/Mission/MissionReward")]

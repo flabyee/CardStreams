@@ -88,6 +88,8 @@ public class MissionController : MonoBehaviour
 
     private void RewardInterprinter(Mission mission, MissionRewardSO missionReward)
     {
+        CardGrade grade = (CardGrade)Mathf.Clamp(missionReward.value, 0, 5);
+
         switch (missionReward.rewardType)
         {
             case RewardType.Gold:
@@ -114,9 +116,13 @@ public class MissionController : MonoBehaviour
                 });
                 break;
             case RewardType.BuildCard:
-                CardGrade grade = (CardGrade)Mathf.Clamp(missionReward.value, 0, 5);
+                grade++;
                 break;
             case RewardType.SpecialCard:
+                break;
+            case RewardType.Exp:
+                break;
+            case RewardType.Crystal:
                 break;
             default:
                 break;

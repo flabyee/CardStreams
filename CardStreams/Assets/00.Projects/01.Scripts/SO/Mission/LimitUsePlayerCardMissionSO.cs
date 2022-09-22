@@ -4,8 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Missions/DontUseMission")]
-public class DontUseMissionSO : MissionSO
+[CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/Missions/LimitUsePlayerCardMission")]
+public class LimitUsePlayerCardMissionSO : MissionSO
 {
     public List<BasicType> limitTypes;
     private int curCount;

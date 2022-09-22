@@ -583,6 +583,8 @@ public class HandleController : MonoBehaviour
 
                 cardSorting.AddList(specialCard);
             });
+
+            MissionObserverManager.instance.UnUseSpecialCard?.Invoke(id);
         }
     }
     public List<int> GetBuildDeck()

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BagController : MonoBehaviour
 {
-    private Queue<GameObject> poolQueue = new Queue<GameObject>();
-
     public GameObject bagCardPrefab;
+
     public RectTransform buildScrollTrm;
     public RectTransform specialScrollTrm;
     public GameObject notItemImage;
@@ -18,7 +17,6 @@ public class BagController : MonoBehaviour
     {
         ClearScroll();
 
-        Debug.Log("dsaf");
         gameObject.SetActive(true);
 
         int count = 0;
@@ -76,28 +74,19 @@ public class BagController : MonoBehaviour
 
     private void CreateCard(CardType cardType, int id)
     {
-        GameObject card;
-        if(poolQueue.Count > 0)
-        {
-            card = poolQueue.Dequeue();
-        }
-        else
-        {
-            card = Instantiate(bagCardPrefab, buildScrollTrm);
-        }
-
-        BagCard bagCard = card.GetComponent<BagCard>();
+        GameObject obj = Instantiate(bagCardPrefab, buildScrollTrm);
+        BagCard bagCard = obj.GetComponent<BagCard>();
 
         if(cardType == CardType.Build)
         {
-            card.transform.SetParent(buildScrollTrm);
+            obj.transform.SetParent(buildScrollTrm);
 
             BuildSO buildSO = DataManager.Instance.GetBuildSO(id);
             bagCard.Init(buildSO.buildName, buildSO.tooltip, buildSO.sprite, CardType.Build);
         }
         else
         {
-            card.transform.SetParent(specialScrollTrm);
+            obj.transform.SetParent(specialScrollTrm);
 
             SpecialCardSO specialSO = DataManager.Instance.GetSpecialCardSO(id);
             bagCard.Init(specialSO.specialCardName, specialSO.tooltip, specialSO.sprite, CardType.Build);
@@ -115,15 +104,15 @@ public class BagController : MonoBehaviour
     {
         foreach (RectTransform item in buildScrollTrm)
         {
-            poolQueue.Enqueue(item.gameObject);
+            Destroy(item.gameObject);
         }
         foreach (RectTransform item in specialScrollTrm)
         {
-            poolQueue.Enqueue(item.gameObject);
+            Destroy(item.gameObject);
         }
 
-        buildScrollTrm.sizeDelta = new Vector2(0, 335);
-        specialScrollTrm.sizeDelta = new Vector2(0, 335);
+        buildScrollTrm.sizeDelta = new Vector2(0, 290);
+        specialScrollTrm.sizeDelta = new Vector2(0, 290);
     }
 
     public void SetActiveNotItem(bool value)

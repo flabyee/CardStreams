@@ -45,7 +45,12 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
         OnAccessBuildCard = so.AccessBuildCard;
     }
 
-
+    public void UseSpecialCard(Player player, Field field)
+    {
+        Debug.Log("use special card");
+        OnAccessSpecialCard(player, field);
+        MissionObserverManager.instance.UseSpecialCard?.Invoke(id);
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {

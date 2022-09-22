@@ -9,7 +9,8 @@ public class DropManager : MonoBehaviour
 
     public DropArea buildHandleDropArea;
 
-    public DropArea useDropArea;
+    // 과거에 플레이어에게 사용하는 특수카드를 위해서 존재했던 것
+    //public DropArea useDropArea;
 
     public DropArea hoverDropArea;
     public RectTransform hoverTrm;
@@ -42,8 +43,8 @@ public class DropManager : MonoBehaviour
         buildHandleDropArea.onLifted += ObjectLiftedFromBuildHandle;
         buildHandleDropArea.onDropped += ObjectDroppedToBuildHandle;
 
-        useDropArea.onLifted += ObjectLiftedFromUse;
-        useDropArea.onDropped += ObjectDroppedToUse;
+        //useDropArea.onLifted += ObjectLiftedFromUse;
+        //useDropArea.onDropped += ObjectDroppedToUse;
 
         hoverDropArea.onLifted += ObjectLiftedFromHover;
         hoverDropArea.onDropped += ObjectDroppedToHover;
@@ -146,7 +147,7 @@ public class DropManager : MonoBehaviour
                             {
                                 if (specialCard.applyTiming == ApplyTiming.NowField)
                                 {
-                                    specialCard.OnAccessSpecialCard(GameManager.Instance.player, area.field);
+                                    specialCard.UseSpecialCard(GameManager.Instance.player, area.field);
                                     (area.field.cardPower as BasicCard).AddSpecial(specialCard.id);
 
                                     dragbleCard.isDestory = true;
@@ -304,6 +305,10 @@ public class DropManager : MonoBehaviour
     //    //}
     //}
 
+    // 과거에 플레이어에게 사용하는 특수카드를 위해서 존재했던 것
+
+
+    /*
     private void ObjectLiftedFromUse(DropArea area, GameObject obj)
     {
 
@@ -345,6 +350,8 @@ public class DropManager : MonoBehaviour
 
         ObjectToOrigin(area, obj);
     }
+    */
+
 
     private void ObjectLiftedFromHover(DropArea area, GameObject obj)
     {
