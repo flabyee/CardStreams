@@ -8,14 +8,20 @@ public class Player : MonoBehaviour
     private RectTransform rectTrm;
     private BuffController buffCon;
 
-    public EventSO playerValueChangeEvent;
-    public VillageBuffListSO buffListSO;
+    [Header("마을에서 가져오는 ListSO")]
     public PassiveListSO passiveListSO;
+    public BuildListSO merchantBuildListSO;
+    public SpecialCardListSO merchantCardListSO;
 
+    [Header("IntValue")]
     public IntValue hpValue;
     public IntValue swordValue;
     public IntValue shieldValue;
     public IntValue goldValue;
+    public IntValue startExpValue;
+
+    [Header("Event")]
+    public EventSO playerValueChangeEvent;
 
     public bool isAlive { get; private set; }
 
@@ -61,12 +67,23 @@ public class Player : MonoBehaviour
             buffCon.AddPassiveBuff(passive);
         }
 
-        foreach (BuffSO so in buffListSO.buffList) // 딴거 목록 추가
+        // 마을 상인에게 얻은 건물 획득
+        foreach (BuildSO so in merchantBuildListSO.buildList)
         {
-            Buff buff = new Buff();
-            so.Init(buff); // SO의 값으로 Buff를 초기화해줌
-            buffCon.AddBuff(buff);
+            GameManager.Instance.handleController.AddBuild(so.id);
         }
+        merchantBuildListSO.buildList.Clear();
+
+        // 마을 상인에게 얻은 특수카드 획득
+        foreach (SpecialCardSO so in merchantCardListSO.specialCardList)
+        {
+            GameManager.Instance.handleController.AddSpecial(so.id);
+        }
+        merchantCardListSO.specialCardList.Clear();
+
+        // 마을에서 올라간 초기레벨 적용
+        GetExp(startExpValue.RuntimeValue);
+
         playerValueChangeEvent.Occurred();
 
         isAlive = true;
@@ -74,17 +91,29 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        buffListSO?.buffList.Clear();
-
-        if (passiveListSO == null) return;
-
-        // 패시브는 레벨이 있어서 레벨전부 1로바꾸고 하기
-        foreach (PassiveSO so in passiveListSO.passiveList)
+        // 패시브 초기화
+        if (passiveListSO != null)
         {
-            so.currentLevel = 1;
+            // 패시브는 레벨이 있어서 레벨전부 1로바꾸고 하기
+            foreach (PassiveSO so in passiveListSO.passiveList)
+            {
+                so.currentLevel = 1;
+            }
+
+            passiveListSO.passiveList.Clear();
         }
 
-        passiveListSO.passiveList.Clear();
+        // 상인 건물 초기화
+        if(merchantBuildListSO != null)
+        {
+            merchantBuildListSO.buildList.Clear();
+        }
+
+        // 상인
+        if (merchantCardListSO != null)
+        {
+            merchantCardListSO.specialCardList.Clear();
+        }
     }
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
@@ -299,16 +328,17 @@ public class Player : MonoBehaviour
     {
         this.exp += exp;
 
-        if(this.exp >= nextExp)
+        while (this.exp >= nextExp)
         {
             // 초과분 넘기기
             this.exp = this.exp - nextExp;
             level++;
             hpValue.RuntimeMaxValue += 2;
+            hpValue.RuntimeValue += 2;
             nextExp = 20 + (level + 2) * (level + 2);
-
-            playerValueChangeEvent.Occurred();
         }
+
+        playerValueChangeEvent.Occurred();
 
         GetExpEvent?.Invoke(level, this.exp, nextExp);
     }

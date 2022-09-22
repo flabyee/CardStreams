@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerBuffSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [HideInInspector] public PlayerBuffPanel buffPanel;
+    [SerializeField] TextMeshProUGUI buffTimeText;
 
     private Image slotImage;
     private Buff slotBuff;
@@ -38,7 +40,13 @@ public class PlayerBuffSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         slotBuff = buff;
         slotImage.sprite = slotBuff.buffIcon;
+        buffTimeText.text = buff.remainTime.ToString();
         gameObject.SetActive(true);
     }
 
+    public void UpdateBuffTime()
+    {
+        if (slotBuff == null) return;
+        buffTimeText.text = slotBuff.remainTime.ToString();
+    }
 }

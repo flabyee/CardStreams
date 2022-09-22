@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3772865b85c7b6b40a6654aa1c8dfb38, type: 3}
-  m_Name: MagicianNPCHouse
+  m_Name: ClownNPCHouse
   m_EditorClassIdentifier: 
-  id: 4
-  buildName: "\uB9C8\uBC95\uC0AC\uC758 \uC9D1"
-  price: 20
+  id: 5
+  buildName: "\uAD11\uB300\uC758 \uC9D1"
+  price: 10
   grade: 0
-  tooltip: "\uB9C8\uBC95\uC0AC\uC5D0\uAC8C\uC11C [ \uCD08\uAE30 \uBC29\uC5B4\uB3C4
-    + 10 ] \uBC84\uD504\uB97C \uC5BB\uC744 \uC218 \uC788\uB2E4."
-  sprite: {fileID: 21300002, guid: bd592f12f15516340a6e487b84c9427f, type: 3}
+  tooltip: "\uAD11\uB300\uC5D0\uAC8C\uC11C [ \uC2DC\uC791 \uB808\uBCA8 \uC0C1\uC2B9
+    ] \uBC84\uD504\uB97C \uD68D\uB4DD\uD560 \uC218 \uC788\uB2E4."
+  sprite: {fileID: -6668571081914022420, guid: e4014f6ad77d64e49b5f665e151c6bab, type: 3}
   accessPointList:
   - {x: -1, y: 1}
   - {x: 0, y: 1}
@@ -33,5 +33,5 @@ MonoBehaviour:
   isAcceseLoopEnd: 0
   isOpenCardUI: 0
   openMenuType: 0
-  npcSO: {fileID: 11400000, guid: bf610b3bb8d061b4ebd50e541dc27491, type: 2}
+  npcSO: {fileID: 11400000, guid: 5388e34092c142f46a38c6711834b9ce, type: 2}
   npcPrefab: {fileID: 5143073422182789500, guid: 0325efba43f21834db555f53c605a2e9, type: 3}
