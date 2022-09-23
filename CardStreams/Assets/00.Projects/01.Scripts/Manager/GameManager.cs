@@ -326,6 +326,8 @@ public class GameManager : MonoBehaviour
         if (isFirst == true)
             ShowTuTorialEvent?.Invoke(1);
 
+        MissionObserverManager.instance.ResetTimer();
+
         nextState = GameState.Move;
     }
 

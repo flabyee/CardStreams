@@ -584,7 +584,7 @@ public class HandleController : MonoBehaviour
                 cardSorting.AddList(specialCard);
             });
 
-            MissionObserverManager.instance.UnUseSpecialCard?.Invoke(id);
+            MissionObserverManager.instance.OffSpecialCard?.Invoke(id);
         }
     }
     public List<int> GetBuildDeck()
@@ -689,8 +689,11 @@ public class HandleController : MonoBehaviour
         // 남아있는 플레이어 핸드 제거
         for(int i = playerHandleObj.Count - 1; i >= 0; i--)
         {
-            playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
-            cardSorting.RemoveList(playerHandleObj[i]);
+            if(playerHandleObj[i].isField == false)
+            {
+                playerHandleObj[i].GetComponent<DragbleCard>().ActiveFalse();
+                cardSorting.RemoveList(playerHandleObj[i]);
+            }
         }
         playerHandleObj.Clear();
 

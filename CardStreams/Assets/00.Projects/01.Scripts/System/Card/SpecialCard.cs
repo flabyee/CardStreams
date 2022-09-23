@@ -49,7 +49,7 @@ public class SpecialCard : CardPower, IPointerEnterHandler, IPointerExitHandler
     {
         Debug.Log("use special card");
         OnAccessSpecialCard(player, field);
-        MissionObserverManager.instance.UseSpecialCard?.Invoke(id);
+        MissionObserverManager.instance.OnSpecialCard?.Invoke(id);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

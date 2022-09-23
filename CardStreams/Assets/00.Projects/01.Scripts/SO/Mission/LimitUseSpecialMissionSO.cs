@@ -12,8 +12,8 @@ public class LimitUseSpecialMissionSO : MissionSO
     {
         curCount = 0;
 
-        MissionObserverManager.instance.UseSpecialCard += ObserverUseSpecialCard;
-        MissionObserverManager.instance.UnUseSpecialCard += ObserverUnUseSpecialCard;
+        MissionObserverManager.instance.OnSpecialCard += ObserverUseSpecialCard;
+        MissionObserverManager.instance.OffSpecialCard += ObserverUnUseSpecialCard;
     }
 
     public override void ApplyUI()
@@ -56,7 +56,7 @@ public class LimitUseSpecialMissionSO : MissionSO
 
     public override void Reset()
     {
-        MissionObserverManager.instance.UseSpecialCard -= ObserverUseSpecialCard;
-        MissionObserverManager.instance.UnUseSpecialCard -= ObserverUnUseSpecialCard;
+        MissionObserverManager.instance.OnSpecialCard -= ObserverUseSpecialCard;
+        MissionObserverManager.instance.OffSpecialCard -= ObserverUnUseSpecialCard;
     }
 }

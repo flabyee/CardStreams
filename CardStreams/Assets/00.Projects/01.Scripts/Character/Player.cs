@@ -26,8 +26,7 @@ public class Player : MonoBehaviour
     public Action<int, int, int> GetExpEvent;
 
     // 미션 시스템을 위한
-    public Action<BasicCard> OnBasicCardEvent;
-    public Action<int> OnShieldUse;
+
 
     [Header("Debug")]
     public DebugBoolSO isDontDie;
@@ -132,7 +131,7 @@ public class Player : MonoBehaviour
         OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower);
 
         // 미션
-        OnBasicCardEvent?.Invoke(field.cardPower);
+        MissionObserverManager.instance.OnBasicCard?.Invoke(field.cardPower);
     }
 
     public bool OnBoss(int damage, out int sword)
@@ -262,14 +261,14 @@ public class Player : MonoBehaviour
 
                 if (currentMonsterValue - shieldValue.RuntimeValue > 0) // 몬스터가더크면
                 {
-                    OnShieldUse?.Invoke(shieldValue.RuntimeValue);
+                    MissionObserverManager.instance.OnShield?.Invoke(shieldValue.RuntimeValue);
 
                     currentMonsterValue -= shieldValue.RuntimeValue; // 몬스터 -= 방패
                     leftShieldValue = 0; // 방패 0
                 }
                 else // 방패가더크면
                 {
-                    OnShieldUse?.Invoke(currentMonsterValue);
+                    MissionObserverManager.instance.OnShield?.Invoke(currentMonsterValue);
 
                     leftShieldValue -= currentMonsterValue; // 방패 -= 몬스터
                     currentMonsterValue = 0; // 피해 0

@@ -10,7 +10,7 @@ public class KillMonsterMissionSO : MissionSO
 
     public override void GetMission()
     {
-        GameManager.Instance.player.OnBasicCardEvent += ObserverUseBasicCard;
+        MissionObserverManager.instance.OnBasicCard += ObserverUseBasicCard;
 
         curCount = 0;
     }
@@ -49,6 +49,6 @@ public class KillMonsterMissionSO : MissionSO
 
     public override void Reset()
     {
-        GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
+        MissionObserverManager.instance.OnBasicCard -= ObserverUseBasicCard;
     }
 }

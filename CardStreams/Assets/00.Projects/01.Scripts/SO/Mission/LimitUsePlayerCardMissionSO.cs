@@ -13,7 +13,7 @@ public class LimitUsePlayerCardMissionSO : MissionSO
 
     public override void GetMission()
     {
-        GameManager.Instance.player.OnBasicCardEvent += ObserverUseBasicCard;
+        MissionObserverManager.instance.OnBasicCard += ObserverUseBasicCard;
 
         curCount = 0;
     }
@@ -47,18 +47,15 @@ public class LimitUsePlayerCardMissionSO : MissionSO
 
     private void ObserverUseBasicCard(BasicCard basicCard)
     {
-        Debug.Log("observer");
-
         if(limitTypes.Contains(basicCard.basicType))
         {
             curCount++;
             ApplyUI();
-            Debug.Log($"{curCount}/{limitCount}");
         }
     }
 
     public override void Reset()
     {
-        GameManager.Instance.player.OnBasicCardEvent -= ObserverUseBasicCard;
+        MissionObserverManager.instance.OnBasicCard -= ObserverUseBasicCard;
     }
 }

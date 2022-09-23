@@ -10,7 +10,7 @@ public class UseShieldMissionSO : MissionSO
 
     public override void GetMission()
     {
-        GameManager.Instance.player.OnShieldUse += ObserverUseShield;
+        MissionObserverManager.instance.OnShield += ObserverUseShield;
 
         curCount = 0;
     }
@@ -46,6 +46,6 @@ public class UseShieldMissionSO : MissionSO
 
     public override void Reset()
     {
-        GameManager.Instance.player.OnShieldUse -= ObserverUseShield;
+        MissionObserverManager.instance.OnShield -= ObserverUseShield;
     }
 }
