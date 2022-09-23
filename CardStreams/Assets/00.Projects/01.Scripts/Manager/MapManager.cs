@@ -25,6 +25,8 @@ public class MapManager : MonoBehaviour
     [HideInInspector] public List<Field> fieldList = new List<Field>();   // 필드(플레이어가 가는 길)리스트
     [HideInInspector] public List<FieldData> sortFieldRectList = new List<FieldData>();   // 정렬할라고 임시로 값 저장하는 리스트, fieldList를 쓰면된다
 
+    private MapDataListSO randomMapDataListSO;
+
     public int fieldCount => fieldList.Count;
 
     [Header("Event")]
@@ -40,10 +42,15 @@ public class MapManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        randomMapDataListSO = Resources.Load<MapDataListSO>("RandomMapDataList");
     }
 
     void Start()
     {
+        if (DataManager.Instance.GetNowStageData().isRandomMap == true)
+            DataManager.Instance.GetNowStageData().mapStr = GetRandomMapStr();
+
         CreateMap(DataManager.Instance.GetNowStageData().mapStr);
     }
 
@@ -161,6 +168,10 @@ public class MapManager : MonoBehaviour
         }
 
         StartCoroutine(Util.DelayCoroutine(0.03f, () => afterMapCreateEvent.Occurred()));
+    }
+    private string GetRandomMapStr()
+    {
+        return randomMapDataListSO.mapDataList[UnityEngine.Random.Range(0, randomMapDataListSO.mapDataList.Count)].mapStr;
     }
 
     public RectTransform GetMapRectTrm(int y, int x)

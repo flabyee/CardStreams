@@ -103,19 +103,15 @@ public class SoundManager : MonoBehaviour
     /// <param name="volume">음량</param>
     public void ChangeVolume(SoundType type, float volume)
     {
-        Debug.Log(volume);
-
         switch (type)
         {
             case SoundType.Master:
                 if (volume <= 0)
                 {
-                    Debug.Log("꺼");
                     _masterVolumeMixer.SetFloat("Master", -80f);
                 }
                 else
                 {
-                    Debug.Log("줄이기 : " + (0.2f * volume - 20));
                     _masterVolumeMixer.SetFloat("Master", 0.2f * volume - 20);
                 }
                 break;

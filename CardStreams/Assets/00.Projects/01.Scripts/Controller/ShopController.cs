@@ -125,6 +125,11 @@ public class ShopController : MonoBehaviour
 
     public void Hide()
     {
+        if (isMinimize == true)
+        {
+            Minimize();
+        }
+
         _cg.alpha = 0;
         _cg.blocksRaycasts = false;
         _cg.interactable = false;

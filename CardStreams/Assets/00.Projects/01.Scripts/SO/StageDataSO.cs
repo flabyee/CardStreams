@@ -7,6 +7,7 @@ public class StageDataSO : ScriptableObject
 {
     [Header("기본 정보")]
     public int id;
+    public bool isRandomMap;
     [TextArea(minLines:6, maxLines:6)] public string mapStr;
     public int moveCount;       // 한번에 이동할 양
 
