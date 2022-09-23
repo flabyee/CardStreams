@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c9d143fa7de3ae4caf5a0592a8d0dd5, type: 3}
-  m_Name: 02.MissionReward_Easy
+  m_Name: 02.MissionReward_Hard
   m_EditorClassIdentifier: 
   grade: 0
-  rewardStr: "\uCCB4\uB825 3 \uD68C\uBCF5"
+  rewardStr: "\uCCB4\uB825 15 \uD68C\uBCF5"
   rewardType: 1
-  value: 3
+  value: 15

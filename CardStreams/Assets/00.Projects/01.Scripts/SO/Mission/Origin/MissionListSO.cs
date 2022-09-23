@@ -5,5 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Missioin", menuName = "ScriptableObject/Mission/MissionList")]
 public class MissionListSO : ScriptableObject
 {
-    public List<MissionSO> missionList;
+    public List<MissionSO> easyList;
+    public List<MissionSO> normalList;
+    public List<MissionSO> hardList;
 }

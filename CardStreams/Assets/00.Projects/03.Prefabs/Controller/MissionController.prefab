@@ -44,8 +44,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionList: []
-  missionListSO: {fileID: 11400000, guid: 81870ff29d3af9549b4f693348c4d465, type: 2}
-  rewardListSO: {fileID: 11400000, guid: acd5396539a78a64d9f52c6f14142135, type: 2}
+  missionGradeList:
+  - easy: 3
+    normal: 0
+    hard: 0
+  - easy: 2
+    normal: 1
+    hard: 0
+  - easy: 1
+    normal: 2
+    hard: 0
+  - easy: 0
+    normal: 2
+    hard: 1
+  - easy: 0
+    normal: 1
+    hard: 2
+  - easy: 0
+    normal: 0
+    hard: 3
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   goldChangeEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}

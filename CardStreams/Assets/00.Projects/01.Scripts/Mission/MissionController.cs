@@ -10,8 +10,12 @@ public class MissionController : MonoBehaviour
 
     public List<Mission> missionList = new List<Mission>();
 
-    public MissionListSO missionListSO;
-    public MissionRewardListSO rewardListSO;
+    private MissionListSO missionListSO;
+    private MissionRewardListSO rewardListSO;
+
+    [Header("Debug")]
+    public List<MissionGrades> missionGradeList;
+    private int index;
 
     [Header("IntValue")]
     public IntValue goldValue;
@@ -21,18 +25,72 @@ public class MissionController : MonoBehaviour
     public EventSO goldChangeEvent;
     public EventSO playerValueChanged;
 
+    private void Awake()
+    {
+        missionListSO = Resources.Load<MissionListSO>("MissionList");
+        rewardListSO = Resources.Load<MissionRewardListSO>("MissionRewardList");
+    }
+
     // 루프 시작할 때 랜덤 미션 3개 획득
     public void GetRandomMission()
     {
-        Util.RandomList(ref missionListSO.missionList);
-        Util.RandomList(ref rewardListSO.rewardList);
-
-        for (int i = 0; i < 3; i++)
+        if (missionGradeList[index].easy + missionGradeList[index].normal + missionGradeList[index].hard != 3)
         {
-            missionList[i].Init(missionListSO.missionList[i]);
-            missionList[i].SetMissionReward(rewardListSO.rewardList[i]);
-            missionList[i].GetMission();
+            Debug.LogError("미션은 3개를 할당해주어야 합니다");
+            return;
         }
+
+        int missionIndex = 0;
+
+        if(missionGradeList[index].easy > 0)
+        {
+            Util.RandomList(ref missionListSO.easyList);
+            Util.RandomList(ref rewardListSO.easyList);
+
+            for (int i = 0; i < missionGradeList[index].easy; i++)
+            {
+                missionList[i + missionIndex].Init(missionListSO.easyList[i]);
+                missionList[i + missionIndex].SetMissionReward(rewardListSO.easyList[i]);
+
+                missionList[i + missionIndex].GetMission();
+            }
+
+            missionIndex += missionGradeList[index].easy;
+        }
+
+        if (missionGradeList[index].normal > 0)
+        {
+            Util.RandomList(ref missionListSO.normalList);
+            Util.RandomList(ref rewardListSO.normalList);
+
+            for (int i = 0; i < missionGradeList[index].normal; i++)
+            {
+                missionList[i + missionIndex].Init(missionListSO.normalList[i]);
+                missionList[i + missionIndex].SetMissionReward(rewardListSO.normalList[i]);
+
+                missionList[i + missionIndex].GetMission();
+            }
+
+            missionIndex += missionGradeList[index].normal;
+        }
+
+        if (missionGradeList[index].hard > 0)
+        {
+            Util.RandomList(ref missionListSO.hardList);
+            Util.RandomList(ref rewardListSO.hardList);
+
+            for (int i = 0; i < missionGradeList[index].hard; i++)
+            {
+                missionList[i + missionIndex].Init(missionListSO.hardList[i]);
+                missionList[i + missionIndex].SetMissionReward(rewardListSO.hardList[i]);
+
+                missionList[i + missionIndex].GetMission();
+            }
+
+            missionIndex += missionGradeList[index].hard;
+        }
+
+        index = Mathf.Clamp(index + 1, 0, missionGradeList.Count);
     }
 
     // 루프 끝날 때 미션들 클리어 여부 확인하고 보상 획득
@@ -46,18 +104,6 @@ public class MissionController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             missionList[i].ResetMission();
-        }
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            GetRandomMission();
-        }
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            IsCompleteMission();
         }
     }
 
@@ -127,5 +173,13 @@ public class MissionController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    [System.Serializable]
+    public struct MissionGrades
+    {
+        public int easy;
+        public int normal;
+        public int hard;
     }
 }
