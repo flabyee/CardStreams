@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c9d143fa7de3ae4caf5a0592a8d0dd5, type: 3}
-  m_Name: 05.MissionReward_Easy
+  m_Name: 06.MissionReward_Hard
   m_EditorClassIdentifier: 
-  grade: 0
-  rewardStr: "Epic \uD2B9\uC218 \uCE74\uB4DC \uD68D\uB4DD"
-  rewardType: 4
-  value: 2
+  grade: 2
+  rewardStr: "\uACBD\uD5D8\uCE58 50 \uD68D\uB4DD"
+  rewardType: 5
+  value: 50

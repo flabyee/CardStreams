@@ -398,7 +398,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        missionController.IsCompleteMission();
+        missionController.CheckCompleteMission();
 
         yield return new WaitForSeconds(2f);
 

@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: MissionList
   m_EditorClassIdentifier: 
   easyList:
-  - {fileID: 11400000, guid: 2f6343efee1129148bfc3dfbf7715abf, type: 2}
-  - {fileID: 11400000, guid: bd305b6833affae469a11765adfd46e2, type: 2}
   - {fileID: 11400000, guid: 07042a44b3902604bbe63e35ed628614, type: 2}
+  - {fileID: 11400000, guid: bd305b6833affae469a11765adfd46e2, type: 2}
+  - {fileID: 11400000, guid: 8359d704a4c177c4798d068e32a90144, type: 2}
+  - {fileID: 11400000, guid: 2f6343efee1129148bfc3dfbf7715abf, type: 2}
   normalList:
   - {fileID: 11400000, guid: e771b6c350f26dd44941cd3db424b4c4, type: 2}
-  - {fileID: 11400000, guid: 54a17b6ff6953b94d863f7debf049e85, type: 2}
-  - {fileID: 11400000, guid: 87d91618946808942ae0e9d0796be6ce, type: 2}
   - {fileID: 11400000, guid: fb4c595f9398e894598fc27f7358b815, type: 2}
+  - {fileID: 11400000, guid: 87d91618946808942ae0e9d0796be6ce, type: 2}
+  - {fileID: 11400000, guid: 54a17b6ff6953b94d863f7debf049e85, type: 2}
   - {fileID: 11400000, guid: 8e47e03a320439d46bdc63b3b83c0c9b, type: 2}
   hardList:
   - {fileID: 11400000, guid: 7a09f304a93d74b4ab0caf9f0500928e, type: 2}
-  - {fileID: 11400000, guid: ba2eb39145f472d478f34406cb352675, type: 2}
   - {fileID: 11400000, guid: 812db1b57f8fde6479e79a115067f781, type: 2}
   - {fileID: 11400000, guid: 0014050e8596aee44a107d565907346b, type: 2}
+  - {fileID: 11400000, guid: ba2eb39145f472d478f34406cb352675, type: 2}

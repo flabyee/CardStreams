@@ -6,7 +6,7 @@ using TMPro;
 
 public class UnlockController : MonoBehaviour
 {
-    private Dictionary<CardGrade, List<BuildData>> buildDict = new Dictionary<CardGrade, List<BuildData>>();
+    private Dictionary<CardGrade, List<BuildCardData>> buildDict = new Dictionary<CardGrade, List<BuildCardData>>();
     private Dictionary<CardGrade, List<SpecialCardData>> specialDict = new Dictionary<CardGrade, List<SpecialCardData>>();
 
     private List<BuildSO> buildList;
@@ -36,12 +36,12 @@ public class UnlockController : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            buildDict[(CardGrade)i] = new List<BuildData>();
+            buildDict[(CardGrade)i] = new List<BuildCardData>();
             specialDict[(CardGrade)i] = new List<SpecialCardData>();
         }
 
         // 언락 안되어있는 건물과 특수카드 dict에 넣기
-        foreach (BuildData itemData in saveData.buildDataList)
+        foreach (BuildCardData itemData in saveData.buildDataList)
         {
             if (itemData.isUnlock == false)
             {
@@ -117,7 +117,7 @@ public class UnlockController : MonoBehaviour
         }
 
         int randomIndex = Random.Range(0, buildDict[cardGrade].Count);
-        BuildData buildData = buildDict[cardGrade][randomIndex];
+        BuildCardData buildData = buildDict[cardGrade][randomIndex];
 
         Debug.Log("건카 해금 id : " + buildData.id);
 
@@ -165,7 +165,7 @@ public class UnlockController : MonoBehaviour
     // test 코드
     public void ResetData(bool b)
     {
-        foreach(BuildData buildData in saveData.buildDataList)
+        foreach(BuildCardData buildData in saveData.buildDataList)
         {
             buildData.isUnlock = b;
             buildData.isUse = b;

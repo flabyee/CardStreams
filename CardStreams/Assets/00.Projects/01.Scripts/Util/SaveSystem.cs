@@ -90,12 +90,12 @@ public static class SaveSystem
         buildCount = Resources.Load<BuildListSO>(typeof(BuildListSO).Name).buildList.Count;
         specialCardCount = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name).specialCardList.Count;
 
-        saveData.buildDataList = new List<BuildData>();
+        saveData.buildDataList = new List<BuildCardData>();
         saveData.speicialCardDataList = new List<SpecialCardData>();
         for (int i = 0; i < buildCount; i++)
         {
             saveData.buildDataList.Add(
-                new BuildData() { id = i, isUnlock = true, isUse = true });
+                new BuildCardData() { id = i, isUnlock = true, isUse = true });
         }
         for(int i = 0; i < specialCardCount; i++)
         {
@@ -131,7 +131,7 @@ public class SaveData
     public int crystal;
     // 강화 상태, 해금 상태, 
     public List<SpecialCardData> speicialCardDataList;
-    public List<BuildData> buildDataList;
+    public List<BuildCardData> buildDataList;
 
     public int maxRemoveCount;
     public int prestige; // 명성치
@@ -146,7 +146,7 @@ public class SpecialCardData
 }
 
 [System.Serializable]
-public class BuildData
+public class BuildCardData
 {
     public int id;
     public bool isUnlock;

@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public enum TargetType // 보상카드가 날아갈 위치
 {
-    Handle,
+    Bag,
     GoldUI,
     HPUI,
     Exp,
@@ -126,7 +126,7 @@ public class RewardCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
         else
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, TargetType.Handle, () => { });
+            EffectManager.Instance.GetBezierCardEffect(transform.position, cardSO.sprite, TargetType.Bag, () => { });
             GameManager.Instance.handleController.AddSpecial(cardSO.id);
             ResetReward();
         }

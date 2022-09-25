@@ -293,9 +293,22 @@ public class Player : MonoBehaviour
         // 킬카운트, 명성 업 (크리스탈은 루프 완료시마다 5개, 게임매니저로 이사감)
         ResourceManager.Instance.AddResource(ResourceType.prestige, 1);
 
-        for(int i = 0; i < cardPower.originValue; i++)
+        GetExpBezier(cardPower.originValue);
+    }
+
+    public void GetExpBezier(int exp)
+    {
+        for (int i = 0; i < exp; i++)
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)], 
+            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
+                TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
+        }
+    }
+    public void GetExpBezier(int exp, Vector3 pos)
+    {
+        for (int i = 0; i < exp; i++)
+        {
+            EffectManager.Instance.GetBezierCardEffect(pos, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
                 TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
         }
     }

@@ -63,6 +63,7 @@ MonoBehaviour:
   - easy: 0
     normal: 0
     hard: 3
+  isTestMode: 0
   goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   goldChangeEvent: {fileID: 11400000, guid: 5dad83e2d47da79409fd19441e244d9c, type: 2}

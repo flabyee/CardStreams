@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 04.LimitTimerMission_Easy
   m_EditorClassIdentifier: 
   missionSprite: {fileID: 0}
-  missionName: 
-  infoStr: 
-  timInfoStr: 
+  missionName: "\uBE68\uB9AC\uBE68\uB9AC!"
+  infoStr: "300\uCD08 \uC548\uC5D0 \uB8E8\uD504\uB97C \uB3C4\uC138\uC694"
+  timInfoStr: "300\uCD08 \uC548\uC5D0 \uB8E8\uD504\uB97C \uB3C4\uC138\uC694"
   grade: 0
-  limitTime: 0
+  limitTime: 5

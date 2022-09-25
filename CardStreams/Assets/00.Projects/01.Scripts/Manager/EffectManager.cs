@@ -67,7 +67,7 @@ public class EffectManager : MonoBehaviour
 
         switch (rewardType)
         {
-            case TargetType.Handle:
+            case TargetType.Bag:
                 targetTrm = specialCardTargetTrm;
                 break;
 

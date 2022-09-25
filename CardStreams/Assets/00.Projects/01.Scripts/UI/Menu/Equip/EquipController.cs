@@ -6,7 +6,7 @@ using TMPro;
 
 public class EquipController : MonoBehaviour
 {
-    private Dictionary<CardGrade, List<BuildData>> buildDict = new Dictionary<CardGrade, List<BuildData>>();
+    private Dictionary<CardGrade, List<BuildCardData>> buildDict = new Dictionary<CardGrade, List<BuildCardData>>();
     private Dictionary<CardGrade, List<SpecialCardData>> specialDict = new Dictionary<CardGrade, List<SpecialCardData>>();
 
     // 현제 리무브 중인 리스트
@@ -68,12 +68,12 @@ public class EquipController : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            buildDict[(CardGrade)i] = new List<BuildData>();
+            buildDict[(CardGrade)i] = new List<BuildCardData>();
             specialDict[(CardGrade)i] = new List<SpecialCardData>();
         }
 
         // 언락 되어있는 건물과 특수카드 dict에 넣기
-        foreach (BuildData itemData in saveData.buildDataList)
+        foreach (BuildCardData itemData in saveData.buildDataList)
         {
             if (itemData.isUnlock == true)
             {
@@ -138,9 +138,9 @@ public class EquipController : MonoBehaviour
         int count = 0;
         bool b = false;
         // 건물 removeCard 생성
-        foreach(List<BuildData> buildDataList in buildDict.Values)
+        foreach(List<BuildCardData> buildDataList in buildDict.Values)
         {
-            foreach(BuildData buildData in buildDataList)
+            foreach(BuildCardData buildData in buildDataList)
             {
                 if(b == true)
                 {

@@ -16,6 +16,7 @@ public class MissionController : MonoBehaviour
     [Header("Debug")]
     public List<MissionGrades> missionGradeList;
     private int index;
+    public bool isTestMode = false;
 
     [Header("IntValue")]
     public IntValue goldValue;
@@ -27,8 +28,24 @@ public class MissionController : MonoBehaviour
 
     private void Awake()
     {
-        missionListSO = Resources.Load<MissionListSO>("MissionList");
-        rewardListSO = Resources.Load<MissionRewardListSO>("MissionRewardList");
+        if(isTestMode == false)
+        {
+            missionListSO = Resources.Load<MissionListSO>("MissionList");
+            rewardListSO = Resources.Load<MissionRewardListSO>("MissionRewardList");
+        }
+        else
+        {
+            missionListSO = Resources.Load<MissionListSO>("MissionList_Test");
+            rewardListSO = Resources.Load<MissionRewardListSO>("MissionRewardList_Test");
+        }
+    }
+
+    private void Update()
+    {
+        if(isTestMode == true && Input.GetKeyDown(KeyCode.T))
+        {
+            CheckCompleteMission();
+        }
     }
 
     // 루프 시작할 때 랜덤 미션 3개 획득
@@ -50,7 +67,7 @@ public class MissionController : MonoBehaviour
             for (int i = 0; i < missionGradeList[index].easy; i++)
             {
                 missionList[i + missionIndex].Init(missionListSO.easyList[i]);
-                missionList[i + missionIndex].SetMissionReward(rewardListSO.easyList[i]);
+                missionList[i + missionIndex].SetMissionReward(GetRewardSO(MissionGrade.Easy));
 
                 missionList[i + missionIndex].GetMission();
             }
@@ -66,7 +83,7 @@ public class MissionController : MonoBehaviour
             for (int i = 0; i < missionGradeList[index].normal; i++)
             {
                 missionList[i + missionIndex].Init(missionListSO.normalList[i]);
-                missionList[i + missionIndex].SetMissionReward(rewardListSO.normalList[i]);
+                missionList[i + missionIndex].SetMissionReward(GetRewardSO(MissionGrade.Normal));
 
                 missionList[i + missionIndex].GetMission();
             }
@@ -82,7 +99,7 @@ public class MissionController : MonoBehaviour
             for (int i = 0; i < missionGradeList[index].hard; i++)
             {
                 missionList[i + missionIndex].Init(missionListSO.hardList[i]);
-                missionList[i + missionIndex].SetMissionReward(rewardListSO.hardList[i]);
+                missionList[i + missionIndex].SetMissionReward(GetRewardSO(MissionGrade.Hard));
 
                 missionList[i + missionIndex].GetMission();
             }
@@ -94,7 +111,7 @@ public class MissionController : MonoBehaviour
     }
 
     // 루프 끝날 때 미션들 클리어 여부 확인하고 보상 획득
-    public void IsCompleteMission()
+    public void CheckCompleteMission()
     {
         StartCoroutine(CompleteMissionCor());
     }
@@ -146,6 +163,7 @@ public class MissionController : MonoBehaviour
                     goldChangeEvent.Occurred();
                 });
                 break;
+
             case RewardType.Hp:
                 // Bezier로 회복으로 날리기 도착하면 회복
                 EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
@@ -154,6 +172,7 @@ public class MissionController : MonoBehaviour
                     playerValueChanged.Occurred();
                 });
                 break;
+
             case RewardType.MaxHp:
                 EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
                 {
@@ -161,17 +180,43 @@ public class MissionController : MonoBehaviour
                     playerValueChanged.Occurred();
                 });
                 break;
+
             case RewardType.BuildCard:
-                grade++;
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Bag, null);
+                GameManager.Instance.handleController.AddBuild(DataManager.Instance.GetRandomBuildSO((CardGrade)missionReward.value).id);
                 break;
+
             case RewardType.SpecialCard:
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Bag, null);
+                GameManager.Instance.handleController.AddSpecial(DataManager.Instance.GetRandomSpecialSO((CardGrade)missionReward.value).id);
                 break;
+
             case RewardType.Exp:
+                GameManager.Instance.player.GetExpBezier(missionReward.value, mission.transform.position);
                 break;
+
             case RewardType.Crystal:
+
                 break;
+
             default:
+                Debug.LogError("구현이 아직 안되어있는 보상");
                 break;
+        }
+    }
+
+    private MissionRewardSO GetRewardSO(MissionGrade grade)
+    {
+        switch (grade)
+        {
+            case MissionGrade.Easy:
+                return rewardListSO.easyList[Random.Range(0, rewardListSO.easyList.Count)];
+            case MissionGrade.Normal:
+                return rewardListSO.normalList[Random.Range(0, rewardListSO.normalList.Count)];
+            case MissionGrade.Hard:
+                return rewardListSO.hardList[Random.Range(0, rewardListSO.hardList.Count)];
+            default:
+                return rewardListSO.easyList[Random.Range(0, rewardListSO.easyList.Count)];
         }
     }
 

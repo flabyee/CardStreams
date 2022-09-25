@@ -54,12 +54,6 @@ public class ShopController : MonoBehaviour
     private List<int> upgradeCostList;
     private int shopGrade;
 
-    // dict
-    private List<BuildSO> buildList;
-    private List<SpecialCardSO> specialList;
-
-    private Dictionary<CardGrade, List<BuildData>> buildDict = new Dictionary<CardGrade, List<BuildData>>();
-    private Dictionary<CardGrade, List<SpecialCardData>> specialDict = new Dictionary<CardGrade, List<SpecialCardData>>();
     private Dictionary<CardGrade, int> gradeToChance = new Dictionary<CardGrade, int>();
 
 
@@ -74,37 +68,6 @@ public class ShopController : MonoBehaviour
         shopGrade = -1;
         isLock = false;
         lockBtnImage.color = new Color(0, 0, 0, isLock ? 1f : 0.5f);
-
-        BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
-        buildList = buildListSO.buildList;
-        SpecialCardListSO specialListSO = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name);
-        specialList = specialListSO.specialCardList;
-
-        for (int i = 0; i < 5; i++)
-        {
-            buildDict[(CardGrade)i] = new List<BuildData>();
-            specialDict[(CardGrade)i] = new List<SpecialCardData>();
-        }
-
-        // 언락 되어있는 건물과 특수카드 dict에 넣기
-        foreach (BuildData itemData in SaveFile.GetSaveData().buildDataList)
-        {
-            if (itemData.isUnlock == true && itemData.isUse == true)
-            {
-                BuildSO buildSO = buildList.Find((x) => x.id == itemData.id);
-
-                buildDict[buildSO.grade].Add(itemData);
-            }
-        }
-
-        foreach (SpecialCardData itemData in SaveFile.GetSaveData().speicialCardDataList)
-        {
-            if (itemData.isUnlock == true && itemData.isUse == true)
-            {
-                SpecialCardSO specialSO = specialList.Find((x) => x.id == itemData.id);
-                specialDict[specialSO.grade].Add(itemData);
-            }
-        }
     }
 
 
@@ -208,9 +171,6 @@ public class ShopController : MonoBehaviour
             item.gameObject.SetActive(false);
         }
 
-        Shuffle(CardType.Special);
-
-
         Dictionary<CardGrade, int> countDict = new Dictionary<CardGrade, int>();
         countDict[CardGrade.Common] = 0;
         countDict[CardGrade.Rare] = 0;
@@ -231,23 +191,23 @@ public class ShopController : MonoBehaviour
             int randomChance = Random.Range(0, GetAllChance());
             if (randomChance < chance[0])
             {
-                CreateSpecialCardItem(CardGrade.Common, countDict[CardGrade.Common]++);
+                CreateSpecialCardItem(CardGrade.Common);
             }
             else if (randomChance < chance[1])
             {
-                CreateSpecialCardItem(CardGrade.Rare, countDict[CardGrade.Rare]++);
+                CreateSpecialCardItem(CardGrade.Rare);
             }
             else if (randomChance < chance[2])
             {
-                CreateSpecialCardItem(CardGrade.Epic, countDict[CardGrade.Epic]++);
+                CreateSpecialCardItem(CardGrade.Epic);
             }
             else if (randomChance < chance[3])
             {
-                CreateSpecialCardItem(CardGrade.Unique, countDict[CardGrade.Unique]++);
+                CreateSpecialCardItem(CardGrade.Unique);
             }
             else if (randomChance < chance[4])
             {
-                CreateSpecialCardItem(CardGrade.Legendary, countDict[CardGrade.Legendary]++);
+                CreateSpecialCardItem(CardGrade.Legendary);
             }
             else
             {
@@ -264,16 +224,6 @@ public class ShopController : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        Shuffle(CardType.Build);
-
-
-        Dictionary<CardGrade, int> countDict = new Dictionary<CardGrade, int>();
-        countDict[CardGrade.Common] = 0;
-        countDict[CardGrade.Rare] = 0;
-        countDict[CardGrade.Epic] = 0;
-        countDict[CardGrade.Unique] = 0;
-        countDict[CardGrade.Legendary] = 0;
-
         int[] chance = new int[5];
         chance[0] = gradeToChance[CardGrade.Common] > 0 ? gradeToChance[CardGrade.Common] : 0;
         chance[1] = chance[0] + (gradeToChance[CardGrade.Rare] > 0 ? gradeToChance[CardGrade.Rare] : 0);
@@ -286,59 +236,27 @@ public class ShopController : MonoBehaviour
             int randomChance = Random.Range(0, GetAllChance());
             if (randomChance < chance[0])
             {
-                CreateBuildItem(CardGrade.Common, countDict[CardGrade.Common]++);
+                CreateBuildItem(CardGrade.Common);
             }
             else if (randomChance < chance[1])
             {
-                CreateBuildItem(CardGrade.Rare, countDict[CardGrade.Rare]++);
+                CreateBuildItem(CardGrade.Rare);
             }
             else if (randomChance < chance[2])
             {
-                CreateBuildItem(CardGrade.Epic, countDict[CardGrade.Epic]++);
+                CreateBuildItem(CardGrade.Epic);
             }
             else if (randomChance < chance[3])
             {
-                CreateBuildItem(CardGrade.Unique, countDict[CardGrade.Unique]++);
+                CreateBuildItem(CardGrade.Unique);
             }
             else if (randomChance < chance[4])
             {
-                CreateBuildItem(CardGrade.Legendary, countDict[CardGrade.Legendary]++);
+                CreateBuildItem(CardGrade.Legendary);
             }
             else
             {
                 Debug.LogError("chance 설정이 잘못 됨");
-            }
-        }
-    }
-
-    private void Shuffle(CardType cardType)
-    {
-        if (cardType == CardType.Special)
-        {
-            foreach (var list in specialDict.Values)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    int randomIndex = Random.Range(0, list.Count);
-
-                    SpecialCardData temp = list[i];
-                    list[i] = list[randomIndex];
-                    list[randomIndex] = temp;
-                }
-            }
-        }
-        if (cardType == CardType.Build)
-        {
-            foreach (var list in buildDict.Values)
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
-                    int randomIndex = Random.Range(0, list.Count);
-
-                    BuildData temp = list[i];
-                    list[i] = list[randomIndex];
-                    list[randomIndex] = temp;
-                }
             }
         }
     }
@@ -354,15 +272,9 @@ public class ShopController : MonoBehaviour
         return allChance;
     }
 
-    private void CreateBuildItem(CardGrade grade, int i)
+    private void CreateBuildItem(CardGrade grade)
     {
-        if (buildDict[grade].Count - 1 < i)
-        {
-            return;
-        }
-
-        BuildSO itemSO = buildList.Find((x) => x.id == buildDict[grade][i].id);
-
+        BuildSO itemSO = DataManager.Instance.GetRandomBuildSO(grade);
 
         if (itemSO != null)
         {
@@ -393,17 +305,9 @@ public class ShopController : MonoBehaviour
         }
     }
 
-    private void CreateSpecialCardItem(CardGrade grade, int i)
+    private void CreateSpecialCardItem(CardGrade grade)
     {
-
-        if (specialDict[grade].Count - 1 < i)
-        {
-            return;
-        }
-
-
-        SpecialCardSO itemSO = specialList.Find((x) => x.id == specialDict[grade][i].id);
-
+        SpecialCardSO itemSO = DataManager.Instance.GetRandomSpecialSO(grade);
 
         if (itemSO != null)
         {
@@ -438,7 +342,7 @@ public class ShopController : MonoBehaviour
     {
         if (specialCardSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite, TargetType.Handle, () => { });
+            EffectManager.Instance.GetBezierCardEffect(pos, specialCardSO.sprite, TargetType.Bag, () => { });
 
             goldValue.RuntimeValue -= specialCardSO.price;
             goldChangeEvnet.Occurred();
@@ -455,7 +359,7 @@ public class ShopController : MonoBehaviour
     {
         if (buildSO.price <= goldValue.RuntimeValue)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite, TargetType.Handle, () => { });
+            EffectManager.Instance.GetBezierCardEffect(pos, buildSO.sprite, TargetType.Bag, () => { });
 
             goldValue.RuntimeValue -= buildSO.price;
             goldChangeEvnet.Occurred();

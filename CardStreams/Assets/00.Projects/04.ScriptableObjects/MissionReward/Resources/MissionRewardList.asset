@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyList:
   - {fileID: 11400000, guid: 326cfa75166bc814aa5759a36ccdf555, type: 2}
-  - {fileID: 11400000, guid: 59145cdbeba7b804e91d0ba0b5b723f2, type: 2}
   - {fileID: 11400000, guid: a0f328aed3db8ae4b8e9cebad3a63466, type: 2}
-  normalList: []
-  hardList: []
+  - {fileID: 11400000, guid: ed0eaa58d72a18344a62c10bc30e41a5, type: 2}
+  - {fileID: 11400000, guid: e88df203aa3ab3349939d3ae74cadab2, type: 2}
+  - {fileID: 11400000, guid: 59145cdbeba7b804e91d0ba0b5b723f2, type: 2}
+  normalList:
+  - {fileID: 11400000, guid: fa8ee842f1f73714481de827c68fcc04, type: 2}
+  - {fileID: 11400000, guid: 8ea98479223a3154b84666782e0e995b, type: 2}
+  - {fileID: 11400000, guid: 290791f9f74e45f44ba15054b2eab593, type: 2}
+  - {fileID: 11400000, guid: 7afc058b1adfd4342a6ddd0ca90b6a13, type: 2}
+  - {fileID: 11400000, guid: 50ceb1b326f7c724eb121cf0ee394fd0, type: 2}
+  hardList:
+  - {fileID: 11400000, guid: bf7a5debe1beb234daf41bb5b0e96bf5, type: 2}
+  - {fileID: 11400000, guid: 71766285dedec834fa7d7d2471e2a4ea, type: 2}
+  - {fileID: 11400000, guid: 7d75c609a5729da4284ad25919c6d980, type: 2}
+  - {fileID: 11400000, guid: 9fe059fa0732a434396b7f45be57f6bc, type: 2}
+  - {fileID: 11400000, guid: 77a14af380f53c54387e5c49910c8c4c, type: 2}
