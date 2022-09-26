@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
     public EnemyController enemyController;
     public HandleController handleController;
     public ShopController shopController;
-    public SelectRewardManager selectRewardManager;
     public DontTouchController dontTouchController;
     public BlurCoverController blurController;
 
@@ -132,8 +131,12 @@ public class GameManager : MonoBehaviour
         fieldController = new FieldController(maxMoveCount);
         fieldController.SetAllFieldYet();
 
-        goldValue.RuntimeValue += 20;
-        goldChangeEvent.Occurred();
+        // 마을 뭐 없으면
+        if (goldValue.RuntimeMaxValue <= 0)
+        {
+            goldValue.RuntimeValue += 20;
+            goldChangeEvent.Occurred();
+        }
 
         loopCountValue.RuntimeValue = 0;
         loopChangeEvent.Occurred();
@@ -707,7 +710,6 @@ public class GameManager : MonoBehaviour
     private void OnEquip()
     {
         shopController.Hide();
-        selectRewardManager.Hide();
         blurController.SetActive(false);
 
         handleController.DrawBuildCard();

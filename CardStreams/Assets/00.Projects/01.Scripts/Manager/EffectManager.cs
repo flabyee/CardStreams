@@ -92,6 +92,17 @@ public class EffectManager : MonoBehaviour
         Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요
     }
 
+    /// <summary> 유저가 지정한 특정 위치로 날아가기 </summary>
+    /// <param name="targetTrm">특정 위치</param>
+    public void GetBezierCardEffect(Vector3 startPos, Sprite icon, Transform targetTrm, Action callback)
+    {
+        startPos.z = 0; // canvas UI라서 z 문제생길수있음 그래서 0
+        BezierCard effect = Instantiate(bezierCardEffect, startPos, Quaternion.identity, _mainCanvas.transform).GetComponent<BezierCard>();
+
+        effect.Init(targetTrm, icon, callback);
+        Destroy(effect.gameObject, 15f); // 나중에는 PoolManager로 바꿔야해요
+    }
+
     public void GetNextBuildEffect(Vector3 pos)
     {
         GameObject effect = Instantiate(nextBuildEffect, pos, Quaternion.identity);

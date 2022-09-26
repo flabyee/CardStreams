@@ -8,17 +8,13 @@ public class Player : MonoBehaviour
     private RectTransform rectTrm;
     private BuffController buffCon;
 
-    [Header("마을에서 가져오는 ListSO")]
-    public PassiveListSO passiveListSO;
-    public BuildListSO merchantBuildListSO;
-    public SpecialCardListSO merchantCardListSO;
+    
 
     [Header("IntValue")]
     public IntValue hpValue;
     public IntValue swordValue;
     public IntValue shieldValue;
     public IntValue goldValue;
-    public IntValue startExpValue;
 
     [Header("Event")]
     public EventSO playerValueChangeEvent;
@@ -48,11 +44,13 @@ public class Player : MonoBehaviour
         //hpValue.RuntimeValue = hpValue.InitialMaxValue;
         //hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
 
+        // 마을에서 시작 안했으면 13/13으로
         if (hpValue.RuntimeMaxValue <= 0)
         {
             hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+            hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
         }
-        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
+
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
     }
@@ -60,60 +58,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        foreach (PassiveSO so in passiveListSO.passiveList) // 패시브 목록 추가
-        {
-            Passive passive = new Passive();
-            so.Init(passive);
-            buffCon.AddPassiveBuff(passive);
-        }
-
-        // 마을 상인에게 얻은 건물 획득
-        foreach (BuildSO so in merchantBuildListSO.buildList)
-        {
-            GameManager.Instance.handleController.AddBuild(so.id);
-        }
-        merchantBuildListSO.buildList.Clear();
-
-        // 마을 상인에게 얻은 특수카드 획득
-        foreach (SpecialCardSO so in merchantCardListSO.specialCardList)
-        {
-            GameManager.Instance.handleController.AddSpecial(so.id);
-        }
-        merchantCardListSO.specialCardList.Clear();
-
-        // 마을에서 올라간 초기레벨 적용
-        GetExp(startExpValue.RuntimeValue);
-
-        playerValueChangeEvent.Occurred();
-
         isAlive = true;
-    }
-
-    private void OnDestroy()
-    {
-        // 패시브 초기화
-        if (passiveListSO != null)
-        {
-            // 패시브는 레벨이 있어서 레벨전부 1로바꾸고 하기
-            foreach (PassiveSO so in passiveListSO.passiveList)
-            {
-                so.currentLevel = 1;
-            }
-
-            passiveListSO.passiveList.Clear();
-        }
-
-        // 상인 건물 초기화
-        if(merchantBuildListSO != null)
-        {
-            merchantBuildListSO.buildList.Clear();
-        }
-
-        // 상인
-        if (merchantCardListSO != null)
-        {
-            merchantCardListSO.specialCardList.Clear();
-        }
     }
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
@@ -155,7 +100,6 @@ public class Player : MonoBehaviour
         }
 
         playerValueChangeEvent.Occurred();
-        
 
         OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower);
 
@@ -324,7 +268,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void GetExp(int exp)
+    public void GetExp(int exp)
     {
         this.exp += exp;
 
@@ -341,5 +285,15 @@ public class Player : MonoBehaviour
         playerValueChangeEvent.Occurred();
 
         GetExpEvent?.Invoke(level, this.exp, nextExp);
+    }
+
+    public void AddPassive(List<PassiveSO> passiveList)
+    {
+        foreach (PassiveSO so in passiveList) // 패시브 목록 추가
+        {
+            Passive passive = new Passive();
+            so.Init(passive);
+            buffCon.AddPassiveBuff(passive);
+        }
     }
 }

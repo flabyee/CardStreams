@@ -35,8 +35,6 @@ public class VillagePlayer : Player
 
     private void Start()
     {
-        passiveListSO.passiveList.Clear();
-        passiveListSO = null;
 
         StartCoroutine(Util.DelayCoroutine(0.5f, () => Init()));
     }
