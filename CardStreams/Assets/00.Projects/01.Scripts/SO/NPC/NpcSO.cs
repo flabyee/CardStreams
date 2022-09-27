@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class NpcSO : ScriptableObject
+public class NpcSO : ScriptableObject
 {
     public Sprite npcSprite;
     public string npcName;
+    public VillageRewardSO rewardSO;
 
-    public abstract void AccessPlayer(Player player);
+    public virtual void AccessPlayer(Player player)
+    {
+
+    }
 }

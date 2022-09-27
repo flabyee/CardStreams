@@ -8,14 +8,16 @@ public class Player : MonoBehaviour
     private RectTransform rectTrm;
     private BuffController buffCon;
 
-    public EventSO playerValueChangeEvent;
-    public VillageBuffListSO buffListSO;
-    public PassiveListSO passiveListSO;
+    
 
+    [Header("IntValue")]
     public IntValue hpValue;
     public IntValue swordValue;
     public IntValue shieldValue;
     public IntValue goldValue;
+
+    [Header("Event")]
+    public EventSO playerValueChangeEvent;
 
     public bool isAlive { get; private set; }
 
@@ -42,11 +44,13 @@ public class Player : MonoBehaviour
         //hpValue.RuntimeValue = hpValue.InitialMaxValue;
         //hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
 
+        // 마을에서 시작 안했으면 13/13으로
         if (hpValue.RuntimeMaxValue <= 0)
         {
             hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+            hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
         }
-        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
+
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
     }
@@ -54,37 +58,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        foreach (PassiveSO so in passiveListSO.passiveList) // 패시브 목록 추가
-        {
-            Passive passive = new Passive();
-            so.Init(passive);
-            buffCon.AddPassiveBuff(passive);
-        }
-
-        foreach (BuffSO so in buffListSO.buffList) // 딴거 목록 추가
-        {
-            Buff buff = new Buff();
-            so.Init(buff); // SO의 값으로 Buff를 초기화해줌
-            buffCon.AddBuff(buff);
-        }
-        playerValueChangeEvent.Occurred();
-
         isAlive = true;
-    }
-
-    private void OnDestroy()
-    {
-        buffListSO?.buffList.Clear();
-
-        if (passiveListSO == null) return;
-
-        // 패시브는 레벨이 있어서 레벨전부 1로바꾸고 하기
-        foreach (PassiveSO so in passiveListSO.passiveList)
-        {
-            so.currentLevel = 1;
-        }
-
-        passiveListSO.passiveList.Clear();
     }
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
@@ -126,7 +100,6 @@ public class Player : MonoBehaviour
         }
 
         playerValueChangeEvent.Occurred();
-        
 
         OnFieldTooltip.Instance.ShowCard(transform.position, field.cardPower);
 
@@ -313,11 +286,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void GetExp(int exp)
+    public void GetExp(int exp)
     {
         this.exp += exp;
 
-        if(this.exp >= nextExp)
+        while (this.exp >= nextExp)
         {
             // 초과분 넘기기
             this.exp = this.exp - nextExp;
@@ -325,10 +298,20 @@ public class Player : MonoBehaviour
             hpValue.RuntimeMaxValue += 2;
             hpValue.RuntimeValue += 2;
             nextExp = 20 + (level + 2) * (level + 2);
-
-            playerValueChangeEvent.Occurred();
         }
 
+        playerValueChangeEvent.Occurred();
+
         GetExpEvent?.Invoke(level, this.exp, nextExp);
+    }
+
+    public void AddPassive(List<PassiveSO> passiveList)
+    {
+        foreach (PassiveSO so in passiveList) // 패시브 목록 추가
+        {
+            Passive passive = new Passive();
+            so.Init(passive);
+            buffCon.AddPassiveBuff(passive);
+        }
     }
 }

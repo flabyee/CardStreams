@@ -75,6 +75,14 @@ public class PlayerBuffPanel : MonoBehaviour
         UpdatePanel();
     }
 
+    public void UpdateBuffTime() // 각 버프의 쿨타임을 갱신해줍니다 : EventListener
+    {
+        foreach (PlayerBuffSlot slot in buffSlots)
+        {
+            slot.UpdateBuffTime();
+        }
+    }
+
     private void UpdatePanel() // 버프 아이콘들을 정렬해줍니다
     {
         int i = 0;
