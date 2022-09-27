@@ -36,6 +36,8 @@ public class VillageBoxPanel : MonoBehaviour
     [SerializeField] EventSO playerValueChangeEvent;
     [SerializeField] EventSO goldCValuehangeEvent;
 
+    public List<VillageRewardSO> rewardList = new List<VillageRewardSO>();
+
     private void Start()
     {
         Debug.Log("Å×½ºÆ®");
