@@ -1,6 +1,6 @@
 public enum TargetType
 {
-    Handle,
+    Bag,
     GoldUI,
     HPUI,
     Exp,

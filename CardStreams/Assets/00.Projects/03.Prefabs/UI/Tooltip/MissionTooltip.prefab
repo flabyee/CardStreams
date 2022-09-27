@@ -533,7 +533,7 @@ MonoBehaviour:
   missionNameText: {fileID: 1970574140}
   missionInfoText: {fileID: 445129603}
   rewardText: {fileID: 681445814}
-  xOffset: 0
+  xOffset: 1
 --- !u!1 &3739978817585135109
 GameObject:
   m_ObjectHideFlags: 0
