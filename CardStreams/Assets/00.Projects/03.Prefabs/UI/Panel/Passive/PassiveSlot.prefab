@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveImage: {fileID: 1097611192252480791}
   passiveLevelText: {fileID: 1097611192663292883}
+  passiveNameText: {fileID: 0}
 --- !u!1 &1097611192252480789
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300010, guid: f6b4965f94844d94bb6a7a4f18a3eeb2, type: 3}
+  m_Sprite: {fileID: 21300070, guid: 9c4223bf08607f746987e0c4424c36a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
