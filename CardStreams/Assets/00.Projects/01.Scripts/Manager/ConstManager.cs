@@ -35,6 +35,8 @@ public class ConstManager : MonoBehaviour
     public Sprite[] fieldSprites;
     public Sprite[] nextFieldSprites;
 
+    public Sprite[] missionImageSprites;
+
     public List<Color> basicTypeColorList;
 
     public Color buildColor;

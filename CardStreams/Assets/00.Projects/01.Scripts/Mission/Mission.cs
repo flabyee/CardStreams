@@ -48,6 +48,9 @@ public class Mission : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         gradeImage.sprite = missionSO.missionSprite;
         missionInfoText.text = missionSO.infoStr;
 
+        // 임시 이미지 투입
+        gradeImage.sprite = ConstManager.Instance.missionImageSprites[UnityEngine.Random.Range(0, ConstManager.Instance.missionImageSprites.Length)];
+
         this.missionSO = missionSO;
     }
 
