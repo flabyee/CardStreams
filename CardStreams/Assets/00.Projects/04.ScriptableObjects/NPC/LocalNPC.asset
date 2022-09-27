@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcSprite: {fileID: 21300006, guid: d7473fdd4fe09744ca7d0a667411bdcd, type: 3}
   npcName: "\uC8FC\uBBFC"
+  rewardSO: {fileID: 0}

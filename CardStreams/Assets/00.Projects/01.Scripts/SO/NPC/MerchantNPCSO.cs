@@ -13,6 +13,8 @@ public class MerchantNPCSO : NpcSO
 
     public override void AccessPlayer(Player player)
     {
+        base.AccessPlayer(player);
+
         // 지정된 카드를 주기
         int randomIndex = Random.Range(0, randomBuildList.Length + randomCardList.Length);
         if(randomIndex < randomBuildList.Length) // 랜덤돌린게 buildList Length 이상이면 cardList로 넘어가기

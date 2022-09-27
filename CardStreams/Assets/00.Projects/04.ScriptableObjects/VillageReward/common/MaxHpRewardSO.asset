@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1daea818f46978428c96b080fe4636e, type: 3}
   m_Name: MaxHpRewardSO
   m_EditorClassIdentifier: 
+  soList: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
   rewardType: 1
   rewardSprite: {fileID: 21300004, guid: ca7a5ee15c560cc40b17c0d1bb5babe7, type: 3}
   rewardName: "\uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00"

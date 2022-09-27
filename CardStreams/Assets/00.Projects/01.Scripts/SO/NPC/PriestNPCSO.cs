@@ -7,7 +7,9 @@ public class PriestNPCSO : NpcSO
 {
     public override void AccessPlayer(Player player)
     {
+        base.AccessPlayer(player);
+
         Debug.Log("최대체력이 늘어났습니다");
-        player.hpValue.RuntimeMaxValue += 2;
+        // player.hpValue.RuntimeMaxValue += 2;
     }
 }

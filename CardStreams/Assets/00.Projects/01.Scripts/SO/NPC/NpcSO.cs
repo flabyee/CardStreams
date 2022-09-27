@@ -10,6 +10,6 @@ public class NpcSO : ScriptableObject
 
     public virtual void AccessPlayer(Player player)
     {
-
+        rewardSO.AddReward();
     }
 }

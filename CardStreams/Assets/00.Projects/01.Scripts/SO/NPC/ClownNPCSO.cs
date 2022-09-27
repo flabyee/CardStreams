@@ -11,6 +11,8 @@ public class ClownNPCSO : NpcSO
 
     public override void AccessPlayer(Player player)
     {
+        base.AccessPlayer(player);
+
         startExpValue.RuntimeValue += addExpAmount;
     }
 }

@@ -9,6 +9,8 @@ public class MagicianNPCSO : NpcSO
 
     public override void AccessPlayer(Player player)
     {
+        base.AccessPlayer(player);
+
         player.shieldValue.RuntimeMaxValue += createShieldAmount;
     }
 }

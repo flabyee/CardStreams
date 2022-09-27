@@ -7,6 +7,9 @@ public class VillageBoxPanel : MonoBehaviour
 {
     // 마을에서 얻는 보상.. 돈 / 피 / 방어도/ 경험치 / 패시브 / 카드 같은거 싹 까면서(랜덤위치로 날라가서 잠시대기하고 도착지로 다시가기가능?)
 
+    [Header("교체중")]
+    public VillageRewardListSO rewardListSO;
+
     [Header("마을에서 획득하는 것들")]
     public IntValue goldValue; // 돈
     public IntValue hpValue; // 체력
@@ -36,23 +39,39 @@ public class VillageBoxPanel : MonoBehaviour
     [SerializeField] EventSO playerValueChangeEvent;
     [SerializeField] EventSO goldCValuehangeEvent;
 
-    public List<VillageRewardSO> rewardList = new List<VillageRewardSO>();
+    // public List<VillageRewardSO> rewardList = new List<VillageRewardSO>();
 
     private void Start()
     {
-        Debug.Log("테스트");
-        GetHp();
+        //Debug.Log("테스트");
+        //foreach (var reward in rewardListSO.rewardList)
+        //{
+        //    reward.GetReward(); // 대충 보상목록에 있던거 모두수령
+        //}
+        //playerValueChangeEvent?.Occurred();
+
+        // GetHp();
     }
 
     // 아 클래스의 냄새가 너무 진하게나는데(중복 많음)    
     public void OnClickBoxOpen() // 상자깡 시작!
     {
-        CreateCard(goldSprite, goldTrm, GetGold);
-        CreateCard(hpSprite, hpTrm, GetHp);
-        CreateCard(expSprite, expTrm, GetExp);
-        CreateCard(shieldSprite, shieldTrm, GetShield);
-        CreateCard(passiveSprite, passiveTrms[0], GetPassive); // 여기 패시브좀 나중에 다양 
-        CreateCard(buildOrSpeicalSprite, bagTrm, GetCard);
+        foreach (var reward in rewardListSO.rewardList)
+        {
+            reward.GetReward(); // 대충 보상목록에 있던거 모두수령
+        }
+        playerValueChangeEvent?.Occurred();
+
+        rewardListSO.rewardList.Clear(); // 보상 다먹었으니 초기화
+
+        // 카드도착해서 피늘어날때 +13 +13 이런것도 표시됐으면좋겟다. 낭만있지만 어려움
+
+        //CreateCard(goldSprite, goldTrm, GetGold);
+        //CreateCard(hpSprite, hpTrm, GetHp);
+        //CreateCard(expSprite, expTrm, GetExp);
+        //CreateCard(shieldSprite, shieldTrm, GetShield);
+        //CreateCard(passiveSprite, passiveTrms[0], GetPassive); // 여기 패시브좀 나중에 다양 
+        //CreateCard(buildOrSpeicalSprite, bagTrm, GetCard);
     }
 
     /// <summary> 베지어카드를 만드는 함수 </summary>
@@ -114,6 +133,8 @@ public class VillageBoxPanel : MonoBehaviour
 
     private void OnDestroy()
     {
+        rewardListSO.rewardList.Clear(); // 수동으로 비워줘야함(끌땐무조건)
+
         merchantBuildListSO.buildList.Clear();
         merchantCardListSO.specialCardList.Clear();
 
