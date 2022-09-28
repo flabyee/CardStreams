@@ -16,9 +16,8 @@ MonoBehaviour:
   buildName: "\uD790 \uD3ED\uD3EC"
   price: 100
   grade: 3
-  tooltip: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825\uC744 3\uB9CC\uD07C \uD68C\uBCF5\uD558\uACE0
-    \uD68C\uBCF5\uB7C9\uC774 \uCD5C\uB300\uCCB4\uB825\uC744 \uB118\uC5B4\uAC00\uBA74
-    \uCD5C\uB300\uCCB4\uB825\uC744 1\uB9CC\uD07C \uC601\uAD6C\uC801\uC73C\uB85C \uB298\uB9BD\uB2C8\uB2E4"
+  tooltip: "\uCCB4\uB825\uC744 15%\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4(\uCD5C\uB300
+    9)"
   sprite: {fileID: 21300000, guid: 1b96065a4e46210438ec597db7793424, type: 3}
   accessPointList:
   - {x: -1, y: 0}
@@ -36,6 +35,6 @@ MonoBehaviour:
   isAcceseLoopEnd: 0
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   playerValueChangeEvnet: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
-  healAmount: 3
-  maxUpAmount: 1
-  hpLimit: 99
+  healAmountPer: 0.15
+  hpLimitPer: 1
+  limitAmount: 9
