@@ -23,8 +23,8 @@ MonoBehaviour:
   deckValueIncreaseMultipication: 1.75
   firstMobSpawnAmount: 2
   mobIncreaseAmount: 2
-  firstMobAttackAmount: 3
-  mobAttackIncreaseAmount: 2
+  firstMobAttackAmount: 5
+  mobAttackIncreaseAmount: 5
   bossRound: 4
   bossHP: 60
   bossAtk: 10

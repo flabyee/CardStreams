@@ -681,6 +681,7 @@ public class GameManager : MonoBehaviour
             // 일반 라일때
             SoundManager.Instance.PlaySFX(SFXType.RandomMonster);
             enemyController.CreateEnemyBuild();
+            enemyController.CreateRandomMob();
         }
 
         // 보스가 나온 이후에 못잡고 한바퀴를 돌면 패널티 부여

@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 4593366392140301237}
   faceImage: {fileID: 1017501598721244011}
-  backImage: {fileID: 2404639963265272136}
+  backImage: {fileID: 8962262775684609244}
   fieldImage: {fileID: 6506337623882643582}
   handleObj: {fileID: 7206567823806660229}
   fieldObj: {fileID: 2853935964653674981}
@@ -220,6 +220,9 @@ MonoBehaviour:
   buildSO: {fileID: 0}
   isDrop: 0
   tooltipText: {fileID: 6997829543446450181}
+  isAccessCard: 0
+  isAccessPlayer: 0
+  isAccessLoopEnd: 0
 --- !u!114 &1017501599584371605
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ MonoBehaviour:
   firstMobSpawnAmount: 2
   mobIncreaseAmount: 2
   firstMobAttackAmount: 3
-  mobAttackIncreaseAmount: 2
+  mobAttackIncreaseAmount: 3
   bossRound: 4
   bossHP: 60
   bossAtk: 10
