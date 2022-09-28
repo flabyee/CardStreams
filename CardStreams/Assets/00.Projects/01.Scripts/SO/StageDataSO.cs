@@ -28,4 +28,5 @@ public class StageDataSO : ScriptableObject
     public int bossRound;   // 보스가 나오는 루프수
     public int bossHP;      // 보스 체력
     public int bossAtk;     // 보스의 공격력
+    public int spawnEnemyAtk;   // 소환하는 몹의 공격력
 }

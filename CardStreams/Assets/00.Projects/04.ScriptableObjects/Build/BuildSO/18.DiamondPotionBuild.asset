@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 18
   buildName: "\uB2E4\uC774\uC544 \uC591\uC870\uAE30"
-  price: 70
+  price: 60
   grade: 4
-  tooltip: "\uD3EC\uC158\uC5D0 +6\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
+  tooltip: "\uD3EC\uC158\uC5D0 +8\uB97C \uBD80\uC5EC\uD569\uB2C8\uB2E4"
   sprite: {fileID: -1952963730654974211, guid: c8ef19fc5e2c3754fb00eafca7ad1f9d, type: 3}
   accessPointList:
   - {x: -1, y: 0}
@@ -31,4 +31,4 @@ MonoBehaviour:
   isAcceseCard: 1
   isAccesePlayer: 0
   isAcceseLoopEnd: 0
-  plusPotionAmount: 6
+  plusPotionAmount: 8

@@ -14,21 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 28
   buildName: "\uC0B0\uB9E5"
-  price: 30
-  grade: 2
+  price: 20
+  grade: 1
   tooltip: "\uD604\uC7AC \uBCF4\uC720\uC911\uC778 \uBC29\uD328\uB97C \uBC84\uB9AC\uACE0
     \uADF8 \uC218\uCE58\uB9CC\uD07C \uCD5C\uB300\uCCB4\uB825\uC744 \uC601\uAD6C\uC801\uC73C\uB85C
-    \uB298\uB9BD\uB2C8\uB2E4"
+    \uB298\uB9AC\uACE0 \uB298\uC5B4\uB09C \uC591\uC758 \uC808\uBC18\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4"
   sprite: {fileID: 21300000, guid: dc8dff11b285ad744968d6cdd6e22a4a, type: 3}
   accessPointList:
-  - {x: -1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 0}
-  - {x: -1, y: 0}
-  - {x: -1, y: -1}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
+  - {x: 0, y: 2}
+  - {x: 0, y: -2}
   isAcceseCard: 0
   isAccesePlayer: 1
   isAcceseLoopEnd: 0

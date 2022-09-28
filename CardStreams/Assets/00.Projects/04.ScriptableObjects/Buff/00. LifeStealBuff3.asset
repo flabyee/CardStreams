@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e4f1ff5c684e0f41bea38a3e21789a2, type: 3}
-  m_Name: 00. LifeStealBuff
+  m_Name: 00. LifeStealBuff3
   m_EditorClassIdentifier: 
-  id: 0
+  id: 7
   timing: 6
   remainTime: 1
   buffName: "\uD761\uD608"
   buffTooltip: "\uC804\uD22C \uC2DC \uCE7C\uC758 \uACF5\uACA9\uB825\uB9CC\uD07C \uCCB4\uB825\uC744
-    \uD68C\uBCF5\uD569\uB2C8\uB2E4(\uCD5C\uB300 5)"
+    \uD68C\uBCF5\uD569\uB2C8\uB2E4"
   buffIcon: {fileID: -3426398017222308192, guid: fd50cb6ff17dfc2489de78b4b8666f0d, type: 3}
-  limitAmount: 5
+  limitAmount: 9999
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}

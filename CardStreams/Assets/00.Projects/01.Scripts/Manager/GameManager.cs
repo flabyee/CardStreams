@@ -787,7 +787,9 @@ public class GameManager : MonoBehaviour
 
     public void SettingClear()
     {
-        
+        goldValue.RuntimeValue = 0;
+        player.hpValue.RuntimeValue = 0;
+        player.hpValue.RuntimeMaxValue = 0;
 
         dontTouchController.Hide();
         playerDieEvent.Occurred();

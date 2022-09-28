@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Mountains", menuName = "ScriptableObject/Build/Mountains")]
-public class MountainsBuildSO : BuildSO
+[CreateAssetMenu(fileName = "MaxHealthUpBuild", menuName = "ScriptableObject/Build/MaxHealthUpBuild")]
+public class MaxHealthUpBuildSO : BuildSO
 {
+    public int upAmount;
+
     [Header("SO")]
     public IntValue hpValue;
-    public IntValue shieldValue;
+
 
     public EventSO playerValueChangeEvnet;
 
@@ -18,9 +20,7 @@ public class MountainsBuildSO : BuildSO
 
     public override void AccessPlayer(Player player)
     {
-        hpValue.RuntimeMaxValue += shieldValue.RuntimeValue;
-        hpValue.RuntimeValue += shieldValue.RuntimeValue / 2;
-        shieldValue.RuntimeValue = 0;
+        hpValue.RuntimeMaxValue += upAmount;
 
         playerValueChangeEvnet.Occurred();
     }

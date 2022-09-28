@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a11f1237cfbb544590e523e6a823308, type: 3}
+  m_Name: 30.MaxHealthUpBuild
+  m_EditorClassIdentifier: 
+  id: 30
+  buildName: "\uCCB4\uB825 \uB2E8\uB828\uC18C"
+  price: 15
+  grade: 1
+  tooltip: "\uCD5C\uB300 \uCCB4\uB825\uC744 1\uB9CC\uD07C \uC601\uAD6C\uC801\uC73C\uB85C
+    \uB298\uB9BD\uB2C8\uB2E4"
+  sprite: {fileID: 0}
+  accessPointList:
+  - {x: 2, y: 1}
+  - {x: 2, y: 0}
+  - {x: 2, y: -1}
+  - {x: -2, y: 1}
+  - {x: -2, y: 0}
+  - {x: -2, y: -1}
+  isAcceseCard: 0
+  isAccesePlayer: 1
+  isAcceseLoopEnd: 0
+  upAmount: 1
+  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
+  playerValueChangeEvnet: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}

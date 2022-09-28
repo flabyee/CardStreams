@@ -9,30 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27cfed65635a9a74c9c376389e481ddb, type: 3}
-  m_Name: 20.HPLakeBuild
+  m_Script: {fileID: 11500000, guid: 6a11f1237cfbb544590e523e6a823308, type: 3}
+  m_Name: 31.MaxHealthUpBuild+
   m_EditorClassIdentifier: 
-  id: 20
-  buildName: "\uD790\uC0D8"
-  price: 45
+  id: 31
+  buildName: "\uD5EC\uC2A4\uC7A5"
+  price: 35
   grade: 2
-  tooltip: "\uCCB4\uB825\uC774 8\uC774\uD558\uB77C\uBA74 \uCCB4\uB825\uC744 2\uB9CC\uD07C
-    \uD68C\uBCF5\uD569\uB2C8\uB2E4"
-  sprite: {fileID: -3708664010354139772, guid: d2646cfba3bd9a64996697158b10f8b9, type: 3}
+  tooltip: "\uCD5C\uB300 \uCCB4\uB825\uC744 2\uB9CC\uD07C \uC601\uAD6C\uC801\uC73C\uB85C
+    \uB298\uB9BD\uB2C8\uB2E4"
+  sprite: {fileID: 0}
   accessPointList:
-  - {x: -1, y: 1}
-  - {x: 0, y: 1}
-  - {x: 1, y: 1}
-  - {x: 1, y: 0}
-  - {x: -1, y: 0}
-  - {x: -1, y: -1}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
+  - {x: 2, y: 1}
+  - {x: 2, y: 0}
+  - {x: 2, y: -1}
+  - {x: -2, y: 1}
+  - {x: -2, y: 0}
+  - {x: -2, y: -1}
   isAcceseCard: 0
   isAccesePlayer: 1
   isAcceseLoopEnd: 0
+  upAmount: 2
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   playerValueChangeEvnet: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
-  healAmount: 2
-  maxUpAmount: 0
-  hpLimit: 8

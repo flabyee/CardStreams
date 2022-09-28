@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83e1f530ccc7a3140854bc9ebf3f5310, type: 3}
-  m_Name: 20.VampireSword
+  m_Name: 31.VampireSword3
   m_EditorClassIdentifier: 
-  id: 20
-  specialCardName: "\uD761\uD608 \uCE7C"
-  price: 10
-  grade: 1
+  id: 31
+  specialCardName: "\uD761\uD608 \uCE7C++"
+  price: 30
+  grade: 3
   tooltip: "\uCE7C\uC744 \uCC29\uC6A9\uD558\uACE0 \uBAAC\uC2A4\uD130\uC5D0\uAC8C
     \uD53C\uD574\uB97C \uC785\uD790 \uB54C [ \uCE7C\uC758 \uACF5\uACA9\uB825 ] \uB9CC\uD07C
-    \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4(\uCD5C\uB300 5)"
+    \uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4"
   sprite: {fileID: -4209723624490933604, guid: 2d3559d395f316b439798ed160129fe0, type: 3}
   applyTiming: 1
   targetTypeList: 01000000
   targetBasicList: 01000000
-  lifeStealso: {fileID: 11400000, guid: 048019701249d374e9271b531b035b4b, type: 2}
+  lifeStealso: {fileID: 11400000, guid: 0b82b1bdfe78758409755d22d7ae087c, type: 2}

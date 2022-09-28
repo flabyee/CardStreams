@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 29
   buildName: "\uC548\uAC1C \uD638\uC218"
-  price: 80
-  grade: 3
-  tooltip: "\uBAA8\uB4E0 \uC77C\uBC18\uCE74\uB4DC\uC758 \uC218\uCE58\uB97C 5\uB85C
-    \uBC14\uAFC9\uB2C8\uB2E4"
+  price: 50
+  grade: 4
+  tooltip: "\uBAA8\uB4E0 \uCE74\uB4DC\uC758 \uC218\uCE58\uB97C 5\uB85C \uBC14\uAFC9\uB2C8\uB2E4"
   sprite: {fileID: 21300004, guid: 69db1921e9d5aa443af58aa1a95f979a, type: 3}
   accessPointList:
   - {x: -1, y: 1}
