@@ -20,6 +20,11 @@ public class Npc : MonoBehaviour
 
     public void AccessPlayer(Player player)
     {
-        npcSO.AccessPlayer(player);
+        //VillageRewardSO reward = npcSO.rewardSO;
+
+        //EffectManager.Instance.GetBezierCardEffect(transform.position, reward.rewardSprite, VillageUIManager.Instance.boxTrm, () => )
+        //npcSO.AccessPlayer(player);
+
+        npcSO.CreateCard(transform.position);
     }
 }
