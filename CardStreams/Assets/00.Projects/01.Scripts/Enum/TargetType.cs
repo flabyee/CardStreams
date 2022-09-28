@@ -4,4 +4,5 @@ public enum TargetType
     GoldUI,
     HPUI,
     Exp,
+    Reousrce,
 }

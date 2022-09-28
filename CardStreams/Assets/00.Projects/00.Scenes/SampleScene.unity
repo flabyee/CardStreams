@@ -14640,6 +14640,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2123179030}
     - target: {fileID: 8088710735771653155, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
+      propertyPath: resourceTragetTrm
+      value: 
+      objectReference: {fileID: 524244780}
+    - target: {fileID: 8088710735771653155, guid: c61c351c089e7ea46a7c11a83926bf65, type: 3}
       propertyPath: specialCardTargetTrm
       value: 
       objectReference: {fileID: 1078194231}

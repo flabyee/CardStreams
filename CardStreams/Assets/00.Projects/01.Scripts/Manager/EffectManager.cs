@@ -16,6 +16,7 @@ public class EffectManager : MonoBehaviour
     [SerializeField] Transform goldCardTargetTrm;   // 골드카드가 날아갈 목적지
     [SerializeField] Transform healCardTargetTrm;   // 회복카드가 날아갈 목적지
     [SerializeField] Transform expTargetTrm;        // 경험치가 날아갈 목적지
+    [SerializeField] Transform resourceTragetTrm;     // 크리스탈과 명성이 날아갈 목적지
 
     public GameObject nextBuildEffect;
     private List<GameObject> nextBuildEffectList = new List<GameObject>();
@@ -81,6 +82,10 @@ public class EffectManager : MonoBehaviour
 
             case TargetType.Exp:
                 targetTrm = expTargetTrm;
+                break;
+
+            case TargetType.Reousrce:
+                targetTrm = resourceTragetTrm;
                 break;
 
             default:

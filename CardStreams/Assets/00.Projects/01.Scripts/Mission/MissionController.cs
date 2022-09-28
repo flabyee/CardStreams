@@ -196,14 +196,14 @@ public class MissionController : MonoBehaviour
                 break;
 
             case RewardType.Crystal:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.GoldUI, () =>
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Reousrce, () =>
                 {
                     ResourceManager.Instance.AddResource(ResourceType.crystal, missionReward.value);
                 });
                 break;
 
             case RewardType.Prestige:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.GoldUI, () =>
+                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Reousrce, () =>
                 {
                     ResourceManager.Instance.AddResource(ResourceType.prestige, missionReward.value);
                 });

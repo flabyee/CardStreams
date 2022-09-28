@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9d143fa7de3ae4caf5a0592a8d0dd5, type: 3}
+  m_Name: 08.MissionReward_Hard
+  m_EditorClassIdentifier: 
+  grade: 2
+  rewardStr: "\uBA85\uC131 15 \uD68D\uB4DD"
+  rewardType: 7
+  value: 15
