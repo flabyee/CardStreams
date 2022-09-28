@@ -47,10 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnMobEffect: {fileID: 1612221337289516, guid: 2959bb36081fd4e428e35494de1860e4, type: 3}
   jungSanEffect: {fileID: 1612221337289516, guid: b9f6a5ecfd8cb174ca67a8ee8308321b, type: 3}
-  bezierCardEffect: {fileID: 4617811631078992324, guid: 9fa5ad7b0ba1e5b409ed42c8e79650d8, type: 3}
+  bezierEffect: {fileID: 4617811631078992324, guid: 9fa5ad7b0ba1e5b409ed42c8e79650d8, type: 3}
   specialCardTargetTrm: {fileID: 0}
   goldCardTargetTrm: {fileID: 0}
   healCardTargetTrm: {fileID: 0}
+  expTargetTrm: {fileID: 0}
   nextBuildEffect: {fileID: 1612221337289516, guid: 2959bb36081fd4e428e35494de1860e4, type: 3}
 --- !u!114 &8806247570424351516
 MonoBehaviour:

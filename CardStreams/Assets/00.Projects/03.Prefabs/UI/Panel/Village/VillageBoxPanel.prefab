@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 371b4b4200ba75c488e6889b7069fd33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6d0df163110ae424f909acf887f94f27, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -119,7 +119,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2803433698990046103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2803433700022164886}
+        m_TargetAssemblyTypeName: VillageBoxPanel, Assembly-CSharp
+        m_MethodName: OnClickBoxOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2803433700022164874
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,27 +190,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce401a76ce04b584ab8c346f87fbe499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldValue: {fileID: 11400000, guid: eb9dafa830bb52f48ba73a82383cffb6, type: 2}
-  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
-  shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}
-  startExpValue: {fileID: 11400000, guid: 6704e3980d8648947a4e4a8cbdef5a16, type: 2}
+  rewardListSO: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
   passiveListSO: {fileID: 11400000, guid: 7029cf8c5b6e93f44ba54e538e6789f3, type: 2}
   merchantBuildListSO: {fileID: 11400000, guid: ed89ef8b58acf8b40b1929c5c87c6cd9, type: 2}
   merchantCardListSO: {fileID: 11400000, guid: 718bec681f4282b4f9d066fc32abdbf0, type: 2}
-  goldSprite: {fileID: 0}
-  hpSprite: {fileID: 0}
-  shieldSprite: {fileID: 0}
-  expSprite: {fileID: 0}
-  passiveSprite: {fileID: 0}
-  buildOrSpeicalSprite: {fileID: 0}
   goldTrm: {fileID: 0}
   hpTrm: {fileID: 0}
   shieldTrm: {fileID: 0}
   expTrm: {fileID: 0}
-  passiveTrms:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  passiveTrm: {fileID: 0}
   bagTrm: {fileID: 0}
   playerValueChangeEvent: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
-  goldCValuehangeEvent: {fileID: 0}

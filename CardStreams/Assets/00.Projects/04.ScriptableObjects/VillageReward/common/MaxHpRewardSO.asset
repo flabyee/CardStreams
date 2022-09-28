@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soList: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
   rewardType: 1
-  rewardSprite: {fileID: 21300004, guid: ca7a5ee15c560cc40b17c0d1bb5babe7, type: 3}
+  rewardSprite: {fileID: 21300000, guid: fcdf9c505e37e494f8d0bcb938288276, type: 3}
   rewardName: "\uCD5C\uB300\uCCB4\uB825 \uC99D\uAC00"
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}

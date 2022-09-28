@@ -134,7 +134,8 @@ public class VillagePlayer : Player
             // 마지막 타일 도착했으니 정리하고 던전으로
             Debug.Log("마지막 타일에 도착했습니다");
             passiveSystem.AddToPlayerBuffList();
-            LoadingSceneManager.LoadScene("SampleScene");
+            LoadingSceneManager.LoadScene("VillageTestScene");
+            //LoadingSceneManager.LoadScene("SampleScene");
         }
     }
 }

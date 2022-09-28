@@ -10,6 +10,6 @@ public class NpcSO : ScriptableObject
 
     public void CreateCard(Vector3 startPos)
     {
-        EffectManager.Instance.GetBezierCardEffect(startPos, rewardSO.rewardSprite, VillageUIManager.Instance.boxTrm, () => rewardSO.AddReward());
+        EffectManager.Instance.CreateBezierEffect(startPos, rewardSO.rewardSprite, VillageUIManager.Instance.boxTrm, () => rewardSO.AddReward());
     }
 }
