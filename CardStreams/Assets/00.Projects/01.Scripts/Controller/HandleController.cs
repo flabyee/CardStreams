@@ -444,7 +444,6 @@ public class HandleController : MonoBehaviour
     }
     private void AddEnemyDeck()
     {
-        Debug.Log(enemyOriginDeck.Count + "deck count");
         DeckShuffle(enemyOriginDeck);
         foreach (CardData cardData in enemyOriginDeck)
         {

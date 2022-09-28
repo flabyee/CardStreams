@@ -27,20 +27,27 @@ public class StreamEditor : EditorWindow
         }
         if (GUILayout.Button("Upgrade Shop"))
         {
+
             shopController.UpgradeShop();
         }
 
-        if(GUILayout.Button("Get Gold 100 in menu"))
+        if(GUILayout.Button("Get crystal 100 in menu"))
         {
-            SaveData saveData = SaveSystem.Load();
+            SaveData saveData = SaveFile.GetSaveData();
             saveData.crystal += 100;
-            SaveSystem.Save(saveData);
+            SaveFile.SaveGame();
+        }
+        if(GUILayout.Button("Get prestige 100 in menu"))
+        {
+            SaveData saveData = SaveFile.GetSaveData();
+            saveData.prestige += 100;
+            SaveFile.SaveGame();
         }
         if(GUILayout.Button("Reset Remove Count"))
         {
-            SaveData saveData = SaveSystem.Load();
-            saveData.maxRemoveCount = 0;
-            SaveSystem.Save(saveData);
+            SaveData saveData = SaveFile.GetSaveData();
+            saveData.maxRemoveCount += 100;
+            SaveFile.SaveGame();
         }
     }
 }

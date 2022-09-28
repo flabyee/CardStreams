@@ -16,9 +16,22 @@ public class UnlockController : MonoBehaviour
 
     public TextMeshProUGUI goldText;
 
+    [Header("GetPanel")]
+    public GameObject getPanelObj;
+
+    public GameObject buildObj;
+    public TextMeshProUGUI build_nameText;
+    public TextMeshProUGUI build_infoText;
+    public Image build_cardImage;
+
+    public GameObject specialObj;
+    public TextMeshProUGUI special_nameText;
+    public TextMeshProUGUI special_infoText;
+    public Image special_cardImage;
+
     public void OnOpen()
     {
-        saveData = SaveSystem.Load();
+        saveData = SaveFile.GetSaveData();
 
         ApplyUI();
 
@@ -32,7 +45,7 @@ public class UnlockController : MonoBehaviour
             
         }
 
-        Debug.Log(specialList.Count);
+       
 
         for (int i = 0; i < 5; i++)
         {
@@ -73,15 +86,15 @@ public class UnlockController : MonoBehaviour
             if (b == false)
             {
                 saveData.crystal += 5;
-                UITooltip.Instance.Show("이미 해당 등급의 건물카드를 모두 해금하였습니다", 2f);
+                UITooltip.Instance.Show("이미 해당 등급의 건물카드를 모두 해금하였습니다", 0.5f);
             }
 
-            SaveSystem.Save(saveData);
+            SaveFile.SaveGame();
             ApplyUI();
         }
         else
         {
-            UITooltip.Instance.Show("돈이 부족합니다", 2f);
+            UITooltip.Instance.Show("돈이 부족합니다", 0.5f);
         }
     }
 
@@ -96,15 +109,15 @@ public class UnlockController : MonoBehaviour
             if (b == false)
             {
                 saveData.crystal += 5;
-                UITooltip.Instance.Show("이미 해당 등급의 특수카드를 모두 해금하였습니다", 2f);
+                UITooltip.Instance.Show("이미 해당 등급의 특수카드를 모두 해금하였습니다", 0.5f);
             }
 
-            SaveSystem.Save(saveData);
+            SaveFile.SaveGame();
             ApplyUI();
         }
         else
         {
-            UITooltip.Instance.Show("돈이 부족합니다", 2f);
+            UITooltip.Instance.Show("돈이 부족합니다", 0.5f);
         }
     }
 
@@ -126,9 +139,15 @@ public class UnlockController : MonoBehaviour
 
         buildDict[cardGrade].Remove(buildData);
 
+        getPanelObj.SetActive(true);
+        buildObj.SetActive(true);
+        specialObj.SetActive(false);
+        BuildSO buildSO = DataManager.Instance.GetBuildSO(buildData.id);
+        build_nameText.text = buildSO.buildName;
+        build_infoText.text = buildSO.tooltip;
+        build_cardImage.sprite = buildSO.sprite;
+
         return true;
-
-
     }
 
     private bool UnlockRandomSpecialCard(CardGrade cardGrade)
@@ -148,6 +167,14 @@ public class UnlockController : MonoBehaviour
         saveData.speicialCardDataList[specialData.id].isUse = true;
 
         specialDict[cardGrade].Remove(specialData);
+
+        getPanelObj.SetActive(true);
+        specialObj.SetActive(true);
+        buildObj.SetActive(false);
+        SpecialCardSO specialSO = DataManager.Instance.GetSpecialCardSO(specialData.id);
+        special_nameText.text = specialSO.specialCardName;
+        special_infoText.text = specialSO.tooltip;
+        special_cardImage.sprite = specialSO.sprite;
 
         return true;
     }
@@ -176,11 +203,11 @@ public class UnlockController : MonoBehaviour
             specialData.isUse = b;
         }
 
-        SaveSystem.Save(saveData);
+        SaveFile.SaveGame();
     }
 
-    public void OnClickDoGam()
+    public void CloseGetPanel()
     {
-
+        getPanelObj.SetActive(false);
     }
 }

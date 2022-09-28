@@ -35,6 +35,8 @@ public class EquipController : MonoBehaviour
 
     public TextMeshProUGUI goldText;
 
+    public System.Action UpgardeRemoveCountEvent;
+
     private void Awake()
     {
         BuildListSO buildListSO = Resources.Load<BuildListSO>(typeof(BuildListSO).Name);
@@ -45,7 +47,7 @@ public class EquipController : MonoBehaviour
 
     public void OnEquip()
     {
-        saveData = SaveSystem.Load();
+        saveData = SaveFile.GetSaveData();
 
         maxRemoveCount = saveData.maxRemoveCount;
 
@@ -63,8 +65,8 @@ public class EquipController : MonoBehaviour
             Destroy(item.gameObject);
         }
         
-        buildScrollTrm.sizeDelta = new Vector2(0, 305f);
-        specialScrollTrm.sizeDelta = new Vector2(0, 305f);
+        buildScrollTrm.sizeDelta = new Vector2(0, 325f);
+        specialScrollTrm.sizeDelta = new Vector2(0, 325f);
 
         for (int i = 0; i < 5; i++)
         {
@@ -145,7 +147,7 @@ public class EquipController : MonoBehaviour
                 if(b == true)
                 {
                     b = false;
-                    buildScrollTrm.sizeDelta += new Vector2(0, 330f);
+                    buildScrollTrm.sizeDelta += new Vector2(0, 325f);
                 }
                 RemoveBuildCard build = Instantiate(buildCardPrefab, buildScrollTrm);
 
@@ -226,7 +228,7 @@ public class EquipController : MonoBehaviour
             }
             else 
             {
-                UITooltip.Instance.Show("제외 가능 횟수가 부족합니다, 업그레이드를 하세요", 2f);
+                UITooltip.Instance.Show("제외 가능 횟수가 부족합니다, 업그레이드를 하세요", 1f);
             }
         }
         else
@@ -242,7 +244,7 @@ public class EquipController : MonoBehaviour
 
         ApplyUI();
 
-        SaveSystem.Save(saveData);
+        SaveFile.SaveGame();
     }
     private void OnClickSpecialRemove(int id, RemoveSpecialCard special)
     {
@@ -277,7 +279,7 @@ public class EquipController : MonoBehaviour
 
         ApplyUI();
 
-        SaveSystem.Save(saveData);
+        SaveFile.SaveGame();
     }
 
     private void ApplyUI()
@@ -319,20 +321,28 @@ public class EquipController : MonoBehaviour
 
     public void UpgradeCount()
     {
-        if(saveData.crystal >= 5)
+        int price = 3 + saveData.maxRemoveCount * 3;
+        if (saveData.crystal >= price)
         {
-            saveData.crystal -= 5;
+            saveData.crystal -= price;
 
             saveData.maxRemoveCount++;
-            SaveSystem.Save(saveData);
+            SaveFile.SaveGame();
 
             maxRemoveCount = saveData.maxRemoveCount;
 
             ApplyUI();
+
+            UpgardeRemoveCountEvent?.Invoke();
         }
         else
         {
             UITooltip.Instance.Show("돈이 부족합니다");
         }
+    }
+
+    public int GetUpgradePrice()
+    {
+        return 3 + saveData.maxRemoveCount * 3;
     }
 }

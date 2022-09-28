@@ -8,12 +8,12 @@ public class UseUITooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [TextArea]
     public string msg;
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         UITooltip.Instance.Show(msg);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public virtual void OnPointerExit(PointerEventData eventData)
     {
         UITooltip.Instance.Hide();
     }

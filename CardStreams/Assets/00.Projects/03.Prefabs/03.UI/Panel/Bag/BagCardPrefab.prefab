@@ -392,8 +392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.27200317, y: -0.2926941}
+  m_SizeDelta: {x: -14.8242, y: -10.4756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4433026805558322600
 CanvasRenderer:
@@ -468,7 +468,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 33, y: 33}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4353520675055133205
 CanvasRenderer:
@@ -689,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1148668060602393057
 RectTransform:
   m_ObjectHideFlags: 0
@@ -840,9 +840,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -107, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3494202206456203983
 CanvasRenderer:
@@ -931,7 +931,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 33, y: 33}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &438704124732037789
 CanvasRenderer:
@@ -1193,7 +1193,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 33}
+  m_SizeDelta: {x: 75, y: 40}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &6395321620036387148
 CanvasRenderer:
@@ -1724,12 +1724,10 @@ MonoBehaviour:
   build_nameText: {fileID: 1586769785192721657}
   build_infoText: {fileID: 5235140134795329353}
   build_cardImage: {fileID: 2856786861826397223}
-  build_gradeImage: {fileID: 0}
   speical: {fileID: 3053876290842766971}
   speical_nameText: {fileID: 5930488204411655848}
   speical_infoText: {fileID: 5988094986894037976}
   speical_cardImage: {fileID: 3494202206456203982}
-  speical_gradeImage: {fileID: 0}
 --- !u!1 &6101007651181617724
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,8 +2120,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 60, y: 0}
-  m_SizeDelta: {x: 60, y: 33}
+  m_AnchoredPosition: {x: 75, y: 0}
+  m_SizeDelta: {x: 75, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3309211433359633998
 CanvasRenderer:

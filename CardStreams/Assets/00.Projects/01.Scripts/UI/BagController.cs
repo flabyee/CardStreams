@@ -89,7 +89,7 @@ public class BagController : MonoBehaviour
             obj.transform.SetParent(specialScrollTrm);
 
             SpecialCardSO specialSO = DataManager.Instance.GetSpecialCardSO(id);
-            bagCard.Init(specialSO.specialCardName, specialSO.tooltip, specialSO.sprite, CardType.Build);
+            bagCard.Init(specialSO.specialCardName, specialSO.tooltip, specialSO.sprite, CardType.Special);
         }
     }
 

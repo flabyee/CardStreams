@@ -13,6 +13,8 @@ public class RemoveBuildCard : RemoveCard, IPointerEnterHandler, IPointerExitHan
         this.buildSO = buildSO;
 
         cardImage.sprite = buildSO.sprite;
+        nameText.text = buildSO.buildName;
+        infoText.text = buildSO.tooltip;
 
         ActiveRemoveImage(isRemove);
     }

@@ -151,4 +151,9 @@ public class UITooltip : MonoBehaviour
             timer = time;
         }
     }
+
+    public void UpdateText(string tooltipText)
+    {
+        SetText(tooltipText);
+    }
 }

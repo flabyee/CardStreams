@@ -13,6 +13,8 @@ public class RemoveSpecialCard : RemoveCard, IPointerEnterHandler, IPointerExitH
         this.specialSO = specialSO;
 
         cardImage.sprite = specialSO.sprite;
+        nameText.text = specialSO.specialCardName;
+        infoText.text = specialSO.tooltip;
 
         ActiveRemoveImage(isRemove);
     }

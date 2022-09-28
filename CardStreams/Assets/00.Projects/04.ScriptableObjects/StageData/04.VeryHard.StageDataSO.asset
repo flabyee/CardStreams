@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4960fc24ed10b0c40a6b28db20d42b6b, type: 3}
-  m_Name: 03.Hard.StageDataSO
+  m_Name: 04.VeryHard.StageDataSO
   m_EditorClassIdentifier: 
   id: 3
-  isRandomMap: 1
-  mapStr: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,20,21,22,23,24,0,4,0,0,0,19,0,0,0,0,0,5,6,0,0,18,0,14,13,12,0,0,7,0,0,17,16,15,0,11,10,9,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+  isRandomMap: 0
+  mapStr: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,1,2,3,4,5,0,0,0,0,23,0,0,0,0,6,7,0,0,0,22,21,20,0,0,0,8,0,0,0,0,0,19,18,0,0,9,0,0,0,0,0,0,17,0,0,10,0,0,0,0,0,0,16,15,0,11,0,0,0,0,0,0,0,14,13,12,0,0,0,0,0,0,0,0,0,0,0
   moveCount: 4
-  getGoldP: 0.75
+  getGoldP: 0.7
   isDeckShuffle: 1
   firstDeckValueAmount: 0
   deckValueIncreaseAmount: 10
   deckValueIncreaseMultipication: 1.75
   firstMobSpawnAmount: 2
   mobIncreaseAmount: 2
-  firstMobAttackAmount: 5
-  mobAttackIncreaseAmount: 5
+  firstMobAttackAmount: 6
+  mobAttackIncreaseAmount: 6
   bossRound: 4
   bossHP: 60
   bossAtk: 10
