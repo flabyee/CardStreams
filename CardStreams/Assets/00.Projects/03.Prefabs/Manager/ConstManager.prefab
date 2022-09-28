@@ -59,8 +59,8 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 57289054a10f7e04bbe7d575d213f248, type: 3}
   - {fileID: 21300000, guid: 3c3a29a727884844499b67527dba3c93, type: 3}
   bossSprite: {fileID: 21300000, guid: 94e247a96c7456d4e8e6df0c558431a6, type: 3}
-  goldSprite: {fileID: 0}
-  heartSprite: {fileID: 0}
+  goldSprite: {fileID: 8964517506000033612, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
+  heartSprite: {fileID: 21300000, guid: fcdf9c505e37e494f8d0bcb938288276, type: 3}
   expSprites:
   - {fileID: 21300000, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
   - {fileID: 21300002, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
@@ -127,8 +127,8 @@ MonoBehaviour:
   - {r: 0.5647059, g: 0.66832805, b: 0.7529412, a: 1}
   - {r: 0.5647059, g: 0.7529412, b: 0.5803922, a: 1}
   - {r: 0.7529412, g: 0.5665491, b: 0.5647059, a: 1}
-  buildColor: {r: 0, g: 0, b: 0, a: 0}
-  specialCardColor: {r: 0, g: 0, b: 0, a: 0}
+  buildColor: {r: 0.8509804, g: 0.84313726, b: 0.40392157, a: 1}
+  specialCardColor: {r: 1, g: 1, b: 1, a: 1}
   upValueColor: {r: 0, g: 0.5416665, b: 1, a: 1}
   downValueColor: {r: 1, g: 0.13614154, b: 0, a: 1}
   gradeColorDict:
