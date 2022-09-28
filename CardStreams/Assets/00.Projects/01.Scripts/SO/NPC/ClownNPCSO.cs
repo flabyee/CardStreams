@@ -9,10 +9,10 @@ public class ClownNPCSO : NpcSO
 
     public int addExpAmount;
 
-    public override void AccessPlayer(Player player)
-    {
-        base.AccessPlayer(player);
+    //public override void AccessPlayer(Player player)
+    //{
+    //    base.AccessPlayer(player);
 
-        startExpValue.RuntimeValue += addExpAmount;
-    }
+    //    startExpValue.RuntimeValue += addExpAmount;
+    //}
 }

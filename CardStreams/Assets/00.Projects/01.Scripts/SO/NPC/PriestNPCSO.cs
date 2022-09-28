@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PriestNPC", menuName = "ScriptableObject/NPC/Priest")]
 public class PriestNPCSO : NpcSO
 {
-    public override void AccessPlayer(Player player)
-    {
-        base.AccessPlayer(player);
+    //public override void AccessPlayer(Player player)
+    //{
+    //    base.AccessPlayer(player);
 
-        Debug.Log("최대체력이 늘어났습니다");
-        // player.hpValue.RuntimeMaxValue += 2;
-    }
+    //    Debug.Log("최대체력이 늘어났습니다");
+    //    // player.hpValue.RuntimeMaxValue += 2;
+    //}
 }

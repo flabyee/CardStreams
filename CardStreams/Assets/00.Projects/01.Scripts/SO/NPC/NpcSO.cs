@@ -8,8 +8,8 @@ public class NpcSO : ScriptableObject
     public string npcName;
     public VillageRewardSO rewardSO;
 
-    public virtual void AccessPlayer(Player player)
+    public void CreateCard(Vector3 startPos)
     {
-        rewardSO.AddReward();
+        EffectManager.Instance.GetBezierCardEffect(startPos, rewardSO.rewardSprite, VillageUIManager.Instance.boxTrm, () => rewardSO.AddReward());
     }
 }
