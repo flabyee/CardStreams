@@ -10,6 +10,7 @@ public class StageDataSO : ScriptableObject
     public bool isRandomMap;
     [TextArea(minLines:6, maxLines:6)] public string mapStr;
     public int moveCount;       // 한번에 이동할 양
+    public float getGoldP;      // 버는 돈의 양 배율
 
     [Header("덱 관련 정보")]
     public bool isDeckShuffle;  // 덱을 섞을지, 튜토리얼에서는 안섞게 하고싶어서

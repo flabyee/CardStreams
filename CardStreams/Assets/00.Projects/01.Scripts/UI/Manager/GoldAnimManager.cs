@@ -27,7 +27,10 @@ public class GoldAnimManager : MonoBehaviour
     public EventSO GoldChangeEvent;
 
     [SerializeField] Sprite[] coinSprites; // 1 10 100 코인 Sprite
+    private int originAllCoinAmount;
     private int allCoinAmount;
+    private float getGoldP = 1;
+
 
     [SerializeField] private float R = 0.5f;
 
@@ -38,6 +41,17 @@ public class GoldAnimManager : MonoBehaviour
         HideResult();
     }
 
+    private void Start()
+    {
+        LoadStageData();
+    }
+
+    private void LoadStageData()
+    {
+        StageDataSO stageData = DataManager.Instance.GetNowStageData();
+        getGoldP = stageData.getGoldP;
+    }
+
     // 사용방법
     // CreateCoin에 버는 양, 위치를 보내서 코인을 생성하고 GetAllCoin 실행해서 실행한 코인을 모두 흡수하고 돈을 얻는다
 
@@ -46,7 +60,7 @@ public class GoldAnimManager : MonoBehaviour
         SoundManager.Instance.PlaySFX(SFXType.CreateMoney);
 
         // coin 생성
-        allCoinAmount += amount;
+        originAllCoinAmount += amount;
 
         int coinSum = amount;
         List<Sprite> coinCreateList = new List<Sprite>();
@@ -125,10 +139,12 @@ public class GoldAnimManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        AddScore(allCoinAmount);
-        allCoinAmount = 0;
+        allCoinAmount = Mathf.RoundToInt(originAllCoinAmount * getGoldP);
 
-        if(isJungsan == true)
+        AddScore(allCoinAmount);
+
+
+        if (isJungsan == true)
         {
             ShowResult();
         }
@@ -153,12 +169,14 @@ public class GoldAnimManager : MonoBehaviour
     {
         // 결과창 띄우기
         GameManager.Instance.blurController.SetActive(true);
-        int earnGold = goldValue.RuntimeValue - originGold;
         originText.text = originGold.ToString();
-        earnText.text = earnGold.ToString();
+        earnText.text = $"{originAllCoinAmount} * {getGoldP}(난이도 보정) = {allCoinAmount}";
         resultText.text = goldValue.RuntimeValue.ToString();
 
         resultPanel.SetActive(true);
+
+        originAllCoinAmount = 0;
+        allCoinAmount = 0;
     }
 
     private void HideResult()

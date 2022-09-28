@@ -49,9 +49,9 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         if (DataManager.Instance.GetNowStageData().isRandomMap == true)
-            DataManager.Instance.GetNowStageData().mapStr = GetRandomMapStr();
-
-        CreateMap(DataManager.Instance.GetNowStageData().mapStr);
+            CreateMap(GetRandomMapStr());
+        else
+            CreateMap(DataManager.Instance.GetNowStageData().mapStr);
     }
 
 

@@ -335,7 +335,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBCF4\uC2A4\uB97C \uC7A1\uC558\uB2E4!\n\uB9C8\uC744\uB85C \uB3CC\uC544\uAC00\uC790"
+  m_text: "\uBCF4\uC2A4\uB97C \uC7A1\uC558\uB2E4!\n\uB9C8\uC744\uB85C \uB3CC\uC544\uAC00\uC790\n\n(50\uD06C\uB9AC\uC2A4\uD0C8\uACFC
+    30\uBA85\uC131\uC744 \uC5BB\uC5C8\uB2E4!)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}
   m_sharedMaterial: {fileID: -7311411413562532130, guid: 3053cb449ebfea5428deaa2124ef21fd, type: 2}

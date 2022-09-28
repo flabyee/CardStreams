@@ -11,6 +11,7 @@ public enum RewardType
     SpecialCard,
     Exp,
     Crystal,
+    Prestige,
 }
 
 [CreateAssetMenu(fileName = "new Reward", menuName = "ScriptableObject/Mission/MissionReward")]
