@@ -18,7 +18,7 @@ MonoBehaviour:
   grade: 0
   tooltip: "\uB9C8\uC744\uC8FC\uBBFC\uC5D0\uAC8C\uC11C [\uC2DC\uC791 \uACE8\uB4DC
     \uC99D\uAC00] \uBC84\uD504\uB97C \uD68D\uB4DD\uD560 \uC218 \uC788\uB2E4."
-  sprite: {fileID: -7120701815064617541, guid: ca2edd75766ebf64cad3ef42c53d87e1, type: 3}
+  sprite: {fileID: 21300000, guid: db55897591ac1c34c8c603a41570cc94, type: 3}
   accessPointList:
   - {x: -1, y: 1}
   - {x: 0, y: 1}
@@ -33,5 +33,5 @@ MonoBehaviour:
   isAcceseLoopEnd: 0
   isOpenCardUI: 0
   openMenuType: 0
-  npcSO: {fileID: 11400000, guid: 33343c3645eb7a04ab231cd4b84103c4, type: 2}
+  npcSO: {fileID: 11400000, guid: 46f078f0eee89e3428c5e7be3f70d0fa, type: 2}
   npcPrefab: {fileID: 5143073422182789500, guid: 0325efba43f21834db555f53c605a2e9, type: 3}

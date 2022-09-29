@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06a9da7eae4e2644b0c258de1c580dc, type: 3}
+  m_Name: ShieldReward
+  m_EditorClassIdentifier: 
+  soList: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
+  rewardName: "\uC2DC\uC791 \uBC29\uC5B4\uB825"
+  rewardType: 2
+  rewardSprite: {fileID: 21300000, guid: 14699ecb0157a0945b91290b78eb26e8, type: 3}
+  shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}
+  playerValueChangeEvent: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
+  increaseShield: 10

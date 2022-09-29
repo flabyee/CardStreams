@@ -40,16 +40,8 @@ public class Player : MonoBehaviour
         rectTrm = GetComponent<RectTransform>();
         buffCon = GetComponent<BuffController>();
 
-        // IntValue Init : VillagePlayer로 옮겨서 마을에서 수치바꿀수있게
-        //hpValue.RuntimeValue = hpValue.InitialMaxValue;
-        //hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
-
-        // 마을에서 시작 안했으면 13/13으로
-        if (hpValue.RuntimeMaxValue <= 0)
-        {
-            hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
-            hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
-        }
+        hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
 
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;

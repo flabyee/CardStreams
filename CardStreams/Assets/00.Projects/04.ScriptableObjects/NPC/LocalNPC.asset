@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23aca6f116bc33343b01cb319f1446f0, type: 3}
+  m_Script: {fileID: 11500000, guid: c88aa4449802e984ca6aed77ed6fa041, type: 3}
   m_Name: LocalNPC
   m_EditorClassIdentifier: 
-  npcSprite: {fileID: 21300006, guid: d7473fdd4fe09744ca7d0a667411bdcd, type: 3}
-  npcName: "\uC8FC\uBBFC"
-  rewardSO: {fileID: 0}
+  npcSprite: {fileID: 21300008, guid: 5bc81cb0c9982af40b1ff2add91ec91f, type: 3}
+  rewardSO: {fileID: 11400000, guid: b6c9434a655227d4c876d2073a9721eb, type: 2}

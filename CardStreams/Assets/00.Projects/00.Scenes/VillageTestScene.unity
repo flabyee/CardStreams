@@ -6960,7 +6960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803433700022164875, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 2803433700022164875, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7421,7 +7421,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 752150323, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1311838989, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
       propertyPath: stageNumValue
@@ -7434,6 +7434,10 @@ PrefabInstance:
     - target: {fileID: 6503324291764519424, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
       propertyPath: m_Name
       value: GameStartingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503324291764519424, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6503324291764519425, guid: 65b1575c73771fa4b84e303268a4a85d, type: 3}
       propertyPath: m_Pivot.x
