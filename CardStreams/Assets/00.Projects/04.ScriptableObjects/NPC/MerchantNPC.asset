@@ -9,18 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d519890ee06d047b575e4d77986259, type: 3}
+  m_Script: {fileID: 11500000, guid: c88aa4449802e984ca6aed77ed6fa041, type: 3}
   m_Name: MerchantNPC
   m_EditorClassIdentifier: 
-  npcSprite: {fileID: 21300000, guid: 9a84610214d0787478b1cfff7fc1d990, type: 3}
-  npcName: "\uC0C1\uC778"
-  randomBuildList:
-  - {fileID: 11400000, guid: 70f252345a78fe5408ffbbc9bc741c32, type: 2}
-  - {fileID: 11400000, guid: 8188e8e8fff25dc40b800d31434aadab, type: 2}
-  - {fileID: 11400000, guid: 4290248fdc8d5b748bf2f004c161d98b, type: 2}
-  randomCardList:
-  - {fileID: 11400000, guid: 18e3ac4eb35e139478d153cd25b21852, type: 2}
-  - {fileID: 11400000, guid: a28a6b56a3c099640b8dd596dea04e34, type: 2}
-  - {fileID: 11400000, guid: 87636e8dcf574aa44b48c3a1fd5bef13, type: 2}
-  merchantBuildList: {fileID: 11400000, guid: ed89ef8b58acf8b40b1929c5c87c6cd9, type: 2}
-  merchantCardList: {fileID: 11400000, guid: 718bec681f4282b4f9d066fc32abdbf0, type: 2}
+  npcSprite: {fileID: 21300000, guid: b615fdd62d7b44e4587abb0b84b65959, type: 3}
+  rewardSO: {fileID: 11400000, guid: 0db9d6308fee9d74e9b56748100fb73e, type: 2}

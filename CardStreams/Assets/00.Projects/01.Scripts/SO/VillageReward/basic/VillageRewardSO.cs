@@ -7,15 +7,13 @@ public abstract class VillageRewardSO : ScriptableObject
     // 들어가야할거 : 얻는것(돈, 경험치, 카드같은거), RewardType(Transform 구분), 필요하다면 Event
 
     public VillageRewardListSO soList;
-
+    public string rewardName;
     public VillageRewardType rewardType;
     public Sprite rewardSprite;
-    public string rewardName;
-    
 
-
-    public void AddReward()
+    public virtual void AddReward()
     {
+        VillageUIManager.Instance.rewardPanel.AddReward(this);
         soList.rewardList.Add(this);
     }
 

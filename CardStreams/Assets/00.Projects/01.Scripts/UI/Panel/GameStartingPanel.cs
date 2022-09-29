@@ -47,10 +47,10 @@ public class GameStartingPanel : MonoBehaviour
     {
         // Á¤ÇØÁø ½ºÆä¼ÈÄ«µå È¹µæ
         GameManager.Instance.handleController.AddSpecial(startingCards[startingIndex].id);
+        GameManager.Instance.canNextLoop = true;
 
         gameObject.SetActive(false);
 
-        GameManager.Instance.canNextLoop = true;
 
         GameManager.Instance.blurController.SetActive(false);
     }

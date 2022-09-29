@@ -40,16 +40,8 @@ public class Player : MonoBehaviour
         rectTrm = GetComponent<RectTransform>();
         buffCon = GetComponent<BuffController>();
 
-        // IntValue Init : VillagePlayer로 옮겨서 마을에서 수치바꿀수있게
-        //hpValue.RuntimeValue = hpValue.InitialMaxValue;
-        //hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
-
-        // 마을에서 시작 안했으면 13/13으로
-        if (hpValue.RuntimeMaxValue <= 0)
-        {
-            hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
-            hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
-        }
+        hpValue.RuntimeMaxValue = hpValue.InitialMaxValue;
+        hpValue.RuntimeValue = hpValue.RuntimeMaxValue;
 
         swordValue.RuntimeValue = 0;
         shieldValue.RuntimeValue = 0;
@@ -273,7 +265,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < exp; i++)
         {
-            EffectManager.Instance.GetBezierCardEffect(transform.position, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
+            EffectManager.Instance.CreateBezierEffect(transform.position, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
                 TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
         }
     }
@@ -281,7 +273,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < exp; i++)
         {
-            EffectManager.Instance.GetBezierCardEffect(pos, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
+            EffectManager.Instance.CreateBezierEffect(pos, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
                 TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
         }
     }
