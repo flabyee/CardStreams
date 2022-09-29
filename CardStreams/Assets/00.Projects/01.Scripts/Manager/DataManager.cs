@@ -71,9 +71,44 @@ public class DataManager : MonoBehaviour
     {
         return specialDict[grade];
     }
-    public SpecialCardSO GetSpecialCardSO(int index)
+    public SpecialCardSO GetSpecialCardSO(int id)
     {
-        return specialCardList.Find((x) => x.id == index);
+        SpecialCardSO specialSO = specialCardList.Find((x) => x.id == id);
+        if (specialSO == null)
+        {
+            Debug.LogError($"{id}specialSO is null");
+            return null;
+        }
+        return specialSO;
+    }
+    public SpecialCardSO GetSpecialCardSO(CardGrade grade, int index)
+    {
+        SpecialCardData specialData = specialDict[grade][index];
+
+        SpecialCardSO specialSO = specialCardList.Find((x) => x.id == specialData.id);
+        if (specialSO == null)
+        {
+            Debug.LogError($"{specialData.id}specialSO is null");
+            return null;
+        }
+        return specialSO;
+    }
+    public SpecialCardSO GetRandomSpecialSO()
+    {
+        if(specialCardList.Count > 0)
+            return specialCardList[UnityEngine.Random.Range(0, specialCardList.Count)];
+
+        return null;
+    }
+    public SpecialCardSO GetRandomSpecialSO(CardGrade grade)
+    {
+        if(specialDict[grade].Count > 0)
+        {
+            SpecialCardData specialData = specialDict[grade][UnityEngine.Random.Range(0, specialDict[grade].Count)];
+            return GetSpecialCardSO(specialData.id);
+        }
+
+        return null;
     }
 
 
@@ -88,6 +123,7 @@ public class DataManager : MonoBehaviour
         if(buildSO == null)
         {
             Debug.LogError($"{id}buildSO is null");
+            return null;
         }
         return buildSO;
     }
@@ -99,17 +135,26 @@ public class DataManager : MonoBehaviour
         if (buildSO == null)
         {
             Debug.LogError($"{buildData.id}buildSO is null");
+            return null;
         }
         return buildSO;
     }
     public BuildSO GetRandomBuildSO()
     {
-        return buildCardList[UnityEngine.Random.Range(0, buildCardList.Count)];
+        if(buildCardList.Count > 0)
+            return buildCardList[UnityEngine.Random.Range(0, buildCardList.Count)];
+
+        return null;
     }
     public BuildSO GetRandomBuildSO(CardGrade grade)
     {
-        BuildCardData buildData = buildDict[grade][UnityEngine.Random.Range(0, buildDict[grade].Count)];
-        return GetBuildSO(buildData.id);
+        if(buildDict[grade].Count > 0)
+        {
+            BuildCardData buildData = buildDict[grade][UnityEngine.Random.Range(0, buildDict[grade].Count)];
+            return GetBuildSO(buildData.id);
+        }
+
+        return null;
     }
 
 
@@ -124,25 +169,5 @@ public class DataManager : MonoBehaviour
     public StageDataSO GetStageData(int stageNum)
     {
         return stageDataList[stageNum];
-    }
-    public SpecialCardSO GetSpecialCardSO(CardGrade grade, int index)
-    {
-        SpecialCardData specialData = specialDict[grade][index];
-
-        SpecialCardSO specialSO = specialCardList.Find((x) => x.id == specialData.id);
-        if (specialSO == null)
-        {
-            Debug.LogError($"{specialData.id}specialSO is null");
-        }
-        return specialSO;
-    }
-    public SpecialCardSO GetRandomSpecialSO()
-    {
-        return specialCardList[UnityEngine.Random.Range(0, specialCardList.Count)];
-    }
-    public SpecialCardSO GetRandomSpecialSO(CardGrade grade)
-    {
-        SpecialCardData specialData = specialDict[grade][UnityEngine.Random.Range(0, specialDict[grade].Count)];
-        return GetSpecialCardSO(specialData.id);
     }
 }

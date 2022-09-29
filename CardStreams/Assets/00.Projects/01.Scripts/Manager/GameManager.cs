@@ -340,7 +340,7 @@ public class GameManager : MonoBehaviour
         moveIndex = 0;
 
         handleController.LoopEnd();
-        ResourceManager.Instance.AddResource(ResourceType.crystal, loopCountValue.RuntimeValue * 5);
+        ResourceManager.Instance.AddResource(ResourceType.crystal, loopCountValue.RuntimeValue * 10);
         // crystalChangeEvent?.Occurred();
 
 

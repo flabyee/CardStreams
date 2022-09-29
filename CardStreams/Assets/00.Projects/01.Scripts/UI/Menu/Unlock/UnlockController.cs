@@ -77,15 +77,16 @@ public class UnlockController : MonoBehaviour
      
     public void OnClickBuildUnlock(int cardGrade)
     {
-        if(saveData.crystal >= 5)
+        int price = 3 + cardGrade * 3;
+        if(saveData.crystal >= price)
         {
-            saveData.crystal -= 5;
+            saveData.crystal -= price;
 
             bool b = UnlockRandomBuildCard((CardGrade)cardGrade);
 
             if (b == false)
             {
-                saveData.crystal += 5;
+                saveData.crystal += price;
                 UITooltip.Instance.Show("이미 해당 등급의 건물카드를 모두 해금하였습니다", 0.5f);
             }
 
@@ -100,15 +101,16 @@ public class UnlockController : MonoBehaviour
 
     public void OnClickSpecialUnlock(int cardGrade)
     {
-        if (saveData.crystal >= 5)
+        int price = 3 + cardGrade * 3;
+        if (saveData.crystal >= price)
         {
-            saveData.crystal -= 5;
+            saveData.crystal -= price;
 
             bool b = UnlockRandomSpecialCard((CardGrade)cardGrade);
 
             if (b == false)
             {
-                saveData.crystal += 5;
+                saveData.crystal += price;
                 UITooltip.Instance.Show("이미 해당 등급의 특수카드를 모두 해금하였습니다", 0.5f);
             }
 

@@ -22,4 +22,10 @@ public static class SaveFile // 세이브파일 관리하는 스크립트
     {
         if(recentFile != null) SaveSystem.Save(recentFile);
     }
+
+    // 평소에는 사용하면 안되는 함수다
+    public static void ReloadSaveData()
+    {
+        recentFile = SaveSystem.Load();
+    }
 }

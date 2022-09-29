@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Text;
+using System.Linq;
 
 public static class SaveSystem
 {
@@ -14,6 +15,10 @@ public static class SaveSystem
      * [HideInInspector] 인스펙터에 띄운걸 지움
      */
     private readonly static string _heroDataName = "StatList";
+
+    private readonly static string specialStr = "0,1,2,3,4,5,6,7,8,9,12,14,27";
+    private readonly static string buildStr = "0,1,2,4,5,6,8,9,10,12,13,14,16,17,18";
+
     // private readonly static string _haveDataName = "HaveList"; // 나중에 재화보관리스트 만들기
 
     private static string SaveFilePath
@@ -87,20 +92,38 @@ public static class SaveSystem
     {
         SaveData saveData = new SaveData();
 
+        saveData.crystal = 30;
+
         buildCount = Resources.Load<BuildListSO>(typeof(BuildListSO).Name).buildList.Count;
         specialCardCount = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name).specialCardList.Count;
 
         saveData.buildDataList = new List<BuildCardData>();
         saveData.speicialCardDataList = new List<SpecialCardData>();
+
+        List<string> unlockList = buildStr.Split(',').ToList();
+        List<int> unlockIntList = new List<int>();
+        foreach (var item in unlockList)
+            unlockIntList.Add(int.Parse(item));
+
         for (int i = 0; i < buildCount; i++)
         {
-            saveData.buildDataList.Add(
-                new BuildCardData() { id = i, isUnlock = true, isUse = true });
+            if(unlockIntList.Contains(i))
+                saveData.buildDataList.Add(new BuildCardData() { id = i, isUnlock = true, isUse = true });
+            else
+                saveData.buildDataList.Add(new BuildCardData() { id = i, isUnlock = false, isUse = false });
         }
-        for(int i = 0; i < specialCardCount; i++)
+
+        unlockList = specialStr.Split(',').ToList();
+        unlockIntList = new List<int>();
+        foreach (var item in unlockList)
+            unlockIntList.Add(int.Parse(item));
+
+        for (int i = 0; i < specialCardCount; i++)
         {
-            saveData.speicialCardDataList.Add(
-                new SpecialCardData() { id = i, isUnlock = true, isUse = true });
+            if(unlockIntList.Contains(i))
+                saveData.speicialCardDataList.Add(new SpecialCardData() { id = i, isUnlock = true, isUse = true });
+            else
+                saveData.speicialCardDataList.Add(new SpecialCardData() { id = i, isUnlock = false, isUse = false });
         }
 
         // 저장할 클래스를 Json으로 바꿔주기
