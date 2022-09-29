@@ -266,7 +266,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < exp; i++)
         {
             EffectManager.Instance.CreateBezierEffect(transform.position, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
-                TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
+                TargetType.Exp, () => { GetExp(1); }, 1.1f, 1f, 2f, false, 1f);
         }
     }
     public void GetExpBezier(int exp, Vector3 pos)
@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i < exp; i++)
         {
             EffectManager.Instance.CreateBezierEffect(pos, ConstManager.Instance.expSprites[UnityEngine.Random.Range(0, ConstManager.Instance.expSprites.Length)],
-                TargetType.Exp, () => { GetExp(1); }, 1f, 2f, 2f, false, 2f);
+                TargetType.Exp, () => { GetExp(1); }, 1.1f, 1f, 2f, false, 1f);
         }
     }
 

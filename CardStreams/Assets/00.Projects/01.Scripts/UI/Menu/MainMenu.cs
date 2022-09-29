@@ -8,6 +8,7 @@ public class MainMenu : Menu<MainMenu>
     public IntValue stageValue;
 
     public GameObject levelSelectPanel;
+    public GameObject cheetPanel;
 
     public void OnClickPlay(int i)
     {
@@ -44,4 +45,30 @@ public class MainMenu : Menu<MainMenu>
     {
         levelSelectPanel.SetActive(b);
     }
+
+    #region ġƮ
+    public void OnOffCheetPanel(bool b)
+    {
+        cheetPanel.SetActive(b);
+    }
+    public void ResetSaveData()
+    {
+        SaveSystem.FirstSave();
+        SaveFile.ReloadSaveData();
+    }
+
+    public void AllUnlock()
+    {
+        SaveSystem.AllUnlock();
+        SaveFile.ReloadSaveData();
+    }
+
+    public void GetResource()
+    {
+        SaveData saveData = SaveFile.GetSaveData();
+        saveData.crystal += 100;
+        saveData.prestige += 100;
+        SaveFile.SaveGame();
+    }
+    #endregion
 }

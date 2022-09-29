@@ -182,12 +182,12 @@ public class MissionController : MonoBehaviour
                 break;
 
             case RewardType.BuildCard:
-                EffectManager.Instance.CreateBezierEffect(mission.transform.position, null, TargetType.Bag, null);
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.buildCardSprite, TargetType.Bag, null);
                 GameManager.Instance.handleController.AddBuild(DataManager.Instance.GetRandomBuildSO((CardGrade)missionReward.value).id);
                 break;
 
             case RewardType.SpecialCard:
-                EffectManager.Instance.CreateBezierEffect(mission.transform.position, null, TargetType.Bag, null);
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.specialCardSprite, TargetType.Bag, null);
                 GameManager.Instance.handleController.AddSpecial(DataManager.Instance.GetRandomSpecialSO((CardGrade)missionReward.value).id);
                 break;
 
@@ -196,14 +196,14 @@ public class MissionController : MonoBehaviour
                 break;
 
             case RewardType.Crystal:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Reousrce, () =>
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.crystalSprite, TargetType.Reousrce, () =>
                 {
                     ResourceManager.Instance.AddResource(ResourceType.crystal, missionReward.value);
                 });
                 break;
 
             case RewardType.Prestige:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Reousrce, () =>
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.prestigeSprite, TargetType.Reousrce, () =>
                 {
                     ResourceManager.Instance.AddResource(ResourceType.prestige, missionReward.value);
                 });

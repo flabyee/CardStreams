@@ -145,6 +145,45 @@ public static class SaveSystem
 
         return saveData;
     }
+
+    public static void AllUnlock()
+    {
+        SaveData saveData = new SaveData();
+
+        saveData.crystal = 999;
+        saveData.prestige = 999;
+
+        buildCount = Resources.Load<BuildListSO>(typeof(BuildListSO).Name).buildList.Count;
+        specialCardCount = Resources.Load<SpecialCardListSO>(typeof(SpecialCardListSO).Name).specialCardList.Count;
+
+        saveData.buildDataList = new List<BuildCardData>();
+        saveData.speicialCardDataList = new List<SpecialCardData>();
+        for (int i = 0; i < buildCount; i++)
+        {
+            saveData.buildDataList.Add(new BuildCardData() { id = i, isUnlock = true, isUse = true });
+        }
+        for (int i = 0; i < specialCardCount; i++)
+        {
+            saveData.speicialCardDataList.Add(new SpecialCardData() { id = i, isUnlock = true, isUse = true });
+        }
+
+        // 저장할 클래스를 Json으로 바꿔주기
+        string saveJson = JsonUtility.ToJson(saveData, true);
+
+        // Json 암호화해주기 : ## 지금은 뺌
+        // string encryptJson = System.Convert.ToBase64String(Encoding.UTF8.GetBytes(saveJson));
+
+        // using으로 Stream 조절(Dispose)
+        using (StreamWriter sw = new StreamWriter(SaveFilePath, false, Encoding.UTF8)) // 경로 | 덮어쓰기 | UTF-8
+        {
+            // Json을 파일에 작성해주기 (StreamWriter ctor 옵션으로 Append/덮어씌우기 됨)
+            sw.WriteLine(saveJson);
+            Debug.Log($"첫 저장 완료 : {saveJson}");
+
+            // Stream 닫기
+            sw.Close();
+        }
+    }
 }
 
 [System.Serializable]

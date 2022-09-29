@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easyList:
   - {fileID: 11400000, guid: 8ae73f9f1eeae984780c2b61b9b896b5, type: 2}
+  - {fileID: 11400000, guid: 2d394ba4c64210d49859cb39825ff211, type: 2}
+  - {fileID: 11400000, guid: 9a15ca384da7fa8438d5556b92789290, type: 2}
   normalList:
   - {fileID: 11400000, guid: e88df203aa3ab3349939d3ae74cadab2, type: 2}
   - {fileID: 11400000, guid: ed0eaa58d72a18344a62c10bc30e41a5, type: 2}

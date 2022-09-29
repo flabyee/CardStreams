@@ -61,6 +61,10 @@ MonoBehaviour:
   bossSprite: {fileID: 21300000, guid: 94e247a96c7456d4e8e6df0c558431a6, type: 3}
   goldSprite: {fileID: 8964517506000033612, guid: ff4737cf143229a4c909ccf8bf488a0c, type: 3}
   heartSprite: {fileID: 21300000, guid: fcdf9c505e37e494f8d0bcb938288276, type: 3}
+  buildCardSprite: {fileID: 21300000, guid: c3f6e44656237e840b91dfc9c34aa46d, type: 3}
+  specialCardSprite: {fileID: 21300000, guid: c3f6e44656237e840b91dfc9c34aa46d, type: 3}
+  crystalSprite: {fileID: 21300012, guid: 38723d39d2ef8e241a62b83146e0e8eb, type: 3}
+  prestigeSprite: {fileID: 661087484673136721, guid: fd50cb6ff17dfc2489de78b4b8666f0d, type: 3}
   expSprites:
   - {fileID: 21300000, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}
   - {fileID: 21300002, guid: 8746968a38c0ea6438dcbfd05a368ebb, type: 3}

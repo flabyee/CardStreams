@@ -29,8 +29,10 @@ public class ConstManager : MonoBehaviour
 
     public Sprite goldSprite;
     public Sprite heartSprite;
+    public Sprite buildCardSprite;
+    public Sprite specialCardSprite;
     public Sprite crystalSprite;
-    public Sprite spritere;
+    public Sprite prestigeSprite;
 
     public Sprite[] expSprites;
 
