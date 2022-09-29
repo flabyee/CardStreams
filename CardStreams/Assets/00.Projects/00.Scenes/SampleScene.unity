@@ -8311,42 +8311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277858216}
     m_Modifications:
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1764971577}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickBoxOpen
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: VillageBoxPanel, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2803433698990046102, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2803433700022164874, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
       propertyPath: m_Name
       value: VillageBoxPanel
@@ -8421,7 +8385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2803433700022164875, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -50
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 2803433700022164875, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8436,9 +8400,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-      propertyPath: rewardListSO
+      propertyPath: hpTrm
       value: 
-      objectReference: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
+      objectReference: {fileID: 2123179030}
+    - target: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
+      propertyPath: bagTrm
+      value: 
+      objectReference: {fileID: 1119512549}
+    - target: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
+      propertyPath: expTrm
+      value: 
+      objectReference: {fileID: 96024655907945862}
+    - target: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
+      propertyPath: goldTrm
+      value: 
+      objectReference: {fileID: 500018059}
+    - target: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
+      propertyPath: shieldTrm
+      value: 
+      objectReference: {fileID: 24125312}
+    - target: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
+      propertyPath: passiveTrm
+      value: 
+      objectReference: {fileID: 786612262}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
 --- !u!224 &1764971576 stripped
@@ -8446,17 +8430,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2803433700022164875, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
   m_PrefabInstance: {fileID: 1764971575}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1764971577 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2803433700022164886, guid: cc4868b6ca2b24a44ba5ef3d97dab776, type: 3}
-  m_PrefabInstance: {fileID: 1764971575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce401a76ce04b584ab8c346f87fbe499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1773831965
 GameObject:
   m_ObjectHideFlags: 0

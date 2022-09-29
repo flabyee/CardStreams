@@ -194,8 +194,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardListSO: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
   passiveListSO: {fileID: 11400000, guid: 7029cf8c5b6e93f44ba54e538e6789f3, type: 2}
-  merchantBuildListSO: {fileID: 0}
-  merchantCardListSO: {fileID: 0}
   goldTrm: {fileID: 0}
   hpTrm: {fileID: 0}
   shieldTrm: {fileID: 0}
