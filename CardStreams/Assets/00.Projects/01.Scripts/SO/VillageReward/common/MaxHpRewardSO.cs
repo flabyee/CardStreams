@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MaxHpRewardSO", menuName = "SO/VillageReward/MaxHP")]
+[CreateAssetMenu(fileName = "MaxHpReward", menuName = "SO/VillageReward/MaxHP")]
 public class MaxHpRewardSO : VillageRewardSO
 {
-    public IntValue hpValue; 
+    [Header("설정변수")]
+    public IntValue hpValue;
+    public EventSO playerValueChangeEvent;
+
+    [Header("수치")]
+    public int increaseHp;
 
     public override void GetReward()
     {
-        hpValue.RuntimeMaxValue += 2;
-        hpValue.RuntimeValue += 2;
-        //playerValueChangeEvent.Occured(); 이거는 GetReward 부르는곳에서 딱1번
+        hpValue.RuntimeMaxValue += increaseHp;
+        hpValue.RuntimeValue += increaseHp;
+
+        playerValueChangeEvent.Occurred();
     }
 }

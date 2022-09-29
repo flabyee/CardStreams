@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe44e02cbd4d6ec49859cc97ac37473f, type: 3}
+  m_Script: {fileID: 11500000, guid: c88aa4449802e984ca6aed77ed6fa041, type: 3}
   m_Name: MagicianNPC
   m_EditorClassIdentifier: 
-  npcSprite: {fileID: 21300020, guid: bd46ea097e0591f4bba4ad38524e9a9d, type: 3}
-  npcName: "\uB9C8\uBC95\uC0AC"
-  createShieldAmount: 10
+  npcSprite: {fileID: 21300000, guid: 87194b553ecfe9245a10e2e734120fb4, type: 3}
+  rewardSO: {fileID: 11400000, guid: b1876ae2643c74a49b342e80f84a0dde, type: 2}

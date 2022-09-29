@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb3ec5856ac686f45bd560cad0318f81, type: 3}
+  m_Script: {fileID: 11500000, guid: c88aa4449802e984ca6aed77ed6fa041, type: 3}
   m_Name: ClownNPC
   m_EditorClassIdentifier: 
   npcSprite: {fileID: 21300000, guid: 6dadadfc23c855d4c826f76d42998145, type: 3}
-  npcName: "\uAD11\uB300"
-  startExpValue: {fileID: 11400000, guid: 6704e3980d8648947a4e4a8cbdef5a16, type: 2}
-  addExpAmount: 40
+  rewardSO: {fileID: 11400000, guid: d09477888b2151844920f2c9fdeba044, type: 2}

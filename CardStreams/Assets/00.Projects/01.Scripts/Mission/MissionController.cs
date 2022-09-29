@@ -157,7 +157,7 @@ public class MissionController : MonoBehaviour
         {
             case RewardType.Gold:
                 // Bezier로 돈UI로 날리기 도착하면 돈증가
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.goldSprite, TargetType.GoldUI, () =>
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.goldSprite, TargetType.GoldUI, () =>
                 {
                     goldValue.RuntimeValue += missionReward.value;
                     goldChangeEvent.Occurred();
@@ -166,7 +166,7 @@ public class MissionController : MonoBehaviour
 
             case RewardType.Hp:
                 // Bezier로 회복으로 날리기 도착하면 회복
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
                 {
                     hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + missionReward.value, 0, hpValue.RuntimeMaxValue);
                     playerValueChanged.Occurred();
@@ -174,7 +174,7 @@ public class MissionController : MonoBehaviour
                 break;
 
             case RewardType.MaxHp:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, ConstManager.Instance.heartSprite, TargetType.HPUI, () =>
                 {
                     hpValue.RuntimeMaxValue += missionReward.value;
                     playerValueChanged.Occurred();
@@ -182,12 +182,12 @@ public class MissionController : MonoBehaviour
                 break;
 
             case RewardType.BuildCard:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Bag, null);
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, null, TargetType.Bag, null);
                 GameManager.Instance.handleController.AddBuild(DataManager.Instance.GetRandomBuildSO((CardGrade)missionReward.value).id);
                 break;
 
             case RewardType.SpecialCard:
-                EffectManager.Instance.GetBezierCardEffect(mission.transform.position, null, TargetType.Bag, null);
+                EffectManager.Instance.CreateBezierEffect(mission.transform.position, null, TargetType.Bag, null);
                 GameManager.Instance.handleController.AddSpecial(DataManager.Instance.GetRandomSpecialSO((CardGrade)missionReward.value).id);
                 break;
 
