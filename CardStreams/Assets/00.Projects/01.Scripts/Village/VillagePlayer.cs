@@ -12,7 +12,7 @@ public enum VillageState
 public class VillagePlayer : Player
 {
     [Header("이동")]
-    private VillageState curState;
+    [SerializeField] private VillageState curState;
     private int mapIndex = 0; // 루프되는 길의 몇번째 칸에 있는지
     private const float movingTime = 0.5f; // 다음 타일까지 걸리는 초기 시간
     private float remainTime = 0.5f; // 다음 타일 가기까지 남은시간
@@ -48,12 +48,17 @@ public class VillagePlayer : Player
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("space");
+            Debug.Log("curstate : " + curState);
+
             if (curState == VillageState.Move)
             {
+                Debug.Log("stop");
                 Stop();
             }
             else if (curState == VillageState.Idle)
             {
+                Debug.Log("idle");
                 MoveStart();
             }
         }

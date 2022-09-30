@@ -43,7 +43,6 @@ public class VillageRewardPanel : MonoBehaviour
         else // 안먹었으면 추가
         {
             VillageRewardSlot slot = slots[slotCount];
-            Debug.Log("추가");
 
             slot.Init(so);
             slot.gameObject.SetActive(true);
