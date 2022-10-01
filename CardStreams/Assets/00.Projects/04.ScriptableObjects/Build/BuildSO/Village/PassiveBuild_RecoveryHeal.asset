@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9b772b153c49ba4aa5dc80c71c762dd, type: 3}
-  m_Name: VillagePassiveBuild 1
+  m_Name: PassiveBuild_RecoveryHeal
   m_EditorClassIdentifier: 
   id: 5
-  buildName: "\uAC00\uC2DC\uD328\uC2DC\uBE0C"
-  price: 0
+  buildName: "\uC7AC\uC0DD\uAC74\uBB3C"
+  price: 10
   grade: 0
-  tooltip: "\uAC00\uC2DC \uC548\uC88B\uC740\uAC81\uB2C8\uB2E4"
-  sprite: {fileID: 21300030, guid: e3d39dcd719d25d4b9f7f294973bdd20, type: 3}
+  tooltip: "\uC7AC\uC0DD \uD328\uC2DC\uBE0C\uB97C \uC90D\uB2C8\uB2E4"
+  sprite: {fileID: 21300000, guid: e800bc726f83ebd4f95217c27b326b92, type: 3}
   accessPointList:
   - {x: -1, y: 1}
   - {x: 1, y: 1}
@@ -26,4 +26,4 @@ MonoBehaviour:
   isAcceseLoopEnd: 0
   isOpenCardUI: 0
   openMenuType: 0
-  passiveSO: {fileID: 11400000, guid: 25b69979f4131da439a979a5743a7e47, type: 2}
+  passiveSO: {fileID: 11400000, guid: 9b920dd46cef8bd4e92233c9b544c53d, type: 2}

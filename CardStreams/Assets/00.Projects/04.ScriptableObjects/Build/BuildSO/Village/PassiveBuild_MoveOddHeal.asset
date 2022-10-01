@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9b772b153c49ba4aa5dc80c71c762dd, type: 3}
-  m_Name: VillagePassiveBuild
+  m_Name: PassiveBuild_MoveOddHeal
   m_EditorClassIdentifier: 
-  id: 5
-  buildName: "\uC7AC\uC0DD\uD328\uC2DC\uBE0C\uC5BB\uB294\uACF3"
-  price: 0
+  id: 8
+  buildName: "\uC8FC\uC0AC\uC704\uD790\uAC74\uBB3C"
+  price: 10
   grade: 0
-  tooltip: "\uC7AC\uC0DD\uC744 \uC90D\uB2C8\uB2E4"
-  sprite: {fileID: 21300000, guid: e800bc726f83ebd4f95217c27b326b92, type: 3}
+  tooltip: "\uC8FC\uC0AC\uC704\uD790 \uD328\uC2DC\uBE0C\uB97C \uC90D\uB2C8\uB2E4"
+  sprite: {fileID: 21300022, guid: 8b356138622368a428e515e298a3b707, type: 3}
   accessPointList:
   - {x: -1, y: 1}
-  - {x: 1, y: 1}
+  - {x: -1, y: -1}
+  - {x: 1, y: 0}
   isAcceseCard: 0
   isAccesePlayer: 1
   isAcceseLoopEnd: 0
   isOpenCardUI: 0
   openMenuType: 0
-  passiveSO: {fileID: 11400000, guid: 9b920dd46cef8bd4e92233c9b544c53d, type: 2}
+  passiveSO: {fileID: 11400000, guid: 87429f6df91bff143a56fa0d42453c7a, type: 2}

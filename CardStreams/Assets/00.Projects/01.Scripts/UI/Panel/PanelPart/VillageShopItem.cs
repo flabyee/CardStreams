@@ -43,7 +43,7 @@ public class VillageShopItem : MonoBehaviour
         if (ResourceManager.Instance.UseResource(ResourceType.crystal, buildItemSO.price) == false) return;
 
         // buildItemSO∏¶ ±Ú±‚
-        CreateNpc();
+        CreateNpcBuilding();
         shop.OnOffMenu(); // ªÚ¿∏¥œ±Ó ªÁ¿ÃµÂ √¢¿∫ ≤Ù±‚
     }
     public void SetInteractable(bool isInteractable)
@@ -51,7 +51,7 @@ public class VillageShopItem : MonoBehaviour
         thisButton.interactable = isInteractable;
     }
 
-    private void CreateNpc()
+    private void CreateNpcBuilding()
     {
         RectTransform rectTrm = VillageMapManager.Instance.GetMapRectTrm(buildPos.y, buildPos.x);
         BuildCard building = CardPoolManager.Instance.GetBuildCard(rectTrm).GetComponent<BuildCard>();
@@ -61,7 +61,6 @@ public class VillageShopItem : MonoBehaviour
         building.VillageBuildDrop(new Vector2(buildPos.x, buildPos.y));
 
         CardPower cardPower = building.GetComponent<CardPower>();
-        cardPower.backImage.color = Color.magenta;
         cardPower.OnField();
     }
 }

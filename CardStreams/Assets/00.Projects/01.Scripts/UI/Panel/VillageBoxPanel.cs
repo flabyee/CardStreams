@@ -19,6 +19,8 @@ public class VillageBoxPanel : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.blurController.SetActive(true);
+
+        GameManager.Instance.player.AddPassive(passiveListSO.dontDestroyPassiveList);
     }
 
     public void OnClickBoxOpen() // 상자깡 시작!
@@ -79,11 +81,11 @@ public class VillageBoxPanel : MonoBehaviour
         //merchantCardListSO.specialCardList.Clear();
 
         // 패시브
-        foreach (PassiveSO so in passiveListSO.passiveList)
+        foreach (PassiveSO so in passiveListSO.dontDestroyPassiveList)
         {
             so.currentLevel = 1;
         }
 
-        passiveListSO.passiveList.Clear();
+        passiveListSO.dontDestroyPassiveList.Clear();
     }
 }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TurnRecoveryBuff", menuName = "ScriptableObject/Buff/TurnRecoveryBuff")]
+[CreateAssetMenu(fileName = "TurnRecoveryPassive", menuName = "ScriptableObject/Passive/TurnRecovery")]
 
-public class TurnRecoveryBuffSO : PassiveSO
+public class TurnRecoveryPassiveSO : PassiveSO
 {
     public IntValue hpValue;
     public EventSO playerValueChanged;

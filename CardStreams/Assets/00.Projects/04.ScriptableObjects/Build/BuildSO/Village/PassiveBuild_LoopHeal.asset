@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29305da7bb5a5464d8a00d8f443034cb, type: 3}
-  m_Name: VillageEquipHouse
+  m_Script: {fileID: 11500000, guid: b9b772b153c49ba4aa5dc80c71c762dd, type: 3}
+  m_Name: PassiveBuild_LoopHeal
   m_EditorClassIdentifier: 
-  id: 1
-  buildName: "Equip\uC9D1"
-  price: 0
+  id: 6
+  buildName: "\uB8E8\uD504\uD790\uAC74\uBB3C"
+  price: 10
   grade: 0
-  tooltip: "equipMenu\uB97C \uC5F4\uC218\uC788\uC2B5\uB2C8\uB2E4"
-  sprite: {fileID: 21300002, guid: 467cb07a858f3f44f97afc648c227f0c, type: 3}
+  tooltip: "\uB8E8\uD504\uD790 \uD328\uC2DC\uBE0C\uB97C \uC90D\uB2C8\uB2E4"
+  sprite: {fileID: 21300010, guid: 77c132035f2985044808c35816285af3, type: 3}
   accessPointList:
   - {x: 0, y: 1}
+  - {x: 1, y: 0}
   isAcceseCard: 0
   isAccesePlayer: 1
   isAcceseLoopEnd: 0
   isOpenCardUI: 0
   openMenuType: 0
-  openVillagMenuEvent: {fileID: 11400000, guid: 29fe8bca925ccab4eb2f8c93881118c7, type: 2}
+  passiveSO: {fileID: 11400000, guid: 411cb305433dcc445904153ec12086f7, type: 2}

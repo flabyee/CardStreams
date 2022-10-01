@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee40417ccd3aab4e8cd159fb2b2bea2, type: 3}
+  m_Name: 08. MoveOddHealPassive
+  m_EditorClassIdentifier: 
+  id: 8
+  timing: 10
+  remainTime: 999
+  buffName: "\uC8FC\uC0AC\uC704 \uD790"
+  buffTooltip: "\uB9E4 4\uBC88\uC9F8 \uD0C0\uC77C\uAE4C\uC9C0 \uC774\uB3D9\uD588\uC744
+    \uB54C \uCCB4\uB825\uC774 \uC9DD\uC218\uB77C\uBA74 \uCD5C\uB300\uCCB4\uB825 +1,
+    \uD640\uC218\uB77C\uBA74 (\uC2A4\uD0AC\uB808\uBCA8) \uB9CC\uD07C \uCCB4\uB825
+    \uD68C\uBCF5"
+  buffIcon: {fileID: 21300022, guid: 8b356138622368a428e515e298a3b707, type: 3}
+  currentLevel: 1
+  hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
+  playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
+  healAmount: 1

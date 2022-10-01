@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PassiveList", menuName = "ScriptableObject/Buff/PassiveList")]
 public class PassiveListSO : ScriptableObject
 {
-    public List<PassiveSO> passiveList;
+    public List<PassiveSO> dontDestroyPassiveList;
 }

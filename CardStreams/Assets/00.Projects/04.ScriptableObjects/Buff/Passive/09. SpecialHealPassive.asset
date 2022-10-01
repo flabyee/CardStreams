@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a9f0438ca275a641be1b00f1a191509, type: 3}
-  m_Name: 05. TurnRecoveryBuff
+  m_Script: {fileID: 11500000, guid: 5f9d6fc528637cd4a86590dbae639a44, type: 3}
+  m_Name: 09. SpecialHealPassive
   m_EditorClassIdentifier: 
-  id: 5
+  id: 9
   timing: 10
   remainTime: 999
-  buffName: "\uC7AC\uC0DD \uB9C8\uBC95"
-  buffTooltip: "\uD328\uC2DC\uBE0C\uB3C4 \uC124\uBA85\uC774 \uD544\uC694\uD560\uAE4C"
-  buffIcon: {fileID: 21300004, guid: e800bc726f83ebd4f95217c27b326b92, type: 3}
+  buffName: "\uD2B9\uC218\uCE74\uB4DC \uD790"
+  buffTooltip: "\uD2B9\uC218\uCE74\uB4DC\uB97C \uC0AC\uC6A9\uD560 \uB54C\uB9C8\uB2E4
+    \uCCB4\uB825 (\uC2A4\uD0AC\uB808\uBCA8 * 2)\uB9CC\uD07C \uD68C\uBCF5"
+  buffIcon: {fileID: 21300010, guid: 8b37095d05639154cbef2fea3853762a, type: 3}
   currentLevel: 1
   hpValue: {fileID: 11400000, guid: 5395a37d244b2254dacacf910f4b5385, type: 2}
   playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
+  healAmount: 2

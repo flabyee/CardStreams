@@ -7,7 +7,7 @@ public class PassiveSystem : MonoBehaviour
     [SerializeField] PassiveSlot[] slots = new PassiveSlot[3];
     [SerializeField] PassiveListSO passiveListSO;
 
-    private List<PassiveSO> registerSOList = new List<PassiveSO>();
+    [SerializeField] List<PassiveSO> registerSOList = new List<PassiveSO>();
     private int registerPassiveCount;
 
     public void AddPassive(PassiveSO so)
@@ -27,6 +27,8 @@ public class PassiveSystem : MonoBehaviour
             }
         }
 
+        if (registerPassiveCount >= 3) return; // 중복이 아닌데 패시브가 3개다 = 자리 없음
+
         // 중복이 아니라면 패시브창에 추가 (중복된 패시브면 위에서 걸러짐)
         slots[registerPassiveCount].Init(so.buffIcon);
         registerSOList.Add(so);
@@ -35,7 +37,6 @@ public class PassiveSystem : MonoBehaviour
 
     public void AddToPlayerBuffList() // 패시브 목록을 플레이어 버프목록에 추가하기
     {
-        // 나중엔 레벨에 비례해서 좋아진 패시브들을 보내야 함
-        passiveListSO.passiveList.AddRange(registerSOList);
+        passiveListSO.dontDestroyPassiveList.AddRange(registerSOList);
     }
 }
