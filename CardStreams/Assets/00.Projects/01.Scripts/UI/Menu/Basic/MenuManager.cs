@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public MainMenu mainMenuPrefab;
     public EquipMenu equipMenuPrefab;
     public UnlockMenu unlockMenuPrefab;
+    public VillageMenu villageMenuPrefab;
 
 
     // 메뉴들의 부모로 쓸 트랜스폼 변수 선언

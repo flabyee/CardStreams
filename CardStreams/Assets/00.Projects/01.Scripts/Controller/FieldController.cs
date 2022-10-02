@@ -60,7 +60,7 @@ public class FieldController
             goldP = 2;
         else if(mobCount == 4)
         {
-            goldP = 3;
+            goldP = 2;
         }
 
         for (int i = nowIndex - 4; i < nowIndex; i++)

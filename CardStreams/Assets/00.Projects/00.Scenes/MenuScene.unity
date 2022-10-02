@@ -773,6 +773,7 @@ MonoBehaviour:
   mainMenuPrefab: {fileID: 424138605255495998, guid: 0df5600f8c3241944bef6fe4d9f9019d, type: 3}
   equipMenuPrefab: {fileID: -6858546912556892882, guid: 2c68bac8369cf3144931c245c2227919, type: 3}
   unlockMenuPrefab: {fileID: 6420852086679049130, guid: 77723f3600ffd7946a994aea5841b2f5, type: 3}
+  villageMenuPrefab: {fileID: 817276091695212905, guid: bb24e028104656945b10f1ec74216bdb, type: 3}
   _menuParent: {fileID: 840795529}
 --- !u!4 &1335548339
 Transform:
