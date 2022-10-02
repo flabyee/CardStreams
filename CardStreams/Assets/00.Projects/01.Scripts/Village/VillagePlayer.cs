@@ -51,16 +51,7 @@ public class VillagePlayer : Player
             Debug.Log("space");
             Debug.Log("curstate : " + curState);
 
-            if (curState == VillageState.Move)
-            {
-                Debug.Log("stop");
-                Stop();
-            }
-            else if (curState == VillageState.Idle)
-            {
-                Debug.Log("idle");
-                MoveStart();
-            }
+            OnSpaceBar();
         }
     }
 
@@ -86,6 +77,20 @@ public class VillagePlayer : Player
     {
         transform.DOKill();
         SetState(VillageState.Idle);
+    }
+
+    public void OnSpaceBar()
+    {
+        if (curState == VillageState.Move)
+        {
+            Debug.Log("stop");
+            Stop();
+        }
+        else if (curState == VillageState.Idle)
+        {
+            Debug.Log("idle");
+            MoveStart();
+        }
     }
 
     // ¸â¹öÇÔ¼öµé

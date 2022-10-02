@@ -13528,6 +13528,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Image
       objectReference: {fileID: 0}
+    - target: {fileID: 5277557076181997553, guid: b275b2a881b4b704ea12b3688f22ada2, type: 3}
+      propertyPath: msg
+      value: "\uD06C\uB9AC\uC2A4\uD0C8 : \uB8E8\uD504\uB97C \uB3CC \uB54C\uB9C8\uB2E4
+        \uB8E8\uD504\uC218 X 10\uB9CC\uD07C \uC5BB\uC2B5\uB2C8\uB2E4. \uCE74\uB4DC\uB97C
+        \uD574\uAE08\uD558\uAC70\uB098 \uB9C8\uC744\uC5D0\uC11C \uAC74\uBB3C\uC744
+        \uC9C0\uC744 \uB54C \uC0AC\uC6A9\uD569\uB2C8\uB2E4"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b275b2a881b4b704ea12b3688f22ada2, type: 3}
 --- !u!1001 &5315306363607117780

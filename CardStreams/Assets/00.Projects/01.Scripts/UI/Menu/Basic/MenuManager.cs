@@ -22,6 +22,8 @@ public class MenuManager : MonoBehaviour
     public UnlockMenu unlockMenuPrefab;
     public VillageMenu villageMenuPrefab;
 
+    public GameObject tutoPanel;
+
 
     // 메뉴들의 부모로 쓸 트랜스폼 변수 선언
     [SerializeField]
@@ -188,5 +190,10 @@ public class MenuManager : MonoBehaviour
             Menu nextMenu = _menuStack.Peek();  // Pop은 제거까지 함, Peek은 꺼내기만
             nextMenu.gameObject.SetActive(true);
         }
+    }
+
+    public void OnOffTuto(bool b)
+    {
+        tutoPanel.SetActive(b);
     }
 }

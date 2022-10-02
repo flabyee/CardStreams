@@ -10994,7 +10994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7370925659316854550, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8641697726303329132, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_text
@@ -11138,7 +11138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7370925659316854550, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8641697726303329132, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_text
@@ -11450,7 +11450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7370925659316854550, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8641697726303329132, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_text
@@ -11830,7 +11830,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7370925659316854550, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8641697726303329132, guid: 395392d69dedc2048b56e120e6702119, type: 3}
       propertyPath: m_text
@@ -12148,7 +12148,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1038075064026880461, guid: 7f04a078666e1d646a856dcc325438e8, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2373400724140496901, guid: 7f04a078666e1d646a856dcc325438e8, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -12170,6 +12170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hi
       objectReference: {fileID: 0}
+    - target: {fileID: 3173174763911783267, guid: 7f04a078666e1d646a856dcc325438e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3635225884917592838, guid: 7f04a078666e1d646a856dcc325438e8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12178,7 +12182,9 @@ PrefabInstance:
       propertyPath: m_text
       value: "4\uCE78\uC529 \uC774\uB3D9\uD574\uC11C \uD55C\uBC14\uD034\uB97C \uB3CC\uBA74
         \uC7A1\uC740 \uBAAC\uC2A4\uD130\uB4E4\uC758 \uC218\uCE58\uC5D0 \uB530\uB77C
-        \uB3C8\uC744 \uC5BB\uC2B5\uB2C8\uB2E4."
+        \uB3C8\uC744 \uC5BB\uC2B5\uB2C8\uB2E4.\n\n\uB2E8, \uD55C\uBC88\uC758 \uC774\uB3D9\uC5D0\uC11C(4\uCE78
+        \uC548\uC5D0) \uBAAC\uC2A4\uD130\uAC00 3\uB9C8\uB9AC \uC774\uC0C1\uC788\uC73C\uBA74
+        \uB3C8\uC744 2\uBC30\uB85C \uC5BB\uC2B5\uB2C8\uB2E4"
       objectReference: {fileID: 0}
     - target: {fileID: 4444721040635651865, guid: 7f04a078666e1d646a856dcc325438e8, type: 3}
       propertyPath: m_fontAsset
