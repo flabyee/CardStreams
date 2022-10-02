@@ -34,6 +34,12 @@ public class VillageMenu : Menu<VillageMenu>
         UnlockMenu.Open();
     }
 
+    public void OnClickTutorial()
+    {
+        stageValue.RuntimeValue = 0;
+        LoadingSceneManager.LoadScene("SampleScene");
+    }
+
 
     #region ġƮ
     public void OnOffCheetPanel(bool b)
