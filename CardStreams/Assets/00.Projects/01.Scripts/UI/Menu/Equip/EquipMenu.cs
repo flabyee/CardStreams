@@ -6,6 +6,7 @@ public class EquipMenu : Menu<EquipMenu>
 {
     public GameObject buildPanel;
     public GameObject specialPanel;
+    public GameObject tutoPanel;
 
     public EquipController equipController;
 
@@ -36,5 +37,10 @@ public class EquipMenu : Menu<EquipMenu>
     {
         specialPanel.SetActive(true);
         buildPanel.SetActive(false);
+    }
+
+    public void OnTutoPanel(bool b)
+    {
+        tutoPanel.SetActive(b);
     }
 }
