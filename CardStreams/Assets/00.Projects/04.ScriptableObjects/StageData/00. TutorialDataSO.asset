@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: 00. TutorialDataSO
   m_EditorClassIdentifier: 
   id: 0
+  isRandomMap: 0
   mapStr: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,8,0,4,0,0,0,0,0,0,0,7,6,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
   moveCount: 4
+  getGoldP: 1
   isDeckShuffle: 1
   firstDeckValueAmount: 2
   deckValueIncreaseAmount: 3
@@ -26,3 +28,4 @@ MonoBehaviour:
   bossRound: 3
   bossHP: 30
   bossAtk: 5
+  spawnEnemyAtk: 0
