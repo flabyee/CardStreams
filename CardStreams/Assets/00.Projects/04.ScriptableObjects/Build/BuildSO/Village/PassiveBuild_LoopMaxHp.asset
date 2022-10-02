@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b772b153c49ba4aa5dc80c71c762dd, type: 3}
+  m_Name: PassiveBuild_LoopMaxHp
+  m_EditorClassIdentifier: 
+  id: 12
+  buildName: "\uB8E8\uD504\uCD5C\uB300\uD790\uAC74\uBB3C"
+  price: 10
+  grade: 0
+  tooltip: "\uB8E8\uD504\uCD5C\uB300\uD790 \uD328\uC2DC\uBE0C\uB97C \uC90D\uB2C8\uB2E4"
+  sprite: {fileID: 21300000, guid: 846ece4b7b719ba459d8699b8f1b05ce, type: 3}
+  accessPointList:
+  - {x: -1, y: 1}
+  - {x: 1, y: -1}
+  isAcceseCard: 0
+  isAccesePlayer: 1
+  isAcceseLoopEnd: 0
+  isOpenCardUI: 0
+  openMenuType: 0
+  passiveSO: {fileID: 11400000, guid: cc4addecb5abe854a84a5b192cad249e, type: 2}

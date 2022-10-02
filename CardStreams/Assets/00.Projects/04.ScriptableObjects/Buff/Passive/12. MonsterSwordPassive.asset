@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9b41939ae3a5e4692083be573f0484, type: 3}
+  m_Name: 12. MonsterSwordPassive
+  m_EditorClassIdentifier: 
+  id: 12
+  timing: 6
+  remainTime: 999
+  buffName: "\uC784\uC2DC\uAC15\uD654"
+  buffTooltip: "\uCE7C\uC758 \uACF5\uACA9\uB825\uBCF4\uB2E4 \uBAAC\uC2A4\uD130\uC758
+    \uACF5\uACA9\uB825\uC774 \uC314\uB2E4\uBA74 (\uC2A4\uD0AC\uB808\uBCA8) \uB9CC\uD07C
+    \uCE7C \uAC15\uD654"
+  buffIcon: {fileID: 21300008, guid: 5ef753b583d02e04582637308dc4f4ee, type: 3}
+  currentLevel: 1
+  swordValue: {fileID: 11400000, guid: aabaa10bb94e50545a7da9dbb785f1f1, type: 2}
+  playerValueChanged: {fileID: 11400000, guid: f1f11d74a83ee304fbffbe61c44615ea, type: 2}
+  addSwordAmount: 1

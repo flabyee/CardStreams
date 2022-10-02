@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PassiveDisplaySlot1
       objectReference: {fileID: 0}
+    - target: {fileID: 2992389703637984849, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
 --- !u!224 &6164176455952057197 stripped
@@ -280,6 +284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PassiveDisplaySlot3
       objectReference: {fileID: 0}
+    - target: {fileID: 2992389703637984849, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
 --- !u!224 &6164176454645530902 stripped
@@ -396,6 +404,10 @@ PrefabInstance:
     - target: {fileID: 2992389703637984849, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
       propertyPath: m_Name
       value: PassiveDisplaySlot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992389703637984849, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d4a30c3cf6874e4dbf3ccf83447500b, type: 3}
