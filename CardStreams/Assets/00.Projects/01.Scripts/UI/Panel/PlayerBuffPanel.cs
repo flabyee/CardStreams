@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerBuffPanel : MonoBehaviour
+public class PlayerBuffPanel : Panel
 {
     [SerializeField] PlayerBuffSlot[] buffSlots;
     [SerializeField] GameObject buffInfoPanel;
@@ -13,12 +13,6 @@ public class PlayerBuffPanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI buffTooltipText;
 
     private List<Buff> playerBuffList = new List<Buff>();
-    private CanvasGroup cg;
-
-    private void Awake()
-    {
-        cg = GetComponent<CanvasGroup>();
-    }
 
     private void Start()
     {
@@ -29,19 +23,10 @@ public class PlayerBuffPanel : MonoBehaviour
         HideBuffInfo();
     }
 
-    public void Show()
+    public override void Show()
     {
+        base.Show();
         UpdatePanel();
-        cg.alpha = 1;
-        cg.interactable = true;
-        cg.blocksRaycasts = true;
-    }
-
-    public void Hide()
-    {
-        cg.alpha = 0;
-        cg.interactable = false;
-        cg.blocksRaycasts = false;
     }
 
     public void ShowBuffInfo(Buff buff) // 패널의 버프 설명을 업뎃합니다

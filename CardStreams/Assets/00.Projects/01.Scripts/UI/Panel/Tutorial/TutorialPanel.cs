@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class TutorialPanel : MonoBehaviour
+public class TutorialPanel : Panel
 {
     [SerializeField] CanvasGroup[] tutorialImages;
     [SerializeField] IntValue stageNum;
@@ -19,11 +19,6 @@ public class TutorialPanel : MonoBehaviour
             GameManager.Instance.ShowTuTorialEvent += ShowTutorial;
             ShowTutorial(0);
         }
-    }
-
-    public void ShowHide(bool value) // 독립적인씬이면 사실상쓸일없음
-    {
-        gameObject.SetActive(value);
     }
 
     public void ShowTutorial(int index)

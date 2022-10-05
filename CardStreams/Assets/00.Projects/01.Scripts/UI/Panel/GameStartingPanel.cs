@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameStartingPanel : MonoBehaviour
+public class GameStartingPanel : Panel
 {
     [SerializeField] SpecialCardSO[] startingCards;
     [SerializeField] Button[] startingButtons;
@@ -16,21 +16,12 @@ public class GameStartingPanel : MonoBehaviour
 
     public IntValue stageNumValue;
 
-    private CanvasGroup _cg;
-
-    private void Awake()
-    {
-        _cg = GetComponent<CanvasGroup>();
-    }
-
     private void Start()
     {
         if (stageNumValue.RuntimeValue == 0)
             return;
 
-        _cg.alpha = 1;
-        _cg.blocksRaycasts = true;
-        _cg.interactable = true;
+        Show();
 
         itemInfo.SetActive(false);
 

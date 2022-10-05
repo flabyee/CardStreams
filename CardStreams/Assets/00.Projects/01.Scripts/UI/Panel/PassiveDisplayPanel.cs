@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PassiveDisplayPanel : MonoBehaviour
+public class PassiveDisplayPanel : Panel
 {
     [SerializeField] List<PassiveSlot> passiveSlots = new List<PassiveSlot>();
 

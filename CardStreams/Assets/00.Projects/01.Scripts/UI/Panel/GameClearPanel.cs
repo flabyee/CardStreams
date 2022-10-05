@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameClearPanel : MonoBehaviour
+public class GameClearPanel : Panel
 {
     public void OnClickTitleButton()
     {

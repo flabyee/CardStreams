@@ -2,37 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillageRewardPanel : MonoBehaviour
+public class VillageRewardPanel : Panel
 {
     private Dictionary<VillageRewardSO, VillageRewardSlot> rewardSlotDict = new Dictionary<VillageRewardSO, VillageRewardSlot>();
 
     [SerializeField] List<VillageRewardSlot> slots;
     private int slotCount = 0;
-    private CanvasGroup cg;
-    private bool isShow;
-
-    private void Awake()
-    {
-        cg = GetComponent<CanvasGroup>();
-    }
-
-    public void OnOffPanel()
-    {
-        if(isShow) // on -> off
-        {
-            cg.alpha = 0;
-            cg.interactable = false;
-            cg.blocksRaycasts = false;
-        }
-        else // off -> on
-        {
-            cg.alpha = 1;
-            cg.interactable = true;
-            cg.blocksRaycasts = true;
-        }
-
-        isShow = !isShow;
-    }
 
     public void AddReward(VillageRewardSO so) // 보상먹은거 추가
     {

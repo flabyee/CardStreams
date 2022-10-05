@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VillageBoxPanel : MonoBehaviour
+public class VillageBoxPanel : Panel
 {
     public VillageRewardListSO rewardListSO;
     public PassiveListSO passiveListSO; // 패시브
@@ -76,9 +76,6 @@ public class VillageBoxPanel : MonoBehaviour
     private void OnDestroy()
     {
         rewardListSO.rewardList.Clear(); // 수동으로 비워줘야함(끌땐무조건)
-
-        //merchantBuildListSO.buildList.Clear();
-        //merchantCardListSO.specialCardList.Clear();
 
         // 패시브
         foreach (PassiveSO so in passiveListSO.dontDestroyPassiveList)
