@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class VillageShop : MonoBehaviour
 {
     [SerializeField] BuildListSO villageBuildListSO;
+    public BuildingInfoPanel info;
+
+    [SerializeField] RectTransform panelShowTrm; // 패널이 on되고나서 이동할 위치
+    [SerializeField] RectTransform panelHideTrm; // 패널이 on되고나서 이동할 위치
 
     private RectTransform _rectTrm;
     private List<VillageShopItem> shopItems = new List<VillageShopItem>();
 
-    private float openPosX = -30;
-    private float closePosX = 470;
     private bool isOpen = false;
 
 
@@ -38,7 +40,9 @@ public class VillageShop : MonoBehaviour
         if (isOpen)
         {
             // 열기
-            _rectTrm.DOAnchorPosX(openPosX, 1.0f);
+            info.Show();
+
+            _rectTrm.DOAnchorPosX(panelShowTrm.anchoredPosition.x, 1.0f);
             DropInputManager.Instance.SetActiveHighlight(true);
             foreach (VillageShopItem item in shopItems)
             {
@@ -48,7 +52,9 @@ public class VillageShop : MonoBehaviour
         else
         {
             // 닫기
-            _rectTrm.DOAnchorPosX(closePosX, 1.0f);
+            info.Hide();
+
+            _rectTrm.DOAnchorPosX(panelHideTrm.anchoredPosition.x, 1.0f);
             DropInputManager.Instance.SetActiveHighlight(false);
             foreach (VillageShopItem item in shopItems)
             {

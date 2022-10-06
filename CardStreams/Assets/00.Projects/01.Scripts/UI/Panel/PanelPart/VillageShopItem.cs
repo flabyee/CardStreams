@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VillageShopItem : MonoBehaviour
+public class VillageShopItem : MonoBehaviour, IPointerDownHandler
 {
     public static Vector2Int buildPos;
     public VillageBuildSO buildItemSO;
@@ -59,8 +60,10 @@ public class VillageShopItem : MonoBehaviour
 
         building.Init(buildItemSO);
         building.VillageBuildDrop(new Vector2(buildPos.x, buildPos.y));
+    }
 
-        CardPower cardPower = building.GetComponent<CardPower>();
-        cardPower.OnField();
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        shop.info.PanelUpdate(buildItemSO);
     }
 }

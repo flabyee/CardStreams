@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class BuildCard : CardPower, IPointerEnterHandler, IPointerExitHandler
 {
-    public BuildSO buildSO;
+    [HideInInspector] public BuildSO buildSO;
     private List<Vector2> accessPointList;
 
     public bool isDrop;

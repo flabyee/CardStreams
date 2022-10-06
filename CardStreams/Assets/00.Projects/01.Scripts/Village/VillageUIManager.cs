@@ -7,6 +7,7 @@ public class VillageUIManager : MonoBehaviour
     public static VillageUIManager Instance { get; private set; }
     public Transform boxTrm; // 마을씬에서 박스의 위치
     public VillageRewardPanel rewardPanel;
+    public BuildingInfoPanel buildInfoPanel;
 
     private void Awake()
     {
