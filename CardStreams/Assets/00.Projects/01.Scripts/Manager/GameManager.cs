@@ -20,6 +20,12 @@ public enum GameState
     GameEnd,
 }
 
+/*
+    이 프로젝트를 언제 다시 열어볼지는 모르겠지만
+    이 글을 보게 된다면 이 게임을 완성시켜주게....
+    - 2022-10-11 천개 오민규의 부하 이희주가 -
+ */
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
