@@ -18,8 +18,9 @@ public class StatPanel : Panel
 
     private Camera mainCam;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         mainCam = Camera.main;
     }
 

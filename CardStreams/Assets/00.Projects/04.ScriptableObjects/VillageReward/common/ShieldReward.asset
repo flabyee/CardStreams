@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soList: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
   rewardName: "\uC2DC\uC791 \uBC29\uC5B4\uB825"
+  rewardTooltip: "\uC784\uC2DC \uBC29\uC5B4\uB825 +10"
   rewardType: 2
   rewardSprite: {fileID: 21300000, guid: 14699ecb0157a0945b91290b78eb26e8, type: 3}
   shieldValue: {fileID: 11400000, guid: 469926e37fa00bf428cc20d2d00c76c4, type: 2}

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: ExpReward
   m_EditorClassIdentifier: 
   soList: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
+  rewardName: "\uACBD\uD5D8\uCE58 \uC99D\uAC00"
+  rewardTooltip: "\uC2DC\uC791 \uACBD\uD5D8\uCE58 +30"
   rewardType: 3
   rewardSprite: {fileID: 21300000, guid: d6c31f433f0e23445b69fd97fc29c31b, type: 3}
-  rewardName: "\uACBD\uD5D8\uCE58 \uC99D\uAC00"
-  startExpValue: {fileID: 11400000, guid: 6704e3980d8648947a4e4a8cbdef5a16, type: 2}
-  expValueChangeEvent: {fileID: 0}
   getExpAmount: 30

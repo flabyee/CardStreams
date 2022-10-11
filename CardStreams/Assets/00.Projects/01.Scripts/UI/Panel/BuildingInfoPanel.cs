@@ -12,31 +12,57 @@ public class BuildingInfoPanel : Panel
 
     private RectTransform _rectTrm;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _rectTrm = GetComponent<RectTransform>();
+        Hide();
     }
 
-    public void PanelUpdate(BuildSO so)
+    public void PanelUpdate(BuildSO so, Vector3 pos)
     {
         List<Vector2> s = so.accessPointList;
 
-        for (int y = 0; y < 3; y++)
+        for (int y =-1; y <= 1; y++)
         {
-            for (int x = 0; x < 3; x++)
+            for (int x = -1; x <= 1; x++)
             {
-                Vector2 dir = new Vector2(x - 1, y - 1); // 0 1 2에서 -1 0 1로 바꾸기
+                Vector2 tilePos = new Vector2(x, y); // 타일의 위치
+                Color tileColor = Color.red;
 
-                if(s.Contains(dir)) // 범위가 있다!
+                if(s.Contains(tilePos)) // 범위 안에 있다!
                 {
-                    buildingRangeImages[y * 3 + x].color = Color.black;
+                    tileColor = Color.black;
                 }
                 else // 없다
                 {
-                    buildingRangeImages[y * 3 + x].color = Color.gray;
+                    tileColor = Color.gray;
                 }
+
+                buildingRangeImages[(1-y) * 3 + x+1].color = tileColor;
             }
         }
+
+        if(so is VillageNPCHouseSO)
+        {
+            buildTooltipText.text = (so as VillageNPCHouseSO).npcSO.rewardSO.rewardTooltip;
+            buildIconImage.sprite = (so as VillageNPCHouseSO).npcSO.npcSprite;
+        }
+        else if(so is VillagePassiveBuildSO)
+        {
+            Debug.Log("passsve");
+            buildTooltipText.text = (so as VillagePassiveBuildSO).passiveSO.buffTooltip;
+            buildIconImage.sprite = (so as VillagePassiveBuildSO).passiveSO.buffIcon;
+        }
+        else
+        {
+            buildTooltipText.text = so.tooltip;
+            buildIconImage.sprite = so.sprite;
+        }
+
+        Vector3 movePos = transform.position;
+        movePos.y = Mathf.Clamp(pos.y, -3.5f, 3.7f);
+        transform.position = movePos;
     }
 
     public void MovePanelX(float anchorX)

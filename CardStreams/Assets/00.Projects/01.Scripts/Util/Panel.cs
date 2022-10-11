@@ -11,10 +11,10 @@ public class Panel : MonoBehaviour
     private CanvasGroup _cg;
     private bool isActive;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _cg = GetComponent<CanvasGroup>();
-        Hide();
+        // Hide();
     }
 
     public virtual void Show()
@@ -33,6 +33,11 @@ public class Panel : MonoBehaviour
         _cg.blocksRaycasts = false;
 
         isActive = false;
+    }
+
+    public bool IsActive()
+    {
+        return isActive;
     }
 
     public virtual void ShowOrHide()

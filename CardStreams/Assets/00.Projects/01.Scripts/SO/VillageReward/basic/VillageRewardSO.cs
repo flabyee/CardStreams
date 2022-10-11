@@ -8,6 +8,7 @@ public abstract class VillageRewardSO : ScriptableObject
 
     public VillageRewardListSO soList;
     public string rewardName;
+    [TextArea] public string rewardTooltip;
     public VillageRewardType rewardType;
     public Sprite rewardSprite;
 

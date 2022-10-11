@@ -39,8 +39,8 @@ public class VillageShop : MonoBehaviour
 
         if (isOpen)
         {
-            // 열기
-            info.Show();
+            //// 열기
+            //info.Show();
 
             _rectTrm.DOAnchorPosX(panelShowTrm.anchoredPosition.x, 1.0f);
             DropInputManager.Instance.SetActiveHighlight(true);

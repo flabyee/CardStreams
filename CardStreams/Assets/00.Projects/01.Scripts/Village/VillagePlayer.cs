@@ -48,9 +48,6 @@ public class VillagePlayer : Player
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("space");
-            Debug.Log("curstate : " + curState);
-
             OnSpaceBar();
         }
     }
@@ -83,12 +80,10 @@ public class VillagePlayer : Player
     {
         if (curState == VillageState.Move)
         {
-            Debug.Log("stop");
             Stop();
         }
         else if (curState == VillageState.Idle)
         {
-            Debug.Log("idle");
             MoveStart();
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VillageShopItem : MonoBehaviour, IPointerDownHandler
+public class VillageShopItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public static Vector2Int buildPos;
     public VillageBuildSO buildItemSO;
@@ -62,8 +62,14 @@ public class VillageShopItem : MonoBehaviour, IPointerDownHandler
         building.VillageBuildDrop(new Vector2(buildPos.x, buildPos.y));
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        shop.info.PanelUpdate(buildItemSO);
+        if(shop.info.IsActive() == false) shop.info.Show();
+        shop.info.PanelUpdate(buildItemSO, transform.position);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        shop.info.Hide();
     }
 }

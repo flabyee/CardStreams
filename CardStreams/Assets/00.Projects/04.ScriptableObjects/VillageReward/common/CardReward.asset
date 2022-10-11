@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soList: {fileID: 11400000, guid: a08e05a9a40c6c841b2e9e79fedd19eb, type: 2}
   rewardName: "\uB79C\uB364 \uCE74\uB4DC"
+  rewardTooltip: "+\uB808\uC5B4 \uB4F1\uAE09\uC758 \uB79C\uB364 \uCE74\uB4DC 1\uC7A5"
   rewardType: 5
   rewardSprite: {fileID: 21300000, guid: 8907a435dff09104a81778c4572b4e39, type: 3}
   randSpecialList:
