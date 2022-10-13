@@ -18,6 +18,7 @@ public class TurnRecoveryPassiveSO : PassiveSO
         if(tileCount >= 4)
         {
             hpValue.RuntimeValue += currentLevel;
+            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + currentLevel, 0, hpValue.RuntimeMaxValue);
             playerValueChanged.Occurred();
             tileCount = 0;
         }

@@ -14,7 +14,7 @@ public class KillHealPassiveSO : PassiveSO
 
     public override void UseBuff(int fieldValue)
     {
-        hpValue.RuntimeValue += healAmount * currentLevel;
+        hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + healAmount * currentLevel, 0, hpValue.RuntimeMaxValue);
         playerValueChanged.Occurred();
     }
 }
