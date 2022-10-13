@@ -176,7 +176,9 @@ public class DropManager : MonoBehaviour
     {
         obj.transform.SetParent(hoverTrm, true);
 
-        GameManager.Instance.handleController.cardSorting.RemoveList(obj.GetComponent<CardPower>());
+        obj.GetComponent<BuildCard>().BuildUp();
+
+        Debug.Log("alksfjasdlk;fjlsadjflkas");
     }
     private void ObjectDroppedToBuild(DropArea area, GameObject obj)
     {
@@ -191,7 +193,7 @@ public class DropManager : MonoBehaviour
             dragbleCard.transform.SetParent(area.rectTrm.transform);
 
             // 못움직이게 설정
-            dragbleCard.canDragAndDrop = false;
+            dragbleCard.canDragAndDrop = true;
 
             // 건물 효과 적용
             BuildCard build = obj.GetComponent<BuildCard>();

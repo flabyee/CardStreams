@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class VillageBuildRect : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
+public class VillageBuildRect : MonoBehaviour, IPointerDownHandler
 {
     public Vector2Int rectPos;
 
@@ -11,10 +11,5 @@ public class VillageBuildRect : MonoBehaviour, IPointerDownHandler, IPointerEnte
     {
         DropInputManager.Instance.TargetingBuildRect(transform.position);
         VillageShopItem.buildPos = rectPos;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("enter");
     }
 }
