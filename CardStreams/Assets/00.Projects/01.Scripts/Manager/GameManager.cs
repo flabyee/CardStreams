@@ -362,6 +362,7 @@ public class GameManager : MonoBehaviour
             TurnEndEvent.Occurred();
             nextState = GameState.TurnStart;
         }
+        BuildManager.Instance.TurnEnd();
 
         EffectManager.Instance.DeleteNextBuildEffect();
 
