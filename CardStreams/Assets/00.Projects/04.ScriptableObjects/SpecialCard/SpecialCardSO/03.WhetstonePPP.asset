@@ -21,4 +21,4 @@ MonoBehaviour:
   applyTiming: 1
   targetTypeList: 01000000
   targetBasicList: 01000000
-  addAmount: 12
+  addAmount: 10
