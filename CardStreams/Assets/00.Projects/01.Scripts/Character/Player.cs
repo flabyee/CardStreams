@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private RectTransform rectTrm;
     private BuffController buffCon;
 
-    
+
 
     [Header("IntValue")]
     public IntValue hpValue;
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     [Header("Debug")]
     public DebugBoolSO isDontDie;
 
-    
+
 
     protected virtual void Awake()
     {
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
     public void CheckPlayerAlive() // 플레이어 쓰러졌는지 검사하는 메소드 | PlayerValueChanged에 넣으면 처음 Init때 걸려서 안됨
     {
-        if(isDontDie.b == true)
+        if (isDontDie.b == true)
         {
             return;
         }
@@ -70,22 +70,21 @@ public class Player : MonoBehaviour
         switch (field.cardPower.basicType)
         {
             case BasicType.Potion:
-                OnPotion(field);
+                OnPotion(field.cardPower as BasicCard);
                 break;
 
             case BasicType.Sword:
-                OnSword(field);
+                OnSword(field.cardPower as BasicCard);
                 break;
 
             case BasicType.Sheild:
-                OnShield(field);
+                OnShield(field.cardPower as BasicCard);
                 break;
 
             case BasicType.Monster:
-                OnMonster(field);
+                OnMonster(field.cardPower as BasicCard);
                 break;
 
-            
             default:
                 Debug.LogError("카드 타입이 null");
                 break;
@@ -99,10 +98,8 @@ public class Player : MonoBehaviour
         MissionObserverManager.instance.OnBasicCard?.Invoke(field.cardPower);
     }
 
-    public bool OnBoss(int damage, out int sword)
+    public bool OnBoss(int currentMonsterValue, out int sword)
     {
-        int currentMonsterValue = damage;
-
         // 방패 쓰는지 검사
         int leftShieldValue = shieldValue.RuntimeValue;
 
@@ -148,61 +145,53 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnPotion(Field field) // 체력증가포션
+    private void OnPotion(BasicCard fieldCardPower) // 체력증가포션
     {
-        BasicCard cardPower = (field.cardPower as BasicCard);
-
-        if (cardPower.value > 0)
+        if (fieldCardPower.value > 0)
         {
-            AddFieldBuff(cardPower.buffList);
+            AddFieldBuff(fieldCardPower.buffList);
 
-            buffCon.UseBuffs(UseTiming.GetPotion, cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.GetPotion, fieldCardPower.value); // 0은 아무의미도없음 int? 나중에
 
-            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + cardPower.value, 0, hpValue.RuntimeMaxValue);
+            hpValue.RuntimeValue = Mathf.Clamp(hpValue.RuntimeValue + fieldCardPower.value, 0, hpValue.RuntimeMaxValue);
 
-            buffCon.UseBuffs(UseTiming.AfterGetPotion, cardPower.value); // 0은 아무의미도없음 int? 나중에
+            buffCon.UseBuffs(UseTiming.AfterGetPotion, fieldCardPower.value); // 0은 아무의미도없음 int? 나중에
         }
     }
 
-    private void OnSword(Field field)
+    private void OnSword(BasicCard fieldCardPower)
     {
-        BasicCard cardPower = (field.cardPower as BasicCard);
-
-        if (cardPower.value > 0)
+        if (fieldCardPower.value > 0)
         {
-            AddFieldBuff(cardPower.buffList);
+            AddFieldBuff(fieldCardPower.buffList);
 
-            buffCon.UseBuffs(UseTiming.GetSword, cardPower.value);
+            buffCon.UseBuffs(UseTiming.GetSword, fieldCardPower.value);
 
-            swordValue.RuntimeValue = cardPower.value;
+            swordValue.RuntimeValue = fieldCardPower.value;
 
-            buffCon.UseBuffs(UseTiming.AfterGetSword, cardPower.value);
+            buffCon.UseBuffs(UseTiming.AfterGetSword, fieldCardPower.value);
         }
     }
 
-    private void OnShield(Field field)
+    private void OnShield(BasicCard fieldCardPower)
     {
-        BasicCard cardPower = (field.cardPower as BasicCard);
-
-        if (cardPower.value > 0)
+        if (fieldCardPower.value > 0)
         {
-            AddFieldBuff(cardPower.buffList);
+            AddFieldBuff(fieldCardPower.buffList);
 
-            buffCon.UseBuffs(UseTiming.GetShield, cardPower.value);
+            buffCon.UseBuffs(UseTiming.GetShield, fieldCardPower.value);
 
-            int addShieldValue = cardPower.value + shieldValue.RuntimeValue;
+            int addShieldValue = fieldCardPower.value + shieldValue.RuntimeValue;
 
-            shieldValue.RuntimeValue = cardPower.value;
+            shieldValue.RuntimeValue = fieldCardPower.value;
 
             buffCon.UseBuffs(UseTiming.AfterGetShield, addShieldValue);
         }
     }
 
-    private void OnMonster(Field field)
+    private void OnMonster(BasicCard fieldCardPower)
     {
-        BasicCard cardPower = (field.cardPower as BasicCard);
-
-        int currentMonsterValue = cardPower.value;
+        int currentMonsterValue = fieldCardPower.value;
 
         // 몬스터의 밸류가 0 이상일 때만
         if (currentMonsterValue > 0)
@@ -210,7 +199,7 @@ public class Player : MonoBehaviour
             // 칼 사용 검사
             if (currentMonsterValue > 0 && swordValue.RuntimeValue > 0) // 몬스터 공격력이 0 이상이고 칼이 있으면
             {
-                buffCon.UseBuffs(UseTiming.BeforeSword, cardPower.value); // 0은 아무의미도없음 int? 나중에
+                buffCon.UseBuffs(UseTiming.BeforeSword, fieldCardPower.value); // 0은 아무의미도없음 int? 나중에
 
                 currentMonsterValue -= swordValue.RuntimeValue;
 
@@ -258,7 +247,7 @@ public class Player : MonoBehaviour
         // 킬카운트, 명성 업 (크리스탈은 루프 완료시마다 5개, 게임매니저로 이사감)
         ResourceManager.Instance.AddResource(ResourceType.prestige, 1);
 
-        GetExpBezier(cardPower.originValue);
+        GetExpBezier(fieldCardPower.originValue);
     }
 
     public void GetExpBezier(int exp)
@@ -285,7 +274,7 @@ public class Player : MonoBehaviour
         while (this.exp >= nextExp)
         {
             // 초과분 넘기기
-            this.exp = this.exp - nextExp;
+            this.exp -= nextExp;
             level++;
             hpValue.RuntimeMaxValue += 2;
             hpValue.RuntimeValue += 2;
